@@ -1,0 +1,34 @@
+table {
+  width: 600px;
+  border: 2px solid black;
+  margin: 20px auto;
+}
+
+td {
+  border: 1px solid black;
+
+  vertical-align: top;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  vertical-align: top;
+  text-align: left;
+  height: 200px;
+  width: 80px;
+  background-color: darkgoldenrod;
+}
+
+.header {
+  vertical-align: top;
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(186, 186, 186);
+}
+
+.footer {
+  vertical-align: top;
+  text-align: center;
+  background-color: rgb(186, 186, 186);
+}

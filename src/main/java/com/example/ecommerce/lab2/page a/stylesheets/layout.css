@@ -1,0 +1,275 @@
+.body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  /* color: #666666; */
+  background-color: #f5f5f5;
+  /* font-family: "FontAwesome";
+  src: url("../fonts/fontawesome-webfont.eot?v=4.2.0");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.2.0")
+      format("embedded-opentype"),
+    url("../fonts/fontawesome-webfont.woff?v=4.2.0") format("woff"),
+    url("../fonts/fontawesome-webfont.ttf?v=4.2.0") format("truetype"),
+    url("../fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular")
+      format("svg"); */
+  font-weight: normal;
+  font-style: normal;
+}
+/* header */
+.pixfort_normal_1 .header_style .sixteen.columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.header_style .one-third {
+  flex: 1;
+  align-items: center;
+  text-align: center;
+}
+
+.header_style .two-thirds {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.header_style .htext_style {
+  margin-right: 20px;
+  font-weight: bold;
+  color: #aeaeae;
+}
+
+.header_style .two-thirds img {
+  height: 25px;
+}
+
+/* body */
+.big_padding .sixteen.columns {
+  display: flex;
+  background-color: #333333;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0px 50px 0px;
+}
+.big_padding .eight.columns.alpha.pix_container {
+  flex: 1;
+  text-align: right;
+}
+.big_padding .eight.columns.omega {
+  flex: 1;
+  padding-left: 30px;
+  text-align: left;
+}
+
+.blue_text {
+  color: #2dc0e7;
+}
+
+.blue_bg {
+  background-color: #2dc0e8;
+}
+
+.light_gray {
+  color: #868686;
+}
+.normal_text {
+  font-weight: normal;
+  font-size: 18px;
+  padding-right: 20%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.big_text {
+  font-size: 20px;
+}
+
+.bold_text {
+  font-weight: bold;
+}
+
+.big_title {
+  font-size: 40px;
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  padding-right: 40%;
+}
+
+.pixicon-eye {
+  color: white;
+}
+
+.btn_normal {
+  background-color: #2dc0e8;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 5px #249aba;
+}
+
+/* section2 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.pix_text {
+  font-size: 16px;
+  color: #b3b3b3;
+  font-weight: normal;
+}
+
+.L1_style {
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: #eeeeee;
+}
+
+.L1_style .editContent.pix_text {
+  font-size: 32px;
+  font-weight: bold;
+  color: #696969;
+}
+
+.L2_style {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pixfort_normal_1 .envato_unbounce.pix_builder_bg .container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+#section_normal_6 {
+  background-color: #eeeeee;
+  padding: 30px 120px 30px 120px;
+}
+
+.stbox {
+  flex: 1;
+  min-width: 50px;
+
+  /* max-width: 500px; */
+}
+
+.box_1,
+.box_2 {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  height: 100%;
+}
+
+.b_style {
+  flex-shrink: 0;
+}
+
+.logo_style {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.box_1 .logo_style {
+  background: #82b440;
+  padding: 12px;
+}
+
+.box_2 .logo_style {
+  background: #2196f3;
+  padding: 12px;
+}
+
+.txt_style {
+  flex: 1;
+}
+
+.txt {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+.env_st.editContent .pix_text {
+  color: #77b3fc;
+}
+
+.stars_span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stars_span img {
+  width: 100px;
+  height: auto;
+}
+
+.env_st {
+  color: #999;
+  font-size: 13px;
+}
+
+/* footer */
+.center_text {
+  text-align: center;
+}
+
+.f1_style {
+  padding: 50px 0px 30px 0px;
+}
+
+.f1_style .editContent .pix_text {
+  color: #5b9a68;
+  font-size: 32px;
+}
+
+.second_link .get_2_btn .slow_fade {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 20px 0px 30px 0px;
+  border: 2px solid #4d8c5a;
+  color: #4d8c5a;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.rights_st {
+  margin-bottom: 8px;
+}
+
+.editContent .pix_text .pixfort_st {
+  color: #4d8c5a;
+  font-weight: bold;
+}
+
+.center_btn.center_text.pix_inline_block{
+
+  margin: 20px 0px 30px 0px;
+}

@@ -1,27 +1,4 @@
 
-
-document.getElementById("signupForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const pass = document.getElementById("password");
-  const confirm = document.getElementById("confirmPassword");
-  const errorMsg = document.getElementById("confirmError");
-
-  // Reset trạng thái cũ
-  confirm.classList.remove("is-invalid");
-  errorMsg.style.display = "none";
-
-  if (pass.value !== confirm.value) {
-    console.log("Mật khẩu không khớp!");
-    confirm.classList.add("is-invalid"); // viền đỏ bootstrap
-    errorMsg.style.display = "block";    // hiện thông báo
-    return;
-  }
-
-  console.log("Thành công!");
-});
-
-
-// valid rest fields.
 document.getElementById("signupForm").addEventListener("submit", function (e) {
   e.preventDefault();
 

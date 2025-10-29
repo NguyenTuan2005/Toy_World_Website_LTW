@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .product-image-main {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .product-image-main img {
+            width: 100%;
+            height: auto;
+            cursor: zoom-in;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            color: #e91e63;
+            transform: scale(1.2);
+        }
+        .thumbnail-gallery {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 5px;
+            background: white;
+        }
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #e91e63;
+        }
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .product-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .price {
+            font-size: 32px;
+            color: #e91e63;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .badge-custom {
+            background-color: #4caf50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .feature-list i {
+            color: #4caf50;
+            margin-right: 10px;
+        }
+        .btn-add-cart {
+            background-color:  rgb(213, 27, 27);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .btn-add-cart:hover {
+            background-color: #c2185b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 20px 0;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 5px;
+            width: fit-content;
+        }
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity-btn:hover {
+            background: #e0e0e0;
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            padding: 5px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .quantity-input:focus {
+            outline: none;
+        }
+        .spec-table th {
+            background-color: #f5f5f5;
+            width: 40%;
+        }
+        .shipping-options {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .shipping-option {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .shipping-option:hover {
+            border-color: #e91e63;
+        }
+        .shipping-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        .description-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightboxImage" src="" alt="Full size image">
+    </div>
+
+    <div class="container my-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="#">Phụ kiện</a></li>
+                <li class="breadcrumb-item active">Đồ chơi mô hình</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <!-- Image Gallery -->
+            <div class="col-lg-6 mb-4">
+                <div class="product-image-main">
+                    <img id="mainImage" src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946" alt="Honda Civic Wheel" onclick="openLightbox(this.src)">
+                    <div class="thumbnail-gallery">
+                        <div class="thumbnail active" onclick="changeImage(this)">
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946" alt="View 1">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this)">
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_2.jpg?v=1759911543&width=1946" alt="View 2">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this)">
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_6.jpg?v=1759911543&width=1946" alt="View 3">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this)">
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_4.jpg?v=1759833234&width=1946" alt="View 4">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this)">
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_5.jpg?v=1759833234&width=1946" alt="View 5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-lg-6">
+                <div class="product-info">
+                    <span class="badge-custom"><i class="fas fa-star"></i> Bestseller</span>
+                    <h1 class="mt-3">Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic FD2 Type-R HOT WHEELS JBK53/FPY86</h1>
+                    
+                    <div class="d-flex align-items-center my-3">
+                        <div class="me-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <span class="text-muted">(128 đánh giá)</span>
+                    </div>
+
+                    <div class="price">279.000 ₫</div>
+
+                    <ul class="feature-list my-4">
+                        <li><i class="fas fa-check-circle"></i> Hàng chính hãng</li>
+                        <li><i class="fas fa-check-circle"></i> Miễn phí giao hàng trong địa đơn dưới 2Km</li>
+                        <li><i class="fas fa-check-circle"></i> Hoàn trả miễn phí 14 ngày</li>
+                        <li><i class="fas fa-check-circle"></i> Ưu đãi giảm giá lên tới 50% - <a href="#">Xem chi tiết</a></li>
+                    </ul>
+
+
+
+                    <div class="quality-btn-buy-container d-flex align-items-center gap-4">
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="decreaseQty()">−</button>
+                            <input type="number" id="quantity" class="quantity-input" value="7" min="1" readonly>
+                            <button class="quantity-btn" onclick="increaseQty()">+</button>
+                        </div>
+                        <div class="d-md-none d-lg-block">
+                            <button class="btn btn-add-cart btn-sm ">
+                                <i class="fas fa-shopping-cart"></i> 
+                                Thêm Vào Giỏ Hàng
+                            </button>
+                        </div>
+                    </div>
+
+                    
+                   
+
+                    <div class="shipping-options">
+                        <h6><i class="fas fa-truck"></i> Chọn hình thức vận chuyển</h6>
+                        <div class="shipping-option">
+                            <input type="radio" name="shipping" id="ship1" checked>
+                            <label for="ship1">
+                                <strong>[CJ-BAEX] NHANH/GCN TIÊU CHUẨN - (QZJ)</strong><br>
+                                <small class="text-muted">23 tháng đến nhận được, dễ trao theo nhớ thận trọng quả của đối những về một 5B/9X>9A</small>
+                            </label>
+                        </div>
+                        <div class="shipping-option">
+                            <input type="radio" name="shipping" id="ship2">
+                            <label for="ship2">
+                                <strong>[CJ-BM] NHANH/GCN MỞ RỘNG - (NAU6BZ42)</strong><br>
+                                <small class="text-muted">Giao hàng trong vòng 2-3 ngày, Thu phí từ 15.000₫ - Giao trong tất cả các tỉnh khu vực HCM 6B/9X>9A</small>
+                            </label>
+                        </div>
+                        <div class="shipping-option">
+                            <input type="radio" name="shipping" id="ship3">
+                            <label for="ship3">
+                                <strong>[CJ-BS2S] NHANH/GCN MỞ LỚN - 3 mã số</strong><br>
+                                <small class="text-muted">Giao hàng trong vòng 4-5 ngày, Phí giao hàng từ 20.000₫</small>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Specifications -->
+        <div class="description-section">
+            <h3 class="mb-4">Thông tin sản phẩm</h3>
+            <table class="table spec-table">
+                <tbody>
+                    <tr>
+                        <th>Chủ đề</th>
+                        <td>HOT WHEELS COLLECTOR PREMIUM</td>
+                    </tr>
+                    <tr>
+                        <th>Xuất xứ</th>
+                        <td>Hàng sao</td>
+                    </tr>
+                    <tr>
+                        <th>Hạn sử</th>
+                        <td>GREATER THAN</td>
+                    </tr>
+                    <tr>
+                        <th>Chất liệu chính</th>
+                        <td>Die-cast kim loại</td>
+                    </tr>
+                    <tr>
+                        <th>Phạm vi phù</th>
+                        <td>HOT WHEELS</td>
+                    </tr>
+                    <tr>
+                        <th>Xuất xứ thương hiệu</th>
+                        <td>MỸ</td>
+                    </tr>
+                    <tr>
+                        <th>Gửi từ</th>
+                        <td>Bình Dương</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Description -->
+        <div class="description-section mt-4">
+            <h3 class="mb-4">Mô tả sản phẩm</h3>
+            <h5>Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic FD2 Type-R HOT WHEELS JBK53/FPY86</h5>
+            <p>
+                Sản phẩm Xe Hot Wheels hoàn toàn mới từ Thương hiệu Hot Wheels hàng đầu Mattel được phân phối độc quyền tại Việt Nam.
+            </p>
+            <p>
+                Thực tế được ưa chuộng, mẫu mã hot trên thế giới, phù hợp với nhiều lứa tuổi từ trẻ em đến người lớn mong sở đây mong muốn được nhận được.
+            </p>
+            <p>
+                Sản phẩm khi làm chủ yêu an toàn, phù hợp sử dụng cho toàn lứa tuổi trẻ em ở trên 3 tuổi, giúp trẻ nhỏ học những mẫu phát triển tuyệt vời.
+            </p>
+            <p>
+                Xe được làm chắc nịch bằng vật liệu cao cấp cao, kim loại bền sạch tốt của Hot Wheels mà được Số BH 6 tháng lại ngoài giao với sản phẩm lân cận.
+            </p>
+            
+            <div class="alert alert-info mt-4">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Lưu ý:</strong> Sản phẩm có thể khác một chút so với hình ảnh do điều kiện ánh sáng khi chụp hoặc màn hình hiển thị.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close lightbox with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        function changeImage(thumbnail) {
+            // Remove active class from all thumbnails
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            // Add active class to clicked thumbnail
+            thumbnail.classList.add('active');
+            // Change main image
+            const mainImg = document.getElementById('mainImage');
+            const newSrc = thumbnail.querySelector('img').src;
+            mainImg.src = newSrc;
+        }
+
+        function increaseQty() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decreaseQty() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Add to cart functionality
+        document.querySelector('.btn-add-cart').addEventListener('click', function() {
+            const qty = document.getElementById('quantity').value;
+            alert(`Đã thêm ${qty} sản phẩm vào giỏ hàng!`);
+        });
+    </script>
+</body>
+</html>

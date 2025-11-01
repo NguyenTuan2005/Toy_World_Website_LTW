@@ -13,6 +13,11 @@
     color: var(--bs-primary) !important;
 }
 
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: var(--bs-primary) !important;
+}
+
 .btn-primary {
     /*background: var(--bs-primary);*/
     --bs-btn-bg: var(--bs-primary);
@@ -38,4 +43,12 @@
 .root-red-background {
   background: var(--bs-primary);
 }
+
+.active>.page-link, .page-link.active {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+
+
 

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Đồ Chơi - MyKingdom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../archive/css/handbook.css">
+    <link rel="stylesheet" href="css/root.css"/>
+    
+</head>
+<body>
+    <!-- Banner Section -->
+    <div class="banner-section">
+        <img src="https://www.mykingdom.com.vn/cdn/shop/files/C_m_nang_1440x240_7521d639-b95b-4c16-8c2e-27c37bb55e34.jpg?v=1694143011&width=3840" 
+             alt="Cẩm Nang Đồ Chơi" class="banner-img">
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="sidebar">
+
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Nhập từ khóa để tìm kiếm (ví dụ: lego, búp bê...)">
+                </div>
+
+     
+                <div class="sidebar-header">
+                    <div class="sidebar-title">Danh Mục Bài Viết</div>
+                </div>
+
+                <!-- Menu Item 1: 360 độ Mykingdom -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-label">360 độ Mykingdom</span>
+                        <span class="menu-icon"></span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item" onclick="handleClick('Ra Mắt Sản Phẩm')">Ra Mắt Sản Phẩm</div>
+                        <div class="submenu-item" onclick="handleClick('Thông Tin Khuyến Mại')">Thông Tin Khuyến Mại</div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2: Dạy con thông minh -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-label">Dạy con thông minh</span>
+                        <span class="menu-icon"></span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item" onclick="handleClick('Từ 0-12 Tháng')">Từ 0-12 Tháng</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 1-3 Tuổi')">Từ 1-3 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 3-6 Tuổi')">Từ 3-6 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 6-12 Tuổi')">Từ 6-12 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Trên 12 Tuổi')">Trên 12 Tuổi</div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3: Chơi cùng con -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-label">Chơi cùng con</span>
+                        <span class="menu-icon"></span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item" onclick="handleClick('Từ 0-12 Tháng')">Từ 0-12 Tháng</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 1-3 Tuổi')">Từ 1-3 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 3-6 Tuổi')">Từ 3-6 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 6-12 Tuổi')">Từ 6-12 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Trên 12 Tuổi')">Trên 12 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Let\'s Be Kids New Content')">Let's Be Kids New Content</div>
+                    </div>
+                </div>
+
+                <!-- Menu Items without children -->
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Nuôi con khỏe')">
+                        <span class="menu-label">Nuôi con khỏe</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Mẹo hữu ích')">
+                        <span class="menu-label">Mẹo hữu ích</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Hôm nay con chơi gì?')">
+                        <span class="menu-label">Hôm nay con chơi gì?</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Vòng quanh thế giới')">
+                        <span class="menu-label">Vòng quanh thế giới</span>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                .article-grid > .page-title {
+                          grid-column: 1 / -1;
+                }
+            </style>
+            <!-- Article Grid -->
+            <div class="article-grid">
+
+                 <div class="page-title d-flex align-items-center justify-content-center" style="color: #032b88; width:100;">Tất cả bài viết</div>
+
+                <!-- Article Card 1 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=500&h=300&fit=crop" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Ưu đãi độc quyền online dành riêng cho bạn! Mừng sinh nhật tháng 11 tại...</h2>
+                        <div class="article-meta">
+                            <span>01.11.2025</span>
+                            <span>BTV Nguyễn Yến</span>
+                        </div>
+                        <p class="article-excerpt">
+                            Dịp sinh nhật tháng 11 nay, Mykingdom mang đến cho bạn những ưu đãi độc quyền, giúp bạn chọn lựa và...
+                        </p>
+                        <a href="#" class="read-more">Xem Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Article Card 2 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Europe toy fair - Lễ hội đồ chơi châu âu 2025 - Ưu đãi đến 40% tại Mykingdom</h2>
+                        <div class="article-meta">
+                            <span>02.11.2025</span>
+                            <span>BTV Nguyễn Yến</span>
+                        </div>
+                        <p class="article-excerpt">
+                            Europe toy fair - Lễ hội đồ chơi Châu Âu 2025 đã chính thức đến Mykingdom! Từ 01/11 đến 30/11. Bạn sẽ có...
+                        </p>
+                        <a href="#" class="read-more">Xem Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Article Card 3 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=500&h=300&fit=crop" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Top 10 đồ chơi STEM tốt nhất cho trẻ em phát triển tư duy</h2>
+                        <div class="article-meta">
+                            <span>28.10.2025</span>
+                            <span>BTV Minh Anh</span>
+                        </div>
+                        <p class="article-excerpt">
+                            Khám phá danh sách những món đồ chơi STEM được đánh giá cao nhất giúp trẻ phát triển tư duy logic...
+                        </p>
+                        <a href="#" class="read-more">Xem Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Article Card 4 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=500&h=300&fit=crop" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Hướng dẫn chọn đồ chơi an toàn cho trẻ sơ sinh và trẻ nhỏ</h2>
+                        <div class="article-meta">
+                            <span>25.10.2025</span>
+                            <span>BTV Thanh Hà</span>
+                        </div>
+                        <p class="article-excerpt">
+                            Những tiêu chí quan trọng mà cha mẹ cần lưu ý khi lựa chọn đồ chơi cho con yêu để đảm bảo an toàn...
+                        </p>
+                        <a href="#" class="read-more">Xem Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Article Card 5 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?w=500&h=300&fit=crop" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Xu hướng đồ chơi hot nhất năm 2025 mà bố mẹ không thể bỏ qua</h2>
+                        <div class="article-meta">
+                            <span>20.10.2025</span>
+                            <span>BTV Phương Linh</span>
+                        </div>
+                        <p class="article-excerpt">
+                            Cập nhật những xu hướng đồ chơi mới nhất, được yêu thích nhất trong năm 2025 từ các thương hiệu...
+                        </p>
+                        <a href="#" class="read-more">Xem Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Article Card 6 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=500&h=300&fit=crop" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <h2 class="article-title">5 hoạt động vui chơi giúp trẻ phát triển kỹ năng xã hội</h2>
+                        <div class="article-meta">
+                            <span>15.10.2025</span>
+                            <span>BTV Thu Hương</span>
+                        </div>
+                        <p class="article-excerpt">
+                            Gợi ý những trò chơi và hoạt động giúp trẻ học cách giao tiếp, chia sẻ và hợp tác với bạn bè...
+                        </p>
+                        <a href="#" class="read-more">Xem Thêm</a>
+                    </div>
+                </div>
+
+            
+             <style>
+                    .article-grid > .pagination-wrapper {
+                        grid-column: 1 / -1;
+                    }
+
+                    .page-item{
+                        margin: 0;
+                    }
+
+                    .page-item .page-link{
+                        color: black;
+                        text-decoration: none
+
+                    }
+                    .page-item .page-link:hover {
+                        background:rgb(213, 27, 27);
+                        color: white;
+                    }
+
+                    
+                </style>
+                 <!-- Pagination -->
+                <div class="pagination-wrapper justify-content-center ">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center ">
+                            <li class="page-item">
+                                <a class="page-link page-prev" href="#" aria-label="Previous">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">6</a></li>
+                            <li class="page-item"><a class="page-link" href="#">7</a></li>
+                            <li class="page-item">
+                                <a class="page-link page-next " href="#" aria-label="Next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+   <div class="container my-5">
+        <div class="section-title">Có thể bạn sẽ thích</div>
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/articles/europe-toy-fair_d0692f67-b979-4130-bda4-e22b9fd32136.jpg?v=1762051980" class="card-img-top" alt="Europe Toy Fair">
+                        <div class="card-body">
+                            <div class="meta">02.11.2025 · BTV Nguyễn Yến</div>
+                            <h5 class="card-title">Europe toy fair – Lễ hội đồ chơi châu Âu 2025 Ưu đãi đến 40% tại Mykingdom</h5>
+                            <p class="card-text">Europe toy fair - Lễ hội đồ chơi Châu Âu 2025 đã chính thức đến MyKingdom! Từ 01/11 đến 30/11, bạn sẽ có cơ hội sở hữu những món đồ chơi đẳng cấp từ các thương hiệu uy tín...</p>
+                            <a href="#" class="read-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/articles/xe-dieu-khien-1-14-lamborghini-sc63-lmdh-mo-duoc-cua-xanh-la-rastar-r10150-grn_7.jpg?v=1761973531" class="card-img-top" alt="Xe điều khiển Lamborghini">
+                        <div class="card-body">
+                            <div class="meta">01.11.2025 · BTV Nguyễn Yến</div>
+                            <h5 class="card-title">Ưu đãi độc quyền online dành riêng cho bạn! Mừng sinh nhật tháng 11</h5>
+                            <p class="card-text">Dịp sinh nhật tháng 11 này, MyKingdom mang đến cho bạn những ưu đãi độc quyền hấp dẫn cùng loạt sản phẩm hot trend, giúp bạn chọn lựa món đồ chơi chất lượng...</p>
+                            <a href="#" class="read-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/articles/lego-mega-sale_5a80f6e6-ed9a-4a0a-879d-7b2de1314c52.jpg?v=1760622737" class="card-img-top" alt="LEGO Mega Sale">
+                        <div class="card-body">
+                            <div class="meta">16.10.2025 · BTV Nguyễn Yến</div>
+                            <h5 class="card-title">LEGO MEGA SALE – Tiết kiệm đến 50% cho tín đồ lắp ráp!</h5>
+                            <p class="card-text">Nếu bạn là fan trung thành của LEGO, thì đợt sale siêu khủng này không thể bỏ lỡ! Từ 16 – 31/10/2025, hàng loạt sản phẩm LEGO chính hãng giảm đến 50%...</p>
+                            <a href="#" class="read-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../archive/js/handbook.js"></script>
+</body>
+</html>

@@ -6,6 +6,7 @@
 }
 
 .form-control:focus {
+    border-color: var(--bs-primary);
     box-shadow: none;
 }
 
@@ -49,6 +50,14 @@
     border-color: var(--bs-primary);
 }
 
+.accordion-button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: white;
+}
 
 
 

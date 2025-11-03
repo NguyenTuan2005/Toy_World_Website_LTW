@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Lamborghini Huracán</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../archive/css/product-detail.css">
+    <link rel="stylesheet" href="css/root.css" />
+     
+</head>
+<body>
+    <header class="bg-white shadow-sm">
+      <div class="container-fluid py-2 root-red-background">
+        <div class="d-flex align-items-center justify-content-center flex-wrap">
+          <!-- Logo -->
+          <div class="d-flex align-items-center">
+            <img
+              src="../archive/assets/logo.png"
+              alt="Logo"
+              class="img-fluid"
+              style="width: 90px; height: 90px"
+            />
+          </div>
+          <!-- Logo -->
+
+          <!-- Search bar -->
+          <div class="flex-grow-1 mx-4" style="max-width: 600px">
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
+                  alt="Search"
+                  width="18"
+                  height="18"
+                />
+              </span>
+              <input
+                type="text"
+                class="form-control border-start-0"
+                placeholder="Nhập từ khóa để tìm kiếm (ví dụ: lắp ráp, mô hình, ba lô,...)"
+              />
+            </div>
+          </div>
+
+          <style>
+            .logo-header {
+              margin-left: 100px;
+            }
+
+            .header-section {
+              background-color: rgb(213, 27, 27); /* đỏ nền */
+              padding: 12px 0;
+            }
+
+            .header-section .btn {
+              color: #fff;
+              border: none;
+              background: transparent;
+              font-weight: 500;
+              transition: all 0.3s ease;
+            }
+
+            .header-section .btn:hover {
+              color: rgb(213, 27, 27);
+              background: white;
+              transform: translateY(-2px);
+            }
+
+            .header-section svg {
+              width: 22px;
+              height: 22px;
+            }
+          </style>
+
+          <!-- Account + Cart -->
+          <div class="header-section text-center">
+            <div class="d-flex justify-content-center align-items-center gap-4">
+              <!-- Login -->
+              <button class="btn d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  class="bi bi-person-circle me-2"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11 10a2 2 0 1 0-6 0 6 6 0 1 0 6 0z" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1z"
+                  />
+                </svg>
+                Đăng nhập
+              </button>
+
+              <!-- Cart -->
+              <button class="btn d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  class="bi bi-cart3 me-2"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 6H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zm3.14 5l1.313 6h8.093l1.2-5.6H3.14z"
+                  />
+                  <path
+                    d="M6 16a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                  />
+                </svg>
+                Giỏ hàng
+              </button>
+                <button
+                        class="navbar-toggler d-md-block d-lg-none me-3"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent"
+                        aria-controls="navbarContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light root-red-background">
+          <div
+            class="container-fluid root-red-background d-flex align-items-center"
+          >
+            <!-- Menu - ẩn khi màn hình nhỏ -->
+            <div
+              class="collapse navbar-collapse justify-content-center"
+              id="navbarContent"
+            >
+              <ul class="navbar-nav fw-bold text-uppercase">
+                <li class="nav-item mx-2">
+                  <a
+                    class="nav-link text-white d-flex align-items-center"
+                    href="#"
+                  >
+                    Độc quyền Online
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/Animation_-_1712303911997.gif?v=1712307455"
+                      class="ms-2"
+                      width="30"
+                      height="30"
+                    />
+                  </a>
+                </li>
+
+                <li class="nav-item mx-2">
+                  <a
+                    class="nav-link text-white d-flex align-items-center"
+                    href="#"
+                  >
+                    Lego
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/icon-lego.gif?v=1743483192"
+                      class="ms-2"
+                      width="30"
+                      height="30"
+                    />
+                  </a>
+                </li>
+
+                <li class="nav-item mx-2">
+                  <a class="nav-link text-white" href="#">Sản phẩm mới</a>
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                  <a
+                    class="nav-link dropdown-toggle text-white"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                  >
+                    Sản phẩm
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Đồ chơi</a></li>
+                    <li><a class="dropdown-item" href="#">Phụ kiện</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                  <a
+                    class="nav-link dropdown-toggle text-white"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                  >
+                    Khuyến mãi
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Giảm giá</a></li>
+                    <li><a class="dropdown-item" href="#">Combo hấp dẫn</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav-item mx-2">
+                  <a class="nav-link text-white" href="#">Thương hiệu</a>
+                </li>
+                <li class="nav-item mx-2">
+                  <a class="nav-link text-white" href="#">Cẩm nang</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="row">
+            <!-- Product Images Section -->
+            <div class="col-md-6">
+                <div class="product-image-main position-relative">
+        
+                    <img id="mainImage" src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_4.jpg?v=1752741487&width=1946" alt="LEGO Lamborghini">
+        
+                </div>
+                <div class="thumbnail-container">
+                    <div class="thumbnail active" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_4.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_4.jpg?v=1752741487&width=1946" alt="Thumbnail 1">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_3.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_3.jpg?v=1752741487&width=1946" alt="Thumbnail 2">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_1.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_1.jpg?v=1752741487&width=1946" alt="Thumbnail 3">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_6.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_6.jpg?v=1752741487&width=1946" alt="Thumbnail 4">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_7.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_7.jpg?v=1752741487&width=1946" alt="Thumbnail 5">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_10.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_10.jpg?v=1752741487&width=1946" alt="Thumbnail 6">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_5.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_5.jpg?v=1752741487&width=1946" alt="Thumbnail 7">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_8.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_8.jpg?v=1752741487&width=1946" alt="Thumbnail 8">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_9.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_9.jpg?v=1752741487&width=1946" alt="Thumbnail 9">
+                    </div>
+                    <div class="thumbnail" data-image="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_2.jpg?v=1752741487&width=1946">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-lamborghini-hurancan-mau-cam-lego-technic-42196_2.jpg?v=1752741487&width=1946" alt="Thumbnail 10">
+                    </div>
+                </div>
+
+                <!-- Modal phóng to ảnh -->
+                <div id="imageModal" class="image-modal">
+                    <span class="close-btn">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                </div>  
+
+            </div>
+
+            <!-- Product Info Section -->
+            <div class="col-md-6">
+                <div class="product-info">
+                    <div class="product-title">
+                        Đồ Chơi Lắp Ráp Siêu Xe Lamborghini Huracán Màu Cam LEGO TECHNIC 42196
+                        <i class="far fa-heart heart-icon"></i>
+                    </div>
+                    
+                    <div class="brand-badge">
+                        Thương hiệu: <a href="#" class="text-decoration-none">LEGO TECHNIC</a> | SKU: 42196
+                    </div>
+
+                    <div class="price-section">
+                        <span class="price-current">1.236.750 ₫</span>
+                        <span class="price-original">1.640.000 ₫</span>
+                        <span class="discount-badge">-25%</span>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>Hàng chính hãng</li>
+                        <li>Miễn phí giao hàng toàn quốc cho đơn hàng từ 500k</li>
+                        <li>Giao hàng nội bộ 4-6 tiếng</li>
+                        <li>Mở hộp và kiểm tra hàng trước khi nhận. <a href="#">Xem chi tiết</a></li>
+                    </ul>
+
+                    <div class="quantity-selector">
+                        <strong>Số lượng</strong>
+                        <div class="quantity-input">
+                            <button type="button" id="decreaseQty">-</button>
+                            <input type="number" id="quantity" value="1" min="1">
+                            <button type="button" id="increaseQty">+</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-add-cart">Thêm Vào Giỏ Hàng</button>
+
+                    <div class="mt-3">
+                        <strong>Dự kiến các cửa hàng còn hàng (Đơn sản phẩm)</strong>
+                        <div class="store-selector">
+                            <div class="store-option">
+                                <strong>[CHI NHÁNH] HUYỆN GOONG BA CƯ CỦNG TRƯ</strong> - 2 cái khi đã đặt đơn trước: 1 Trẻm cần tài sự phổng bạn đây & các thứ động Tiên. Xông hai: +84264543896
+                            </div>
+                            <div class="store-option">
+                                <strong>[CHI NHÁNH] HUYỀN GOONG HỔI BÃ TRUNG - DHCM</strong> - 1 cái khi
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-specs">
+                        <h5>Thông tin sản phẩm</h5>
+                        <div class="spec-row">
+                            <div class="spec-label">Chủ đề</div>
+                            <div class="spec-value">LEGO TECHNIC ALL</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Xuất xứ</div>
+                            <div class="spec-value">Trung Quốc</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Mã vị</div>
+                            <div class="spec-value">42196</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Tuổi</div>
+                            <div class="spec-value">9 tuổi trở lên</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Thương hiệu</div>
+                            <div class="spec-value">LEGO TECHNIC</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Xuất xứ thương hiệu</div>
+                            <div class="spec-value">ĐAN MẠCH</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Giới tính</div>
+                            <div class="spec-value">Boy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- Product Description Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="product-description">
+                <hr class="desc-line">
+                <br>
+                <h4 style="font-weight: 700;">Mô tả sản phẩm</h4>
+                <div class="description-content" id="desc">
+                    <H5 style="font-weight: 800;">Đồ Chơi Lắp Ráp Siêu Xe Lamborghini Hurancán Màu Cam LEGO TECHNIC 42196 (806 chi tiết)</H5>
+                    <span id="shortText">
+                        Hãy tưởng tượng cảm giác phấn khích khi sở hữu một chiếc Lamborghini của riêng mình. Giờ đây, bạn hoàn toàn có thể làm được điều đó với bộ LEGO® Technic™ Lamborghini Huracán Tecnica siêu ngầu này...
+                    </span>
+                    <span id="moreText" style="display: none;">
+                        Hãy tưởng tượng cảm giác phấn khích khi sở hữu một chiếc Lamborghini của riêng mình. Giờ đây, bạn hoàn toàn có thể làm được điều đó với bộ LEGO® Technic™ Lamborghini Huracán Tecnica siêu ngầu này – và điều đặc biệt nhất: chính tay bạn sẽ lắp ráp nên kiệt tác ấy!
+                        <br>
+                        <br>
+                        Khám phá từng chi tiết tinh xảo của siêu xe thể thao đích thực. 
+                        Tự tay lắp ráp động cơ V10 mạnh mẽ, điều khiển hệ thống tay lái và chiêm ngưỡng thiết kế khí động học đậm chất Lamborghini. Đừng quên kiểm tra cả cửa xe có thể mở ra – mọi thứ đều có trong mô hình Lamborghini đỉnh cao này!
+                        <br>
+                        <br>
+                        Bộ mô hình xe Lamborghini dành cho fan siêu xe từ 9 tuổi trở lên
+                        <br>
+                        Khám phá từng chi tiết chân thực: Bộ LEGO® Technic™ này cho phép bạn lắp ráp động cơ V10 chuyển động, hệ thống tay lái mượt mà và cánh cửa có thể mở đầy ấn tượng.
+                        <br>
+                        Tông màu cam nổi bật: Thiết kế đậm chất thể thao với sắc cam rực rỡ, tạo nên một mô hình thu hút mọi ánh nhìn.
+                        <br>
+                        Quà tặng tuyệt vời: Dành cho các bé yêu thích siêu xe và đam mê lắp ráp mô hình độc đáo – món quà lý tưởng cho những tay lái tương lai!
+                        Trải nghiệm lắp ráp 3D sống động: Tải ngay ứng dụng LEGO® Builder để xem hướng dẫn lắp ráp tương tác 3D, giúp việc xây dựng trở nên thú vị và dễ dàng hơn bao giờ hết!
+                        <br>
+                        Kích thước: Bộ mô hình gồm 806 chi tiết, sau khi hoàn thành cao hơn 8 cm và dài tới 28 cm – chuẩn dáng siêu xe!
+                    </span>
+                </div>
+                <button id="toggleBtn" class="btn btn-link text-danger text-decoration-none p-0 mt-2">Xem thêm</button>
+            </div>
+        </div>
+    </div>
+
+     <style>
+        .container {
+            max-width: 80%; /* Cho vừa với phần mô tả sản phẩm */
+        }
+
+        .container img {
+        transition: transform 0.3s ease;
+        }
+
+        .container img:hover {
+        transform: scale(1.05); /* hiệu ứng phóng nhẹ */
+        }
+    </style> 
+
+
+   <div class="container  my-4 p-3 rounded">
+        <div class="row text-center justify-content-center">
+            <div class="col-6 col-md-3 mb-3">
+            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_1.webp?v=1761109355"
+                alt="Sản phẩm chính hãng" class="img-fluid mb-2" style="max-height: 120px;">
+            <p class="fw-semibold mb-0">Sản phẩm <span class="text-nowrap">chính hãng 100%</span></p>
+            </div>
+
+            <div class="col-6 col-md-3 mb-3">
+            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_2.webp?v=1761109355"
+                alt="Nhựa an toàn" class="img-fluid mb-2" style="max-height: 120px;">
+            <p class="fw-semibold mb-0">Nhựa an toàn <span class="text-nowrap">cho trẻ em</span></p>
+            </div>
+
+            <div class="col-6 col-md-3 mb-3">
+            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_3.webp?v=1761109355"
+                alt="Miễn phí giao hàng" class="img-fluid mb-2" style="max-height: 120px;">
+            <p class="fw-semibold mb-0">Miễn phí giao hàng <span class="text-nowrap">đơn từ 500K</span></p>
+            </div>
+
+            <div class="col-6 col-md-3 mb-3">
+            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_4.webp?v=1761109355"
+                alt="Giao hàng hỏa tốc" class="img-fluid mb-2" style="max-height: 120px;">
+            <p class="fw-semibold mb-0">Giao hàng <span class="text-nowrap">hỏa tốc 4 tiếng</span></p>
+            </div>
+        </div>
+    </div>
+
+   <div class="container mt-4">
+        <h5 class="fw-bold mb-3 border-bottom pb-2">Đánh giá sản phẩm</h5>
+
+        <div class="row g-3">
+            <!-- Điểm trung bình -->
+            <div class="col-md-4">
+            <div class="border rating-box text-center p-4 rounded-3">
+                <div class="d-flex justify-content-center align-items-center mb-2">
+                <i class="bi bi-star-fill text-warning fs-2 me-2"></i>
+                <h2 class="fw-bold mb-0">0.0</h2>
+                </div>
+                <small class="text-muted">0 lượt đánh giá</small>
+
+                <!-- Thanh rating bar -->
+                <div class="mt-3">
+                <div class="rating-bar"><span>5 ★</span><div class="progress"><div class="progress-bar" style="width: 0%"></div></div><span>0</span></div>
+                <div class="rating-bar"><span>4 ★</span><div class="progress"><div class="progress-bar" style="width: 0%"></div></div><span>0</span></div>
+                <div class="rating-bar"><span>3 ★</span><div class="progress"><div class="progress-bar" style="width: 0%"></div></div><span>0</span></div>
+                <div class="rating-bar"><span>2 ★</span><div class="progress"><div class="progress-bar" style="width: 0%"></div></div><span>0</span></div>
+                <div class="rating-bar"><span>1 ★</span><div class="progress"><div class="progress-bar" style="width: 0%"></div></div><span>0</span></div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Nội dung đánh giá -->
+            <div class="col-md-8">
+            <div class="border rounded-3 p-4 text-center rating-content">
+                <p class="mb-0 text-muted">
+                Chưa có đánh giá nào, hãy chia sẻ đánh giá của bạn cho sản phẩm này bạn nhé.
+                </p>
+            </div>
+            </div>
+        </div>
+
+        <!-- Form đánh giá -->
+        <div class="border rounded-3 mt-3 p-4 text-center">
+            <h6 class="fw-semibold mb-2">Nhấn để đánh giá</h6>
+            <div class="rating-stars fs-3 mb-2">
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            </div>
+            <small class="text-muted">Chỉ khách hàng đã mua sản phẩm mới có thể để lại đánh giá</small>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../archive/js/product-detail.js"></script>
+</body>
+</html>

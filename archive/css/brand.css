@@ -59,9 +59,16 @@ body {
   padding-bottom: 20px;
   border-bottom: 1px solid #e0e0e0;
 }
+.brand-items {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: start;
+}
 
-.brand-group:last-child {
-  border-bottom: none;
+@media (max-width: 576px) {
+  .brand-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .brand-letter {
@@ -80,7 +87,7 @@ body {
 }
 
 .brand-item {
-  margin: 25px 25px;
+  margin: 20px 20px;
   border-radius: 8px;
   background: white;
   font-weight: 500;

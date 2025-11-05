@@ -10,7 +10,7 @@
      color: rgb(238, 0, 0) !important;
 }
 
-.nav-item:hover .nav-link {
-  color: rgb(213, 27, 27) !important;
+.navbar-nav .nav-item .nav-link:hover {
+  color: rgb(0, 0, 0) !important;
   /* background-color: white; */
 }

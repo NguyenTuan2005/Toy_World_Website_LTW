@@ -45,6 +45,7 @@
   background: var(--bs-primary);
 }
 
+
 .active>.page-link, .page-link.active {
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
@@ -65,3 +66,6 @@
 
 
 
+.navbar {
+    --bs-navbar-padding-y: 0;
+}

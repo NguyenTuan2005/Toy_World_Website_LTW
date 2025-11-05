@@ -7,3 +7,7 @@
   background: var(--bs-primary);
 }
 
+.navbar {
+
+    --bs-navbar-padding-y: 0;
+}

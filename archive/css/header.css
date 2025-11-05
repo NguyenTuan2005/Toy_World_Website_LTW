@@ -1,0 +1,16 @@
+.navbar-nav:hover   {
+  background-color: white;
+  /* border-radius: 10px 10px 0 0; /* Bo 2 góc trên, bỏ 2 góc dưới */
+  /*transition: all 0.3s ease; */
+
+  border-radius: 20px !important;
+}
+
+.navbar-nav:hover .nav-item .nav-link {
+     color: rgb(238, 0, 0) !important;
+}
+
+.nav-item:hover .nav-link {
+  color: rgb(213, 27, 27) !important;
+  /* background-color: white; */
+}

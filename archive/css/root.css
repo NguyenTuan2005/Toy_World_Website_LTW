@@ -19,6 +19,10 @@
     background-color: var(--bs-primary) !important;
 }
 
+.border-primary {
+    border-color: var(--bs-primary) !important;
+}
+
 .btn-primary {
     /*background: var(--bs-primary);*/
     --bs-btn-bg: var(--bs-primary);

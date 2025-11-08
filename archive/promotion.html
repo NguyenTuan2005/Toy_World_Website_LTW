@@ -6,565 +6,472 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <link rel="stylesheet" href="css/root.css" />
+    <link rel="stylesheet" href="css/root.css"/>
+
+    <style>
+        .card-img-top {
+            height: 280px;
+        }
+
+        .wrapper {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .w-lg-auto {
+            flex: 0 0 280px;
+            max-width: 280px;
+        }
+
+        @media (max-width: 1199px) {
+            .w-md-33 {
+                flex: 0 0 calc(33.333% - 0.667rem);
+                max-width: calc(33.333% - 0.667rem);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .w-sm-50 {
+                flex: 0 0 calc(50% - 0.5rem);
+                max-width: calc(50% - 0.5rem);
+            }
+        }
+
+        @media (max-width: 575px) {
+            .wrapper .card {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="bg-white shadow-sm">
-    <div class="container-fluid py-2 root-red-background">
-        <div class="d-flex align-items-center justify-content-center flex-wrap">
-            <!-- Logo -->
-            <div class="d-flex align-items-center">
-                <img
-                        src="../archive/assets/images/logo/logo.png"
-                        alt="Logo"
-                        class="img-fluid"
-                        style="width: 90px; height: 90px"
-                />
-            </div>
-            <!-- Logo -->
+<main class="px-0">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3" style="background: #f2f2f2">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-secondary">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item active text-dark" aria-current="page">Khuyến mãi</li>
+        </ol>
+    </nav>
 
-            <!-- Search bar -->
-            <div class="flex-grow-1 mx-4" style="max-width: 600px">
-                <div class="input-group">
-              <span class="input-group-text bg-white border-end-0">
-                <img
-                        src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
-                        alt="Search"
-                        width="18"
-                        height="18"
-                />
-              </span>
-                    <input
-                            type="text"
-                            class="form-control border-start-0"
-                            placeholder="Nhập từ khóa để tìm kiếm (ví dụ: lắp ráp, mô hình, ba lô,...)"
-                    />
-                </div>
-            </div>
-
-            <style>
-                .logo-header {
-                    margin-left: 100px;
-                }
-
-                .header-section {
-                    background-color: rgb(213, 27, 27); /* đỏ nền */
-                    padding: 12px 0;
-                }
-
-                .header-section .btn {
-                    color: #fff;
-                    border: none;
-                    background: transparent;
-                    font-weight: 500;
-                    transition: all 0.3s ease;
-                }
-
-                .header-section .btn:hover {
-                    color: rgb(213, 27, 27);
-                    background: white;
-                    transform: translateY(-2px);
-                }
-
-                .header-section svg {
-                    width: 22px;
-                    height: 22px;
-                }
-            </style>
-
-            <!-- Account + Cart -->
-            <div class="header-section text-center">
-                <div class="d-flex justify-content-center align-items-center gap-4">
-                    <!-- Login -->
-                    <button class="btn d-flex align-items-center">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                class="bi bi-person-circle me-2"
-                                viewBox="0 0 16 16"
-                        >
-                            <path d="M11 10a2 2 0 1 0-6 0 6 6 0 1 0 6 0z" />
-                            <path
-                                    fill-rule="evenodd"
-                                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1z"
-                            />
-                        </svg>
-                        Đăng nhập
-                    </button>
-
-                    <!-- Cart -->
-                    <button class="btn d-flex align-items-center">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                class="bi bi-cart3 me-2"
-                                viewBox="0 0 16 16"
-                        >
-                            <path
-                                    d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 6H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zm3.14 5l1.313 6h8.093l1.2-5.6H3.14z"
-                            />
-                            <path
-                                    d="M6 16a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-                            />
-                        </svg>
-                        Giỏ hàng
-                    </button>
-                    <button
-                            class="navbar-toggler d-md-block d-lg-none me-3"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#navbarContent"
-                            aria-controls="navbarContent"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
-                    >
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light root-red-background">
-            <div
-                    class="container-fluid root-red-background d-flex align-items-center"
-            >
-                <!-- Menu - ẩn khi màn hình nhỏ -->
-                <div
-                        class="collapse navbar-collapse justify-content-center"
-                        id="navbarContent"
-                >
-                    <ul class="navbar-nav fw-bold text-uppercase">
-                        <li class="nav-item mx-2">
-                            <a
-                                    class="nav-link text-white d-flex align-items-center"
-                                    href="#"
-                            >
-                                Độc quyền Online
-                                <img
-                                        src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/Animation_-_1712303911997.gif?v=1712307455"
-                                        class="ms-2"
-                                        width="30"
-                                        height="30"
-                                />
-                            </a>
-                        </li>
-
-                        <li class="nav-item mx-2">
-                            <a
-                                    class="nav-link text-white d-flex align-items-center"
-                                    href="#"
-                            >
-                                Lego
-                                <img
-                                        src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/icon-lego.gif?v=1743483192"
-                                        class="ms-2"
-                                        width="30"
-                                        height="30"
-                                />
-                            </a>
-                        </li>
-
-                        <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="#">Sản phẩm mới</a>
-                        </li>
-
-                        <li class="nav-item dropdown mx-2">
-                            <a
-                                    class="nav-link dropdown-toggle text-white"
-                                    href="#"
-                                    data-bs-toggle="dropdown"
-                            >
-                                Sản phẩm
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Đồ chơi</a></li>
-                                <li><a class="dropdown-item" href="#">Phụ kiện</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown mx-2">
-                            <a
-                                    class="nav-link dropdown-toggle text-white"
-                                    href="#"
-                                    data-bs-toggle="dropdown"
-                            >
-                                Khuyến mãi
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Giảm giá</a></li>
-                                <li><a class="dropdown-item" href="#">Combo hấp dẫn</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="#">Thương hiệu</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="#">Cẩm nang</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <!-- Banner -->
+    <div class="container-fluid mb-5">
+        <img src="https://www.mykingdom.com.vn/cdn/shop/files/1280_x_496_b7fa6078-33c8-42d5-a658-75427e3e780a.jpg?v=1761932777&width=1200"
+             alt="Banner khuyến mãi"
+             class="rounded w-100 object-fit-fill" style="height: 50vh">
     </div>
-</header>
 
-    <main class="px-0">
-        <!-- Breadcrumb Section -->
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb p-3" style="background: #f2f2f2">
-                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-secondary">Trang chủ</a></li>
-                <li class="breadcrumb-item active text-dark" aria-current="page">Khuyến mãi</li>
-            </ol>
-        </nav>
+    <div class="container-fluid">
+        <!-- Section 1: Sale đồng giá 29k -->
+        <section class="bg-primary rounded p-3 mb-5">
+            <h2 class="mb-4 fw-bold text-uppercase text-white">
+                Sale đồ chơi giá 29k
+            </h2>
+            <div class="position-relative overflow-x-hidden">
+                <button class="d-none d-lg-block position-absolute top-50 z-1 bg-body-secondary border-0 shadow-sm rounded-circle"
+                        style="transform: translateY(-50%); left: 5px; width: 40px; height: 40px; opacity: 0.75"
+                        onmouseover="this.style.opacity='0.25'"
+                        onmouseleave="this.style.opacity='0.75'"
+                        onclick="prevSlide('wrapper')">
+                    <i class="fas fa-chevron-left text-primary"></i>
+                </button>
 
-        <div class="container-lg">
-            <div class="row">
-                <!-- Filter Section -->
-                <aside class="col-md-3 mb-4">
-                    <div class="card border border-0">
-                        <div class="card-header bg-primary text-white d-flex align-items-center">
-                            <h5 class="mb-0">Bộ lọc</h5>
-                            <button class="btn btn-sm text-white ms-auto d-sm-block d-md-none collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#filterCard" aria-expanded="true" aria-controls="filterCard"
-                                    aria-label="Toggle filters">
-                                <i class="fa fa-chevron-down"></i>
+                <div class="wrapper overflow-x-auto d-flex gap-3 pb-3" id="wrapper">
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-50%</span>
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/8a9c0b0f6ba70539f3c9700e9c71053b.jpg?v=1706865383&width=1206"
+                                 class="card-img-top p-3"
+                                 alt="Búp bê công chúa nhỏ">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Búp bê công chúa nhỏ</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">29.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">58.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
                             </button>
                         </div>
-                        <div id="filterCard" class="card-body collapse show d-md-block">
-                            <!-- Category Filter -->
-                            <h6 class="fw-bold mb-3">Danh mục đồ chơi</h6>
-                            <div class="list-group mb-4 border-0">
-                                <a href="#" class="list-group-item list-group-item-action border-start-0 border-end-0">Đồ chơi lắp ráp</a>
-                                <a href="#" class="list-group-item list-group-item-action border-start-0 border-end-0">Búp bê & Nhân vật</a>
-                                <a href="#" class="list-group-item list-group-item-action border-start-0 border-end-0">Xe đồ chơi</a>
-                                <a href="#" class="list-group-item list-group-item-action border-start-0 border-end-0">Đồ chơi giáo dục</a>
-                                <a href="#" class="list-group-item list-group-item-action border-start-0 border-end-0">Thú nhồi bông</a>
-                            </div>
-
-                            <!-- Price Filter -->
-                            <h6 class="fw-bold mb-3">Khoảng giá</h6>
-                            <div class="mb-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="price1">
-                                    <label class="form-check-label" for="price1">Dưới 200.000₫</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="price2">
-                                    <label class="form-check-label" for="price2">200.000₫ - 500.000₫</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="price3">
-                                    <label class="form-check-label" for="price3">500.000₫ - 1.000.000₫</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="price4">
-                                    <label class="form-check-label" for="price4">Trên 1.000.000₫</label>
-                                </div>
-                            </div>
-
-                            <!-- Brand Filter -->
-                            <h6 class="fw-bold mb-3">Thương hiệu</h6>
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="brand1">
-                                    <label class="form-check-label" for="brand1">LEGO</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="brand2">
-                                    <label class="form-check-label" for="brand2">Barbie</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="brand3">
-                                    <label class="form-check-label" for="brand3">Hot Wheels</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="brand4">
-                                    <label class="form-check-label" for="brand4">Fisher-Price</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-
-                <!-- Products List Section -->
-                <section class="col-md-9">
-                    <div class="d-flex justify-content-between align-items-center mb-4 px-3">
-                        <h2 class="h4 mb-0">Đồ chơi khuyến mãi</h2>
-                        <span class="text-muted">Có 24 sản phẩm</span>
                     </div>
 
-                    <div class="row g-4">
-                        <!-- Product Card 1 -->
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card h-100 position-relative">
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-23%</span>
-
-                                <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/products/06_92.jpg?v=1743495050&width=400" class="card-img-top" alt="LEGO Classic">
-                                <div class="card-body d-flex flex-column">
-                                    <p class="text-muted small mb-1">Đồ chơi lắp ráp</p>
-                                    <h5 class="card-title text-truncate">LEGO Classic Sáng tạo Cơ bản 790 mảnh</h5>
-                                    <div class="hstack mb-3">
-                                        <span class="text-danger fw-bold fs-5">990.000₫</span>
-                                        <span class="text-decoration-line-through text-muted ms-auto">1.290.000₫</span>
-                                    </div>
-                                    <button class="btn btn-primary w-100 mt-auto">Thêm vào giỏ hàng</button>
-                                </div>
-                            </div>
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-45%</span>
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/a028b5481d34e6c95d064d7a1b34eb90.jpg?v=1714721165&width=1206"
+                                 class="card-img-top p-3"
+                                 alt="Xe ô tô đồ chơi mini">
                         </div>
-
-                        <!-- Product Card 2 -->
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card h-100 position-relative">
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-29%</span>
-                                <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/products/hnw41-hnw40_copy_0.jpg?v=1718678841&width=400" class="card-img-top" alt="Barbie">
-                                <div class="card-body d-flex flex-column">
-                                    <p class="text-muted small mb-1">Búp bê & Nhân vật</p>
-                                    <h5 class="card-title text-truncate">Búp bê Barbie Công chúa Ánh sáng</h5>
-                                    <div class="hstack mb-3">
-                                        <span class="text-danger fw-bold fs-5">499.000₫</span>
-                                        <span class="text-decoration-line-through text-muted ms-auto">699.000₫</span>
-                                    </div>
-                                    <button class="btn btn-primary w-100 mt-auto">Thêm vào giỏ hàng</button>
-                                </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Xe ô tô đồ chơi mini</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">29.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">52.000đ</span>
                             </div>
-                        </div>
-
-                        <!-- Product Card 3 -->
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card h-100 position-relative">
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-30%</span>
-                                <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/HDP04.jpg?v=1746497994&width=400" class="card-img-top" alt="Hot Wheels">
-                                <div class="card-body d-flex flex-column">
-                                    <p class="text-muted small mb-1">Xe đồ chơi</p>
-                                    <h5 class="card-title text-truncate">Hot Wheels Bộ Đua Siêu Tốc</h5>
-                                    <div class="hstack mb-3">
-                                        <span class="text-danger fw-bold fs-5">349.000₫</span>
-                                        <span class="text-decoration-line-through text-muted ms-auto">499.000₫</span>
-                                    </div>
-                                    <button class="btn btn-primary w-100 mt-auto">Thêm vào giỏ hàng</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Card 4 -->
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card h-100 position-relative">
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-22%</span>
-                                <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/CDG33.jpg?v=1751253970&width=400" class="card-img-top" alt="Fisher Price">
-                                <div class="card-body d-flex flex-column">
-                                    <p class="text-muted small mb-1">Đồ chơi giáo dục</p>
-                                    <h5 class="card-title text-truncate">Fisher-Price Bảng Học Chữ & Số</h5>
-                                    <div class="hstack mb-3">
-                                        <span class="text-danger fw-bold fs-5">699.000₫</span>
-                                        <span class="text-decoration-line-through text-muted ms-auto">899.000₫</span>
-                                    </div>
-                                    <button class="btn btn-primary w-100 mt-auto">Thêm vào giỏ hàng</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Card 5 -->
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card h-100 position-relative">
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-34%</span>
-                                <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/products/ag2103048_01.jpg?v=1685131549&width=400" class="card-img-top" alt="Teddy Bear">
-                                <div class="card-body d-flex flex-column">
-                                    <p class="text-muted small mb-1">Thú nhồi bông</p>
-                                    <h5 class="card-title text-truncate">Đồ Chơi Thú Bông Bạn Tigger Người Tuyết</h5>
-                                    <div class="hstack mb-3">
-                                        <span class="text-danger fw-bold fs-5">390.000₫</span>
-                                        <span class="text-decoration-line-through text-muted ms-auto">590.000₫</span>
-                                    </div>
-                                    <button class="btn btn-primary w-100 mt-auto">Thêm vào giỏ hàng</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Card 6 -->
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card h-100 position-relative">
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-22%</span>
-                                <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/41699_48f55f9d-899d-4bf1-ab6a-13fc121d56aa.jpg?v=1725522452&width=400" class="card-img-top" alt="LEGO Friends">
-                                <div class="card-body d-flex flex-column">
-                                    <p class="text-muted small mb-1">Đồ chơi lắp ráp</p>
-                                    <h5 class="card-title text-truncate">LEGO Friends Quán Cà Phê Mini</h5>
-                                    <div class="hstack mb-3">
-                                        <span class="text-danger fw-bold fs-5">849.000₫</span>
-                                        <span class="text-decoration-line-through text-muted ms-auto">1.090.000₫</span>
-                                    </div>
-                                    <button class="btn btn-primary w-100 mt-auto">Thêm vào giỏ hàng</button>
-                                </div>
-                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Pagination Section -->
-                    <nav aria-label="Phân trang" class="mt-5">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fa fa-arrow-left"></i></a>
-                            </li>
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link text-primary" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link text-primary" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link text-primary" href="#">4</a></li>
-                            <li class="page-item">
-                                <a class="page-link text-primary" href="#"><i class="fa fa-arrow-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-50%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/lat-dat-bom-hoi-hinh-khung-long-intex-di-44669_2_fff66b5b-b31d-48d5-8ef9-d00d6f2e395a.jpg?v=1746696024&width=500"
+                                 class="card-img-top p-3"
+                                 alt="Khủng long cao su mềm">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Khủng long cao su mềm</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">30.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">60.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-40%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/bo-do-choi-lo-nuong-ha-ma-tim-sweet-heart-sh9079_3.png?v=1735637275&width=500"
+                                 class="card-img-top p-3"
+                                 alt="Bộ đồ nấu ăn đồ chơi">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Bộ đồ nấu ăn đồ chơi</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">29.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">48.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-55%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/AG2101007.jpg?v=1724298419&width=400"
+                                 class="card-img-top p-3"
+                                 alt="Gấu bông siêu mềm">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Gấu bông siêu mềm</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">29.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">65.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="d-none d-lg-block position-absolute top-50 z-1 bg-body-secondary border-0 shadow-sm rounded-circle"
+                        style="transform: translateY(-50%); right: 5px; width: 40px; height: 40px; opacity: 0.75"
+                        onmouseover="this.style.opacity='0.25'"
+                        onmouseleave="this.style.opacity='0.75'"
+                        onclick="nextSlide('wrapper')">
+                    <i class="fas fa-chevron-right text-primary"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 2: Giảm đến 50% -->
+        <section class="bg-primary rounded p-3 mb-5">
+            <h2 class="mb-4 fw-bold text-uppercase text-white">
+                Đồ chơi giảm đến 50%
+            </h2>
+            <div class="position-relative overflow-x-hidden">
+                <button class="d-none d-lg-block position-absolute top-50 z-1 bg-body-secondary border-0 shadow-sm rounded-circle"
+                        style="transform: translateY(-50%); left: 5px; width: 40px; height: 40px; opacity: 0.75"
+                        onmouseover="this.style.opacity='0.25'"
+                        onmouseleave="this.style.opacity='0.75'"
+                        onclick="prevSlide('wrapper2')">
+                    <i class="fas fa-chevron-left text-primary"></i>
+                </button>
+
+                <div class="wrapper overflow-x-auto d-flex gap-3 pb-3" id="wrapper2">
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-50%</span>
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/R96600-ORA.jpg?v=1715057804&width=1206"
+                                 class="card-img-top p-3"
+                                 alt="Xe điều khiển từ xa">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Xe điều khiển từ xa</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">225.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">450.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-50%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/products/1-_5__1.jpg?v=1684975610&width=400"
+                                 class="card-img-top p-3"
+                                 alt="Bộ xếp hình spiderman">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Bộ xếp hình spiderman</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">160.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">320.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-50%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/X301003-RD-YE.jpg?v=1722396092&width=400"
+                                 class="card-img-top p-3"
+                                 alt="Đồng hồ trẻ em hoạt hình">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Đồng hồ trẻ em hoạt hình</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">100.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">200.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-50%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/ba-lo-fancy-kitty-pinky-hong-clever-hippo-bk1232_1.jpg?v=1719463393&width=400"
+                                 class="card-img-top"
+                                 alt="Balo mèo dễ thương">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Balo mèo dễ thương</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">140.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">280.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-50%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/combo-to-mau-va-sketchbook-aquatic-artist-deluxe-3c4g-12091_6.jpg?v=1742372595&width=400"
+                                 class="card-img-top"
+                                 alt="Bộ tô màu thiếu nhi">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Bộ tô màu thiếu nhi</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">110.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">220.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="d-none d-lg-block position-absolute top-50 z-1 bg-body-secondary border-0 shadow-sm rounded-circle"
+                        style="transform: translateY(-50%); right: 5px; width: 40px; height: 40px; opacity: 0.75"
+                        onmouseover="this.style.opacity='0.25'"
+                        onmouseleave="this.style.opacity='0.75'"
+                        onclick="nextSlide('wrapper2')">
+                    <i class="fas fa-chevron-right text-primary"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 3: Ưu đãi thành viên -->
+        <section class="bg-primary rounded p-3 mb-5">
+            <h2 class="mb-4 fw-bold text-uppercase text-white">
+                Ưu đãi thành viên
+            </h2>
+            <div class="position-relative overflow-x-hidden">
+                <button class="d-none d-lg-block position-absolute top-50 z-1 bg-body-secondary border-0 shadow-sm rounded-circle"
+                        style="transform: translateY(-50%); left: 5px; width: 40px; height: 40px; opacity: 0.75"
+                        onmouseover="this.style.opacity='0.25'"
+                        onmouseleave="this.style.opacity='0.75'"
+                        onclick="prevSlide('wrapper2')">
+                    <i class="fas fa-chevron-left text-primary"></i>
+                </button>
+
+                <div class="wrapper overflow-x-auto d-flex gap-3 pb-3" id="wrapper3">
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-20%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/BLM1230-BLACK.jpg?v=1751298658&width=400"
+                                 class="card-img-top p-3"
+                                 alt="Balo học sinh siêu anh hùng">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Balo học sinh siêu anh hùng</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">304.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">380.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-25%</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/files/kinh-mat-gong-doi-mau-light-pink-7swilppk.png?v=1721292022&width=500"
+                                 class="card-img-top p-3"
+                                 alt="Kính mát siêu nhí đáng yêu">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Kính mát siêu nhí đáng yêu</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">90.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">120.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-15%</span>
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-sieu-sao-cau-thu-messi-argentina-minix-11735_1.jpg?v=1750087781&width=1206"
+                                 class="card-img-top p-3"
+                                 alt="Đồ Chơi Mô Hình Siêu Sao Cầu Thủ Messi">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Đồ Chơi Mô Hình Siêu Sao Cầu Thủ Messi</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">136.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">160.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-30%</span>
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/products/MT15088_9972_1.jpg?v=1684883238&width=1206"
+                                 class="card-img-top p-3"
+                                 alt="Đồ chơi mô hình máy bay AV-8B Harrier II">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Đồ chơi mô hình máy bay AV-8B Harrier II</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">105.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">150.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm flex-shrink-0 w-sm-50 w-md-33 w-lg-auto">
+                        <div class="position-relative">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2 fs-6">-20%</span>
+                            <img src="https://www.mykingdom.com.vn/cdn/shop/products/7131_7_ba19977e-95d5-4dfd-adb7-714e8b3fdaf4.jpg?v=1722397011&width=1206"
+                                 class="card-img-top p-3"
+                                 alt="Khủng long phiến sừng chiến đấu Stegosaurus">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate mb-2">Khủng long phiến sừng chiến đấu Stegosaurus</h5>
+                            <div class="hstack mb-3">
+                                <span class="fs-4 fw-bold text-primary">200.000đ</span>
+                                <span class="text-decoration-line-through text-muted ms-auto">250.000đ</span>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="addToCart()">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="d-none d-lg-block position-absolute top-50 z-1 bg-body-secondary border-0 shadow-sm rounded-circle"
+                        style="transform: translateY(-50%); right: 5px; width: 40px; height: 40px; opacity: 0.75"
+                        onmouseover="this.style.opacity='0.25'"
+                        onmouseleave="this.style.opacity='0.75'"
+                        onclick="nextSlide('wrapper3')">
+                    <i class="fas fa-chevron-right text-primary"></i>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="addingCartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex p-1">
+                <div class="toast-body">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Thêm vào giỏ hàng thành công!!!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <footer class="container-fluid border-top py-3">
-        <div class="row align-items-start">
-            <div class="col">
-                <div class="hstack gap-3">
-                    <img src="../archive/assets/images/logo/logo.png" alt="Logo"  style="width: 90px; height: 90px;">
-                    <div class="w-100">
-                        <p class="mb-3 fw-bold">Tham gia ngay để nhận về tay thông tin ưu đãi và hữu ích</p>
-                        <form id="footer-subscribe-form" onsubmit="return handleFooterSubscribe(event)" novalidate>
-                            <div class="input-group">
-                                <input id="footer-email" type="email" class="form-control" placeholder="Nhập email của bạn" required aria-describedby="footerEmailHelp">
-                                <button class="btn btn-primary" type="submit">Đăng ký</button>
-                            </div>
-                            <small id="footerEmailHelp" class="form-text text-danger d-none">Vui lòng nhập email hợp lệ.</small>
-                            <small id="footerEmailSuccess" class="form-text text-success d-none">Cảm ơn! Bạn đã đăng ký.</small>
-                        </form>
-                        <p class="mb-0"><small class="text-muted">Bạn có thể hủy đăng ký bất kỳ lúc nào!</small></p>
-                    </div>
-                </div>
-            </div>
+<script>
+    function nextSlide(target) {
+        const wrapper = document.getElementById(target);
+        if (!wrapper) return;
+        const first = wrapper.firstElementChild;
+        if (!first) return;
+        wrapper.appendChild(first);
+    }
 
-            <div class="col-1 d-none d-md-block"></div>
-            <div class="col-4 d-none d-md-block">
-                <h3 class="mb-3 text-primary">Theo dõi chúng tôi</h3>
-                <div class="social-links my-3">
-                    <a href="#" class="text-secondary me-3"><i class="fab fa-facebook-f fs-1"></i></a>
-                    <a href="#" class="text-secondary me-3"><i class="fab fa-instagram fs-1"></i></a>
-                    <a href="#" class="text-secondary me-3"><i class="fab fa-youtube fs-1"></i></a>
-                </div>
-            </div>
-        </div>
+    function prevSlide(target) {
+        const wrapper = document.getElementById(target);
+        if (!wrapper) return;
+        const last = wrapper.lastElementChild;
+        if (!last) return;
+        wrapper.insertBefore(last, wrapper.firstElementChild);
+    }
 
-        <hr class="text-primary fw-bold">
+    function addToCart() {
+        const toast = new bootstrap.Toast(document.getElementById('addingCartToast'));
+        toast.show();
 
-        <div class="accordion d-md-none" id="footerAccordion" style="--bs-accordion-border-width: 0;">
-            <!-- Theo dõi chúng tôi -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFollow">
-                    <button class="accordion-button px-0 collapsed text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFollow">
-                        Theo dõi chúng tôi
-                    </button>
-                </h2>
-                <div id="collapseFollow" class="accordion-collapse collapse" data-bs-parent="#footerAccordion">
-                    <div class="accordion-body">
-                        <a href="#" class="text-secondary me-3"><i class="fab fa-facebook-f fs-3"></i></a>
-                        <a href="#" class="text-secondary me-3"><i class="fab fa-instagram fs-3"></i></a>
-                        <a href="#" class="text-secondary me-3"><i class="fab fa-youtube fs-3"></i></a>
-                    </div>
-                </div>
-            </div>
+        setTimeout(() => {
+            this.reset();
+        }, 500);
+    }
+</script>
 
-            <!-- Thông tin liên hệ -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingContact">
-                    <button class="accordion-button px-0 collapsed text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContact">
-                        Thông tin liên hệ
-                    </button>
-                </h2>
-                <div id="collapseContact" class="accordion-collapse collapse" data-bs-parent="#footerAccordion">
-                    <div class="accordion-body text-secondary small">
-                        <p class="mb-2"><i class="fas fa-location me-2"></i>Khu phố 33, Phường Linh Xuân, Tp.HCM</p>
-                        <p class="mb-2"><i class="fas fa-phone me-2"></i>(84-28)-38966780</p>
-                        <p class="mb-2"><i class="fas fa-envelope me-2"></i>hotro@toyworld.com</p>
-                        <p class="mb-2"><i class="fas fa-clock me-2"></i>Thứ 2 - Thứ 7: 8:00 - 17:00</p>
-                        <p class="mb-0"><i class="fas fa-clock me-2"></i>Chủ nhật: 8:00 - 12:00</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chính sách -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingPolicy">
-                    <button class="accordion-button px-0 collapsed text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePolicy">
-                        Điều khoản và chính sách
-                    </button>
-                </h2>
-                <div id="collapsePolicy" class="accordion-collapse collapse" data-bs-parent="#footerAccordion">
-                    <div class="accordion-body text-secondary small">
-                        <p class="mb-2">Chính sách giao hàng</p>
-                        <p class="mb-2">Chính sách bảo mật</p>
-                        <p class="mb-2">Chính sách đổi trả hàng hóa</p>
-                        <p class="mb-2">Chính sách thanh toán</p>
-                        <p class="mb-2">Điều kiện & điều khoản thành viên</p>
-                        <p class="mb-2">Chính sách trả góp</p>
-                        <p class="mb-0">Hệ thống cửa hàng</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cửa hàng đồ chơi -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingStore">
-                    <button class="accordion-button px-0 collapsed text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStore">
-                        Cửa hàng đồ chơi
-                    </button>
-                </h2>
-                <div id="collapseStore" class="accordion-collapse collapse" data-bs-parent="#footerAccordion">
-                    <div class="accordion-body text-center">
-                        <img class="img-fluid rounded" src="https://tse4.mm.bing.net/th/id/OIP.vBDmvGvplU2NB4cj1SL7PgHaE7?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Cửa hàng đồ chơi">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row gap-3 d-none d-md-flex">
-            <div class="col">
-                <h4 class="mb-3 text-primary">Thông tin liên hệ</h4>
-                <div class="contact-info text-secondary">
-                    <p class="mb-2"><i class="fas fa-location me-2"></i>Khu phố 33, Phường Linh Xuân, Tp.Hồ Chí Minh, Việt Nam</p>
-                    <p class="mb-2"><i class="fas fa-phone me-2"></i>(84-28)-38966780</p>
-                    <p class="mb-2"><i class="fas fa-envelope me-2"></i>hotro@toyworld.com</p>
-                    <div class="hstack gap-3 align-items-start">
-                        <p class="mb-2"><i class="fas fa-clock me-2"></i>Thứ 2 - Thứ 7<br><span class="ms-4">8:00 - 17:00</span></p>
-                        <p class="mb-0"><i class="fas fa-clock me-2"></i>Chủ nhật<br><span class="ms-4">8:00 - 12:00</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <h4 class="mb-3 text-primary">Điều khoản và chính sách</h4>
-                <div class="contact-info text-secondary">
-                    <p class="mb-2">Chính sách giao hàng</p>
-                    <p class="mb-2">Chính sách bảo mật</p>
-                    <p class="mb-2">Chính sách bảo hành và đổi trả hàng hóa</p>
-                    <p class="mb-2">Chính sách thanh toán</p>
-                    <p class="mb-2">Điều kiện & Điều khoản thành viên</p>
-                    <p class="mb-2">Chính sách trả góp</p>
-                    <p class="mb-2">Hệ thống cửa hàng</p>
-                </div>
-            </div>
-            <div class="col ">
-                <h3 class="mb-3 text-primary">Cửa hàng đồ chơi</h3>
-                <img class="img-fluid rounded" src="https://tse4.mm.bing.net/th/id/OIP.vBDmvGvplU2NB4cj1SL7PgHaE7?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Cửa hàng đồ chơi">
-            </div>
-        </div>
-        <hr>
-        <div>
-            <img src="assets/boCongThuong.svg" alt="Bộ Công Thương" class="mb-2">
-            <p class="mb-0 text-muted">Công ty cổ phần Tuấn Hoàng Duy Số ĐKKD: 0235186426 do sở kế hoạch và đầu tư cấp ngày 29/10/2025</p>
-            <p class="mb-0 text-muted">Địa chỉ: Khu phố 33, Phường Linh Xuân, Tp.Hồ Chí Minh, Việt Nam -  Điện thoại: (84-28)-38966780</p>
-        </div>
-    </footer>
-
-    <script src="js/index.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

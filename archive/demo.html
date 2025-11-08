@@ -1,33 +1,34 @@
-.navbar-nav:hover   {
-  background-color: white;
-  /* border-radius: 10px 10px 0 0; /* Bo 2 góc trên, bỏ 2 góc dưới */
-  /*transition: all 0.3s ease; */
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Breadcrumb bar example</title>
+  <style>
+    :root{
+      --bar-bg:#f5f5f5;
+      --border:#e0e0e0;
+      --muted:#6b6b6b;
+      --link:#1a73e8;
+      --font-sans:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
 
-  border-radius: 20px !important;
-}
+    body{
+      margin:0;
+      font-family: var(--font-sans);
+      background:white;
+    }
 
-.navbar-nav:hover .nav-item .nav-link {
-     color: rgb(238, 0, 0) !important;
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-  color: rgb(0, 0, 0) !important;
-  /* background-color: white; */
-}
-
-
-
-/* The top bar container */
+    /* The top bar container */
     .top-bar {
       background: var(--bar-bg);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      /* padding: 12px 16px; */
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       gap: 16px;
       box-sizing: border-box;
-      max-height: 80px;
     }
 
     /* Layout: left breadcrumbs, center title, right optional area */
@@ -46,15 +47,12 @@
     .breadcrumb {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-top: 15px;
       gap: 8px;
       color: var(--muted);
       font-size: 13px;
       white-space: nowrap;
       overflow: hidden;
     }
-
     .breadcrumb a{
       color: var(--muted);
       text-decoration: none;
@@ -106,3 +104,33 @@
       }
       .right { display:none; }
     }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#" aria-label="Trang Chủ">Trang Chủ</a>
+
+        <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <a href="#" aria-label="Dạy Con Thông Minh">Dạy Con Thông Minh</a>
+
+        <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span style="font-weight:600; color:#444;">Top 5 Đồ Chơi Trí Tuệ Cho Bé 6 - 9 Tuổi Đáng Mua 2025</span>
+      </nav>
+    </div>
+  </div>
+
+  <main style="padding:24px; max-width:1200px; margin:0 auto;">
+    <p>Demo nội dung trang. Mở rộng, chỉnh kiểu hoặc chuyển thành component React nếu cần.</p>
+  </main>
+
+</body>
+</html>

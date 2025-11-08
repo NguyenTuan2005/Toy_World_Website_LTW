@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lịch sử mua hàng</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        color: #333;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #003399;
+        margin-bottom: 20px;
+    }
+
+    .search-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: #f3f3f3;
+        padding: 12px 16px;
+        gap: 10px;
+        border-radius: 25px;
+        max-width: 600px;
+    }
+
+    .search-container input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .search-container img {
+        width: 18px;
+        height: 18px;
+        opacity: 0.5;
+    }
+
+    .empty-container {
+        margin-top: 40px;
+        text-align: center;
+        color: #666;
+    }
+
+    .empty-container img {
+        width: 260px;
+        opacity: 0.9;
+    }
+
+    .empty-message {
+        margin-top: 10px;
+        font-size: 15px;
+        opacity: 0.8;
+    }
+
+    table {
+        margin-top: 30px;
+        width: 100%;
+        border-collapse: collapse;
+        display: none;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 10px 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #003399;
+        color: white;
+    }
+
+    td img.product-img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+</style>
+</head>
+<body>
+
+<div>
+        <h2>Lịch Sử Mua Hàng</h2>
+
+    <div class="search-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" alt="search">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm đơn hàng">
+    </div>
+
+    <!-- Khi không có đơn hàng -->
+    <div id="emptyState" class="empty-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="no-order">
+        <p class="empty-message">Bạn chưa đặt đơn hàng nào.</p>
+    </div>
+
+    <!-- Khi có đơn hàng -->
+    <table id="orderTable">
+        <thead>
+            <tr>
+    
+                <th>Mã đơn</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                        <th>Hình sản phẩm</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ví dụ mẫu -->
+            <tr>
+        
+                <td>DH001</td>
+                <td>08/11/2025</td>
+                <td>1,200,000đ</td>
+                <td>Đang giao</td>
+                    <td>
+                    <img class="product-img" src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946" alt="product">
+                </td>
+            </tr>
+            <tr>
+            
+                <td>DH002</td>
+                <td>05/11/2025</td>
+                <td>350,000đ</td>
+                <td>Hoàn tất</td>
+                <td>
+                    <img class="product-img" src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946" alt="product">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<script>
+    const ordersExist = true; // ✅ đổi false nếu không có đơn hàng
+
+    const emptyState = document.getElementById("emptyState");
+    const table = document.getElementById("orderTable");
+
+    if (ordersExist) {
+        table.style.display = "table";
+        emptyState.style.display = "none";
+    }
+
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+        const filter = this.value.toLowerCase();
+        const rows = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName("td");
+            let match = false;
+            for (let cell of cells) {
+                if (cell.innerText.toLowerCase().includes(filter)) {
+                    match = true;
+                    break;
+                }
+            }
+            rows[i].style.display = match ? "" : "none";
+        }
+    });
+</script>
+
+</body>
+</html>

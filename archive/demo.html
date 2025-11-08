@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Breadcrumb bar example</title>
+  <style>
+    :root{
+      --bar-bg:#f5f5f5;
+      --border:#e0e0e0;
+      --muted:#6b6b6b;
+      --link:#1a73e8;
+      --font-sans:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    body{
+      margin:0;
+      font-family: var(--font-sans);
+      background:white;
+    }
+
+    /* The top bar container */
+    .top-bar {
+      background: var(--bar-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+
+    /* Layout: left breadcrumbs, center title, right optional area */
+    .top-bar .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      box-sizing: border-box;
+    }
+
+    /* Left: breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .breadcrumb a{
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover{ text-decoration: underline; color: var(--link); }
+
+    .crumb-sep {
+      width: 12px;
+      height: 12px;
+      display:inline-block;
+      flex: 0 0 12px;
+      opacity: 0.7;
+    }
+
+    /* Center: the page title */
+    .page-title {
+      justify-self: center;
+      font-weight: 600;
+      color: #222;
+      font-size: 14px;
+      max-width: 70%;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Right: placeholder (keeps center centered) */
+    .right {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Responsive: on small screens collapse the center below */
+    @media (max-width:720px){
+      .top-bar .container {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+      }
+      .page-title {
+        grid-column: 1 / -1;
+        justify-self: start;
+        max-width: 100%;
+        margin-top: 6px;
+      }
+      .right { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#" aria-label="Trang Chủ">Trang Chủ</a>
+
+        <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <a href="#" aria-label="Dạy Con Thông Minh">Dạy Con Thông Minh</a>
+
+        <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span style="font-weight:600; color:#444;">Top 5 Đồ Chơi Trí Tuệ Cho Bé 6 - 9 Tuổi Đáng Mua 2025</span>
+      </nav>
+    </div>
+  </div>
+
+  <main style="padding:24px; max-width:1200px; margin:0 auto;">
+    <p>Demo nội dung trang. Mở rộng, chỉnh kiểu hoặc chuyển thành component React nếu cần.</p>
+  </main>
+
+</body>
+</html>

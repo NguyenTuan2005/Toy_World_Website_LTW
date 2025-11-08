@@ -1,0 +1,170 @@
+.main-content-blog{
+     max-width: 900px;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* IE, Edge cũ */
+* {
+  -ms-overflow-style: none;
+}
+
+.list-social__item{
+
+}
+
+
+
+
+
+
+/* Căn đều toàn bộ nội dung */
+[data-content] {
+  text-align: justify;
+  margin: 0 auto;
+  max-width: 900px; /* Giữ nội dung không bị trải quá rộng */
+}
+
+/* Cách đoạn giữa các paragraph */
+[data-content] p {
+  margin-bottom: 18px;   /* Tăng khoảng cách giữa đoạn văn */
+  line-height: 1.85;     /* Giãn dòng dễ đọc */
+}
+
+/* Căn giữa tiêu đề H2 H3 */
+[data-content] h2,
+[data-content] h3 {
+  /* text-align: center; */
+  margin: 30px 0 15px; /* Cách trên dưới cho đẹp */
+}
+
+/* Căn giữa hình */
+[data-content] img {
+  display: block;
+  margin: 20px auto;  /* Căn giữa + tạo khoảng cách trên dưới */
+  width: 100%;
+  height: auto;
+}
+
+
+[data-content] img {
+  display: block;
+  margin: 20px auto;
+  width: 60%;      /* chỉnh độ lớn của hình ở đây */
+  height: auto;    /* giữ tỉ lệ hình, tránh méo */
+  border-radius: 8px; /* optional: bo góc hình cho đẹp */
+}
+
+[data-content] img {
+  display: block;
+  margin: 20px auto;
+  width: 60%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  [data-content] img {
+    width: 100%; /* nhỏ lại trên điện thoại */
+  }
+}
+
+
+
+
+
+/*  */
+
+.article-template__hero-adapt.media {
+  max-width: 100%;      /* giảm độ rộng hình */
+  margin: 0 auto;      /* căn giữa */
+  padding-bottom: unset !important;  /* bỏ cái padding ratio cố định */
+}
+
+.article-template__hero-adapt.media img {
+  width: 100%;         /* để hình vừa khít div */
+  height: auto;        /* giữ tỉ lệ hình */
+}
+
+
+
+
+
+
+
+
+
+/* ===== Wrapper ===== */
+.toc-wrapper {
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff;
+    width: 100%;
+}
+
+/* ===== Nút bấm tiêu đề ===== */
+.collapsible-toc {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* text title */
+.collapsible-toc__content__title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* icon */
+.collapsible-toc .icon {
+    transition: transform 0.25s ease;
+}
+
+/* ===== Nội dung hiển thị khi open ===== */
+.content-toc {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease;
+    padding: 0 16px;
+}
+
+/* show vào khi mở */
+.content-toc.open {
+    padding: 16px;
+    max-height: 600px; /* đảm bảo auto mở rộng */
+}
+
+/* rotate icon khi mở */
+.collapsible-toc.active .icon {
+    transform: rotate(180deg);
+}
+
+/* style list */
+.content-toc ol {
+    padding-left: 20px;
+    line-height: 1.7;
+}
+.content-toc a {
+    text-decoration: none;
+    color: #288ad6
+}
+.content-toc a:hover {
+    text-decoration: underline;
+}
+
+
+

@@ -6,11 +6,21 @@
 }
 
 .form-control:focus {
+    border-color: var(--bs-primary);
     box-shadow: none;
 }
 
 .text-primary {
     color: var(--bs-primary) !important;
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: var(--bs-primary) !important;
+}
+
+.border-primary {
+    border-color: var(--bs-primary) !important;
 }
 
 .btn-primary {
@@ -39,3 +49,27 @@
   background: var(--bs-primary);
 }
 
+
+.active>.page-link, .page-link.active {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.page-link:focus {
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: white;
+}
+
+
+
+.navbar {
+    --bs-navbar-padding-y: 0;
+}

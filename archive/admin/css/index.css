@@ -1,0 +1,35 @@
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+#sidebar.collapsed {
+    width: 5.333333% !important;
+    flex: 0 0 5.333333%;
+    max-width: 5.333333%;
+}
+#sidebar.collapsed .sidebar-text {
+    display: none;
+}
+#sidebar.collapsed .sidebar-header {
+    display: none;
+}
+#sidebar.collapsed .sidebar-icon {
+    font-size: 1.5rem;
+}
+#sidebar.collapsed .nav-link {
+    text-align: center;
+}
+#sidebar.collapsed #collapseSidebar {
+    display: none;
+}
+#sidebar.collapsed #closeSidebar {
+    display: block !important;
+}
+#sidebar.closed {
+    display: none !important;
+}
+#mainContent.full-width {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100%;
+}

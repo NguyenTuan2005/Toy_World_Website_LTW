@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin - Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/root.css"/>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <aside id="sidebar" class="col-lg-3 col-md-2 bg-dark text-white min-vh-100 p-0 d-none d-md-block">
+            <div class="d-flex flex-column h-100">
+                <div class="p-3 border-bottom border-secondary">
+                    <h4 class="mb-0 sidebar-header"><strong>Admin</strong></h4>
+                </div>
+                <nav class="flex-grow-1">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-tachometer-alt me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-chart-line me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Thống kê doanh thu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-users me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý người dùng</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-box me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-shopping-cart me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý đơn hàng</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-tags me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý thương hiệu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-calendar-alt me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý sự kiện</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-newspaper me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý bài viết</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="p-3 border-top border-secondary">
+                    <button class="btn btn-outline-light btn-sm w-100 sidebar-text" onclick="collapseSidebar()" id="collapseSidebar">
+                        <i class="fas fa-chevron-left me-2"></i>Thu gọn
+                    </button>
+                    <button class="btn btn-outline-light btn-sm w-100 d-none" onclick="closeSidebar()" id="closeSidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasSidebar">
+            <div class="offcanvas-header border-bottom border-secondary">
+                <h5 class="offcanvas-title"><strong>Admin</strong></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                <nav>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-chart-line me-2"></i>Thống kê doanh thu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-users me-2"></i>Quản lý người dùng
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-box me-2"></i>Quản lý sản phẩm
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-shopping-cart me-2"></i>Quản lý đơn hàng
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-tags me-2"></i>Quản lý thương hiệu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-calendar-alt me-2"></i>Quản lý sự kiện
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-3 py-3" href="#">
+                                <i class="fas fa-newspaper me-2"></i>Quản lý bài viết
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <button class="btn btn-outline-dark d-none fixed-bottom ms-3 mb-3 z-1" style="width: 3.3333%" onclick="openSidebar()" id="openSidebarBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="col-md-10 col-lg-9 ms-auto px-4 py-3" id="mainContent">
+            <button class="btn btn-outline-secondary d-md-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
+                <i class="fas fa-bars"></i> Menu
+            </button>
+        </main>
+    </div>
+</div>
+
+<script src="js/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

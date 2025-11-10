@@ -27,5 +27,5 @@ function openSidebar() {
     sidebar.classList.remove('closed');
     sidebar.classList.remove('collapsed');
     mainContent.classList.remove('full-width');
-    this.classList.add('d-none');
+    document.getElementById('openSidebarBtn').classList.add('d-none');
 };

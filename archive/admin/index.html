@@ -12,119 +12,117 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <aside id="sidebar" class="col-lg-3 col-md-2 bg-dark text-white min-vh-100 p-0 d-none d-md-block">
+        <aside id="sidebar" class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0 d-none d-md-block">
             <div class="d-flex flex-column h-100">
-                <div class="p-3 border-bottom border-secondary">
-                    <h4 class="mb-0 sidebar-header"><strong>Admin</strong></h4>
+                <div class="p-3 hstack border-bottom border-secondary">
+                    <h4 class="mb-0 sidebar-header"><strong>Quản trị viên</strong></h4>
+                    <button class="btn btn-outline-light btn-sm text-secondary sidebar-text ms-auto" onclick="collapseSidebar()" id="collapseSidebar">
+                        <i class="fas fa-chevron-left me-2"></i>
+                    </button>
+                    <button class="btn btn-outline-light btn-sm text-secondary d-none mx-auto" onclick="closeSidebar()" id="closeSidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 <nav class="flex-grow-1">
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column ">
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="dashboard.html">
                                 <i class="fas fa-tachometer-alt me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="statistics.html">
                                 <i class="fas fa-chart-line me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Thống kê doanh thu</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="users.html">
                                 <i class="fas fa-users me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý người dùng</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="products.html">
                                 <i class="fas fa-box me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý sản phẩm</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="orders.html">
                                 <i class="fas fa-shopping-cart me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý đơn hàng</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="brands.html">
                                 <i class="fas fa-tags me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý thương hiệu</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="events.html">
                                 <i class="fas fa-calendar-alt me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý sự kiện</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="handbooks.html">
                                 <i class="fas fa-newspaper me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý bài viết</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
-                <div class="p-3 border-top border-secondary">
-                    <button class="btn btn-outline-light btn-sm w-100 sidebar-text" onclick="collapseSidebar()" id="collapseSidebar">
-                        <i class="fas fa-chevron-left me-2"></i>Thu gọn
-                    </button>
-                    <button class="btn btn-outline-light btn-sm w-100 d-none" onclick="closeSidebar()" id="closeSidebar">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
             </div>
         </aside>
 
-        <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasSidebar">
+        <div class="offcanvas offcanvas-start bg-light text-primary" tabindex="-1" id="offcanvasSidebar">
             <div class="offcanvas-header border-bottom border-secondary">
                 <h5 class="offcanvas-title"><strong>Admin</strong></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                <button type="button" class="btn-close btn-close-secondary" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body p-0">
                 <nav>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-chart-line me-2"></i>Thống kê doanh thu
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-users me-2"></i>Quản lý người dùng
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-box me-2"></i>Quản lý sản phẩm
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-shopping-cart me-2"></i>Quản lý đơn hàng
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-tags me-2"></i>Quản lý thương hiệu
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-calendar-alt me-2"></i>Quản lý sự kiện
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3 py-3" href="#">
+                            <a class="nav-link text-primary px-3 py-3" href="#">
                                 <i class="fas fa-newspaper me-2"></i>Quản lý bài viết
                             </a>
                         </li>
@@ -133,14 +131,14 @@
             </div>
         </div>
 
-        <button class="btn btn-outline-dark d-none fixed-bottom ms-3 mb-3 z-1" style="width: 3.3333%" onclick="openSidebar()" id="openSidebarBtn">
+        <button class="btn btn-outline-secondary d-none fixed-top ms-3 mt-3 z-1 w-lg-3 w-md-5" onclick="openSidebar()" id="openSidebarBtn">
             <i class="fas fa-bars"></i>
         </button>
 
         <main class="col-md-10 col-lg-9 ms-auto px-4 py-3" id="mainContent">
             <button class="btn btn-outline-secondary d-md-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
                 <i class="fas fa-bars"></i> Menu
-            </button>
+            </button> <!-- Don't touch this, for mobile offcanvas sidebar-->
         </main>
     </div>
 </div>

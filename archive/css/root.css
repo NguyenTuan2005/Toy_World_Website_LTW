@@ -1,4 +1,5 @@
 :root {
+    --bs-primary-alpha-15: rgba(213, 27, 27, 0.15);
     --bs-primary:  rgb(213, 27, 27);
     --bs-primary-100: rgb(163, 27, 27);
     --bs-primary-200: rgb(113, 27, 27);
@@ -70,8 +71,6 @@
 .btn-close:focus {
     box-shadow: none;
 }
-
-
 
 .navbar {
     --bs-navbar-padding-y: 0;

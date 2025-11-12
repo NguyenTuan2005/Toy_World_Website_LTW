@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Bài Viết</title>
+    <link rel="stylesheet" href="css/post-handbook.css">
+    <link rel="stylesheet" href="css/root.css">
+    <link rel="stylesheet" href="../css/root.css">
+    
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Đăng Bài Viết Mới</h1>
+            <p>Chia sẻ câu chuyện của bạn với mọi người</p>
+        </div>
+
+        <div class="form-container">
+            <div class="form-group">
+                <label for="title">Tiêu đề bài viết</label>
+                <input type="text" id="title" placeholder="Nhập tiêu đề hấp dẫn..." required>
+            </div>
+
+            <div class="form-group">
+                <label>Nội dung bài viết (chia từng đoạn)</label>
+                <div class="paragraphs-container" id="paragraphsContainer">
+                    <!-- Paragraphs will be added here -->
+                </div>
+                <button type="button" class="add-paragraph-btn" id="addParagraphBtn">
+                    Thêm Đoạn Mới
+                </button>
+            </div>
+
+            <button type="button" class="btn-submit" id="submitBtn">📤 Đăng Bài</button>
+        </div>
+
+        <div class="preview-section" id="previewSection">
+            <h2>🎉 Bài viết của bạn</h2>
+            <div class="post-preview" id="postPreview">
+                <h3 id="previewTitle"></h3>
+                <div id="previewContent"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

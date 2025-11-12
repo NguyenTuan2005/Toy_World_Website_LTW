@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lí đơn hàng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/order-list.css">
+    <link rel="stylesheet" href="../css/root.css">
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <!-- Stats Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stats-number">56</div>
+                            <div class="stats-label">Pending Payment</div>
+                        </div>
+                        <i class="bi bi-calendar-check text-muted" style="font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stats-number">12,689</div>
+                            <div class="stats-label">Completed</div>
+                        </div>
+                        <i class="bi bi-check-circle text-muted" style="font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stats-number">124</div>
+                            <div class="stats-label">Refunded</div>
+                        </div>
+                        <i class="bi bi-arrow-counterclockwise text-muted" style="font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="stats-number">32</div>
+                            <div class="stats-label">Failed</div>
+                        </div>
+                        <i class="bi bi-exclamation-circle text-muted" style="font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-container">
+            <!-- Search and Actions -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <input type="text" class="search-box" placeholder="Search Order">
+                <div class="d-flex gap-2 align-items-center">
+                    <select class="select-dropdown">
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                    <button class="export-btn">
+                        <i class="bi bi-download me-2"></i>Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="table-responsive">
+                <table class="table order-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;">
+                                <input class="form-check-input" type="checkbox">
+                            </th>
+                            <th>ORDER</th>
+                            <th>DATE</th>
+                            <th>CUSTOMERS</th>
+                            <th>PAYMENT</th>
+                            <th>STATUS</th>
+                            <th>METHOD</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#6979</a></td>
+                            <td><small class="text-muted">Apr 15, 2023, 10:21</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #f59e0b;">C</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Cristine Easom</div>
+                                        <div class="customer-email">ceasomw@theguardian.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-pending">Pending</span></td>
+                            <td><span class="delivery-badge delivery-delivered">Delivered</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#EB001B"/><rect x="18" width="12" height="32" fill="#F79E1B"/></svg>
+                                    <span>...2356</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#6624</a></td>
+                            <td><small class="text-muted">Apr 17, 2023, 6:43</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #a3e635;">FS</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Fayre Screech</div>
+                                        <div class="customer-email">fscreechs@army.mil</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-failed">Failed</span></td>
+                            <td><span class="delivery-badge delivery-delivered">Delivered</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#EB001B"/><rect x="18" width="12" height="32" fill="#F79E1B"/></svg>
+                                    <span>...2077</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#9305</a></td>
+                            <td><small class="text-muted">Apr 17, 2023, 8:05</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #c084fc;">PP</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Pauline Pfaffe</div>
+                                        <div class="customer-email">ppfaffel@wikia.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-cancelled">Cancelled</span></td>
+                            <td><span class="delivery-badge delivery-out">Out for Delivery</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#003087"/><path d="M18 11h-4v10h4v-10zm8 0h-4v10h4v-10z" fill="#fff"/></svg>
+                                    <span>...@gmail.com</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#8005</a></td>
+                            <td><small class="text-muted">Apr 22, 2023, 3:01</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #fb923c;">M</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Maurits Nealey</div>
+                                        <div class="customer-email">mnealeyf@japanpost.jp</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-paid">Paid</span></td>
+                            <td><span class="delivery-badge delivery-dispatched">Dispatched</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#EB001B"/><rect x="18" width="12" height="32" fill="#F79E1B"/></svg>
+                                    <span>...1555</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#5859</a></td>
+                            <td><small class="text-muted">Apr 29, 2023, 9:52</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #22d3ee;">EV</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Eydie Vogelein</div>
+                                        <div class="customer-email">evogelein2g@forbes.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-cancelled">Cancelled</span></td>
+                            <td><span class="delivery-badge delivery-out">Out for Delivery</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#003087"/><path d="M18 11h-4v10h4v-10zm8 0h-4v10h4v-10z" fill="#fff"/></svg>
+                                    <span>...@gmail.com</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#8114</a></td>
+                            <td><small class="text-muted">Apr 8, 2023, 3:39</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #ef4444;">U</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Ulysses Goodlife</div>
+                                        <div class="customer-email">ugoodlife2p@blogger.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-failed">Failed</span></td>
+                            <td><span class="delivery-badge delivery-out">Out for Delivery</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#EB001B"/><rect x="18" width="12" height="32" fill="#F79E1B"/></svg>
+                                    <span>...4509</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#6890</a></td>
+                            <td><small class="text-muted">Aug 1, 2022, 7:24</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #8b5cf6;">E</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Etienne Duke</div>
+                                        <div class="customer-email">eduke12@dell.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-cancelled">Cancelled</span></td>
+                            <td><span class="delivery-badge delivery-ready">Ready to Pickup</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#EB001B"/><rect x="18" width="12" height="32" fill="#F79E1B"/></svg>
+                                    <span>...3507</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#5911</a></td>
+                            <td><small class="text-muted">Aug 14, 2022, 3:26</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #c084fc;">HM</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Hilliard Merck</div>
+                                        <div class="customer-email">hmerck2n@printfriendly.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-cancelled">Cancelled</span></td>
+                            <td><span class="delivery-badge delivery-delivered">Delivered</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#003087"/><path d="M18 11h-4v10h4v-10zm8 0h-4v10h4v-10z" fill="#fff"/></svg>
+                                    <span>...@gmail.com</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#5531</a></td>
+                            <td><small class="text-muted">Aug 20, 2022, 3:21</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #6b7280;">C</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Cletus Arias</div>
+                                        <div class="customer-email">carias21@rambler.ru</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-failed">Failed</span></td>
+                            <td><span class="delivery-badge delivery-dispatched">Dispatched</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#EB001B"/><rect x="18" width="12" height="32" fill="#F79E1B"/></svg>
+                                    <span>...5851</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><a href="#" class="order-id">#8044</a></td>
+                            <td><small class="text-muted">Aug 22, 2022, 6:36</small></td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background-color: #fb923c;">N</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Nowell Cornford</div>
+                                        <div class="customer-email">ncornfordn@sogou.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-cancelled">Cancelled</span></td>
+                            <td><span class="delivery-badge delivery-out">Out for Delivery</span></td>
+                            <td>
+                                <div class="payment-method">
+                                    <svg class="method-icon" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#003087"/><path d="M18 11h-4v10h4v-10zm8 0h-4v10h4v-10z" fill="#fff"/></svg>
+                                    <span>...@gmail.com</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="actions-btn">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <div class="text-muted" style="font-size: 0.875rem;">
+                    Showing 1 to 10 of 100 entries
+                </div>
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="bi bi-chevron-bar-left"></i></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">10</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="bi bi-chevron-bar-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

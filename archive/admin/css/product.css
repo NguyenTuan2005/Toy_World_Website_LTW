@@ -1,0 +1,158 @@
+
+.taskbar {
+  display: flex;
+  gap: 20px;
+  background:  rgb(213, 27, 27);
+  padding: 12px 15px;
+}
+
+.taskbar button {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  background: #ff4d4d;
+  border-radius: 6px;
+  transition: 0.2s;
+  border: none;
+}
+
+.taskbar button:hover {
+  background: #d63030;
+}
+
+
+/* table */
+
+.table-wrapper {
+    max-height: 80%;     /* chiều cao tối đa, phần dư sẽ cuộn */
+    overflow-y: auto;      /* hiện thanh cuộn */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table th {
+    background: rgb(213, 27, 27);
+    color: white;
+    padding: 12px;
+     text-align: center; 
+    
+    position: sticky;
+    top: 0;                /* giữ header khi kéo */
+}
+
+.custom-table td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.custom-table img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+
+
+/* add new product */
+
+ .form-container {
+                    width: 700px;
+                    margin: auto;
+                    padding: 25px;
+                    border-radius: 14px;
+                    background: #ffffff;
+                    box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+                }
+
+                .key-value-table input {
+                    border-radius: 6px;
+                }
+
+                .image-preview {
+                    display: flex;
+                    gap: 12px;
+                    flex-wrap: wrap;
+                }
+
+                .preview-wrapper {
+                    position: relative;
+                }
+
+                .preview-img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 10px;
+                    object-fit: cover;
+                    border: 2px solid #ddd;
+                }
+
+                .remove-btn {
+                    position: absolute;
+                    top: -7px;
+                    right: -7px;
+                    width: 22px;
+                    height: 22px;
+                    font-size: 12px;
+                    background: red;
+                    color: white;
+                    border-radius: 50%;
+                    border: none;
+                    cursor: pointer;
+                }
+
+
+
+
+
+
+                filter-section {
+        background-color: white;
+        /* padding: 1.5rem; */
+        /* margin: 1.5rem 0; */
+        /* border-radius: 0.5rem; */
+        /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
+      }
+
+      .search-input {
+       border: 2px solid transparent; 
+        padding: 0.5rem 1rem 0.5rem 2.5rem;
+        /* border-radius: 0.375rem; */
+        width: 100%;
+        max-width: 400px;
+      }
+
+      /* .search-input:focus {
+       border:none;
+      } */
+
+      .search-wrapper {
+        position: relative;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+      }
+
+      .filter-icon {
+        color: #6c757d;
+        margin-right: 0.5rem;
+      }
+
+      .status-select {
+        border: 1px solid #dee2e6;
+        padding: 0.5rem 2.5rem 0.5rem 1rem;
+        border-radius: 0.375rem;
+        color: #495057;
+      }

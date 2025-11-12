@@ -1,3 +1,6 @@
+:root {
+  --primary-color: #cf102d;
+}
 /* image slider */
 .container {
   margin-top: 10px;
@@ -383,4 +386,89 @@
 .btn-white:hover {
   background-color: #cf102d;
   color: white;
+}
+
+/* age */
+.age {
+  background: white;
+  text-align: center;
+  padding: 40px 0;
+}
+.age-item {
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.age-item:hover {
+  transform: scale(1.08);
+}
+.age-item img {
+  width: 100%;
+  border-radius: 50%;
+}
+/* deal */
+.deal-section {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.deal-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 20px;
+}
+
+
+/* Thanh cuộn ngang */
+.deal-container::-webkit-scrollbar {
+  height: 10px; 
+}
+
+.deal-container::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+
+.deal-container::-webkit-scrollbar-thumb {
+  background-color: #cf102d;
+  border-radius: 10px;
+}
+
+.deal-container::-webkit-scrollbar-thumb:hover {
+  background-color: #961125;
+}
+
+
+.deal-card {
+  flex: 0 0 auto;
+  width: 250px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.deal-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.deal-card:hover {
+  transform: scale(1.05);
+}
+
+.deal-card:hover img {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+@media (max-width: 576px) {
+  .deal-item {
+    width: 180px;
+  }
 }

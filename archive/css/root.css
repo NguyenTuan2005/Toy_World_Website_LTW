@@ -75,3 +75,7 @@
 .navbar {
     --bs-navbar-padding-y: 0;
 }
+
+.table-primary {
+    --bs-table-bg: var(--bs-primary);
+}

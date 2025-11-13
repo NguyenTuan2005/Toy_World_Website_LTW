@@ -78,69 +78,12 @@
             </div>
         </aside>
 
-        <div class="offcanvas offcanvas-start bg-light text-primary" tabindex="-1" id="offcanvasSidebar">
-            <div class="offcanvas-header border-bottom border-secondary">
-                <h5 class="offcanvas-title"><strong>Quản trị</strong></h5>
-                <button type="button" class="btn-close btn-close-secondary" data-bs-dismiss="offcanvas"></button>
-            </div>
-            <div class="offcanvas-body p-0">
-                <nav>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="dashboard.html">
-                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="statistics.html">
-                                <i class="fas fa-chart-line me-2"></i>Thống kê doanh thu
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-primary px-3 py-3" href="users.html">
-                                <i class="fas fa-users me-2"></i>Quản lý người dùng
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="products.html">
-                                <i class="fas fa-box me-2"></i>Quản lý sản phẩm
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="orders.html">
-                                <i class="fas fa-shopping-cart me-2"></i>Quản lý đơn hàng
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="brands.html">
-                                <i class="fas fa-tags me-2"></i>Quản lý thương hiệu
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="events.html">
-                                <i class="fas fa-calendar-alt me-2"></i>Quản lý sự kiện
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="handbooks.html">
-                                <i class="fas fa-newspaper me-2"></i>Quản lý bài viết
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
         <button class="btn btn-outline-secondary d-none fixed-top ms-3 mt-3 z-1 w-lg-3 w-md-5" onclick="openSidebar()" id="openSidebarBtn">
             <i class="fas fa-bars"></i>
         </button>
 
         <main class="col-md-9 col-lg-10" id="mainContent">
-            <button class="btn btn-outline-secondary d-md-none float-end mt-3 me-3 w-lg-3 w-md-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- A. Header / Toolbar -->
+            <!-- Header / Toolbar -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb p-3" style="background: #f2f2f2">
                     <li class="breadcrumb-item"><a class="text-secondary text-decoration-none" href="#">Trang chủ</a></li>
@@ -168,7 +111,7 @@
                 </div>
             </div>
 
-            <!-- B. Bảng người dùng -->
+            <!-- Bảng người dùng -->
             <div class="table-responsive d-none d-md-block">
                 <table class="table table-hover table-striped align-middle">
                     <thead class="table-primary">
@@ -280,112 +223,7 @@
                 </ul>
             </nav>
 
-            <!-- C. Card view cho mobile -->
-            <div class="d-md-none" id="userCardView">
-                <div class="card shadow-sm mb-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Nguyễn Văn An</h5>
-                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> nguyenvanan@example.com</p>
-                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0912345678</p>
-                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> TP.HCM</p>
-                        <p class="card-text mb-2">
-                            <span class="badge bg-secondary">Admin</span>
-                            <span class="badge bg-secondary ms-1">Hoạt động</span>
-                        </p>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
-                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card shadow-sm mb-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Trần Thị Bình</h5>
-                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> tranthib@example.com</p>
-                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0923456789</p>
-                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> Đà Nẵng</p>
-                        <p class="card-text mb-2">
-                            <span class="badge bg-secondary">User</span>
-                            <span class="badge bg-secondary ms-1">Hoạt động</span>
-                        </p>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
-                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card shadow-sm mb-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Lê Văn Cường</h5>
-                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> levanc@example.com</p>
-                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0934567890</p>
-                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> Hà Nội</p>
-                        <p class="card-text mb-2">
-                            <span class="badge bg-secondary">User</span>
-                            <span class="badge bg-secondary ms-1">Moderator</span>
-                            <span class="badge bg-secondary ms-1">Tạm khóa</span>
-                        </p>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
-                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card shadow-sm mb-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Phạm Thị Dung</h5>
-                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> phamthid@example.com</p>
-                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0945678901</p>
-                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> TP.HCM</p>
-                        <p class="card-text mb-2">
-                            <span class="badge bg-secondary">User</span>
-                            <span class="badge bg-secondary ms-1">Hoạt động</span>
-                        </p>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
-                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card shadow-sm mb-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Hoàng Văn Em</h5>
-                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> hoangvane@example.com</p>
-                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0956789012</p>
-                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> Đà Nẵng</p>
-                        <p class="card-text mb-2">
-                            <span class="badge bg-secondary">Admin</span>
-                            <span class="badge bg-secondary ms-1">User</span>
-                            <span class="badge bg-secondary ms-1">Hoạt động</span>
-                        </p>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
-                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pagination cho mobile -->
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <!-- D. Modal thêm/sửa người dùng -->
+            <!-- Modal thêm/sửa người dùng -->
             <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">

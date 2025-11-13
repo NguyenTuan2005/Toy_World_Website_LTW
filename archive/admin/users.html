@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Quản trị viên - Quản lý người dùng</title>
+    <title>Quản trị  - Quản lý người dùng</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -15,7 +15,7 @@
         <aside id="sidebar" class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0 d-none d-md-block">
             <div class="d-flex flex-column h-100">
                 <div class="p-3 hstack border-bottom border-secondary">
-                    <h4 class="mb-0 sidebar-header"><strong>Quản trị viên</strong></h4>
+                    <h4 class="mb-0 sidebar-header"><strong>Quản trị</strong></h4>
                     <button class="btn btn-outline-light btn-sm text-secondary sidebar-text ms-auto" onclick="collapseSidebar()" id="collapseSidebar">
                         <i class="fas fa-chevron-left me-2"></i>
                     </button>
@@ -80,7 +80,7 @@
 
         <div class="offcanvas offcanvas-start bg-light text-primary" tabindex="-1" id="offcanvasSidebar">
             <div class="offcanvas-header border-bottom border-secondary">
-                <h5 class="offcanvas-title"><strong>Admin</strong></h5>
+                <h5 class="offcanvas-title"><strong>Quản trị</strong></h5>
                 <button type="button" class="btn-close btn-close-secondary" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body p-0">
@@ -135,16 +135,350 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <main class="col-md-9 col-lg-10 px-4 py-3" id="mainContent">
-            <button class="btn btn-outline-secondary d-md-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
-                <i class="fas fa-bars"></i> Menu
-            </button> <!-- Don't touch this, for mobile offcanvas sidebar-->
+        <main class="col-md-9 col-lg-10" id="mainContent">
+            <button class="btn btn-outline-secondary d-md-none float-end mt-3 me-3 w-lg-3 w-md-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
 
+            <!-- A. Header / Toolbar -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-3" style="background: #f2f2f2">
+                    <li class="breadcrumb-item"><a class="text-secondary text-decoration-none" href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a class="text-secondary text-decoration-none" href="#">Quản trị</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Quản lý người dùng</li>
+                </ol>
+            </nav>
+
+            <h1 class="mb-5 text-center fw-semibold">Quản lý người dùng</h1>
+
+            <div class="row mb-3">
+                <div class="col-md-6 mb-2">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm theo tên, email hoặc điện thoại...">
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#userModal" id="btnAddUser">
+                        <i class="fas fa-plus"></i> Thêm người dùng
+                    </button>
+                    <button class="btn btn-outline-secondary" id="btnRefresh">
+                        <i class="fas fa-sync-alt"></i> Làm mới
+                    </button>
+                </div>
+            </div>
+
+            <!-- B. Bảng người dùng -->
+            <div class="table-responsive d-none d-md-block">
+                <table class="table table-hover table-striped align-middle">
+                    <thead class="table-primary">
+                    <tr>
+                        <th class="sortable text-white" data-column="id">#<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="name">Tên<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="email">Email<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="phone">Điện thoại<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="gender">Giới tính<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="address">Địa chỉ<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="role">Vai trò<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="status">Trạng thái<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white" data-column="created">Ngày tạo<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="text-white">Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyễn Văn An</td>
+                        <td>nguyenvanan@example.com</td>
+                        <td>0912345678</td>
+                        <td>Nam</td>
+                        <td title="123 Đường Lê Lợi, Quận 1, TP.HCM">TP.HCM</td>
+                        <td><span class="badge bg-secondary">Admin</span></td>
+                        <td><span class="badge bg-secondary">Hoạt động</span></td>
+                        <td>12/11/2025</td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-primary p-0 me-2 btn-edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trần Thị Bình</td>
+                        <td>tranthib@example.com</td>
+                        <td>0923456789</td>
+                        <td>Nữ</td>
+                        <td title="456 Đường Nguyễn Huệ, Quận Hải Châu, Đà Nẵng">Đà Nẵng</td>
+                        <td><span class="badge bg-secondary">User</span></td>
+                        <td><span class="badge bg-secondary">Hoạt động</span></td>
+                        <td>11/11/2025</td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-primary p-0 me-2 btn-edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Lê Văn Cường</td>
+                        <td>levanc@example.com</td>
+                        <td>0934567890</td>
+                        <td>Nam</td>
+                        <td title="789 Đường Trần Phú, Quận Ba Đình, Hà Nội">Hà Nội</td>
+                        <td><span class="badge bg-secondary">User</span> <span class="badge bg-secondary">Moderator</span></td>
+                        <td><span class="badge bg-secondary">Tạm khóa</span></td>
+                        <td>10/11/2025</td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-primary p-0 me-2 btn-edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Phạm Thị Dung</td>
+                        <td>phamthid@example.com</td>
+                        <td>0945678901</td>
+                        <td>Nữ</td>
+                        <td title="321 Đường Hai Bà Trưng, Quận 3, TP.HCM">TP.HCM</td>
+                        <td><span class="badge bg-secondary">User</span></td>
+                        <td><span class="badge bg-secondary">Hoạt động</span></td>
+                        <td>09/11/2025</td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-primary p-0 me-2 btn-edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Hoàng Văn Em</td>
+                        <td>hoangvane@example.com</td>
+                        <td>0956789012</td>
+                        <td>Nam</td>
+                        <td title="654 Đường Lý Thường Kiệt, Quận Thanh Khê, Đà Nẵng">Đà Nẵng</td>
+                        <td><span class="badge bg-secondary">Admin</span> <span class="badge bg-secondary">User</span></td>
+                        <td><span class="badge bg-secondary">Hoạt động</span></td>
+                        <td>08/11/2025</td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-primary p-0 me-2 btn-edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="d-none d-md-block">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link text-primary" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link text-primary" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link text-primary" href="#"><span aria-hidden="true">&raquo;</span></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- C. Card view cho mobile -->
+            <div class="d-md-none" id="userCardView">
+                <div class="card shadow-sm mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Nguyễn Văn An</h5>
+                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> nguyenvanan@example.com</p>
+                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0912345678</p>
+                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> TP.HCM</p>
+                        <p class="card-text mb-2">
+                            <span class="badge bg-secondary">Admin</span>
+                            <span class="badge bg-secondary ms-1">Hoạt động</span>
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Trần Thị Bình</h5>
+                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> tranthib@example.com</p>
+                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0923456789</p>
+                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> Đà Nẵng</p>
+                        <p class="card-text mb-2">
+                            <span class="badge bg-secondary">User</span>
+                            <span class="badge bg-secondary ms-1">Hoạt động</span>
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Lê Văn Cường</h5>
+                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> levanc@example.com</p>
+                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0934567890</p>
+                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> Hà Nội</p>
+                        <p class="card-text mb-2">
+                            <span class="badge bg-secondary">User</span>
+                            <span class="badge bg-secondary ms-1">Moderator</span>
+                            <span class="badge bg-secondary ms-1">Tạm khóa</span>
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Phạm Thị Dung</h5>
+                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> phamthid@example.com</p>
+                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0945678901</p>
+                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> TP.HCM</p>
+                        <p class="card-text mb-2">
+                            <span class="badge bg-secondary">User</span>
+                            <span class="badge bg-secondary ms-1">Hoạt động</span>
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Hoàng Văn Em</h5>
+                        <p class="card-text mb-1"><i class="fas fa-envelope"></i> hoangvane@example.com</p>
+                        <p class="card-text mb-1"><i class="fas fa-phone"></i> 0956789012</p>
+                        <p class="card-text mb-1"><i class="fas fa-map-marker-alt"></i> Đà Nẵng</p>
+                        <p class="card-text mb-2">
+                            <span class="badge bg-secondary">Admin</span>
+                            <span class="badge bg-secondary ms-1">User</span>
+                            <span class="badge bg-secondary ms-1">Hoạt động</span>
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-sm btn-link text-primary p-0 me-3 btn-edit"><i class="fas fa-edit"></i> Sửa</button>
+                            <button class="btn btn-sm btn-link text-danger p-0 btn-delete"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination cho mobile -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- D. Modal thêm/sửa người dùng -->
+            <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userModalLabel">Thêm người dùng mới</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="userForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">Họ <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Tên <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="gender" class="form-label">Giới tính</label>
+                                        <select class="form-select" id="gender">
+                                            <option value="">Chọn giới tính</option>
+                                            <option value="male">Nam</option>
+                                            <option value="female">Nữ</option>
+                                            <option value="other">Khác</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Điện thoại</label>
+                                        <input type="tel" class="form-control" id="phone">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+
+                                <div id="userModalPassword" class="mb-3">
+                                    <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" id="password" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Địa điểm</label>
+                                    <select class="form-select" id="location">
+                                        <option value="">Chọn địa điểm</option>
+                                        <option value="hanoi">Hà Nội</option>
+                                        <option value="hcm">TP. Hồ Chí Minh</option>
+                                        <option value="danang">Đà Nẵng</option>
+                                        <option value="haiphong">Hải Phòng</option>
+                                        <option value="cantho">Cần Thơ</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="roles" class="form-label">Vai trò</label>
+                                    <select class="form-select" id="roles" multiple>
+                                        <option value="user">User</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="moderator">Moderator</option>
+                                        <option value="editor">Editor</option>
+                                    </select>
+                                    <small class="form-text text-muted">Giữ Ctrl (hoặc Cmd) để chọn nhiều vai trò</small>
+                                </div>
+
+                                <div class="mb-3 form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="status" checked>
+                                    <label class="form-check-label" for="status">Trạng thái hoạt động</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                            <button type="button" class="btn btn-primary" id="btnSaveUser">
+                                <i class="fas fa-check"></i> Lưu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="js/index.js"></script>
+<script src="js/users.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

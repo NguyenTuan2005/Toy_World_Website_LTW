@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Quản trị - Thổng kê doanh thu</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/root.css"/>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <aside id="sidebar" class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0">
+            <div class="d-flex flex-column h-100">
+                <div class="p-3 hstack border-bottom border-secondary">
+                    <h4 class="mb-0 sidebar-header"><strong>Quản trị</strong></h4>
+                    <button class="btn btn-outline-light btn-sm text-secondary sidebar-text ms-auto" onclick="collapseSidebar()" id="collapseSidebar">
+                        <i class="fas fa-chevron-left me-2"></i>
+                    </button>
+                    <button class="btn btn-outline-light btn-sm text-secondary d-none mx-auto" onclick="closeSidebar()" id="closeSidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <nav class="flex-grow-1">
+                    <ul class="nav flex-column ">
+                        <li class="nav-item">
+                            <a class="nav-link text-primary px-3 py-3" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-primary px-3 py-3" href="statistics.html">
+                                <i class="fas fa-chart-line me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Thống kê doanh thu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary px-3 py-3" href="users.html">
+                                <i class="fas fa-users me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý người dùng</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary px-3 py-3" href="products.html">
+                                <i class="fas fa-box me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary px-3 py-3" href="orders.html">
+                                <i class="fas fa-shopping-cart me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý đơn hàng</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary px-3 py-3" href="brands.html">
+                                <i class="fas fa-tags me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý thương hiệu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary px-3 py-3" href="events.html">
+                                <i class="fas fa-calendar-alt me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý sự kiện</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary px-3 py-3" href="handbooks.html">
+                                <i class="fas fa-newspaper me-2 sidebar-icon"></i>
+                                <span class="sidebar-text">Quản lý bài viết</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <button class="btn btn-outline-secondary d-none fixed-top ms-3 mt-3 z-1 w-lg-3 w-md-5" onclick="openSidebar()" id="openSidebarBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="col-md-9 col-lg-10" id="mainContent">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-3" style="background: #f2f2f2">
+                    <li class="breadcrumb-item"><a class="text-secondary text-decoration-none" href="../home-page.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a class="text-secondary text-decoration-none" href="dashboard.html">Quản trị</a></li>
+                    <li class="breadcrumb-item active">Thống kê doanh thu</li>
+                </ol>
+            </nav>
+
+            <h1 class="text-center mb-4">Thống kê doanh thu</h1>
+
+            <!-- Tổng quan KPI -->
+            <div class="row mb-4">
+                <div class="col-lg-4 col-md-12 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center py-3">
+                            <small class="text-muted d-block">Tổng doanh thu</small>
+                            <h4 class="mb-0">250.5M ₫</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center py-3">
+                            <small class="text-muted d-block">Số đơn hàng</small>
+                            <h4 class="mb-0">1.248</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center py-3">
+                            <small class="text-muted d-block">Giá trị TB/đơn</small>
+                            <h4 class=" mb-0">200.7K ₫</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biểu đồ doanh thu và phương thức thanh toán -->
+            <div class="row mb-4">
+                <div class="col-lg-8 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Doanh thu theo thời gian</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="revenueTimeChart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Phương thức thanh toán</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="paymentMethodChart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top sản phẩm và Voucher/Khuyến mãi -->
+            <div class="row mb-4">
+                <div class="col-lg-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Top 5 sản phẩm bán chạy</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="productPriceChart" style="height: 280px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Hiệu quả Voucher & Khuyến mãi</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center">
+                                        <small class="text-muted d-block">Voucher đã dùng</small>
+                                        <h5 class="text-danger mb-0">342</h5>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center">
+                                        <small class="text-muted d-block">SP khuyến mãi</small>
+                                        <h5 class="text-success mb-0">87</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="discountChart" style="height: 180px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<script>
+    const revenueChart = echarts.init(document.getElementById('revenueTimeChart'));
+    revenueChart.setOption({
+        tooltip: { trigger: 'axis' },
+        xAxis: {
+            type: 'category',
+            data: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12']
+        },
+        yAxis: { type: 'value' },
+        series: [{
+            data: [18.5, 20.2, 22.8, 19.5, 25.3, 28.7, 24.2, 26.8, 23.5, 27.2, 29.8, 30.5],
+            type: 'line',
+            smooth: true,
+            areaStyle: { opacity: 0.3 },
+            itemStyle: { color: '#0d6efd' }
+        }]
+    });
+
+    const paymentChart = echarts.init(document.getElementById('paymentMethodChart'));
+    paymentChart.setOption({
+        tooltip: { trigger: 'item' },
+        series: [{
+            type: 'pie',
+            radius: ['40%', '70%'],
+            data: [
+                { value: 58, name: 'COD', itemStyle: { color: '#198754' } },
+                { value: 42, name: 'VNPay', itemStyle: { color: '#0dcaf0' } }
+            ],
+            label: { formatter: '{b}: {d}%' }
+        }]
+    });
+
+    const productChart = echarts.init(document.getElementById('productPriceChart'));
+    productChart.setOption({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+        xAxis: {
+            type: 'category',
+            data: ['SP A', 'SP B', 'SP C', 'SP D', 'SP E'],
+            axisLabel: { interval: 0, rotate: 0 }
+        },
+        yAxis: { type: 'value' },
+        series: [{
+            data: [45, 39.6, 35.6, 30.8, 28.5],
+            type: 'bar',
+            itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: '#fd7e14' },
+                    { offset: 1, color: '#ffc107' }
+                ])
+            },
+            label: { show: true, position: 'top', formatter: '{c}M' }
+        }]
+    });
+
+    const discountChart = echarts.init(document.getElementById('discountChart'));
+    discountChart.setOption({
+        tooltip: { trigger: 'axis' },
+        legend: { data: ['Voucher', 'Khuyến mãi'], bottom: 0 },
+        xAxis: {
+            type: 'category',
+            data: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6']
+        },
+        yAxis: { type: 'value' },
+        series: [
+            {
+                name: 'Voucher',
+                type: 'bar',
+                data: [1.8, 2.2, 2.5, 1.9, 2.8, 3.2],
+                itemStyle: { color: '#dc3545' }
+            },
+            {
+                name: 'Khuyến mãi',
+                type: 'bar',
+                data: [0.8, 0.9, 1.2, 0.7, 1.1, 1.3],
+                itemStyle: { color: '#198754' }
+            }
+        ]
+    });
+
+    window.addEventListener('resize', () => {
+        revenueChart.resize();
+        paymentChart.resize();
+        productChart.resize();
+        discountChart.resize();
+    });
+</script>
+<script src="js/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

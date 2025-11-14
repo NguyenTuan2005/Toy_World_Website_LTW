@@ -181,3 +181,20 @@
   object-fit: cover;
   border-radius: 0.375rem;
 }
+
+
+.pagination .page-link {
+  border-radius: 6px;
+  margin: 0 3px;
+  color: #6c757d;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #cf102d;
+  border-color: #cf102d;
+  color: #fff;
+}
+
+.pagination .page-link:hover {
+  background-color: #e9ecef;
+}

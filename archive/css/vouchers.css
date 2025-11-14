@@ -1,14 +1,19 @@
+.wrapper {
+  display: flex;
+  width: 1400px;
+  margin: 0 auto;
+  height: auto;
+  
+}
+
 .sidebar {
   width: 280px;
   height: 100vh;
   background-color: #fff;
-  border-right: 1px solid #ddd;
-  padding: 15px;
-  position: fixed;
 }
 
 .sidebar-title {
-  background: #d50000;   /* màu đỏ giống ảnh */
+  background: #d50000;
   color: #fff;
   padding: 10px 15px;
   font-size: 20px;
@@ -42,10 +47,9 @@
   color: #d6001c;
 }
 
-
 .content {
-  margin-left: 270px;
-  padding: 30px;
+  width: 1100px;
+  padding: 20px;
 }
 
 .voucher-image img {
@@ -189,7 +193,6 @@
 .voucher-right .btn:hover {
   background-color: #e60044;
 }
-
 
 .divider-title {
   display: flex;

@@ -16,7 +16,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <aside id="sidebar" class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0 d-none d-md-block">
+        <aside id="sidebar" class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0">
             <div class="d-flex flex-column h-100">
                 <div class="p-3 hstack border-bottom border-secondary">
                     <h4 class="mb-0 sidebar-header"><strong>Quản trị viên</strong></h4>
@@ -82,67 +82,11 @@
             </div>
         </aside>
 
-        <div class="offcanvas offcanvas-start bg-light text-primary" tabindex="-1" id="offcanvasSidebar">
-            <div class="offcanvas-header border-bottom border-secondary">
-                <h5 class="offcanvas-title"><strong>Admin</strong></h5>
-                <button type="button" class="btn-close btn-close-secondary" data-bs-dismiss="offcanvas"></button>
-            </div>
-            <div class="offcanvas-body p-0">
-                <nav>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="dashboard.html">
-                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="statistics.html">
-                                <i class="fas fa-chart-line me-2"></i>Thống kê doanh thu
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-primary px-3 py-3" href="users.html">
-                                <i class="fas fa-users me-2"></i>Quản lý người dùng
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary active px-3 py-3" href="products.html">
-                                <i class="fas fa-box me-2"></i>Quản lý sản phẩm
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="orders.html">
-                                <i class="fas fa-shopping-cart me-2"></i>Quản lý đơn hàng
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="brands.html">
-                                <i class="fas fa-tags me-2"></i>Quản lý thương hiệu
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="events.html">
-                                <i class="fas fa-calendar-alt me-2"></i>Quản lý sự kiện
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="handbooks.html">
-                                <i class="fas fa-newspaper me-2"></i>Quản lý bài viết
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
         <button class="btn btn-outline-secondary d-none fixed-top ms-3 mt-3 z-1 w-lg-3 w-md-5" onclick="openSidebar()" id="openSidebarBtn">
             <i class="fas fa-bars"></i>
         </button>
 
         <main class="col-md-9 col-lg-10 " id="mainContent">
-            <button class="btn btn-outline-secondary d-md-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
-                <i class="fas fa-bars"></i> Menu
-            </button> <!-- Don't touch this, for mobile offcanvas sidebar-->
 
 
             <div class="taskbar">
@@ -455,73 +399,7 @@
             <!-- <div class="container mt-4"> -->
                 <br>
                     <div id="table-product" class="box px-4">
-                        <div class="table-name d-flex justify-content-center align-items-center">
-                            <img src="   https://cdn-icons-png.flaticon.com/512/10652/10652107.png " width="30px" height="30px" alt="" title="" class="img-small" style="margin-bottom: 5px; margin-right:3px ;">
-                            <h2>Sản Phẩm Mới Trong Tháng</h2>
-                        </div>
-
-                        <div class="table-wrapper">
-                            <table class="custom-table">
-                                <thead>
-                                    
-                                <tr>
-                                    <th >ID</th>
-                                    <th>Tên Sản Phẩm</th>
-                                    <th>Ảnh</th>
-                                    <th>Giá tiền</th>
-                                    <th>Trong Giỏ Hàng</th>
-                                    <th>Đã Mua</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center">01</td>
-                                        <td >Đồ Chơi Combo Bộ Khuôn Làm Bánh Burger</td>
-                                        <td class="text-center"><img src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946" alt="img" /></td>
-                                        <td class="text-center">1.200.000₫</td>
-                                        <td class="text-center">25</td>
-                                        <td class="text-center">15</td>
-                                    </tr>
-                                       <!-- https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946 -->
-                                    <tr>
-                                        <td class="text-center">01</td>
-                                        <td>Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic FD2 Type-R HOT WHEELS JBK53/FPY86</td>
-                                        <td class="text-center"><img src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946" alt="img" /></td>
-                                        <td class="text-center">1.200.000₫</td>
-                                        <td class="text-center">25</td>
-                                        <td class="text-center">15</td>
-                                    </tr>
-                                              <tr>
-                                        <td class="text-center">01</td>
-                                        <td >Đồ Chơi Combo Bộ Khuôn Làm Bánh Burger</td>
-                                        <td class="text-center"><img src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946" alt="img" /></td>
-                                        <td class="text-center">1.200.000₫</td>
-                                        <td class="text-center">25</td>
-                                        <td class="text-center">15</td>
-                                    </tr>
-                                       <!-- https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946 -->
-                                    <tr>
-                                        <td class="text-center">01</td>
-                                        <td  >Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic FD2 Type-R HOT WHEELS JBK53/FPY86</td>
-                                        <td class="text-center"><img src="https://www.mykingdom.com.vn/cdn/shop/files/sieu-xe-sang-trong-honda-civic-fd2-type-r-hot-wheels-jbk53-fpy86_3.jpg?v=1759833234&width=1946" alt="img" /></td>
-                                        <td class="text-center">1.200.000₫</td>
-                                        <td class="text-center">25</td>
-                                        <td class="text-center">15</td>
-                                    </tr>
-                                              <tr>
-                                        <td class="text-center">01</td>
-                                        <td >Đồ Chơi Combo Bộ Khuôn Làm Bánh Burger</td>
-                                        <td class="text-center"><img src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946" alt="img" /></td>
-                                        <td class="text-center">1.200.000₫</td>
-                                        <td class="text-center">25</td>
-                                        <td class="text-center">15</td>
-                                    </tr>
-                            
-                                
-                                </tbody>
-                            </table>
-
-                        </div>
+       
 
                         <br>
                           <h2 class="text-center">Tìm Sản Phẩm Theo Tên</h2>

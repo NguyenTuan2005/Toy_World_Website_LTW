@@ -56,3 +56,7 @@
         max-width: 7.333333%;
     }
 }
+
+.row>*{
+         padding-right: 0 !important;
+}

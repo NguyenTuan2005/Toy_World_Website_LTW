@@ -1,0 +1,19 @@
+#productContainer.list-view .col-sm-6.col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+#productContainer.list-view .card {
+    display: flex;
+    flex-direction: row;
+}
+
+#productContainer.list-view .card-img-top {
+    width: 180px;
+    object-fit: cover;
+    padding: 1rem;
+}
+
+#productContainer.list-view .card-body {
+    flex: 1;
+}

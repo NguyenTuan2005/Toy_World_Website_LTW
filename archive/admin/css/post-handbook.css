@@ -159,6 +159,7 @@ textarea.form-control {
 
 .btn-submit:hover {
   background: #a00d24;
+  color: white;
   box-shadow: 0 2px 8px rgba(207, 16, 45, 0.3);
 }
 

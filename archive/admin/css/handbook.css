@@ -4,28 +4,28 @@
 
 .header-section {
   background-color: white;
-  padding: 2rem 0;
+  padding: 32px 0;
   border-bottom: 1px solid #e9ecef;
 }
 
 .page-title {
-  font-size: 2rem;
+  font-size: 32px;
   font-weight: 600;
   color: #212529;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 
 .page-subtitle {
   color: #6c757d;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .btn-back {
   background-color: white;
   border: 1px solid #dee2e6;
   color: #495057;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.375rem;
+  padding: 8px 24px;
+  border-radius: 6px;
   font-weight: 500;
 }
 
@@ -38,27 +38,28 @@
   background-color: #cf102d;
   border: none;
   color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.375rem;
+  padding: 8px 24px;
+  border-radius: 6px;
   font-weight: 500;
 }
 
 .btn-add:hover {
+  color: white;
   background-color: #b00d26;
 }
 
 .filter-section {
   background-color: white;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 0.5rem;
+  padding: 24px;
+  margin: 24px 0;
+  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .search-input {
   border: 1px solid #dee2e6;
-  padding: 0.5rem 1rem 0.5rem 2.5rem;
-  border-radius: 0.375rem;
+  padding: 8px 16px 8px 40px;
+  border-radius: 6px;
   width: 100%;
   max-width: 400px;
 }
@@ -69,7 +70,7 @@
 
 .search-icon {
   position: absolute;
-  left: 0.75rem;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%);
   color: #6c757d;
@@ -77,19 +78,19 @@
 
 .filter-icon {
   color: #6c757d;
-  margin-right: 0.5rem;
+  margin-right: 8px;
 }
 
 .status-select {
   border: 1px solid #dee2e6;
-  padding: 0.5rem 2.5rem 0.5rem 1rem;
-  border-radius: 0.375rem;
+  padding: 8px 40px 8px 16px;
+  border-radius: 6px;
   color: #495057;
 }
 
 .table-container {
   background-color: white;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -103,13 +104,13 @@
   color: white;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 12px;
   letter-spacing: 0.5px;
-  padding: 1rem;
+  padding: 16px;
 }
 
 .table tbody td {
-  padding: 1.25rem 1rem;
+  padding: 20px 16px;
   vertical-align: middle;
   border-bottom: 1px solid #e9ecef;
   color: #212529;
@@ -126,10 +127,29 @@
 .badge-published {
   background-color: #d1fae5;
   color: #065f46;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.375rem;
+  padding: 6px 12px;
+  border-radius: 6px;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 14px;
+}
+
+.badge-green {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+.badge-gray {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.badge-red {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.badge-yellow {
+  background-color: #fef9c3;
+  color: #92400e;
 }
 
 .author-name {
@@ -147,8 +167,8 @@
 .action-btn {
   border: none;
   background: none;
-  padding: 0.375rem;
-  margin: 0 0.25rem;
+  padding: 6px;
+  margin: 0 4px;
   cursor: pointer;
   color: #6c757d;
   transition: color 0.2s;
@@ -156,6 +176,7 @@
 
 .action-btn.edit {
   color: #10b981;
+  text-decoration: none;
 }
 
 .action-btn.edit:hover {
@@ -170,8 +191,8 @@
   color: #dc2626;
 }
 
-.blog-title {
-  font-weight: 500;
+.bold-title {
+  font-weight: 700;
   color: #212529;
 }
 
@@ -179,9 +200,8 @@
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 0.375rem;
+  border-radius: 6px;
 }
-
 
 .pagination .page-link {
   border-radius: 6px;

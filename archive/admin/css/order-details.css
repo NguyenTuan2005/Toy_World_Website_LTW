@@ -1,9 +1,3 @@
-body {
-  background-color: #f5f5f5;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-}
-
 .header-section {
   background: white;
   padding: 20px 0;
@@ -11,7 +5,7 @@ body {
 }
 
 .order-title {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 600;
   color: #212529;
   margin-bottom: 8px;
@@ -19,14 +13,14 @@ body {
 
 .order-date {
   color: #6c757d;
-  font-size: 0.875rem;
+  font-size: 14px;
 }
 
 .status-badge {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 6px;
-  font-size: 0.813rem;
+  font-size: 13px;
   font-weight: 600;
   margin-left: 12px;
 }
@@ -36,25 +30,40 @@ body {
   color: #065f46;
 }
 
-.status-ready {
-  background-color: #cffafe;
-  color: #155e75;
+.badge-yellow {
+  background-color: #fef9c3;
+  color: #92400e;
 }
 
 .delete-btn {
   border: 1px solid #cf102d;
-  background: white;
-  color: #cf102d;
+  background-color: #cf102d;
+  color: white;
   padding: 8px 20px;
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 500;
   transition: all 0.2s;
 }
 
 .delete-btn:hover {
-  background-color: #cf102d;
-  color: white;
+  background-color: #b00d26;
+}
+
+.btn-back {
+  background: #ebeff1;
+  color: #252c39;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-weight: 200;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-back:hover {
+  background: #d9dde2;
+  border-color: #cbd5e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .card-section {
@@ -66,7 +75,7 @@ body {
 }
 
 .section-title {
-  font-size: 1.125rem;
+  font-size: 18px;
   font-weight: 600;
   color: #212529;
   margin-bottom: 20px;
@@ -76,8 +85,8 @@ body {
 }
 
 .edit-link {
-  color: #6366f1;
-  font-size: 0.875rem;
+  color: #cf102d;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
 }
@@ -90,7 +99,7 @@ body {
   background-color: transparent;
   color: #6c757d;
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 12px;
@@ -125,24 +134,24 @@ body {
 .product-name {
   font-weight: 500;
   color: #212529;
-  font-size: 0.875rem;
+  font-size: 14px;
 }
 
 .product-meta {
   color: #6c757d;
-  font-size: 0.75rem;
+  font-size: 12px;
 }
 
 .price-text {
   color: #6c757d;
-  font-size: 0.875rem;
+  font-size: 14px;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
-  font-size: 0.875rem;
+  font-size: 14px;
 }
 
 .summary-label {
@@ -163,7 +172,7 @@ body {
 .total-row .summary-label,
 .total-row .summary-value {
   font-weight: 600;
-  font-size: 0.938rem;
+  font-size: 15px;
   color: #212529;
 }
 
@@ -184,13 +193,13 @@ body {
 .customer-name {
   font-weight: 600;
   color: #212529;
-  font-size: 1rem;
+  font-size: 16px;
   margin-bottom: 2px;
 }
 
 .customer-id {
   color: #6c757d;
-  font-size: 0.813rem;
+  font-size: 13px;
 }
 
 .orders-count {
@@ -211,7 +220,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 19px;
 }
 
 .orders-text {
@@ -226,19 +235,19 @@ body {
 .contact-title {
   font-weight: 600;
   color: #212529;
-  font-size: 0.938rem;
+  font-size: 15px;
   margin-bottom: 12px;
 }
 
 .contact-item {
   color: #6c757d;
-  font-size: 0.875rem;
+  font-size: 14px;
   margin-bottom: 6px;
 }
 
 .address-text {
   color: #6c757d;
-  font-size: 0.875rem;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
 }
@@ -263,12 +272,12 @@ body {
 .payment-type {
   font-weight: 600;
   color: #212529;
-  font-size: 0.938rem;
+  font-size: 15px;
 }
 
 .payment-number {
   color: #6c757d;
-  font-size: 0.813rem;
+  font-size: 13px;
 }
 
 .timeline {
@@ -306,9 +315,9 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #6366f1;
+  background-color: #cf102d;
   border: 3px solid white;
-  box-shadow: 0 0 0 2px #6366f1;
+  box-shadow: 0 0 0 2px #cf102d;
 }
 
 .timeline-dot.inactive {
@@ -325,17 +334,17 @@ body {
 .timeline-title {
   font-weight: 600;
   color: #212529;
-  font-size: 0.875rem;
+  font-size: 14px;
   margin-bottom: 4px;
 }
 
 .timeline-description {
   color: #6c757d;
-  font-size: 0.813rem;
+  font-size: 13px;
 }
 
 .timeline-time {
   color: #9ca3af;
-  font-size: 0.75rem;
+  font-size: 12px;
   white-space: nowrap;
 }

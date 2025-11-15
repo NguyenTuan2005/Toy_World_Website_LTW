@@ -1,292 +1,397 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết đơn hàng</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/order-details.css">
-    <link rel="stylesheet" href="../css/root.css">
-</head>
-<body>
-    <div class="header-section">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quản trị - Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="css/order-details.css" />
+    <link rel="stylesheet" href="../css/root.css" />
+
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <aside
+          id="sidebar"
+          class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0"
+        >
+          <div class="d-flex flex-column h-100">
+            <div class="p-3 hstack border-bottom border-secondary">
+              <h4 class="mb-0 sidebar-header"><strong>Quản trị</strong></h4>
+              <button
+                class="btn btn-outline-light btn-sm text-secondary sidebar-text ms-auto"
+                onclick="collapseSidebar()"
+                id="collapseSidebar"
+              >
+                <i class="fas fa-chevron-left me-2"></i>
+              </button>
+              <button
+                class="btn btn-outline-light btn-sm text-secondary d-none mx-auto"
+                onclick="closeSidebar()"
+                id="closeSidebar"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <nav class="flex-grow-1">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-primary px-3 py-3"
+                    href="dashboard.html"
+                  >
+                    <i class="fas fa-tachometer-alt me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-primary px-3 py-3"
+                    href="statistics.html"
+                  >
+                    <i class="fas fa-chart-line me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Thống kê doanh thu</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-primary px-3 py-3" href="users.html">
+                    <i class="fas fa-users me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Quản lý người dùng</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-primary px-3 py-3"
+                    href="products.html"
+                  >
+                    <i class="fas fa-box me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Quản lý sản phẩm</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-primary px-3 py-3" href="orders.html">
+                    <i class="fas fa-shopping-cart me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Quản lý đơn hàng</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-primary px-3 py-3" href="brands.html">
+                    <i class="fas fa-tags me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Quản lý thương hiệu</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-primary px-3 py-3" href="events.html">
+                    <i class="fas fa-calendar-alt me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Quản lý sự kiện</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-primary px-3 py-3"
+                    href="handbooks.html"
+                  >
+                    <i class="fas fa-newspaper me-2 sidebar-icon"></i>
+                    <span class="sidebar-text">Quản lý bài viết</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+
+        <button
+          class="btn btn-outline-secondary d-none fixed-top ms-3 mt-3 z-1 w-lg-3 w-md-5"
+          onclick="openSidebar()"
+          id="openSidebarBtn"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="col-md-9 col-lg-10" id="mainContent">
+          <div class="header-section">
+            <div class="container-fluid">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <a
+                    href="orders.html"
+                    class="btn-back mx-4 py-2 px-4 text-decoration-none"
+                  >
+                    <i class="bi bi-arrow-left" style="font-size: 1.2rem"></i>
+                  </a>
+
+                  <div>
                     <div class="order-title">
-                        Đơn hàng #32543
-                        <span class="status-badge status-paid">Đã thanh toán</span>
-                        <span class="status-badge status-ready">Sẵn sàng lấy hàng</span>
+                      Đơn hàng #32543
+                      <span class="status-badge badge-yellow">Đang Giao</span>
                     </div>
-                    <div class="order-date">17 Tháng 8, 2025, 5:48 (ET)</div>
+                    <div class="order-date">23 Tháng 9, 2025, 8:48 (UTC)</div>
+                  </div>
                 </div>
                 <button class="delete-btn">Xóa đơn hàng</button>
+              </div>
             </div>
-        </div>
-    </div>
+          </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Left Column -->
-            <div class="col-lg-8">
+          <div class="container-fluid">
+            <div class="row">
+              <!-- Left Column -->
+              <div class="col-lg-8">
                 <!-- Order Details -->
                 <div class="card-section">
-                    <div class="section-title">
-                        <span>Chi tiết đơn hàng</span>
-                        <a href="#" class="edit-link">Chỉnh sửa</a>
+                  <div class="section-title">
+                    <span>Chi tiết đơn hàng</span>
+                    <a href="#" class="edit-link">Chỉnh sửa</a>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="table product-table">
+                      <thead>
+                        <tr>
+                          <th style="width: 30px">
+                            <input class="form-check-input" type="checkbox" />
+                          </th>
+                          <th>SẢN PHẨM</th>
+                          <th>GIÁ</th>
+                          <th>SỐ LƯỢNG</th>
+                          <th>TỔNG</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <input class="form-check-input" type="checkbox" />
+                          </td>
+                          <td>
+                            <div class="product-info">
+                              <img
+                                src="https://www.mykingdom.com.vn/cdn/shop/products/179795_1.jpg?v=1742374683&width=600"
+                                class="product-image"
+                                alt="Con Quay B-193 Booster Ultimate Valkyrie.Lg.V-9 BEYBLADE 6 179795"
+                              />
+                              <div class="product-details">
+                                <div class="product-name">
+                                  Con Quay B-193 Booster Ultimate
+                                  Valkyrie.Lg.V-9 BEYBLADE 6 179795
+                                </div>
+                                <div class="product-meta">
+                                  Mã sản phẩm: 02754
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td><span class="price-text">759.300 đ</span></td>
+                          <td><span class="price-text">1</span></td>
+                          <td><span class="price-text">759.300 đ</span></td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <input class="form-check-input" type="checkbox" />
+                          </td>
+                          <td>
+                            <div class="product-info">
+                              <img
+                                src="https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-ferrari-sf-24-f1-lego-technic-42207_0.jpg?v=1740971660&width=990"
+                                class="product-image"
+                                alt="Đồ Chơi Lắp Ráp Xe Ferrari SF-24 F1 LEGO TECHNIC"
+                              />
+                              <div class="product-details">
+                                <div class="product-name">
+                                  Đồ Chơi Lắp Ráp Xe Ferrari SF-24 F1 LEGO
+                                  TECHNIC 42207
+                                </div>
+                                <div class="product-meta">
+                                  Mã sản phẩm: 42207
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td><span class="price-text">500.000 đ</span></td>
+                          <td><span class="price-text">1</span></td>
+                          <td><span class="price-text">500.000 đ</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="mt-4">
+                    <div class="summary-row">
+                      <span class="summary-label">Tổng giá:</span>
+                      <span class="summary-value">1.259.300 đ</span>
                     </div>
-                    
-                    <div class="table-responsive">
-                        <table class="table product-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 30px;">
-                                        <input class="form-check-input" type="checkbox">
-                                    </th>
-                                    <th>SẢN PHẨM</th>
-                                    <th>GIÁ</th>
-                                    <th>SỐ LƯỢNG</th>
-                                    <th>TỔNG</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>
-                                        <div class="product-info">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect fill='%23fef3c7' width='48' height='48' rx='8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23f59e0b'%3E🧴%3C/text%3E%3C/svg%3E" class="product-image" alt="Kem dưỡng da">
-                                            <div class="product-details">
-                                                <div class="product-name">Kem dưỡng da</div>
-                                                <div class="product-meta">Giới tính: Nữ</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><span class="price-text">$813</span></td>
-                                    <td><span class="price-text">2</span></td>
-                                    <td><span class="price-text">$1626</span></td>
-                                </tr>
-
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>
-                                        <div class="product-info">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect fill='%23dbeafe' width='48' height='48' rx='8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%233b82f6'%3E👟%3C/text%3E%3C/svg%3E" class="product-image" alt="Nike Jordan">
-                                            <div class="product-details">
-                                                <div class="product-name">Nike Jordan</div>
-                                                <div class="product-meta">Kích cỡ: 8UK</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><span class="price-text">$392</span></td>
-                                    <td><span class="price-text">1</span></td>
-                                    <td><span class="price-text">$392</span></td>
-                                </tr>
-
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>
-                                        <div class="product-info">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect fill='%23ddd6fe' width='48' height='48' rx='8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%238b5cf6'%3E📱%3C/text%3E%3C/svg%3E" class="product-image" alt="Oneplus 10">
-                                            <div class="product-details">
-                                                <div class="product-name">Oneplus 10</div>
-                                                <div class="product-meta">Dung lượng: 128GB</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><span class="price-text">$896</span></td>
-                                    <td><span class="price-text">3</span></td>
-                                    <td><span class="price-text">$2688</span></td>
-                                </tr>
-
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>
-                                        <div class="product-info">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect fill='%23fed7aa' width='48' height='48' rx='8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23ea580c'%3E🪑%3C/text%3E%3C/svg%3E" class="product-image" alt="Ghế gỗ">
-                                            <div class="product-details">
-                                                <div class="product-name">Ghế gỗ</div>
-                                                <div class="product-meta">Chất liệu: Gỗ</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><span class="price-text">$841</span></td>
-                                    <td><span class="price-text">2</span></td>
-                                    <td><span class="price-text">$1682</span></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
+                    <div class="summary-row">
+                      <span class="summary-label">Giảm giá:</span>
+                      <span class="summary-value">520.000 đ</span>
                     </div>
-
-                    <div class="mt-4">
-                        <div class="summary-row">
-                            <span class="summary-label">Tạm tính:</span>
-                            <span class="summary-value">$5000.25</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Giảm giá:</span>
-                            <span class="summary-value">$00.00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Thuế:</span>
-                            <span class="summary-value">$100.00</span>
-                        </div>
-                        <div class="summary-row total-row">
-                            <span class="summary-label">Tổng cộng:</span>
-                            <span class="summary-value">$5100.25</span>
-                        </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Thuế:</span>
+                      <span class="summary-value">70.000 đ</span>
                     </div>
+                    <div class="summary-row total-row">
+                      <span class="summary-label">Tổng cộng:</span>
+                      <span class="summary-value">1.329.300 đ</span>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Shipping Activity -->
                 <div class="card-section">
-                    <div class="section-title">
-                        <span>Hoạt động giao hàng</span>
-                    </div>
-                    
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <div>
-                                    <div class="timeline-title">Đơn hàng đã được đặt (Mã: #32543)</div>
-                                    <div class="timeline-description">Đơn hàng của bạn đã được đặt thành công</div>
-                                </div>
-                                <div class="timeline-time">Thứ Ba 11:29 AM</div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <div>
-                                    <div class="timeline-title">Nhận hàng</div>
-                                    <div class="timeline-description">Lịch nhận hàng đã được sắp xếp với bên vận chuyển</div>
-                                </div>
-                                <div class="timeline-time">Thứ Tư 11:29 AM</div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <div>
-                                    <div class="timeline-title">Đã gửi đi</div>
-                                    <div class="timeline-description">Hàng đã được bên vận chuyển nhận</div>
-                                </div>
-                                <div class="timeline-time">Thứ Năm 11:29 AM</div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <div>
-                                    <div class="timeline-title">Hàng đã đến kho</div>
-                                    <div class="timeline-description">Hàng đã đến kho Amazon tại NY</div>
-                                </div>
-                                <div class="timeline-time">Thứ Bảy 15:20 AM</div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <div>
-                                    <div class="timeline-title">Đang giao hàng</div>
-                                    <div class="timeline-description">Hàng đã rời kho Amazon tại NY</div>
-                                </div>
-                                <div class="timeline-time">Hôm nay 14:12 PM</div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot inactive"></div>
-                            <div class="timeline-content">
-                                <div>
-                                    <div class="timeline-title">Giao hàng</div>
-                                    <div class="timeline-description">Dự kiến giao hàng vào ngày mai</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  <div class="section-title">
+                    <span>Hoạt động giao hàng</span>
+                  </div>
 
-            <!-- Right Column -->
-            <div class="col-lg-4">
-
-                <div class="card-section">
-                    <div class="section-title">
-                        <span>Thông tin khách hàng</span>
-                        <a href="#" class="edit-link">Chỉnh sửa</a>
-                    </div>
-                    
-                    <div class="customer-info-row">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%2393c5fd'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white' font-weight='600'%3EST%3C/text%3E%3C/svg%3E" class="customer-avatar" alt="Shamus Tuttle">
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
                         <div>
-                            <div class="customer-name">Shamus Tuttle</div>
-                            <div class="customer-id">Mã khách hàng: #58909</div>
+                          <div class="timeline-title">
+                            Đơn hàng đã được đặt (Mã: #32543)
+                          </div>
+                          <div class="timeline-description">
+                            Đơn hàng của bạn đã được đặt thành công
+                          </div>
                         </div>
+                        <div class="timeline-time">Thứ Ba 11:29 AM</div>
+                      </div>
                     </div>
-                    
-                    <div class="orders-count">
-                        <div class="orders-icon">🛒</div>
-                        <div class="orders-text">12 đơn hàng</div>
+
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <div>
+                          <div class="timeline-title">Nhận hàng</div>
+                          <div class="timeline-description">
+                            Lịch nhận hàng đã được sắp xếp với bên vận chuyển
+                          </div>
+                        </div>
+                        <div class="timeline-time">Thứ Tư 11:29 AM</div>
+                      </div>
                     </div>
-                    
-                    <div class="contact-info">
-                        <div class="contact-title">Thông tin liên hệ</div>
-                        <div class="contact-item">Email: Shamus889@yahoo.com</div>
-                        <div class="contact-item">Số điện thoại: +1 (609) 972-22-22</div>
+
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <div>
+                          <div class="timeline-title">Đã gửi đi</div>
+                          <div class="timeline-description">
+                            Hàng đã được bên vận chuyển nhận
+                          </div>
+                        </div>
+                        <div class="timeline-time">Thứ Năm 11:29 AM</div>
+                      </div>
                     </div>
+
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <div>
+                          <div class="timeline-title">Hàng đã đến kho</div>
+                          <div class="timeline-description">
+                            Hàng đã đến kho Tân Phú Trung tại Tp.HCM
+                          </div>
+                        </div>
+                        <div class="timeline-time">Thứ Bảy 15:20 AM</div>
+                      </div>
+                    </div>
+
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <div>
+                          <div class="timeline-title">Đang giao hàng</div>
+                          <div class="timeline-description">
+                            Hàng đã rời kho Tân Phú Trung tại Tp.HCM
+                          </div>
+                        </div>
+                        <div class="timeline-time">Hôm nay 14:12 PM</div>
+                      </div>
+                    </div>
+
+                    <div class="timeline-item">
+                      <div class="timeline-dot inactive"></div>
+                      <div class="timeline-content">
+                        <div>
+                          <div class="timeline-title">Giao hàng</div>
+                          <div class="timeline-description">
+                            Dự kiến giao hàng vào ngày mai
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="col-lg-4">
+                <div class="card-section">
+                  <div class="section-title">
+                    <span>Thông tin khách hàng</span>
+                    <a href="#" class="edit-link">Chỉnh sửa</a>
+                  </div>
+
+                  <div class="customer-info-row">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%2393c5fd'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white' font-weight='600'%3EST%3C/text%3E%3C/svg%3E"
+                      class="customer-avatar"
+                      alt="Shamus Tuttle"
+                    />
+                    <div>
+                      <div class="customer-name">Nguyễn Anh Tùng</div>
+                      <div class="customer-id">Mã khách hàng: #58909</div>
+                    </div>
+                  </div>
+
+                  <div class="orders-count">
+                    <i class="bi bi-cart4"></i>
+                    <div class="orders-text">1 đơn hàng</div>
+                  </div>
+
+                  <div class="contact-info">
+                    <div class="contact-title">Thông tin liên hệ</div>
+                    <div class="contact-item">
+                      Email: nguyenanhtung@gmail.com
+                    </div>
+                    <div class="contact-item">Số điện thoại: 0798222222</div>
+                  </div>
                 </div>
 
                 <!-- Shipping Address -->
                 <div class="card-section">
-                    <div class="section-title">
-                        <span>Địa chỉ giao hàng</span>
-                        <a href="#" class="edit-link">Chỉnh sửa</a>
-                    </div>
-                    
-                    <p class="address-text">
-                        45 Roker Terrace<br>
-                        Latheronwheel<br>
-                        KW5 8NW, London<br>
-                        UK
-                    </p>
-                </div>
+                  <div class="section-title">
+                    <span>Địa chỉ giao hàng</span>
+                    <a href="#" class="edit-link">Chỉnh sửa</a>
+                  </div>
 
-                <!-- Billing Address -->
-                <div class="card-section">
-                    <div class="section-title">
-                        <span>Địa chỉ thanh toán</span>
-                        <a href="#" class="edit-link">Chỉnh sửa</a>
-                    </div>
-                    
-                    <p class="address-text">
-                        45 Roker Terrace<br>
-                        Latheronwheel<br>
-                        KW5 8NW, London<br>
-                        UK
-                    </p>
-                    
-                    <div class="payment-info">
-                        <svg class="payment-card-icon" viewBox="0 0 48 32">
-                            <rect width="48" height="32" rx="4" fill="#EB001B"/>
-                            <rect x="18" width="12" height="32" fill="#F79E1B"/>
-                        </svg>
-                        <div class="payment-details">
-                            <div class="payment-type">Mastercard</div>
-                            <div class="payment-number">Số thẻ: ******4291</div>
-                        </div>
-                    </div>
+                  <p class="address-text">
+                    1 Lê Duẩn<br />
+                    Tp. Ho Chi Minh<br />
+                    Viet Nam
+                  </p>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
+        </main>
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Quản Lý Đơn Hàng</title>
+    <title>Quản trị - Dashboard</title>
 
     <link
       rel="stylesheet"
@@ -19,28 +19,17 @@
     <link rel="stylesheet" href="css/handbook.css" />
     <link rel="stylesheet" href="../css/root.css" />
     <link rel="stylesheet" href="css/index.css" />
-    <style>
-      .stats-card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-      }
-    </style>
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <aside
           id="sidebar"
-          class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0 d-none d-md-block"
+          class="col-lg-2 col-md-3 bg-light text-primary min-vh-100 p-0"
         >
           <div class="d-flex flex-column h-100">
             <div class="p-3 hstack border-bottom border-secondary">
-              <h4 class="mb-0 sidebar-header">
-                <strong>Quản trị viên</strong>
-              </h4>
+              <h4 class="mb-0 sidebar-header"><strong>Quản trị</strong></h4>
               <button
                 class="btn btn-outline-light btn-sm text-secondary sidebar-text ms-auto"
                 onclick="collapseSidebar()"
@@ -92,8 +81,11 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-primary px-3 py-3" href="orders.html">
-                    <i class="fas fa-shopping-cart me-2 sidebar-icon"></i>
+                  <a
+                    class="nav-link active text-primary px-3 py-3"
+                    href="orders.html"
+                  >
+                    <i class="fas fa-tachometer-alt me-2 sidebar-icon"></i>
                     <span class="sidebar-text">Quản lý đơn hàng</span>
                   </a>
                 </li>
@@ -123,79 +115,6 @@
           </div>
         </aside>
 
-        <div
-          class="offcanvas offcanvas-start bg-light text-primary"
-          tabindex="-1"
-          id="offcanvasSidebar"
-        >
-          <div class="offcanvas-header border-bottom border-secondary">
-            <h5 class="offcanvas-title"><strong>Admin</strong></h5>
-            <button
-              type="button"
-              class="btn-close btn-close-secondary"
-              data-bs-dismiss="offcanvas"
-            ></button>
-          </div>
-          <div class="offcanvas-body p-0">
-            <nav>
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a
-                    class="nav-link text-primary px-3 py-3"
-                    href="dashboard.html"
-                  >
-                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link text-primary px-3 py-3"
-                    href="statistics.html"
-                  >
-                    <i class="fas fa-chart-line me-2"></i>Thống kê doanh thu
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-primary px-3 py-3" href="users.html">
-                    <i class="fas fa-users me-2"></i>Quản lý người dùng
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link text-primary px-3 py-3"
-                    href="products.html"
-                  >
-                    <i class="fas fa-box me-2"></i>Quản lý sản phẩm
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-primary px-3 py-3" href="orders.html">
-                    <i class="fas fa-shopping-cart me-2"></i>Quản lý đơn hàng
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-primary px-3 py-3" href="brands.html">
-                    <i class="fas fa-tags me-2"></i>Quản lý thương hiệu
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-primary px-3 py-3" href="events.html">
-                    <i class="fas fa-calendar-alt me-2"></i>Quản lý sự kiện
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link text-primary px-3 py-3"
-                    href="handbooks.html"
-                  >
-                    <i class="fas fa-newspaper me-2"></i>Quản lý bài viết
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
         <button
           class="btn btn-outline-secondary d-none fixed-top ms-3 mt-3 z-1 w-lg-3 w-md-5"
           onclick="openSidebar()"
@@ -204,22 +123,12 @@
           <i class="fas fa-bars"></i>
         </button>
 
-        <main class="col-md-9 col-lg-10 px-4 py-3" id="mainContent">
-          <button
-            class="btn btn-outline-secondary d-md-none mb-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasSidebar"
-          >
-            <i class="fas fa-bars"></i> Menu
-          </button>
-          <!-- Don't touch this, for mobile offcanvas sidebar-->
-
+        <main class="col-md-9 col-lg-10" id="mainContent">
           <div class="header-section">
             <div class="container">
               <div class="row align-items-center">
                 <div class="col">
-                  <h1 class="page-title">Quản lí đơn hàng</h1>
+                  <h1 class="page-title">Quản lý đơn hàng</h1>
                 </div>
                 <div class="col-auto">
                   <a href="orders.html" class="btn btn-gray">
@@ -517,8 +426,6 @@
               </div>
             </div>
           </div>
-
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
         </main>
       </div>
     </div>

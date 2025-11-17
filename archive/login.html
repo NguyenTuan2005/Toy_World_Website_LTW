@@ -196,20 +196,13 @@
                                 <a href="sign-up.html" class="text-secondary text-decoration-none">Đăng kí tài khoản</a>
                             </div>
                         </form>
-
-                        <div class="text-center border-top border-2 pt-3">
-                            <p class="mb-3">Hoặc đăng nhập bằng</p>
-                            <button class="btn btn-outline-danger w-100">
-                                <i class="fab fa-google me-2"></i>Gmail
-                            </button>
-                        </div>
                     </div>
 
                     <!-- Form Quên mật khẩu -->
                     <div id="forgotPasswordForm" style="display: none;">
                         <h2 class="text-center text-uppercase mb-4" style="color: #001c77">Quên mật khẩu</h2>
 
-                        <p class="text-muted text-center mb-4">Nhập email của bạn để nhận liên kết đặt lại mật khẩu</p>
+                        <p class="text-muted text-center mb-4">Nhập email của bạn để nhận mã đặt lại mật khẩu</p>
 
                         <form id="forgotPasswordFormElement" class="mb-3" novalidate>
                             <div class="mb-3">
@@ -223,6 +216,37 @@
                                 <a href="#" onclick="backToLogin()" class="text-secondary text-decoration-none">Quay lại đăng nhập</a>
                             </div>
                         </form>
+                    </div>
+
+                    <div id="resetPasswordForm" style="display: none;">
+                        <h2 class="text-center text-uppercase mb-4" style="color: #001c77">Đặt lại mật khẩu</h2>
+
+                        <p class="text-muted text-center mb-4">Nhập mã xác thực đã được gửi đến email và thiết lập mật khẩu mới</p>
+
+                        <form id="resetPasswordFormElement" class="mb-3" novalidate>
+                            <div class="mb-3">
+                                <input type="text" id="resetCode" class="form-control" placeholder="Mã xác thực" required>
+                                <p class="text-danger small error-message mt-1" id="resetCodeError"></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="password" id="newPassword" class="form-control" placeholder="Mật khẩu mới" required>
+                                <p class="text-danger small error-message mt-1" id="newPasswordError"></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" required>
+                                <p class="text-danger small error-message mt-1" id="confirmPasswordError"></p>
+                            </div>
+
+                            <button type="submit" onclick="backToLogin()" class="btn btn-primary w-100 mb-3">Đặt lại mật khẩu</button>
+
+                            <div class="text-center">
+                                <a href="#" onclick="backToLogin()" class="text-secondary text-decoration-none">Quay lại đăng nhập</a>
+                            </div>
+                        </form>
+                    </div>
+
                     </div>
                 </div>
             </div>

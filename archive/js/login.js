@@ -6,6 +6,7 @@ function forgotPassword() {
 
 function backToLogin() {
     document.getElementById('forgotPasswordForm').style.display = 'none';
+    document.getElementById('resetPasswordForm').style.display = 'none';
     document.getElementById('loginForm').style.display = 'block';
     clearErrors();
 }
@@ -72,7 +73,7 @@ document.getElementById('forgotPasswordFormElement').addEventListener('submit', 
     }
 
     if (isValid) {
-        alert('Liên kết đặt lại mật khẩu đã được gửi đến email của bạn!');
-        // fetch here
+        document.getElementById('resetPasswordForm').style.display = 'block';
+        this.parentElement.style.display = 'none';
     }
 });

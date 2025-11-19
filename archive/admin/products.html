@@ -350,46 +350,6 @@
                 </div>
 
 
-                <script>
-
-                /* ------------------- Image preview + delete ------------------- */
-                let selectedFiles = [];
-
-                document.getElementById("imageUpload").addEventListener("change", (event) => {
-                    const files = Array.from(event.target.files);
-                    selectedFiles.push(...files);
-                    renderPreview();
-                });
-
-                function renderPreview() {
-                    const preview = document.getElementById("preview");
-                    preview.innerHTML = "";
-
-                    selectedFiles.forEach((file, index) => {
-                        const url = URL.createObjectURL(file);
-
-                        preview.innerHTML += `
-                            <div class="preview-wrapper">
-                                <img src="${url}" class="preview-img">
-                                <button class="remove-btn" onclick="removeImage(${index})">×</button>
-                            </div>
-                        `;
-                    });
-
-                    updateInputFiles();
-                }
-
-                function removeImage(index) {
-                    selectedFiles.splice(index, 1);
-                    renderPreview();
-                }
-
-                function updateInputFiles() {
-                    const dataTransfer = new DataTransfer();
-                    selectedFiles.forEach(file => dataTransfer.items.add(file));
-                    document.getElementById("imageUpload").files = dataTransfer.files;
-                }
-                </script>
 
             </div>
 
@@ -402,8 +362,8 @@
        
 
                         <br>
-                          <h2 class="text-center">Tìm Sản Phẩm Theo Tên</h2>
-                         <div class="table-wrapper" style="overflow-x: hidden;">
+                        <h2 class="text-center">Sản Phẩm mới Của Tháng</h2>
+                        <div class="table-wrapper" style="overflow-x: hidden;">
                           
                             <div class="filter-section">
                                     <div class="row align-items-center">
@@ -466,6 +426,84 @@
                             </table>
 
                         </div>
+                        <br>
+
+                        <!-- commend -->
+                        <h2 class="text-center">Bình Luận Gần Đây</h2>
+                        <div class="table-wrapper" style="overflow-x: hidden;">
+                          
+                            <div class="filter-section">
+                                    <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <div class="search-wrapper">
+                                        <i class="fas fa-search search-icon"></i>
+                                        <input
+                                            type="text"
+                                            class="search-input"
+                                            placeholder="Tìm theo tên người dùng"
+                                        />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="custom-table">
+                                <thead>
+                                    
+                                <tr>
+                                    <th >ID</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Tên Khách Hàng</th>
+                                    <th>Nội Dung</th>
+                                    <th>Thời Gian</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">01</td>
+                                        <td class="text-center">Đồ Chơi Cát</td>
+                                        <td class="text-center">Nguyễn Hữu Duy</td>
+                                        <td class="text-center">Sản Phẩm Tốt</td>
+                                        <td class="text-center">11-19-2025</td>
+                                        <td class="text-center">   
+                                            <div class="badge bg-success p-2 px-3" style="font-size: 16px;">
+                                                 <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                        </td>
+                                        <td class="text-center"><i class="bi bi-trash"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">01</td>
+                                        <td class="text-center">Đồ Chơi Cát</td>
+                                        <td class="text-center">Phan Bá Huy Hoàng</td>
+                                        <td class="text-center">Sản Phẩm Tốt</td>
+                                        <td class="text-center">11-19-2025</td>
+                                        <td class="text-center">   
+                                            <div class="badge bg-success p-2 px-3" style="font-size: 16px;">
+                                                 <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                        </td>
+                                        <td class="text-center"><i class="bi bi-trash"></i></td>
+                                    </tr>   
+                                    <tr>
+                                        <td class="text-center">01</td>
+                                        <td class="text-center">Xe Hơi Nhựa</td>
+                                        <td class="text-center">Nguyễn Võ Quốc Tuấn</td>
+                                        <td class="text-center">Sản Phẩm Tốt</td>
+                                        <td class="text-center">11-19-2025</td>
+                                        <td class="text-center">
+                                            <div class="badge bg-danger p-2 px-3" style="font-size: 16px;">
+                                                <i class="bi bi-x-circle-fill"></i> 
+                                            </div>
+                                        </td>
+                                        <td class="text-center"><i class="bi bi-trash"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        
 
 
                     </div>

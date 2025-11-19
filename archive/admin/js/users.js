@@ -19,11 +19,6 @@ $(document).ready(function () {
         console.log('Tìm kiếm:', searchTerm);
     });
 
-    $('#btnRefresh').on('click', function () {
-        console.log('Làm mới dữ liệu');
-        location.reload();
-    });
-
     $('#btnAddUser').on('click', function () {
         $('#userModalLabel').text('Thêm người dùng mới');
         $('#userForm')[0].reset();

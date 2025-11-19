@@ -35,6 +35,11 @@
   color: #92400e;
 }
 
+.badge-green {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
 .delete-btn {
   border: 1px solid #cf102d;
   background-color: #cf102d;

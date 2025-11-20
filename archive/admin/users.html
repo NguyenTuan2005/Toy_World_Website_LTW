@@ -90,15 +90,12 @@
                 <div class="col-md-6 mb-2">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm theo tên, email hoặc điện thoại...">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm theo tên...">
                     </div>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#userModal" id="btnAddUser">
                         <i class="fas fa-plus"></i> Thêm người dùng
-                    </button>
-                    <button class="btn btn-outline-secondary" id="btnRefresh">
-                        <i class="fas fa-sync-alt"></i> Làm mới
                     </button>
                 </div>
             </div>
@@ -263,8 +260,8 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="location" class="form-label">Địa điểm</label>
-                                    <select class="form-select" id="location">
+                                    <label for="province" class="form-label">Tỉnh/TP</label>
+                                    <select class="form-select" id="province">
                                         <option value="">Chọn địa điểm</option>
                                         <option value="hanoi">Hà Nội</option>
                                         <option value="hcm">TP. Hồ Chí Minh</option>
@@ -272,6 +269,11 @@
                                         <option value="haiphong">Hải Phòng</option>
                                         <option value="cantho">Cần Thơ</option>
                                     </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="address" class="form=label">Địa chỉ</label>
+                                    <textarea class="form-control" id="address"></textarea>
                                 </div>
 
                                 <div class="mb-3">

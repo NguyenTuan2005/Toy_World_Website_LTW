@@ -30,7 +30,7 @@
 }
 
 .header h1 {
-  font-size: 24px; 
+  font-size: 24px;
   font-weight: bold;
   margin: 0;
 }
@@ -38,6 +38,66 @@
 .header-buttons {
   display: flex;
   gap: 10px;
+}
+
+.tag-input-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.tag-input-wrapper input {
+  flex: 1;
+}
+
+.btn-add-tag {
+  background: #cf102d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-add-tag:hover {
+  background: #a00d24;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-item {
+  background: #cf102d;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tag-remove {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.tag-remove:hover {
+  opacity: 0.7;
+}
+
+.empty-tags {
+  color: #718096;
+  font-style: italic;
+  font-size: 14px;
 }
 
 .content {
@@ -127,7 +187,7 @@ textarea.form-control {
   font-weight: 500;
   transition: all 0.2s;
   white-space: nowrap;
-  font-size: 15.2px; 
+  font-size: 15.2px;
 }
 
 .btn-add:hover {
@@ -145,7 +205,7 @@ textarea.form-control {
   font-weight: 600;
   transition: all 0.2s;
   white-space: nowrap;
-  font-size: 15.2px; 
+  font-size: 15.2px;
 }
 
 .btn-submit:hover {

@@ -39,6 +39,7 @@
       </div>
     </div>
 
+
     <div class="container">
       <div class="content">
         <form id="blogForm">
@@ -49,6 +50,26 @@
               class="form-control"
               placeholder="Nhập tiêu đề hấp dẫn..."
             />
+          </div>
+
+          <div class="paragraph-card">
+            <div class="section-header">
+              <i class="bi bi-tags me-2"></i>Danh mục bài viết
+            </div>
+            <div class="tag-input-wrapper">
+              <input
+                type="text"
+                class="form-control"
+                id="tagInput"
+                placeholder="Nhập nhãn (ví dụ: Dạy con thông minh, Chơi cùng con,...)"
+              />
+              <button type="button" class="btn-add-tag" onclick="addTag()">
+                <i class="bi bi-plus-lg me-1"></i>Thêm
+              </button>
+            </div>
+            <div class="tags-list" id="tagsList">
+              <span class="empty-tags">Chưa có danh mục nào</span>
+            </div>
           </div>
 
           <div class="mb-4">

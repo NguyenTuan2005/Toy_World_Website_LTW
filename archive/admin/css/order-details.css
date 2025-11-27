@@ -35,6 +35,11 @@
   color: #92400e;
 }
 
+.badge-green {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
 .delete-btn {
   border: 1px solid #cf102d;
   background-color: #cf102d;
@@ -69,6 +74,7 @@
 .card-section {
   background: white;
   border-radius: 12px;
+  border: 1px solid #e9ecef;
   padding: 24px;
   margin-bottom: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);

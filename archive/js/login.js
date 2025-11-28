@@ -50,7 +50,7 @@ document.getElementById('loginFormElement').addEventListener('submit', function(
     }
 
     if (isValid) {
-        alert('Đăng nhập thành công!');
+        window.location.href = '/Children_toy_web/archive/home-page.html';
         // fetch here
     }
 });

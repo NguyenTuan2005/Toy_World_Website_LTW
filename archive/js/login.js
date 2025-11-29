@@ -50,7 +50,7 @@ document.getElementById('loginFormElement').addEventListener('submit', function(
     }
 
     if (isValid) {
-        window.location.href = '/Children_toy_web/archive/home-page.html';
+        window.location.href = '/archive/home-page.html';
         // fetch here
     }
 });

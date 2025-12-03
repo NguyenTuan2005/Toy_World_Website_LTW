@@ -72,4 +72,26 @@ INSERT INTO user_roles (user_id, role_id) VALUES
   (36,1),(37,1),(38,1),(39,1),(40,1),
   (41,1),(42,1),(43,1),(44,1),(45,1),
   (46,1),(47,1),(48,1),(49,1),(50,1);
--- User, role and location.
+-- handbook
+
+INSERT INTO category_hbs (`id`, `name`, `is_active`) VALUES
+                                                         (1, 'Đồ chơi xếp hình', 1),
+                                                         (2, 'Đồ chơi lắp ráp', 1),
+                                                         (3, 'Đồ chơi điều khiển', 1),
+                                                         (4, 'Búp bê', 1),
+                                                         (5, 'Mô hình ô tô', 1),
+                                                         (6, 'Đồ chơi giáo dục', 1),
+                                                         (7, 'Đồ chơi thể thao', 1),
+                                                         (8, 'Đồ chơi ngoài trời', 1),
+                                                         (9, 'Đồ chơi điện tử', 1),
+                                                         (10, 'Đồ chơi gỗ', 1);
+
+
+insert into handbooks(id,user_id,title,views,status)
+values (1,1,'IWAYA đồ chơi thú cưng 2025: Mô hình động vật mini đáng yêu cho bé!',1,'POSTED');
+
+INSERT INTO paragraphs (id,header, description, image_path, image_description, display_index, handbook_id)
+VALUES (1,'IWAYA đồ chơi thú cưng 2025: Mô hình động vật mini đáng yêu cho bé!','not found','https://www.mykingdom.com.vn/cdn/shop/articles/iwaya-do-choi-thu-cung-2025.jpg?v=1764727470','hinh em be',0)
+,(2,'Tại sao IWAYA đồ chơi thú cưng 2025 được ba mẹ săn lùng ráo riết?','Trong thế giới đồ chơi thú cưng hiện đại, IWAYA đồ chơi thú cưng 2025 đang tạo ra một cơn sốt không chỉ với các bé mà còn được ba mẹ săn đón nhiệt tình. Đã nhiều năm qua, các sản phẩm IWAYA luôn là lựa chọn hàng đầu của các gia đình, và trong năm 2025 sự hấp dẫn của chúng ngày càng gia tăng. Vậy đâu là lý do khiến IWAYA trở thành món quà không thể thiếu cho bé? IWAYA nổi tiếng là thương hiệu đồ chơi thú cưng hơn 100 năm tuổi của Nhật Bản, được thiết kế để kích thích sự hứng thú và tương tác ở trẻ em. Chúng có các tính năng nổi bật như: Tương tác đa dạng: Tùy thuộc vào mẫu sản phẩm, đồ chơi có thể di chuyển, lắc lư đuôi, gật gù đầu, phát ra tiếng kêu (như tiếng sủa, meo meo, hót) vui nhộn. Cảm biến chạm: Nhiều mẫu có tích hợp cảm biến chạm ở đầu hoặc lưng, cho phép thú cưng phản ứng khi được vuốt ve hoặc ôm ấp. Điều khiển từ xa: Một số mẫu như cún con có dây điều khiển, cho phép trẻ dẫn thú cưng đi dạo, mô phỏng trải nghiệm dắt thú đi chơi thực sự.Chất liệu mềm mại: Thú bông được làm từ chất liệu vải bông mềm mại, an toàn cho trẻ em từ 3 trở lên. Thiết kế đáng yêu: Các sản phẩm có hình dáng của nhiều loài động vật khác nhau như chó (Chihuahua, Toy Poodle, Husky), mèo Ba Tư, chim cánh cụt, gấu trúc… với vẻ ngoài dễ thương, thân thiện. Vì vậy, không lý do gì mà ba mẹ không rước đồ chơi thú cưng thông minh này về làm quà cho bé yêu của mình ngay!','','',1,1)
+,(3,'Mô hình thú cưng IWAYA đang được yêu thích','Cute vô đối với chú Chim Cánh Cụt Con Hồng sành điệu! Đây không chỉ là đồ chơi, mà là một "pet ảo" siêu xịn. Em nó sở hữu lớp lông mềm như mây và các động tác di chuyển, đập cánh, kêu y hệt chim cánh cụt thật. Chỉ cần vỗ nhẹ vào đầu là kêu luôn, không cần pin vẫn tương tác! Rinh ngay em này để con có thêm người bạn cực chill.','https://www.mykingdom.com.vn/cdn/shop/files/chim-canh-cut-con-hong-iwaya-3243-2-vn-js_3.jpg?v=1741943727&width=1946','no',2,1)
+,(4,'Baby Capybara ','Gặp gỡ Capybara – "nhà ngoại giao" hot nhất mạng xã hội! IWAYA đã tái hiện hoàn hảo chú chuột lang nước nổi tiếng này với lớp lông nâu mềm mịn. Em này biết di chuyển, kịt mũi và cử động đuôi sống động và kêu như Capybara thật. Đây là món đồ chơi phải có ngay để thể hiện gu chơi và có những khoảnh khắc tương tác siêu chữa lành.','https://www.mykingdom.com.vn/cdn/shop/files/baby-capybara-iwaya-3244-1vnjs_1.jpg?v=1736908605&width=1946','no',3,1);

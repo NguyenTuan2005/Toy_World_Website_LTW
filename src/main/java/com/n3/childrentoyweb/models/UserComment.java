@@ -9,7 +9,12 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location extends BaseModel {
-    private String address;
-    private String province;
+public class UserComment extends BaseModel {
+    private String content;
+    private User user;
+    private Product product;
+
+    public void setUser (User user) {
+        this.user = user;
+    }
 }

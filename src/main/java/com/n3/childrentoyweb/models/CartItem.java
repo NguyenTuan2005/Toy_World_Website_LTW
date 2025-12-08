@@ -9,7 +9,12 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location extends BaseModel {
-    private String address;
-    private String province;
+public class CartItem {
+    private Cart cart;
+    private Product product;
+    private Integer quantity;
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 }

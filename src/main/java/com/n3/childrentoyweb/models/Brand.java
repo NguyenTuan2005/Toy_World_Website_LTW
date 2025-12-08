@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location extends BaseModel {
-    private String address;
-    private String province;
+public class Brand extends BaseModel {
+    private String name;
+    private String imgPath;
 }

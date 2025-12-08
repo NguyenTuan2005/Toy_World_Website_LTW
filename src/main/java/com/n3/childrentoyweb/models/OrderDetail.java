@@ -9,7 +9,12 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location extends BaseModel {
-    private String address;
-    private String province;
+public class OrderDetail extends BaseModel {
+    private Order order;
+    private Product product;
+    private Integer quantity;
+
+    public void setOrder (Order order) {
+        this.order = order;
+    }
 }

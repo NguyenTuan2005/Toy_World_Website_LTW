@@ -1,20 +1,28 @@
 package com.n3.childrentoyweb.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-@Getter
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
+import java.time.LocalDateTime;
+
 public class OrderDetail extends BaseModel {
-    private Order order;
-    private Product product;
+    private Long  orderId;
+    private Long productId;
     private Integer quantity;
 
-    public void setOrder (Order order) {
-        this.order = order;
+    public OrderDetail( Long orderId, Long productId, Integer quantity) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
     }
 }

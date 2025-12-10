@@ -1,19 +1,8 @@
 package com.n3.childrentoyweb.models;
 
-import com.n3.childrentoyweb.enums.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
-@Getter
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
 public class User extends BaseModel {
     private String firstName;
     private String lastName;
@@ -21,20 +10,43 @@ public class User extends BaseModel {
     private String gender;
     private String password;
     private String email;
-    private Location location;
-    @Builder.Default
-    private List<Role> roles = new ArrayList<>();
-    @Builder.Default
-    private List<UserComment> comments = new ArrayList<>();
+    private Long locationId;
 
-    public void addUserComment (UserComment comment) {
-        this.comments.add(comment);
-        comment.setUser(this);
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void addAllUserComment (List<UserComment> comments) {
-        for (UserComment comment : comments) {
-            this.addUserComment(comment);
-        }
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Long getLocationId() {
+        return locationId;
+    }
+
+    public User( String firstName, String lastName, String phone, String gender, String password, String email, Long locationId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.gender = gender;
+        this.password = password;
+        this.email = email;
+        this.locationId = locationId;
     }
 }

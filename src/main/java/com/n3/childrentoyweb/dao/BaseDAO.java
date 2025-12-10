@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 public abstract class BaseDAO {
     protected Jdbi jdbi;
+    private static MysqlDataSource dataSource;
 
     protected Jdbi get() {
         if (jdbi == null) {
@@ -15,7 +16,9 @@ public abstract class BaseDAO {
         return jdbi;
     }
     private void connect() {
-        MysqlDataSource dataSource = new MysqlDataSource();
+        if (dataSource == null) {
+            dataSource = new MysqlDataSource();
+        }
         dataSource.setUrl("jdbc:mysql://" + DBProperties.HOST
                                     + ":" + DBProperties.PORT
                                     + "/" + DBProperties.DBNAME

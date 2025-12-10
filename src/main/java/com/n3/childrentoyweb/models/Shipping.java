@@ -1,18 +1,10 @@
 package com.n3.childrentoyweb.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
-@Getter
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Shipping extends BaseModel {
-    private Order order;
+    private Long orderId;
     private Long partnerId;
     private String trackingCode;
     private Double shippingFee;
@@ -20,4 +12,47 @@ public class Shipping extends BaseModel {
     private LocalDateTime estimatedDelivery;
     private LocalDateTime startShippedAt;
     private LocalDateTime deliveredAt;
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public Long getPartnerId() {
+        return partnerId;
+    }
+
+    public String getTrackingCode() {
+        return trackingCode;
+    }
+
+    public Double getShippingFee() {
+        return shippingFee;
+    }
+
+    public String getShippingStatus() {
+        return shippingStatus;
+    }
+
+    public LocalDateTime getEstimatedDelivery() {
+        return estimatedDelivery;
+    }
+
+    public LocalDateTime getStartShippedAt() {
+        return startShippedAt;
+    }
+
+    public LocalDateTime getDeliveredAt() {
+        return deliveredAt;
+    }
+
+    public Shipping( Long orderId, Long partnerId, String trackingCode, Double shippingFee, String shippingStatus, LocalDateTime estimatedDelivery, LocalDateTime startShippedAt, LocalDateTime deliveredAt) {
+        this.orderId = orderId;
+        this.partnerId = partnerId;
+        this.trackingCode = trackingCode;
+        this.shippingFee = shippingFee;
+        this.shippingStatus = shippingStatus;
+        this.estimatedDelivery = estimatedDelivery;
+        this.startShippedAt = startShippedAt;
+        this.deliveredAt = deliveredAt;
+    }
 }

@@ -1,15 +1,14 @@
 package com.n3.childrentoyweb.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-@Getter
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
+import java.time.LocalDateTime;
+
 public class Location extends BaseModel {
     private String address;
     private String province;
+
+    public Location( String address, String province) {
+        this.address = address;
+        this.province = province;
+    }
 }

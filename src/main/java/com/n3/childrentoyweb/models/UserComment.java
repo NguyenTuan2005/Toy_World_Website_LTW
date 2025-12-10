@@ -1,20 +1,30 @@
 package com.n3.childrentoyweb.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-@Getter
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
+import java.time.LocalDateTime;
+
 public class UserComment extends BaseModel {
     private String content;
-    private User user;
-    private Product product;
+    private Long userId;
+    private Long productId;
 
-    public void setUser (User user) {
-        this.user = user;
+    public String getContent() {
+        return content;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public UserComment( String content, Long userId, Long productId) {
+        this.content = content;
+        this.userId = userId;
+        this.productId = productId;
+    }
+    
+    
 }

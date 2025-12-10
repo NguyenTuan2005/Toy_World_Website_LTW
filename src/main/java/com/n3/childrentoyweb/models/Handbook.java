@@ -1,36 +1,40 @@
 package com.n3.childrentoyweb.models;
 
-import com.n3.childrentoyweb.enums.CategoryHbs;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
-@Getter
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Handbook extends BaseModel {
-    private User user;
+    private Long userId;
     private String title;
     private Long views;
     private String status;
-    private CategoryHbs categoryHbs;
-    @Builder.Default
-    private List<Paragraph> paragraphs = new ArrayList<>();
+    private Long categoryHandBookId;
 
-    public void addParagraph (Paragraph paragraph) {
-        this.paragraphs.add(paragraph);
-        paragraph.setHandbook(this);
+    public Handbook( Long userId, String title, Long views, String status, Long categoryHandBookId) {
+        this.userId = userId;
+        this.title = title;
+        this.views = views;
+        this.status = status;
+        this.categoryHandBookId = categoryHandBookId;
     }
 
-    public void addAllParagraph (List<Paragraph> paragraphs) {
-        for (Paragraph paragraph : paragraphs) {
-            this.addParagraph(paragraph);
-        }
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Long getViews() {
+        return views;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Long getCategoryHandBookId() {
+        return categoryHandBookId;
     }
 }

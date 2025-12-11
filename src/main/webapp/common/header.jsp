@@ -5,7 +5,7 @@
           <!-- Logo -->
           <div class="d-flex align-items-center">
              <img
-                src="../archive/assets/images/logo/logo.png"
+                src="${pageContext.request.contextPath}/images/ToyWorldLogo.png"
                 alt="Logo"
                 class="img-fluid"
                 onclick="window.location.href='home-page.html'"

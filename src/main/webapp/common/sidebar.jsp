@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% String active = (String) request.getAttribute("activeTab");
+%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -73,20 +75,20 @@
 <div class="sidebar bg-white shadow">
     <!-- Header -->
     <div class="p-4 text-center border-bottom border-danger">
-        <img src="${pageContext.request.contextPath}/ToyWorldLogo.png" alt="Toy World Logo" class="img-fluid">
+        <img src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png" alt="Toy World Logo" class="img-fluid">
     </div>
 
     <!-- Menu -->
     <ul class="list-unstyled py-3">
         <li class="px-3 mb-1">
-            <a href="dashboard.jsp" class="menu-link active d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/dashboard" class="<%= "dashboard".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-home"></i></span>
                 <span class="flex-grow-1">Dashboard</span>
             </a>
         </li>
 
         <li class="px-3 mb-1">
-            <a href="statistics.jsp" class="menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/statistics" class="<%= "statistics".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-chart-line"></i></span>
                 <span class="flex-grow-1">Thống kê doanh thu</span>
             </a>
@@ -95,7 +97,7 @@
         <p class="text-secondary text-uppercase small fw-bold px-4 mt-3 mb-2" style="font-size: 0.7rem; letter-spacing: 1px;">Quản lý</p>
 
         <li class="px-3 mb-1">
-            <a href="users.jsp" class="menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/users" class="<%= "users".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-users"></i></span>
                 <span class="flex-grow-1">Quản lý người dùng</span>
                 <span class="badge bg-danger rounded-pill">12</span>
@@ -103,14 +105,14 @@
         </li>
 
         <li class="px-3 mb-1">
-            <a href="products.jsp" class="menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/products" class="<%= "products".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-box-open"></i></span>
                 <span class="flex-grow-1">Quản lý sản phẩm</span>
             </a>
         </li>
 
         <li class="px-3 mb-1">
-            <a href="orders.jsp" class="menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/orders" class="<%= "orders".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-shopping-cart"></i></span>
                 <span class="flex-grow-1">Quản lý đơn hàng</span>
                 <span class="badge bg-danger rounded-pill">5</span>
@@ -118,21 +120,21 @@
         </li>
 
         <li class="px-3 mb-1">
-            <a href="brands.jsp" class="menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/brands" class="<%= "brands".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-tag"></i></span>
                 <span class="flex-grow-1">Quản lý thương hiệu</span>
             </a>
         </li>
 
         <li class="px-3 mb-1">
-            <a href="events.jsp" class="menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/events" class="<%= "events".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-calendar-alt"></i></span>
                 <span class="flex-grow-1">Quản lý sự kiện</span>
             </a>
         </li>
 
         <li class="px-3 mb-1">
-            <a href="handbooks.jsp" class="menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
+            <a href="${pageContext.request.contextPath}/admin/handbooks" class="<%= "handbooks".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-newspaper"></i></span>
                 <span class="flex-grow-1">Quản lý bài viết</span>
             </a>
@@ -147,22 +149,11 @@
                 <p class="text-danger fw-semibold mb-0 small">Admin</p>
                 <p class="text-secondary mb-0" style="font-size: 0.75rem;">Quản trị viên</p>
             </div>
-            <a href="logout.jsp" class="text-danger" title="Đăng xuất">
+            <a href="/admin/logout" class="text-danger" title="Đăng xuất">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </div>
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const currentPage = window.location.pathname.split('/').pop();
-        document.querySelectorAll('.menu-link').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active', 'bg-danger', 'bg-opacity-10');
-            }
-        });
-    });
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

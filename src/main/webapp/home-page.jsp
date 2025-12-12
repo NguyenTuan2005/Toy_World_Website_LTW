@@ -4,6 +4,7 @@
 <html>
     <head>
         <title>TOY WORLD - THẾ GIỚI ĐỒ CHƠI</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
         <jsp:include page="/common/head.jsp" />
         <link rel="stylesheet" href="css/home-page.css">
     </head>

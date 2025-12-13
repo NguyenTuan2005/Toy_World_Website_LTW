@@ -14,14 +14,14 @@ function collapseSidebar() {
     }
 };
 
-function closeSidebar() {
-    sidebar.classList.remove('collapsed');
-    sidebar.classList.add('closed');
-    mainContent.classList.add('w-100');
-    mainContent.classList.remove('flex-grow-1');
-    mainContent.classList.add('col-lg-10');
-    document.getElementById('openSidebarBtn').classList.remove('d-none');
-};
+// function closeSidebar() {
+//     sidebar.classList.remove('collapsed');
+//     sidebar.classList.add('closed');
+//     mainContent.classList.add('w-100');
+//     mainContent.classList.remove('flex-grow-1');
+//     mainContent.classList.add('col-lg-10');
+//     document.getElementById('openSidebarBtn').classList.remove('d-none');
+// };
 
 function openSidebar() {
     sidebar.classList.remove('closed');

@@ -5,16 +5,16 @@
           <!-- Logo -->
           <div class="d-flex align-items-center">
              <img
-                src="../archive/assets/images/logo/logo.png"
+                src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png"
                 alt="Logo"
                 class="img-fluid"
                 onclick="window.location.href='home-page.html'"
-                style="width: 90px; height: 90px"
+                style="width: 170px; height: 50px"
                 />
           </div>
           <!-- Logo -->
           <!-- Search bar -->
-          <div class="flex-grow-1 mx-4" style="max-width: 500px">
+          <div class="flex-grow-1 mx-4" style="max-width: 470px">
              <div class="input-group">
                 <span class="input-group-text bg-white border-end-0">
                 <img

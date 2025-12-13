@@ -7,407 +7,539 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"/>
 
-    <link rel="stylesheet" href="css/event.css"/>
-    <link rel="stylesheet" href="../css/root.css"/>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
 </head>
+
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
 
 <main class="main-content">
-
-    <div class=" main-container">
-
-        <ul class="nav nav-tabs mb-4" id="mainTabs" role="tablist" style="background: rgb(213, 27, 27);">
-            <li class="nav-item ms-3" role="presentation">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#events" type="button">
-                    <i class="fas fa-calendar-check me-2"></i>Events
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#promotions" type="button">
-                    <i class="fas fa-percentage me-2"></i>Promotions
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#vouchers" type="button">
-                    <i class="fas fa-ticket-alt me-2"></i>Vouchers
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#banners" type="button">
-                    <i class="fas fa-image me-2"></i>Banners
-                </button>
-            </li>
-        </ul>
-
-        <div class="tab-content" id="mainTabContent">
-            <!-- Events Tab -->
-            <div class="tab-pane fade show active" id="events" role="tabpanel">
-                <div class="row mb-4">
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <h3>12</h3>
-                            <p>Tổng Events</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <h3>8</h3>
-                            <p>Đang Hoạt Động</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <h3>3</h3>
-                            <p>Sắp Diễn Ra</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <h3>1</h3>
-                            <p>Đã Kết Thúc</p>
-                        </div>
-                    </div>
+    <div class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h1 class="page-title">Quản lý sự kiện</h1>
                 </div>
+                <div class="nav col d-flex gap-2 justify-content-end">
+                    <button class="nav-link btn-nav active fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
+                            data-bs-target="#events" type="button">
+                        <i class="fas fa-calendar-check me-2"></i>Events
+                    </button>
 
-                <div class="action-bar">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Tìm kiếm sự kiện...">
-                    </div>
-                    <button class="btn btn-add" onclick="showModal('eventModal')">
-                        <i class="fas fa-plus me-2"></i>Thêm Event Mới
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
+                            data-bs-target="#promotions" type="button">
+                        <i class="fas fa-percentage me-2"></i>Promotions
+                    </button>
+
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
+                            data-bs-target="#vouchers" type="button">
+                        <i class="fas fa-ticket-alt me-2"></i>Vouchers
+                    </button>
+
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
+                            data-bs-target="#banners" type="button">
+                        <i class="fas fa-image me-2"></i>Banners
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="table-container">
-                    <table class="table data-table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên Sự Kiện</th>
-                            <th>Loại</th>
-                            <th>Thời Gian Bắt Đầu</th>
-                            <th>Thời Gian Kết Thúc</th>
-                            <th>Trạng Thái</th>
-                            <th>Thao Tác</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><strong>#EV001</strong></td>
-                            <td>Black Friday 2024</td>
-                            <td><span class="badge bg-primary">Sale Event</span></td>
-                            <td>20/11/2024</td>
-                            <td>30/11/2024</td>
-                            <td><span class="badge badge-active">Đang hoạt động</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('eventModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>#EV002</strong></td>
-                            <td>Tết Sale 2025</td>
-                            <td><span class="badge bg-success">Festival</span></td>
-                            <td>15/01/2025</td>
-                            <td>25/01/2025</td>
-                            <td><span class="badge badge-scheduled">Sắp diễn ra</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('eventModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
+    <div class="tab-content">
+        <!-- Events Tab -->
+        <div class="tab-pane active fade show container mb-3" id="events">
+            <%--     statistic   --%>
+            <div class="row g-3 my-2">
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stats-number fs-2 fw-bold text-dark">56</div>
+                                <div class="stats-label text-primary bold-title">
+                                    Tổng sự kiện
+                                </div>
+                            </div>
+                            <i class="fas fa-calendar-alt text-muted fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stats-number fs-2 fw-bold text-dark">
+                                    1,248
+                                </div>
+                                <div class="stats-label text-success bold-title">
+                                    Đang diễn ra
+                                </div>
+                            </div>
+                            <i class="bi bi-play-circle text-muted fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stats-number fs-2 fw-bold text-dark">124</div>
+                                <div class="stats-label text-warning bold-title">
+                                    Sắp diễn ra
+                                </div>
+                            </div>
+                            <i class="bi bi-calendar-event text-muted fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stats-number fs-2 fw-bold text-dark">32</div>
+                                <div class="stats-label text-danger bold-title">
+                                    Đã kết thúc
+                                </div>
+                            </div>
+                            <i class="bi bi-clock text-muted fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        </tbody>
-                    </table>
-                    <!-- Basic Pagination -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination  justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
+            <div class="filter-section">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Tìm theo tên sự kiện..."/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-end mt-3 mt-md-0">
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#eventModal">
+                            <i class="fas fa-plus"></i> Thêm sự kiện
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <%--        data table--%>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th style="width: 40px">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="selectAll"
+                            />
+                        </th>
+                        <th>Tên Sự Kiện</th>
+                        <th>Loại</th>
+                        <th>Thời gian bắt đầu</th>
+                        <th>Thời gian kết thúc</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 40px">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="selectAll"
+                            />
+                        </td>
+
+                        <td class="bold-title">Black Friday 2024</td>
+                        <td class="text-nowrap">
+                            <span class="badge bg-primary">Sale event</span>
+                        </td>
+                        <td>23/9/2025</td>
+                        <td>23/10/2025</td>
+                        <td class="text-nowrap">
+                            <span class="badge bg-success">Đang diễn ra</span>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-link text-primary text-decoration-none"
+                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+
+                                <button class="btn btn-link text-success text-decoration-none"
+                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <button class="btn btn-link text-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 40px">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="selectAll"
+                            />
+                        </td>
+
+                        <td class="bold-title">Black Friday 2024</td>
+                        <td class="text-nowrap">
+                            <span class="badge bg-primary">Sale event</span>
+                        </td>
+                        <td>23/9/2025</td>
+                        <td>23/10/2025</td>
+                        <td class="text-nowrap">
+                            <span class="badge bg-success">Đang diễn ra</span>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-link text-primary text-decoration-none"
+                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+
+                                <button class="btn btn-link text-success text-decoration-none"
+                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <button class="btn btn-link text-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <hr class="mx-5"/>
+                <div class="d-flex justify-content-between align-items-center m-3">
+                    <p class="mb-0">Hiển thị 4 trong 100 sự kiện</p>
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link">|&lt;</a>
                             </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link">&lt;</a>
+                            </li>
+
+                            <li class="page-item active">
+                                <a class="page-link">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link">2</a></li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item"><a class="page-link">4</a></li>
+                            <li class="page-item"><a class="page-link">5</a></li>
+                            <li class="page-item"><a class="page-link">…</a></li>
+                            <li class="page-item"><a class="page-link">10</a></li>
+
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
+                                <a class="page-link">&gt;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link">&gt;|</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
+        </div>
 
-            <script>
-                function showModal(modalId) {
-                    const modalElement = document.getElementById(modalId);
-                    if (!modalElement) {
-                        console.warn(`Không tìm thấy modal với id: ${modalId}`);
-                        return;
-                    }
-
-                    // Tạo đối tượng modal Bootstrap và hiển thị
-                    const modal = new bootstrap.Modal(modalElement);
-                    modal.show();
-                }
-
-            </script>
-
-            <!-- Promotions Tab -->
-            <div class="tab-pane fade" id="promotions" role="tabpanel">
-                <div class="action-bar">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Tìm kiếm promotion...">
+        <!-- Promotions Tab -->
+        <div class="tab-pane fade container mb-3" id="promotions">
+            <div class="filter-section">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input
+                                    type="text"
+                                    class="search-input"
+                                    placeholder="Tìm theo tên promotion..."
+                            />
+                        </div>
                     </div>
-                    <button class="btn btn-add" onclick="showModal('promotionModal')">
-                        <i class="fas fa-plus me-2"></i>Thêm Promotion
-                    </button>
+                    <div class="col-md-6 text-end mt-3 mt-md-0">
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#promotionModal">
+                            <i class="fas fa-plus"></i> Thêm promotion
+                        </button>
+                    </div>
                 </div>
+            </div>
 
-                <div class="table-container">
-                    <table class="table data-table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên Promotion</th>
-                            <th>Phẩn Trăm Giảm</th>
-                            <th>Thời Hạn</th>
-                            <th>Trạng Thái</th>
-                            <th>Thao Tác</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><strong>#PM001</strong></td>
-                            <td>Giảm 50% Điện Thoại</td>
-                            <td><span class="discount-tag">50%</span></td>
-                            <td>30/11/2024</td>
-                            <td><span class="badge badge-active">Đang hoạt động</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>#PM003</strong></td>
-                            <td>Giảm 30% Laptop</td>
-                            <td><span class="discount-tag">30%</span></td>
-                            <td>30/11/2024</td>
-                            <td><span class="badge badge-inactive">Đã hết hạn</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('promotionModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!-- Basic Pagination -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination  justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Tên promotion</th>
+                        <th>mức giảm</th>
+                        <th>Thời hạn</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Giảm 90% cho đồ chơi LEGO</td>
+                        <td>90%</td>
+                        <td>15/01/2024</td>
+                        <td class="text-nowrap"><span class="badge bg-success">Đang diễn ra</span></td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-link text-primary text-decoration-none">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+
+                                <button class="btn btn-link text-success text-decoration-none">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <button class="btn btn-link text-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <hr class="mx-5"/>
+                <div class="d-flex justify-content-between align-items-center m-3">
+                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
+
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link">|&lt;</a>
                             </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link">&lt;</a>
+                            </li>
+
+                            <li class="page-item active">
+                                <a class="page-link">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link">2</a></li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item"><a class="page-link">4</a></li>
+                            <li class="page-item"><a class="page-link">5</a></li>
+                            <li class="page-item"><a class="page-link">…</a></li>
+                            <li class="page-item"><a class="page-link">10</a></li>
+
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
+                                <a class="page-link">&gt;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link">&gt;|</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
+        </div>
 
-            <!-- Vouchers Tab -->
-            <div class="tab-pane fade" id="vouchers" role="tabpanel">
-                <div class="action-bar">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Tìm kiếm voucher...">
+        <!-- Vouchers Tab -->
+        <div class="tab-pane fade container mb-3" id="vouchers">
+            <div class="filter-section">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input
+                                    type="text"
+                                    class="search-input"
+                                    placeholder="Tìm theo tên voucher..."
+                            />
+                        </div>
                     </div>
-                    <button class="btn btn-add" onclick="showModal('voucherModal')">
-                        <i class="fas fa-plus me-2"></i>Thêm Voucher
-                    </button>
-                </div>
-
-                <div class="table-container">
-                    <table class="table data-table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên Voucher</th>
-                            <th>Mã Voucher</th>
-                            <th>Phẩn Trăm</th>
-                            <th>Số Lượt</th>
-                            <th>Đã Dùng</th>
-                            <th>Hết Hạn</th>
-                            <th>Trạng Thái</th>
-                            <th>Thao Tác</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><strong>#VC001</strong></td>
-                            <td>Chủ Nhật Vui Vẻ</td>
-                            <td><code>SAVE100K</code></td>
-                            <td>5%</td>
-                            <td>10</td>
-                            <td>2</td>
-                            <td>31/12/2024</td>
-                            <td><span class="badge badge-active">Còn hạn</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('voucherModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>#VC001</strong></td>
-                            <td>Miễn Phí Ship</td>
-                            <td><code>FREESHIP</code></td>
-                            <td>5%</td>
-                            <td>10</td>
-                            <td>2</td>
-                            <td>31/12/2024</td>
-                            <td><span class="badge badge-active">Còn hạn</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('voucherModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!-- Basic Pagination -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination  justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
+                    <div class="col-md-6 text-end mt-3 mt-md-0">
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#voucherModal">
+                            <i class="fas fa-plus"></i> Thêm voucher
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Banners Tab -->
-            <div class="tab-pane fade" id="banners" role="tabpanel">
-                <div class="action-bar">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Tìm kiếm banner...">
-                    </div>
-                    <button class="btn btn-add" onclick="showModal('bannerModal')">
-                        <i class="fas fa-plus me-2"></i>Thêm Banner
-                    </button>
-                </div>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Tên Voucher</th>
+                        <th>Mã Voucher</th>
+                        <th>Phẩn Trăm</th>
+                        <th>Số Lượt</th>
+                        <th>Đã Dùng</th>
+                        <th>Hết Hạn</th>
+                        <th>Trạng Thái</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Miễn Phí Ship</td>
+                        <td><code>FREESHIP</code></td>
+                        <td>5%</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>31/12/2024</td>
+                        <td><span class="badge badge-active">Còn hạn</span></td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-link text-primary text-decoration-none">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
 
-                <div class="table-container">
-                    <table class="table data-table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên Banner</th>
-                            <th>Ảnh</th>
-                            <th>Sự kiện</th>
-                            <th>Trạng Thái</th>
-                            <th>Thao Tác</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><strong>#BN001</strong></td>
-                            <td>Black Friday Hero Banner</td>
-                            <td><img src="" alt=""></td>
+                                <button class="btn btn-link text-success text-decoration-none">
+                                    <i class="fas fa-edit"></i>
+                                </button>
 
-                            <td>/events/black-friday</td>
+                                <button class="btn btn-link text-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-                            <td><span class="badge badge-active">Hiển thị</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('bannerModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>#BN001</strong></td>
-                            <td>Black Friday Banner</td>
-                            <td><img src="" alt=""></td>
+                    </tbody>
+                </table>
 
-                            <td>/events/black-friday</td>
+                <hr class="mx-5"/>
+                <div class="d-flex justify-content-between align-items-center m-3">
+                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
 
-                            <td><span class="badge badge-active">Hiển thị</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('bannerModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>#BN001</strong></td>
-                            <td>Black Friday Hero Banner</td>
-                            <td><img src="" alt=""></td>
-
-                            <td>/events/black-friday</td>
-
-                            <td><span class="badge badge-active">Hiển thị</span></td>
-                            <td>
-                                <button class="btn btn-action btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-action btn-edit" onclick="showModal('bannerModal')"><i
-                                        class="fas fa-edit"></i></button>
-                                <button class="btn btn-action btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!-- Basic Pagination -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination  justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link">|&lt;</a>
                             </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link">&lt;</a>
+                            </li>
+
+                            <li class="page-item active">
+                                <a class="page-link">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link">2</a></li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item"><a class="page-link">4</a></li>
+                            <li class="page-item"><a class="page-link">5</a></li>
+                            <li class="page-item"><a class="page-link">…</a></li>
+                            <li class="page-item"><a class="page-link">10</a></li>
+
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
+                                <a class="page-link">&gt;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link">&gt;|</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banners Tab -->
+        <div class="tab-pane fade container mb-3" id="banners">
+            <div class="filter-section">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input
+                                    type="text"
+                                    class="search-input"
+                                    placeholder="Tìm theo tên banner..."
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-end mt-3 mt-md-0">
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#bannerModal">
+                            <i class="fas fa-plus"></i> Thêm banner
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Tên Banner</th>
+                        <th>Ảnh</th>
+                        <th>Sự kiện</th>
+                        <th>Trạng Thái</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Black Friday Hero Banner</td>
+                        <td><img src="" alt=""></td>
+                        <td>/events/black-friday</td>
+                        <td><span class="badge badge-active">Hiển thị</span></td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-link text-primary text-decoration-none">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+
+                                <button class="btn btn-link text-success text-decoration-none">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <button class="btn btn-link text-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <hr class="mx-5"/>
+                <div class="d-flex justify-content-between align-items-center m-3">
+                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
+
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link">|&lt;</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <a class="page-link">&lt;</a>
+                            </li>
+
+                            <li class="page-item active">
+                                <a class="page-link">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link">2</a></li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item"><a class="page-link">4</a></li>
+                            <li class="page-item"><a class="page-link">5</a></li>
+                            <li class="page-item"><a class="page-link">…</a></li>
+                            <li class="page-item"><a class="page-link">10</a></li>
+
+                            <li class="page-item">
+                                <a class="page-link">&gt;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link">&gt;|</a>
                             </li>
                         </ul>
                     </nav>
@@ -415,7 +547,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Modal Thêm/Sửa Event -->
     <div class="modal fade" id="eventModal" tabindex="-1">
@@ -630,13 +761,9 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-
-
 </main>
 
 <script src="js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

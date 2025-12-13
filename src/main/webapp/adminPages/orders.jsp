@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"/>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/handbook.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/orders.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
 </head>
@@ -42,10 +41,7 @@
                                 Đang giao
                             </div>
                         </div>
-                        <i
-                                class="bi bi-calendar-check text-muted"
-                                style="font-size: 32px"
-                        ></i>
+                        <i class="bi bi-calendar-check text-muted fs-3"></i>
                     </div>
                 </div>
             </div>
@@ -60,10 +56,7 @@
                                 Đã giao
                             </div>
                         </div>
-                        <i
-                                class="bi bi-check-circle text-muted"
-                                style="font-size: 32px"
-                        ></i>
+                        <i class="bi bi-check-circle text-muted fs-3"></i>
                     </div>
                 </div>
             </div>
@@ -76,10 +69,7 @@
                                 Hoàn trả
                             </div>
                         </div>
-                        <i
-                                class="bi bi-arrow-counterclockwise text-muted"
-                                style="font-size: 32px"
-                        ></i>
+                        <i class="bi bi-arrow-counterclockwise text-muted fs-3"></i>
                     </div>
                 </div>
             </div>
@@ -92,10 +82,7 @@
                                 Thất bại
                             </div>
                         </div>
-                        <i
-                                class="bi bi-exclamation-circle text-muted"
-                                style="font-size: 32px"
-                        ></i>
+                        <i class="bi bi-exclamation-circle text-muted fs-3"></i>
                     </div>
                 </div>
             </div>

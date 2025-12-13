@@ -9,7 +9,7 @@
                 alt="Logo"
                 class="img-fluid"
                 onclick="window.location.href='home-page.html'"
-                style="width: 160px; height: 50px"
+                style="width: 170px; height: 50px"
                 />
           </div>
           <!-- Logo -->

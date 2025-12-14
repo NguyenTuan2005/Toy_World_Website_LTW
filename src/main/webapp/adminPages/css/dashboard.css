@@ -1,0 +1,26 @@
+.charts-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.chart-card {
+    flex: 1;
+    max-width: 700px;
+    min-height: 350px;
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+    transition: 0.25s ease-in-out;
+}
+
+.chart-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+

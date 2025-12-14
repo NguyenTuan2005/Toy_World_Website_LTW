@@ -129,7 +129,7 @@
   background-color: #f8f9fa;
 }
 
-.badge-published {
+.badge {
   background-color: #d1fae5;
   color: #065f46;
   padding: 6px 12px;
@@ -138,7 +138,7 @@
   font-size: 14px;
 }
 
-.badge-green {
+.badge {
   background-color: #d1fae5;
   color: #065f46;
 }

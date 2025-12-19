@@ -9,7 +9,7 @@ public abstract class BaseDAO {
     protected Jdbi jdbi;
     private static MysqlDataSource dataSource;
 
-    protected Jdbi get() {
+    protected Jdbi getJdbi() {
         if (jdbi == null) {
             connect();
         }

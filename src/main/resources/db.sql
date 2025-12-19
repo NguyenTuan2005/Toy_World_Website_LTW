@@ -166,7 +166,7 @@ CREATE TABLE `products` (
                             `quantity` INT NOT NULL DEFAULT 0,
                             `name` varchar(255),
                             `rest_info` JSON,
-                            `description` varchar(255),
+                            `description` MEDIUMTEXT,
                             `brand_id` BIGINT,
                             `category_id` BIGINT,
                             `is_active` TINYINT(1) DEFAULT 1,

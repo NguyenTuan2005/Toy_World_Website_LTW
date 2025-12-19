@@ -33,3 +33,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+my_task.txt

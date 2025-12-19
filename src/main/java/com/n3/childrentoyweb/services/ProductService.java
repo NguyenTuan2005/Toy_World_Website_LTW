@@ -20,4 +20,11 @@ public class ProductService {
         return productDAO.findAll();
     }
 
+    public List<Product> findAllByPage(int page, int pageSize) {
+        return productDAO.findAllByPage(page, pageSize);
+    }
+
+    public int countAll(){
+        return this.productDAO.countAll();
+    }
 }

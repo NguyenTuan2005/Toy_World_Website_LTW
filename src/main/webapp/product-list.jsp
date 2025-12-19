@@ -154,18 +154,35 @@
                 <!-- Pagination Section -->
                 <nav aria-label="Phân trang" class="mt-5">
                     <ul class="pagination justify-content-center gap-1">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+
+                        <!-- Previous -->
+                        <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                            <a class="page-link"
+                               href="?page=${currentPage - 1}"
+                               aria-label="Previous">
+                                &laquo;
+                            </a>
                         </li>
-                        <li class="page-item active " aria-current="page">
-                            <a class="page-link" href="#">1</a>
+
+                        <!-- Page numbers -->
+                        <c:forEach var="i" begin="1" end="${totalPages}">
+                            <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                <a class="page-link ${i == currentPage ? '' : 'text-primary'}"
+                                   href="?page=${i}">
+                                        ${i}
+                                </a>
+                            </li>
+                        </c:forEach>
+
+                        <!-- Next -->
+                        <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                            <a class="page-link"
+                               href="?page=${currentPage + 1}"
+                               aria-label="Next">
+                                &raquo;
+                            </a>
                         </li>
-                        <li class="page-item"><a class="page-link text-primary" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link text-primary" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link text-primary" href="#">4</a></li>
-                        <li class="page-item">
-                            <a class="page-link text-primary" href="#"><span aria-hidden="true">&raquo;</span></a>
-                        </li>
+
                     </ul>
                 </nav>
             </section>

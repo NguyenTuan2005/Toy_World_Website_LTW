@@ -8,8 +8,8 @@
                 src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png"
                 alt="Logo"
                 class="img-fluid"
-                onclick="window.location.href='home-page.html'"
-                style="width: 170px; height: 50px"
+                onclick="window.location.href='${pageContext.request.contextPath}/'"
+                style="width: 190px; height: 50px"
                 />
           </div>
           <!-- Logo -->
@@ -98,7 +98,7 @@
                    <li class="nav-item mx-2">
                       <a
                          class="nav-link text-white d-flex align-items-center"
-                         href="product.html"
+                         href="${pageContext.request.contextPath}/products"
                          >
                       Sản Phẩm
                       <img

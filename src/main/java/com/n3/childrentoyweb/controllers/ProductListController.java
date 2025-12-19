@@ -47,8 +47,7 @@ public class ProductListController extends HttpServlet {
                         Collectors.mapping(ProductAsset::getImgPath, Collectors.toList())));
 
         int totalItems = productService.countAll();
-        int totalPages =
-                (int) Math.ceil((double) totalItems / PAGE_SIZE);
+        int totalPages = (int) Math.ceil((double) totalItems / PAGE_SIZE);
 
         request.setAttribute("products", products);
         request.setAttribute("categoryMap", categoryMap);

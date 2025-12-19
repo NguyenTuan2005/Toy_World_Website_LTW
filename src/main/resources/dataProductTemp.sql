@@ -88,3 +88,73 @@ XE ĐIỀU KHIỂN – Phát triển tư duy phương hướng
 ĐỒ CHƠI BAY – Phát triển tư duy logic
 ĐỒ CHƠI LẮP RÁP DIY – Phát triển kỹ năng vận động tinh
 Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 11, 11);
+
+
+
+
+
+
+-- product img
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (543, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-khung-long-jurassic-world-doi-mau.jpg?v=1722396621&width=1946', 70),
+    (544, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_1.jpg?v=1722396712&width=1946', 70),
+    (545, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_2.jpg?v=1722396712&width=1946', 70),
+    (546, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_3.jpg?v=1722396712&width=1946', 70),
+    (547, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_4.jpg?v=1722396712&width=1946', 70),
+    (548, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_5.jpg?v=1722396712&width=1946', 70),
+    (549, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/1242f679a81c4bf89aaeecb770b6d5a7.thumbnail.0000000000.jpg?v=1747898919&width=1946', 70);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (550, 'https://www.mykingdom.com.vn/cdn/shop/products/14537_1.jpg?v=1706964212&width=1946', 71);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (551, 'https://www.mykingdom.com.vn/cdn/shop/products/14539_1.jpg?v=1706964221&width=1946', 72);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (552, 'https://www.mykingdom.com.vn/cdn/shop/files/quai-thach-hung-han-70141s.jpg?v=1720508503&width=1946', 73),
+    (553, 'https://www.mykingdom.com.vn/cdn/shop/products/70141s.jpg?v=1720508701&width=1946', 73),
+    (554, 'https://www.mykingdom.com.vn/cdn/shop/products/70141S_1.jpg?v=1720508701&width=1946', 73);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (555, 'https://www.mykingdom.com.vn/cdn/shop/files/soi-bang-tinh-tuong-42452.jpg?v=1720507931&width=1946', 74),
+    (556, 'https://www.mykingdom.com.vn/cdn/shop/products/42452_1.jpg?v=1720508069&width=1946', 74);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (557, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-khung-long-tyrannosaurus-rex-collecta-88118_3.jpg?v=1757130999&width=1946', 75),
+    (558, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-khung-long-tyrannosaurus-rex-collecta-88118_1.jpg?v=1757130999&width=1946', 75),
+    (559, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-khung-long-tyrannosaurus-rex-collecta-88118_2.jpg?v=1757130999&width=1946', 75);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (560, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-ca-voi-sat-thu-collecta-88043_2.jpg?v=1757139547&width=1946', 76),
+    (561, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-ca-voi-sat-thu-collecta-88043_1.jpg?v=1757139547&width=1946', 76),
+    (562, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-ca-voi-sat-thu-collecta-88043_3.jpg?v=1757139535&width=1946', 76);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (563, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-huou-cao-co-luoi-collecta-88534_2.jpg?v=1757139161&width=1946', 77),
+    (564, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-huou-cao-co-luoi-collecta-88534_1.jpg?v=1757139161&width=1946', 77),
+    (565, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-huou-cao-co-luoi-collecta-88534_3.jpg?v=1757139152&width=1946', 77);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (566, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-robot-bien-hinh-thanh-xe-b_c-thep-vang-vecto-vtb17-yl_1.jpg?v=1761559795&width=1946', 78),
+    (567, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-robot-bien-hinh-thanh-xe-b_c-thep-vang-vecto-vtb17-yl_3.jpg?v=1761559818&width=1946', 78),
+    (568, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-robot-bien-hinh-thanh-xe-b_c-thep-vang-vecto-vtb17-yl_2.jpg?v=1761559818&width=1946', 78);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (569, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-robot-dac-vu-agent-04-dieu-khien-tu-xa-vecto-vt5099_3.jpg?v=1760064534&width=1946', 79),
+    (570, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-robot-dac-vu-agent-04-dieu-khien-tu-xa-vecto-vt5099_4.jpg?v=1760064534&width=1946', 79),
+    (571, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-robot-dac-vu-agent-04-dieu-khien-tu-xa-vecto-vt5099_2.jpg?v=1760064534&width=1946', 79),
+    (572, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-robot-dac-vu-agent-04-dieu-khien-tu-xa-vecto-vt5099_1.jpg?v=1760064534&width=1946', 79),
+    (573, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_998a1109-a086-4b96-9450-dc41f26ff016.jpg?v=1747131691&width=1946', 79);
+
+

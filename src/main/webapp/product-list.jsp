@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,22 +125,23 @@
                     <c:forEach items="${products}" var="p">
                         <div class="col-sm-6 col-lg-4">
                             <div class="card h-100">
-                                <img src="https://cdn.shopify.com/s/files/1/0731/6514/4343/products/06_92.jpg?v=1743495050&width=400"
+                                <img src="${productAssetMap.get(p.id).get(0)}"
                                      class="card-img-top p-3 cursor-pointer"
                                      alt="LEGO Classic"
                                      role="button" onclick="window.location.href='product-detail.html'">
                                 <div class="card-body d-flex flex-column"
                                      onclick="window.location.href='product-detail.html'">
                                     <p class="text-muted small mb-1">
-                                        ${categoryMap.get(p.categoryId)}
+                                            ${categoryMap.get(p.categoryId)}
                                     </p>
                                     <h5 class="card-title text-truncate">${p.name}</h5>
                                     <div class="mb-3">
-                                        <span class="text-danger fw-bold fs-5">${p.price}₫</span>
+                                        <span class="text-danger fw-bold fs-5">
+                                            <fmt:formatNumber value="${p.price}" type="currency" currencyCode="VND"/>
+                                        </span>
                                     </div>
-                                    <button class="btn btn-primary w-100 mt-auto"><i class="fa fa-cart-plus"></i> Thêm
-                                        vào
-                                        giỏ
+                                    <button class="btn btn-primary w-100 mt-auto">
+                                        <i class="fa fa-cart-plus"></i> Thêm vào giỏ
                                     </button>
                                 </div>
                             </div>

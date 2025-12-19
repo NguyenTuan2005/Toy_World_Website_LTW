@@ -1,6 +1,6 @@
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (1, 1461750, NULL, 11, 'Đồ Chơi Lắp Ráp Siêu Xe Ferrari FXX K – V29 LEGO TECHNIC 42212-LG', JSON_OBJECT('Chủ đề', 'LEGO TECHNIC ALL', 'Mã sản phẩm', '42212-LG', 'Tuổi', '10 tuổi trở lên', 'Thương hiệu', 'LEGO TECHNIC', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Siêu Xe Ferrari FXX K – V29 LEGO TECHNIC 42212-LG (897 Chi Tiết)
+    (1, 1461750, 7, 11, 'Đồ Chơi Lắp Ráp Siêu Xe Ferrari FXX K – V29 LEGO TECHNIC 42212-LG', JSON_OBJECT('Chủ đề', 'LEGO TECHNIC ALL', 'Mã sản phẩm', '42212-LG', 'Tuổi', '10 tuổi trở lên', 'Thương hiệu', 'LEGO TECHNIC', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Siêu Xe Ferrari FXX K – V29 LEGO TECHNIC 42212-LG (897 Chi Tiết)
 Độ chính xác, tốc độ và phong cách – Ferrari FXX K hội tụ tất cả!Giờ đây, bạn có thể tự tay lắp ráp phiên bản mô hình của chiếc xe hiệu suất cao này. Hoàn thiện từng chi tiết rồi thử sức chiếc xe của bạn. Mở nắp động cơ để chiêm ngưỡng động cơ V12 chân thật. Thử nghiệm bộ vi sai và quan sát piston chuyển động sinh động. Mở cửa cánh bướm và mơ về cảm giác ngồi sau tay lái chiếc siêu xe tuyệt đẹp này.
 Bộ lắp ráp mô hình LEGO® Ferrari dành cho trẻ từ 10 tuổi trở lên
 Lắp ráp cửa cánh bướm, nắp capo mở được và nắp động cơ mở được
@@ -9,22 +9,22 @@ Tận hưởng màu đỏ đặc trưng huyền thoại của Ferrari
 Món quà thú vị dành cho các bạn nam, nữ yêu thích bộ mô hình xe hơi
 Lưu tiến độ, phóng to và xoay mô hình trong không gian 3D qua ứng dụng LEGO® Builder
 Bộ LEGO® Technic™ nổi bật với các chuyển động và cơ chế thực tế
-Bộ gồm 897 chi tiết, mô hình dài hơn 29 cm (11 inch) khi hoàn thiện', ?, ?);
+Bộ gồm 897 chi tiết, mô hình dài hơn 29 cm (11 inch) khi hoàn thiện', 49, 37);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (2, 1281750, NULL, 29, 'Đồ Chơi Lắp Ráp Xe Thể Thao Koenigsegg Jesko Màu Trắng LEGO TECHNIC 42184 (801 Chi Tiết)', JSON_OBJECT('Chủ đề', 'LEGO TECHNIC ALL', 'Mã sản phẩm', '42184', 'Tuổi', '10 tuổi trở lên', 'Thương hiệu', 'LEGO TECHNIC', 'Xuất xứ thương hiệu', 'ĐAN MẠCH', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Xe Thể Thao Koenigsegg Jesko Màu Trắng LEGO TECHNIC  42184 (801 Chi Tiết)
-Mang đến cảm hứng cho các bé trai và bé gái ở độ tuổi 10+ để lắp ráp chiếc siêu xe sang trọng với bộ lắp ráp LEGO® Technic™Xe thể thao Koenigsegg Jesko màu trắng (42184). Bộ lắp ráp này vinh danh một trong những chiếc siêu xe   với các tính năng thú vị dành cho những người đam mê xe hơi khám phá. Người chơi có thể mô phỏng lại các khái niệm kỹ thuật khi họ lắp ráp chi tiết động cơ V8 cảu chiếc siêu xe này. Sau đó, họ có thể kiểm tra tay lái bằng cách sử dụng phần núm có thể tháo rời bên trên khoang ngồi . Một tính năng thú vị của bộ lắp ráp này là hệ thống cửa xoắn đồng bộ lưỡng diện cho phép cửa xoay 90 độ và di chuyển ra ngoài, giống như trên chiếc siêu xe nguyên mẫu. Chiếc xe LEGO Technic này là một ý tưởng quà tặng tuyệt vời cho những trẻ yêu thích xe cộ.', ?, ?);
+    (2, 1281750, 7, 29, 'Đồ Chơi Lắp Ráp Xe Thể Thao Koenigsegg Jesko Màu Trắng LEGO TECHNIC 42184 (801 Chi Tiết)', JSON_OBJECT('Chủ đề', 'LEGO TECHNIC ALL', 'Mã sản phẩm', '42184', 'Tuổi', '10 tuổi trở lên', 'Thương hiệu', 'LEGO TECHNIC', 'Xuất xứ thương hiệu', 'ĐAN MẠCH', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Xe Thể Thao Koenigsegg Jesko Màu Trắng LEGO TECHNIC  42184 (801 Chi Tiết)
+Mang đến cảm hứng cho các bé trai và bé gái ở độ tuổi 10+ để lắp ráp chiếc siêu xe sang trọng với bộ lắp ráp LEGO® Technic™Xe thể thao Koenigsegg Jesko màu trắng (42184). Bộ lắp ráp này vinh danh một trong những chiếc siêu xe   với các tính năng thú vị dành cho những người đam mê xe hơi khám phá. Người chơi có thể mô phỏng lại các khái niệm kỹ thuật khi họ lắp ráp chi tiết động cơ V8 cảu chiếc siêu xe này. Sau đó, họ có thể kiểm tra tay lái bằng cách sử dụng phần núm có thể tháo rời bên trên khoang ngồi . Một tính năng thú vị của bộ lắp ráp này là hệ thống cửa xoắn đồng bộ lưỡng diện cho phép cửa xoay 90 độ và di chuyển ra ngoài, giống như trên chiếc siêu xe nguyên mẫu. Chiếc xe LEGO Technic này là một ý tưởng quà tặng tuyệt vời cho những trẻ yêu thích xe cộ.', 22, 37);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (3, 977400, NULL, 93, 'Đồ Chơi Lắp Ráp Thùng Gạch Sáng Tạo: Xe Hơi Và Xe Tải LEGO DUPLO 10439 (80 chi tiết)', JSON_OBJECT('Chủ đề', 'LEGO DUPLO TOWN', 'Mã sản phẩm', '10439', 'Tuổi', '18 tháng tuổi trở lên', 'Thương hiệu', 'LEGO DUPLO', 'Xuất xứ thương hiệu', 'ĐAN MẠCH', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Thùng Gạch Sáng Tạo: Xe Hơi Và Xe Tải LEGO DUPLO 10439 (80 chi tiết)
+    (3, 977400, 7, 93, 'Đồ Chơi Lắp Ráp Thùng Gạch Sáng Tạo: Xe Hơi Và Xe Tải LEGO DUPLO 10439 (80 chi tiết)', JSON_OBJECT('Chủ đề', 'LEGO DUPLO TOWN', 'Mã sản phẩm', '10439', 'Tuổi', '18 tháng tuổi trở lên', 'Thương hiệu', 'LEGO DUPLO', 'Xuất xứ thương hiệu', 'ĐAN MẠCH', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Thùng Gạch Sáng Tạo: Xe Hơi Và Xe Tải LEGO DUPLO 10439 (80 chi tiết)
 Đối với trẻ mẫu giáo có sự yêu thích với các đồ chơi xe cộ, bộ lắp ráp LEGO DUPLO Thùng gạch sáng tạo: xe hơi và xe tải (10439) sẽ giúp trẻ phát triển các kỹ năng sáng tạo một cách phù hợp nhất. Với 3 đế bánh xe và 80 viên gạch, bộ lắp ráp giáo dục sáng tạo này dành cho trẻ từ 18 tháng tuổi trở lên dễ dàng chế tạo các mẫu xe ô tô đua, đi kèm cùng bục phát biểu, các mẫu xe kéo, ô tô gia đình và khung cảnh cây cối - hoặc bất kỳ phương tiện có bánh xe nào khác mà trẻ có thể nghĩ raBộ đồ chơi giáo dục này giúp cho trẻ thực hành được nhiều kỹ năng, như giải quyết vấn đề, phối hợp tay mắt và vận động tinh khi trẻ tạo ra một chiếc ô tô đồ chơi mà chúng yêu thích. Bộ LEGO cũng bao gồm một người thợ cơ khí, một cậu bé và một chú ong ngộ nghĩnh, giúp khơi dậy cách kể chuyện giàu trí tưởng tượng.
-Bộ lắp ráp gồm 80 mảnh LEGO', ?, ?);
+Bộ lắp ráp gồm 80 mảnh LEGO', 41, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (4, 503200, NULL, 41, 'Đồ Chơi Lắp Ráp Chậu Cây Vui Vẻ LEGO BOTANICALS 10349', JSON_OBJECT('Chủ đề', 'LEGO BOTANICALS ICONS', 'Mã sản phẩm', '10349', 'Tuổi', '9 tuổi trở lên', 'Thương hiệu', 'LEGO BOTANICALS', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Chậu Cây Vui Vẻ LEGO BOTANICALS 10349 (217 chi tiết)
+    (4, 503200, 7, 41, 'Đồ Chơi Lắp Ráp Chậu Cây Vui Vẻ LEGO BOTANICALS 10349', JSON_OBJECT('Chủ đề', 'LEGO BOTANICALS ICONS', 'Mã sản phẩm', '10349', 'Tuổi', '9 tuổi trở lên', 'Thương hiệu', 'LEGO BOTANICALS', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Chậu Cây Vui Vẻ LEGO BOTANICALS 10349 (217 chi tiết)
 Bạn muốn mang lại niềm vui và nụ cười cho mọi người?Hãy cùng tạo nên một món đồ trang trí thật xinh xắn với bộ LEGO® Botanicals – Chậu cây vui vẻ. Bé sẽ thích thú khi tự tay lắp ráp một cây phát tài trong chậu màu vàng và một cây đồng tiền (pilea) trong chậu màu xanh. Sau khi hoàn thành, bộ cây sẽ trở thành món trang trí dễ thương cho phòng ngủ hoặc góc học tập.
 Bao gồm 2 chậu cây mini: cây phát tài trong chậu vàng và cây đồng tiền trong chậu xanh
 Bé có thể tự lắp ráp hoặc rủ bạn bè cùng chơi để thêm phần vui nhộn
@@ -32,11 +32,11 @@ Trang trí đẹp mắt cho kệ sách, bàn học hay góc LEGO yêu thích c�
 Là món quà tuyệt vời cho trẻ từ 9 tuổi trở lên, cũng như dành cho người yêu cây hoặc người lớn thích LEGO
 Có thể kết hợp với các bộ LEGO® Botanicals khác (bán riêng) để tạo thành một khu vườn mini độc đáo
 Giúp bé phát huy sự sáng tạo và khả năng quan sát
-Bộ gồm 217 mảnh ghép, cây phát tài cao khoảng 12 cm', ?, ?);
+Bộ gồm 217 mảnh ghép, cây phát tài cao khoảng 12 cm', 49, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (5, 3170300, NULL, 89, 'Đồ Chơi Lắp Ráp Xe Đua Nissan Skyline GT-R (R34) LEGO TECHNIC 42210', JSON_OBJECT('Chủ đề', 'LEGO TECHNIC ALL', 'Mã sản phẩm', '42210', 'Tuổi', '18 tuổi trở lên', 'Thương hiệu', 'LEGO TECHNIC', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Xe Đua Nissan Skyline GT-R (R34) LEGO TECHNIC 42210 (1410 chi tiết)
+    (5, 3170300, 7, 89, 'Đồ Chơi Lắp Ráp Xe Đua Nissan Skyline GT-R (R34) LEGO TECHNIC 42210', JSON_OBJECT('Chủ đề', 'LEGO TECHNIC ALL', 'Mã sản phẩm', '42210', 'Tuổi', '18 tuổi trở lên', 'Thương hiệu', 'LEGO TECHNIC', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Xe Đua Nissan Skyline GT-R (R34) LEGO TECHNIC 42210 (1410 chi tiết)
 Lắp ráp bộ mô hình xe hơi dành cho người lớn từ LEGO® Technic™ – chiếc Nissan Skyline GT-R (R34) trong bộ phim nổi tiếng Fast & Furious 2 Fast 2 Furious. Chi tiết tinh xảo bao gồm hệ thống lái, hệ thống treo trước và sau, động cơ 6 xi-lanh với pistons chuyển động. Thử điều chỉnh cánh gió và trải nghiệm chức năng drift đầu tiên trong LEGO Technic – nâng xe lên để tái hiện những pha drift ấn tượng như trong các cảnh đua xe yêu thích.
 Tính năng nổi bật:
 Bộ mô hình xe đua Fast & Furious dành cho người lớn
@@ -48,14 +48,14 @@ Hướng dẫn xây dựng kỹ thuật số có trong ứng dụng LEGO® Build
 Bộ LEGO® Technic™ (bán riêng) dành cho người lớn với các dự án thách thức và hấp dẫn
 Thông tin sản phẩm:
 Gồm 1.410 mảnh ghép
-Mô hình xe dài hơn 41 cm', ?, ?);
+Mô hình xe dài hơn 41 cm', 22, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (6, 2436750, NULL, 12, 'Đồ Chơi Lắp Ráp Vòng Nguyệt Quế LEGO BOTANICALS 10340 (1194 chi tiết)', JSON_OBJECT('Chủ đề', 'LEGO BOTANICALS ICONS', 'Mã sản phẩm', '10340', 'Tuổi', '18 tuổi trở lên', 'Thương hiệu', 'LEGO BOTANICALS', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Vòng Nguyệt Quế LEGO BOTANICALS 10340 (1194 chi tiết)
 Dành thời gian thư giãn với bộ đồ chơi trang trí nhà Lego Icons Vòng Nguyệt Quế (10340). Tái hiện vẻ đẹp của mùa thu và mùa đông với một mẫu vòng nguyệt quế đầy lôi cuốn, lý tưởng để trang trí trong mùa lễ hội. Bộ Lego độc đáo này có thể treo trên tường, đặt trên bàn hoặc trưng bày dưới dạng dây treo, mang lại vẻ đẹp tinh tế cho mọi không gian.
 Bộ đồ chơi đi kèm với bốn vòng treo và cho phép bạn tùy chỉnh với quả mọng đỏ, xanh hoặc trắng, hoặc kết hợp các màu sắc theo sở thích. Bạn cũng có thể sắp đặt các lát cam, thanh quế, và quả thông, tạo dáng cho những tán lá xanh đậm để đạt được vẻ ngoài hoàn hảo. Hướng dẫn lắp ráp kỹ thuật số có sẵn trên ứng dụng LEGO Builder, giúp bạn dễ dàng khám phá và tận hưởng không gian thư giãn qua các dự án sáng tạo được thiết kế đặc biệt cho người lớn.
-Đây là món quà tuyệt vời cho mùa lễ hội hoặc bất kỳ dịp đặc biệt nào!', ?, ?);
+Đây là món quà tuyệt vời cho mùa lễ hội hoặc bất kỳ dịp đặc biệt nào!', 49, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -71,7 +71,7 @@ Tận hưởng trải nghiệm lắp ráp trực quan với hướng dẫn 3D tr
 Các bộ LEGO® NINJAGO® đưa trẻ đến với thế giới giả tưởng đầy phiêu lưu và hành động
 Thông tin sản phẩm:
 Gồm 381 mảnh ghép
-Mô hình rồng cao hơn 13 cm', ?, ?);
+Mô hình rồng cao hơn 13 cm', 20, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -81,7 +81,7 @@ Với bộ 3in1 này, mọi khả năng sáng tạo đều nằm trong tay bạn
 Bộ lắp ráp đi kèm 6 nhân vật minifigure Trung Cổ siêu chất Bộ đồ chơi 3in1 là món quà tuyệt vời cho những bé sáng tạo và yêu thích thế giới thời xưa
 Hướng dẫn lắp ráp 3D sinh động có trong ứng dụng LEGO® Builder dễ sử dụng
 Dòng LEGO® Creator 3in1 bao gồm các chủ đề đa dạng: động vật, xe cộ và nhà cửa
-Bộ 3in1 gồm 1.371 mảnh, lâu đài sau khi hoàn thành rộng hơn 36 cm – cực kỳ ấn tượng khi trưng bày!', ?, ?);
+Bộ 3in1 gồm 1.371 mảnh, lâu đài sau khi hoàn thành rộng hơn 36 cm – cực kỳ ấn tượng khi trưng bày!', 18, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -94,7 +94,7 @@ Bộ mô hình lấy cảm hứng từ phim, thích hợp để trưng bày tạ
 Ý tưởng quà tặng tuyệt vời cho người yêu Disney, với từng chi tiết được chăm chút
 Tải ứng dụng LEGO® Builder để trải nghiệm lắp ráp cùng nhau với bộ này
 Hoạt động sáng tạo, thư giãn dành cho bạn hoặc một người lớn yêu thích Disney khác
-Bộ mô hình gồm 811 mảnh ghép, với nhân vật WALL-E cao hơn 13 cm', ?, ?);
+Bộ mô hình gồm 811 mảnh ghép, với nhân vật WALL-E cao hơn 13 cm', 19, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -108,11 +108,11 @@ Bao gồm pin sạc cho mô hình xe (không kèm cáp sạc)
 Món quà lý tưởng cho các bé yêu thích mô hình ô tô và xe điều khiển
 Hướng dẫn lắp ráp 3D sinh động có sẵn trong ứng dụng LEGO® Builder dễ sử dụng
 Dòng LEGO® Technic™ tái hiện chân thực các chuyển động và cơ chế như xe thật
-Bộ mô hình gồm 1.135 mảnh, khi hoàn thiện dài hơn 40 cm – đậm chất siêu xe đẳng cấp', ?, ?);
+Bộ mô hình gồm 1.135 mảnh, khi hoàn thiện dài hơn 40 cm – đậm chất siêu xe đẳng cấp', 22, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (11, 869000, NULL, 18, 'Đồ Chơi Lắp Ráp Siêu Xe Thể Thao Bugatti Centodieci LEGO SPEED CHAMPIONS 77240', JSON_OBJECT('Chủ đề', 'LEGO SPEED CHAMPIONS ALL', 'Mã sản phẩm', '77240', 'Tuổi', '9 tuổi trở lên', 'Thương hiệu', 'LEGO SPEED CHAMPIONS', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Siêu Xe Thể Thao Bugatti Centodieci LEGO SPEED CHAMPIONS 77240 (291 Chi Tiết)
+    (11, 869000, 7, 18, 'Đồ Chơi Lắp Ráp Siêu Xe Thể Thao Bugatti Centodieci LEGO SPEED CHAMPIONS 77240', JSON_OBJECT('Chủ đề', 'LEGO SPEED CHAMPIONS ALL', 'Mã sản phẩm', '77240', 'Tuổi', '9 tuổi trở lên', 'Thương hiệu', 'LEGO SPEED CHAMPIONS', 'Xuất xứ thương hiệu', 'Đan Mạch', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Siêu Xe Thể Thao Bugatti Centodieci LEGO SPEED CHAMPIONS 77240 (291 Chi Tiết)
 Chinh phục đỉnh cao của thiết kế và tốc độ với Bugatti Centodieci – siêu phẩm hypercar đẳng cấp thế giới, nay được tái hiện sống động trong phiên bản LEGO® Speed Champions.
 Lấy cảm hứng từ dòng EB 110 huyền thoại, mẫu mô hình này mang theo từng đường nét thiết kế mang tính biểu tượng của Bugatti – từ khe hút gió khí động học đến bộ mâm xe độc đáo.
 Cùng với minifigure tài xế Bugatti, bạn có thể thỏa sức tái hiện những pha bứt phá ngoạn mục trên đường đua hoặc trưng bày như một tác phẩm nghệ thuật.
@@ -121,7 +121,7 @@ Bao gồm nhân vật minifigure tài xế Bugatti, sẵn sàng vào buồng lá
 Tái hiện chính xác thiết kế thật với các khe hút gió và mâm xe đặc trưng của Bugatti
 Sau khi chơi, có thể trưng bày đẹp mắt trên bàn làm việc, kệ sách hoặc tủ trưng bày
 Quà tặng lý tưởng dành cho trẻ từ 9 tuổi trở lên và người đam mê mô hình xe cao cấp Kết hợp cùng các mẫu xe khác thuộc dòng LEGO® Speed Champions (bán riêng) để mở rộng bộ sưu tập.  Các set LEGO® Speed Champions giúp trẻ em và người lớn lắp ráp những mẫu xe siêu thực
-Bao gồm 291 chi tiết, xe có chiều dài khoảng 15 cm (6 inch) sau khi hoàn thiện', ?, ?);
+Bao gồm 291 chi tiết, xe có chiều dài khoảng 15 cm (6 inch) sau khi hoàn thiện', 17, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -136,7 +136,7 @@ Có thể trưng bày trên mặt phẳng hoặc dựng đứng trên giá đỡ
 Món quà hoàn hảo cho người hâm mộ Star Wars trưởng thành và nhà sưu tầm UCS chính hiệu
 Tải ứng dụng LEGO® Builder để xem hướng dẫn lắp ráp 3D tương tác trực quan
 Dòng mô hình LEGO® Star Wars™ dành cho người lớn mang đến trải nghiệm sáng tạo, thư giãn và chất lượng cao
-Tàu chiến có chiều dài hơn 44 cm – được lắp ráp từ hàng ngàn mảnh ghép đầy tinh xảo', ?, ?);
+Tàu chiến có chiều dài hơn 44 cm – được lắp ráp từ hàng ngàn mảnh ghép đầy tinh xảo', 21, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -148,7 +148,7 @@ Mở phần hông và tháo phần trên để khám phá khoang trung tâm chi 
 Món quà LEGO® Star Wars™ chất lượng cao, lý tưởng cho trẻ từ 9 tuổi trở lên
 Tăng thêm phần thú vị với ứng dụng LEGO® Builder hỗ trợ lắp ráp
 Khám phá thêm các bộ sưu tập LEGO® Star Wars™ (bán riêng) phù hợp với mọi lứa tuổi
-Kích thước mô hình sau khi hoàn thành: dài hơn 31 cm', ?, ?);
+Kích thước mô hình sau khi hoàn thành: dài hơn 31 cm', 21, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -160,7 +160,7 @@ Trong quá trình xây dựng, bạn sẽ khám phá nội thất thu nhỏ đư
 Món quà tuyệt vời dành cho người yêu thích lịch sử, đam mê du lịch, người sưu tầm LEGO® hoặc chính bạn
 Trải nghiệm lắp ráp hiện đại và thú vị hơn với ứng dụng LEGO® Builder
 Là một phần của bộ sưu tập LEGO® dành riêng cho người lớn (bán riêng), dành cho những ai yêu thích các hoạt động sáng tạo
-Mô hình sưu tầm gồm 3.455 mảnh ghép, có chiều rộng hơn 46 cm', ?, ?);
+Mô hình sưu tầm gồm 3.455 mảnh ghép, có chiều rộng hơn 46 cm', 49, 49);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -172,7 +172,7 @@ PEEK A BOO là thương hiệu đồ chơi - đồ dùng trẻ em với mong mu�
 
 Xe tập đi là một trong những món không thể thiếu cho bé từ 6 tháng – 3 tuổi. Xe tập đi 3 trong 1 Peek A Boo không chỉ là một chiếc xe thông thường mà còn tích hợp nhiều công dụng giúp kéo dài thời gian sử dụng sản phẩm, vừa tiện lợi cho bé, vừa tiết kiệm cho mẹ.
 
-', ?, ?);
+', 27, 9);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -186,7 +186,7 @@ Trẻ từ 3 tháng tuổi sẽ bắt đầu học cách sử dụng các ngón 
 6. Điện thoại di động:
 
 
-', ?, ?);
+', 27, 8);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -215,7 +215,7 @@ Với Xylophone, bé cũng có thể chọn 4 chế độ sau:
 Kích thước sản phẩm: 17 x 13 x 11 inch
 Pin: 3 x 1.5V AA (không bao gồm trong sản phẩm)
 Vài nét về thương hiệu:
-PEEK A BOO là thương hiệu đồ chơi - đồ dùng trẻ em với mong muốn mang lại tất cả những sản phẩm cần thiết nhất trên từng chặng đường phát triển của bé với chất lượng tốt, an toàn, giá cả phải chăng.', ?, ?);
+PEEK A BOO là thương hiệu đồ chơi - đồ dùng trẻ em với mong muốn mang lại tất cả những sản phẩm cần thiết nhất trên từng chặng đường phát triển của bé với chất lượng tốt, an toàn, giá cả phải chăng.', 32, 8);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -228,61 +228,38 @@ VALUES
 - Bảng vẽ có 4 màu cho bé tự do sáng tạo và nhận biết màu sắc
 - Xóa dễ dàng với 1 cái gạt cần ngang qua, giữ cho tay bé luôn được sạch sẽ.
 - Đặc biệt bút nam châm được liên kết với dây tránh bị rơi hoặc mất.
-- PEEK A BOO là thương hiệu đồ chơi - đồ dùng trẻ em Độc quyền của Mykingdom và hoàn toàn xuất xứ tại Việt Nam với mong muốn mang lại tất cả những sản phẩm cần thiết nhất trên từng chặng đường phát triển của bé với chất lượng tốt, an toàn, giá cả phải chăng.', ?, ?);
+- PEEK A BOO là thương hiệu đồ chơi - đồ dùng trẻ em Độc quyền của Mykingdom và hoàn toàn xuất xứ tại Việt Nam với mong muốn mang lại tất cả những sản phẩm cần thiết nhất trên từng chặng đường phát triển của bé với chất lượng tốt, an toàn, giá cả phải chăng.', 32, 13);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (19, 499000, NULL, 94, 'Học chữ, số và hình học cùng điều khiển Scout LEAPFROG 80-606200', JSON_OBJECT('Chủ đề', 'LEAPFROG EDUCATIONAL TOY', 'Mã sản phẩm', '80-606200', 'Tuổi', '6 tháng tuổi trở lên', 'Thương hiệu', 'LEAPFROG', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'TRUNG QUỐC'), '
+    (19, 499000, 36, 94, 'Học chữ, số và hình học cùng điều khiển Scout LEAPFROG 80-606200', JSON_OBJECT('Chủ đề', 'LEAPFROG EDUCATIONAL TOY', 'Mã sản phẩm', '80-606200', 'Tuổi', '6 tháng tuổi trở lên', 'Thương hiệu', 'LEAPFROG', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'TRUNG QUỐC'), '
 
 Đồ Chơi LEAPFROG Học Chữ, Số Và Hình Học Cùng Điều Khiển Scout 80-606200
 
 
-
 Đồ chơi Leapfrog học chữ, số và hình học cùng điều khiển Scout 80-606200là một thiết bị gồm các nút bấm về chữ, số, hình học cho các bé thỏa sức khám phá và học hỏi được những kiến thức bổ ích.
-
-
 
 Đồ chơi giáo dụcđến từ Leapfrogcó các đặc điểm nổi bật sau:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 Đồ chơi Leapfrog học chữ, số và hình học cùng điều khiển Scout 80-606200gồm có:
-
-
-
-
-
 
 Vài nét về thương hiệu đồ chơi:
 
-
-
-Leapfrog là thương hiệu đồ chơi hàng đầu của Mỹ trong lĩnh vực giáo dục giải trí, được thành lập vào năm 1995. Các sản phẩm của LeapFrog có tích hợp chương trình dạy ngoại ngữ cho bé với nhiều hiệu ứng ánh sáng và âm thanh hấp dẫn với giọng tiếng Anh chuẩn Mỹ, giúp rèn luyện kĩ năng tư duy, sáng tạo và vận động tinh cho các bé. Đồ chơi Leapfrog luôn bắt kịp xu hướng, trở thành thương hiệu đang rất được ưa chuộng và cũng là sự lựa chọn hàng đầu của nhiều gia đình.', ?, ?);
+Leapfrog là thương hiệu đồ chơi hàng đầu của Mỹ trong lĩnh vực giáo dục giải trí, được thành lập vào năm 1995. Các sản phẩm của LeapFrog có tích hợp chương trình dạy ngoại ngữ cho bé với nhiều hiệu ứng ánh sáng và âm thanh hấp dẫn với giọng tiếng Anh chuẩn Mỹ, giúp rèn luyện kĩ năng tư duy, sáng tạo và vận động tinh cho các bé. Đồ chơi Leapfrog luôn bắt kịp xu hướng, trở thành thương hiệu đang rất được ưa chuộng và cũng là sự lựa chọn hàng đầu của nhiều gia đình.', 32, 9);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (20, 699000, NULL, 93, 'Đồ Chơi Bộ 10 Siêu Xe Hot Wheels 54886', JSON_OBJECT('Chủ đề', 'HOT WHEELS DIECAST BASIC', 'Mã sản phẩm', '54886', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'HOT WHEELS', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Malaysia'), '
+    (20, 699000, 36, 93, 'Đồ Chơi Bộ 10 Siêu Xe Hot Wheels 54886', JSON_OBJECT('Chủ đề', 'HOT WHEELS DIECAST BASIC', 'Mã sản phẩm', '54886', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'HOT WHEELS', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Malaysia'), '
 Đồ Chơi Bộ 10 Siêu Xe Hot Wheels 54886 - Giao hàng ngẫu nhiên
 Đồ chơi bộ 10 siêu xe Hot Wheels 54886là món đồ chơi yêu thích của các nhà sưu tập, những người đam mê xe hơi và người hâm mộ đua xe ở mọi lứa tuổi. Những chiếc xe Hot Wheels cực chất, được thiết kế vô cùng tinh xảo với tỷ lệ thu nhỏ 1/64 từ chiếc xe ngoài đời thật. Tuyệt vời hơn, bộ 10 siêu xe còn tích hợp thêm một siêu xe đặc biệt, chỉ được bán kèm trong bộ này.
 Bộ 10 chiếc xe sưu tập die-castHot Wheels 54886có các đặc điểm nổi bật sau:
 Đồ chơibộ 10 siêu xe Hot Wheels 54886bao gồm:
 Vài nét về thương hiệu đồ chơi:
-Hot Wheels là dòng đồ chơi xe mô hình cực kì được yêu thích tại Mỹ và nhiều nước trên thế giới, trực thuộc tập đoàn đồ chơi Mattel nổi tiếng hàng đầu hiện nay. Với kỹ thuật hiện đại và thiết kế tinh xảo, những chiếc xe Hot Wheels không chỉ là đồ chơi, mà nó còn mang đến trải nghiệm hoàn hảo cho người mê xe mô hình. Mô hình xe Hot Wheels giúp trẻ phát triển tư duy, kích thích trí sáng tạo và rèn luyện sự linh hoạt cho đôi tay của các bé.', ?, ?);
+Hot Wheels là dòng đồ chơi xe mô hình cực kì được yêu thích tại Mỹ và nhiều nước trên thế giới, trực thuộc tập đoàn đồ chơi Mattel nổi tiếng hàng đầu hiện nay. Với kỹ thuật hiện đại và thiết kế tinh xảo, những chiếc xe Hot Wheels không chỉ là đồ chơi, mà nó còn mang đến trải nghiệm hoàn hảo cho người mê xe mô hình. Mô hình xe Hot Wheels giúp trẻ phát triển tư duy, kích thích trí sáng tạo và rèn luyện sự linh hoạt cho đôi tay của các bé.', 31, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (21, 2159400, NULL, 23, 'Đồ chơi mô hình tỷ lệ 1:16 xe tải cần cẩu SCANIA BRUDER BRU03570', JSON_OBJECT('Chủ đề', 'BRUDER CONSTRUCTION', 'Mã sản phẩm', 'BRU03570', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'BRUDER', 'Xuất xứ thương hiệu', 'ĐỨC', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'ĐỨC'), 'Mô Hình Xe Theo Tỷ Lệ Thu Nhỏ 1:16 Xe Tải Cần Cẩu- BRUDER BRU03570
+    (21, 2159400, 36, 23, 'Đồ chơi mô hình tỷ lệ 1:16 xe tải cần cẩu SCANIA BRUDER BRU03570', JSON_OBJECT('Chủ đề', 'BRUDER CONSTRUCTION', 'Mã sản phẩm', 'BRU03570', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'BRUDER', 'Xuất xứ thương hiệu', 'ĐỨC', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'ĐỨC'), 'Mô Hình Xe Theo Tỷ Lệ Thu Nhỏ 1:16 Xe Tải Cần Cẩu- BRUDER BRU03570
 Mô hình xe theo tỷ lệ thu nhỏ 1:16 xe tải cần cẩu – BRUDER BRU03570là một trong những sản phẩm hàng đầu của thương hiệu đồ chơi Bruder. Xe tải cần cẩu lấy cảm hứng từ thực tế cuộc sống, giúp bé hiểu biết hơn về nghề kỹ sư xây dựng. Sản phẩm được thiết kế với hệ thống đèn và chuông báo hiệu giống với xe ngoài đời thật, kích thích sự tò mò, khả năng khám phá của trẻ. Các đường nét của món đồ chơi được thiết kế tỉ mỉ, tinh tế, mang đến trải nghiệm chân thật nhất cho bé yêu của bạn.
 Đồ chơi dạng mô hình theo tỷ lệ thu nhỏ 1:16 xe tải cần cẩutrở thành sự lựa chọn của nhiều bậc phụ huynh trên thế giới bởi những đặc điểm nổi bật sau:
 - Cần trục xe cao đến 1,3m khi cánh tay cẩu vươn ra hết cỡ
@@ -300,24 +277,24 @@ Giá trị sản phẩm mang lại:
 - Bố mẹ có thể kết hợp các mẫu xe cứu hỏa, xe rác, xe cảnh sát,… để lồng ghép các bài học về kĩ năng sống, ước mơ, các kiến thức cơ bản trong cuộc sống,…
 Vài nét về thương hiệu đồ chơi:
 Thương hiệuBruder được thành lập vào 1926 - là thương hiệu đồ chơi mô hình kích thước lớn 1:16 được thiết kế và sản xuất tại Đức. Tất cả các dòng xe Bruder đều được mua bản quyền của hãng xe ngoài đời thật.. Toàn bộ các sản phẩm của Bruder đều đạt tiêu chuẩn chất lượng cao của Mỹ (ASTM) và Châu Âu (EN71), chứng nhận sản phẩm an toàn Spiel Gut (ra đời từ 1954) dựa trên các yếu tố để đánh giá đó là: giá trị mang lại khi chơi, tay nghề sản xuất, độ bền, thiết kế, kích thước, chất lượng sản phẩm, sự phù hợp ở các độ tuổi cụ thể, v.v.Thông qua việc chơi tưởng tượng và hình ảnh sáng tạo, đồ chơi Bruder giúp trẻ học hỏi các giá trị bền vững, trang bị cho trẻ một tương lai tươi sáng.
-', ?, ?);
+', 23, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (22, 299000, NULL, 54, 'Đồ Chơi Xe Đua F1 1:43 Red Bull Racing RB20 (2024) MAISTO 18-38097', JSON_OBJECT('Chủ đề', 'MAISTO 1:43 FORMULA RACING', 'Mã sản phẩm', '01/18-38097', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'MAISTO', 'Xuất xứ thương hiệu', 'Hồng Kong', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Xe Đua F1 1:43 Red Bull Racing RB20 (2024) MAISTO 01/18-38097
+    (22, 299000, 36, 54, 'Đồ Chơi Xe Đua F1 1:43 Red Bull Racing RB20 (2024) MAISTO 18-38097', JSON_OBJECT('Chủ đề', 'MAISTO 1:43 FORMULA RACING', 'Mã sản phẩm', '01/18-38097', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'MAISTO', 'Xuất xứ thương hiệu', 'Hồng Kong', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Xe Đua F1 1:43 Red Bull Racing RB20 (2024) MAISTO 01/18-38097
 Đồ chơi mô hình tỉ lệ 1:43 xe đua F1 gây ấn tượng với thiết kế cực ngầu.
 Mô phỏng thiết kế thực tế. Dùng để trưng bày và sưu tập. Toàn bộ khung xe được làm đúc bằng kim loại, nội thất xe , lốp xe được làm từ cao su tự nhiên, các chi tiết ống xả và lưới tản nhiệt được xi bóng . Sơn tĩnh điện cho nước sơn sáng bóng, mỏng, bền.Red Bull Racing RB20 (2024) là mẫu xe F1 tiên tiến, trang bị khí động học tối ưu, động cơ Honda RA624H mạnh mẽ, cải tiến từ RB19, giúp Red Bull duy trì vị thế dẫn đầu mùa giải 2024.
-Vài nét về thương hiệu Maisto:Maisto International Inc là thương hiệu đồ chơi của Cheong May Group Hồng Kông, chuyên sản xuất các mô hình đúc của xe ô tô, máy bay và xe máy, nổi tiếng từ những năm 1990. Đồ chơi Maisto được bày bán trong các cửa hàng và siêu thị đồ chơi trên toàn thế giới, nhận được sự yêu thích của hầu hết các bé thiếu nhi và nhận được hứng thú của rất nhiều người lớn đam mê mô hình xe.', ?, ?);
+Vài nét về thương hiệu Maisto:Maisto International Inc là thương hiệu đồ chơi của Cheong May Group Hồng Kông, chuyên sản xuất các mô hình đúc của xe ô tô, máy bay và xe máy, nổi tiếng từ những năm 1990. Đồ chơi Maisto được bày bán trong các cửa hàng và siêu thị đồ chơi trên toàn thế giới, nhận được sự yêu thích của hầu hết các bé thiếu nhi và nhận được hứng thú của rất nhiều người lớn đam mê mô hình xe.', 37, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (23, 719100, NULL, 3, 'Mô Hình Xe Tải Chở Du Thuyền SIKU 1849', JSON_OBJECT('Chủ đề', 'SIKU SUPER1:87', 'Mã sản phẩm', '1849', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SIKU', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Xe tải chở du thuyền - 1849Kích thước hộp hàng: 30.5 x 15.1 x 7.1 cmMẫu siêu du thuyền Drettmann với thiết kế nội thất sang trọng và tinh tế mang đẩy cảm hứng sáng tạo.Xe vận chuyển siêu tải MAN với hệ thống trục bánh cùng lớp cao su cao cấp có thể vận chuyển du thuyền an toàn và vững chắc trên mọi chuyến hành trình du lịch sắp tới.Chưa dừng lại ở đó, bộ sản phẩm còn kèm 2 nhân vật để tăng tính trải nghiệm khi chơi của bé. Du thuyền hoàn toàn có thể mở phần nắp phía trên để bé có thể quan sát nội thất bên trong, chắc chắn là điểm đặc biệt mà nhiều mô hình hiện tại không làm được. Hứa hẹn giúp bé có những giây phút vui chơi đầy hào hứng nhưng vẫn đảm bảo an toàn cho bé từ chất lượng đồ chơi Đức.
+    (23, 719100, 36, 3, 'Mô Hình Xe Tải Chở Du Thuyền SIKU 1849', JSON_OBJECT('Chủ đề', 'SIKU SUPER1:87', 'Mã sản phẩm', '1849', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SIKU', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Xe tải chở du thuyền - 1849Kích thước hộp hàng: 30.5 x 15.1 x 7.1 cmMẫu siêu du thuyền Drettmann với thiết kế nội thất sang trọng và tinh tế mang đẩy cảm hứng sáng tạo.Xe vận chuyển siêu tải MAN với hệ thống trục bánh cùng lớp cao su cao cấp có thể vận chuyển du thuyền an toàn và vững chắc trên mọi chuyến hành trình du lịch sắp tới.Chưa dừng lại ở đó, bộ sản phẩm còn kèm 2 nhân vật để tăng tính trải nghiệm khi chơi của bé. Du thuyền hoàn toàn có thể mở phần nắp phía trên để bé có thể quan sát nội thất bên trong, chắc chắn là điểm đặc biệt mà nhiều mô hình hiện tại không làm được. Hứa hẹn giúp bé có những giây phút vui chơi đầy hào hứng nhưng vẫn đảm bảo an toàn cho bé từ chất lượng đồ chơi Đức.
 
-ĐẶC ĐIỂM NỔI BẬT CỦA XE MÔ HÌNH KIM LOẠI SIKU:• CHẤT LƯỢNG ĐỨC – Được sản xuất bởi các chất liệu kim loại cao cấp, đạt tiêu chuẩn Châu Âu về an toàn đồ chơi.• ĐỒ CHƠI GIÁO DỤC – Thiết kế mô phỏng dựa trên các mẫu xe thực tế, không chỉ có xe hơi mà còn bao gồm cả các loại xe khác trong thành phố giúp bé vừa chơi vừa học.• BẢN QUYỀN- Các dòng xe đều có bản quyền từ thương hiệu xe nổi tiếng trên thế giới• CHI TIẾT TINH XẢO – dàn đèn, vỏ xe, một số dòng xe có thể mở cửa• ĐA DẠNG MẪU MÃ – hơn 200 mẫu xe khác nhauNhững chiếc xe mô hình luôn khơi gợi trí tò mò và là nguồn cảm hứng cho các bé trai thỏa sức chơi, khơi sáng tạo.Chính vì thế dòng đồ chơi xe mô hình luôn giữ vững vị trí hàng đầu trong Top đồ chơi được bé trai yêu thích. Không chỉ là một thú vui sưu tập, xe mô hình SIKU còn giúp bé học về thế giới xung quanh và phát triển trí tuệ, thế giới quan của mình."', ?, ?);
+ĐẶC ĐIỂM NỔI BẬT CỦA XE MÔ HÌNH KIM LOẠI SIKU:• CHẤT LƯỢNG ĐỨC – Được sản xuất bởi các chất liệu kim loại cao cấp, đạt tiêu chuẩn Châu Âu về an toàn đồ chơi.• ĐỒ CHƠI GIÁO DỤC – Thiết kế mô phỏng dựa trên các mẫu xe thực tế, không chỉ có xe hơi mà còn bao gồm cả các loại xe khác trong thành phố giúp bé vừa chơi vừa học.• BẢN QUYỀN- Các dòng xe đều có bản quyền từ thương hiệu xe nổi tiếng trên thế giới• CHI TIẾT TINH XẢO – dàn đèn, vỏ xe, một số dòng xe có thể mở cửa• ĐA DẠNG MẪU MÃ – hơn 200 mẫu xe khác nhauNhững chiếc xe mô hình luôn khơi gợi trí tò mò và là nguồn cảm hứng cho các bé trai thỏa sức chơi, khơi sáng tạo.Chính vì thế dòng đồ chơi xe mô hình luôn giữ vững vị trí hàng đầu trong Top đồ chơi được bé trai yêu thích. Không chỉ là một thú vui sưu tập, xe mô hình SIKU còn giúp bé học về thế giới xung quanh và phát triển trí tuệ, thế giới quan của mình."', 31, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (24, 1429000, NULL, 71, 'Đường đua xoắn kép siêu tốc xếp gọn Hot Wheels HOT WHEELS GFH85', JSON_OBJECT('Chủ đề', 'HOT WHEELS ACTION', 'Mã sản phẩm', 'GFH85', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'HOT WHEELS', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), '
+    (24, 1429000, 36, 71, 'Đường đua xoắn kép siêu tốc xếp gọn Hot Wheels HOT WHEELS GFH85', JSON_OBJECT('Chủ đề', 'HOT WHEELS ACTION', 'Mã sản phẩm', 'GFH85', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'HOT WHEELS', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), '
 Mô  Hình  Đồ  Chơi  Hot  Wheels  Đường  Đua  Xoắn  Kép  Siêu  Tốc  Xếp  Gọn  GFH85
 ✅  Nhận  hàng  nhanh  chóng  từ  1  -  3  ngày  (không  tính  T7  -  CN)
 ✅  Sản  phẩm  mới  100%  Full  Box,  3  ngày  miễn  phí  trả  hàng
@@ -340,7 +317,7 @@ Bộ  playset  &  phụ  kiện  đường  đua  xoắn  kép  siêu  tốc  x�
 
 ☎️  Dịch  vụ  chăm  sóc  khách  hàng
 -  Mọi  thắc  mắc  sau  khi  mua  sản  phẩm,  vui  lòng  liên  hệ  với  bộ  phận  chăm  sóc  khách  hàng  của  Mykingdom  qua  số hotline
--  Lưu  ý:  Do  các  phương  pháp  đo  khác  nhau,  kích  thước  sản  phẩm  sẽ  có  sai  số  từ  1-3cm,  thuộc  phạm  vi  bình  thường', ?, ?);
+-  Lưu  ý:  Do  các  phương  pháp  đo  khác  nhau,  kích  thước  sản  phẩm  sẽ  có  sai  số  từ  1-3cm,  thuộc  phạm  vi  bình  thường', 31, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -368,7 +345,7 @@ Bao  gồm  1  xe  Hot  Wheels  tỷ  lệ  1:64.
 
 ☎️  Dịch  vụ  chăm  sóc  khách  hàng
 -  Mọi  thắc  mắc  sau  khi  mua  sản  phẩm,  vui  lòng  liên  hệ  với  bộ  phận  chăm  sóc  khách  hàng  của  Mykingdom  qua  số hotline
--  Lưu  ý:  Do  các  phương  pháp  đo  khác  nhau,  kích  thước  sản  phẩm  sẽ  có  sai  số  từ  1-3cm,  thuộc  phạm  vi  bình  thường', ?, ?);
+-  Lưu  ý:  Do  các  phương  pháp  đo  khác  nhau,  kích  thước  sản  phẩm  sẽ  có  sai  số  từ  1-3cm,  thuộc  phạm  vi  bình  thường', 31, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -390,7 +367,7 @@ Giá trị sản phẩm mang lại:
 - Bố mẹ có thể kết hợp các mẫu xe cứu hỏa, xe rác, xe cảnh sát,… để lồng ghép các bài học về kĩ năng sống, ước mơ, các kiến thức cơ bản trong cuộc sống,…
 Vài nét về thương hiệu đồ chơi:
 Thương hiệuBruder được thành lập vào 1926 - là thương hiệu đồ chơi mô hình kích thước lớn 1:16 được thiết kế và sản xuất tại Đức. Tất cả các dòng xe Bruder đều được mua bản quyền của hãng xe ngoài đời thật.. Toàn bộ các sản phẩm của Bruder đều đạt tiêu chuẩn chất lượng cao của Mỹ (ASTM) và Châu Âu (EN71), chứng nhận sản phẩm an toàn Spiel Gut (ra đời từ 1954) dựa trên các yếu tố để đánh giá đó là: giá trị mang lại khi chơi, tay nghề sản xuất, độ bền, thiết kế, kích thước, chất lượng sản phẩm, sự phù hợp ở các độ tuổi cụ thể, v.v.Thông qua việc chơi tưởng tượng và hình ảnh sáng tạo, đồ chơi Bruder giúp trẻ học hỏi các giá trị bền vững, trang bị cho trẻ một tương lai tươi sáng.
-', ?, ?);
+', 23, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -414,29 +391,22 @@ Hot Wheels là dòng đồ chơi xe mô hình cực kì được yêu thích t�
 
 ☎️ Dịch vụ chăm sóc khách hàng
 - Mọi thắc mắc sau khi mua sản phẩm, vui lòng liên hệ với bộ phận chăm sóc khách hàng của Mykingdom qua số hotline
-- Lưu ý: Do các phương pháp đo khác nhau, kích thước sản phẩm sẽ có sai số từ 1-3cm, thuộc phạm vi bình thường', ?, ?);
+- Lưu ý: Do các phương pháp đo khác nhau, kích thước sản phẩm sẽ có sai số từ 1-3cm, thuộc phạm vi bình thường', 31, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (28, 59000, NULL, 30, 'Transracers-Xe cứu hộ tốc độ cao biến hình thành xe cảnh sát VECTO VN463875-40', JSON_OBJECT('Chủ đề', 'VECTO TRANSRACERS', 'Mã sản phẩm', 'VN463875-40', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi VECTO Transracers - Xe Cứu Hộ Tốc Độ Cao Biến Hình Thành Xe Cảnh S VN463875-40
 
-Là dòng xe biến hình chỉ bằng một cú lật, giúp bé trở thành một nhà trình diễn biến hình đầy nghệ thuật. Với các tính năng nổi bật như:- Nhiều mẩu mã xe tha hồ cho bé lựa chọn.- Biến hình dễ dàng chỉ bằng một cú lật- Thiết kế màu sắc ấn tượng, thu hút.Hãy sưu tập trọn bộ đồ chơi VECTO Transracers nha ba mẹ và các bé ơi.', ?, ?);
+Là dòng xe biến hình chỉ bằng một cú lật, giúp bé trở thành một nhà trình diễn biến hình đầy nghệ thuật. Với các tính năng nổi bật như:- Nhiều mẩu mã xe tha hồ cho bé lựa chọn.- Biến hình dễ dàng chỉ bằng một cú lật- Thiết kế màu sắc ấn tượng, thu hút.Hãy sưu tập trọn bộ đồ chơi VECTO Transracers nha ba mẹ và các bé ơi.', 33, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (29, 129000, NULL, 72, 'Mô Hình Xe Mclaren Senna SIKU 1537', JSON_OBJECT('Chủ đề', 'SIKU BLISTER15', 'Mã sản phẩm', '1537', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SIKU', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Xe McLaren Senna - 1537Được thiết kế dưới bản quyền thiết kế của McLaren, thiết kế bên ngoài của Senna chịu ảnh hưởng của triết lý ""thiết kế theo hình thức"" mang đến phong cách xe đua xen lẫn đường phố hết sức đặc biệt. Nếu bé đang tìm kiếm một chiếc xe vừa có thể chạy trên đường đua F1, vừa có thể chạy trên đường phố thành thị thì Senna xứng đáng là ứng cử viên sáng giá cho bộ sưu tập xe của bé. Hứa hẹn giúp bé có những giây phút vui chơi đầy hào hứng nhưng vẫn đảm bảo an toàn cho bé từ chất lượng đồ chơi Đức.
-ĐẶC ĐIỂM NỔI BẬT CỦA XE MÔ HÌNH KIM LOẠI SIKU:• CHẤT LƯỢNG ĐỨC – Được sản xuất bởi các chất liệu kim loại cao cấp, đạt tiêu chuẩn Châu Âu về an toàn đồ chơi.• ĐỒ CHƠI GIÁO DỤC – Thiết kế mô phỏng dựa trên các mẫu xe thực tế, không chỉ có xe hơi mà còn bao gồm cả các loại xe khác trong thành phố giúp bé vừa chơi vừa học.• BẢN QUYỀN- Các dòng xe đều có bản quyền từ thương hiệu xe nổi tiếng trên thế giới• CHI TIẾT TINH XẢO – dàn đèn, vỏ xe, một số dòng xe có thể mở cửa• ĐA DẠNG MẪU MÃ – hơn 200 mẫu xe khác nhauNhững chiếc xe mô hình luôn khơi gợi trí tò mò và là nguồn cảm hứng cho các bé trai thỏa sức chơi, khơi sáng tạo.Chính vì thế dòng đồ chơi xe mô hình luôn giữ vững vị trí hàng đầu trong Top đồ chơi được bé trai yêu thích. Không chỉ là một thú vui sưu tập, xe mô hình SIKU còn giúp bé học về thế giới xung quanh và phát triển trí tuệ, thế giới quan của mình."', ?, ?);
+ĐẶC ĐIỂM NỔI BẬT CỦA XE MÔ HÌNH KIM LOẠI SIKU:• CHẤT LƯỢNG ĐỨC – Được sản xuất bởi các chất liệu kim loại cao cấp, đạt tiêu chuẩn Châu Âu về an toàn đồ chơi.• ĐỒ CHƠI GIÁO DỤC – Thiết kế mô phỏng dựa trên các mẫu xe thực tế, không chỉ có xe hơi mà còn bao gồm cả các loại xe khác trong thành phố giúp bé vừa chơi vừa học.• BẢN QUYỀN- Các dòng xe đều có bản quyền từ thương hiệu xe nổi tiếng trên thế giới• CHI TIẾT TINH XẢO – dàn đèn, vỏ xe, một số dòng xe có thể mở cửa• ĐA DẠNG MẪU MÃ – hơn 200 mẫu xe khác nhauNhững chiếc xe mô hình luôn khơi gợi trí tò mò và là nguồn cảm hứng cho các bé trai thỏa sức chơi, khơi sáng tạo.Chính vì thế dòng đồ chơi xe mô hình luôn giữ vững vị trí hàng đầu trong Top đồ chơi được bé trai yêu thích. Không chỉ là một thú vui sưu tập, xe mô hình SIKU còn giúp bé học về thế giới xung quanh và phát triển trí tuệ, thế giới quan của mình."', 38, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (30, 389000, NULL, 86, 'Mô Hình Du Thuyền Mein Schiff 1 - Bản Hiện Đại SIKU 1730', JSON_OBJECT('Chủ đề', 'SIKU SUPER1:87', 'Mã sản phẩm', '1730', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SIKU', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi SIKU Du Thuyền Mein Schiff 1 - Bản Hiện Đại 1730
-
-
-
-
-
-
-
 
 THÔNG TIN VỀ SẢN PHẨM:
 
@@ -450,12 +420,6 @@ Xuất xứ thương hiệu:Đức
 
 Chất liệu:Nhựa ABS và kim loại cao cấp (Theo tiêu chuẩn Châu Âu an toàn tuyệt đối với mọi lứa tuổi)
 
-
-
-
-
-
-
 ĐẶC ĐIỂM NỔI BẬT XE CỦA MÔ HÌNH KIM LOẠI SIKU:
 
 CHẤT LƯỢNG ĐỨC – Được sản xuất nguyên khối kim loại với một số chi tiết nhỏ làm bằng nhựa, đạt tiêu chuẩn Châu Âu về an toàn đồ chơi.
@@ -468,31 +432,31 @@ CHI TIẾT TINH XẢO – từ dàn đèn, vỏ xe đến màu sơn đều đư�
 
 ĐA DẠNG MẪU MÃ – hơn 300 mẫu xe khác nhau.
 
-Những chiếc xe mô hình luôn khơi gợi trí tò mò và là nguồn cảm hứng cho các bé trai thỏa sức chơi, khơi sáng tạo. Chính vì thế dòng đồ chơi xe mô hình luôn giữ vững vị trí hàng đầu trong Top đồ chơi được bé trai yêu thích. Không chỉ là một thú vui sưu tập, xe mô hình SIKU còn giúp bé học về thế giới xung quanh và phát triển trí tuệ, thế giới quan nữa đó.', ?, ?);
+Những chiếc xe mô hình luôn khơi gợi trí tò mò và là nguồn cảm hứng cho các bé trai thỏa sức chơi, khơi sáng tạo. Chính vì thế dòng đồ chơi xe mô hình luôn giữ vững vị trí hàng đầu trong Top đồ chơi được bé trai yêu thích. Không chỉ là một thú vui sưu tập, xe mô hình SIKU còn giúp bé học về thế giới xung quanh và phát triển trí tuệ, thế giới quan nữa đó.', 38, 9);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (31, 254150, NULL, 92, 'Đồ Chơi Xe Đua F1 1:43 Ferrari Racing-SF-24 (2024) MAISTO 18-36844', JSON_OBJECT('Chủ đề', 'MAISTO 1:43 FORMULA RACING', 'Mã sản phẩm', '16/18-36844', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'MAISTO', 'Xuất xứ thương hiệu', 'Hồng Kong', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Xe Đua F1 1:43 Ferrari Racing-SF-24 (2024) MAISTO 16/18-36844
 Đồ chơi mô hình tỉ lệ 1:43 xe đua F1 gây ấn tượng với thiết kế cực ngầu.
 Mô phỏng thiết kế thực tế. Dùng để trưng bày và sưu tập. Toàn bộ khung xe được làm đúc bằng kim loại, nội thất xe , lốp xe được làm từ cao su tự nhiên, các chi tiết ống xả và lưới tản nhiệt được xi bóng . Sơn tĩnh điện cho nước sơn sáng bóng, mỏng, bền.Ferrari Racing SF-24 (2024) là mẫu xe F1 của Scuderia Ferrari, trang bị động cơ hybrid V6 mạnh mẽ, khí động học tối ưu, cải tiến downforce và hiệu suất, hướng đến cạnh tranh danh hiệu mùa giải F1 2024.
-Vài nét về thương hiệu Maisto:Maisto International Inc là thương hiệu đồ chơi của Cheong May Group Hồng Kông, chuyên sản xuất các mô hình đúc của xe ô tô, máy bay và xe máy, nổi tiếng từ những năm 1990. Đồ chơi Maisto được bày bán trong các cửa hàng và siêu thị đồ chơi trên toàn thế giới, nhận được sự yêu thích của hầu hết các bé thiếu nhi và nhận được hứng thú của rất nhiều người lớn đam mê mô hình xe.', ?, ?);
+Vài nét về thương hiệu Maisto:Maisto International Inc là thương hiệu đồ chơi của Cheong May Group Hồng Kông, chuyên sản xuất các mô hình đúc của xe ô tô, máy bay và xe máy, nổi tiếng từ những năm 1990. Đồ chơi Maisto được bày bán trong các cửa hàng và siêu thị đồ chơi trên toàn thế giới, nhận được sự yêu thích của hầu hết các bé thiếu nhi và nhận được hứng thú của rất nhiều người lớn đam mê mô hình xe.', 38, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (32, 59000, NULL, 33, 'Transracers - Xe chở thuyền biến hình thành xe cá heo VECTO VN463875-38', JSON_OBJECT('Chủ đề', 'VECTO TRANSRACERS', 'Mã sản phẩm', 'VN463875-38', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi VECTO Transracers - Xe Chở Thuyền Biến Hình Thành Xe Cá Heo VN463875-38
 
-Là dòng xe biến hình chỉ bằng một cú lật, giúp bé trở thành một nhà trình diễn biến hình đầy nghệ thuật. Với các tính năng nổi bật như:- Nhiều mẩu mã xe tha hồ cho bé lựa chọn.- Biến hình dễ dàng chỉ bằng một cú lật- Thiết kế màu sắc ấn tượng, thu hút.Hãy sưu tập trọn bộ đồ chơi VECTO Transracers nha ba mẹ và các bé ơi.', ?, ?);
+Là dòng xe biến hình chỉ bằng một cú lật, giúp bé trở thành một nhà trình diễn biến hình đầy nghệ thuật. Với các tính năng nổi bật như:- Nhiều mẩu mã xe tha hồ cho bé lựa chọn.- Biến hình dễ dàng chỉ bằng một cú lật- Thiết kế màu sắc ấn tượng, thu hút.Hãy sưu tập trọn bộ đồ chơi VECTO Transracers nha ba mẹ và các bé ơi.', 33, 5);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (33, 239000, NULL, 66, 'Yoyo Đao Bạc YOYO 22 EU677223R', JSON_OBJECT('Chủ đề', 'YOYO TRUYEN THONG', 'Mã sản phẩm', 'EU677223R', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'YOYO 22', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi YOYO22 Con Quay Đao Bạc EU677223R Cao Cấp Cho Bé Trên 5 Tuổi
+    (33, 239000, 16, 66, 'Yoyo Đao Bạc YOYO 22 EU677223R', JSON_OBJECT('Chủ đề', 'YOYO TRUYEN THONG', 'Mã sản phẩm', 'EU677223R', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'YOYO 22', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi YOYO22 Con Quay Đao Bạc EU677223R Cao Cấp Cho Bé Trên 5 Tuổi
 Bộ đồ chơi Yoyo 22 mới nhất, là dòng cơ bản nhất của và có khả năng tự thu dây về. Hàng chính hãng Auldey, chất lượng sản phẩm ưu việt mô phỏng theo các Yoyo trong bộ phim Quyết Đấu YOYO
 Sản phẩm sở hữu các chi tiết đều được làm từ chất liệu nhựa cao cấp, trải qua qui trình sản xuất nghiêm ngặt, đảm bảo an toàn cho trẻ nhỏ do hoàn toàn không chứa thành phần hoá chất độc hại cho sức khoẻ. Chất liệu nhựa cũng có độ cứng bền cao, khó bị nứt vỡ hay biến dạng dưới tác động của va đập.
-Sản phẩm bao gồm 01 yoyo', ?, ?);
+Sản phẩm bao gồm 01 yoyo', 38, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (34, 344250, NULL, 86, 'Con Quay B-193 Booster Ultimate Valkyrie.Lg.V’-9 BEYBLADE 6 179795', JSON_OBJECT('Chủ đề', 'BEYBLADE 6 BOOSTER', 'Mã sản phẩm', '179795', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE 6', 'Xuất xứ thương hiệu', 'NHẬT BẢN', 'Giới tính', 'Boy', 'Nơi sản xuất', 'VIỆT NAM'), 'Đồ Chơi Con Quay B-193 Booster Ultimate Valkyrie.Lg.V’-9 Beyblade 6 179795
+    (34, 344250, 16, 86, 'Con Quay B-193 Booster Ultimate Valkyrie.Lg.V’-9 BEYBLADE 6 179795', JSON_OBJECT('Chủ đề', 'BEYBLADE 6 BOOSTER', 'Mã sản phẩm', '179795', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE 6', 'Xuất xứ thương hiệu', 'NHẬT BẢN', 'Giới tính', 'Boy', 'Nơi sản xuất', 'VIỆT NAM'), 'Đồ Chơi Con Quay B-193 Booster Ultimate Valkyrie.Lg.V’-9 Beyblade 6 179795
 - Phù hợp cho trẻ từ 6 tuổi.
 - Chất liệu nhựa và kim loại tạo độ cứng cáp cho sản phẩm.
 - Thương hiệu Takara Tomy Nhật Bản, sản xuất tại Việt Nam.
@@ -501,11 +465,11 @@ Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: T
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
 Lưu ý:
 - Sản phẩm KHÔNG có tay cầm
-- Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Sản phẩm phù hợp với tay cầm bên phải', 26, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (35, 227400, NULL, 43, 'Con Quay B-180 Booster Dynamite Belial.Nx.Vn-2 BEYBLADE 6 173670', JSON_OBJECT('Chủ đề', 'BEYBLADE 6 BOOSTER', 'Mã sản phẩm', '173670', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE 6', 'Xuất xứ thương hiệu', 'NHẬT BẢN', 'Giới tính', 'Boy', 'Nơi sản xuất', 'VIỆT NAM'), 'Đồ Chơi Con Quay B-180 Booster Dynamite Belial.Nx.Vn-2 Beyblade 6 173670
+    (35, 227400, 16, 43, 'Con Quay B-180 Booster Dynamite Belial.Nx.Vn-2 BEYBLADE 6 173670', JSON_OBJECT('Chủ đề', 'BEYBLADE 6 BOOSTER', 'Mã sản phẩm', '173670', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE 6', 'Xuất xứ thương hiệu', 'NHẬT BẢN', 'Giới tính', 'Boy', 'Nơi sản xuất', 'VIỆT NAM'), 'Đồ Chơi Con Quay B-180 Booster Dynamite Belial.Nx.Vn-2 Beyblade 6 173670
 - Phù hợp cho trẻ từ 6 tuổi.
 - Chất liệu nhựa và kim loại tạo độ cứng cáp cho sản phẩm.
 - Thương hiệu Takara Tomy Nhật Bản, sản xuất tại Việt Nam.
@@ -514,18 +478,18 @@ Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: T
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
 Lưu ý:
 - Sản phẩm KHÔNG có tay cầm
-- Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Sản phẩm phù hợp với tay cầm bên phải', 26, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (36, 335300, NULL, 35, 'Robot Siêu Cảnh Sát Tuần Tra Patrol Cop Điện Năng Miniforce 505001', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 HEAD COPS', 'Mã sản phẩm', '505001', 'Tuổi', '3 Tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Robot Siêu Cảnh Sát Tuần Tra Patrol Cop Điện Năng Miniforce 505001
 Robot siêu cảnh sát tuần tra Patrol Cop điện năng là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
 Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát tuần tra - Patrol Cop điện năng, có các đặc điểm sau:- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;- Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại- Đi kèm 1 vũ khí Patrol Magnum và 1 huy hiệu cảnh sát có thể dùng để trưng bày mô hình đầu nhân vật
-Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', ?, ?);
+Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 34, 20);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (37, 275400, NULL, 55, 'Con quay B-192 Booster Greatest Raphael.Ov.HXt+’ BEYBLADE 6 173779', JSON_OBJECT('Chủ đề', 'BEYBLADE 6 BOOSTER', 'Mã sản phẩm', '173779', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE 6', 'Xuất xứ thương hiệu', 'NHẬT BẢN', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Con Quay B-192 Booster Greatest Raphael.Ov.Hxt+’ BEYBLADE 6 173779
+    (37, 275400, 16, 55, 'Con quay B-192 Booster Greatest Raphael.Ov.HXt+’ BEYBLADE 6 173779', JSON_OBJECT('Chủ đề', 'BEYBLADE 6 BOOSTER', 'Mã sản phẩm', '173779', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE 6', 'Xuất xứ thương hiệu', 'NHẬT BẢN', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Con Quay B-192 Booster Greatest Raphael.Ov.Hxt+’ BEYBLADE 6 173779
 
 Con QuayB-192 Booster Greatest Raphael.Ov.HXt+’ là sản phẩm đồ chơi dựa theo bộ phim hoạt hình Beyblade phát sóng trên YouTube Takaratomy.
 
@@ -534,18 +498,18 @@ Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: T
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
 Lưu ý:
 - Sản phẩm KHÔNG có tay cầm
-- Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Sản phẩm phù hợp với tay cầm bên phải', 34, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (38, 99000, NULL, 10, 'Xe thú cưng vui nhộn - Chó Rumble REVANDROLL EU881110', JSON_OBJECT('Chủ đề', 'REV FUNNY MINI VEHICLES', 'Mã sản phẩm', 'EU881110', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'REVANDROLL', 'Xuất xứ thương hiệu', '', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Rev and roll là bộ phim hoạt hình có nội dung vô cùng độc đáo- kể về chuyến phiêu lưu mạo hiểm của những bạn nhỏ và chiếc siêu xe thú cưng của mình.
 Xe thú cưng vui nhộn - chó Rumble
 - Xe thú cưng vui nhộn – Chó Rumble là sự kết hợp độc đáo giữa xe tải địa hình và nhân vật chó Rumble với tinh cách dũng cảm, năng động, trung thành, ưa thích mạo hiểm.- Chức năng đặc biệt có thể xoay vòng 360 độ- Sưu tập ngay trọn bộ 5 nhân vật: Chó Rumble, Mèo Alley, Voi Spritzer, Ếch Spritzer, Ngựa Tipper trong phim hoạt hình được các bé yêu thích Rev and Roll.- Thiết kế đẹp mắt, với chất liệu nhựa cao cấp.
-Thông tin sản phẩm:- Sản phẩm sử dụng nhựa cao cấp, đảm bảo an toàn cho bé.- Sản phẩm không sử dụng Pin', ?, ?);
+Thông tin sản phẩm:- Sản phẩm sử dụng nhựa cao cấp, đảm bảo an toàn cho bé.- Sản phẩm không sử dụng Pin', 31, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (39, 449000, NULL, 99, 'Con Quay BX-01 Starter Dran Sword 3-60F BEYBLADE X 910381', JSON_OBJECT('Chủ đề', 'BEYBLADE X STARTER', 'Mã sản phẩm', '910381', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE X', 'Xuất xứ thương hiệu', 'Nhật Bản', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Con Quay BX-01 Starter Dran Sword 3-60F BEYBLADE X 910381
+    (39, 449000, 16, 99, 'Con Quay BX-01 Starter Dran Sword 3-60F BEYBLADE X 910381', JSON_OBJECT('Chủ đề', 'BEYBLADE X STARTER', 'Mã sản phẩm', '910381', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BEYBLADE X', 'Xuất xứ thương hiệu', 'Nhật Bản', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Con Quay BX-01 Starter Dran Sword 3-60F BEYBLADE X 910381
 - Sản phẩm Đồ Chơi Con Quay BEYBLADE X - Phù hợp cho trẻ từ 6 tuổi.
 - Chất liệu nhựa và kim loại tạo độ cứng cáp cho sản phẩm.
 - Thương hiệu Takara Tomy Nhật Bản, sản xuất tại Việt Nam.
@@ -554,7 +518,7 @@ Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: T
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
 Lưu ý:
 - Sản phẩm có tay cầm
-- Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Sản phẩm phù hợp với tay cầm bên phải', 38, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -566,7 +530,7 @@ VALUES
 -  Kích thước sản phẩm: 14x10.5x12.5cm
 - Màu sắc nguyên bản như bản gốc của phim cùng thiết kế tinh xảo, các góc được bo tròn an toàn cho bàn tay của bé
 - Sản phẩm được làm từ chất liệu nhựa cao cấp
-Cùng biến trò chơi nhập vai thêm hấp dẫn cùng các người bạn trong Đội Bay Siêu Đẳng SUPERWINGS thôi!', ?, ?);
+Cùng biến trò chơi nhập vai thêm hấp dẫn cùng các người bạn trong Đội Bay Siêu Đẳng SUPERWINGS thôi!', 35, 20);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -577,7 +541,7 @@ VALUES
 - Thương hiệu Takara Tomy Nhật Bản, sản xuất tại Việt Nam.
 Con Quay Beyblade X là sản phẩm đồ chơi dựa theo bộ phim hoạt hình Beyblade phát sóng trên YouTube Mykingdom và See TV Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: Tự tay lắp ráp và dán nhãn các chi tiết Có khả năng tùy biến cao, cho phép người dùng tự do sáng tạo, lắp ráp các bộ phận từ nhiều con quay khác nhau.
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
-Bệ phóng chơi bên phải và chỉ sử dụng cho các sản phẩm con quay BEYBLADE X', ?, ?);
+Bệ phóng chơi bên phải và chỉ sử dụng cho các sản phẩm con quay BEYBLADE X', 13, 38);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -605,7 +569,7 @@ Vài nét về nhãn hàng Beyblade
 
 Beyblade là nhãn hàng đồ chơi thể loại con quay chiến đấu độc đáo trên thế giới do TakaraTomy Nhật Bản phát triển và sản xuất. Với tiêu chí tạo ra sản phẩm an toàn và chất lượng hàng đầu thế giới cùng tiêu khắc khe từ Nhật Bản, các sản phẩm Tomy luôn quan tâm đến ước mơ phát triển cho sự sáng tạo và vui chơi trẻ em, đặc biệt là đồ chơi Beyblade với các con quay Beyblade mạnh mẽ và tinh tế phát hành cũng bộ phim Vòng Xoay Thần Tốc
 
-', ?, ?);
+', 13, 38);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -616,7 +580,7 @@ VALUES
 Con Quay Beyblade X là sản phẩm đồ chơi dựa theo bộ phim hoạt hình Beyblade phát sóng trên YouTube Mykingdom và See TV Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: Tự tay lắp ráp và dán nhãn các chi tiết Có khả năng tùy biến cao, cho phép người dùng tự do sáng tạo, lắp ráp các bộ phận từ nhiều con quay khác nhau.
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
 Lưu ý:
-- Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Sản phẩm phù hợp với tay cầm bên phải', 13, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -624,7 +588,7 @@ VALUES
 Robot siêu cảnh sát bầu trời Jet Cop phong năng là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
 Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát bầu trời Jet Cop phong năng, có các đặc điểm sau:- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;- Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại- Đi kèm song đao và 1 huy hiệu cảnh sát có thể dùng để trưng bày mô hình đầu nhân vật
 Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.
-- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', ?, ?);
+- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 34, 20);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -636,7 +600,7 @@ Con Quay Beyblade X là sản phẩm đồ chơi dựa theo bộ phim hoạt hì
 Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: Tự tay lắp ráp và dán nhãn các chi tiết Có khả năng tùy biến cao, cho phép người dùng tự do sáng tạo, lắp ráp các bộ phận từ nhiều con quay khác nhau.
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
 Lưu ý:
-- Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Sản phẩm phù hợp với tay cầm bên phải', 38, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -648,7 +612,7 @@ VALUES
 - Con Quay Beyblade X là sản phẩm đồ chơi dựa theo bộ phim hoạt hình Beyblade phát sóng trên YouTube Mykingdom và See TV
 - Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: Tự tay lắp ráp và dán nhãn các chi tiết Có khả năng tùy biến cao, cho phép người dùng tự do sáng tạo, lắp ráp các bộ phận từ nhiều con quay khác nhau.
 - Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
-- Lưu ý: Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Lưu ý: Sản phẩm phù hợp với tay cầm bên phải', 13, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -660,19 +624,19 @@ Con Quay Beyblade X là sản phẩm đồ chơi dựa theo bộ phim hoạt hì
 Sản phẩm đồ chơi được sản xuất theo công nghệ Nhật Bản: Tự tay lắp ráp và dán nhãn các chi tiết Có khả năng tùy biến cao, cho phép người dùng tự do sáng tạo, lắp ráp các bộ phận từ nhiều con quay khác nhau.
 Bên trong sản phẩm có sách hướng dẫn đi kèm giúp việc lắp ráp dễ dàng.
 Lưu ý:
-- Sản phẩm phù hợp với tay cầm bên phải', ?, ?);
+- Sản phẩm phù hợp với tay cầm bên phải', 13, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (48, 239000, NULL, 17, 'Yoyo Chiến Binh Huyền Thoại YOYO 22 EU677118R', JSON_OBJECT('Chủ đề', 'YOYO LOOP', 'Mã sản phẩm', 'EU677118R', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'YOYO 22', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi YOYO 22 Chiến Binh Huyền Thoại EU677118R
 Bộ đồ chơi Yoyo 22 mới nhất, là dòng cơ bản nhất và có khả năng tự thu dây về. Hàng chính hãng Auldey, chất lượng sản phẩm ưu việt mô phỏng theo các Yoyo trong bộ phim Quyết Đấu YOYOĐồ Chơi Auldey với các chi tiết   đều được làm từ chất liệu nhựa cao cấp, trải qua qui trình sản xuất nghiêm ngặt, đảm bảo an toàn cho trẻ nhỏ do hoàn toàn không chứa thành phần hoá chất độc hại cho sức khoẻ.Chất liệu nhựa cũng có độ cứng bền cao, khó bị nứt vỡ hay biến dạng dưới tác động của va đập.
-Sản phẩm bao gồm: 01 yoyo', ?, ?);
+Sản phẩm bao gồm: 01 yoyo', 38, 3);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (49, 279200, NULL, 83, 'Tobot Biến Hình Chiến Binh Nhiệt Huyết Z Tobot 301157', JSON_OBJECT('Chủ đề', 'TOBOT MINI ORIGINAL', 'Mã sản phẩm', '301157', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOBOT', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Tobot Biến Hình Chiến Binh Nhiệt Huyết ZTobot 301157
 TOBOT biến hình Chiến Binh Nhiệt Huyết Z là robot biến hình đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích - TOBOT.
-Xe TOBOT Z có ngoại hình giống xe Hyundai LV STARIA Đồ chơi Siêu TOBOT biến hình cỡ lớn Chiến Binh Nhiệt Huyết Z có chức năng:+ Chuyển đổi qua lại từ xe Hyundai LV STARIA sang robot.+ Sản phẩm gồm 1 Tobot Z và 1 sticker dán các bộ phận trên robot+ Kích thước: 11.2x4.1x11.5cm', ?, ?);
+Xe TOBOT Z có ngoại hình giống xe Hyundai LV STARIA Đồ chơi Siêu TOBOT biến hình cỡ lớn Chiến Binh Nhiệt Huyết Z có chức năng:+ Chuyển đổi qua lại từ xe Hyundai LV STARIA sang robot.+ Sản phẩm gồm 1 Tobot Z và 1 sticker dán các bộ phận trên robot+ Kích thước: 11.2x4.1x11.5cm', 34, 20);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -682,13 +646,13 @@ Thương hiệu: Spin Master đến từ Canada.Bộ đồ chơi bao gồm:• 1
 
 Để cuộc giải cứu của Bé yêu thêm thú vị, Ba Mẹ hãy sưu tập trọn bộ 6 phương tiện cứu hộ từ phim “ĐỘI CHÓ CỨU HỘ”, mỗi phượng tiện xe tương ứng với 01 nhân vật trong phim, tất cả đều dũng cảm và đang yêu:• Xe cảnh sát Chase• Xe cứu hỏa Marshall• Xe sửa chữa Rocky• Tàu đệm khí Zuma• Xe công trình Rubble• Máy bay trực thăng Skye
 
-Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', ?, ?);
+Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', 38, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (51, 183200, NULL, 65, 'Bô 6 chó cứu hộ mini Paw Patrol The Movie PAW PATROL 6060547', JSON_OBJECT('Chủ đề', 'PAWPATROL THEMED VEHICLE MINI', 'Mã sản phẩm', '6060547', 'Tuổi', '1 tuổi trở lên', 'Thương hiệu', 'PAW PATROL', 'Xuất xứ thương hiệu', 'CANADA', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi PAW PATROL Bô 6 Chó Cứu Hộ Mini The Movie 6060547
 
-Thương hiệu Canada. Được mô phỏng theo bộ phim hoạt hình nổi tiếng Đội Chó Cứu Hộ Paw Patrol. Từ màn ảnh nhỏ bước ra công chiếu thể giới với tên gọi Paw Patrol The Movie. Nét vẽ tinh xảo cùng trang phục mô phỏng như thật những chú chó dũng cảm Chase, Marshall, Skye, Rubble, Rocky và Zuma', ?, ?);
+Thương hiệu Canada. Được mô phỏng theo bộ phim hoạt hình nổi tiếng Đội Chó Cứu Hộ Paw Patrol. Từ màn ảnh nhỏ bước ra công chiếu thể giới với tên gọi Paw Patrol The Movie. Nét vẽ tinh xảo cùng trang phục mô phỏng như thật những chú chó dũng cảm Chase, Marshall, Skye, Rubble, Rocky và Zuma', 38, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -698,7 +662,7 @@ Thương hiệu: Spin Master đến từ Canada.Bộ đồ chơi bao gồm:• 1
 
 Để cuộc giải cứu của Bé yêu thêm thú vị, Ba Mẹ hãy sưu tập trọn bộ 6 phương tiện cứu hộ từ phim “ĐỘI CHÓ CỨU HỘ”, mỗi phượng tiện xe tương ứng với 01 nhân vật trong phim, tất cả đều dũng cảm và đang yêu:• Xe cảnh sát Chase• Xe cứu hỏa Marshall• Xe sửa chữa Rocky• Tàu đệm khí Zuma• Xe công trình Rubble• Máy bay trực thăng Skye
 
-Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', ?, ?);
+Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', 38, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -706,14 +670,14 @@ VALUES
 Thương hiệu: Spin Master đến từ Canada.
 Bộ đồ chơi bao gồm:• 1 nhân vật chó cứu hộ Marshall• 1 xe cứu hỏa.
 Để cuộc giải cứu của Bé yêu thêm thú vị, Ba Mẹ hãy sưu tập trọn bộ 6 phương tiện cứu hộ từ phim “ĐỘI CHÓ CỨU HỘ”, mỗi phượng tiện xe tương ứng với 01 nhân vật trong phim, tất cả đều dũng cảm và đang yêu:• Xe cảnh sát Chase• Xe cứu hỏa Marshall• Xe sửa chữa Rocky• Tàu đệm khí Zuma• Xe công trình Rubble• Máy bay trực thăng Skye
-Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', ?, ?);
+Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', 38, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (54, 369000, NULL, 71, 'Xe cứu hộ cơ bản Paw Patrol - Chase PAW PATROL 6061799', JSON_OBJECT('Chủ đề', 'PAWPATROL RESCUE VEHICLE', 'Mã sản phẩm', '6061799', 'Tuổi', '1 tuổi trở lên', 'Thương hiệu', 'PAW PATROL', 'Xuất xứ thương hiệu', 'CANADA', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi PAW PATROL Xe Cứu Hộ Cơ Bản - Chase 6061799
 Thương hiệu: Spin Master đến từ Canada.Bộ đồ chơi bao gồm:• 1 nhân vật chó cứu hộ Chase• 1 xe cứu hộ cảnh sát.
 Để cuộc giải cứu của Bé yêu thêm thú vị, Ba Mẹ hãy sưu tập trọn bộ 6 phương tiện cứu hộ từ phim “ĐỘI CHÓ CỨU HỘ”, mỗi phượng tiện xe tương ứng với 01 nhân vật trong phim, tất cả đều dũng cảm và đang yêu:• Xe cảnh sát Chase• Xe cứu hỏa Marshall• Xe sửa chữa Rocky• Tàu đệm khí Zuma• Xe công trình Rubble• Máy bay trực thăng Skye
-Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', ?, ?);
+Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé#PawPatrol #Mykingdom', 38, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -721,58 +685,58 @@ VALUES
 Thương hiệu: Spin Master đến từ Canada.
 Bộ đồ chơi bao gồm:• 1 nhân vật chó cứu hộ Skye• 1 Máy bay trực thăng.
 Để cuộc giải cứu của Bé yêu thêm thú vị, Ba Mẹ hãy sưu tập trọn bộ 6 phương tiện cứu hộ từ phim “ĐỘI CHÓ CỨU HỘ”, mỗi phượng tiện xe tương ứng với 01 nhân vật trong phim, tất cả đều dũng cảm và đang yêu:• Xe cảnh sát Chase• Xe cứu hỏa Marshall• Xe sửa chữa Rocky• Tàu đệm khí Zuma• Xe công trình Rubble• Máy bay trực thăng Skye
-Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé:#PawPatrol #Mykingdom', ?, ?);
+Sưu tập trọn bộ đồ chơi Paw Patroltại đâyBa Mẹ nhé:#PawPatrol #Mykingdom', 38, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (56, 1421400, NULL, 71, 'Đồ Chơi Trứng Khủng Long Tự Nở Bạo Chúa T-Rex PRIMAL HATCH 6072462', JSON_OBJECT('Chủ đề', 'PRIMAL HATCH INTERACTIVE', 'Mã sản phẩm', '6072462', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'PRIMAL HATCH', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Trứng Khủng Long Tự Nở Bạo Chúa T-Rex PRIMAL HATCH 6072462
 Một quả trứng khổng lồ không chỉ là món đồ chơi—đó là cánh cổng mở ra thế giới tiền sử sống động. Với Primal Hatch T-Rex, bé sẽ trải nghiệm khoảnh khắc khủng long tự phá vỡ lớp vỏ trứng, trỗi dậy như một chiến binh thực thụ, sẵn sàng khám phá thế giới!
-Cách chơi độc đáo:- Dùng công tắc đính kèm chọn chế độ hung dữ hoặc thân thiện- Đặt quả trứng vào môi trường ổn định và chờ đợi—bé sẽ không biết điều kỳ diệu nào sắp xảy ra.- Sau một thời gian ngắn, quả trứng tự động nứt vỡ—khủng long T-Rex chui ra như thật, mang đến trải nghiệm hồi hộp và đầy bất ngờ.Tương tác không giới hạn:- Đôi mắt phát sáng – Sáng lên khi T-Rex hoạt động, tạo cảm giác sống động như thật.- Cảm biến mũi – Chạm vào mũi và xem T-Rex phản ứng lại.- Lưỡi cảm biến – Tương tác bằng cách nhấn nhẹ vào lưỡi.- Hàm bật – T-Rex có thể há miệng và “gầm” đầy uy lực.- Đầu xoay linh hoạt và chân chuyển động – Cho phép T-Rex di chuyển như một chiến binh thật sự.- Tay cử động – Cùng bé tái hiện các màn chiến đấu hay săn mồi đầy kịch tính.- Chạm phần thân – Kích hoạt những âm thanh, ánh sáng và chuyển động thú vị.', ?, ?);
+Cách chơi độc đáo:- Dùng công tắc đính kèm chọn chế độ hung dữ hoặc thân thiện- Đặt quả trứng vào môi trường ổn định và chờ đợi—bé sẽ không biết điều kỳ diệu nào sắp xảy ra.- Sau một thời gian ngắn, quả trứng tự động nứt vỡ—khủng long T-Rex chui ra như thật, mang đến trải nghiệm hồi hộp và đầy bất ngờ.Tương tác không giới hạn:- Đôi mắt phát sáng – Sáng lên khi T-Rex hoạt động, tạo cảm giác sống động như thật.- Cảm biến mũi – Chạm vào mũi và xem T-Rex phản ứng lại.- Lưỡi cảm biến – Tương tác bằng cách nhấn nhẹ vào lưỡi.- Hàm bật – T-Rex có thể há miệng và “gầm” đầy uy lực.- Đầu xoay linh hoạt và chân chuyển động – Cho phép T-Rex di chuyển như một chiến binh thật sự.- Tay cử động – Cùng bé tái hiện các màn chiến đấu hay săn mồi đầy kịch tính.- Chạm phần thân – Kích hoạt những âm thanh, ánh sáng và chuyển động thú vị.', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (57, 169000, NULL, 68, 'Đồ Chơi Trứng Slime Sưu Tập Jurassic World: Tái sinh TOY MONSTER T01532', JSON_OBJECT('Chủ đề', 'TOY MONSTER SLIME EGG', 'Mã sản phẩm', 'T01532', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Trứng Slime Sưu Tập Jurassic World: Tái sinh TOY MONSTER T01532 - Giao Hàng Ngẫu Nhiên
 Đã đến lúc để ấp trứng và nuôi dưỡng những chú khủng long huyền thoại Jurassic World trong phiên bản Rebirth mới nhất!+ Tháo trứng, khám phá Slime bên trong+ Tìm và lắp Khủng long mini của bạn+ Hơn 10 loài khủng long để bạn khám phá và thu thập
 Mỗi trứng bao gồm:01 x Khủng long Pop N Lock01 x Slime01 x Thẻ tích điểm chiến đấu01 x Hướng dẫn sưu tậpSản phẩm dành cho bé trên 3 tuổi.
-Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', ?, ?);
+Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (58, 449400, NULL, 52, 'Đồ Chơi Mô Hình Khủng Long Tyrannosaurus Rex SCHLEICH 14587', JSON_OBJECT('Chủ đề', 'SCHLEICH DINOSAUR', 'Mã sản phẩm', '14587', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SCHLEICH', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', ''), 'Đồ Chơi Mô Hình Khủng Long Tyrannosaurus Rex SCHLEICH 14587
+    (58, 449400, 22, 52, 'Đồ Chơi Mô Hình Khủng Long Tyrannosaurus Rex SCHLEICH 14587', JSON_OBJECT('Chủ đề', 'SCHLEICH DINOSAUR', 'Mã sản phẩm', '14587', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SCHLEICH', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', ''), 'Đồ Chơi Mô Hình Khủng Long Tyrannosaurus Rex SCHLEICH 14587
 Thương hiệu hàng đầu về thế giới động vật đến từ Đức - ra đời năm 1926
-Khủng long bạo chúa T-Rex cực kỳ ấn tượng với vẻ ngoài hung dữ và đầy nguy hiểm. Chúng hơi bị bất lợi vì 2 chi trước ngắn và yếu so với chìu dài cơ thể lên đến 7m và chiều cao hơn 13m. Thế nhưng chúng có bộ hàm cực khoẻ với 50 chiếc răng sắc và dài gần 20cm, nếu không may bị mất những chiếc răng trong lúc săn mồi, thì vài tuần sau chúng sẽ mọc lại.', ?, ?);
+Khủng long bạo chúa T-Rex cực kỳ ấn tượng với vẻ ngoài hung dữ và đầy nguy hiểm. Chúng hơi bị bất lợi vì 2 chi trước ngắn và yếu so với chìu dài cơ thể lên đến 7m và chiều cao hơn 13m. Thế nhưng chúng có bộ hàm cực khoẻ với 50 chiếc răng sắc và dài gần 20cm, nếu không may bị mất những chiếc răng trong lúc săn mồi, thì vài tuần sau chúng sẽ mọc lại.', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (59, 949500, NULL, 34, 'Đồ Chơi Khủng Long BECKLESPINAX Có Âm Thanh Jurassic World Mattel HXF52', JSON_OBJECT('Chủ đề', 'JURASSIC WORLD MT', 'Mã sản phẩm', 'HXF52', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'JURASSIC WORLD MATTEL', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Khủng Long BECKLESPINAX Có Âm Thanh Jurassic World HXF52
+    (59, 949500, 22, 34, 'Đồ Chơi Khủng Long BECKLESPINAX Có Âm Thanh Jurassic World Mattel HXF52', JSON_OBJECT('Chủ đề', 'JURASSIC WORLD MT', 'Mã sản phẩm', 'HXF52', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'JURASSIC WORLD MATTEL', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Khủng Long BECKLESPINAX Có Âm Thanh Jurassic World HXF52
 Jurassic World khủng long BECKLESPINAX có âm thanh được lấy cảm hứng từ loạt phim Jurassic World: Lý thuyết hỗn loạn.
 Mô hình tái hiện sinh động hình ảnh loài khủng long với bộ gai sắc nhọn đặc trưng phía sau, màu sắc bắt mắt, cùng nhiều tính năng âm thanh và hành động sống động.
 Khi trượt con lăn về phía trước, bạn sẽ kích hoạt chức năng tấn công thực tế của Becklespinax—những cú húc đầu mạnh mẽ kèm theo hành động nhai và tiếng gầm rền vang.
 Trượt con lăn về phía sau sẽ khiến đầu khủng long ngẩng lên với âm thanh gầm gừ, đồng thời kích hoạt tính năng ''tiến hóa chiến đấu'' với những chiếc gai đuôi mở rộng.
-Quét mã QR ẩn trong ứng dụng miễn phí Jurassic World Play trên thiết bị thông minh tương thích (Android hoặc iOS) để mở khóa phiên bản kỹ thuật số của khủng long này và trải nghiệm những trò chơi vô cùng hấp dẫn', ?, ?);
+Quét mã QR ẩn trong ứng dụng miễn phí Jurassic World Play trên thiết bị thông minh tương thích (Android hoặc iOS) để mở khóa phiên bản kỹ thuật số của khủng long này và trải nghiệm những trò chơi vô cùng hấp dẫn', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (60, 979000, NULL, 8, 'Đồ Chơi Mô Hình SaGa Khủng Long Chiến Đấu T-REX JURASSIC WORLD MATTEL JGM12', JSON_OBJECT('Chủ đề', 'JW MOVIE SAGA REBIRTH', 'Mã sản phẩm', 'JGM14/JGM12', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'JURASSIC WORLD MATTEL', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Mô Hình SaGa Khủng Long Chiến Đấu T-REX JURASSIC WORLD MATTEL JGM14/JGM12
-Sẵn sàng cho những pha phiêu lưu và hành động mãn nhãn hơn nữa cùng Jurassic World SAGA Khủng long chiến đấu T-REX!- Hiệu ứng âm thanh “Sound Surge” chân thật: Chạm nút và chứng kiến khủng long gầm rú, tấn công bằng cú đớp mạnh mẽ – khiến mô hình trở nên sống động như bước ra từ màn ảnh rộng.- Phù hợp với mọi lứa tuổi: Không chỉ là đồ chơi, đây còn là món quà giáo dục & giải trí tuyệt vời dành cho các bạn trẻ và người lớn yêu thích thế giới khủng long.- Tỷ lệ chuẩn phim – dài 12 inch (30 cm): JW SAGA Khủng long chiến đấu T-REX được thiết kế dựa trên các chi tiết chân thực từ phim để fan có thể đắm chìm hoàn toàn vào thế giới Jurassic World.- Chạm khắc tinh xảo – màu sắc chân thực: Từng vảy da, nếp gấp hay biểu cảm đều được chế tác kỹ lưỡng – tái hiện trọn vẹn sức mạnh và thần thái của loài khủng long thời tiền sử.- Vừa để chơi – vừa để trưng bày: Dù bạn là nhà sưu tầm hay đơn giản chỉ muốn hòa mình vào những trận chiến kịch tính giữa các loài khủng long, mô hình này chắc chắn là món không thể thiếu trong bộ sưu tập của mọi tín đồ Jurassic World.', ?, ?);
+    (60, 979000, 22, 8, 'Đồ Chơi Mô Hình SaGa Khủng Long Chiến Đấu T-REX JURASSIC WORLD MATTEL JGM12', JSON_OBJECT('Chủ đề', 'JW MOVIE SAGA REBIRTH', 'Mã sản phẩm', 'JGM14/JGM12', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'JURASSIC WORLD MATTEL', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Mô Hình SaGa Khủng Long Chiến Đấu T-REX JURASSIC WORLD MATTEL JGM14/JGM12
+Sẵn sàng cho những pha phiêu lưu và hành động mãn nhãn hơn nữa cùng Jurassic World SAGA Khủng long chiến đấu T-REX!- Hiệu ứng âm thanh “Sound Surge” chân thật: Chạm nút và chứng kiến khủng long gầm rú, tấn công bằng cú đớp mạnh mẽ – khiến mô hình trở nên sống động như bước ra từ màn ảnh rộng.- Phù hợp với mọi lứa tuổi: Không chỉ là đồ chơi, đây còn là món quà giáo dục & giải trí tuyệt vời dành cho các bạn trẻ và người lớn yêu thích thế giới khủng long.- Tỷ lệ chuẩn phim – dài 12 inch (30 cm): JW SAGA Khủng long chiến đấu T-REX được thiết kế dựa trên các chi tiết chân thực từ phim để fan có thể đắm chìm hoàn toàn vào thế giới Jurassic World.- Chạm khắc tinh xảo – màu sắc chân thực: Từng vảy da, nếp gấp hay biểu cảm đều được chế tác kỹ lưỡng – tái hiện trọn vẹn sức mạnh và thần thái của loài khủng long thời tiền sử.- Vừa để chơi – vừa để trưng bày: Dù bạn là nhà sưu tầm hay đơn giản chỉ muốn hòa mình vào những trận chiến kịch tính giữa các loài khủng long, mô hình này chắc chắn là món không thể thiếu trong bộ sưu tập của mọi tín đồ Jurassic World.', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (61, 369000, NULL, 32, 'Đồ Chơi Trứng Khủng Long Huyền Bí Jurassic World: Tái Sinh TOY MONSTER T01533', JSON_OBJECT('Chủ đề', 'TOY MONSTER SURPRISE EGG', 'Mã sản phẩm', 'T01533', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Trứng Khủng Long Huyền Bí Jurassic World: Tái Sinh TOY MONSTER T01533 - Giao Hàng Ngẫu Nhiên
+    (61, 369000, 22, 32, 'Đồ Chơi Trứng Khủng Long Huyền Bí Jurassic World: Tái Sinh TOY MONSTER T01533', JSON_OBJECT('Chủ đề', 'TOY MONSTER SURPRISE EGG', 'Mã sản phẩm', 'T01533', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Trứng Khủng Long Huyền Bí Jurassic World: Tái Sinh TOY MONSTER T01533 - Giao Hàng Ngẫu Nhiên
 Sở hữu những loài khủng long Pop N Lock với kích thước siêu lớn đến từ bộ sưu tập Jurassic World Rebirth. Đặc biệt, đây là phiên bản Trứng khủng long duy nhất bạn có thể sưu tầm được Khủng long siêu kích cỡ.
 3 loài Khủng long để sưu tầm!!
 Nhanh tay thu thập và trở thành người đầu tiên sở hữu trọn bộ khủng long Jurassic World Rebirth này thôi nào!Trứng khủng long huyền bí Jurassic World Rebirth gồm:01 x Khủng long siêu kích cỡ ẩn giấu bên trong03 x Slime01 x Thẻ chiến đấu01 x Bộ sticker khủng long01 x Hướng dẫn cho người sưu tầm
-Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', ?, ?);
+Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
-    (62, 118300, NULL, 38, 'Trứng Slime sưu tập khủng long Jurassic World Dominion W2 TOY MONSTER TM-JW-DSE12', JSON_OBJECT('Chủ đề', 'TOY MONSTER SLIME EGG', 'Mã sản phẩm', 'TM-JW-DSE12', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'ÚC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi TOY MONSTER Trứng Slime Sưu Tập Khủng Long Jurassic World Dominion W2 TM-JW-DSE12
+    (62, 118300, 22, 38, 'Trứng Slime sưu tập khủng long Jurassic World Dominion W2 TOY MONSTER TM-JW-DSE12', JSON_OBJECT('Chủ đề', 'TOY MONSTER SLIME EGG', 'Mã sản phẩm', 'TM-JW-DSE12', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'ÚC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi TOY MONSTER Trứng Slime Sưu Tập Khủng Long Jurassic World Dominion W2 TM-JW-DSE12
 Sẵn sàng để bước vào Cuộc chiến tối thượng cùng phiên bản Jurassic World Captivz Dominion!
 + Tháo trứng, khám phá Slime chất nhờn ma quái bên trong
 + Tìm và lắp Khủng long Pop N'' Lock của bạn
 + Với hơn 15 loài để thu thập Đặc biệt, phiên bản khủng long Metallic cực giới hạn! Liệu bạn sẽ sở hữu được chúng để tham gia cuộc chiến?
 Mỗi trứng bao gồm:
-Nhà sản xuất: TOY MONSTER Xuất xứ thương hiệu: ÚC', ?, ?);
+Nhà sản xuất: TOY MONSTER Xuất xứ thương hiệu: ÚC', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -789,7 +753,7 @@ Tự tay lắp ráp nên những chú rồng của riêng bạn. Mỗi sản ph�
 Nhanh tay sở hữu ngay bộ sưu tập Rồng đầy ấn tượng!
 Đồ chơi được lấy cảm hứng từ bộ phimBí Kíp Luyện Rồng (How to Train Your Dragon)là một bộ phim hoạt hình nổi tiếng của DreamWorks, kể về hành trình phiêu lưu của cậu bé Hiccup và chú rồng Răng Sún (Toothless). Bộ phim không chỉ hấp dẫn bởi những cảnh hành động mãn nhãn mà còn mang đến nhiều bài học sâu sắc cho trẻ em.
 Khám phá thêm các đồ chơi khác của Dragontại đây.
-#bikipluyenrong #howtotrainyourdragon', ?, ?);
+#bikipluyenrong #howtotrainyourdragon', 34, 23);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -799,7 +763,7 @@ Mô hình Velociraptor dựa trên "Thần trí tuệ" của giống loài khủ
 
 Trong phim, Velociraptor Blue chính là con khủng long Raptor cuối cùng còn sót lại tại hòn đảo Isla Nublar. Không chỉ có kích thước to lớn, Blue còn là sinh vật đáng sợ nhất khi sở hữu đầy đủ các đặc tính của loài thú ăn thịt cùng một bộ não cực kỳ thông minh.
 
-Sản phẩm đặc biệt dành cho những bạn hâm mộ Thế giới kỷ Jura, khủng long và trò chơi hành động! Kích thước sản phẩm lên đến 15cm', ?, ?);
+Sản phẩm đặc biệt dành cho những bạn hâm mộ Thế giới kỷ Jura, khủng long và trò chơi hành động! Kích thước sản phẩm lên đến 15cm', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -809,14 +773,14 @@ Mô hình Velociraptor dựa trên "Thần trí tuệ" của giống loài khủ
 
 Trong phim, Velociraptor Blue chính là con khủng long Raptor cuối cùng còn sót lại tại hòn đảo Isla Nublar. Không chỉ có kích thước to lớn, Blue còn là sinh vật đáng sợ nhất khi sở hữu đầy đủ các đặc tính của loài thú ăn thịt cùng một bộ não cực kỳ thông minh.
 
-Sản phẩm đặc biệt dành cho những bạn hâm mộ Thế giới kỷ Jura, khủng long và trò chơi hành động! Kích thước sản phẩm lên đến 15cm', ?, ?);
+Sản phẩm đặc biệt dành cho những bạn hâm mộ Thế giới kỷ Jura, khủng long và trò chơi hành động! Kích thước sản phẩm lên đến 15cm', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (66, 139000, NULL, 24, 'Đồ Chơi Mô Hình Động Vật Khủng Long Cổ Dài Brachiosaurus COLLECTA 88121', JSON_OBJECT('Chủ đề', 'COLLECTA PREHISTORIC WORLD', 'Mã sản phẩm', '88121', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'COLLECTA', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Động Vật Khủng Long Cổ Dài Brachiosaurus COLLECTA 88121
 Là một trong những nhà sản xuất mô hình động vật hàng đầu thế giới được cố vấn bởi các chuyên gia cổ sinh vật học, CollectA nổi bật với chất lượng vượt trội trong từng chi tiết tạo hình và màu sắc. Sản phẩm được ứng dụng rộng rãi trong giáo dục, góp phần nâng cao nhận thức bảo vệ động vật quý hiếm và lan tỏa tình yêu với thiên nhiên hoang dã.
 Điểm nổi bật:- Lớp sơn được thực hiện thủ công cho chi tiết sắc nét, sống động và độc bản.- Làm từ nhựa PVC an toàn cho bé, không chứa Phthalate.- Tạo hình chân thực và đa dạng loài, phù hợp cho mục đích giáo dục
-Thông tin thú vị: Brachiosaurus là loài khủng long đặc biệt vì có chân trước dài hơn chân sau. Đặc điểm này cùng với chiếc cổ dài và khỏe mang lại lợi thế về chiều cao khi tìm kiếm thức ăn.', ?, ?);
+Thông tin thú vị: Brachiosaurus là loài khủng long đặc biệt vì có chân trước dài hơn chân sau. Đặc điểm này cùng với chiếc cổ dài và khỏe mang lại lợi thế về chiều cao khi tìm kiếm thức ăn.', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -826,7 +790,7 @@ Mô hình Velociraptor dựa trên "Thần trí tuệ" của giống loài khủ
 
 Trong phim, Velociraptor Blue chính là con khủng long Raptor cuối cùng còn sót lại tại hòn đảo Isla Nublar. Không chỉ có kích thước to lớn, Blue còn là sinh vật đáng sợ nhất khi sở hữu đầy đủ các đặc tính của loài thú ăn thịt cùng một bộ não cực kỳ thông minh.
 
-Sản phẩm đặc biệt dành cho những bạn hâm mộ Thế giới kỷ Jura, khủng long và trò chơi hành động! Kích thước sản phẩm lên đến 15cm', ?, ?);
+Sản phẩm đặc biệt dành cho những bạn hâm mộ Thế giới kỷ Jura, khủng long và trò chơi hành động! Kích thước sản phẩm lên đến 15cm', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -836,7 +800,7 @@ Xây dựng thế giới Captivz của bạn với các cảnh Dinorama có th�
 Sa bàn khủng long Jurassic World - Thủy quái vô đối Mosasaurus.
 Sản Phẩm Bao Gồm:_1 khủng long Pop N Lock_3 bối cảnh Pop N Lock_Phụ kiện đi kèm_4 sticker
 Kích thước sản phẩm (cm): 11,8 W x 6,2 H x 6,2 D
-Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', ?, ?);
+Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -845,10 +809,10 @@ Trở thành chiến binh luyện rồng Viking cùng Răng Sún RC (điều khi
 Răng Sún (Toothless) RC có thể đập cánh giữa không trung như film trong phạm vi 75 mét. Chỉ với 1 điều khiển bạn có thể điều khiển để Răng Sún cất cánh, bé yêu sẽ vô cùng phấn khích mà rời các thiết bị điện tử để cùng hòa mình vào cuộc phiêu lưu với Răng Sún ngay.
 Sản phẩm sử dụng 2 Pin AAA cho điều khiển cầm tay và sạc USB cho Răng Sún.
 Đồ chơi được lấy cảm hứng từ bộ phim Bí Kíp Luyện Rồng (How to Train Your Dragon) là một bộ phim hoạt hình nổi tiếng của DreamWorks, kể về hành trình phiêu lưu của cậu bé Hiccup và chú rồng Răng Sún (Toothless). Bộ phim không chỉ hấp dẫn bởi những cảnh hành động mãn nhãn mà còn mang đến nhiều bài học sâu sắc cho trẻ em.
-Khám phá thêm các đồ chơi khác của Dragontại đây.#bikipluyenrong #howtotrainyourdragon', ?, ?);
+Khám phá thêm các đồ chơi khác của Dragontại đây.#bikipluyenrong #howtotrainyourdragon', 34, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (70, 169000, NULL, 51, 'Trứng Slime sưu tập khủng long Jurassic World đổi màu TOY MONSTER TM502', JSON_OBJECT('Chủ đề', 'TOY MONSTER SLIME EGG', 'Mã sản phẩm', 'TM502', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'TRUNG QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Trứng Slime sưu tập khủng long Jurassic World đổi màu TOY MONSTER TM502 - Giao hàng ngẫu nhiên
 Khám phá bộ sưu tập 12 loài khủng long đặc biệt với khả năng đổi màu theo nhiệt độ nước. Mỗi trứng bao gồm: 1 khủng long đổi màu, 1 slime đổi màu, 01 thẻ tích điểm chiến đấu và Hướng dẫn.
-ĐẶC ĐIỂM NỔI BẬT:', ?, ?);
+ĐẶC ĐIỂM NỔI BẬT:', 34, 11);

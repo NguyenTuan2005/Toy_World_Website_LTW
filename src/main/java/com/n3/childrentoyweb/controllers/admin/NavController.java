@@ -6,12 +6,13 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
+@Deprecated
 @WebServlet(value = "/admin/*")
 public class NavController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-        
+
         if (pathInfo == null || pathInfo.equals("/")) {
             response.sendRedirect(request.getContextPath() + "/admin/dashboard");
             return;

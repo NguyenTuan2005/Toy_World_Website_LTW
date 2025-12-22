@@ -8,6 +8,16 @@ public class Order extends BaseModel {
     private Voucher voucher;
     private String status;
 
+
+    public Order(Long id, Long userId, Double totalPrice, Voucher voucher, String status,Boolean isActive,LocalDateTime createdAt) {
+        super(id, isActive, createdAt);
+        this.userId = userId;
+        this.totalPrice = totalPrice;
+        this.voucher = voucher;
+        this.status = status;
+    }
+
+
     public Order( Long userId, Double totalPrice, Voucher voucher, String status) {
         this.userId = userId;
         this.totalPrice = totalPrice;

@@ -2,10 +2,11 @@ package com.n3.childrentoyweb.models;
 
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
-public abstract class BaseModel {
+public abstract class BaseModel implements Serializable {
     protected Long id;
     protected Boolean isActive;
     protected LocalDateTime createdAt;

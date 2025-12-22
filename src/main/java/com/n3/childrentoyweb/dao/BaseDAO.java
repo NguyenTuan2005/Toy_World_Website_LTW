@@ -3,7 +3,6 @@ package com.n3.childrentoyweb.dao;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 
-import java.sql.SQLException;
 
 public abstract class BaseDAO {
     protected Jdbi jdbi;
@@ -28,10 +27,11 @@ public abstract class BaseDAO {
         try {
             dataSource.setUseCompression(true);
             dataSource.setAutoReconnect(true);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         jdbi = Jdbi.create(dataSource);
+        jdbi.open();
     }
 }

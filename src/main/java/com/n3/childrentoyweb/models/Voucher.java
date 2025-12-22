@@ -1,15 +1,33 @@
 package com.n3.childrentoyweb.models;
 
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
 import java.time.LocalDateTime;
 
 public class Voucher extends BaseModel {
+
+    @ColumnName("name")
     private String name;
+
+    @ColumnName("expired_at")
     private LocalDateTime expiredAt;
+
+    @ColumnName("discount_percent")
     private Double discountPercent;
+
+    @ColumnName("max_price")
     private Double maxPrice;
+
+    @ColumnName("used")
     private Integer used;
+
+    @ColumnName("volumes")
     private Integer volumes;
+
+    @ColumnName("category_id")
     private Long categoryId;
+
+    @ColumnName("brand_id")
     private Long brandId;
 
     public String getName() {

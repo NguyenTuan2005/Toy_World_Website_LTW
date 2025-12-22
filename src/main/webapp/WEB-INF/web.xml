@@ -23,6 +23,11 @@
     </error-page>
 
     <error-page>
+        <error-code>404</error-code>
+        <location>/404-not-found.jsp</location>
+    </error-page>
+
+    <error-page>
         <exception-type>com.n3.childrentoyweb.exception.ObjectNotFoundException</exception-type>
         <location>/404-not-found.jsp</location>
     </error-page>

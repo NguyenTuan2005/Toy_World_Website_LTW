@@ -158,9 +158,16 @@
                                 <div
                                         class="action-buttons d-flex justify-content-between align-items-center gap-2"
                                 >
-                                  <button class="btn btn-add-cart">
-                                    Thêm Vào Giỏ Hàng
-                                  </button>
+
+
+                                  <form action="${pageContext.request.contextPath}/cart" method="post">
+                                    <input type="hidden" name="productId" value="${p.id}" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <button type="submit" class="btn btn-add-cart">
+                                      Thêm Vào Giỏ Hàng
+                                    </button>
+                                  </form>
+
                                   <button class="btn btn-wishlist">
                                     <i class="bi bi-heart"></i>
                                   </button>
@@ -173,6 +180,8 @@
                         </div>
                       </div>
                     </div>
+
+
 
 
                     <button class="carousel-control-prev"  type="button"   onclick="nextProductsForLego()">
@@ -224,9 +233,13 @@
                                   </span>
                                 </div>
                                 <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
-                                  <button class="btn btn-add-cart">
-                                    Thêm Vào Giỏ Hàng
-                                  </button>
+                                  <form action="${pageContext.request.contextPath}/cart" method="post">
+                                    <input type="hidden" name="productId" value="${p.id}" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <button type="submit" class="btn btn-add-cart">
+                                      Thêm Vào Giỏ Hàng
+                                    </button>
+                                  </form>
                                   <button class="btn btn-wishlist">
                                     <i class="bi bi-heart"></i>
                                   </button>
@@ -338,4 +351,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </html>

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Cart implements Serializable {
+    public static final String CART = "cart";
     private Map<Long,CartItem> items;
     private User user;
 

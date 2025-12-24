@@ -8,10 +8,11 @@ import com.n3.childrentoyweb.enums.BannerGroupTag;
 import com.n3.childrentoyweb.models.Banner;
 import com.n3.childrentoyweb.services.BannerService;
 import com.n3.childrentoyweb.services.ProductService;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+
+
 @WebServlet(name = "home", value = "/home")
 public class HomeController extends HttpServlet {
     private BannerService bannerService;
@@ -20,10 +21,11 @@ public class HomeController extends HttpServlet {
     private static int FIRST_PAGE= 1;
 
     @Override
-    public void init() throws ServletException {
+    public void init()  {
         bannerService = new BannerService();
         productService = new ProductService();
     }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         this.addBanners(request);
@@ -34,19 +36,16 @@ public class HomeController extends HttpServlet {
 
     private void addBanners(HttpServletRequest request){
         List<String> banners = this.bannerService.findAllBanners(BannerGroupTag.HOME).stream().map(Banner::getImgPath).toList();
-        System.out.println(banners);
         request.setAttribute("banners", banners);
     }
 
     private void addNewProductsInMonth(HttpServletRequest request){
         List<HomeProductDTO> homeProductDTOS = this.productService.findNewImportProductsInMonth(FIRST_PAGE,PAGE_SIZE);
-        System.out.println(homeProductDTOS);
         request.setAttribute("newProductsInMonth",homeProductDTOS);
     }
 
     public void addSignatureProducts(HttpServletRequest request){
         List<HomeProductDTO> homeProductDTOS = this.productService.findSignatureProduct();
-        System.out.println(homeProductDTOS);
         request.setAttribute("signatureProducts",homeProductDTOS);
     }
 

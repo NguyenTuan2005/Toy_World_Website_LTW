@@ -106,6 +106,7 @@ public class User extends BaseModel implements Serializable {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", locationId=" + locationId +
+                ", id=" + id +
                 '}';
     }
 }

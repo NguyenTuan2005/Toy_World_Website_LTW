@@ -49,8 +49,16 @@
                         </button>
                     </c:if>
 
-                    <!-- Cart -->
+                    <%--tài khoản--%>
+                    <c:if test="${sessionScope.currentUser != null}">
+                        <button class="btn d-flex align-items-center"
+                                onclick="window.location.href='${pageContext.request.contextPath}/account'">
+                            <i class="bi bi-person-circle me-2"></i>
+                            <div>${sessionScope.currentUser.firstName}</div>
+                        </button>
+                    </c:if>
 
+                    <!-- Cart -->
                     <button class="btn d-flex align-items-center"
                             onclick="window.location.href='${pageContext.request.contextPath}/'">
                         <i class="bi bi-basket2-fill me-2"></i>
@@ -62,14 +70,7 @@
                         </c:if>
                     </button>
 
-                    <%--                    tài khoản--%>
-                    <c:if test="${sessionScope.currentUser != null}">
-                        <button class="btn d-flex align-items-center"
-                                onclick="window.location.href='${pageContext.request.contextPath}/account'">
-                            <i class="bi bi-person-circle me-2"></i>
-                            <div>%${sessionScope.currentUser.firstName}</div>
-                        </button>
-                    </c:if>
+
 
 
                 </div>

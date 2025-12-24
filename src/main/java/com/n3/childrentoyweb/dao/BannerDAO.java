@@ -12,7 +12,7 @@ public class BannerDAO extends BaseDAO{
         from banners b where b.group_tag = :tag
         and b.is_active = 1
         """;
-        return this.get().withHandle(handle-> handle.createQuery(sql)
+        return this.getJdbi().withHandle(handle-> handle.createQuery(sql)
                 .bind("tag", groupTag.getTag())
                 .mapToBean(Banner.class)
                 .list()

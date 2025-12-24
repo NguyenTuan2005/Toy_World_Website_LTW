@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="css/root.css"/>
     <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="js/login.js"/>
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
@@ -26,12 +28,12 @@
                 <form id="loginForm" class="mb-3" method="post" action="${pageContext.request.contextPath}/login">
                     <div class="mb-3">
                         <input id="loginEmail" class="form-control" type="email" name="email" value="${param.email}" placeholder="Email" required>
-                        <p class="text-danger small error-message mt-1" id="loginEmailError"></p>
+                        <p class="text-danger small error-message mt-1" id="loginEmailError">${error}</p>
                     </div>
 
                     <div class="mb-3">
                         <input  id="loginPassword" class="form-control" type="password" name="password" value="${param.password}" placeholder="Mật khẩu" required>
-                        <p class="text-danger small error-message mt-1" id="loginPasswordError"></p>
+                        <p class="text-danger small error-message mt-1" id="loginPasswordError">${error}</p>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 mb-3">Đăng nhập</button>

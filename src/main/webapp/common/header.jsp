@@ -48,23 +48,29 @@
                             Đăng nhập
                         </button>
                     </c:if>
-                    <!-- Cart -->
 
-                    <button class="btn d-flex align-items-center"
-                            onclick="window.location.href='${pageContext.request.contextPath}/'">
-                        <i class="bi bi-basket2-fill me-2"></i>
-                        Giỏ hàng
-                    </button>
-
-
-                    <%--                    tài khoản--%>
+                    <%--tài khoản--%>
                     <c:if test="${sessionScope.currentUser != null}">
                         <button class="btn d-flex align-items-center"
                                 onclick="window.location.href='${pageContext.request.contextPath}/account'">
                             <i class="bi bi-person-circle me-2"></i>
-                            Tài Khoản
+                            <div>${sessionScope.currentUser.firstName}</div>
                         </button>
                     </c:if>
+
+                    <!-- Cart -->
+                    <button class="btn d-flex align-items-center"
+                            onclick="window.location.href='${pageContext.request.contextPath}/'">
+                        <i class="bi bi-basket2-fill me-2"></i>
+                        <c:if test="${sessionScope.cart != null}">
+                            Giỏ hàng(${sessionScope.cart.totalQuantity})
+                        </c:if>
+                        <c:if test="${sessionScope.cart == null}">
+                            Giỏ hàng
+                        </c:if>
+                    </button>
+
+
 
 
                 </div>
@@ -123,7 +129,7 @@
                             <a class="nav-link text-white" href="handbook.html">Cẩm nang</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="contact.html">Giới thiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">Giới thiệu</a>
                         </li>
                     </ul>
                 </div>

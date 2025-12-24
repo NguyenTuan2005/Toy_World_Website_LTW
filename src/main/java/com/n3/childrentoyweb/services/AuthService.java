@@ -5,6 +5,8 @@ import com.n3.childrentoyweb.dto.SignUpUserDTO;
 import java.util.regex.Pattern;
 import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.models.User;
+import com.n3.childrentoyweb.utils.EmailValidation;
+import com.n3.childrentoyweb.utils.MD5Util;
 
 public class AuthService {
     private UserDAO userDAO = new UserDAO();
@@ -21,8 +23,17 @@ public class AuthService {
     );
 
     public User login(String email, String password){
-        return userDAO.login(email, password);
-    }
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email không được để trống");
+        }
+
+        if (!EmailValidation.isValidEmail(email)) {
+            throw new IllegalArgumentException("Email không đúng định dạng");
+        }
+
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Mật khẩu không được để trống");
+        }
 
     public boolean validate(SignUpUserDTO signUpUserDTO) throws IllegalArgumentException {
         return signUpUserDTO.isValidFirstName() &&
@@ -31,9 +42,4 @@ public class AuthService {
                 signUpUserDTO.isValidEmail(EMAIL_PATTERN) &&
                 signUpUserDTO.isValidPassword(PASSWORD_PATTERN);
     }
-
-    public static void main(String[] args) {
-        System.out.println( new AuthService().login("user1@gmail.com", "1"));
-    }
-
 }

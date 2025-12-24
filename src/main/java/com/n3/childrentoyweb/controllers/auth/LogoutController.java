@@ -1,4 +1,4 @@
-package com.n3.childrentoyweb.controllers;
+package com.n3.childrentoyweb.controllers.auth;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -6,11 +6,16 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(value = "/account")
-public class MyAccountController extends HttpServlet {
+@WebServlet(value = "/logout")
+public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/my-account.jsp").forward(request,response);
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 
     @Override

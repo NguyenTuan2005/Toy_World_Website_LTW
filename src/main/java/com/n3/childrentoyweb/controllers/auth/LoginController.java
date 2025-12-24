@@ -1,5 +1,6 @@
-package com.n3.childrentoyweb.controllers;
+package com.n3.childrentoyweb.controllers.auth;
 
+import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.AuthService;
@@ -36,15 +37,13 @@ public class LoginController extends HttpServlet {
         User user = authService.login(email, password);
 
         if (user != null) {
-            System.out.println(user);
-
             HttpSession session = request.getSession();
             session.setAttribute("currentUser", user);
-            session.setAttribute("roles",null);
-//            session.setMaxInactiveInterval(30 * 60); // 30 phút
+
             List<RoleEnum> roles = this.roleService.findAllByUserId(user.getId());
             session.setAttribute("roles",roles);
-            session.setMaxInactiveInterval(4*60);
+            //            session.setMaxInactiveInterval(30 * 60); // 30 phút
+            session.setMaxInactiveInterval(10*60);
 
             response.sendRedirect(request.getContextPath() + "/home");
 

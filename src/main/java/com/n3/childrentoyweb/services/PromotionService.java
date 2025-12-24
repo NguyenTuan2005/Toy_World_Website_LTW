@@ -4,4 +4,8 @@ import com.n3.childrentoyweb.dao.PromotionDAO;
 
 public class PromotionService {
     private PromotionDAO promotionDAO;
+
+    public PromotionService() {
+        this.promotionDAO = new PromotionDAO();
+    }
 }

@@ -16,4 +16,7 @@ public class PromotionDAO  extends BaseDAO{
                 .mapToBean(Promotion.class)
                 .findOne();
     }
+
+
+
 }

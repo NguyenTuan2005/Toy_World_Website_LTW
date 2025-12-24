@@ -22,7 +22,7 @@ public class AuthService {
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
     );
 
-    public User login(String email, String password){
+    public User login(String email, String password) {
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("Email không được để trống");
         }
@@ -34,6 +34,10 @@ public class AuthService {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("Mật khẩu không được để trống");
         }
+        String hashPassword = MD5Util.encryptMd5(password);
+
+        return userDAO.login(email, hashPassword);
+    }
 
     public boolean validate(SignUpUserDTO signUpUserDTO) throws IllegalArgumentException {
         return signUpUserDTO.isValidFirstName() &&

@@ -811,12 +811,6 @@ Sản phẩm sử dụng 2 Pin AAA cho điều khiển cầm tay và sạc USB c
 Đồ chơi được lấy cảm hứng từ bộ phim Bí Kíp Luyện Rồng (How to Train Your Dragon) là một bộ phim hoạt hình nổi tiếng của DreamWorks, kể về hành trình phiêu lưu của cậu bé Hiccup và chú rồng Răng Sún (Toothless). Bộ phim không chỉ hấp dẫn bởi những cảnh hành động mãn nhãn mà còn mang đến nhiều bài học sâu sắc cho trẻ em.
 Khám phá thêm các đồ chơi khác của Dragontại đây.#bikipluyenrong #howtotrainyourdragon', 34, 11);
 
-INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
-VALUES
-    (70, 169000, NULL, 51, 'Trứng Slime sưu tập khủng long Jurassic World đổi màu TOY MONSTER TM502', JSON_OBJECT('Chủ đề', 'TOY MONSTER SLIME EGG', 'Mã sản phẩm', 'TM502', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'TRUNG QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Trứng Slime sưu tập khủng long Jurassic World đổi màu TOY MONSTER TM502 - Giao hàng ngẫu nhiên
-Khám phá bộ sưu tập 12 loài khủng long đặc biệt với khả năng đổi màu theo nhiệt độ nước. Mỗi trứng bao gồm: 1 khủng long đổi màu, 1 slime đổi màu, 01 thẻ tích điểm chiến đấu và Hướng dẫn.
-ĐẶC ĐIỂM NỔI BẬT:', 34, 11);
-
 --=========================Assets===========================
 
 INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
@@ -1567,13 +1561,3 @@ VALUES
     (540, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_7.jpg?v=1747977713&width=1946', 69),
     (541, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_8.jpg?v=1747977713&width=1946', 69),
     (542, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_5.jpg?v=1747977713&width=1946', 69);
-
-INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
-VALUES
-    (543, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-khung-long-jurassic-world-doi-mau.jpg?v=1722396621&width=1946', 70),
-    (544, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_1.jpg?v=1722396712&width=1946', 70),
-    (545, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_2.jpg?v=1722396712&width=1946', 70),
-    (546, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_3.jpg?v=1722396712&width=1946', 70),
-    (547, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_4.jpg?v=1722396712&width=1946', 70),
-    (548, 'https://www.mykingdom.com.vn/cdn/shop/files/TM502_5.jpg?v=1722396712&width=1946', 70),
-    (549, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/1242f679a81c4bf89aaeecb770b6d5a7.thumbnail.0000000000.jpg?v=1747898919&width=1946', 70);

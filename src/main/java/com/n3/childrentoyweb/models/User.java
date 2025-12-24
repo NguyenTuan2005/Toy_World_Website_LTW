@@ -1,15 +1,30 @@
 package com.n3.childrentoyweb.models;
 
 
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
 import java.time.LocalDateTime;
 
 public class User extends BaseModel {
+    @ColumnName("first_name")
     private String firstName;
+
+    @ColumnName("last_name")
     private String lastName;
+
+    @ColumnName("phone")
     private String phone;
+
+    @ColumnName("gender")
     private String gender;
+
+    @ColumnName("password")
     private String password;
+
+    @ColumnName("email")
     private String email;
+
+    @ColumnName("location_id")
     private Long locationId;
 
     public String getFirstName() {

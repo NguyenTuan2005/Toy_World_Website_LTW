@@ -11,6 +11,7 @@ public class BannerDAO extends BaseDAO{
         select b.id, b.title, b.img_path, b.group_tag, b.sort_order, b.event_id, b.is_active
         from banners b where b.group_tag = :tag
         and b.is_active = 1
+        order by b.sort_order
         """;
         return this.getJdbi().withHandle(handle-> handle.createQuery(sql)
                 .bind("tag", groupTag.getTag())

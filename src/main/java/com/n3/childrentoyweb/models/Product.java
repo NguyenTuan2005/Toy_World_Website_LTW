@@ -96,6 +96,7 @@ public class Product extends BaseModel {
     @Override
     public String toString() {
         return "Product{" +
+                "super=" + super.toString() +
                 "price=" + price +
                 ", promotionId=" + promotionId +
                 ", quantity=" + quantity +

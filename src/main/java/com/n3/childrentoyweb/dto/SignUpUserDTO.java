@@ -16,6 +16,8 @@ public class SignUpUserDTO {
         this.confirmPassword = confirmPassword;
     }
 
+    public User getUser() {return user;}
+
     public String getConfirmPassword() {
         return confirmPassword;
     }

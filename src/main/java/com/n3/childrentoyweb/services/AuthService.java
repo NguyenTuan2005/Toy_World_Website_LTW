@@ -35,4 +35,5 @@ public class AuthService {
     public static void main(String[] args) {
         System.out.println( new AuthService().login("user1@gmail.com", "1"));
     }
+
 }

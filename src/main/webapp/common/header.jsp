@@ -128,7 +128,7 @@
                             <a class="nav-link text-white" href="handbook.html">Cẩm nang</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="contact.html">Giới thiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">Giới thiệu</a>
                         </li>
                     </ul>
                 </div>

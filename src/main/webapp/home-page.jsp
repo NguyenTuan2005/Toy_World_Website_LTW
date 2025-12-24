@@ -131,7 +131,7 @@
 
                           <c:forEach var="p" items="${signatureProducts}" varStatus="counter" >
                             <div id="${counter.count}" class="col-md-4 product-status-s">
-                              <div class="product-card">
+                              <div class="product-card  cursor-pointer">
                                 <span class="discount-badge">
                                   <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
                                 </span>
@@ -145,7 +145,7 @@
                                   <span class="product-sku ps-3"></span
                                 >
                                 </div>
-                                <h3 class="product-title"> cc ${p.name}
+                                <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
                                 </h3>
                                 <div class="price-section">
                                   <span class="current-price">
@@ -155,15 +155,13 @@
                                           <fmt:formatNumber value="${p.originalPrice}" type="currency" currencyCode="VND"/>
                                   </span>
                                 </div>
-                                <div
-                                        class="action-buttons d-flex justify-content-between align-items-center gap-2"
-                                >
+                                <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
 
 
                                   <form action="${pageContext.request.contextPath}/cart" method="post">
                                     <input type="hidden" name="productId" value="${p.id}" />
                                     <input type="hidden" name="quantity" value="1" />
-                                    <button type="submit" class="btn btn-add-cart">
+                                    <button type="submit" class="btn btn-danger w-100 text-wrap py-2">
                                       Thêm Vào Giỏ Hàng
                                     </button>
                                   </form>
@@ -211,7 +209,7 @@
                         <div class="row g-4">
 
                           <c:forEach var="p" items="${newProductsInMonth}" varStatus="counter">
-                            <div id ="${counter.count}" class="col-md-4 product-status"  >
+                            <div id ="${counter.count}" class="col-md-4 product-status  cursor-pointer"  >
                               <div class="product-card">
                                 <span class="discount-badge">
                                   <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
@@ -222,7 +220,7 @@
                                   <span class="product-sku ps-3"></span
                                   >
                                 </div>
-                                <h3 class="product-title"> ${p.name} ${counter.count}
+                                <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
                                 </h3>
                                 <div class="price-section">
                                   <span class="current-price">
@@ -236,7 +234,7 @@
                                   <form action="${pageContext.request.contextPath}/cart" method="post">
                                     <input type="hidden" name="productId" value="${p.id}" />
                                     <input type="hidden" name="quantity" value="1" />
-                                    <button type="submit" class="btn btn-add-cart">
+                                    <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
                                       Thêm Vào Giỏ Hàng
                                     </button>
                                   </form>

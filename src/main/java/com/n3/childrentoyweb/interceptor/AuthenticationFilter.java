@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.interceptor;
 
+import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.exception.PermissionDeniedException;
 import com.n3.childrentoyweb.models.CurrentUser;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebFilter(urlPatterns = {"/admin/*"})
 public class AuthenticationFilter implements Filter {
@@ -20,9 +22,8 @@ public class AuthenticationFilter implements Filter {
 
         if (session == null) throw new PermissionDeniedException();
 
-        CurrentUser currentUser = (CurrentUser) session.getAttribute(CurrentUser.CURRENT_USER);
-        System.out.println("User in session: " + currentUser);
-        boolean isAdmin = currentUser!= null &&  currentUser.hasAdminRole();
+        List<RoleEnum> roles = (List<RoleEnum>) session.getAttribute("roles");
+        boolean isAdmin = roles.stream().anyMatch(RoleEnum::isAdmin);
 
         if(!isAdmin) throw new PermissionDeniedException();
 

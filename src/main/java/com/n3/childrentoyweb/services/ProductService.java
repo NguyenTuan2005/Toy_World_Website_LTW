@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.ProductAssetDAO;
 import com.n3.childrentoyweb.dao.ProductDAO;
+import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.models.Product;
 
 import java.util.List;
@@ -26,5 +27,13 @@ public class ProductService {
 
     public int countAll(){
         return this.productDAO.countAll();
+    }
+
+    public List<HomeProductDTO> findNewImportProductsInMonth(int page, int pageSize) {
+        return this.productDAO.findNewImportProductsInMonth(page,pageSize);
+    }
+
+    public List<HomeProductDTO> findSignatureProduct(){
+        return this.productDAO.find(1,10,"LEGO");
     }
 }

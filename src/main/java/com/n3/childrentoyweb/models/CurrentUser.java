@@ -5,33 +5,32 @@ import com.n3.childrentoyweb.enums.Role;
 import java.util.List;
 
 public class CurrentUser {
-    private Long id;
+    private User user;
     private List<Role> roles;
 
     public static final String CURRENT_USER = "CurrentUser";
 
     public CurrentUser() {}
 
-    public CurrentUser(Long id, List<Role> roles) {
-        this.id = id;
+    public CurrentUser(User user, List<Role> roles) {
+        this.user = user;
         this.roles = roles;
     }
-    public Long getId() {
-        return id;
+
+    public User getUser() {
+        return user;
     }
-    public void setId(Long id) {
-        this.id = id;
+
+    public void setUser(User user) {
+        this.user = user;
     }
+
     public List<Role> getRoles() {
         return roles;
     }
 
-    @Override
-    public String toString() {
-        return "CurrentUser{" +
-                "id=" + id +
-                ", roles=" + roles +
-                '}';
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public boolean hasAdminRole(){

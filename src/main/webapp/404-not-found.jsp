@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <style>
         body {
             margin: 0;
@@ -122,12 +124,12 @@
 <body>
 <div class="container-404">
     <h1 class="oops-text">Oops!</h1>
-    <h2 class="error-code">404 - Page Not Found</h2>
+    <h2 class="error-code">404 - Không tìm thấy trang</h2>
     <p class="error-message">
-        The page you are looking for might have been removed<br>
-        had its name changed or is temporarily unavailable.
+        Trang bạn yêu cầu không tồn tại hoặc đã bị di chuyển.<br>
+        Vui lòng kiểm tra lại đường dẫn!
     </p>
-    <a href="home-page.jsp" class="btn-home">Go to Homepage</a>
+    <a href="home-page.jsp" class="btn-home">Về Trang Chủ</a>
 </div>
 </body>
 </html>

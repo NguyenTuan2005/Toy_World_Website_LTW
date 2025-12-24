@@ -3,10 +3,10 @@ package com.n3.childrentoyweb.models;
 
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
-public class User extends BaseModel {
+public class User extends BaseModel implements Serializable {
     @ColumnName("first_name")
     private String firstName;
 
@@ -32,31 +32,59 @@ public class User extends BaseModel {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getGender() {
         return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getLocationId() {
         return locationId;
     }
 
-    public User( String firstName, String lastName, String phone, String gender, String password, String email, Long locationId) {
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
+    }
+
+    public User(String firstName, String lastName, String phone, String gender, String password, String email, Long locationId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -75,6 +103,22 @@ public class User extends BaseModel {
         this.email = email;
         this.password = password;
     }
+
+    public User(){}
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", locationId=" + locationId +
+                '}';
+    }
+
 
     public boolean isValidFirstName() {
         return firstName != null && !firstName.trim().isEmpty();

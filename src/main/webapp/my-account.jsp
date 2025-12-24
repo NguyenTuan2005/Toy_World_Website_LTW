@@ -80,7 +80,7 @@
                             </span>
                         Họ và tên
                     </div>
-                    <div class="info-value"></div>
+                    <div class="info-value">${sessionScope.currentUser.firstName} ${sessionScope.currentUser.lastName}</div>
                 </div>
 
                 <div class="info-row">
@@ -90,7 +90,7 @@
                             </span>
                         Điện thoại
                     </div>
-                    <div class="info-value">+84398167244</div>
+                    <div class="info-value">${sessionScope.currentUser.phone}</div>
                 </div>
 
                 <div class="info-row">
@@ -100,7 +100,7 @@
                             </span>
                         Email
                     </div>
-                    <div class="info-value">nguyenvana@gmail.com</div>
+                    <div class="info-value">${sessionScope.currentUser.email}</div>
                 </div>
             </div>
         </div>
@@ -166,15 +166,15 @@
             <div class="address-header">
                 <h3>Địa chỉ giao hàng</h3>
                 <button class="btn-edit" id="btnEditAddress">
-                    <i class="fas fa-pen"></i> Sửa địa chỉ
+                    <i class="fas fa-pen"></i>Chỉnh Sửa
                 </button>
             </div>
 
             <div class="address-card">
                 <h4 id="displayName">Nguyễn Hữu Duy</h4>
-                <p><i class="fas fa-location-dot"></i> <span id="displayAddress">123 Đường ABC, Quận 1</span></p>
-                <p><i class="fas fa-phone"></i> <span id="displayPhone">0987 654 321</span></p>
-                <p><i class="fas fa-envelope"></i> <span id="displayEmail">duy@gmail.com</span></p>
+                <p><i class="bi bi-geo-alt-fill me-2"></i> <span id="displayAddress">${sessionScope.currentUserLocation.address}</span></p>
+                <p><i class="bi bi-telephone-fill me-2"></i> <span id="displayPhone">${sessionScope.currentUser.phone}</span></p>
+                <p><i class="bi bi-envelope-fill me-2"></i> <span id="displayEmail">${sessionScope.currentUser.email}</span></p>
             </div>
 
             <div class="edit-address-form" id="editAddressForm">

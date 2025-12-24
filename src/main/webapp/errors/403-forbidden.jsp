@@ -19,7 +19,7 @@
             font-family: 'Arial', sans-serif;
         }
 
-        .container-404 {
+        .container {
             text-align: center;
             padding: 20px;
         }
@@ -61,7 +61,7 @@
             color: #7f8c8d;
             margin-bottom: 35px;
             line-height: 1.6;
-            max-width: 500px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -122,14 +122,14 @@
     </style>
 </head>
 <body>
-<div class="container-404">
+<div class="container">
     <h1 class="oops-text">Oops!</h1>
-    <h2 class="error-code">404 - Không tìm thấy trang</h2>
+    <h2 class="error-code">403 - Không có quyền truy cập</h2>
     <p class="error-message">
-        Trang bạn yêu cầu không tồn tại hoặc đã bị di chuyển.<br>
-        Vui lòng kiểm tra lại đường dẫn!
+        Bạn không có quyền truy cập trang này!<br>
+        Vui lòng kiểm tra lại quyền tài khoản hoặc liên hệ quản trị viên hệ thống.
     </p>
-    <a href="home-page.jsp" class="btn-home">Về Trang Chủ</a>
+    <a href="${pageContext.request.contextPath}/home" class="btn-home">Về Trang Chủ</a>
 </div>
 </body>
 </html>

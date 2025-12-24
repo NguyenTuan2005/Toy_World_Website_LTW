@@ -5,6 +5,7 @@ import com.n3.childrentoyweb.models.Product;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductDAO  extends BaseDAO{
 
@@ -58,7 +59,7 @@ public class ProductDAO  extends BaseDAO{
         );
     }
 
-    public List<HomeProductDTO> find(int page, int pageSize, String brandName){
+    public List<HomeProductDTO> findSignatureProduct(int page, int pageSize, String brandName){
         int offset = (page - 1) * pageSize;
 
         String sql = """
@@ -159,4 +160,21 @@ public class ProductDAO  extends BaseDAO{
     }
 
 
+    public Optional<Product> findById(Long id) {
+        String sql = """
+            SELECT id, name, price, quantity, description,
+                   brand_id AS brandId,
+                   category_id AS categoryId
+            FROM products
+            WHERE is_active = 1 AND id = :id
+        """;
+
+        return super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id",id)
+                        .registerRowMapper(BeanMapper.factory(Product.class))
+                        .mapTo(Product.class)
+                        .findOne()
+        );
+    }
 }

@@ -6,6 +6,7 @@ import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.models.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService {
     private ProductDAO productDAO;
@@ -34,6 +35,9 @@ public class ProductService {
     }
 
     public List<HomeProductDTO> findSignatureProduct(){
-        return this.productDAO.find(1,10,"LEGO");
+        return this.productDAO.findSignatureProduct(1,10,"LEGO");
+    }
+    public Optional<Product> findById(Long id ){
+        return this.productDAO.findById(id);
     }
 }

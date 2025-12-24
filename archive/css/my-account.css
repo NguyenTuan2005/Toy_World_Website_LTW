@@ -5,22 +5,22 @@
 }
 
 .header-title {
-    color:  #041675;
+    color: #041675;
     text-align: center;
     margin-bottom: 30px;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar {
     background: white;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid #e9ecef;
     overflow: hidden;
 }
 
 .sidebar-header {
-    background:  rgb(213, 27, 27);
+    background: rgb(213, 27, 27);
     color: white;
     padding: 20px;
     font-weight: bold;
@@ -50,22 +50,21 @@
 }
 
 .sidebar-menu a:hover {
-    background: #f8f9fa;
     padding-left: 30px;
-    color:  rgb(213, 27, 27);
+    color: rgb(213, 27, 27);
 }
 
-    .sidebar-menu a.active {
-    color :rgb(213, 27, 27);        
+.sidebar-menu a.active {
+    color: rgb(213, 27, 27);
     /* color: white; */
     font-weight: 600;
-} 
+}
 
 .content-card {
     background: white;
     border-radius: 15px;
     padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid #e9ecef;
 }
 
 .content-title {
@@ -81,22 +80,22 @@
 }
 
 .info-label {
-    color: #999;
-    font-size: 14px;
+    color: gray;
+    font-size: 18px;
     margin-bottom: 5px;
 }
 
 .info-value {
     color: #333;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .icon-wrapper {
     display: inline-block;
     width: 35px;
     height: 35px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: lightgray;
     border-radius: 50%;
     text-align: center;
     line-height: 35px;
@@ -177,25 +176,23 @@ td img.product-img {
     object-fit: cover;
     border-radius: 8px;
 }
-#orderTable thead tr th{
+
+#orderTable thead tr th {
     color: white;
-    background:  rgb(213, 27, 27);
+    background: rgb(213, 27, 27);
 }
 
-.border-custom{
+.border-custom {
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);  
+    border: 1px solid #e9ecef;
 }
-
-
-
 
 
 .address-wrapper {
     background: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #e9ecef;
 }
 
 .address-header {
@@ -294,13 +291,11 @@ td img.product-img {
 }
 
 
-
-
- .wishlist-wrapper {
+.wishlist-wrapper {
     background: #fff;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
 }
 
 .section-title {
@@ -359,10 +354,10 @@ td img.product-img {
 }
 
 
-
 .section {
     display: none;
 }
+
 .section.active {
     display: block;
 }

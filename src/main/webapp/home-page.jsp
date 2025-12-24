@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,41 +78,16 @@
                   </div>
 
                   <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img
-                        src="https://www.mykingdom.com.vn/cdn/shop/files/1._1280x496_0995ab58-0305-4974-9d00-81ca4c0c5b58.png?v=1760340080&width=535"
-                        class="d-block w-100"
-                        alt="Lego mega sale"
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src="assets/images/banners/halloween-party-deal.png"
-                        class="d-block w-100"
-                        alt="Halloween Party Deal"
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src="assets/images/banners/buy-1-get-2.png"
-                        class="d-block w-100"
-                        alt="Buy once get twice"
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src="assets/images/banners/new-product.png"
-                        class="d-block w-100"
-                        alt="New toys"
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src="assets/images/banners/super-sale-rain.png"
-                        class="d-block w-100"
-                        alt="Super sale rain"
-                      />
-                    </div>
+
+                      <c:forEach var="banner" items="${banners}">
+                        <div class="carousel-item active">
+                          <img
+                                  src="${banner}"
+                                  class="d-block w-100"
+                                  alt="Lego mega sale"
+                          />
+                        </div>
+                      </c:forEach>
                   </div>
 
                   <button

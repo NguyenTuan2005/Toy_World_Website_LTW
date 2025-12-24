@@ -6,3 +6,13 @@ Cẩm nang (Handbook)
 Dashboard (Admin)
 Quản lý đơn hàng
 Tài khoản của tôi
+
+
+James:
+Trang chủ
+Khuyến mãi
+Giới thiệu và liên hệ
+Quản lý người dùng
+Thống kê doanh thu
+Quản lý thương hiệu
+Quản lý bài viết

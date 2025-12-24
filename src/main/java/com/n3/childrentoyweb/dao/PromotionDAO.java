@@ -7,7 +7,7 @@ import java.util.Optional;
 public class PromotionDAO  extends BaseDAO{
 
     public Optional<Promotion> findById(int id) {
-        return this.get().withHandle(handle -> handle.createQuery("""
+        return super.getJdbi().withHandle(handle -> handle.createQuery("""
                 Select p.*
                 from Promotion p
                 where p.id = :id

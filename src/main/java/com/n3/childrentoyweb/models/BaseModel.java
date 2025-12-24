@@ -34,21 +34,10 @@ public abstract class BaseModel implements Serializable {
         this.id = id;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Boolean getActive() {
         return isActive;

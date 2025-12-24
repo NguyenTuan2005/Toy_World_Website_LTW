@@ -8,7 +8,7 @@ public class UserDAO  extends BaseDAO {
     public User login(String email, String password) {
 
         String sql = """
-            SELECT u.first_name, u.last_name, phone, gender, password, email, location_id
+            SELECT u.id, u.first_name, u.last_name, phone, gender, password, email, location_id
             FROM users u
             WHERE u.email = :email
               AND u.password = :password

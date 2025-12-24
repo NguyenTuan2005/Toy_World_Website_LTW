@@ -80,7 +80,7 @@
                             </span>
                         Họ và tên
                     </div>
-                    <div class="info-value"></div>
+                    <div class="info-value">${sessionScope.currentUser.firstName} ${sessionScope.currentUser.lastName}</div>
                 </div>
 
                 <div class="info-row">
@@ -90,7 +90,7 @@
                             </span>
                         Điện thoại
                     </div>
-                    <div class="info-value">+84398167244</div>
+                    <div class="info-value">${sessionScope.currentUser.phone}</div>
                 </div>
 
                 <div class="info-row">
@@ -100,7 +100,7 @@
                             </span>
                         Email
                     </div>
-                    <div class="info-value">nguyenvana@gmail.com</div>
+                    <div class="info-value">${sessionScope.currentUser.email}</div>
                 </div>
             </div>
         </div>

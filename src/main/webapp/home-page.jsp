@@ -76,7 +76,6 @@
                   </div>
 
                   <div class="carousel-inner">
-
                       <c:forEach var="banner" items="${banners}">
                         <div class="carousel-item active">
                           <img

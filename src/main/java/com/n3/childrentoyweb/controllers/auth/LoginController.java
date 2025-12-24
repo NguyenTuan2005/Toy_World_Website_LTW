@@ -1,6 +1,5 @@
-package com.n3.childrentoyweb.controllers;
+package com.n3.childrentoyweb.controllers.auth;
 
-import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.AuthService;
 import jakarta.servlet.*;
@@ -31,8 +30,8 @@ public class LoginController extends HttpServlet {
 
             HttpSession session = request.getSession();
             session.setAttribute("currentUser", user);
-//            session.setMaxInactiveInterval(30 * 60); // 30 phút
-            session.setMaxInactiveInterval(4*60);
+//            session.setMaxInactiveInterval(60 * 60); // 30 phút
+            session.setMaxInactiveInterval(10*60);
 
             response.sendRedirect(request.getContextPath() + "/home");
 

@@ -5,7 +5,7 @@ import com.n3.childrentoyweb.utils.MD5Util;
 
 public class UserDAO  extends BaseDAO {
 
-    public User login(String email, String passwordPlain) {
+    public User login(String email, String password) {
 
         String sql = """
             SELECT u.first_name, u.last_name, phone, gender, password, email, location_id
@@ -18,7 +18,7 @@ public class UserDAO  extends BaseDAO {
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("email", email)
-                        .bind("password", MD5Util.encryptMd5(passwordPlain))
+                        .bind("password", password)
                         .mapToBean(User.class)
                         .findOne()
                         .orElse(null)

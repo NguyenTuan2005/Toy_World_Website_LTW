@@ -50,13 +50,6 @@
                     </c:if>
                     <!-- Cart -->
 
-                    <button class="btn d-flex align-items-center"
-                            onclick="window.location.href='${pageContext.request.contextPath}/'">
-                        <i class="bi bi-basket2-fill me-2"></i>
-                        Giỏ hàng
-                    </button>
-
-
                     <%--                    tài khoản--%>
                     <c:if test="${sessionScope.currentUser != null}">
                         <button class="btn d-flex align-items-center"
@@ -65,6 +58,13 @@
                             Tài Khoản
                         </button>
                     </c:if>
+
+
+                    <button class="btn d-flex align-items-center"
+                            onclick="window.location.href='${pageContext.request.contextPath}/'">
+                        <i class="bi bi-basket2-fill me-2"></i>
+                        Giỏ hàng
+                    </button>
 
 
                 </div>

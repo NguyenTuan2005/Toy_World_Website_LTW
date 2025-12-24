@@ -38,7 +38,7 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-                <a href="home-page.html" aria-label="" style="width: 200px"></a>
+                <a href="${pageContext.request.contextPath}/products" aria-label="" style="width: 200px"></a>
               </nav>
             </div>
             </div>

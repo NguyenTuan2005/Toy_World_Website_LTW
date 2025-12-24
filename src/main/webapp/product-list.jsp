@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -147,8 +146,6 @@
                             </div>
                         </div>
                     </c:forEach>
-
-
                 </div>
 
                 <!-- Pagination Section -->

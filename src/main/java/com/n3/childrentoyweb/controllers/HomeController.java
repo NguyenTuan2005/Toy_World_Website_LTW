@@ -17,8 +17,6 @@ import jakarta.servlet.annotation.*;
 public class HomeController extends HttpServlet {
     private BannerService bannerService;
     private ProductService productService;
-    private static int PAGE_SIZE = 3;
-    private static int FIRST_PAGE= 1;
 
     @Override
     public void init()  {
@@ -40,7 +38,7 @@ public class HomeController extends HttpServlet {
     }
 
     private void addNewProductsInMonth(HttpServletRequest request){
-        List<HomeProductDTO> homeProductDTOS = this.productService.findNewImportProductsInMonth(FIRST_PAGE,PAGE_SIZE);
+        List<HomeProductDTO> homeProductDTOS = this.productService.findNewImportProductsInMonth();
         request.setAttribute("newProductsInMonth",homeProductDTOS);
     }
 

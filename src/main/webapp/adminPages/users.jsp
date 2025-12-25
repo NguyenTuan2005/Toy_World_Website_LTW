@@ -36,20 +36,44 @@
     <div class="container mb-3">
         <div class="filter-section">
             <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="search-wrapper">
+                <div class="col-md-6 hstack align-items-center">
+                    <div class="search-wrapper flex-grow-1">
                         <i class="fas fa-search search-icon"></i>
-                        <input
-                                type="text"
-                                class="search-input"
-                                placeholder="Tìm theo tên người dùng..."
-                        />
+                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/users" method="post">
+                            <input
+                                    type="text"
+                                    id="searchInput"
+                                    name="keyword"
+                                    class="search-input"
+                                    placeholder="Nhập ID / Email / Phone / Tên"
+                            >
+                        </form>
+
                     </div>
+                    <script>
+                        document.getElementById("searchInput")
+                            .addEventListener("keydown", function (e) {
+                                if (e.key === "Enter") {
+                                    e.preventDefault(); // tránh reload không mong muốn
+                                    document.getElementById("searchForm").submit();
+                                }
+                            });
+                    </script>
+
                 </div>
-                <div class="col-md-6 text-end mt-3 mt-md-0">
-                    <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal" data-bs-target="#userModal">
-                        <i class="fas fa-plus"></i> Thêm người dùng
-                    </button>
+                <div class="col-md-6 d-flex align-items-center justify-content-end">
+                    <c:if test="${find_user != null}">
+                        <nav>
+                            <ul class="pagination mb-0 me-2">
+                                <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/users?page=1">Load lại bảng</a></li>
+                            </ul>
+                        </nav>
+                    </c:if>
+                    <div class="text-end mt-md-0">
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal" data-bs-target="#userModal">
+                            <i class="fas fa-plus"></i> Thêm người dùng
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,14 +151,43 @@
 
             <hr class="mx-5"/>
             <div class="d-flex justify-content-between align-items-center m-3">
-                <p class="mb-0">Hiển thị ${pageSize} trong ${totalElements} người dùng, trang hiện tại ${currentPage}, tổng trang ${totalPages+1}</p>
-                <nav>
-                    <ul class="pagination mb-0">
-                        <c:forEach var="i" begin="0" end="${totalPages}">
-                            <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/users?page=${i+1}">${i+1}</a></li>
-                        </c:forEach>
-                    </ul>
-                </nav>
+
+                <c:if test="${find_user == null}">
+                    <p class="mb-0">
+                        Hiển thị ${pageSize} trong ${totalElements} người dùng,
+                        trang hiện tại ${currentPage },
+                        tổng trang ${totalPages}
+                    </p>
+
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
+
+                                <c:choose>
+                                    <c:when test="${st.index+1 == currentPage}">
+                                        <li class="page-item active">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
+
             </div>
         </div>
     </div>
@@ -234,6 +287,7 @@
 </main>
 
 <script src="js/index.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

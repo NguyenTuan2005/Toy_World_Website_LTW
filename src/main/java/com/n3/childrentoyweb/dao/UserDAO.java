@@ -1,7 +1,16 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.ManageUserDTO;
+import com.n3.childrentoyweb.dto.UserCriteria;
 import com.n3.childrentoyweb.models.User;
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import com.n3.childrentoyweb.utils.MD5Util;
+import org.jdbi.v3.core.mapper.RowMapper;
+import org.jdbi.v3.core.result.RowView;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 public class UserDAO extends BaseDAO {
     public User findByEmail(String email) {
@@ -40,6 +49,59 @@ public class UserDAO extends BaseDAO {
         );
     }
 
+    public List<ManageUserDTO> findAllUserForManagement(int page, int pageSize){
+        int offset = (page - 1) * pageSize;
+        String sql = """
+                select
+                    u.id,
+                    u.email,
+                    u.first_name,
+                    u.last_name,
+                    u.phone,
+                    u.gender,
+                    l.province,
+                    u.created_at,
+                    u.is_active
+                from users u
+                join locations l on l.id = u.location_id
+                where  l.is_active = 1
+                order by u.created_at
+                limit :limit offset :offsets
+                """;
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit",pageSize)
+                        .bind("offsets",offset)
+                        .map((rs, ctx) -> {
+                            ManageUserDTO manageUserDTO = new ManageUserDTO();
+                            manageUserDTO.setUserId(rs.getLong("id"));
+                            manageUserDTO.setFirstName(rs.getString("first_name"));
+                            manageUserDTO.setLastName(rs.getString("last_name"));
+                            manageUserDTO.setSex(rs.getString("gender"));
+                            manageUserDTO.setProvince(rs.getString("province"));
+                            manageUserDTO.setEmail(rs.getString("email"));
+                            manageUserDTO.setPhone(rs.getString("phone"));
+                            manageUserDTO.setStatus(rs.getBoolean("is_active") ?"hoạt động":"khóa");
+                            manageUserDTO.setCreatedAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("created_at")));
+                            return manageUserDTO;
+                        })
+                        .list()
+        );
+    }
+
+    public int countAllUsers(){
+        String sql = """
+                select count(u.id)
+                from users u
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(int.class)
+                        .one()
+        );
+    }
+
     public void save(User user) {
         String sql = """
             Insert into user (first_name, last_name, phone, gender, password, email, location_id)
@@ -57,4 +119,56 @@ public class UserDAO extends BaseDAO {
                         .bind("locationId", user.getLocationId())
                 );
     }
+
+    public List<ManageUserDTO> findByCriteria(UserCriteria userCriteria) {
+
+        StringBuilder sql = new StringBuilder("""
+                    select
+                    u.id,
+                    u.email,
+                    u.first_name,
+                    u.last_name,
+                    u.phone,
+                    u.gender,
+                    l.province,
+                    u.created_at,
+                    u.is_active
+                from users u
+                join locations l on l.id = u.location_id
+                where  l.is_active = 1
+                """);
+
+        sql.append(userCriteria.getIdForSql());
+        sql.append(userCriteria.getPhoneForSql());
+        sql.append(userCriteria.getFullNameForSql());
+        sql.append(userCriteria.getEmailForSql());
+        sql.append(" limit 10");
+
+
+
+        System.out.println(sql);
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .map((rs, ctx) -> {
+                            ManageUserDTO manageUserDTO = new ManageUserDTO();
+                            manageUserDTO.setUserId(rs.getLong("id"));
+                            manageUserDTO.setFirstName(rs.getString("first_name"));
+                            manageUserDTO.setLastName(rs.getString("last_name"));
+                            manageUserDTO.setSex(rs.getString("gender"));
+                            manageUserDTO.setProvince(rs.getString("province"));
+                            manageUserDTO.setEmail(rs.getString("email"));
+                            manageUserDTO.setPhone(rs.getString("phone"));
+                            manageUserDTO.setStatus(rs.getBoolean("is_active") ?"hoạt động":"khóa");
+                            manageUserDTO.setCreatedAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("created_at")));
+                            return manageUserDTO;
+                        })
+                        .list());
+    }
+
+
+    public static void main(String[] args) {
+        new UserDAO().findByCriteria(new UserCriteria("1", "user",null,null)).stream().forEach(System.out::println);
+    }
+
+
 }

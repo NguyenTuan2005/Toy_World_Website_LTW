@@ -4,7 +4,6 @@ package com.n3.childrentoyweb.models;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class User extends BaseModel implements Serializable {
     @ColumnName("first_name")
@@ -94,6 +93,16 @@ public class User extends BaseModel implements Serializable {
         this.locationId = locationId;
     }
 
+    public User(String firstName, String lastName, String phone, String gender,
+                         String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+    }
+
     public User(){}
 
     @Override
@@ -108,5 +117,9 @@ public class User extends BaseModel implements Serializable {
                 ", locationId=" + locationId +
                 ", id=" + id +
                 '}';
+    }
+
+    public boolean matchPassword(String confirmPassword) {
+        return password.equals(confirmPassword);
     }
 }

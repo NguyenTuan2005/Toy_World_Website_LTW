@@ -23,4 +23,12 @@ public class DBProperties {
     public static final String DBNAME = properties.getProperty("db.dbname");
     public static final String USERNAME = properties.getProperty("db.username");
     public static final String PASSWORD = properties.getProperty("db.password");
+
+
+    public static final String SMTP_AUTH = properties.getProperty("mail.smtp.auth");;
+    public static final String SMTP_STARTTLS = properties.getProperty("mail.smtp.starttls.enable");;
+    public static final String SMTP_HOST = properties.getProperty("mail.smtp.host");;
+    public static final String SMTP_PORT = properties.getProperty("mail.smtp.port");
+    public static final String SMTP_USERNAME = properties.getProperty("mail.username");
+    public static final String SMTP_PASSWORD = properties.getProperty("mail.password");
 }

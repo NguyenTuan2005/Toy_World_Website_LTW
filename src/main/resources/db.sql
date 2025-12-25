@@ -45,22 +45,6 @@ CREATE TABLE `wish_lists` (
                               `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `carts` (
-                         `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         `user_id` BIGINT,
-                         `is_active` TINYINT(1) DEFAULT 1,
-                         `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE `cart_items` (
-                              `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
-                              `cart_id` BIGINT,
-                              `product_id` BIGINT,
-                              `quantity` INT,
-                              `is_active` TINYINT(1) DEFAULT 1,
-                              `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE `orders` (
                           `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
                           `user_id` BIGINT,
@@ -255,9 +239,6 @@ ALTER TABLE `user_roles` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 ALTER TABLE `user_roles` ADD FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 ALTER TABLE `wish_lists` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 ALTER TABLE `wish_lists` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-ALTER TABLE `carts` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-ALTER TABLE `cart_items` ADD FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`);
-ALTER TABLE `cart_items` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 ALTER TABLE `orders` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 ALTER TABLE `orders` ADD FOREIGN KEY (`voucher_id`) REFERENCES `vouchers` (`id`);
 ALTER TABLE `payments` ADD FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`);

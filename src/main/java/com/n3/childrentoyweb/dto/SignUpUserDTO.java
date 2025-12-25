@@ -1,8 +1,10 @@
 package com.n3.childrentoyweb.dto;
 
 import com.n3.childrentoyweb.models.User;
-
-import java.util.regex.Pattern;
+import com.n3.childrentoyweb.verifier.EmailVerifier;
+import com.n3.childrentoyweb.verifier.NameVerifier;
+import com.n3.childrentoyweb.verifier.PasswordVerifier;
+import com.n3.childrentoyweb.verifier.PhoneVerifier;
 
 public class SignUpUserDTO {
     private User user;
@@ -22,29 +24,24 @@ public class SignUpUserDTO {
         return confirmPassword;
     }
 
-    public boolean isValidFirstName() {
-        if(this.user.isValidFirstName()) return true;
-        else throw new IllegalArgumentException("Tên không hợp lệ");
+    public boolean isValidFirstName() throws IllegalArgumentException {
+        return new NameVerifier().verify(this.user.getFirstName());
     }
 
-    public boolean isValidLastName() {
-        if(this.user.isValidLastName()) return true;
-        else throw new IllegalArgumentException("Họ không hợp lệ");
+    public boolean isValidLastName() throws IllegalArgumentException {
+        return new NameVerifier().verify(this.user.getLastName());
     }
 
-    public boolean isValidPhone(Pattern phonePattern) {
-        if(this.user.isValidPhone(phonePattern)) return true;
-        else throw new IllegalArgumentException("Số điện thoại không hợp lệ");
+    public boolean isValidPhone() throws IllegalArgumentException {
+        return new PhoneVerifier().verify(this.user.getPhone());
     }
 
-    public boolean isValidEmail(Pattern emailPattern) {
-        if(this.user.isValidEmail(emailPattern)) return true;
-        else throw new IllegalArgumentException("Email không hợp lệ");
+    public boolean isValidEmail() throws IllegalArgumentException {
+        return new EmailVerifier().verify(this.user.getEmail());
     }
 
-    public boolean isValidPassword(Pattern passwordPattern) {
-        if(this.user.isValidPassword(passwordPattern)
-                && this.user.matchPassword(this.confirmPassword)) return true;
-        else throw new IllegalArgumentException("Mật khẩu không hợp lệ vui lòng nhập lại");
+    public boolean isValidPassword() throws IllegalArgumentException {
+        return new PasswordVerifier().verify(this.user.getPassword())
+                && this.user.matchPassword(this.confirmPassword);
     }
 }

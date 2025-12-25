@@ -5,7 +5,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-import static com.n3.childrentoyweb.dao.DBProperties.*;
+import static com.n3.childrentoyweb.dao.ApplicationProperties.*;
 
 public class EmailService {
 

@@ -73,6 +73,7 @@ public class ProductDAO  extends BaseDAO{
                       from  product_assets pa
                       where pa.product_id =p.id
                       and pa.is_active =1
+                      limit 1
                   ) as "img_url",
                   b.name as brand_name
               FROM products p
@@ -81,7 +82,7 @@ public class ProductDAO  extends BaseDAO{
                     ON prom.id = p.promotion_id
                     AND prom.is_active = 1
                     AND prom.expired_at >= NOW()
-              WHERE p.is_active = 1 AND b.name = :brandName
+              WHERE p.is_active = 1 AND b.name like :brandName
               ORDER BY prom.discount_percent, prom.discount_price desc
               LIMIT :limit OFFSET :offset
                 """;
@@ -90,7 +91,7 @@ public class ProductDAO  extends BaseDAO{
                 handle.createQuery(sql)
                         .bind("limit", pageSize)
                         .bind("offset", offset)
-                        .bind("brandName",brandName)
+                        .bind("brandName", "%"+brandName+"%")
                         .map((rs, ctx) -> {
                             HomeProductDTO dto = new HomeProductDTO();
 
@@ -121,6 +122,7 @@ public class ProductDAO  extends BaseDAO{
                       from  product_assets pa
                       where pa.product_id =p.id
                       and pa.is_active =1
+                      limit 1
                   ) as "img_url",
                   b.name as brand_name
               FROM products p

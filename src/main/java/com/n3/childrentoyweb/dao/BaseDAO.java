@@ -3,6 +3,8 @@ package com.n3.childrentoyweb.dao;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 
+import static com.n3.childrentoyweb.dao.ApplicationProperties.*;
+
 
 public abstract class BaseDAO {
     protected Jdbi jdbi;
@@ -18,12 +20,12 @@ public abstract class BaseDAO {
         if (dataSource == null) {
             dataSource = new MysqlDataSource();
         }
-        dataSource.setUrl("jdbc:mysql://" + DBProperties.HOST
-                                    + ":" + DBProperties.PORT
-                                    + "/" + DBProperties.DBNAME
+        dataSource.setUrl("jdbc:mysql://" + HOST
+                                    + ":" + PORT
+                                    + "/" + DBNAME
         );
-        dataSource.setUser(DBProperties.USERNAME);
-        dataSource.setPassword(DBProperties.PASSWORD);
+        dataSource.setUser(USERNAME);
+        dataSource.setPassword(PASSWORD);
         try {
             dataSource.setUseCompression(true);
             dataSource.setAutoReconnect(true);

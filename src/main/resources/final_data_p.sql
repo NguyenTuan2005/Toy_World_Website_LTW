@@ -810,4 +810,281 @@ Răng Sún (Toothless) RC có thể đập cánh giữa không trung như film t
 Sản phẩm sử dụng 2 Pin AAA cho điều khiển cầm tay và sạc USB cho Răng Sún.
 Đồ chơi được lấy cảm hứng từ bộ phim Bí Kíp Luyện Rồng (How to Train Your Dragon) là một bộ phim hoạt hình nổi tiếng của DreamWorks, kể về hành trình phiêu lưu của cậu bé Hiccup và chú rồng Răng Sún (Toothless). Bộ phim không chỉ hấp dẫn bởi những cảnh hành động mãn nhãn mà còn mang đến nhiều bài học sâu sắc cho trẻ em.
 Khám phá thêm các đồ chơi khác của Dragontại đây.#bikipluyenrong #howtotrainyourdragon', 34, 11);
+--- hoàng
 
+
+
+
+
+-- james
+
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (141, 869000, NULL, 58, 'Búp Bê Pop Reveal Boba - Bé Sữa Khoai Môn BARBIE HTJ18', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'HTJ19/HTJ18', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Pop Reveal Boba - Bé Sữa Khoai Môn BARBIE HTJ19/HTJ18...', 6, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (142, 869000, NULL, 18, 'Búp Bê Barbie Pop Reveal Boba - Bé Lục Trà Mát Lạnh BARBIE HTJ18', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'HTJ21/HTJ18', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Barbie Pop Reveal Boba - Bé Lục Trà Mát Lạnh BARBIE HTJ21/HTJ18...', 6, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (143, 319200, NULL, 2, 'Búp Bê Mini 5 inch - Electra DECORA D1019', JSON_OBJECT('Chủ đề', 'MINI DOLL', 'Mã sản phẩm', 'EL/D1019', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'DECORA', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Mini 5 inch - Electra DECORA EL/D1019...', 37, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (144, 1329000, NULL, 47, 'Gác Xép Tiệc Vui Nhộn Của Gabby GABBY DOLLHOUSE 6069755', JSON_OBJECT('Chủ đề', 'GABBY PLAYSET', 'Mã sản phẩm', '6069755', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'GABBY DOLLHOUSE', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Gác Xép Tiệc Vui Nhộn Của Gabby GABBY DOLLHOUSE 6069755...', 38, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (145, 499000, NULL, 18, 'Ban Công Rực Rỡ Của Gabby GABBY DOLLHOUSE 6069729', JSON_OBJECT('Chủ đề', 'GABBY PLAYSET', 'Mã sản phẩm', '6069729', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'GABBY DOLLHOUSE', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Ban Công Rực Rỡ Của Gabby GABBY DOLLHOUSE 6069729...', 38, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (146, 579000, NULL, 54, 'Đồ Chơi Phòng Gabby - Phòng Thủ Công Của Box Cat GABBY DOLLHOUSE 6064151', JSON_OBJECT('Chủ đề', 'GABBY ROOM', 'Mã sản phẩm', '6064151', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'GABBY DOLLHOUSE', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Phòng Gabby-Phòng Thủ Công Của Box Cat GABBY DOLLHOUSE 6064151...', 38, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (147, 699500, NULL, 38, 'Hồ Bơi Của Nàng Tiên Cá Ariel DISNEY PRINCESS MATTEL HWB39', JSON_OBJECT('Chủ đề', 'DP PLAYSET', 'Mã sản phẩm', 'HWB39', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'DISNEY PRINCESS MATTEL', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Indonesia'), 'Đồ Chơi Hồ Bơi Của Nàng Tiên Cá Ariel DISNEY PRINCESS MATTEL HWB39...', 34, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (148, 679000, NULL, 54, 'Đồ Chơi Búp Bê Bé Elizabeth DOLLSWORLD DW60372', JSON_OBJECT('Chủ đề', 'DOLLSWORLD SOFT BODY', 'Mã sản phẩm', 'DW60372', 'Tuổi', '18 tháng tuổi trở lên', 'Thương hiệu', 'DOLLSWORLD', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Bé Elizabeth DOLLSWORLD DW60372...', 37, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (149, 899000, NULL, 2, 'Búp Bê Nghề Nghiệp - Nha sĩ 1 BARBIE DHB63', JSON_OBJECT('Chủ đề', 'BARBIE CAREER', 'Mã sản phẩm', 'HKT69/DHB63', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Indonesia'), 'Đồ Chơi Búp Bê Nghề Nghiệp - Nha sĩ 1 BARBIE HKT69/DHB63...', 6, 2);
+
+
+--- bratching
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (150, 449500, NULL, 30, 'Búp Bê Nghề Nghiệp - Nha sĩ 2 DHB63', JSON_OBJECT('Chủ đề', 'BARBIE CAREER', 'Mã sản phẩm', 'HKT70/DHB63', 'Tuổi', '3year-99year', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Indonesia'), 'Đồ Chơi Búp Bê Nghề Nghiệp - Nha sĩ 2 HKT70/DHB63...', 6, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (151, 324500, NULL, 82, 'Những Người Bạn Giải Cứu Cá Heo Polly Pocket FRY35', JSON_OBJECT('Chủ đề', 'PP COMPACTS', 'Mã sản phẩm', 'HWN96/FRY35', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'POLLY POCKET', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Những Người Bạn Giải Cứu Cá Heo Polly Pocket HWN96/FRY35...', 37, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (152, 819000, NULL, 89, 'Nàng Tiên Barbie Kỳ Lân Ngọc Bích - Kỉ Niệm 65 Năm Barbie HRR16', JSON_OBJECT('Chủ đề', 'BARBIE FAIRYTALE', 'Mã sản phẩm', 'HRR16', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Nàng Tiên Barbie Kỳ Lân Ngọc Bích - Kỉ Niệm 65 Năm Barbie HRR16...', 6, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (153, 324500, NULL, 89, 'Những Người Bạn Khu Vườn Chim Công Polly Pocket FRY35', JSON_OBJECT('Chủ đề', 'PP COMPACTS', 'Mã sản phẩm', 'HWN97/FRY35', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'POLLY POCKET', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Những Người Bạn Khu Vườn Chim Công Polly Pocket HWN97/FRY35...', 37, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (154, 324500, NULL, 81, 'Những Người Bạn Xe Buýt Chở Cún Con Dạo Biển Polly Pocket FRY35', JSON_OBJECT('Chủ đề', 'PP COMPACTS', 'Mã sản phẩm', 'HRD36/FRY35', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'POLLY POCKET', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Những Người Bạn Xe Buýt Chở Cún Con Dạo Biển Polly Pocket HRD36/FRY35...', 37, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (155, 69000, NULL, 59, 'Búp Bê Mini 12cm Công Chúa DREAMEEZ 81041DRE', JSON_OBJECT('Chủ đề', 'DREAMEEZ 12CM DOLL', 'Mã sản phẩm', '81041DRE', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'DREAMEEZ', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Mini 12cm Công Chúa DREAMEEZ 81041DRE...', 37, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (156, 199000, NULL, 35, 'Đồ Chơi Bộ Kính Hiển Vi STEAM SS3303', JSON_OBJECT('Chủ đề', 'STEAM KIDS', 'Mã sản phẩm', 'SS3303', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'STEAM', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Bộ Kính Hiển Vi STEAM SS3303...', 37, 22);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (157, 824250, NULL, 89, 'Đồ Chơi Công Trường Vui Nhộn Của Thomas THOMAS FRIEND JBW20', JSON_OBJECT('Chủ đề', 'TRACKMASTER PLAYSET', 'Mã sản phẩm', 'JBW20', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'THOMAS FRIEND', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Công Trường Vui Nhộn Của Thomas THOMAS FRIEND JBW20...', 37, 26);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (158, 944250, NULL, 38, 'Đồ Chơi Trang Điểm Khổng Lồ Frozen SWEET HEART SH10125', JSON_OBJECT('Chủ đề', 'SW DISNEY', 'Mã sản phẩm', 'SH10125', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SWEET HEART', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Trang Điểm Khổng Lồ Frozen SWEET HEART SH10125...', 34, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (159, 719000, NULL, 83, 'Đồ Chơi Lắp Ráp Mini House - Phòng Khách SWEET HEART SH806', JSON_OBJECT('Chủ đề', 'SW HOUSE', 'Mã sản phẩm', 'SH806', 'Tuổi', '8year-99year', 'Thương hiệu', 'SWEET HEART', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Mini House - Phòng Khách SWEET HEART SH806...', 37, 7);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (160, 299000, NULL, 5, 'Đồ Chơi Thức Ăn Đổi Màu - Bữa Tiệc Trà SWEET HEART B1015', JSON_OBJECT('Chủ đề', 'COLOR CHANGING FOOD', 'Mã sản phẩm', 'B1015', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SWEET HEART', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Thức Ăn Đổi Màu - Bữa Tiệc Trà SWEET HEART B1015...', 37, 9);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (161, 299000, NULL, 90, 'Đồ Chơi Nhà Bếp Dáng Vali Gấu Dâu Lotso SWEET HEART SH10129', JSON_OBJECT('Chủ đề', 'SW DISNEY', 'Mã sản phẩm', 'SH10129', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SWEET HEART', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Nhà Bếp Dáng Vali Gấu Dâu Lotso SWEET HEART SH10129...', 34, 9);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (162, 729000, NULL, 54, 'Bộ Đồ Chơi Quầy Thịt Nướng BBQ SWEET HEART SH60059', JSON_OBJECT('Chủ đề', 'SW KITCHEN BIG', 'Mã sản phẩm', 'SH60059', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SWEET HEART', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Bộ Đồ Chơi Quầy Thịt Nướng BBQ SWEET HEART SH60059...', 37, 9);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (163, 149000, NULL, 62, 'Đồ Chơi Cờ Búng Đại Chiến Bóng Đá CHAMPION GAMES CPG9933D', JSON_OBJECT('Chủ đề', 'CP TABLE GAMES', 'Mã sản phẩm', 'CPG9933D', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'CHAMPION GAMES', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Preschool', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Cờ Búng Đại Chiến Bóng Đá CHAMPION GAMES CPG9933D...', 37, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (164, 99000, NULL, 25, 'Phao Bơi Khủng Long INTEX 59221', JSON_OBJECT('Chủ đề', 'SWIM RINGS', 'Mã sản phẩm', 'D/59221', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'INTEX', 'Xuất xứ thương hiệu', 'Mĩ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Phao Bơi Khủng Long INTEX D/59221...', 16, 15);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (165, 169000, NULL, 36, 'Đồ Chơi Trẻ Em Thú Phóng Banh Vui Nhộn - Kỳ Lân Năng Động OTHER BOY BRANDS HW54904', JSON_OBJECT('Chủ đề', 'SQUEEZE POPPER', 'Mã sản phẩm', 'HW54904', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'OTHER BOY BRANDS', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Trẻ Em Thú Phóng Banh Vui Nhộn - Kỳ Lân Năng Động OTHER BOY BRANDS HW54904...', 37, 3);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (166, 834000, NULL, 78, 'Bàn chơi Bi Lắc UNITED SPORT A6026', JSON_OBJECT('Chủ đề', 'TABLE GAME', 'Mã sản phẩm', 'A6026', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'UNITED SPORT', 'Xuất xứ thương hiệu', '', 'Giới tính', 'Unisex', 'Nơi sản xuất', ''), 'Đồ Chơi UNITED SPORT Bàn Chơi Bi Lắc A6026...', 37, 18);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (167, 916300, NULL, 41, 'Cờ tỷ phú - Phiên bản Ngân hàng điện tử Siêu cấp MONOPOLY E8978', JSON_OBJECT('Chủ đề', 'MNP CARRY FORWARD', 'Mã sản phẩm', 'E8978', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'MONOPOLY', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi MONOPOLY Cờ Tỷ Phú - Phiên Bản Ngân Hàng Điện Tử Siêu Cấp  E8978...', 36, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (168, 583200, NULL, 64, 'Cờ tỷ phú cơ bản MONOPOLY C1009', JSON_OBJECT('Chủ đề', 'MNP MONOPOLY', 'Mã sản phẩm', 'C1009', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'MONOPOLY', 'Xuất xứ thương hiệu', 'MỸ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi MONOPOLY Cờ Tỷ Phú Cơ Bản C1009...', 36, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (169, 119000, NULL, 87, 'Trò chơi lô tô SPIN GAMES 6038108', JSON_OBJECT('Chủ đề', 'SPIN CLASSIC GAMES', 'Mã sản phẩm', '6038108', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'SPIN GAMES', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi GAMES Trò Chơi Lô Tô 6038108...', 38, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (170, 139000, NULL, 10, 'Trò chơi cờ vua SPIN GAMES 6038140', JSON_OBJECT('Chủ đề', 'SPIN CLASSIC GAMES', 'Mã sản phẩm', '6038140', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'SPIN GAMES', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Trò chơi cờ vua...', 38, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (171, 169000, NULL, 75, 'Trò Chơi Truy Tìm 2 Cặp Hình Giống Nhau My Little Pony HASBRO GAMING G1346', JSON_OBJECT('Chủ đề', 'HASBROGAMING', 'Mã sản phẩm', 'G1497/G1346', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'HASBRO GAMING', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Trò Chơi Truy Tìm 2 Cặp Hình Giống Nhau My Little Pony HASBRO GAMING G1497/G1346...', 36, 19);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (172, 818300, NULL, 7, 'Đồ Chơi Thử Thách Phẫu Thuật Classic Operation HASBRO GAMING G0951', JSON_OBJECT('Chủ đề', 'HASBROGAMING', 'Mã sản phẩm', 'G0951', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'HASBRO GAMING', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Thử Thách Phẫu Thuật Classic Operation HASBRO GAMING G0951...', 36, 4);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (173, 169000, NULL, 29, 'Trò Chơi Truy Tìm 2 Cặp Hình Giống Nhau Peppa Pig HASBRO GAMING G1346', JSON_OBJECT('Chủ đề', 'HASBROGAMING', 'Mã sản phẩm', 'G1498/G1346', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'HASBRO GAMING', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Trò Chơi Truy Tìm 2 Cặp Hình Giống Nhau Peppa Pig HASBRO GAMING G1498/G1346...', 36, 19);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (174, 159200, NULL, 27, 'Trò Chơi Trí Tuệ Uno Teams MATTEL GAMES HXT58', JSON_OBJECT('Chủ đề', 'GAMES UNO', 'Mã sản phẩm', 'HXT58', 'Tuổi', '7 tuổi trở lên', 'Thương hiệu', 'MATTEL GAMES', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Trò Chơi Trí Tuệ Uno Teams MATTEL GAMES HXT58...', 37, 4);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (175, 759000, NULL, 83, 'Bộ Đồ Chơi Cờ Tỷ Phú Knockout Monopoly F8995', JSON_OBJECT('Chủ đề', 'MNP MONOPOLY', 'Mã sản phẩm', 'F8995', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'MONOPOLY', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Bộ Đồ Chơi  Cờ Tỷ Phú Knockout Monopoly F8995...', 36, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (176, 239200, NULL, 69, 'Đồ Chơi Cơ Bản - Grab & Go MONOPOLY F8256', JSON_OBJECT('Chủ đề', 'MNP MONOPOLY', 'Mã sản phẩm', 'F8256', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'MONOPOLY', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Cơ Bản - Grab & Go MONOPOLY F8256...', 36, 14);
+
+
+
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (177, 169000, NULL, 13, 'Trò chơi cờ cá ngựa SPIN GAMES 6038084', JSON_OBJECT('Chủ đề', 'SPIN CLASSIC GAMES', 'Mã sản phẩm', '6038084', 'Tuổi', '6year-99year', 'Thương hiệu', 'SPIN GAMES', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Trò chơi cá ngựa cực kì nổi tiếng nay xuất hiện trong một diện mạo mới đẹp hơn, sang trọng hơn, chất lượng hơn...', 38, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (178, 199000, NULL, 79, 'Trò chơi trí tuệ UNO FLIP MATTEL GAMES GDR44', JSON_OBJECT('Chủ đề', 'GAMES UNO', 'Mã sản phẩm', 'GDR44', 'Tuổi', '7 tuổi trở lên', 'Thương hiệu', 'MATTEL GAMES', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Hãy chuẩn bị tinh thần cho phiên bản hai mặt của UNO ™ cổ điển: UNO FLIP! ™...', 37, 4);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (179, 394500, NULL, 20, 'Trò chơi trí tuệ UNO STACKO MATTEL GAMES 43535', JSON_OBJECT('Chủ đề', 'GAMES UNO', 'Mã sản phẩm', '43535', 'Tuổi', '7 tuổi trở lên', 'Thương hiệu', 'MATTEL GAMES', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi MATTEL GAMES Trò Chơi Trí Tuệ Uno Stacko 43535...', 37, 4);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (180, 839300, NULL, 38, 'Cờ ca rô Connect 4 Blast HASBRO GAMING E9122', JSON_OBJECT('Chủ đề', 'HASBROGAMING CONNECT4', 'Mã sản phẩm', 'E9122', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'HASBRO GAMING', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi HASBRO GAMING Cờ Ca Rô Connect 4 Blast E9122...', 36, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (181, 399500, NULL, 42, 'MONOPOLY SPEED - Đường Đua Tốc Độ MONOPOLY E7033', JSON_OBJECT('Chủ đề', 'MNP MONOPOLY', 'Mã sản phẩm', 'E7033', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'MONOPOLY', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), NULL, 36, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (182, 59400, NULL, 93, 'Parker Brothers - Trò chơi cuộc đua No Apologies tặng 1 E237 HASBRO GAMING CBE2372-E2371', JSON_OBJECT('Chủ đề', 'HB COMBO', 'Mã sản phẩm', 'CBE2372-E2371', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'HASBRO GAMING', 'Xuất xứ thương hiệu', 'MỸ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Parker Brothers - Trò Chơi Cuộc Đua No Apologies Tặng 1 E237 HASBRO GAMING CBE2372-E2371...', 36, 14);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (183, 769300, NULL, 77, 'Trò chơi trí tuệ UNO ATTACK - Phiên bản MÁY CHIA THẺ TỰ ĐỘNG MATTEL GAMES GXY78', JSON_OBJECT('Chủ đề', 'GAMES UNO', 'Mã sản phẩm', 'GXY78', 'Tuổi', '7 tuổi trở lên', 'Thương hiệu', 'MATTEL GAMES', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), '', 37, 4);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (184, 199000, NULL, 38, 'Đồ Chơi Trò Chơi Trí Tuệ Uno - Phiên Bản All Wild MATTEL GAMES HHL35', JSON_OBJECT('Chủ đề', 'GAMES UNO', 'Mã sản phẩm', 'HHL35', 'Tuổi', '7 tuổi trở lên', 'Thương hiệu', 'MATTEL GAMES', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Trò Chơi Trí Tuệ Uno - Phiên Bản All Wild MATTEL GAMES HHL35...', 37, 4);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (185, 499000, NULL, 60, 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Thor KEEPPLAY 73052', JSON_OBJECT('Chủ đề', 'KEEPPLAY MARVEL', 'Mã sản phẩm', '73052', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'KEEPPLAY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Thor KEEPPLAY 73052...', 35, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (186, 169000, NULL, 19, 'Đồ Chơi Mô Hình Bí Ẩn Series 3 BLOX FRUITS MF3313', JSON_OBJECT('Chủ đề', 'BLOX FRUITS MINIFIGURES', 'Mã sản phẩm', 'MF3313', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'BLOX FRUITS', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Bí Ẩn Series 3 BLOX FRUITS MF3313...', 37, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (187, 280000, NULL, 50, 'Đồ Chơi Mô Hình Nook: My Little Universe At Night 52TOYS 6958985018715', JSON_OBJECT('Chủ đề', 'NOOK', 'Mã sản phẩm', '6958985018715', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', '52TOYS', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Nook: My Little Universe At Night 52TOYS 6958985018715...', 37, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (188, 269000, NULL, 52, 'Đồ Chơi Mô Hình Lắp Ráp Marvel Super Armor Block - Spiderman KEEPPLAY 73071', JSON_OBJECT('Chủ đề', 'KEEPPLAY MARVEL', 'Mã sản phẩm', '73071', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'KEEPPLAY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Lắp Ráp Marvel Super Armor Block - Spiderman KEEPPLAY 73071...', 35, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (189, 269000, NULL, 70, 'Đồ Chơi Mô Hình Lắp Ráp Marvel Super Armor Block - Iron Man KEEPPLAY 73070', JSON_OBJECT('Chủ đề', 'KEEPPLAY MARVEL', 'Mã sản phẩm', '73070', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'KEEPPLAY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Lắp Ráp Marvel Super Armor Block - Iron Man KEEPPLAY 73070...', 35, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (190, 280000, NULL, 72, 'Đồ Chơi Mô Hình Stitch Sweet Pink Series 52TOYS 6958985016544', JSON_OBJECT('Chủ đề', 'DISNEY', 'Mã sản phẩm', '6958985016544', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', '52TOYS', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Stitch Sweet Pink Series 52TOYS 6958985016544...', 34, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (191, 499000, NULL, 70, 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Black Panther KEEPPLAY 73053', JSON_OBJECT('Chủ đề', 'KEEPPLAY MARVEL', 'Mã sản phẩm', '73053', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'KEEPPLAY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Black Panther KEEPPLAY 73053...', 35, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (192, 320000, NULL, 73, 'Đồ Chơi Mô Hình Crayon Shin-Chan Classic Movie Moments 52TOYS 6958985017589', JSON_OBJECT('Chủ đề', 'CRAYON SHIN CHAN', 'Mã sản phẩm', '6958985017589', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', '52TOYS', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Crayon Shin-Chan Classic Movie Moments 52TOYS 6958985017589...', 37, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (193, 499000, NULL, 58, 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Captain America KEEPPLAY 73051', JSON_OBJECT('Chủ đề', 'KEEPPLAY MARVEL', 'Mã sản phẩm', '73051', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'KEEPPLAY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Captain America KEEPPLAY 73051...', 35, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (194, 499000, NULL, 76, 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Thanos KEEPPLAY 73054', JSON_OBJECT('Chủ đề', 'KEEPPLAY MARVEL', 'Mã sản phẩm', '73054', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'KEEPPLAY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Lắp Ráp Marvel Mecha Thanos KEEPPLAY 73054...', 35, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (195, 289000, NULL, 18, 'Đồ Chơi Minecraft Dây Cót Alex Cưỡi Ngựa MINECRAFT PMI HOR/MC1014', JSON_OBJECT('Chủ đề', 'MINECRAFT WIND-UP', 'Mã sản phẩm', 'HOR/MC1014', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'MINECRAFT PMI', 'Xuất xứ thương hiệu', 'Israel', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Minecraft Dây Cót Alex Cưỡi Ngựa MINECRAFT PMI HOR/MC1014...', 37, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (196, 289000, NULL, 13, 'Đồ Chơi Minecraft Dây Cót Noor Cưỡi Llama MINECRAFT PMI LLA/MC1014', JSON_OBJECT('Chủ đề', 'MINECRAFT WIND-UP', 'Mã sản phẩm', 'LLA/MC1014', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'MINECRAFT PMI', 'Xuất xứ thương hiệu', 'Israel', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Minecraft Dây Cót Noor Cưỡi Llama MINECRAFT PMI LLA/MC1014...', 37, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (197, 449000, NULL, 47, 'Đồ Chơi Mô Hình Crayon Shinchan Play Party Series Vinyl Plush TOP TOY 2303234410101', JSON_OBJECT('Chủ đề', 'CRAYON SHINCHAN', 'Mã sản phẩm', '2303234410101', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'TOP TOY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Crayon Shinchan Play Party Series Vinyl Plush TOP TOY 2303234410101...', 37, 35);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (198, 299000, NULL, 44, 'Đồ Chơi Mô Hình Crayon Shinchan Shiro''s Daily Life Series Figures TOP TOY 2303554410102', JSON_OBJECT('Chủ đề', 'CRAYON SHINCHAN', 'Mã sản phẩm', '2303554410102', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'TOP TOY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Crayon Shinchan Shiro''s Daily Life Series Figures TOP TOY 2303554410102...', 37, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (199, 499000, NULL, 44, 'Đồ Chơi Mô Hình Kuromi School Life Series Plush Pendant Blind Box TOP TOY 2303566610101', JSON_OBJECT('Chủ đề', 'SANRIO FAMILY', 'Mã sản phẩm', '2303566610101', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'TOP TOY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Kuromi School Life Series Plush Pendant Blind Box TOP TOY 2303566610101...', 37, 35);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (200, 299000, NULL, 53, 'Đồ Chơi Mô Hình Kuromi Magic Apprentice Series Figures Blind Box TOP TOY 2303558810106', JSON_OBJECT('Chủ đề', 'SANRIO FAMILY', 'Mã sản phẩm', '2303558810106', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'TOP TOY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Kuromi Magic Apprentice Series Figures Blind Box TOP TOY 2303558810106...', 37, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (201, 299000, NULL, 42, 'Đồ Chơi Mô Hình Disney Zootopia Judy & Nick Story Series Figures TOP TOY 2303274810107', JSON_OBJECT('Chủ đề', 'DISNEY COLLECTION', 'Mã sản phẩm', '2303274810107', 'Tuổi', '15 tuổi trở lên', 'Thương hiệu', 'TOP TOY', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Disney Zootopia Judy & Nick Story Series Figures TOP TOY 2303274810107...', 34, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (202, 679000, NULL, 27, 'Đồ Chơi Thú Nhồi Bông 11 Inch – Chủ Đề Nguyên Tố APHMAU 6412', JSON_OBJECT('Chủ đề', '11" PLUSH', 'Mã sản phẩm', '6412', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'APHMAU', 'Xuất xứ thương hiệu', 'Hoa Kỳ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Thú Nhồi Bông 11 Inch – Chủ Đề Nguyên Tố APHMAU 6412...', 3, 35);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (203, 271200, NULL, 42, 'Mèo con - Baby Persian IWAYA 3303-2VN-JS', JSON_OBJECT('Chủ đề', 'IWAYA BABY', 'Mã sản phẩm', '3303-2VN-JS', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'IWAYA', 'Xuất xứ thương hiệu', 'Nhật Bản', 'Giới tính', 'Girl', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Thú Bông Tương Tác Mèo Con - Baby Persian IWAYA 3303-2VN-JS...', 15, 35);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (204, 279300, NULL, 69, 'Cún con R/C - Chihuahua IWAYA 3159-1VN/JS', JSON_OBJECT('Chủ đề', 'IWAYA RC BABY', 'Mã sản phẩm', '3159-1VN/JS', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'IWAYA', 'Xuất xứ thương hiệu', 'NHẬT', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi IWAYA Cún Con R/C - Toypoodle 3159-6VN/JS...', 15, 35);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (205, 399000, NULL, 90, 'Chim Cánh Cụt Con IWAYA 3243-1VN-JS', JSON_OBJECT('Chủ đề', 'IWAYA BIG BABY', 'Mã sản phẩm', '3243-1VN-JS', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'IWAYA', 'Xuất xứ thương hiệu', 'Nhật Bản', 'Giới tính', 'Girl', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Thú Bông Tương Tác Chim Cánh Cụt Con  IWAYA 3243-1VN-JS...', 15, 35);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (206, 299000, NULL, 6, 'Thú Nhồi Bông CatNap POPPY PLAYTIME CP7751', JSON_OBJECT('Chủ đề', 'POPPY PLAYTIME PLUSH', 'Mã sản phẩm', 'CP7751', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'POPPY PLAYTIME', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Thú Nhồi Bông CatNap POPPY PLAYTIME CP7751...', 37, 35);

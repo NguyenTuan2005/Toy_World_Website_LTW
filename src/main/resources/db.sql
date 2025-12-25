@@ -1,5 +1,5 @@
 CREATE DATABASE toyworldsystem;
-USE toyworldsystem;
+    USE toyworldsystem;
 
 CREATE TABLE `users` (
                          `id` BIGINT AUTO_INCREMENT PRIMARY KEY,

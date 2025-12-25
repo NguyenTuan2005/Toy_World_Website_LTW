@@ -7,10 +7,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.DelayQueue;
 
 public class CacheService {
+    private static CacheService instance;
+
     private Map<String, String> cacheMap = new ConcurrentHashMap<>();
     private DelayQueue<DelayCacheItemDTO> delayQueue = new DelayQueue<>();
 
-    public CacheService() {
+    private CacheService() {
         Thread cleanupThread = new Thread(() -> {
            while (!Thread.currentThread().isInterrupted()) {
                try {
@@ -23,6 +25,13 @@ public class CacheService {
         });
         cleanupThread.setDaemon(true);
         cleanupThread.start();
+    }
+
+    public static synchronized CacheService getInstance() {
+        if (instance == null) {
+            instance = new CacheService();
+        }
+        return instance;
     }
 
     public void add(String email, String otp) {

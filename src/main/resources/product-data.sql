@@ -811,3 +811,753 @@ Sản phẩm sử dụng 2 Pin AAA cho điều khiển cầm tay và sạc USB c
 Đồ chơi được lấy cảm hứng từ bộ phim Bí Kíp Luyện Rồng (How to Train Your Dragon) là một bộ phim hoạt hình nổi tiếng của DreamWorks, kể về hành trình phiêu lưu của cậu bé Hiccup và chú rồng Răng Sún (Toothless). Bộ phim không chỉ hấp dẫn bởi những cảnh hành động mãn nhãn mà còn mang đến nhiều bài học sâu sắc cho trẻ em.
 Khám phá thêm các đồ chơi khác của Dragontại đây.#bikipluyenrong #howtotrainyourdragon', 34, 11);
 
+--=========================Assets===========================
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (1, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-ferrari-fxx-k-v29-lego-technic-42212-lg_5.jpg?v=1753159470&width=1946', 1),
+    (2, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-ferrari-fxx-k-v29-lego-technic-42212-lg_3.jpg?v=1753159470&width=1946', 1),
+    (3, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-ferrari-fxx-k-v29-lego-technic-42212-lg_1.jpg?v=1753159470&width=1946', 1),
+    (4, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-ferrari-fxx-k-v29-lego-technic-42212-lg_6.jpg?v=1753159470&width=1946', 1),
+    (5, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-ferrari-fxx-k-v29-lego-technic-42212-lg_7.jpg?v=1753159470&width=1946', 1),
+    (6, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-ferrari-fxx-k-v29-lego-technic-42212-lg_4.jpg?v=1753159470&width=1946', 1),
+    (7, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-ferrari-fxx-k-v29-lego-technic-42212-lg_2.jpg?v=1753159470&width=1946', 1);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (8, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_8.jpg?v=1751253849&width=1946', 2),
+    (9, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_9.jpg?v=1751253849&width=1946', 2),
+    (10, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_1.jpg?v=1751253849&width=1946', 2),
+    (11, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_2.jpg?v=1751253849&width=1946', 2),
+    (12, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_3.jpg?v=1751253849&width=1946', 2),
+    (13, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_4.jpg?v=1751253849&width=1946', 2),
+    (14, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_5.jpg?v=1751253849&width=1946', 2),
+    (15, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_6.jpg?v=1751253849&width=1946', 2),
+    (16, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-the-thao-koenigsegg-jesko-mau-trang-lego-technic-42184_7.jpg?v=1751253849&width=1946', 2);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (17, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-thung-gach-sang-tao-xe-hoi-va-xe-tai-lego-duplo-10439_1_efeed88a-3254-4056-bb19-96217eef150a.jpg?v=1743495181&width=1946', 3),
+    (18, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-thung-gach-sang-tao-xe-hoi-va-xe-tai-lego-duplo-10439_2.jpg?v=1743495181&width=1946', 3),
+    (19, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-thung-gach-sang-tao-xe-hoi-va-xe-tai-lego-duplo-10439_3_5fa84d45-c876-45fd-bdc9-217784817a1a.jpg?v=1743495181&width=1946', 3),
+    (20, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-thung-gach-sang-tao-xe-hoi-va-xe-tai-lego-duplo-10439_4.jpg?v=1743495181&width=1946', 3),
+    (21, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-thung-gach-sang-tao-xe-hoi-va-xe-tai-lego-duplo-10439_5.jpg?v=1743495181&width=1946', 3),
+    (22, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-thung-gach-sang-tao-xe-hoi-va-xe-tai-lego-duplo-10439_6.jpg?v=1743495181&width=1946', 3),
+    (23, 'https://www.mykingdom.com.vn/cdn/shop/files/10439.jpg?v=1743495181&width=1946', 3);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (24, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_4.jpg?v=1746778248&width=1946', 4),
+    (25, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_2.jpg?v=1746778248&width=1946', 4),
+    (26, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_11.jpg?v=1746778248&width=1946', 4),
+    (27, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_6.jpg?v=1746778248&width=1946', 4),
+    (28, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_14.jpg?v=1746778248&width=1946', 4),
+    (29, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_10.jpg?v=1746778248&width=1946', 4),
+    (30, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_9.jpg?v=1746778248&width=1946', 4),
+    (31, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_12.jpg?v=1746778248&width=1946', 4),
+    (32, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_1.jpg?v=1746778248&width=1946', 4),
+    (33, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_5.jpg?v=1746778248&width=1946', 4),
+    (34, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_15.jpg?v=1746778248&width=1946', 4),
+    (35, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_3.jpg?v=1746778248&width=1946', 4),
+    (36, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-chau-cay-vui-ve-lego-botanicals-10349_7.jpg?v=1746778248&width=1946', 4);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (37, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_2.jpg?v=1746980510&width=1946', 5),
+    (38, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_7.jpg?v=1746980510&width=1946', 5),
+    (39, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_1.jpg?v=1746980510&width=1946', 5),
+    (40, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_9.jpg?v=1746980510&width=1946', 5),
+    (41, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_6.jpg?v=1746980510&width=1946', 5),
+    (42, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_3.jpg?v=1746980510&width=1946', 5),
+    (43, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_11.jpg?v=1746980510&width=1946', 5),
+    (44, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_5.jpg?v=1746980510&width=1946', 5),
+    (45, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_4.jpg?v=1746980510&width=1946', 5),
+    (46, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_8.jpg?v=1746980510&width=1946', 5),
+    (47, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-xe-dua-nissan-skyline-gt-r-r33-lego-technic-42210_12.jpg?v=1746980510&width=1946', 5);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (48, 'https://www.mykingdom.com.vn/cdn/shop/files/10340.jpg?v=1727170962&width=1946', 6),
+    (49, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_2.jpg?v=1726679619&width=1946', 6),
+    (50, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_3.jpg?v=1726679619&width=1946', 6),
+    (51, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_4.jpg?v=1726679619&width=1946', 6),
+    (52, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_5.jpg?v=1726679619&width=1946', 6),
+    (53, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_6.jpg?v=1726679619&width=1946', 6),
+    (54, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_7.jpg?v=1726679619&width=1946', 6),
+    (55, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_8.jpg?v=1726679619&width=1946', 6),
+    (56, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_9.jpg?v=1726679619&width=1946', 6),
+    (57, 'https://www.mykingdom.com.vn/cdn/shop/files/vong-nguyet-que-lego-adults-10340_1.jpg?v=1726679619&width=1946', 6);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (58, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_2.jpg?v=1747108617&width=1946', 7),
+    (59, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_13.jpg?v=1747108617&width=1946', 7),
+    (60, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_12.jpg?v=1747108617&width=1946', 7),
+    (61, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_8.jpg?v=1747108617&width=1946', 7),
+    (62, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_11.jpg?v=1747108617&width=1946', 7),
+    (63, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_4.jpg?v=1747108617&width=1946', 7),
+    (64, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_9.jpg?v=1747108617&width=1946', 7),
+    (65, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_5.jpg?v=1747108617&width=1946', 7),
+    (66, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_7.jpg?v=1747108617&width=1946', 7),
+    (67, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_6.jpg?v=1747108617&width=1946', 7),
+    (68, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_1.jpg?v=1747108617&width=1946', 7),
+    (69, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-rong-bac-thay-rontu-lego-ninjago-71842_3.jpg?v=1747108617&width=1946', 7);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (70, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_4.jpg?v=1751603038&width=1946', 8),
+    (71, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_2.jpg?v=1751603038&width=1946', 8),
+    (72, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_5.jpg?v=1751603038&width=1946', 8),
+    (73, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_6.jpg?v=1751603038&width=1946', 8),
+    (74, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_6-1.jpg?v=1752736885&width=1946', 8),
+    (75, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_6-2.jpg?v=1752736885&width=1946', 8),
+    (76, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_6-3.jpg?v=1752736885&width=1946', 8),
+    (77, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_10.jpg?v=1752736885&width=1946', 8),
+    (78, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_8.jpg?v=1752736885&width=1946', 8),
+    (79, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_7.jpg?v=1752736885&width=1946', 8),
+    (80, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_9.jpg?v=1752736885&width=1946', 8),
+    (81, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_1.jpg?v=1752736885&width=1946', 8),
+    (82, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-trung-co-cua-ky-si-lego-creator-31168_3.jpg?v=1752736885&width=1946', 8);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (83, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_4.jpg?v=1755162627&width=1946', 9),
+    (84, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_3.jpg?v=1755162627&width=1946', 9),
+    (85, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_1.jpg?v=1755162627&width=1946', 9),
+    (86, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_7.jpg?v=1755162627&width=1946', 9),
+    (87, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_10.jpg?v=1755162627&width=1946', 9),
+    (88, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_6.jpg?v=1755162627&width=1946', 9),
+    (89, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_8.jpg?v=1755162627&width=1946', 9),
+    (90, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_9.jpg?v=1755162627&width=1946', 9),
+    (91, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-wall-e-va-eve-lego-disney-princess-43279_2.jpg?v=1755162627&width=1946', 9);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (92, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_4.jpg?v=1751604632&width=1946', 10),
+    (93, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_2.jpg?v=1751604632&width=1946', 10),
+    (94, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_5.jpg?v=1751604632&width=1946', 10),
+    (95, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_1.jpg?v=1751604632&width=1946', 10),
+    (96, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_6.jpg?v=1751604632&width=1946', 10),
+    (97, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_7.jpg?v=1751604632&width=1946', 10),
+    (98, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_8.jpg?v=1751604632&width=1946', 10),
+    (99, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-lamborghini-revuelto-lego-technic-42214_3.jpg?v=1751604632&width=1946', 10);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (100, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_4.jpg?v=1751622993&width=1946', 11),
+    (101, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_2.jpg?v=1751622993&width=1946', 11),
+    (102, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_1.jpg?v=1751622993&width=1946', 11),
+    (103, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_5.jpg?v=1751622993&width=1946', 11),
+    (104, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_9.jpg?v=1751622993&width=1946', 11),
+    (105, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_7.jpg?v=1751622993&width=1946', 11),
+    (106, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_8.jpg?v=1751622993&width=1946', 11),
+    (107, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_10.jpg?v=1751622993&width=1946', 11),
+    (108, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_6.jpg?v=1751622993&width=1946', 11),
+    (109, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-sieu-xe-the-thao-bugatti-centodieci-lego-speed-champions-77240_3.jpg?v=1751622993&width=1946', 11);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (110, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_5.jpg?v=1752743098&width=1946', 12),
+    (111, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_3.jpg?v=1752743098&width=1946', 12),
+    (112, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_1.jpg?v=1752743098&width=1946', 12),
+    (113, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_6.jpg?v=1752743098&width=1946', 12),
+    (114, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_7.jpg?v=1752743098&width=1946', 12),
+    (115, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_8.jpg?v=1752743098&width=1946', 12),
+    (116, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_9.jpg?v=1752743098&width=1946', 12),
+    (117, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_10.jpg?v=1752743098&width=1946', 12),
+    (118, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_11.jpg?v=1752743098&width=1946', 12),
+    (119, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_12.jpg?v=1752743098&width=1946', 12),
+    (120, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_2.jpg?v=1752743098&width=1946', 12),
+    (121, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-tau-vu-tru-lop-firespray-cua-jango-fett-lego-star-wars-75409_4.jpg?v=1752743098&width=1946', 12);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (122, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_4.jpg?v=1751617968&width=1946', 13),
+    (123, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_4-1.jpg?v=1752739516&width=1946', 13),
+    (124, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_4-2.jpg?v=1752739516&width=1946', 13),
+    (125, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_4-3.jpg?v=1752739516&width=1946', 13),
+    (126, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_4-5.jpg?v=1752739516&width=1946', 13),
+    (127, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_4-6.jpg?v=1752739516&width=1946', 13),
+    (128, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_5.jpg?v=1752739516&width=1946', 13),
+    (129, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_6.jpg?v=1752739516&width=1946', 13),
+    (130, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_7.jpg?v=1752739516&width=1946', 13),
+    (131, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_1.jpg?v=1752739516&width=1946', 13),
+    (132, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_8.jpg?v=1752739516&width=1946', 13),
+    (133, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_9.jpg?v=1752739516&width=1946', 13),
+    (134, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_2.jpg?v=1752739516&width=1946', 13),
+    (135, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-co-may-huy-diet-juggernaut-lego-star-wars-75413_3.jpg?v=1752739516&width=1946', 13);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (136, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_4.jpg?v=1751601624&width=1946', 14),
+    (137, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_4-1.jpg?v=1752747247&width=1946', 14),
+    (138, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_4-3.jpg?v=1752747247&width=1946', 14),
+    (139, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_4-2.jpg?v=1752747247&width=1946', 14),
+    (140, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_4-4.jpg?v=1752747247&width=1946', 14),
+    (141, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_1.jpg?v=1752747247&width=1946', 14),
+    (142, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_3.jpg?v=1752747247&width=1946', 14),
+    (143, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_5.jpg?v=1752747247&width=1946', 14),
+    (144, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_6.jpg?v=1752747247&width=1946', 14),
+    (145, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_7.jpg?v=1752747247&width=1946', 14),
+    (146, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_8.jpg?v=1752747247&width=1946', 14),
+    (147, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_9.jpg?v=1752747247&width=1946', 14),
+    (148, 'https://www.mykingdom.com.vn/cdn/shop/files/do-choi-lap-rap-lau-dai-neuschwanstein-legoarchitecture-21063_2.jpg?v=1752747247&width=1946', 14);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (149, 'https://www.mykingdom.com.vn/cdn/shop/products/eu461542_11.jpg?v=1751253959&width=1946', 15),
+    (150, 'https://www.mykingdom.com.vn/cdn/shop/files/184657108_1853183184850320_7116593188803475895_n.png?v=1751253960&width=1946', 15),
+    (151, 'https://www.mykingdom.com.vn/cdn/shop/files/184808313_1853183104850328_8758095813255733170_n.png?v=1751253960&width=1946', 15),
+    (152, 'https://www.mykingdom.com.vn/cdn/shop/files/184836524_1853183204850318_5931674224023807438_n.png?v=1751253960&width=1946', 15),
+    (153, 'https://www.mykingdom.com.vn/cdn/shop/files/186409228_1853183124850326_610539191224502157_n.png?v=1751253960&width=1946', 15),
+    (154, 'https://www.mykingdom.com.vn/cdn/shop/files/184970228_1853183164850322_7147449169946036357_n.png?v=1751253960&width=1946', 15),
+    (155, 'https://www.mykingdom.com.vn/cdn/shop/files/186459751_1853183144850324_5820908469858220960_n.png?v=1751253960&width=1946', 15),
+    (156, 'https://www.mykingdom.com.vn/cdn/shop/products/eu461542_2.jpg?v=1751253960&width=1946', 15),
+    (157, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_7d550663-dd77-4318-bce2-232e7ecad21c.jpg?v=1715109008&width=1946', 15);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (158, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-0311.jpg?v=1752216701&width=1946', 16),
+    (159, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-27_2.jpg?v=1752216701&width=1946', 16),
+    (160, 'https://www.mykingdom.com.vn/cdn/shop/files/bo-luc-lac-6-mon-cho-be-939a_f0c67ec3-ad1c-4edb-a58e-bdbc6d17a65e.jpg?v=1752452418&width=1946', 16),
+    (161, 'https://www.mykingdom.com.vn/cdn/shop/files/bo-luc-lac-6-mon-cho-be-939a.jpg?v=1752216701&width=1946', 16),
+    (162, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-27_3.jpg?v=1752216701&width=1946', 16),
+    (163, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-27_4.jpg?v=1752216701&width=1946', 16),
+    (164, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-27_5.jpg?v=1752216701&width=1946', 16),
+    (165, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-27_6.jpg?v=1752216701&width=1946', 16),
+    (166, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-27_7.jpg?v=1752216701&width=1946', 16),
+    (167, 'https://www.mykingdom.com.vn/cdn/shop/products/939a-27_8.jpg?v=1752216701&width=1946', 16);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (168, 'https://www.mykingdom.com.vn/cdn/shop/files/365d65ca9587f6c636ed0cf37ec79031_15f04b6a-b9f2-4a42-b866-6ca9834019f3.jpg?v=1751298090&width=1946', 17),
+    (169, 'https://www.mykingdom.com.vn/cdn/shop/files/e646e32649fa95498cebd416d14660f5.jpg?v=1751298090&width=1946', 17),
+    (170, 'https://www.mykingdom.com.vn/cdn/shop/files/eb4ea44e961ce7dec43c8a438875ae15.jpg?v=1751298090&width=1946', 17),
+    (171, 'https://www.mykingdom.com.vn/cdn/shop/files/702b072a8333e3d8bee25013dd6caf57.jpg?v=1751298090&width=1946', 17),
+    (172, 'https://www.mykingdom.com.vn/cdn/shop/files/4e8da1219b9e9f759f89e2a51045afbd.jpg?v=1751298090&width=1946', 17),
+    (173, 'https://www.mykingdom.com.vn/cdn/shop/files/e646e32649fa95498cebd416d14660f5_fe5814ed-7150-4248-911e-56df369d9e88.jpg?v=1751298090&width=1946', 17),
+    (174, 'https://www.mykingdom.com.vn/cdn/shop/files/eb4ea44e961ce7dec43c8a438875ae15_fab19dcd-3a04-4dec-bcc7-b37d1be76b17.jpg?v=1751298090&width=1946', 17),
+    (175, 'https://www.mykingdom.com.vn/cdn/shop/files/702b072a8333e3d8bee25013dd6caf57_b1f2d682-abdc-4e34-ae38-fc2f572f8c91.jpg?v=1751298090&width=1946', 17),
+    (176, 'https://www.mykingdom.com.vn/cdn/shop/files/4e8da1219b9e9f759f89e2a51045afbd_d15dbaad-da2e-466c-8938-b579ff69eded.jpg?v=1751298090&width=1946', 17),
+    (177, 'https://www.mykingdom.com.vn/cdn/shop/files/365d65ca9587f6c636ed0cf37ec79031.jpg?v=1751298090&width=1946', 17);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (178, 'https://www.mykingdom.com.vn/cdn/shop/files/PAB029_5618bf75-1d26-45be-ab58-6bfd137c9cbd.jpg?v=1727247767&width=1946', 18),
+    (179, 'https://www.mykingdom.com.vn/cdn/shop/products/pab029_3.jpg?v=1718164578&width=1946', 18),
+    (180, 'https://www.mykingdom.com.vn/cdn/shop/products/pab029_4.jpg?v=1718164578&width=1946', 18),
+    (181, 'https://www.mykingdom.com.vn/cdn/shop/products/pab029_2.jpg?v=1718164578&width=1946', 18),
+    (182, 'https://www.mykingdom.com.vn/cdn/shop/products/pab029_5.jpg?v=1718164578&width=1946', 18),
+    (183, 'https://www.mykingdom.com.vn/cdn/shop/products/pab029_6.jpg?v=1718164578&width=1946', 18),
+    (184, 'https://www.mykingdom.com.vn/cdn/shop/products/pab029_7.jpg?v=1718164578&width=1946', 18);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (185, 'https://www.mykingdom.com.vn/cdn/shop/files/80-606200.jpg?v=1726932451&width=1946', 19),
+    (186, 'https://www.mykingdom.com.vn/cdn/shop/products/80-606200_1.jpg?v=1684915355&width=1946', 19),
+    (187, 'https://www.mykingdom.com.vn/cdn/shop/products/80-606200_2.jpg?v=1684915355&width=1946', 19),
+    (188, 'https://www.mykingdom.com.vn/cdn/shop/products/80-606200_3.jpg?v=1684915355&width=1946', 19),
+    (189, 'https://www.mykingdom.com.vn/cdn/shop/products/80-606200_4.jpg?v=1684915355&width=1946', 19),
+    (190, 'https://www.mykingdom.com.vn/cdn/shop/products/80-606200_5.jpg?v=1684915355&width=1946', 19);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (191, 'https://www.mykingdom.com.vn/cdn/shop/files/54886.jpg?v=1716802840&width=1946', 20),
+    (192, 'https://www.mykingdom.com.vn/cdn/shop/products/54886_3.jpg?v=1716802840&width=1946', 20),
+    (193, 'https://www.mykingdom.com.vn/cdn/shop/products/54886_1.jpg?v=1716802840&width=1946', 20),
+    (194, 'https://www.mykingdom.com.vn/cdn/shop/products/54886_2_fe81dafd-500c-4d5e-b53a-5ea59fe4c90b.jpg?v=1716802840&width=1946', 20),
+    (195, 'https://www.mykingdom.com.vn/cdn/shop/products/54886_3_9e2c55d2-dbe3-4696-9030-931b0072f8eb.jpg?v=1716802840&width=1946', 20);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (196, 'https://www.mykingdom.com.vn/cdn/shop/files/BRU03570.jpg?v=1747889485&width=1946', 21),
+    (197, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_5.jpg?v=1747889485&width=1946', 21),
+    (198, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_1.jpg?v=1747889485&width=1946', 21),
+    (199, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_2.jpg?v=1747889485&width=1946', 21),
+    (200, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_3.jpg?v=1747889485&width=1946', 21),
+    (201, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_4.jpg?v=1747889485&width=1946', 21),
+    (202, 'https://www.mykingdom.com.vn/cdn/shop/files/BRU03570-04-10_c5507ab8-67f2-4271-a989-c3a8b755d7d5.jpg?v=1747889485&width=1946', 21),
+    (203, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_b5285fa0-7ee5-4f72-8f08-993d204ee88a.jpg?v=1715102335&width=1946', 21),
+    (204, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_feff9c86-12c3-4d7e-89dd-206452a9be6c.jpg?v=1760514250&width=1946', 21);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (205, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-red-bull-racing-rb20-2024-maisto-01-18-38097_5.jpg?v=1745201537&width=1946', 22),
+    (206, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-red-bull-racing-rb20-2024-maisto-01-18-38097_2.jpg?v=1745201537&width=1946', 22),
+    (207, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-red-bull-racing-rb20-2024-maisto-01-18-38097_4.jpg?v=1745201537&width=1946', 22),
+    (208, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-red-bull-racing-rb20-2024-maisto-01-18-38097_1.jpg?v=1745201537&width=1946', 22),
+    (209, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-red-bull-racing-rb20-2024-maisto-01-18-38097_3.jpg?v=1745201537&width=1946', 22),
+    (210, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-red-bull-racing-rb20-2024-maisto-01-18-38097_6.jpg?v=1745201537&width=1946', 22);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (211, 'https://www.mykingdom.com.vn/cdn/shop/files/1849.jpg?v=1760065371&width=1946', 23),
+    (212, 'https://www.mykingdom.com.vn/cdn/shop/products/1849_02.jpg?v=1760065371&width=1946', 23),
+    (213, 'https://www.mykingdom.com.vn/cdn/shop/products/1849_5.jpg?v=1760065371&width=1946', 23),
+    (214, 'https://www.mykingdom.com.vn/cdn/shop/products/1849_01.jpg?v=1760065371&width=1946', 23),
+    (215, 'https://www.mykingdom.com.vn/cdn/shop/products/1849_06.jpg?v=1760065371&width=1946', 23),
+    (216, 'https://www.mykingdom.com.vn/cdn/shop/products/1849_05.jpg?v=1760065371&width=1946', 23),
+    (217, 'https://www.mykingdom.com.vn/cdn/shop/products/1849_03.jpg?v=1760065371&width=1946', 23),
+    (218, 'https://www.mykingdom.com.vn/cdn/shop/products/184904.jpg?v=1760065371&width=1946', 23),
+    (219, 'https://www.mykingdom.com.vn/cdn/shop/products/siku_-1_2_12.jpg?v=1761203047&width=1946', 23),
+    (220, 'https://www.mykingdom.com.vn/cdn/shop/products/siku_-2_1_12.jpg?v=1761203047&width=1946', 23),
+    (221, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_ecaa5851-16ba-41f8-92c0-984f2ef18ae0.jpg?v=1732529785&width=1946', 23);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (222, 'https://www.mykingdom.com.vn/cdn/shop/files/GFH85.jpg?v=1751253968&width=1946', 24),
+    (223, 'https://www.mykingdom.com.vn/cdn/shop/products/gfh85_1.png?v=1751253968&width=1946', 24),
+    (224, 'https://www.mykingdom.com.vn/cdn/shop/products/gfh85_2.png?v=1751253968&width=1946', 24),
+    (225, 'https://www.mykingdom.com.vn/cdn/shop/products/gfh85_3.png?v=1751253968&width=1946', 24);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (226, 'https://www.mykingdom.com.vn/cdn/shop/files/HKX39-HDR29.jpg?v=1751253920&width=1946', 25),
+    (227, 'https://www.mykingdom.com.vn/cdn/shop/files/dc4e4624d4045922386b90653593db3d.jpg?v=1751253921&width=1946', 25),
+    (228, 'https://www.mykingdom.com.vn/cdn/shop/files/297a3ff70559be45f68bf78f093e6a89.jpg?v=1751253921&width=1946', 25),
+    (229, 'https://www.mykingdom.com.vn/cdn/shop/files/50a95bef317470be2f29356bb00ba5b4.jpg?v=1751253921&width=1946', 25),
+    (230, 'https://www.mykingdom.com.vn/cdn/shop/files/5a8c191378917bf8784325109356e1ba_fa7c81d2-4540-488a-9899-86fc54a2fabe.jpg?v=1751253921&width=1946', 25),
+    (231, 'https://www.mykingdom.com.vn/cdn/shop/files/297a3ff70559be45f68bf78f093e6a89_6e93a951-337b-4ab5-ac3d-d256755c47d9.jpg?v=1751253921&width=1946', 25),
+    (232, 'https://www.mykingdom.com.vn/cdn/shop/files/50a95bef317470be2f29356bb00ba5b4_695cec9d-757d-4c13-bee9-f389c5b997eb.jpg?v=1751253921&width=1946', 25);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (233, 'https://www.mykingdom.com.vn/cdn/shop/files/BRU03570.jpg?v=1747889485&width=1946', 26),
+    (234, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_5.jpg?v=1747889485&width=1946', 26),
+    (235, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_1.jpg?v=1747889485&width=1946', 26),
+    (236, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_2.jpg?v=1747889485&width=1946', 26),
+    (237, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_3.jpg?v=1747889485&width=1946', 26),
+    (238, 'https://www.mykingdom.com.vn/cdn/shop/products/bruder-bru03570_4.jpg?v=1747889485&width=1946', 26),
+    (239, 'https://www.mykingdom.com.vn/cdn/shop/files/BRU03570-04-10_c5507ab8-67f2-4271-a989-c3a8b755d7d5.jpg?v=1747889485&width=1946', 26),
+    (240, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_b5285fa0-7ee5-4f72-8f08-993d204ee88a.jpg?v=1715102335&width=1946', 26),
+    (241, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_feff9c86-12c3-4d7e-89dd-206452a9be6c.jpg?v=1760514250&width=1946', 26);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (242, 'https://www.mykingdom.com.vn/cdn/shop/files/HDR28-HDR24.jpg?v=1746497081&width=1946', 27),
+    (243, 'https://www.mykingdom.com.vn/cdn/shop/products/hdr28-hdr24_2.jpg?v=1746497081&width=1946', 27),
+    (244, 'https://www.mykingdom.com.vn/cdn/shop/products/hdr28-hdr24_1.jpg?v=1746497081&width=1946', 27),
+    (245, 'https://www.mykingdom.com.vn/cdn/shop/products/hdr28-hdr24_3.jpg?v=1746497081&width=1946', 27),
+    (246, 'https://www.mykingdom.com.vn/cdn/shop/products/hdr28-hdr24_4.jpg?v=1746497081&width=1946', 27),
+    (247, 'https://www.mykingdom.com.vn/cdn/shop/files/a204ec2e92895ed116f2c6c0c878ba47.jpg?v=1746497081&width=1946', 27),
+    (248, 'https://www.mykingdom.com.vn/cdn/shop/files/44197b78fb0b2ff0bad5e7b120fac3c7.jpg?v=1746497081&width=1946', 27),
+    (249, 'https://www.mykingdom.com.vn/cdn/shop/files/f0d79082eed2d7231af94ff2ef8f1194.jpg?v=1746497081&width=1946', 27),
+    (250, 'https://www.mykingdom.com.vn/cdn/shop/files/d8f345653385ee877e24bd163729a96b.jpg?v=1746497081&width=1946', 27),
+    (251, 'https://www.mykingdom.com.vn/cdn/shop/files/764f9633f4f3a61f6f862181077651b2.jpg?v=1746497081&width=1946', 27);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (252, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-40_2.jpg?v=1685083188&width=1946', 28),
+    (253, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-40_1.jpg?v=1685083188&width=1946', 28),
+    (254, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-40_3.jpg?v=1685083188&width=1946', 28),
+    (255, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-40_4.jpg?v=1685083188&width=1946', 28);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (256, 'https://www.mykingdom.com.vn/cdn/shop/files/1537.jpg?v=1714722485&width=1946', 29),
+    (257, 'https://www.mykingdom.com.vn/cdn/shop/products/1537_6.jpg?v=1714722485&width=1946', 29),
+    (258, 'https://www.mykingdom.com.vn/cdn/shop/products/1537-tiki-th.jpg?v=1714722485&width=1946', 29),
+    (259, 'https://www.mykingdom.com.vn/cdn/shop/products/1537_1.jpg?v=1714722485&width=1946', 29),
+    (260, 'https://www.mykingdom.com.vn/cdn/shop/products/1537_02.jpg?v=1714722485&width=1946', 29),
+    (261, 'https://www.mykingdom.com.vn/cdn/shop/products/1537_03.jpg?v=1714722485&width=1946', 29),
+    (262, 'https://www.mykingdom.com.vn/cdn/shop/products/1537_04.jpg?v=1714722485&width=1946', 29),
+    (263, 'https://www.mykingdom.com.vn/cdn/shop/products/1537_05.jpg?v=1714722485&width=1946', 29),
+    (264, 'https://www.mykingdom.com.vn/cdn/shop/products/1537_7.jpg?v=1714722485&width=1946', 29);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (265, 'https://www.mykingdom.com.vn/cdn/shop/files/1730.jpg?v=1751253935&width=1946', 30),
+    (266, 'https://www.mykingdom.com.vn/cdn/shop/products/1730_2.jpg?v=1751253935&width=1946', 30),
+    (267, 'https://www.mykingdom.com.vn/cdn/shop/products/1730_3.jpg?v=1751253935&width=1946', 30),
+    (268, 'https://www.mykingdom.com.vn/cdn/shop/products/1730_4.jpg?v=1751253936&width=1946', 30),
+    (269, 'https://www.mykingdom.com.vn/cdn/shop/products/1730_5.jpg?v=1751253936&width=1946', 30),
+    (270, 'https://www.mykingdom.com.vn/cdn/shop/products/1730_6.jpg?v=1751253936&width=1946', 30),
+    (271, 'https://www.mykingdom.com.vn/cdn/shop/products/1730_7.jpg?v=1751253936&width=1946', 30),
+    (272, 'https://www.mykingdom.com.vn/cdn/shop/products/1730_8.jpg?v=1751253936&width=1946', 30),
+    (273, 'https://www.mykingdom.com.vn/cdn/shop/products/1730.jpg?v=1751253936&width=1946', 30);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (274, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-ferrari-racing-sf-24-2024-maisto-16-18-36844_7.jpg?v=1760061802&width=1946', 31),
+    (275, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-ferrari-racing-sf-24-2024-maisto-16-18-36844_3.jpg?v=1760061802&width=1946', 31),
+    (276, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-ferrari-racing-sf-24-2024-maisto-16-18-36844_5.jpg?v=1760061802&width=1946', 31),
+    (277, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-ferrari-racing-sf-24-2024-maisto-16-18-36844_2.jpg?v=1760061802&width=1946', 31),
+    (278, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-ferrari-racing-sf-24-2024-maisto-16-18-36844_1.jpg?v=1744858004&width=1946', 31),
+    (279, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-ferrari-racing-sf-24-2024-maisto-16-18-36844_4.jpg?v=1744858004&width=1946', 31),
+    (280, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-dua-f1-1-43-ferrari-racing-sf-24-2024-maisto-16-18-36844_6.jpg?v=1744858004&width=1946', 31);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (281, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-38_2.jpg?v=1685083133&width=1946', 32),
+    (282, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-38_1.jpg?v=1685083133&width=1946', 32),
+    (283, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-38_3.jpg?v=1685083133&width=1946', 32),
+    (284, 'https://www.mykingdom.com.vn/cdn/shop/products/vn463875-38_4.jpg?v=1685083133&width=1946', 32),
+    (285, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_f46eebf8-1a83-4ece-888d-ab59ef9c321b.jpg?v=1745816245&width=1946', 32);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (286, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677223rf_1.jpg?v=1751253926&width=1946', 33),
+    (287, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677223rp_1.jpg?v=1751253926&width=1946', 33),
+    (288, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677223rs_1.jpg?v=1751253926&width=1946', 33),
+    (289, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677223rb_1.jpg?v=1751253926&width=1946', 33);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (290, 'https://www.mykingdom.com.vn/cdn/shop/products/179795_1.jpg?v=1742374683&width=1946', 34),
+    (291, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-b-193-booster-ultimate-valkyrie-lg-v-9-179795_828c4518-1e77-48c0-9664-d364cef3a3b6.jpg?v=1742374683&width=1946', 34),
+    (292, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_7ec9a609-79f1-4bb9-99a8-4ef628acbc3a.jpg?v=1742290359&width=1946', 34),
+    (293, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-b-193-booster-ultimate-valkyrie-lg-v-9-179795.jpg?v=1742374683&width=1946', 34),
+    (294, 'https://www.mykingdom.com.vn/cdn/shop/products/b-193_179795_copy_28.04.jpg?v=1742374683&width=1946', 34);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (295, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-b-180-booster-dynamite-belial-nx-vn-2-173670_9464c799-20dd-4ef4-b769-4ecfb4ba9adc.jpg?v=1727233912&width=1946', 35),
+    (296, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-b-180-booster-dynamite-belial-nx-vn-2-173670.jpg?v=1721818516&width=1946', 35),
+    (297, 'https://www.mykingdom.com.vn/cdn/shop/products/b-180_173670_copy_28.04.jpg?v=1721818592&width=1946', 35),
+    (298, 'https://www.mykingdom.com.vn/cdn/shop/files/88090ee0857b5167c4c93c27c673860b.jpg?v=1721818592&width=1946', 35),
+    (299, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_42d44c5e-665e-44e5-9580-6f746c4ae1b4.jpg?v=1742290329&width=1946', 35);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (300, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-tuan-tra-patrol-cop-dien-nang-miniiforce-505001_1.png?v=1718945152&width=1946', 36),
+    (301, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-tuan-tra-patrol-cop-dien-nang-miniiforce-505001_2.png?v=1758857174&width=1946', 36),
+    (302, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-tuan-tra-patrol-cop-dien-nang-miniiforce-505001_3.png?v=1758857175&width=1946', 36),
+    (303, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-tuan-tra-patrol-cop-dien-nang-miniiforce-505001_4.png?v=1758857175&width=1946', 36);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (304, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-b-192-booster-greatest-raphael-ov-hxt-173779_a0054b44-7900-47f7-a059-f56d79fb5de6.jpg?v=1727233221&width=1946', 37),
+    (305, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_7ec9a609-79f1-4bb9-99a8-4ef628acbc3a.jpg?v=1742290359&width=1946', 37),
+    (306, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-b-192-booster-greatest-raphael-ov-hxt-173779.jpg?v=1742290365&width=1946', 37),
+    (307, 'https://www.mykingdom.com.vn/cdn/shop/products/b-192_173779_3.jpg?v=1742290365&width=1946', 37),
+    (308, 'https://www.mykingdom.com.vn/cdn/shop/files/5f8344df91d85a28ea657108dace989e.jpg?v=1742290365&width=1946', 37),
+    (309, 'https://www.mykingdom.com.vn/cdn/shop/files/c6a6c36df96b96aafef7e837d8c08f52.jpg?v=1742290365&width=1946', 37),
+    (310, 'https://www.mykingdom.com.vn/cdn/shop/files/90b602d5d4a586875d069df9f8c9c251.jpg?v=1742290365&width=1946', 37);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (311, 'https://www.mykingdom.com.vn/cdn/shop/files/EU881110.jpg?v=1724300383&width=1946', 38),
+    (312, 'https://www.mykingdom.com.vn/cdn/shop/products/EU881110_3_5a86b338-15b7-4d76-86e3-87972c5ffd90.jpg?v=1724300406&width=1946', 38),
+    (313, 'https://www.mykingdom.com.vn/cdn/shop/products/EU881110_4_eaa48b8e-6f42-473b-95f5-af50feaf83c4.jpg?v=1724300406&width=1946', 38),
+    (314, 'https://www.mykingdom.com.vn/cdn/shop/products/EU881110_5_bc5a244c-782a-4f2a-a1f5-0d5150823073.jpg?v=1724300406&width=1946', 38),
+    (315, 'https://www.mykingdom.com.vn/cdn/shop/products/EU881110_2_e7945e70-4414-4b22-ad67-df7a788e0e87.jpg?v=1724300406&width=1946', 38),
+    (316, 'https://www.mykingdom.com.vn/cdn/shop/products/EU881110_1_dc5bc063-c57e-4c7b-9758-5c6ec79a61bf.jpg?v=1724300406&width=1946', 38);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (317, 'https://www.mykingdom.com.vn/cdn/shop/files/910381.jpg?v=1746863517&width=1946', 39),
+    (318, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-01-starter-dran-sword-3-60f-beyblade-x-910381_4.jpg?v=1746863517&width=1946', 39),
+    (319, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-01-starter-dran-sword-3-60f-beyblade-x-910381_2.jpg?v=1746863517&width=1946', 39),
+    (320, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-01-starter-dran-sword-3-60f-beyblade-x-910381_3.jpg?v=1746863517&width=1946', 39),
+    (321, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-01-starter-dran-sword-3-60f-beyblade-x-910381_1.jpg?v=1746863517&width=1946', 39);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (322, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_6_4a893582-57ca-45f8-9d22-68094402cfb5.jpg?v=1751253869&width=1946', 40),
+    (323, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_1_96ef8f8c-60b2-4fe4-9088-398551ac8568.jpg?v=1751253869&width=1946', 40),
+    (324, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_5_dfbe9e00-8035-4652-8b49-502680f29a54.jpg?v=1751253869&width=1946', 40),
+    (325, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_2_0a8e8824-6102-4b10-9dbd-6e57426c740c.jpg?v=1751253869&width=1946', 40),
+    (326, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_3_6b0efc69-0cde-4b08-aafe-07af5abcf819.jpg?v=1751253869&width=1946', 40),
+    (327, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_4_51ffe9ae-cc1e-4f06-83c4-0d81690d8c73.jpg?v=1751253869&width=1946', 40),
+    (328, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_7.jpg?v=1751253869&width=1946', 40),
+    (329, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-bien-hinh-co-lon-jett-tia-chop-superwings-yw780210_8.jpg?v=1751253869&width=1946', 40);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (330, 'https://www.mykingdom.com.vn/cdn/shop/files/913054_2deed672-5b88-420a-b723-a18f3d260bf2.jpg?v=1752024916&width=1946', 41),
+    (331, 'https://www.mykingdom.com.vn/cdn/shop/files/913054_75c60469-c81d-493f-b3db-8e9626e2df23.jpg?v=1752203718&width=1946', 41),
+    (332, 'https://www.mykingdom.com.vn/cdn/shop/files/913054.jpg?v=1727843629&width=1946', 41),
+    (333, 'https://www.mykingdom.com.vn/cdn/shop/files/be-phong-bx-18-string-launcher-beyblade-x-913054_3.jpg?v=1727319594&width=1946', 41),
+    (334, 'https://www.mykingdom.com.vn/cdn/shop/files/be-phong-bx-18-string-launcher-beyblade-x-913054_1.jpg?v=1727319594&width=1946', 41),
+    (335, 'https://www.mykingdom.com.vn/cdn/shop/files/be-phong-bx-18-string-launcher-beyblade-x-913054_2.jpg?v=1727319594&width=1946', 41);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (336, 'https://www.mykingdom.com.vn/cdn/shop/products/123842_1_0794b749-a889-46bc-b087-7b0429751cad.jpg?v=1706986959&width=1946', 42),
+    (337, 'https://www.mykingdom.com.vn/cdn/shop/products/123842_3_40458cfa-f48d-4b11-8cd7-87c741d613b9.jpg?v=1706986959&width=1946', 42),
+    (338, 'https://www.mykingdom.com.vn/cdn/shop/products/123842_2_00be254b-7202-40de-9284-9377a5bad695.jpg?v=1706986959&width=1946', 42);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (339, 'https://cdn.shopify.com/s/files/1/0731/6514/4343/files/913078.jpg?v=1743736924&width=1946', 43),
+    (340, 'https://cdn.shopify.com/s/files/1/0731/6514/4343/files/con-quay-bx-20-drandagger-deck-set-beyblade-x-913078_2.jpg?v=1743736924&width=1946', 43),
+    (341, 'https://cdn.shopify.com/s/files/1/0731/6514/4343/files/con-quay-bx-20-drandagger-deck-set-beyblade-x-913078_1.jpg?v=1743736924&width=1946', 43);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (342, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-bau-troii-jet-cop-phong-nang-miniforce-505005_1.png?v=1751253850&width=1946', 44),
+    (343, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-bau-troii-jet-cop-phong-nang-miniforce-505005_2.png?v=1751253850&width=1946', 44),
+    (344, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-bau-troii-jet-cop-phong-nang-miniforce-505005_3.png?v=1751253850&width=1946', 44),
+    (345, 'https://www.mykingdom.com.vn/cdn/shop/files/robot-sieu-canh-sat-bau-troii-jet-cop-phong-nang-miniforce-505005_4.png?v=1751253851&width=1946', 44),
+    (346, 'https://www.mykingdom.com.vn/cdn/shop/files/preview_images/hqdefault_124e9f7c-4a78-41a6-849b-f25bcd7f1cba.jpg?v=1742092151&width=1946', 44);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (347, 'https://www.mykingdom.com.vn/cdn/shop/files/912965_4a26774f-97c7-42a8-82b9-2acc07d4ad1f.jpg?v=1752024924&width=1946', 45),
+    (348, 'https://www.mykingdom.com.vn/cdn/shop/files/912965_8f700b62-7f5a-455b-b5c6-d97335ea87cd.jpg?v=1752203722&width=1946', 45),
+    (349, 'https://www.mykingdom.com.vn/cdn/shop/files/912965.jpg?v=1743737083&width=1946', 45),
+    (350, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-14-random-booster-vol-1-beyblade-x-912965_2.jpg?v=1743737083&width=1946', 45),
+    (351, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-14-random-booster-vol-1-beyblade-x-912965_1.jpg?v=1743737083&width=1946', 45);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (352, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-23-starter-phoenixwing-beyblade-x-913092_4.jpg?v=1736852227&width=1946', 46),
+    (353, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-23-starter-phoenixwing-beyblade-x-913092_1.jpg?v=1736852227&width=1946', 46),
+    (354, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-23-starter-phoenixwing-beyblade-x-913092_2.jpg?v=1736852227&width=1946', 46),
+    (355, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-23-starter-phoenixwing-beyblade-x-913092_3.jpg?v=1736852227&width=1946', 46);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (356, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-31-random-booster-vol-3-beyblade-x-914532_2.jpg?v=1743736886&width=1946', 47),
+    (357, 'https://www.mykingdom.com.vn/cdn/shop/files/con-quay-bx-31-random-booster-vol-3-beyblade-x-914532_1.jpg?v=1743736886&width=1946', 47);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (358, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677118rf.jpg?v=1718708498&width=1946', 48),
+    (359, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677118rp.jpg?v=1718708498&width=1946', 48),
+    (360, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677118rs.jpg?v=1718708498&width=1946', 48),
+    (361, 'https://www.mykingdom.com.vn/cdn/shop/products/eu677118rb.jpg?v=1718708498&width=1946', 48);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (362, 'https://www.mykingdom.com.vn/cdn/shop/files/301157.jpg?v=1751253845&width=1946', 49),
+    (363, 'https://www.mykingdom.com.vn/cdn/shop/files/tobot-bien-hinh-chien-binh-nhiet-huyet-z-tobot-301157.png?v=1751253845&width=1946', 49),
+    (364, 'https://www.mykingdom.com.vn/cdn/shop/files/tobot-bien-hinh-chien-binh-nhiet-huyet-z-tobot-301157_2.jpg?v=1751253845&width=1946', 49),
+    (365, 'https://www.mykingdom.com.vn/cdn/shop/files/tobot-bien-hinh-chien-binh-nhiet-huyet-z-tobot-301157_1.jpg?v=1751253845&width=1946', 49),
+    (366, 'https://www.mykingdom.com.vn/cdn/shop/files/tobot-bien-hinh-chien-binh-nhiet-huyet-z-tobot-301157_3.jpg?v=1751253845&width=1946', 49);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (367, 'https://www.mykingdom.com.vn/cdn/shop/products/6069059_2_ba7a6591-1885-4653-acb0-6e58f0415bd1.jpg?v=1718707226&width=1946', 50),
+    (368, 'https://www.mykingdom.com.vn/cdn/shop/products/6069059_3_11cd88cb-1dcd-42c7-a45f-8b70e3845bca.jpg?v=1718707226&width=1946', 50),
+    (369, 'https://www.mykingdom.com.vn/cdn/shop/products/6069059_4_52de01ed-bc8e-46bd-97f4-7ab6541ad332.jpg?v=1718707226&width=1946', 50),
+    (370, 'https://www.mykingdom.com.vn/cdn/shop/products/6069059_5_1503c536-113a-40dd-be9d-1576af82212e.jpg?v=1718707226&width=1946', 50),
+    (371, 'https://www.mykingdom.com.vn/cdn/shop/products/6069059_1_0987fe71-72a9-4f91-822d-cde34b3fc67c.jpg?v=1718707226&width=1946', 50);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (372, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6060547_4.jpg?v=1718705521&width=1946', 51),
+    (373, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6060547_2.jpg?v=1718705521&width=1946', 51),
+    (374, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6060547_3.jpg?v=1718705521&width=1946', 51),
+    (375, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6060547_1.jpg?v=1718705521&width=1946', 51);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (376, 'https://www.mykingdom.com.vn/cdn/shop/products/6069058_5_fc79d32d-4b50-4fd4-97bc-e8d436bd139d.jpg?v=1718707399&width=1946', 52),
+    (377, 'https://www.mykingdom.com.vn/cdn/shop/products/6069058_2_fb40b6de-9ef1-4f80-81e5-7f98aec29676.jpg?v=1718707399&width=1946', 52),
+    (378, 'https://www.mykingdom.com.vn/cdn/shop/products/6069058_3_16768660-ae4e-4a81-a6d0-f4df4328ca58.jpg?v=1718707399&width=1946', 52),
+    (379, 'https://www.mykingdom.com.vn/cdn/shop/products/6069058_4_81da7518-4593-4101-a7f8-d5fdaa42836a.jpg?v=1718707399&width=1946', 52),
+    (380, 'https://www.mykingdom.com.vn/cdn/shop/products/6069058_1_2a7a9c97-31b2-4090-9883-cf1285d24d3b.jpg?v=1718707399&width=1946', 52);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (381, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-cuu-ho-co-ban-paw-patrol-marshall-6061798.jpg?v=1718705417&width=1946', 53),
+    (382, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061798_3.jpg?v=1718705524&width=1946', 53),
+    (383, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061798_4.jpg?v=1718705524&width=1946', 53),
+    (384, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061798_5.jpg?v=1718705524&width=1946', 53),
+    (385, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061798_2.jpg?v=1718705524&width=1946', 53),
+    (386, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061798_1.jpg?v=1718705524&width=1946', 53);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (387, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-cuu-ho-co-ban-paw-patrol-chase-6061799.jpg?v=1718705509&width=1946', 54),
+    (388, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061799_4.jpg?v=1718705536&width=1946', 54),
+    (389, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061799_3.jpg?v=1718705536&width=1946', 54),
+    (390, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061799_5.jpg?v=1718705536&width=1946', 54),
+    (391, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061799_2.jpg?v=1718705536&width=1946', 54),
+    (392, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061799_1.jpg?v=1718705536&width=1946', 54);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (393, 'https://www.mykingdom.com.vn/cdn/shop/files/xe-cuu-ho-co-ban-paw-patrol-skye-6061800.jpg?v=1718705652&width=1946', 55),
+    (394, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061800_4.jpg?v=1718705712&width=1946', 55),
+    (395, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061800_2.jpg?v=1718705712&width=1946', 55),
+    (396, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061800_3.jpg?v=1718705712&width=1946', 55),
+    (397, 'https://www.mykingdom.com.vn/cdn/shop/products/mykingdom-6061800_1.jpg?v=1718705712&width=1946', 55);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (398, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_2.jpg?v=1747219656&width=1946', 56),
+    (399, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_3.jpg?v=1747219656&width=1946', 56),
+    (400, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_5.jpg?v=1747219656&width=1946', 56),
+    (401, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_7.jpg?v=1747219656&width=1946', 56),
+    (402, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_4.jpg?v=1747219656&width=1946', 56),
+    (403, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_6.jpg?v=1747219656&width=1946', 56),
+    (404, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_1.jpg?v=1747219656&width=1946', 56),
+    (405, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-tu-no-bao-chua-t-rex-primal-hatch-6072462_8.jpg?v=1747219656&width=1946', 56);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (406, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_16.jpg?v=1749119463&width=1946', 57),
+    (407, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_10.jpg?v=1749119463&width=1946', 57),
+    (408, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_11.jpg?v=1749119463&width=1946', 57),
+    (409, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_8.jpg?v=1749119463&width=1946', 57),
+    (410, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_12.jpg?v=1749119463&width=1946', 57),
+    (411, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_13.jpg?v=1749119463&width=1946', 57),
+    (412, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_14.jpg?v=1749119463&width=1946', 57),
+    (413, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_15.jpg?v=1749119463&width=1946', 57),
+    (414, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_2_46d9a5fe-0b58-41bb-ac4d-57347f873580.jpg?v=1749119463&width=1946', 57),
+    (415, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_3_7f69b09f-a59a-441b-a79b-0e6eaf41db98.jpg?v=1749119463&width=1946', 57),
+    (416, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_4.jpg?v=1749119463&width=1946', 57),
+    (417, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_5.jpg?v=1749119463&width=1946', 57),
+    (418, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_6.jpg?v=1749119463&width=1946', 57),
+    (419, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_7.jpg?v=1749119463&width=1946', 57),
+    (420, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_9.jpg?v=1749119463&width=1946', 57),
+    (421, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-jurassic-world-tai-sinh-toy-monster-t01532_1_f4213402-368e-42a9-810d-8baebd0f5a00.jpg?v=1749119463&width=1946', 57);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (422, 'https://www.mykingdom.com.vn/cdn/shop/files/c9028582d81bff479c8d8d12d95549b7.jpg?v=1720498924&width=1946', 58),
+    (423, 'https://www.mykingdom.com.vn/cdn/shop/files/1b85df4382bad50937b5b0b98130eebb.jpg?v=1720498924&width=1946', 58);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (424, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_0_a209c1c9-1c7c-4f65-b39a-89b3e4d352b1.jpg?v=1752452372&width=1946', 59),
+    (425, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_1-1_b7039043-5d67-4de1-8dd8-3192b2183c6f.jpg?v=1752452372&width=1946', 59),
+    (426, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_0.jpg?v=1725855127&width=1946', 59),
+    (427, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_1-1.jpg?v=1725855227&width=1946', 59),
+    (428, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_4.jpg?v=1725704274&width=1946', 59),
+    (429, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_2.jpg?v=1725704273&width=1946', 59),
+    (430, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_3.jpg?v=1725704274&width=1946', 59),
+    (431, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_6_59310d0f-858d-49df-abc4-0e77e1a6d8da.jpg?v=1752452372&width=1946', 59),
+    (432, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_7_77700cb9-441d-4cb1-976d-aa5dd6824bc8.jpg?v=1752452372&width=1946', 59),
+    (433, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_6_e54a30f5-03a5-4eb6-b3f9-7b7d5d306555.jpg?v=1725855184&width=1946', 59),
+    (434, 'https://www.mykingdom.com.vn/cdn/shop/files/jw-khung-long-becklespinax-co-am-thanh-jurassic-world-hxf52_7_25de795f-3747-4213-8a1b-4e2b91650120.jpg?v=1725855184&width=1946', 59);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (435, 'https://www.mykingdom.com.vn/cdn/shop/files/saga-khung-long-chien-dau-t-rex-jurassic-world-mattel-jgm14-jgm12_4.jpg?v=1748578116&width=1946', 60),
+    (436, 'https://www.mykingdom.com.vn/cdn/shop/files/saga-khung-long-chien-dau-t-rex-jurassic-world-mattel-jgm14-jgm12_6.jpg?v=1748578116&width=1946', 60),
+    (437, 'https://www.mykingdom.com.vn/cdn/shop/files/saga-khung-long-chien-dau-t-rex-jurassic-world-mattel-jgm14-jgm12_1.jpg?v=1748578116&width=1946', 60),
+    (438, 'https://www.mykingdom.com.vn/cdn/shop/files/saga-khung-long-chien-dau-t-rex-jurassic-world-mattel-jgm14-jgm12_2.jpg?v=1748578116&width=1946', 60),
+    (439, 'https://www.mykingdom.com.vn/cdn/shop/files/saga-khung-long-chien-dau-t-rex-jurassic-world-mattel-jgm14-jgm12_3.jpg?v=1748578116&width=1946', 60),
+    (440, 'https://www.mykingdom.com.vn/cdn/shop/files/saga-khung-long-chien-dau-t-rex-jurassic-world-mattel-jgm14-jgm12_5.jpg?v=1748578116&width=1946', 60);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (441, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_2.jpg?v=1748924541&width=1946', 61),
+    (442, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_13.jpg?v=1748924541&width=1946', 61),
+    (443, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_14.jpg?v=1748924541&width=1946', 61),
+    (444, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_15.jpg?v=1748924541&width=1946', 61),
+    (445, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_16.jpg?v=1748924541&width=1946', 61),
+    (446, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_3.jpg?v=1748924541&width=1946', 61),
+    (447, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_5.jpg?v=1748924541&width=1946', 61),
+    (448, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_1.jpg?v=1748924541&width=1946', 61),
+    (449, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_17.jpg?v=1748924541&width=1946', 61),
+    (450, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_10.jpg?v=1748924541&width=1946', 61),
+    (451, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_4.jpg?v=1748924541&width=1946', 61),
+    (452, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_18.jpg?v=1748924541&width=1946', 61),
+    (453, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_6.jpg?v=1748924541&width=1946', 61),
+    (454, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_12.jpg?v=1748924541&width=1946', 61),
+    (455, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_7.jpg?v=1748924541&width=1946', 61),
+    (456, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_8.jpg?v=1748924541&width=1946', 61),
+    (457, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_9.jpg?v=1748924541&width=1946', 61),
+    (458, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_11.jpg?v=1748924541&width=1946', 61),
+    (459, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-khung-long-huyen-bi-jurassic-world-tai-sinh-toy-monster-t01533_19.jpg?v=1748923843&width=1946', 61);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (460, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-khung-long-jurassic-world-dominion-w2-tm-jw-dse12_1.jpg?v=1738743411&width=1946', 62),
+    (461, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-khung-long-jurassic-world-dominion-w2-tm-jw-dse12_3.jpg?v=1738743415&width=1946', 62),
+    (462, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-khung-long-jurassic-world-dominion-w2-tm-jw-dse12_4.jpg?v=1738743415&width=1946', 62),
+    (463, 'https://www.mykingdom.com.vn/cdn/shop/files/trung-slime-suu-tap-khung-long-jurassic-world-dominion-w2-tm-jw-dse12_2.jpg?v=1738743415&width=1946', 62);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (464, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_10.jpg?v=1747197053&width=1946', 63),
+    (465, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_11.jpg?v=1747197053&width=1946', 63),
+    (466, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_12.jpg?v=1747197053&width=1946', 63),
+    (467, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_13.jpg?v=1747197053&width=1946', 63),
+    (468, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_2.jpg?v=1747197053&width=1946', 63),
+    (469, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_17.jpg?v=1747197053&width=1946', 63),
+    (470, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_18.jpg?v=1747197053&width=1946', 63),
+    (471, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_16.jpg?v=1747197053&width=1946', 63),
+    (472, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_4.jpg?v=1747197053&width=1946', 63),
+    (473, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_5.jpg?v=1747197053&width=1946', 63),
+    (474, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_3.jpg?v=1747197053&width=1946', 63),
+    (475, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_34.jpg?v=1747197053&width=1946', 63),
+    (476, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_1.jpg?v=1747197053&width=1946', 63),
+    (477, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_15.jpg?v=1747197053&width=1946', 63),
+    (478, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_22.jpg?v=1747197053&width=1946', 63),
+    (479, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_24.jpg?v=1747197053&width=1946', 63),
+    (480, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_23.jpg?v=1747197053&width=1946', 63),
+    (481, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_25.jpg?v=1747197053&width=1946', 63),
+    (482, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_9.jpg?v=1747197053&width=1946', 63),
+    (483, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_6.jpg?v=1747197053&width=1946', 63),
+    (484, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_7.jpg?v=1747197053&width=1946', 63),
+    (485, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_31.jpg?v=1747197053&width=1946', 63),
+    (486, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_20.jpg?v=1747197053&width=1946', 63),
+    (487, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_14.jpg?v=1747197053&width=1946', 63),
+    (488, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_21.jpg?v=1747197053&width=1946', 63),
+    (489, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_19.jpg?v=1747197053&width=1946', 63),
+    (490, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_33.jpg?v=1747197053&width=1946', 63),
+    (491, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_28.jpg?v=1747197053&width=1946', 63),
+    (492, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_27.jpg?v=1747197053&width=1946', 63),
+    (493, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_29.jpg?v=1747197053&width=1946', 63),
+    (494, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_30.jpg?v=1747197053&width=1946', 63),
+    (495, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_26.jpg?v=1747197053&width=1946', 63),
+    (496, 'https://www.mykingdom.com.vn/cdn/shop/files/con-vat-hoat-hinh-trong-how-to-train-your-dragon-6072554_32.jpg?v=1747196746&width=1946', 63);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (497, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_pip_fe_22_001_4lb.jpg?v=1685067000&width=1946', 64),
+    (498, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_c_22_01.jpg?v=1685067000&width=1946', 64),
+    (499, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_c_22_04.jpg?v=1685067000&width=1946', 64),
+    (500, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_c_22_05.jpg?v=1685067000&width=1946', 64),
+    (501, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_w_22_03_sr.jpg?v=1685067000&width=1946', 64);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (502, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_pip_fe_22_001_4lb.jpg?v=1685067000&width=1946', 65),
+    (503, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_c_22_01.jpg?v=1685067000&width=1946', 65),
+    (504, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_c_22_04.jpg?v=1685067000&width=1946', 65),
+    (505, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_c_22_05.jpg?v=1685067000&width=1946', 65),
+    (506, 'https://www.mykingdom.com.vn/cdn/shop/products/gwt51_w_22_03_sr.jpg?v=1685067000&width=1946', 65);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (507, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-khung-long-co-dai-brachiosaurus-collecta-88121_2.jpg?v=1757137398&width=1946', 66),
+    (508, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-khung-long-co-dai-brachiosaurus-collecta-88121_1.jpg?v=1757137398&width=1946', 66),
+    (509, 'https://www.mykingdom.com.vn/cdn/shop/files/mo-hinh-dong-vat-khung-long-co-dai-brachiosaurus-collecta-88121_3.jpg?v=1757137386&width=1946', 66);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (510, 'https://www.mykingdom.com.vn/cdn/shop/products/gfm01_c_22_01.jpg?v=1720148274&width=1946', 67),
+    (511, 'https://www.mykingdom.com.vn/cdn/shop/products/gfm01_c_22_05.jpg?v=1720148274&width=1946', 67),
+    (512, 'https://www.mykingdom.com.vn/cdn/shop/products/gfm01_c_22_03.jpg?v=1720148274&width=1946', 67),
+    (513, 'https://www.mykingdom.com.vn/cdn/shop/products/gfm01_c_22_04.jpg?v=1720148274&width=1946', 67);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (514, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_16.jpg?v=1748926198&width=1946', 68),
+    (515, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_14.jpg?v=1748926198&width=1946', 68),
+    (516, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_15.jpg?v=1748926198&width=1946', 68),
+    (517, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_10.jpg?v=1748926198&width=1946', 68),
+    (518, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_11.jpg?v=1748926198&width=1946', 68),
+    (519, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_12.jpg?v=1748926198&width=1946', 68),
+    (520, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_13.jpg?v=1748926198&width=1946', 68),
+    (521, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_2.jpg?v=1748926198&width=1946', 68),
+    (522, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_3.jpg?v=1748926198&width=1946', 68),
+    (523, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_4.jpg?v=1748926198&width=1946', 68),
+    (524, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_5.jpg?v=1748926198&width=1946', 68),
+    (525, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_6.jpg?v=1748926198&width=1946', 68),
+    (526, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_7.jpg?v=1748926198&width=1946', 68),
+    (527, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_8.jpg?v=1748926198&width=1946', 68),
+    (528, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_9.jpg?v=1748926198&width=1946', 68),
+    (529, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_1.jpg?v=1748926198&width=1946', 68),
+    (530, 'https://www.mykingdom.com.vn/cdn/shop/files/sa-ban-khung-long-jurassic-world-thuy-quai-vo-doi-toy-monster-sea-t01535_17.jpg?v=1748926122&width=1946', 68);
+
+INSERT INTO `product_assets` (`id`, `img_path`, `product_id`)
+VALUES
+    (531, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_11.jpg?v=1747977713&width=1946', 69),
+    (532, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_13.jpg?v=1747977713&width=1946', 69),
+    (533, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_9.jpg?v=1747977713&width=1946', 69),
+    (534, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_4.jpg?v=1747977713&width=1946', 69),
+    (535, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_10.jpg?v=1747977713&width=1946', 69),
+    (536, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_12.jpg?v=1747977713&width=1946', 69),
+    (537, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_1.jpg?v=1747977713&width=1946', 69),
+    (538, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_2.jpg?v=1747977713&width=1946', 69),
+    (539, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_6.jpg?v=1747977713&width=1946', 69),
+    (540, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_7.jpg?v=1747977713&width=1946', 69),
+    (541, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_8.jpg?v=1747977713&width=1946', 69),
+    (542, 'https://www.mykingdom.com.vn/cdn/shop/files/rang-sun-bay-luon-rc-dieu-khien-tu-xa-dragon-6074369_5.jpg?v=1747977713&width=1946', 69);

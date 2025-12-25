@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.DelayQueue;
 
+import static com.n3.childrentoyweb.dao.ApplicationProperties.OTP_DELAY_IN_SECOND;
+
 public class CacheService {
     private static CacheService instance;
 
@@ -36,7 +38,7 @@ public class CacheService {
 
     public void add(String email, String otp) {
         cacheMap.put(email, otp);
-        delayQueue.offer(new DelayCacheItemDTO(email, 90));
+        delayQueue.offer(new DelayCacheItemDTO(email, OTP_DELAY_IN_SECOND));
     }
 
     public String get(String email) {
@@ -45,5 +47,6 @@ public class CacheService {
 
     public void remove(String email) {
         this.cacheMap.remove(email);
+        delayQueue.removeIf(item -> item.getKey().equals(email));
     }
 }

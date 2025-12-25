@@ -45,7 +45,7 @@
 
           <div class="mb-3">
             <label for="phone" class="form-label">Số điện thoại<span class="text-danger">*</span></label>
-            <input type="tel" class="form-control" id="phone" name="phone" value="${param.phone}" placeholder="+84" required
+            <input type="tel" class="form-control" id="phone" name="phone" value="${param.phone}" placeholder="Nhập số điện thoại" required
             oninput="document.getElementById('phoneError').classList.add('d-none'); this.classList.remove('is-invalid','is-valid');">
             <div id="phoneError" class="invalid-feedback d-none">
                 Số điện thoại không hợp lệ.
@@ -54,9 +54,9 @@
 
           <div class="mb-3">
             <label for="gender" class="form-label">Giới tính<span class="text-danger">*</span></label>
-            <select class="form-select" id="gender" name="gender" value="${param.gender}" required>
-              <option value="Nam">Nam</option>
-              <option value="Nữ">Nữ</option>
+            <select class="form-select" id="gender" name="gender" required>
+              <option value="Nam" <c:if test="${param.gender == 'Nam'}">selected</c:if>>Nam</option>
+              <option value="Nữ" <c:if test="${param.gender == 'Nữ'}">selected</c:if>>Nữ</option>
             </select>
           </div>
 

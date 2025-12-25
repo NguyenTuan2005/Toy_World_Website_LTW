@@ -23,16 +23,25 @@
     <div class="container my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
       <div class="card shadow" style="width: 100%; max-width: 450px;">
         <div class="card-body p-4">
-          <button class="btn btn-outline-secondary btn-sm mb-3" onclick="history.back()">
+          <button class="btn btn-sm mb-3" onclick="history.back()">
             &larr; Quay lại
           </button>
           
           <h2 class="card-title text-center mb-2">Xác thực OTP</h2>
           <h3 class="text-center text-muted mb-4" style="font-size: 1rem;">Nhập mã xác thực đã được gửi đến email của bạn</h3>
-          
-          <div class="alert alert-info text-center mb-4">
-            Mã OTP sẽ hết hạn trong: <strong id="countdown">90</strong> giây
-          </div>
+
+          <c:choose>
+            <c:when test="${not empty error}">
+              <div id="error" class="alert alert-danger" role="alert">
+                ${error}
+              </div>
+            </c:when>
+            <c:otherwise>
+              <div id="countdown" class="alert alert-info text-center mb-4">
+                Mã OTP sẽ hết hạn trong: <strong id="countdownValue">90</strong> giây
+              </div>
+            </c:otherwise>
+          </c:choose>
 
           <form method="post" action="/verify-otp">
             <div class="mb-3">
@@ -53,16 +62,25 @@
 
     <script>
       let timeLeft = 90;
-      const countdownElement = document.getElementById('countdown');
-      
+      const countdownElement = document.getElementById('countdownValue');
+
       const timer = setInterval(function() {
         timeLeft--;
         countdownElement.textContent = timeLeft;
-        
+
         if (timeLeft <= 0) {
           clearInterval(timer);
           countdownElement.textContent = '0';
-          alert('Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới.');
+          let error = document.getElementById('error'), countdown = document.getElementById('countdown');
+          if (error) {
+            error.textContent = 'Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới.';
+          } else {
+            if (countdown) {
+              countdown.classList.remove('alert-info');
+              countdown.classList.add('alert-danger');
+              countdown.textContent = 'Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới.';
+            }
+          }
         }
       }, 1000);
     </script>

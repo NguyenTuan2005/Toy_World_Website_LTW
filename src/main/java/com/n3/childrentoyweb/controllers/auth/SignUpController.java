@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Logger;
 
+import static com.n3.childrentoyweb.dao.ApplicationProperties.OTP_DELAY_IN_SECOND;
+
 @WebServlet(name = "signUp", value = "/sign-up")
 public class SignUpController extends HttpServlet {
     private AuthService authService;
@@ -39,13 +41,17 @@ public class SignUpController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SignUpUserDTO signUpUserDTO = new SignUpUserDTO(new User(req.getParameter("firstName"),
-                                                req.getParameter("lastName"),
-                                                req.getParameter("phone"),
-                                                req.getParameter("gender"),
-                                                req.getParameter("email"),
-                                                req.getParameter("password")),
-                                                req.getParameter("confirmPassword"));
+        SignUpUserDTO signUpUserDTO = (SignUpUserDTO) req.getSession().getAttribute("pendingUser");
+        if (signUpUserDTO == null) {
+            signUpUserDTO = new SignUpUserDTO(new User(req.getParameter("firstName"),
+                                                    req.getParameter("lastName"),
+                                                    req.getParameter("phone"),
+                                                    req.getParameter("gender"),
+                                                    req.getParameter("email"),
+                                                    req.getParameter("password")),
+                                                    req.getParameter("confirmPassword"));
+        }
+
         try {
             this.authService.validate(signUpUserDTO);
             this.userService.isEmailExist(signUpUserDTO.getUser().getEmail());

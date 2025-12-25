@@ -1,4 +1,4 @@
-package com.n3.childrentoyweb.controllers;
+package com.n3.childrentoyweb.controllers.auth;
 
 import com.n3.childrentoyweb.dto.SignUpUserDTO;
 import com.n3.childrentoyweb.exception.EmailAlreadyExistsException;

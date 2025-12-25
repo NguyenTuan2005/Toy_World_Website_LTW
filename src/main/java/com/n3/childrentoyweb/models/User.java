@@ -4,7 +4,6 @@ package com.n3.childrentoyweb.models;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.io.Serializable;
-import java.util.regex.Pattern;
 
 public class User extends BaseModel implements Serializable {
     @ColumnName("first_name")
@@ -118,27 +117,6 @@ public class User extends BaseModel implements Serializable {
                 ", locationId=" + locationId +
                 ", id=" + id +
                 '}';
-    }
-
-
-    public boolean isValidFirstName() {
-        return firstName != null && !firstName.trim().isEmpty();
-    }
-
-    public boolean isValidLastName() {
-        return lastName != null && !lastName.trim().isEmpty();
-    }
-
-    public boolean isValidPhone(Pattern phonePattern) {
-        return phone != null && phonePattern.matcher(phone).matches();
-    }
-
-    public boolean isValidEmail(Pattern emailPattern) {
-        return email != null && emailPattern.matcher(email).matches();
-    }
-
-    public boolean isValidPassword(Pattern passwordPattern) {
-        return password != null && passwordPattern.matcher(password).matches();
     }
 
     public boolean matchPassword(String confirmPassword) {

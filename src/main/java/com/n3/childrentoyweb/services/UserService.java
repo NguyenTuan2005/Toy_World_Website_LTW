@@ -7,6 +7,7 @@ import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.exception.EmailAlreadyExistsException;
+import com.n3.childrentoyweb.models.User;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class UserService {
         return  new Pagination<ManageUserDTO>(manageUserDTOS,page,totalElements,totalPages);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new UserService().findAllUsersForManagements(1,10));
+    public void save(User user) {
+        userDAO.save(user);
     }
 }

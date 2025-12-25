@@ -698,7 +698,7 @@ VALUES
     (57, 169000, NULL, 68, 'Đồ Chơi Trứng Slime Sưu Tập Jurassic World: Tái sinh TOY MONSTER T01532', JSON_OBJECT('Chủ đề', 'TOY MONSTER SLIME EGG', 'Mã sản phẩm', 'T01532', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'Trung Quốc', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Trứng Slime Sưu Tập Jurassic World: Tái sinh TOY MONSTER T01532 - Giao Hàng Ngẫu Nhiên
 Đã đến lúc để ấp trứng và nuôi dưỡng những chú khủng long huyền thoại Jurassic World trong phiên bản Rebirth mới nhất!+ Tháo trứng, khám phá Slime bên trong+ Tìm và lắp Khủng long mini của bạn+ Hơn 10 loài khủng long để bạn khám phá và thu thập
 Mỗi trứng bao gồm:01 x Khủng long Pop N Lock01 x Slime01 x Thẻ tích điểm chiến đấu01 x Hướng dẫn sưu tậpSản phẩm dành cho bé trên 3 tuổi.
-Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 34, 11);
+Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 51, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -726,7 +726,7 @@ VALUES
 Sở hữu những loài khủng long Pop N Lock với kích thước siêu lớn đến từ bộ sưu tập Jurassic World Rebirth. Đặc biệt, đây là phiên bản Trứng khủng long duy nhất bạn có thể sưu tầm được Khủng long siêu kích cỡ.
 3 loài Khủng long để sưu tầm!!
 Nhanh tay thu thập và trở thành người đầu tiên sở hữu trọn bộ khủng long Jurassic World Rebirth này thôi nào!Trứng khủng long huyền bí Jurassic World Rebirth gồm:01 x Khủng long siêu kích cỡ ẩn giấu bên trong03 x Slime01 x Thẻ chiến đấu01 x Bộ sticker khủng long01 x Hướng dẫn cho người sưu tầm
-Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 34, 11);
+Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 51, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -736,7 +736,7 @@ Sẵn sàng để bước vào Cuộc chiến tối thượng cùng phiên bản
 + Tìm và lắp Khủng long Pop N'' Lock của bạn
 + Với hơn 15 loài để thu thập Đặc biệt, phiên bản khủng long Metallic cực giới hạn! Liệu bạn sẽ sở hữu được chúng để tham gia cuộc chiến?
 Mỗi trứng bao gồm:
-Nhà sản xuất: TOY MONSTER Xuất xứ thương hiệu: ÚC', 34, 11);
+Nhà sản xuất: TOY MONSTER Xuất xứ thương hiệu: ÚC', 51, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -800,7 +800,7 @@ Xây dựng thế giới Captivz của bạn với các cảnh Dinorama có th�
 Sa bàn khủng long Jurassic World - Thủy quái vô đối Mosasaurus.
 Sản Phẩm Bao Gồm:_1 khủng long Pop N Lock_3 bối cảnh Pop N Lock_Phụ kiện đi kèm_4 sticker
 Kích thước sản phẩm (cm): 11,8 W x 6,2 H x 6,2 D
-Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 34, 11);
+Jurassic World: Rebirth là phần phim khoa học viễn tưởng hành động độc lập, tiếp nối Jurassic World Dominion (2022). Phim dự kiến ra mắt vào tháng 7 năm 2025, với sự tham gia của Scarlett Johansson, Mahershala Ali và Jonathan Bailey. Cốt truyện xoay quanh một nhóm thám hiểm đến hòn đảo cấm để thu thập DNA khủng long nhằm phát triển một loại thuốc đột phá.', 51, 11);
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
@@ -810,7 +810,734 @@ Răng Sún (Toothless) RC có thể đập cánh giữa không trung như film t
 Sản phẩm sử dụng 2 Pin AAA cho điều khiển cầm tay và sạc USB cho Răng Sún.
 Đồ chơi được lấy cảm hứng từ bộ phim Bí Kíp Luyện Rồng (How to Train Your Dragon) là một bộ phim hoạt hình nổi tiếng của DreamWorks, kể về hành trình phiêu lưu của cậu bé Hiccup và chú rồng Răng Sún (Toothless). Bộ phim không chỉ hấp dẫn bởi những cảnh hành động mãn nhãn mà còn mang đến nhiều bài học sâu sắc cho trẻ em.
 Khám phá thêm các đồ chơi khác của Dragontại đây.#bikipluyenrong #howtotrainyourdragon', 34, 11);
---- hoàng
+
+
+-- pb.hoang
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES (70, 169000, NULL, 51, 'Trứng Slime sưu tập khủng long Jurassic World đổi màu TOY MONSTER TM502', JSON_OBJECT('Chủ đề', 'TOY MONSTER SLIME EGG', 'Mã sản phẩm', 'TM502', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'TOY MONSTER', 'Xuất xứ thương hiệu', 'TRUNG QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Trứng Slime sưu tập khủng long Jurassic World đổi màu TOY MONSTER TM502 - Giao hàng ngẫu nhiên
+Khám phá bộ sưu tập 12 loài khủng long đặc biệt với khả năng đổi màu theo nhiệt độ nước. Mỗi trứng bao gồm: 1 khủng long đổi màu, 1 slime đổi màu, 01 thẻ tích điểm chiến đấu và Hướng dẫn.
+ĐẶC ĐIỂM NỔI BẬT:', 51, 13);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (71, 59400, NULL, 73, 'Đồ Chơi Mô Hình Khủng Long Stegosaurus Mini SCHLEICH 14537', JSON_OBJECT('Chủ đề', 'SCHLEICH MINIDINO', 'Mã sản phẩm', '14537', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SCHLEICH', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), '
+
+Nhỏ và nhanh nhẹn, khổng lồ và mạnh mẽ, to lớn và có cánh - những con khủng long ở mọi hình dạng và kích cỡ sẽ khiến chính bạn còn không bao giờ cảm thấy buồn chán chứ đừng nói là các bé. Quay về thời đại nguyên thủy, nơi có những loài khủng long siêu to đủ làm cho những nhà thám hiểm dù gai góc nhất cũng cảm thấy có chút sợ hãi.
+
+
+
+Hãy nhanh chân đến cửa hàng Mykingdom gần nhất để sở hữu ngay mô hình ngộ nghĩnh và đáng yêu này cho bé nhà mình bạn nhé!', 52, 11);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (72, 59400, NULL, 72, 'Đồ Chơi Mô Hình Khủng Long Quetzacoatlus Mini SCHLEICH 14539', JSON_OBJECT('Chủ đề', 'SCHLEICH MINIDINO', 'Mã sản phẩm', '14539', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SCHLEICH', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), '
+
+Nhỏ và nhanh nhẹn, khổng lồ và mạnh mẽ, to lớn và có cánh - những con khủng long ở mọi hình dạng và kích cỡ sẽ khiến chính bạn còn không bao giờ cảm thấy buồn chán chứ đừng nói là các bé. Quay về thời đại nguyên thủy, nơi có những loài khủng long siêu to đủ làm cho những nhà thám hiểm dù gai góc nhất cũng cảm thấy có chút sợ hãi.
+
+
+
+Hãy nhanh chân đến cửa hàng Mykingdom gần nhất để sở hữu ngay mô hình ngộ nghĩnh và đáng yêu này cho bé nhà mình bạn nhé!
+
+
+',52, 11);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (73, 449400, NULL, 41, 'Đồ Chơi Mô Hình Quái Thạch Hung Hãn SCHLEICH 70141S', JSON_OBJECT('Chủ đề', 'SCHLEICH ELDRADOR CREATURES', 'Mã sản phẩm', '70141S', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SCHLEICH', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), NULL, 52, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (74, 239400, NULL, 28, 'Đồ Chơi Mô Hình Sói Băng Tinh Tường SCHLEICH 42452', JSON_OBJECT('Chủ đề', 'SCHLEICH ELDRADOR CREATURES', 'Mã sản phẩm', '42452', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'SCHLEICH', 'Xuất xứ thương hiệu', 'Đức', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), NULL,52, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (75, 139000, NULL, 63, 'Đồ Chơi Mô Hình Động Vật Khủng Long Tyrannosaurus Rex COLLECTA 88118', JSON_OBJECT('Chủ đề', 'COLLECTA PREHISTORIC WORLD', 'Mã sản phẩm', '88118', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'COLLECTA', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Động Vật Khủng Long Tyrannosaurus Rex COLLECTA 88118
+Là một trong những nhà sản xuất mô hình động vật hàng đầu thế giới được cố vấn bởi các chuyên gia cổ sinh vật học, CollectA nổi bật với chất lượng vượt trội trong từng chi tiết tạo hình và màu sắc. Sản phẩm được ứng dụng rộng rãi trong giáo dục, góp phần nâng cao nhận thức bảo vệ động vật quý hiếm và lan tỏa tình yêu với thiên nhiên hoang dã.
+Điểm nổi bật:- Lớp sơn được thực hiện thủ công cho chi tiết sắc nét, sống động và độc bản.- Làm từ nhựa PVC an toàn cho bé, không chứa Phthalate.- Tạo hình chân thực và đa dạng loài, phù hợp cho mục đích giáo dục
+Thông tin thú vị: Tyrannosaurus Rex có 50 chiếc răng sắc như lưỡi cưa, nhọn và dài tới 25 cm.', 53, 11);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (76, 179000, NULL, 62, 'Đồ Chơi Mô Hình Động Vật Cá Voi Sát Thủ COLLECTA 88043', JSON_OBJECT('Chủ đề', 'COLLECTA OCEANS & ICE', 'Mã sản phẩm', '88043', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'COLLECTA', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Động Vật Cá Voi Sát Thủ COLLECTA 88043
+Là một trong những nhà sản xuất mô hình động vật hàng đầu thế giới được cố vấn bởi các chuyên gia cổ sinh vật học, CollectA nổi bật với chất lượng vượt trội trong từng chi tiết tạo hình và màu sắc. Sản phẩm được ứng dụng rộng rãi trong giáo dục, góp phần nâng cao nhận thức bảo vệ động vật quý hiếm và lan tỏa tình yêu với thiên nhiên hoang dã.
+Điểm nổi bật:- Lớp sơn được thực hiện thủ công cho chi tiết sắc nét, sống động và độc bản.- Làm từ nhựa PVC an toàn cho bé, không chứa Phthalate.- Tạo hình chân thực và đa dạng loài, phù hợp cho mục đích giáo dục
+Thông tin thú vị: Cá voi sát thủ nổi bật nhờ trí thông minh vượt trội, khả năng săn mồi theo đàn và chiến thuật đa dạng để hạ gục con mồi lớn, ngoại hình đen trắng tương phản đặc trưng cùng kích thước ấn tượng, và sự phân bố rộng rãi khắp các đại dương.', 53, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (77, 179000, NULL, 52, 'Đồ Chơi Mô Hình Động Vật Hươu Cao Cổ Lưới COLLECTA 88534', JSON_OBJECT('Chủ đề', 'COLLECTA WILDLIFE', 'Mã sản phẩm', '88534', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'COLLECTA', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Mô Hình Động Vật Hươu Cao Cổ Lưới COLLECTA 88534
+Là một trong những nhà sản xuất mô hình động vật hàng đầu thế giới được cố vấn bởi các chuyên gia cổ sinh vật học, CollectA nổi bật với chất lượng vượt trội trong từng chi tiết tạo hình và màu sắc. Sản phẩm được ứng dụng rộng rãi trong giáo dục, góp phần nâng cao nhận thức bảo vệ động vật quý hiếm và lan tỏa tình yêu với thiên nhiên hoang dã.
+Điểm nổi bật:- Lớp sơn được thực hiện thủ công cho chi tiết sắc nét, sống động và độc bản.- Làm từ nhựa PVC an toàn cho bé, không chứa Phthalate.- Tạo hình chân thực và đa dạng loài, phù hợp cho mục đích giáo dục
+Thông tin thú vị: Hươu cao cổ Reticulated là động vật nhai lại, giống như bò và các loài móng guốc khác. Dạ dày của chúng có bốn ngăn.Thức ăn sẽ đi qua ngăn đầu tiên, còn nước thì được chuyển trực tiếp đến ngăn thứ hai.', 53, 23);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (78, 279000, NULL, 68, 'Đồ Chơi Robot Biến Hình Thành Xe Bọc Thép (Vàng) VECTO VTB17/YL', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VTB17/YL', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Biến Hình Thành Xe Bọc Thép (Vàng) VECTO VTB17/YL
+Đồ Chơi Robot Biến Hình Thành Xe Bọc Thép (Vàng) - Mẫu robot cho bé vừa chơi, vừa rèn khả năng quan sát và tư duy sáng tạo cực vui:+ Robot biến hình linh hoạt thành xe bọc thép siêu ngầu+ Tăng vận động tinh và khả năng tư duy cho bé
+THÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 32 x 10 x 26   cmChủ đề: VECTO ROBOTXuất xứ thương hiệu: Việt NamChất liệu: Nhựa, kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:
+1 x Robot Biến Hình Thành Xe Bọc Thép (Vàng) (Không dùng pin)
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với đa dạng các dòng đồ chơi từ xe – robot – máy bay điều khiển từ xa, đến các bộ lắp ráp DIY, playset đường ray với tàu lửa chạy pin, xe mô hình mô phỏng thực tế,... đáp ứng nhiều sở thích và trải nghiệm khác nhau cho bé.+ ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO+ XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG+ ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC+ ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá!', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (79, 909300, NULL, 87, 'Đồ Chơi Robot Đặc Vụ AGENT 04 Điều Khiển Từ Xa VECTO VT5099', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT5099', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Đặc Vụ AGENT 04 Điều Khiển Từ Xa VECTO VT5099
+Đồ chơi Robot đặc vụ AGENT 04 điều khiển từ xa VECTO VT5099
+Robot Đặc Vụ AGENT 04 từ VECTO không chỉ gây ấn tượng bởi vẻ ngoài hiện đại, mạnh mẽ mà còn sở hữu hàng loạt tính năng hấp dẫn, kích thích trí tưởng tượng và tư duy lập trình của trẻ nhỏ.
+Chế độ lập trình trí tuệ lên tới 50 hành động: Bé có thể tự do sáng tạo các chuỗi hành động cho robot – chỉ cần nhấn nút “lập trình”, thiết lập động tác mong muốn và nhấn lại để AGENT 04 thực hiện chính xác như đã cài đặt.
+Hai tay gắp điều khiển nâng hạ linh hoạt: Bé có thể điều khiển hai cánh tay của robot gắp, nâng đồ vật – giúp phát triển sự khéo léo và khả năng phối hợp tay mắt.
+Phóng phi tiêu cực vui: Chế độ hành động cực ngầu – AGENT 04 có thể bắn phi tiêu từ cánh tay, tạo nên những trận đấu vui nhộn và gay cấn.
+Di chuyển đa hướng + xoay 360°: Robot có thể tiến, lùi, rẽ trái, rẽ phải, xoay tròn tại chỗ – linh hoạt trong mọi “địa hình” vui chơi của bé.
+Hệ thống đèn & âm thanh sống động: Tăng thêm phần hấp dẫn với hiệu ứng ánh sáng bắt mắt và âm thanh mô phỏng robot đầy sống động.
+Sử dụng pin sạc tiện lợi: Sản phẩm đi kèm cáp sạc USB – dễ sử dụng, tiết kiệm và thân thiện với môi trường.
+Thông tin về sản phẩm:
+Kích thước hộp hàng: 46.0 x 44.2 x 16.0cm
+Chủ đề: VECTO ROBOT
+Xuất xứ thương hiệu: Việt Nam
+Chất liệu: Nhựa và kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:
+1 x Đồ chơi Robot đặc vụ AGENT 04 điều khiển từ xa (dùng pin sạc, cáp sạc USB đi kèm)
+1 x Remote điều khiển từ xa (dùng pin, không kèm pin)
+1 x Cáp sạc USB
+1 x Hướng dẫn sử dụng
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, VECTO đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+ROBOT ĐIỀU KHIỂN – Phát triển tư duy logic
+XE ĐIỀU KHIỂN – Phát triển tư duy phương hướng
+ĐỒ CHƠI BAY – Phát triển tư duy logic
+ĐỒ CHƠI LẮP RÁP DIY – Phát triển kỹ năng vận động tinh
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (80, 139000, NULL, 72, 'Đồ Chơi Robot Tự Động Thằn Lằn Tinh Nghịch VECTO VT9903E', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT9903E', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Thằn Lằn Tinh Nghịch VECTO VT9903E
+Đồ chơi Robot tự động Thằn lằn tinh nghịch từ Vecto – Món đồ chơi với ngoại hình bạn Thằn lằn ngộ nghĩnh và dễ thương, cho bé chơi thật vui:+ Robot tự động di chuyển tự động xung quanh+ Kích thước vừa đủ cho bé dễ dàng mang đi khắp nơi
+Thông Tin Về Sản Phẩm:Kích thước hộp hàng: 13 x 9 x 13 cmChủ đề: Vecto RobotXuất xứ thương hiệu: Việt NamChất liệu: Nhựa và kim loại (An toàn tuyệt đối cho bé)
+Vecto - Thế giới đồ chơi bé trai cực đỉnh
+Vecto là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+- Robot điều khiển – Phát triển tư duy sáng tạo- Xe điều khiển – Phát triển tư duy phương hướng- Đồ chơi bay – Phát triển tư duy logic- Đồ chơi lắp ráp DIY – Phát triển kỹ năng vận động tinh
+Và còn nhiều dòng đồ chơi khác từ Vecto đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (81, 569250, NULL, 83, 'Đồ Chơi Robot Chó Tương Lai Điều Khiển Từ Xa VECTO VTG52', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VTG52', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Chó Tương Lai Điều Khiển Từ Xa VECTO VTG52
+Đồ chơi Robot chó tương lai điều khiển từ xa VECTO – Một mẫu robot với ngoại hình hiện đại cùng nhiều chức năng thú vị cho bé tha hồ khám phá:
++ Chế độ lập trình trí tuệ: nhấn nút “lập trình” và thiết lập các động tác mong muốn, sau đó nhấn “lập trình” một lần nữa, robot sẽ thực hiện chính xác theo những động tác vừa được cài đặt
++ Chạm tương tác hiện đại: nhấn nút “chạm tương tác” và dùng tay chạm vào khu vực cảm biến ở đầu của robot, nó sẽ phản ứng lại bằng một số hành động
++ Chế độ tuần tra
++ Âm thanh sủa như chú chó thật
++ Có đèn và âm thanh
++ Di chuyển đa hướng: Tiến lùi trái phải
++ Sử dụng pin sạc, cáp sạc USB đi kèm
+
+Thông tin về sản phẩm:
+Kích thước hộp hàng:30.5x26.5x17cm
+Chủ đề: Vecto robot
+Xuấtxứ thương hiệu: ViệtNam
+Chất liệu: Nhựa và kim loại (An toàn tuyệt đối cho bé)
+
+Bộ đồ chơi bao gồm:
+1 x Robotchótươnglai(Sửdụng pin sạc, có kèm pin)
+1 x Remote điều khiển từ xa (Sử dụng pin tiểu, không kèm pin)
+1 x Cáp sạc USB
+1 x Hướng dẫn sửdụng
+
+Vecto - Thế giới đồ chơi bé trai cực đỉnh
+Vecto là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+- Robot điều khiển – Phát triển tư duy sáng tạo
+- Xe điều khiển – Phát triển tư duy phương hướng
+- Đồ chơi bay – Phát triển tư duy logic
+- Đồ chơi lắp ráp DIY – Phát triển kỹ năng vận động tinh
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (82, 189000, NULL, 15, 'Đồ Chơi Robot Tự Động Vịt Lém Lỉnh VECTO VT9040C', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT9040C', 'Tuổi', '3year-99year', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Vịt Lém Lỉnh VECTO VT9040C
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (83, 139000, NULL, 17, 'Đồ Chơi Robot Tự Động Cá Mặt Ngố VECTO VT9903F', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT9903F', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Cá Mặt Ngố VECTO VT9903F
+Đồ chơi Robot tự động Cá mặt ngố từ VECTO – Món đồ chơi với ngoại hình bạn Cá mặt ngố siêu ngộ nghĩnh và dễ thương, cho bé chơi thật vui:+ Robot tự động di chuyển tự động xung quanh+ Kích thước nhỏ cho bé dễ dàng mang đi khắp nơi
+THÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 13 x 9 x 13 cmChủ đề: VECTO ROBOTNăm sản xuất: 2024Xuất xứ thương hiệu: Việt NamChất liệu: Nhựa và kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:1 x Robot tự động Cá mặt ngố (không kèm pin)
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (84, 349000, NULL, 80, 'Đồ Chơi Robot Tự Động Cleverbot Thông Thái VECTO VT2661', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT2661', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Cleverbot Thông Thái VECTO VT2661
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (85, 189000, NULL, 99, 'Đồ Chơi Robot Tự Động Hổ Tinh Nghịch VECTO VT9041C', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT9041C', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Hổ Tinh Nghịch VECTO VT9041C
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (86, 139000, NULL, 69, 'Đồ Chơi Robot Tự Động Bọ Hung Giận Dữ VECTO VT9903C', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT9903C', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Bọ Hung Giận Dữ VECTO VT9903C
+Đồ chơi Robot tự động Bọ hung giận dữ từ VECTO – Món đồ chơi với ngoại hình bạn Bọ Hung mang vẻ mặt giận dỗi siêu ngộ nghĩnh và dễ thương, cho bé chơi thật vui:+ Robot tự động di chuyển tự động xung quanh+ Kích thước nhỏ cho bé dễ dàng mang đi khắp nơi
+THÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 13 x 9 x 13 cmChủ đề: VECTO ROBOTNăm sản xuất: 2024Xuất xứ thương hiệu: Việt NamChất liệu: Nhựa và kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:1 x Robot tự động Bọ hung giận dữ (không kèm pin)
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (87, 179000, NULL, 47, 'Đồ Chơi Robot Trực Thăng Cảm Biến (Đen) VECTO VT2300B', JSON_OBJECT('Chủ đề', 'VECTO FLYING YOYS', 'Mã sản phẩm', 'VT2300B/BK', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Trực Thăng Cảm Biến (Đen) VECTO VT2300B/BK
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 17);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (88, 139000, NULL, 74, 'Đồ Chơi Robot Tự Động Larva Hài Hước VECTO VT9903A', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT9903A', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Larva Hài Hước VECTO VT9903A
+Đồ chơi Robot tự động Larva hài hước từ VECTO – Món đồ chơi với ngoại hình bạn sâu Larva siêu ngộ nghĩnh và dễ thương, cho bé chơi thật vui:+ Robot tự động di chuyển tự động xung quanh+ Kích thước nhỏ cho bé dễ dàng mang đi khắp nơi
+THÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 13 x 9 x 13 cmChủ đề: VECTO ROBOTNăm sản xuất: 2024Xuất xứ thương hiệu: Việt NamChất liệu: Nhựa và kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:1 x Robot tự động Larva hài hước (không kèm pin)
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 54, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (89, 1609300, NULL, 39, 'Robot Chỉ Huy Captain Commander Biến Hình Xe Container Miniforce 505011', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 VEHICLE TRANSFORMING', 'Mã sản phẩm', '505011', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Robot Chỉ Huy Captain Commander Biến Hình Xe Container Miniforce505011
+Robot chỉ huy Captain Commander biến hình xe container là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
+Robot chỉ huy Captain Commander có thể biến hình thành chiếc xe container khổng lồ và ngược lại. Nhờ các khớp nối vô cùng linh hoạt, bé có thể hóa thân vào nhân vật và thể hiện những pha hành động mạnh mẽ.
+Đồ đồ chơi mô phỏng nhân vật Siêu robot chỉ huy trưởng Captain Commander, bao gồm:- 1 Robot chỉ huy Captain Commander có thể biến hóa thành xe container và ngược lại- 1 vũ khí hạng nặng- 1 thùng container- 4 dụng cụ lắp ráp- 1 chìa khóa chuyên dụng để mở container
+Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (90, 287400, NULL, 67, 'Robot Siêu Cảnh Sát Xây Dựng Build Cop Thổ Năng Miniforce 505003', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 HEAD COPS', 'Mã sản phẩm', '505003', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Robot Siêu Cảnh Sát Xây Dựng Build Cop Thổ Năng Miniforce 505003
+Robot siêu cảnh sát xây dựng Build Cop thổ năng là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
+Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát xây dựng Build Cop thổ năng, có các đặc điểm sau:- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;- Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại- Đi kèm 1 khoan cực đại và 1 huy hiệu cảnh sát có thể dùng để trưng bày mô hình đầu nhân vật
+Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (91, 827400, NULL, 83, 'Robot Siêu Cảnh Sát Tuần Tra Patrol Cop Phiên Bản Nâng Cấp Miniforce 505021', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 BIG HEAD COPS', 'Mã sản phẩm', '505021', 'Tuổi', '3year-99year', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ ChơiRobot Siêu Cảnh Sát Tuần Tra Patrol Cop Phiên Bản Nâng Cấp Miniforce 505021
+Robot siêu cảnh sát tuần tra Patrol Cop điện năng - Phiên bản nâng cấp là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE. Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát tuần tra Patrol Cop điện năng - Phiên bản nâng cấp, có các đặc điểm sau: Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng; Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại
+Đi kèm 1 vũ khí Patrol Magnum và 1 huy hiệu cảnh sát có thể dùng để kê đầu - Kích thước lớn, đến 25cmCó nút kích hoạt âm thanh sinh động - Có đèn LED
+Cơ chế lắp ráp nâng cấp giúp bé có thể linh hoạt biến hóa Siêu cảnh sát tuần tra Patrol Cop điện năng - Phiên bản nâng cấp một cách dễ dàng với những pha hành động mạnh mẽ.
+Thông tin sản phẩm:
+- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.
+- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (92, 335300, NULL, 48, 'Robot Siêu Cảnh Sát Bầu Trời Jet Cop Phong Năng Miniforce 505005', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 HEAD COPS', 'Mã sản phẩm', '505005', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Robot Siêu Cảnh Sát Bầu Trời Jet Cop Phong Năng Miniforce505005
+Robot siêu cảnh sát bầu trời Jet Cop phong năng là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
+Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát bầu trời Jet Cop phong năng, có các đặc điểm sau:- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;- Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại- Đi kèm song đao và 1 huy hiệu cảnh sát có thể dùng để trưng bày mô hình đầu nhân vật
+Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.
+- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (93, 335300, NULL, 66, 'Robot Siêu Cảnh Sát Hỏa Thần Fire Cop Nhiệt Năng Miniforce 505002', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 HEAD COPS', 'Mã sản phẩm', '505002', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Robot Siêu Cảnh Sát Hỏa Thần Fire Cop Nhiệt Năng Miniforce 505002
+Robot siêu cảnh sát hỏa thần Fire Cop nhiệt năng là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
+Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát hỏa thần Fire Cop nhiệt năng, có các đặc điểm sau:- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;
+- Bộ sản phẩm có thể bẻ các khớp tay, chân... để biến hình robot thành mô hình đầu nhân vật và ngược lại- Đi kèm 1 rìu hỏa thần và 1 huy hiệu cảnh sát có thể dùng để trưng bày mô hình đầu nhân vật
+Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (94, 3669000, NULL, 90, 'Robot Đại Tướng Justice Titan Biến Hình 5 Phương Tiện Cứu Hộ Miniforce 505012', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 VEHICLE TRANSFORMING', 'Mã sản phẩm', '505012', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Robot Đại Tướng Justice Titan Biến Hình 5 Phương Tiện Cứu Hộ Miniforce505012
+Siêu robot Đại tướng công lý Justice Titan hợp nhất từ 5 phương tiện cứu hộ là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
+Siêu robot Đại tướng công lý Justice Titan được hợp nhất từ 5 phương tiện cỡ lớn trong phim Superwings, bao gồm:- 1 xe cảnh sát tuần tra- 1 máy bay trực thăng - 1 xe cứu hỏa- 1 xe cứu thương- 1 xe bọc thép Mỗi phương tiện đều có thể tự do di chuyển và cũng có thể hợp nhất thành Đại tướng công lý Justice Titan cực ngầu nhờ nút kích hoạt âm thanh và đèn LED. Các khớp nối vô cùng linh hoạt giúp bé có thể hóa thân vào nhân vật và thể hiện những pha hành động mạnh mẽ.
+Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (95, 867300, NULL, 50, 'Robot Siêu Cảnh Sát Hỏa Thần Fire Cop Phiên Bản Nâng Cấp Miniforce 505022', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 BIG HEAD COPS', 'Mã sản phẩm', '505022', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ ChơiRobot Siêu Cảnh Sát Hỏa Thần Fire Cop Phiên Bản Nâng CấpMiniforce 505022
+Robot siêu cảnh sát hỏa thần Fire Cop nhiệt năng - Phiên bản nâng cấp là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
+Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát hỏa thần Fire Cop nhiệt năng
+Phiên bản nâng cấp, có các đặc điểm sau:
+- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng; - Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại
+- Đi kèm 1 rìu hỏa thần và 1 huy hiệu cảnh sát có thể dùng để trưng bày đầu khổng lồ - Với kích thước lớn, đến 25cm
+- Có nút kích hoạt âm thanh sinh động - Có đèn LED
+- Cơ chế lắp ráp nâng cấp giúp bé có thể linh hoạt biến hóa Siêu cảnh sát hỏa thần Fire Cop nhiệt năng
+- Phiên bản nâng cấp một cách dễ dàng với những pha hành động mạnh mẽ.
+Thông tin sản phẩm:
+- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.
+- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (96, 335300, NULL, 38, 'Robot Siêu Cảnh Sát Tuần Tra Patrol Cop Điện Năng Miniforce 505001', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 HEAD COPS', 'Mã sản phẩm', '505001', 'Tuổi', '3 Tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Robot Siêu Cảnh Sát Tuần Tra Patrol Cop Điện Năng Miniforce 505001
+Robot siêu cảnh sát tuần tra Patrol Cop điện năng là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE.
+Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát tuần tra - Patrol Cop điện năng, có các đặc điểm sau:- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;- Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại- Đi kèm 1 vũ khí Patrol Magnum và 1 huy hiệu cảnh sát có thể dùng để trưng bày mô hình đầu nhân vật
+Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (97, 959250, NULL, 60, 'Siêu Xe Biến Hình Robot Cảnh Sát Oai Vệ Storm Chaser Miniforce 505010', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 VEHICLE TRANSFORMING', 'Mã sản phẩm', '505010', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ ChơiSiêu Xe Biến Hình Robot Cảnh Sát Oai Vệ Storm Chaser Miniforce 505010
+Siêu xe biến hình robot cảnh sát oai vệ Storm Chaser là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE. Đồ đồ chơi mô phỏng nhân vật Siêu robot biến hình xe cảnh sát Storm Chaser, bao gồm- 1 robot Storm Chaser có thể biến đổi thành mô hình xe cảnh sát- 2 vũ khí hạng nặng- 1 áo giáp bảo vệ ngực Nhờ các khớp nối vô cùng linh hoạt, bé có thể hóa thân vào nhân vật và thể hiện những pha hành động mạnh mẽ.Thông tin sản phẩm:- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (98, 335300, NULL, 23, 'Robot Siêu Bác Sĩ Quân Y Medic Cop Quang Năng Miniforce 505004', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 HEAD COPS', 'Mã sản phẩm', '505004', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Robot Siêu Bác Sĩ Quân Y Medic Cop Quang Năng Miniforce 505004
+Robot siêu bác sĩ quân y Medic Cop quang năng là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE. Đồ đồ chơi mô phỏng nhân vật Siêu bác sĩ quân y Medic Cop quang năng, có các đặc điểm sau:
+- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;
+- Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại .  Đi kèm 1 búa phản xạ và 1 huy hiệu cảnh sát có thể dùng trưng bày mô hình đầu nhân vật Nhờ các khớp nối vô cùng linh hoạt, bé có thể hóa thân vào nhân vật và thể hiện những pha hành động mạnh mẽ.
+Thông tin sản phẩm:
+- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.
+- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (99, 229000, NULL, 36, 'Đồ chơi Robot trực thăng cảm biến (Xanh) VECTO VT2300E', JSON_OBJECT('Chủ đề', 'VECTO FLYING YOYS', 'Mã sản phẩm', 'VT2300E/BL', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Trực Thăng Cảm Biến (Xanh) VECTO VT2300E
+Đồ chơi Robot trực thăng cảm biến từ VECTO – Món đồ chơi bay cảm biến thế hệ mới với nhiều chức năng thú vị cho bé chơi thật vui:
++ Sử dụng công nghệ cảm biến tay tích hợp trên thân robot: Khi robot đang bay lơ lửng trên không trung và dần hạ độ cao, đặt tay gần mặt dưới chân robot, và robot sẽ bay lên lại
++ Điều khiển cầm tay cực chất: nhấn để robot tiếp tục bay trên không trung
++ Sử dụng pin sạc, cáp sạc USB đi kèm
+THÔNG TIN VỀ SẢN PHẨM:
+Kích thước hộp hàng: 27 x 18 x 6 cm
+Chủ đề: VECTO FLYING TOYS
+Năm sản xuất: 2024
+Xuất xứ thương hiệu: Việt Nam
+Chất liệu: Nhựa và kim loại (An toàn tuyệt đối với bé)
+Bộđồchơibaogồm:
+1 x Robot trực thăng cảm biến (Sử dụng pin sạc, có kèm pin)
+1 x Remote điều khiển từ xa (Sử dụng pin tiểu, có kèm pin)
+1 x Cáp sạc USB
+1 x Hướng dẫn sử dụng
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (100, 899000, NULL, 47, 'Đồ chơi Robot DEVO thông thái điều khiển từ xa VECTO VT2108', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT2108', 'Tuổi', '5 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Devo Thông Thái Điều Khiển Từ Xa VECTO VT2108
+Đồ chơi Robot DEVO thông thái điều khiển từ xa VECTO – Chú robot thông minh, một người bạn đồng hành đáng tin cậy cho quá trình học hỏi và phát triển của bé, với nhiều chức năng hiện đại và độc đáo, hứa hẹn sẽ mang đến cho bé những phút giây giải trí thật nhiều niềm vui và bổ ích:
++ Chế độ lập trình trí tuệ: Nhấn nút “lập trình” và thiết lập các động tác mong muốn, sau đó nhấn “lập trình” một lần nữa, robot sẽ thực hiện chính xác theo những động tác vừa được cài đặt, được thiết kế với 48 bước lập trình
++ Chức năng điều khiển bằng cảm biến theo cử chỉ tay hiện đại: để tay gần robot, di chuyển tay sang các hướng khác nhau để điều hướng robot di chuyển tiến - lùi - trái - phải,...
++ Có thể di chuyển ở cả 2 chế độ, bước đi hoặc trượt
++ Khả năng nhảy theo nhạc cực vui nhộn
++ Có đèn và âm thanh sống động
+THÔNG TIN VỀ SẢN PHẨM:
+Kích thước hộp hàng: 47 x 25 x 15 cm
+Chủ đề: VECTO ROBOT
+Năm sản xuất: 2024
+Xuất xứ thương hiệu: Việt Nam
+Chất liệu: Nhựa và kim loại (An toàn tuyệt đối với bé)
+Bộ đồ chơi bao gồm:
+1 x Robot DEVO thông thái (Dùng pin, không kèm pin)
+1 x Remote điều khiển từ xa (Dùng pin, không kèm pin)
+1 x Hướng dẫn sử dụng
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với đa dạng các dòng đồ chơi từ điều khiển từ xa, mô hình đến lắp ráp. Từ mong muốn mang cho các bé thật nhiều niềm vui, đồng thời không quên chú trọng đến sự phát triển toàn diện từ trí não đến thể chất, VECTO đã tìm hiểu và cho ra mắt một số lượng phong phú các loại đồ chơi, trong đó một số chủ đề đồ chơi VECTO nổi bật nhất có thể kể đến như:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (101, 189000, NULL, 88, 'Đồ chơi Robot tự động Bò sữa tinh nghịch VECTO VT9021C', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT9021C', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Tự Động Bò Sữa Tinh Nghịch VECTO VT9021C
+Đồ chơi Robot tự động Bò sữa tinh nghịch VECTO – Bạn bò sữa lém lỉnh, dễ thương bên cạnh bé chơi thật vui+ Robot có thể lắc lư, nhún nhảy và di chuyển tự động theo nhiều bài hát tích hợp sẵn+ Có đèn và âm thanh sống động+ Mắt có thể chớp cực dễ thươngTHÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 12.5 x 12.5 x 20.5 cmChủ đề: VECTO ROBOTNăm sản xuất: 2024Xuất xứ thương hiệu: Việt NamChất liệu: Nhựa và kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:1 x Robot tự động Bò sữa (Sử dụng pin tiểu, không kèm pin)VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (102, 279200, NULL, 21, 'TOBOT biến hình TACHYON Võ sĩ huyền thoại TOBOT 301139', JSON_OBJECT('Chủ đề', 'TOBOT MINI S3', 'Mã sản phẩm', '301139', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'TOBOT', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Tobot Biến Hình Tachyon Võ Sĩ Huyền Thoại TOBOT 301139
+TOBOT biến hình TACHYON Võ sĩ huyền thoại là robot biến hình đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích - TOBOT. Tachyon là một TOBOT mê võ thuật, nhanh nhẹn và tài năng!
+Sản phẩm gồm- 1 Robot biến hình có khả năng chuyển đổi linh hoạt giữa 2 dạng: TOBOT Võ sĩ huyền thoại và siêu xe tốc độ', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (103, 219000, NULL, 58, 'Đồ chơi lắp ráp robot biến hình khủng long LEGENDBOT -1 VECTO VT31', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT31/RD-GR', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Robot Biến Hình Khủng Long LEGENDBOT -1 VECTO VT31/BL-MT
+Đồ chơi lắp ráp robot biến hình khủng long LEGENDBOT từ VECTO – Món đồ chơi biến hình siêu thú vị dành cho các bé trai, và giúp bé rèn luyện vận động tinh cực bổ ích.
+Bé dùng tay để tự biến đổi đồ chơi từ dạng robot thành Khủng long Tyranosaurus (màu Đỏ), Dực long Pterosaur (màu Xanh dương) và Khủng long 3 sừng (màu Xanh lá)
+
+THÔNG TIN VỀ SẢN PHẨM:
+Kích thước hộp hàng:  47.0 x 8.0 x 28.0 cm
+Chủ đề:  VECTO ROBOT
+Năm sản xuất:  2023
+Xuất xứ thương hiệu:  Việt Nam
+Chất liệu:  Nhựa (An toàn tuyệt đối với bé)
+
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO
+- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG
+- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC
+- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (104, 299000, NULL, 27, 'Đồ chơi lắp ráp Robot chữ từ A đến F VECTO VT8195-1', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT8195-1', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Lắp Ráp Robot Chữ Từ A Đến F VECTO VT8195-1
+Là dòng đồ chơi lắp ráp thế hệ mới, với khả năng biến đổi nhiều hình dạng khác nhau:
++ Mỗi chữ có thể biến hình thành 1 robot: xe tank, phi cơ,…
++ Khả năng kết hợp những robot nhỏ thành 1 robot lớn siêu ngầu
++ Bé vừa chơi robot cực vui, vừa học bảng chữ cái thật dễ dàng
+Ngoài ra, bé có thể sưu tầm đầy đủ bảng chữ cái từ A đến Z trong 4 bộ robot gồm:
++ Đồ chơi lắp ráp Robot chữ từ A đến F
++ Đồ chơi lắp ráp Robot chữ từ G đến M
++ Đồ chơi lắp ráp Robot chữ từ N đến S
++ Đồ chơi lắp ráp Robot chữ từ T đến Z
+THÔNG TIN VỀ SẢN PHẨM:
+Kích thước hộp hàng:  34.3 x 24.2 x 6.5 cm
+Chủ đề:  VECTO ROBOT
+Năm sản xuất:  2023
+Xuất xứ thương hiệu:  Việt Nam
+Chất liệu:  Nhựa (An toàn tuyệt đối với bé)
+Bộ đồ chơi Robot chữ từ A đến F bao gồm:
+1 x Bộ 6 chữ cái: A B C D E F
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:
+- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO
+- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG
+- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC
+- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (105, 669000, NULL, 60, 'Đồ chơi Robot chú chó MAX đáng yêu điều khiển từ xa VECTO VT6601', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VT6601', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Chú Chó Max Đáng Yêu Điều Khiển Từ Xa VECTO VT6601
+Robot chú chó MAX từ VECTO, nổi bật với đôi mắt hình trái tim cùng rất nhiều chức năng cực vui chờ bạn khám phá:+ Cảm biến tương tác: chạm vào đầu và MAX sẽ lắc lư và sủa một cách thích thú để đáp lại+ MAX có thể thực hiện rất nhiều động tác đáng yêu như một em cún ngoài đời thật: đứng lên, ngồi xuống, duỗi người,...+ Khả năng trình diễn, nhảy múa theo nhạc+ Chức năng lập trình hiện đại+ Có thể di chuyển bằng cách trượt hoặc bước đi
+THÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 27 x 29 x 23 cmChủ đề: VECTO ROBOTNăm sản xuất: 2023Xuất xứ thương hiệu: Việt NamChất liệu: Nhựa (An toàn tuyệt đối với bé)
+Bộ sản phẩm đồ chơi Robot chú chó MAX đáng yêu điều khiển từ xa bao gồm:1 x Robot chú chó MAX điều khiển từ xa (dùng pin sạc, có kèm pin)1 x Remote điều khiển (dùng pin tiểu, không kèm pin)1 x Hướng dẫn sử dụng1 x Cáp sạc USB
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNHVECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ điều khiển từ xa đến lắp ráp. Với mong muốn giúp các bé trai có sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi nhằm mang đến cho bé nhiều lựa chọn nhất có thể, một số dòng đồ chơi nổi bật:- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINHVà còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (106, 279200, NULL, 36, 'TOBOT biến hình DOZER Máy ủi trung thành TOBOT 301146', JSON_OBJECT('Chủ đề', 'TOBOT MINI S3', 'Mã sản phẩm', '301146', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'TOBOT', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'VIỆT NAM'), 'Đồ Chơi Tobot Biến Hình Dozer Máy Ủi Trung Thành TOBOT 301146
+TOBOT biến hình DOZER Máy ủi trung thành là robot biến hình đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích - TOBOT. DOZER là một TOBOT khéo léo, tràn đầy năng lượng và coi trọng lòng trung thành hơn tất cả mọi thứ!
+Sản phẩm gồm- 1 Robot biến hình có khả năng chuyển đổi linh hoạt giữa 2 dạng: TOBOT Máy ủi trung thành và máy ủi', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (107, 799200, NULL, 17, 'TOBOT tích hợp 3 trong 1 KING TITAN TOBOT 301144', JSON_OBJECT('Chủ đề', 'TOBOT INTEGRATION S3', 'Mã sản phẩm', '301144', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'TOBOT', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Tobot Tích Hợp 3 Trong 1 King Titan TOBOT 301144
+TOBOT tích hợp 3 trong 1 KING TITAN là robot biến hình đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích - TOBOT. KING TITAN là một TOBOT kết hợp bởi 3 TOBOT: Tachyon, Wild Chief và Jet Thunder.
+Đặc điểm:- Kết hợp 3 TOBOT gồm TACHYON, WILD CHIEF và JET THUNDER tạo thành KINH TITAN- Kích hoạt chuyển đổi dễ dàng với chìa khoá sức mạnh “Tokey”', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (108, 279200, NULL, 41, 'TOBOT biến hình SAND CRAWLER Đấu sĩ nổi loạn TOBOT 301142', JSON_OBJECT('Chủ đề', 'TOBOT MINI S3', 'Mã sản phẩm', '301142', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'TOBOT', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Tobot Biến Hình Sand Crawler Đấu Sĩ Nổi Loạn TOBOT 301142
+TOBOT biến hình SAND CRAWLER Đấu sĩ nổi loạn là robot biến hình đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích - TOBOT. SAND CRAWLER là một TOBOT nổi loạn với tâm trạng thất thường và là một đấu sĩ tài năng.
+Sản phẩm gồm- Robot biến hình có khả năng chuyển đổi linh hoạt giữa 2 dạng: TOBOT Đấu sĩ nổi loạn và xe đua', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (109, 1499250, NULL, 30, 'Siêu TOBOT tích hợp khổng lồ 3 trong 1 KING TITAN TOBOT 301135', JSON_OBJECT('Chủ đề', 'TOBOT INTEGRATION S3', 'Mã sản phẩm', '301135', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'TOBOT', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi Siêu Tobot Tích Hợp Khổng Lồ 3 Trong 1 King Titan TOBOT 301135
+Siêu TOBOT tích hợp khổng lồ 3 trong 1 KING TITAN là robot biến hình đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích - TOBOT. KING TITAN là một TOBOT kết hợp bởi 3 TOBOT: Tachyon, Wild Chief và Jet Thunder.
+Đặc điểm:- Kết hợp 3 TOBOT gồm TACHYON, WILD CHIEF và JET THUNDER tạo thành KINH TITAN- Kích hoạt chuyển đổi dễ dàng với chìa khoá sức mạnh “Tokey”', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (110, 899250, NULL, 40, 'Siêu TOBOT biến hình cỡ lớn TACHYON Võ sĩ huyền thoại TOBOT 301130', JSON_OBJECT('Chủ đề', 'TOBOT MAIN S3', 'Mã sản phẩm', '301130', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'TOBOT', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'VIỆT NAM'), 'Đồ Chơi Siêu Tobot Biến Hình Cỡ Lớn Tachyon Võ Sĩ Huyền Thoại TOBOT 301130
+Siêu TOBOT biến hình cỡ lớn TACHYON Võ sĩ huyền thoại là robot biến hình đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích - TOBOT. Tachyon là một TOBOT mê võ thuật, nhanh nhẹn và tài năng! Đặc điểm:
+- Chuyển đổi linh hoạt giữa 2 dạng: TOBOT Võ sĩ huyền thoại và siêu xe tốc độ
+- Kích hoạt chuyển đổi dễ dàng với chìa khoá sức mạnh “Tokey” (chìa khóa "Tokey" có thể tháo rời)', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (111, 299000, NULL, 62, 'Đồ Chơi Robot Biến Hình Thành Máy Bay Trực Thăng (Đỏ) VECTO VTB19/RD', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VTB19/RD', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Biến Hình Thành Máy Bay Trực Thăng (Đỏ) VECTO VTB19/RD
+Đồ chơi Robot biến hình thành Máy bay trực thăng (Đỏ) - Mẫu robot cho bé vừa chơi, vừa rèn khả năng quan sát và tư duy sáng tạo cực vui:+ Robot biến hình linh hoạt thành máy bay trực thăng siêu ngầu+ Tăng vận động tinh và khả năng tư duy cho bé
+THÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 32 x 10 x 26   cmChủ đề: VECTO ROBOTXuất xứ thương hiệu: Việt NamChất liệu: Nhựa, kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:1 x Robot Biến Hình Thành Máy Bay Trực Thăng
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với đa dạng các dòng đồ chơi từ xe – robot – máy bay điều khiển từ xa, đến các bộ lắp ráp DIY, playset đường ray với tàu lửa chạy pin, xe mô hình mô phỏng thực tế,... đáp ứng nhiều sở thích và trải nghiệm khác nhau cho bé.+ ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO+ XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG+ ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC+ ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá!', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (112, 299000, NULL, 91, 'Đồ Chơi Robot Biến Hình Thành Máy Bay Trực Thăng (Xanh) VECTO VTB19/BL', JSON_OBJECT('Chủ đề', 'VECTO ROBOT', 'Mã sản phẩm', 'VTB19/BL', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Robot Biến Hình Thành Máy Bay Trực Thăng (Xanh) VECTO VTB19/BL
+Đồ chơi Robot biến hình thành Máy bay trực thăng (Xanh) - Mẫu robot cho bé vừa chơi, vừa rèn khả năng quan sát và tư duy sáng tạo cực vui:+ Robot biến hình linh hoạt thành máy bay trực thăng siêu ngầu+ Tăng vận động tinh và khả năng tư duy cho bé
+THÔNG TIN VỀ SẢN PHẨM:Kích thước hộp hàng: 32 x 10 x 26   cmChủ đề: VECTO ROBOTXuất xứ thương hiệu: Việt NamChất liệu: Nhựa, kim loại (An toàn tuyệt đối cho bé)
+Bộ đồ chơi bao gồm:
+1 x Robot Biến Hình Thành Máy Bay Trực Thăng (Xanh) (Không dùng pin)
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với đa dạng các dòng đồ chơi từ xe – robot – máy bay điều khiển từ xa, đến các bộ lắp ráp DIY, playset đường ray với tàu lửa chạy pin, xe mô hình mô phỏng thực tế,... đáp ứng nhiều sở thích và trải nghiệm khác nhau cho bé.+ ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO+ XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG+ ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC+ ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+Và còn nhiều dòng đồ chơi khác từ VECTO đang đợi bé khám phá!', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (113, 479000, NULL, 82, 'Robot Siêu Cảnh Sát Đặc Nhiệm Battle Cop Miniforce 505009', JSON_OBJECT('Chủ đề', 'MINIFORCE 6 HEAD COPS', 'Mã sản phẩm', '505009', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'MINIFORCE', 'Xuất xứ thương hiệu', 'HÀN QUỐC', 'Giới tính', 'Boy', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ ChơiRobot Siêu Cảnh Sát Đặc Nhiệm Battle Cop Miniforce 505009
+Siêu robot cảnh sát đặc nhiệm Battle Cop là sản phẩm thuộc thương hiệu SAMG Entertainment đến từ Series phim hoạt hình được nhiều bạn nhỏ yêu thích – MINIFORCE. Đồ đồ chơi mô phỏng nhân vật Siêu cảnh sát đặc nhiệm Battle Cop, có các đặc điểm sau:
+- Bé phát triển vận động tinh, học cách thực hiện theo sách hướng dẫn sử dụng;
+- Bộ sản phẩm có thể bẻ các khớp tay, chân.. để biến hình robot thành mô hình đầu nhân vật và ngược lại
+- Đi kèm 1 đại pháo đặc nhiệm và 1 huy hiệu cảnh sát có thể dùng để trưng bày mô hình đầu nhân vật Nhờ các khớp nối vô cùng linh hoạt, bé có thể hóa thân vào nhân vật và thể hiện những pha hành động mạnh mẽ.
+Thông tin sản phẩm:
+- Chứa các chi tiết đều được làm hoàn toàn từ chất liệu nhựa ABS cao cấp, ráp nối với nhau một cách tỉ mỉ, đảm bảo độ chắc chắn cũng như tính mỹ quan của sản phẩm.
+- Chất liệu nhựa không bao gồm những thành phần độc hại cho sức khoẻ của trẻ nhỏ khi sử dụng trong thời gian dài.', 55, 20);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (114, 799000, NULL, 34, 'Trực thăng điều khiển từ xa WOLF FORCE (xanh dương) VECTO VTF8', JSON_OBJECT('Chủ đề', 'VECTO FLYING YOYS', 'Mã sản phẩm', 'VTF8/BLU', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'),
+     'Đồ Chơi VECTO Trực Thăng Điều Khiển Từ Xa Wolf Force - (Xanh Dương) VTF8/BLU
+    CHINH PHỤC BẦU TRỜI CÙNG TRỰC THĂNG WOLF FORCE VECTO
+    Dòng trực thăng với pin sạc thế hệ mới cho thời gian chơi lên đến 22 phút hứa hẹn sẽ là mang đến những giờ bay đầy hào hứng cho các bé.
+    - Công nghệ tự giữ độ cao khiến máy bay luôn ở trạng thái lơ lửng giúp việc điều khiển dễ hơn rất nhiều
+    - Tự do điều khiển trực thăng bay tới, lui, quẹo trái, phải
+    - Nút nhấn tự động cất cánh/ hạ cánh
+    - Chế độ chỉnh bay nhanh, bay chậm
+    - Nút căn chỉnh trái phải
+    Thiết kế phóng khoáng, nhẹ nhàng tạo nên một vẻ ngoài trang nhã nhưng không kém phần mạnh mẽ. Cơ cấu khí động học hoàn hảo giúp trực thăng có thể chuyển động mượt mà.
+    Bộ sản phẩm bao gồm:
+    1 x trực thăng điều khiển từ xa (có kèm pin sạc bên trong)
+    1 x Remote điều khiển (xài pin tiểu/ không kèm pin)
+    1 x Cáp sạc USB
+    VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+    VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ đồ chơi điều khiển từ xa cho đến các dòng đồ chơi lắp ráp. Với mong muốn giúp các bé trai có một sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi để đem đến cho bé nhiều lựa chọn nhất có thể, có thể kể đến như:
+    - ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO
+    - XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG
+    - ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC
+    - ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+    Và còn nhiều dòng đồ chơi khác đang đợi bé khám phá', 55, 51);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (115, 799000, NULL, 61, 'Trực thăng điều khiển từ xa WOLF FORCE (cam) VECTO VTF8', JSON_OBJECT('Chủ đề', 'VECTO FLYING YOYS', 'Mã sản phẩm', 'VTF8/ORG', 'Tuổi', '3year-99year', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi VECTO Trực Thăng Điều Khiển Từ Xa Wolf Force (Cam) VTF8/ORG
+CHINH PHỤC BẦU TRỜI CÙNG TRỰC THĂNG WOLF FORCE VECTO
+Dòng trực thăng với pin sạc thế hệ mới cho thời gian chơi lên đến 22 phút hứa hẹn sẽ là mang đến những giờ bay đầy hào hứng cho các bé.
+- Công nghệ tự giữ độ cao khiến máy bay luôn ở trạng thái lơ lửng giúp việc điều khiển dễ hơn rất nhiều
+- Tự do điều khiển trực thăng bay tới, lui, quẹo trái, phải
+- Nút nhấn tự động cất cánh/ hạ cánh
+- Chế độ chỉnh bay nhanh, bay chậm
+- Nút căn chỉnh trái phải
+Thiết kế phóng khoáng, nhẹ nhàng tạo nên một vẻ ngoài trang nhã nhưng không kém phần mạnh mẽ. Cơ cấu khí động học hoàn hảo giúp trực thăng có thể chuyển động mượt mà.
+Bộ sản phẩm bao gồm:
+1 x trực thăng điều khiển từ xa (có kèm pin sạc bên trong)
+1 x Remote điều khiển (xài pin tiểu/ không kèm pin)
+1 x Cáp sạc USB
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ đồ chơi điều khiển từ xa cho đến các dòng đồ chơi lắp ráp. Với mong muốn giúp các bé trai có một sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi để đem đến cho bé nhiều lựa chọn nhất có thể, có thể kể đến như:
+- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO
+- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG
+- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC
+- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+Và còn nhiều dòng đồ chơi khác đang đợi bé khám phá', 55, 51);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (116, 319000, NULL, 33, 'Đồ chơi bệ phóng máy bay phiên bản kích thước lớn (xanh) VECTO VT005-2', JSON_OBJECT('Chủ đề', 'VECTO AIRPLANE LAUNCHER', 'Mã sản phẩm', 'VT005-2', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'VECTO', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi VECTO Bệ Phóng Máy Bay Phiên Bản Kích Thước Lớn (Xanh) VT005-2
+
+Bệ phóng máy bay phiên bản kích thước lớn giúp bé nhập vai thành một chiến binh bầu trời thực thụ. Với nhiều chức năng hấp dẫn có thể kể đến như:
+
+
+
+
+THÔNG TIN VỀ SẢN PHẨM:
+
+Kích thước hộp hàng:  52 x 8.6 x 33.8 cm
+
+Chủ đề:  VECTO AIRPLANE LAUNCHER
+
+Năm sản xuất:  2022
+
+Xuất xứ thương hiệu:  Việt Nam
+
+Chất liệu:  Nhựa (An toàn tuyệt đối với bé)
+
+Bộ đồ chơi bệ phóng máy bay phiên bản kích thước lớn:
+
+1 x Bệ phóng máy bay
+
+1 x Máy bay kích thước lớn
+
+1 x Bộ cây nhựa có nút dính
+
+1 x Kính đeo đồ chơi
+
+VECTO - THẾ GIỚI ĐỒ CHƠI BÉ TRAI CỰC ĐỈNH
+
+VECTO là thương hiệu đồ chơi dành riêng cho các bé trai, với các dòng đồ chơi trải dài từ đồ chơi điều khiển từ xa cho đến các dòng đồ chơi lắp ráp. Với mong muốn giúp các bé trai có một sự phát triển toàn diện từ trí não đến thể chất, Vecto đã phát triển đa dạng các loại đồ chơi để đem đến cho bé nhiều lựa chọn nhất có thể, có thể kể đến như:
+
+- ROBOT ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY SÁNG TẠO
+
+- XE ĐIỀU KHIỂN – PHÁT TRIỂN TƯ DUY PHƯƠNG HƯỚNG
+
+- ĐỒ CHƠI BAY – PHÁT TRIỂN TƯ DUY LOGIC
+
+- ĐỒ CHƠI LẮP RÁP DIY – PHÁT TRIỂN KỸ NĂNG VẬN ĐỘNG TINH
+
+Và còn nhiều dòng đồ chơi khác đang đợi bé khám phá', 55, 51);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (117, 132600, NULL, 10, 'Combo bột nặn 4 màu và bột nặn 4 màu mini PLAYDOH CBB5517-23241-33', JSON_OBJECT('Chủ đề', 'PD CORE COMPOUND', 'Mã sản phẩm', 'CBB5517-23241-33', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'PLAYDOH', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi PLAY-DOH Combo Bột Nặn 4 Màu Và Bột Nặn   4 Màu Mini CBB5517-23241-33 - Giao hàng ngẫu nhiên
+Môt combo tuyệt vời cho bé, tha hồ sáng tạo mà không lo thiếu bột. Kích thước nhỏ gọn rất phù hợp cho bé đem đi ra ngoài cũng như mang theo đi học
+Sản phẩm bao gồm:
+B5517 - Combo Bột Nặn 4 Màu: Bột nặn Playdoh 4 màu, cho bé thêm sự lựa chọn để thỏa sức sáng tạo. Với màu sắc đa dạng, đây sẽ là lựa chọn hoàn hảo cho bé bổ sssung thêm bộ sưu tập màu bột nặn của mình. Nào hãy cùng thỏa sức sáng tạo với Playdoh nhé
+23241 - Bột Nặn   4 Màu Mini: Sản phẩm phù hợp cho bé từ 2 tuổi trở lên. Ở độ tuổi này, bé rất thích cầm nắm và vò nắn và giai đoạn này bé học rất nhanh về các giác quan. Chơi bột nặn giúp bé phát triển giác quan thông qua việc học màu sắc, tiếp xúc với chất bột mềm mịn sẽ kích thích bé cầm nắm, vò nắn. Bột nặn Playdoh 4 màu mini cho bé thêm sự lựa chọn để thỏa sức sáng tạo', 32,13);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (118, 112500, NULL, 78, 'Ống bột nặn 10 màu PLAYDOH 22037', JSON_OBJECT('Chủ đề', 'PD CORE COMPOUND', 'Mã sản phẩm', '22037', 'Tuổi', '2 tuổi trở lên', 'Thương hiệu', 'PLAYDOH', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), NULL, 32,13);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (119, 28000, NULL, 30, 'Hộp bột nặn Playdoh màu vàng đậm PLAYDOH B5517C', JSON_OBJECT('Chủ đề', 'PD CORE COMPOUND', 'Mã sản phẩm', 'DAM/B5517C/YE', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'PLAYDOH', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Hộp Bột Nặn Playdoh Màu Vàng Đậm DAM/B5517C/YE
+
+Sản phẩm phù hợp cho bé từ 2 tuổi trở lên. Ở độ tuổi này, bé rất thích cầm nắm và vò nắn và giai đoạn này bé học rất nhanh về các giác quan. Chơi bột nặn giúp bé phát triển giác quan thông qua việc học màu sắc, tiếp xúc với chất bột mềm mịn sẽ kích thích bé cầm nắm, vò nắn.Bột nặn màu hồng đậm riêng biệt cho bé có thể chọn theo ý thích để thực hiện tác phẩm sáng tạo của mình.Hiện tại có đến 9 màu bột nặn cho bé
+
+Vài nét về thương hiệu Hasbro
+
+Hasbro là công ty đồ chơi trẻ em hàng đầu thế giới bắt đầu hoạt động từ năm 1940 có trụ sở đặt tại Pawtucket, Rhode Island. Những sản phẩm đồ chơi được yêu thích của Hasbro phải kể đến Play-Doh, Hasbro Gaming, My Little Pony...Bên cạnh những món đồ chơi trí tuệ giúp khơi gợi tiềm năng khám phá, kích thích trí thông minh, Hasbro còn nổi danh với các trò chơi kinh điển như cờ tỷ phú Monopoly, cờ chiến thuật Risk... Thiết kế sản phẩm ấn tượng, đa dạng mẫu mã, đồ chơi của Hasbro luôn chiếm được lòng tin của khách hàng, nhất là các bậc phụ huynh và trẻ nhỏ.', 32,13);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (120, 223200, NULL, 23, 'Nat Geo Nuôi Trồng Tinh Thể - Phát Sáng Trong Đêm STEAM RTNGGIDCRYSTAL', JSON_OBJECT('Chủ đề', 'STEAM NAT GEO', 'Mã sản phẩm', 'RTNGGIDCRYSTAL', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'STEAM', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Nat Geo Nuôi Trồng Tinh Thể - Phát Sáng Trong Đêm STEAM RTNGGIDCRYSTAL
+-Tự tay tạo ra tinh thể phát sáng tuyệt đẹp với bộ thí nghiệm National Geographic Nuôi trồng tinh thể - phát sáng trong đêm!-Bộ kit hướng dẫn chi tiết từng bước giúp bé dễ dàng nuôi tinh thể phát sáng — chỉ sau khoảng 3 ngày là có thể trưng bày thành phẩm.-Bé sẽ được đặt tinh thể lên đế trưng bày đi kèm và khám phá thêm kiến thức hấp dẫn về đá tinh thể trong sách hướng dẫn in màu.-Đặc biệt, bé còn được tặng kèm một mẫu đá fluorite thật để bổ sung vào bộ sưu tập!-Một cách tuyệt vời để truyền cảm hứng yêu thích khoa học và địa chất ngay từ khi còn nhỏ!*Bộ sản phẩm gồm:-1 gói bột nuôi tinh thể (95g)-1 viên đá mồi phát sáng trong bóng tối-1 kính lúp-1 muỗng gỗ-1 đế trưng bày-1 mẫu đá fluorite thật-Sách hướng dẫn', 33,22);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (121, 419300, NULL, 82, 'Bộ cát, dụng cụ và khay chơi cát KINETIC SAND 6024397', JSON_OBJECT('Chủ đề', 'KINETIC PLAYSET', 'Mã sản phẩm', '6024397', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'KINETIC SAND', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Thuy Điển'), 'Bộ cát, dụng cụ và khay chơi cát -6024397- Giao hàng ngẫu nhiên
+Bắt đầu cuộc phiêu lưu vào thế giới cổ tích với Bộ cát, dụng cụ và khay chơi cát. Bộ dụng cụ bao gồm:
+-               453 gram cát
+-                   3 khuôn hình bao gồm: lâu đài cát, cua biển và rùa biển
+-                   1 xẻng xúc cát
+-               1 khay chơi cát được in hình ngộ nghĩnh
+Bé có thể thỏa sức nặn và tạo hình theo trí tưởng tượng của mình.
+Kinetic sand là thương hiệu đến từ Canada:
+-                   Thành phần của từ cát tự nhiên và đảm bảo an toàn cho bé.
+-                   Cát không bị khô, có thể chơi đi chơi lại nhiều lần
+Với Bộ cát, dụng cụ và khay chơi cát, các bé có thể tạo hình lâu đài thủy cung tráng lệ, những động vật biển như cua, rùa hay bất cứ gì bé có thể nghĩ ra.
+Bộ đồ chơi sẽ giúp bé thỏa sức sáng tạo, mang đến những giây phút vui chơi cho bé, giúp bé tranh xa điện thoại hay IPad.
+Tên thương hiệu : Kinetic Sand
+Xuất xứ thương hiệu : Canada
+Tuổi : 3+
+Giới tinh : Unisex', 38,13);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (122, 279300, NULL, 10, 'Bộ khảo cổ truy tìm xương Khủng long - T.Rex STEAM 1423004871', JSON_OBJECT('Chủ đề', 'STEAM DISCOVERY', 'Mã sản phẩm', '1423004871', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'STEAM', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ chơi khoa học STEAM hàng đầu nước Mỹ của nhãn hàngDISCOVERY #MINDBLOWN, hợp tác cùng kênh truyền hình nổi tiếng DISCOVERY, đem lại cho bé những trải nghiệm khoa học ứng dụng vừa học, vừa chơi.Cho đến hiện nay, con người chỉ mới phát hiện được hóa thạch của hơn 700 loài khủng long khác nhau đã tuyệt chủng.BỘ KHẢO CỔ TRUY TÌM XƯƠNG KHỦNG LONG - TYRANNOSAURUS -REX (T.REX)cho bé trải nghiệm khảo cổ và khai quật để tìm ra vết tích của loài khủng long đã tiệt chủng.- Vừa chơi, vừa khám phá những điều bí ẩn của loài Khủng long đã tuyệt chủng. Và sưu tập bộ xương khủng long ẩn sâu trong phiến đá.* Sản phẩm gồm:_ 1 phiến đá lớn_ 1 búa gỗ và 1 đục gỗ để đục phiến đá_ 1 cọ để quét sạch bụi bám trên xương khủng long_ 1 Hướng dẫn sử dụng_ 1 Thông tin khoa học thú vị khác hoặc hướng dẫn thực nghiệm khoa học ứng dụng khác kèm theo.* Hướng dẫn cách chơi:_Dùng nước ngâm mềm phiến đá, để có thể đục phiến đá dẽ dàng hơn._Sử dụng các dụng cụ đi kèm để khai quật hóa thạch Khủng long (T.REX)* Độ tuổi phù hợp6+* Mức độ kỹ năng:Dễ', 33, 11);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (123, 79000, NULL, 54, 'Trò chơi thử thách trí tuệ hạt đậu logic Xanh STEAM SK6655', JSON_OBJECT('Chủ đề', 'STEAM KIDS', 'Mã sản phẩm', 'SK6655/BL', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'STEAM', 'Xuất xứ thương hiệu', 'Việt Nam', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'TRUNG QUỐC'), 'Đồ Chơi STEAM Trò Chơi Thử Thách Trí Tuệ Hạt Đậu Logic Xanh SK6655/BL
+
+Sản phẩm Trò chơi thử thách trí tuệ Hạt đậu logic xanh/vàng là một món đồ chơi giải trí vừa chơi vừa học. Gồm những viên banh tròn như hạt đậu nhiều màu sắc sặc sỡ. Bằng trí thông minh và sự linh hoạt của các ngón tay, bé cần đưa những viên banh cùng màu về chung 1 ô với nhau.
+
+Sản phẩm được thiết kế như một câu đố, trò chơi trí tuệ mang đến cho người chơi
+
+- Thư giãn
+
+- Phát triển trí não
+
+- Rèn luyện sự linh hoạt các ngón tay
+
+Đồ chơi đặc biệt giúp bé:
+
+- Phát triển tư duy logic
+
+- Rèn luyện tính kiên nhẫn
+
+Sản phẩm bao gồm: 1 khay chơi với 4 rãnh màu khác nhau, và trục giữa có thể xoay 360 độ, sang trái và phải linh hoạt.',33, 4);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (124, 559000, NULL, 49, 'Nat Geo Khám Phá Bộ Phận Cơ Thể Người STEAM RTHUMBODY', JSON_OBJECT('Chủ đề', 'STEAM NAT GEO', 'Mã sản phẩm', 'RTHUMBODY', 'Tuổi', '8 tuổi trở lên', 'Thương hiệu', 'STEAM', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Nat Geo Khám Phá Bộ Phận Cơ Thể Người STEAM RTHUMBODY
+-Khám phá cơ thể người phát sáng cùng National Geographic!-Bộ mô hình cơ thể người phát sáng trong bóng tối là cách học sinh động và thú vị giúp bé tìm hiểu về khoa học giải phẫu.-Bộ sản phẩm bao gồm 9 cơ quan mềm có thể tháo rời và 18 khúc xương phát sáng. Bé có thể dùng nhíp gắp để lấy từng bộ phận ra một cách dễ dàng. Bảng sơ đồ đi kèm sẽ giúp bé nhận diện chính xác từng cơ quan và khúc xương, đồng thời sách hướng dẫn còn cung cấp nhiều kiến thức hấp dẫn về các cơ quan và hệ thống trong cơ thể.-Sau khi lắp lại, mô hình có thể được trưng bày trên giá đỡ đi kèm – và đặc biệt, các khúc xương sẽ phát sáng trong bóng tối, cực kỳ bắt mắt! Đây là bộ đồ chơi lý tưởng dành cho bé yêu thích tìm hiểu cơ thể người.*Bộ sản phẩm gồm:-1 mô hình cơ thể người-1 giá đỡ-9 cơ quan mềm có thể tháo rời-1 mô hình cơ bắp tay-18 xương phát sáng-1 nhíp gắp-1 bảng sơ đồ cơ thể-Sách hướng dẫn
+',33, 22);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (125, 863000, NULL, 5, 'Máy làm kem thần kì phiên bản mới PLAYDOH F7378', JSON_OBJECT('Chủ đề', 'PD KITCHEN ICECREAM', 'Mã sản phẩm', 'F7378', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'PLAYDOH', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Máy Làm Kem Thần Kì Phiên Bản Mới PLAYDOH F7378
+Máy làm kem thần kì phiên bản hoàn toàn mới , vừa hạ cánh tại nhà Play-Doh .Với hơn 8 hũ bột nặn và chiếc máy làm kem bên cạnh đó là 25 phụ kiện đi kèm. Tha hồ cho bé thỏa sức sáng tạo ra những ly kem thật ngon lành .', 32, 13);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (126, 1149000, NULL, 3, 'Đồ Chơi Búp Bê Barbie Cutie Reveal - Gấu Tím Mơ Màng BARBIE JFV61/JFV59', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'JFV61/JFV59', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Barbie Cutie Reveal - Gấu Tím Mơ Màng BARBIE JFV61/JFV59
+- Búp bê Barbie Cutie Reveal - Gấu tím mơ màng mang đến những khoảnh khắc “cực wow” với 10 bất ngờ thú vị đang chờ được khám phá! Trong bộ sưu tậo, bé sẽ gặp một trong ba nhân vật Care Bears quen thuộc – Gấu xanh hoan ca, Gấu hồng kiêu sa hoặc Gấu tím mơ màng. Khi tháo bỏ bộ trang phục thú bông đáng yêu, búp bê Barbie thời trang với khớp cử động linh hoạt sẽ hiện ra. Liệu bé sẽ mở ra nàng Barbie nào?- Bên trong còn nhiều điều bất ngờ hơn: một chiếc váy xinh xắn, băng đô, khuyên tai, giày boots hoặc giày cao gót, lược bọt biển và một bé Care Bear tí hon đi kèm! Phần áo lông thú có thể lộn ngược thành áo khoác nỉ mềm mại, còn phần đầu trang phục lại biến thành chiếc giường nhỏ cho thú cưng Care Bear đáng yêu. Đặc biệt, chỉ với nước lạnh hoặc ấm, gương mặt Barbie sẽ thay đổi với chi tiết lấp lánh kỳ diệu – và bé có thể lặp lại phép màu này nhiều lần!- Với những trang phục ngọt ngào, thú bông dễ thương và trải nghiệm biến đổi bất ngờ, Búp bê Barbie Cutie Reveal - Gấu tím mơ màng chắc chắn sẽ là món quà tuyệt vời cho trẻ từ 3 đến 7 tuổi, đặc biệt là những fan của Care Bears.', 6,2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (127, 469000, NULL, 93, 'Đồ Chơi Búp Bê Thời Trang Fashionista - Strapless Rose Dress BARBIE FBR37', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'HYT94/FBR37', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Thời Trang Fashionista - Strapless Rose Dress BARBIE HYT94/FBR37
+Búp bê thời trang Fashionista Barbie - Strapless Rose Dress cho bé tự do thể hiện phong cách qua thời trang.
+Với mái tóc hồng pastel cài kẹp ngọc trai duyên dáng, Barbie diện váy hồng hoa hồng nổi bật, phối cùng sandal cao gót hồng thanh lịch, sẵn sàng cho những buổi tiệc cùng bạn bè.
+Phụ kiện nổi bật tôn lên cá tính riêng của Barbie. Là món quà lý tưởng cho các bé yêu thích thời trang.
+Hãy mở ra câu chuyện tưởng tượng đầy thú vị cùng với Búp bê thời trang Fashionista Barbie. Sưu tập ngay các bé nhé.', 6,2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (128, 469000, NULL, 45, 'Đồ Chơi Búp Bê Thời Trang Fashionista - Sparkly Silver Dress BARBIE FBR37', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'HYT95/FBR37', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Thời Trang Fashionista - Sparkly Silver Dress BARBIE HYT95/FBR37
+Búp bê thời trang Fashionista Barbie - Sparkly Silver Dress cho bé tự do thể hiện phong cách qua thời trang.
+Với mái tóc xoăn đen, Barbie diện váy bạc phối cùng mũ cao bồi và bốt trắng, tạo nên vẻ ngoài rạng rỡ, sẵn sàng toả sáng trong mọi bữa tiệc
+Phụ kiện nổi bật tôn lên cá tính riêng của Barbie. Là món quà lý tưởng cho các bé yêu thích thời trang.
+Hãy mở ra câu chuyện tưởng tượng đầy thú vị cùng với Búp bê thời trang Fashionista Barbie. Sưu tập ngay các bé nhé.', 6,2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (129, 979300, NULL, 46, 'Đồ Chơi Phòng Khám Xinh Xắn Cho Pet Yêu BARBIE JFX93', JSON_OBJECT('Chủ đề', 'BARBIE CAREER', 'Mã sản phẩm', 'JFX93', 'Tuổi', '4 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Phòng Khám Xinh Xắn Cho Pet Yêu BARBIE JFX93
+- Khám phá thế giới chăm sóc thú cưng đầy niềm vui với bộ đồ chơi Phòng khám xinh xắn cho pet yêu! Khi chơi cùng Barbie, các bé gái sẽ được thỏa sức tưởng tượng, và với những ai yêu thích chăm sóc bạn bè bốn chân đáng yêu, giờ đây các em có thể hóa thân thành bác sĩ thú y!- Bộ sản phẩm bao gồm một búp bê Barbie tóc hồng, 2 thú cưng, bàn khám và nhiều phụ kiện thú y sống động! Điểm đặc biệt là bé có thể tạo bó bột cho thú cưng với tính năng làm bột chân vô cùng chân thực, đồng thời tạo băng quấn bằng máy cuốn băng chuyên dụng! Các bé sẽ thích thú khi đưa thú cưng đến phòng khám, cùng điều trị và giúp các bạn nhỏ khỏe mạnh trở lại!- Bàn khám có ngăn kéo chứa phụ kiện, một chiếc giường nhỏ để thú cưng nằm nghỉ và cả máy cuốn băng y tế!- Khi phát hiện thú cưng bị gãy chân, bác sĩ Barbie có thể dùng bột chuyên dụng và dụng cụ tạo khuôn để làm một chiếc bó bột màu hồng!- Bé còn có thể trang trí bàn khám và bó bột của thú cưng bằng các sticker kể chuyện để tăng phần sáng tạo và nhập vai sống động hơn!- Barbie bác sĩ thú y có mái tóc hồng nổi bật, mặc váy họa tiết, khoác áo blouse trắng và mang giày thể thao trắng – sẵn sàng cho một ngày làm việc năng động!- Với vô vàn cách chơi và khơi mở ước mơ, bộ Barbie nghề nghiệp này là món quà tuyệt vời cho các bé từ 4 tuổi trở lên, đặc biệt là những bé yêu động vật và thích giúp đỡ người khác!',
+     6,24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (130, 689000, NULL, 61, 'Đồ Chơi Phòng Gabby 2 Tầng – Cakey & MerCat GABBY DOLLHOUSE 6072921', JSON_OBJECT('Chủ đề', 'GABBY ROOM', 'Mã sản phẩm', '6072921', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'GABBY DOLLHOUSE', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Phòng Gabby 2 Tầng – Cakey & MerCat GABBY DOLLHOUSE 6072921 - Giao Hàng Ngẫu Nhiên
+Hãy mang thế giới đầy màu sắc của Gabby’s Dollhouse từ màn ảnh Netflix về ngay trong phòng chơi của bé với bộ đồ chơi mô phỏng chân thực và tràn đầy niềm vui bất tận!- Dành cho cả bé trai và bé gái: Thiết kế trung tính, khuyến khích tinh thần vui chơi hòa nhập và sáng tạo.- Bản sao chân thực từ series Netflix: Tái hiện sinh động các nhân vật và không gian quen thuộc, giúp bé bước thẳng vào thế giới của Gabby.- Trọn bộ đầy đủ: Bao gồm căn phòng, nhân vật và nhiều phụ kiện, mang đến trải nghiệm chơi hoàn chỉnh và hấp dẫn.- Chất liệu an toàn: Sản xuất từ nhựa PVC cao cấp, an toàn cho trẻ từ 3 tuổi trở lên.- Kích thích trí tưởng tượng: Không chỉ là đồ chơi, Gabby’s Dollhouse còn là người bạn đồng hành giúp bé phát triển khả năng sáng tạo và nhập vai, phù hợp cho trẻ từ 3–14 tuổi.Với thiết kế tỉ mỉ và tính năng giáo dục nổi bật, Bộ đồ chơi Gabby’s Dollhouse chắc chắn sẽ trở thành món quà lý tưởng, mở ra những giờ phút vui chơi đầy cảm hứng cho bé yêu!', 38,24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (131, 1770300, NULL, 15, 'Đồ Chơi Ngôi Nhà Gabby Cầu Vồng Neon GABBY DOLLHOUSE 6070742', JSON_OBJECT('Chủ đề', 'GABBY PLAYSET', 'Mã sản phẩm', '6070742', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'GABBY DOLLHOUSE', 'Xuất xứ thương hiệu', 'Canada', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Việt Nam'), 'Đồ Chơi Ngôi Nhà Gabby Cầu Vồng Neon GABBY DOLLHOUSE 6070742
+Hãy bước vào thế giới nhiệm màu của Gabby’s Dollhouse với ngôi nhà búp bê cao đến 63cm đầy tính năng tương tác và bất ngờ thú vị, mang đến cho bé những giờ phút vui chơi sống động như trong series Netflix!
+- Tính năng tương tác Cat-tastic: Đi thang máy Cat-A-Vator để khám phá 6 căn phòng, lật mái nhà để mở ra gác mái bí mật và nhấn nút để nghe tới 10 âm thanh và câu thoại quen thuộc từ chương trình.
+- Nội thất Meow-mazing siêu đáng yêu: Bộ phụ kiện đi kèm cực kỳ sinh động như cổng bong bóng, bồn vệ sinh hình mèo, bồn rửa mặt, ghế, giường, bàn tiệc buffet, bàn DJ/piano và túi quà, giúp bé tái hiện mọi góc nhỏ trong ngôi nhà kỳ diệu.
+- Khám phá 2 bất ngờ thú vị: Mở hộp “Dollhouse Delivery” giống như Gabby trong show để tìm thấy 2 phụ kiện bí mật – một chiếc bánh ngọt xinh xắn và chiếc cúp vàng – hoàn hảo để làm phong phú hơn trải nghiệm nhập vai.
+- Xây dựng thế giới Dollhouse của riêng bé: Từ những căn phòng theo chủ đề, nội thất búp bê cho đến nhân vật và bộ chơi, tất cả kết hợp tạo nên một thế giới tưởng tượng phong phú, nuôi dưỡng khả năng sáng tạo và nhập vai của trẻ.
+- Bộ sưu tập trọn vẹn: Đồ chơi Gabby’s Dollhouse là lựa chọn tuyệt vời cho trẻ mầm non, đồng thời là món quà hoàn hảo dành cho những bé yêu thích búp bê, phụ kiện, đồ chơi bất ngờ, thú bông, xếp hình hay boardgame.
+Bộ sản phẩm bao gồm: 1 ngôi nhà búp bê, 1 nhân vật Gabby, 10 phụ kiện, 2 hộp Dollhouse Delivery, 1 bộ sticker.
+Ngôi Nhà Búp Bê Gabby’s Dollhouse không chỉ mang đến những phút giây vui chơi thú vị mà còn là cánh cửa mở ra cả một vũ trụ tưởng tượng, nơi bé có thể thỏa sức sáng tạo và tận hưởng từng khoảnh khắc kỳ diệu!', 38,24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (132, 546750, NULL, 31, 'Đồ Chơi Búp Bê Đổi Màu – Phiên Bản Bong Bóng Thú Cưng BARBIE JFV58', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'JFV58', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Đổi Màu – Phiên Bản Bong Bóng Thú Cưng BARBIE JFV58 - Giao Hàng Ngẫu Nhiên
+Búp bê Barbie đổi màu – Phiên bản bong bóng ngọt ngào mang đến trải nghiệm khám phá đầy thú vị với 6 túi mù bất ngờ !- Với phiên bản lấy cảm hứng từ những động vật hình bong bóng rực rỡ sắc màu, bé sẽ tìm thấy một trong bốn búp bê độc đáo của series này, mỗi nàng đều sở hữu mái tóc dài điểm xuyết những sợi màu nổi bật.- Hãy bắt đầu cuộc phiêu lưu bằng cách tháo lớp bao bì bên ngoài, mở ống đựng và kéo ra một búp bê Barbie được phủ lớp màu lấp lánh cùng những túi mù bí ẩn chứa đầy bất ngờ!- Đổ đầy nước ấm vào ống, đặt búp bê vào và lắc nhẹ, sau đó lấy ra để lộ diện vẻ ngoài bí ẩn của nàng! Búp bê nào sẽ xuất hiện đây nhỉ?- Mở các túi nhỏ để khám phá những phụ kiện bên trong: một chiếc váy xòe với họa tiết bong bóng rực rỡ, một chiếc băng đô sành điệu, đôi giày đế xuồng thời thượng và một chú thú bong bóng ngộ nghĩnh, sáng bừng!- Sử dụng nước lạnh và nước ấm để biến đổi phần thân của búp bê hết lần này đến lần khác, tạo thêm những bất ngờ thú vị! Bé có thể dùng ống đựng bao bì để cất giữ các phụ kiện, thật tiện lợi.- Búp bê Barbie đổi màu – Phiên bản bong bóng ngọt ngào là món quà tuyệt vời dành cho các bé từ 3 tuổi trở lên. Các bé có thể sưu tập trọn bộ để mở rộng thế giới thời trang và những câu chuyện đầy sáng tạo!', 6,2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (133, 69000, NULL, 46, 'Đồ Chơi Búp Bê Mini 12cm Công Chúa DREAMEEZ 81041DRE-1', JSON_OBJECT('Chủ đề', 'DREAMEEZ 12CM DOLL', 'Mã sản phẩm', '81041DRE-1', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'DREAMEEZ', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Mini 12cm Công Chúa DREAMEEZ 81041DRE-1 - Giao Hàng Ngẫu Nhiên
+Sản phẩm gồm 1 búp bê ngẫu nhiên Dreameez với phong cách thời trang sành điệu, cùng tạo hình vô cùng sang trọng.', 56, 2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (134, 199200, NULL, 41, 'Đồ Chơi Búp Bê Tiệm Bánh Vui Vẻ DREAMEEZ 81119DRE', JSON_OBJECT('Chủ đề', 'DREAMEEZ PLAYSET', 'Mã sản phẩm', '81119DRE', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'DREAMEEZ', 'Xuất xứ thương hiệu', 'Anh Quốc', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Tiệm Bánh Vui Vẻ DREAMEEZ 81119DRE
+Sản phẩm gồm 1 búp bê ngẫu nhiên Dreameez  với phong cách thời trang sành điệu, cùng tạo hình vô cùng sang trọng.', 56, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (135, 720300, NULL, 25, 'Đồ Chơi Disney Frozen - Vòng Xoay Diệu Kỳ Của Elsa DISNEY PRINCESS MATTEL JBG59', JSON_OBJECT('Chủ đề', 'FRZ PLAYSET', 'Mã sản phẩm', 'JBG59', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'DISNEY PRINCESS MATTEL', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Disney Frozen - Vòng Xoay Diệu Kỳ Của Elsa DISNEY PRINCESS MATTEL JBG59
+Elsa – nàng công chúa băng giá của Disney Frozen – nay trở lại với một diện mạo đầy bất ngờ trong bộ đồ chơi Disney Frozen - Vòng xoay diệu kỳ của Elsa!
+Trò chơi bắt đầu khi bé mở cánh cửa lâu đài để lộ ra một khung cảnh lấy cảm hứng từ phim. Sau đó, bé sẽ xoay hộp để khám phá 5 túi bất ngờ, mỗi túi ẩn chứa một món phụ kiện và sticker độc đáo.
+Cao trào nhất là khi Elsa xuất hiện – búp bê thời trang xinh đẹp trong trang phục lấy cảm hứng từ phim, với mái tóc mềm mại được búi lệch sang một bên thanh lịch, váy rời và phụ kiện như giày, vòng cổ để bé thỏa sức phối đồ sang trọng cho nàng công chúa.
+Bé cũng có thể trang trí khung cảnh bằng các sticker và tìm kiếm vật thể ẩn trong cung điện băng giá của Elsa.
+Lấy cảm hứng từ nhân vật hoạt hình nổi tiếng trong phim Disney Frozen, Vòng xoay diệu kỳ của Elsa mang đến trải nghiệm khám phá đầy kỳ diệu trong từng vòng xoay.
+Các bé có thể sưu tầm thêm các mẫu Spin & Reveal khác từ cả hai phần phim Frozen để cùng nhau tạo nên hành trình phiêu lưu kỳ thú tại vương quốc Arendelle!', 34, 24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (136, 546750, NULL, 49, 'Búp Bê Chelsea Cutie Reveal - Gấu Care Bear BARBIE JCN97', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'JCN97', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Chelsea Cutie Reveal - Gấu Care Bear BARBIE JCN97 - Giao Hàng Ngẫu Nhiên
+- Búp bê Chelsea Cutie Reveal - Gấu Care Bear mang đến trải nghiệm đập hộp đầy thú vị với người bạn thú bông, trang phục đáng yêu và hiệu ứng đổi màu kỳ diệu.- Ngay khi mở hộp, bạn sẽ gặp một chú gấu bông Lucky Bear dễ thương với bộ trang phục mềm mại. Đó có thể là Hurrabärchi, Teile-gern-Bärchi hoặc Groummbärchi – bé sẽ khám phá nhân vật nào đây?- Bên trong lớp trang phục là búp bê Chelsea nhỏ nhắn với mái tóc dài điểm những lọn màu sắc rực rỡ và khuôn mặt xinh xắn đầy cuốn hút. Tiếp tục xé 3 túi mù bí mật để tìm thấy những món phụ kiện độc đáo như chân váy dễ thương, một đôi giày và một chú gấu Lucky Bear mini đi kèm.- Bé có thể thay đổi phong cách cho Chelsea bằng cách lộn ngược phần thân trang phục để biến thành một chiếc áo khoác lông mềm mại. Đặc biệt, phần đầu trang phục còn có thể biến thành chiếc giỏ nhỏ xinh dành riêng cho Lucky Bear mini.- Với thiết kế đáng yêu và nhiều chi tiết thú vị, Búp bê Chelsea Cutie Reveal - Gấu Care Bear là món quà hoàn hảo dành cho bé yêu thích khám phá và sáng tạo!', 6,2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (137, 1009000, NULL, 58, 'Đồ Chơi Kho Báu Của Nàng Tiên Cá Ariel DISNEY PRINCESS MATTEL JBF86', JSON_OBJECT('Chủ đề', 'DP PLAYSET', 'Mã sản phẩm', 'JBF86', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'DISNEY PRINCESS MATTEL', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Kho Báu Của Nàng Tiên Cá Ariel DISNEY PRINCESS MATTEL JBF86
+Phép thuật từ thế giới nàng tiên cá sẽ mãi lấp lánh với Disney Princess - Kho báu của nàng tiên cá Ariel! Lấy cảm hứng từ nàng tiên cá Disney được yêu thích, búp bê   Ariel sẵn sàng cho mọi cuộc phiêu lưu, nhờ bàn trang điểm độc đáo chứa đựng 5 viên ""ngọc trai"" bất ngờ. Khi mở nắp bàn trang điểm, một viên ngọc trai sẽ bật lên, tiết lộ phụ kiện bí mật bên trong. Mỗi lần tháo viên ngọc trai, một viên khác sẽ xuất hiện. Bàn trang điểm này còn có thể tái sử dụng, giúp trẻ chơi không biết chán.
+Búp bê Ariel và bàn trang điểm theo chủ đề biển: Thiết kế tinh tế với ngọc trai ẩn chứa bất ngờ, đem đến trải nghiệm chơi thú vị.
+- Trang phục và tạo kiểu: Ariel diện chiếc đuôi nàng tiên cá mềm mại, tháo rời được, cùng mái tóc dài có thể chải và tạo kiểu.- Phụ kiện đầy bất ngờ: Các viên ngọc trai chứa những món phụ kiện độc đáo như vương miện, vòng cổ, và kẹp tóc dinglehopper – tất cả đều hoàn hảo cho những cuộc phiêu lưu dưới biển và trên cạn.- Chơi sáng tạo: Ariel có thể ngồi trên chiếc ghế hồng thanh lịch để trẻ tự tạo nên các phong cách độc đáo, từ cảm hứng phim ảnh đến những ý tưởng riêng biệt.- Tái sử dụng ngọc trai: Bàn trang điểm có thể được lắp đầy lại để mang đến niềm vui bất tận.', 34,24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (138, 869000, NULL, 70, 'Búp Bê Barbie Pop Reveal Boba - Bé Mochi Xoài BARBIE HTJ18', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'HTJ22/HTJ18', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Barbie Pop Reveal Boba - Bé Mochi Xoài BARBIE HTJ22/HTJ18
+Búp bê Barbie Pop Reveal Boba - Bé mochi xoài mang đến trải nghiệm đập hộp đầy thú vị với 8 bất ngờ đang chờ đợi! Hãy bắt đầu bằng cách mở nắp slime và sử dụng ống hút để chọc qua lớp màng. Khi lớp màng được bóc ra, bạn sẽ thấy búp bê Barbie với hương trà sữa độc đáo và tám phụ kiện bất ngờ đi kèm!
+Hành trình mở hộp chưa dừng lại ở đó! Tiếp tục mở hai viên đá lạnh có thể tái sử dụng, bên trong chúng gồm có một bộ váy và đôi giày đáng yêu. Thêm vào đó, bên trong những chiếc túi bí ẩn sẽ là ống hút, một chiếc ví dễ thương và một con thú cưng mềm mại có hương thơm ngọt ngào, tất cả đều mang đậm chủ đề trà sữa! Nhưng bất ngờ vẫn chưa hết — búp bê Barbie còn có khả năng thay đổi màu sắc trên khuôn mặt khi tiếp xúc với nước lạnh và nước ấm, tạo ra sự biến đổi thú vị mỗi lần chơi.
+Với rất nhiều điều kỳ diệu để khám phá, trẻ em sẽ muốn sưu tập toàn bộ bộ sưu tập này! Búp bê Barbie Pop Reveal Boba - Bé mochi xoài không chỉ là món quà hoàn hảo cho các bé từ 3 tuổi trở lên mà còn mang lại vô vàn câu chuyện sáng tạo và đầy màu sắc. Hãy sẵn sàng để đắm mình vào thế giới trà sữa thơm ngon cùng Barbie nào!', 6,2);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (139, 619000, NULL, 62, 'Hồ Bơi Của Búp Bê BARBIE HRJ74', JSON_OBJECT('Chủ đề', 'BARBIE ESTATE', 'Mã sản phẩm', 'HRJ74', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Girl', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Hồ Bơi Của Búp Bê BARBIE HRJ74
+Đồ chơi hồ bơi của Barbie mô phỏng bữa tiệc bên hồ bơi của Barbie và vui đùa cùng những người bạn. Trí tưởng tượng của trẻ có thể tạo nên sự nổi bật với búp bê Barbie và hồ bơi vui nhộn của cô ấy.
+Bộ Playset & phụ kiện hồ bơi của Barbie có các đặc điểm nổi bật sau:
+- Giúp búp bê Barbie leo lên thang và trượt ngay trong hoặc nằm dài trong khu vực tiếp khách được tích hợp sẵn.- Phụ kiện khăn đầy màu sắc, hai đồ uống mát lạnh và khay đựng cốc tích hợp giúp tạo khung cảnh cho bữa tiệc hồ bơi hoàn hảo.- Trong bộ đồ bơi sáng màu có họa tiết hoa lá, búp bê Barbie đã sẵn sàng để vui đùa dưới ánh nắng mặt trời.- Trí tưởng tượng của trẻ từ 3 đến 7 tuổi có thể chơi rất nhiều câu chuyện mùa hè với búp bê Barbie và hồ bơi của cô ấy- Thu thập các phụ kiện và búp bê Barbie khác để mở rộng khả năng chơi (mỗi loại được bán riêng, tùy vào tình trạng sẵn có)', 6,24);
+
+INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+VALUES
+    (140, 829000, NULL, 99, 'Búp Bê Barbie Và Bữa Tiệc Sinh Nhật Vui Vẻ - Tím Đằm Thắm BARBIE JFG68', JSON_OBJECT('Chủ đề', 'BARBIE FASHION', 'Mã sản phẩm', 'JFG70/JFG68', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Búp Bê Barbie Và Bữa Tiệc Sinh Nhật Vui Vẻ - Tím Đằm Thắm BARBIE JFG70/JFG68
+Búp bê Barbie và bữa tiệc sinh nhật vui vẻ - Tím đầm thấm là một bữa tiệc tùng sôi động với các phụ kiện đáng yêu và thú cưng dễ thương. Mỗi búp bê đi kèm với một chú cún diện phụ kiện xinh xắn. Bộ sản phẩm bao gồm 10 túi mù bất ngờ được ẩn trong bao bì lấy cảm hứng từ hộp quà sinh nhật, tạo nên trải nghiệm mở hộp độc đáo và đầy phấn khích.
+Có ba mẫu búp bê để sưu tầm: Xanh lấp lánh, Tím đầm thấm và Hồng dịu dàng. Bạn sẽ bốc trúng mẫu búp bê nào? Hãy mở các tùi mù để tìm trang phục tiệc tùng, một chú thú cưng dễ thương với phụ kiện hóa trang, và bộ dụng cụ trang trí bánh sinh nhật. Trẻ em có thể sử dụng bột chơi an toàn, khuôn tạo hình và dụng cụ đi kèm để sáng tạo đồ trang trí cho chiếc bánh sinh nhật hai tầng, đồng thời tổ chức bữa tiệc đặc biệt cho thú cưng.
+Niềm vui không dừng lại ở đó! Búp bê Barbie và thú cưng còn có thể thay đổi màu sắ, mang đến niềm vui thích thú ở trẻ. Chỉ cần sử dụng nước lạnh hoặc ấm để biến đổi, sau đó lặp lại niềm vui nhiều lần. Bộ sưu tập Barbie và bựa tiệc sinh nhật vui vẻ là lựa chọn tuyệt vời để trẻ em sáng tạo và tổ chức những bữa tiệc bất ngờ thật thú vị.', 6,2);
+
 
 
 
@@ -856,7 +1583,6 @@ VALUES
     (149, 899000, NULL, 2, 'Búp Bê Nghề Nghiệp - Nha sĩ 1 BARBIE DHB63', JSON_OBJECT('Chủ đề', 'BARBIE CAREER', 'Mã sản phẩm', 'HKT69/DHB63', 'Tuổi', '3 tuổi trở lên', 'Thương hiệu', 'BARBIE', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Unisex', 'Nơi sản xuất', 'Indonesia'), 'Đồ Chơi Búp Bê Nghề Nghiệp - Nha sĩ 1 BARBIE HKT69/DHB63...', 6, 2);
 
 
---- bratching
 
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES

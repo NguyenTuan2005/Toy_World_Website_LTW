@@ -278,7 +278,8 @@ VALUES
     (47, 'Đồ chơi LEGO mini', 1),
     (48, 'Đồ chơi robot Lego', 1),
     (49, 'Đồ chơi lắp ghép', 1),
-    (50, 'Đồ chơi trí tuệ Lego', 1);
+    (50, 'Đồ chơi trí tuệ Lego', 1),
+    (51, 'Đồ chơi máy bay', 1);
 
 -- Brands
 INSERT INTO `brands` (`id`, `name`, `img_path`, `is_active`)
@@ -332,4 +333,11 @@ VALUES
     (47, 'LEGO Mini', 'assets/images/brands/lego-mini.png', 1),
     (48, 'LEGO Robot', 'assets/images/brands/lego-robot.png', 1),
     (49, 'LEGO Builder', 'assets/images/brands/lego-builder.png', 1),
-    (50, 'LEGO Expert', 'assets/images/brands/lego-expert.png', 1);
+    (50, 'LEGO Expert', 'assets/images/brands/lego-expert.png', 1),
+#     new data
+    (51, 'Toy Monster', 'assets/images/brands/toymonster.png', 1),
+    (52, 'SCHLEICH', 'https://www.mykingdom.com.vn/cdn/shop/files/SCHLEICH_ee6ecd77-3d8c-4b67-99d3-3fb118fac729.png?v=1703141352', 1),
+    (53, 'COLLECTA', 'https://www.mykingdom.com.vn/cdn/shop/files/Collect_A.jpg?v=1758522336', 1),
+    (54, 'VECTO', 'https://www.mykingdom.com.vn/cdn/shop/files/Icon-up-web-MKD_160x80_-Vecto_229d975d-36b5-450f-b4a4-235a5274ac94.png?v=1703143860', 1),
+    (55, 'MINIFORCE', 'https://www.mykingdom.com.vn/cdn/shop/files/MINIFORCE.png?v=1703139053', 1),
+    (56, 'DREAMEEZ', 'https://www.mykingdom.com.vn/cdn/shop/files/DREAMEEZ.png?v=1761022927', 1);

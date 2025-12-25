@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% String active = (String) request.getAttribute("activeTab");
 %>
@@ -100,7 +103,6 @@
             <a href="${pageContext.request.contextPath}/admin/users" class="<%= "users".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-users"></i></span>
                 <span class="flex-grow-1">Quản lý người dùng</span>
-                <span class="badge bg-danger rounded-pill">12</span>
             </a>
         </li>
 
@@ -147,7 +149,7 @@
             <div class="user-avatar rounded-circle d-flex align-items-center justify-content-center text-white fw-bold">A</div>
             <div class="flex-grow-1">
                 <p class="text-danger fw-semibold mb-0 small">Admin</p>
-                <p class="text-secondary mb-0" style="font-size: 0.75rem;">Quản trị viên</p>
+                <p class="text-secondary mb-0" style="font-size: 0.75rem;">${sessionScope.currentUser.firstName}</p>
             </div>
             <a href="/admin/logout" class="text-danger" title="Đăng xuất">
                 <i class="fas fa-sign-out-alt"></i>

@@ -19,7 +19,7 @@
 
     <error-page>
         <exception-type>com.n3.childrentoyweb.exception.PermissionDeniedException</exception-type>
-        <location>/home-page.jsp</location>
+        <location>/login</location>
     </error-page>
 
     <error-page>

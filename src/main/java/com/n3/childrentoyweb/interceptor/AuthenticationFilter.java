@@ -20,11 +20,11 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpSession session = httpRequest.getSession(false);
 
-        if (session == null) throw new PermissionDeniedException();
+        if (session == null || session.getAttribute("roles") == null) throw new PermissionDeniedException();
 
         List<RoleEnum> roles = (List<RoleEnum>) session.getAttribute("roles");
         boolean isAdmin = roles.stream().anyMatch(RoleEnum::isAdmin);
-
+        System.out.println("Is admin : "+isAdmin);
         if(!isAdmin) throw new PermissionDeniedException();
 
         filterChain.doFilter(servletRequest, servletResponse);

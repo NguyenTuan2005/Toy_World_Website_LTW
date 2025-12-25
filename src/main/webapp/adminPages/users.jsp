@@ -1,3 +1,6 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -16,6 +19,8 @@
 
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
+
+
 
 <main class="main-content">
     <div class="header-section">
@@ -49,12 +54,16 @@
             </div>
         </div>
 
+
+
+
+
         <div class="table-container">
             <table class="table">
                 <thead class="table-primary">
                 <tr>
                     <th class ="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
+                        <input class="form-check-input" type="checkbox" id="selectAl"/>
                     </th>
                     <th class="sortable text-white text-nowrap " data-column="name">Họ Tên<i class="fas fa-sort ms-1 text-white"></i></th>
                     <th class="sortable text-white text-nowrap " data-column="email">Email<i class="fas fa-sort ms-1 text-white"></i>
@@ -75,95 +84,55 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class ="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
-                    </td>
-                    <td>Nguyễn Văn An</td>
-                    <td>nguyenvanan@example.com</td>
-                    <td>0912345678</td>
-                    <td>Nam</td>
-                    <td title="123 Đường Lê Lợi, Quận 1, TP.HCM">TP.HCM</td>
-                    <td><span class="badge bg-secondary">Admin</span></td>
-                    <td><span class="badge bg-success">Hoạt động</span></td>
-                    <td>12/11/2025</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-link text-primary text-decoration-none">
-                                <i class="bi bi-eye-fill"></i>
-                            </button>
 
-                            <button class="btn btn-link text-success text-decoration-none">
-                                <i class="fas fa-edit"></i>
-                            </button>
+                <c:forEach var="u" items="${manage_users}">
+                    <tr>
+                        <td class ="text-center align-middle" style="width: 40px">
+                            <input class="form-check-input" type="checkbox" id="selectl"/>
+                        </td>
+                        <td>${u.firstName}</td>
+                        <td>${u.email}</td>
+                        <td>${u.phone}</td>
+                        <td>${u.sex}</td>
+                        <td>${u.province}</td>
+                        <td><span class="badge bg-secondary">
+                                ${u.role}
+                        </span></td>
+                        <td>
+                            <span class="badge bg-success">
+                                ${u.status}
+                            </span>
+                        </td>
+                        <td>${u.createdAt}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-link text-primary text-decoration-none">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
 
-                            <button class="btn btn-link text-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                                <button class="btn btn-link text-success text-decoration-none">
+                                    <i class="fas fa-edit"></i>
+                                </button>
 
-                <tr>
-                    <td class ="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
-                    </td>
-                    <td>Nguyễn Văn An</td>
-                    <td>nguyenvanan@example.com</td>
-                    <td>0912345678</td>
-                    <td>Nam</td>
-                    <td title="123 Đường Lê Lợi, Quận 1, TP.HCM">TP.HCM</td>
-                    <td><span class="badge bg-secondary">User</span></td>
-                    <td><span class="badge bg-success">Hoạt động</span></td>
-                    <td>12/11/2025</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-link text-primary text-decoration-none">
-                                <i class="bi bi-eye-fill"></i>
-                            </button>
-
-                            <button class="btn btn-link text-success text-decoration-none">
-                                <i class="fas fa-edit"></i>
-                            </button>
-
-                            <button class="btn btn-link text-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                                <button class="btn btn-link text-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
 
                 </tbody>
             </table>
 
             <hr class="mx-5"/>
             <div class="d-flex justify-content-between align-items-center m-3">
-                <p class="mb-0">Hiển thị 2 trong 100 người dùng</p>
+                <p class="mb-0">Hiển thị ${pageSize} trong ${totalElements} người dùng, trang hiện tại ${currentPage}, tổng trang ${totalPages+1}</p>
                 <nav>
                     <ul class="pagination mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link">|&lt;</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link">&lt;</a>
-                        </li>
-
-                        <li class="page-item active">
-                            <a class="page-link">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link">2</a></li>
-                        <li class="page-item"><a class="page-link">3</a></li>
-                        <li class="page-item"><a class="page-link">4</a></li>
-                        <li class="page-item"><a class="page-link">5</a></li>
-                        <li class="page-item"><a class="page-link">…</a></li>
-                        <li class="page-item"><a class="page-link">10</a></li>
-
-                        <li class="page-item">
-                            <a class="page-link">&gt;</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link">&gt;|</a>
-                        </li>
+                        <c:forEach var="i" begin="0" end="${totalPages}">
+                            <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/users?page=${i+1}">${i+1}</a></li>
+                        </c:forEach>
                     </ul>
                 </nav>
             </div>

@@ -188,13 +188,8 @@
               <section class="container-lg">
 
                 <h2 class="title d-flex align-items-center justify-content-center gap-2 text-center">
-                  Sản phẩm thương hiệu
-                  <img src="assets/ToyWorldLogo.png"
-                       class="img-fluid"
-                       style="height: 32px;">
+                  Sản phẩm mới về - Bé thích mê
                 </h2>
-
-
 
                 <div class="center">
                   <a href="product.html" class="view-more-button"  aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE">Xem thêm <i class="bi bi-caret-right-fill"></i></a>

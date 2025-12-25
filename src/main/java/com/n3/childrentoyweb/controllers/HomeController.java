@@ -29,7 +29,7 @@ public class HomeController extends HttpServlet {
         this.addBanners(request);
         this.addNewProductsInMonth(request);
         this.addSignatureProducts(request);
-        request.getRequestDispatcher("home-page.jsp").forward(request, response);
+        request.getRequestDispatcher("/home-page.jsp").forward(request, response);
     }
 
     private void addBanners(HttpServletRequest request){

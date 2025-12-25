@@ -4,17 +4,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class DBProperties {
+public class ApplicationProperties {
     private static final Properties properties = new Properties();
 
     static {
-        try (InputStream input = DBProperties.class.getClassLoader().getResourceAsStream("db.properties")) {
+        try (InputStream input = ApplicationProperties.class.getClassLoader().getResourceAsStream("application.properties")) {
             if (input == null) {
-                throw new RuntimeException("Unable to find db.properties file");
+                throw new RuntimeException("Unable to find application.properties file");
             }
             properties.load(input);
         } catch (IOException e) {
-            throw new RuntimeException("Error loading db.properties file", e);
+            throw new RuntimeException("Error loading application.properties file", e);
         }
     }
 
@@ -31,4 +31,7 @@ public class DBProperties {
     public static final String SMTP_PORT = properties.getProperty("mail.smtp.port");
     public static final String SMTP_USERNAME = properties.getProperty("mail.username");
     public static final String SMTP_PASSWORD = properties.getProperty("mail.password");
+
+    public static final String SIGNATURE_BRAND_NAME = properties.getProperty("home-page.signature-brand-name");
+    public static  final int DISPLAY_PRODUCT_SIZE = Integer.parseInt(properties.getProperty("home-page.display-product-size"));
 }

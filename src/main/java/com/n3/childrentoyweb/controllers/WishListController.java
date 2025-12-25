@@ -42,7 +42,7 @@ public class WishListController extends HttpServlet {
 
        Product product = this.productService.findById(productId).orElseThrow(ObjectNotFoundException::new);
 
-        WishList wishList = new WishList(userid, productId);
+        WishList wishList = new WishList(userid, product.getId());
        this.wishListService.save(wishList);
 
         resp.sendRedirect(req.getHeader("Referer"));

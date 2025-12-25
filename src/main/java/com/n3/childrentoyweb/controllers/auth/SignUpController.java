@@ -24,14 +24,11 @@ public class SignUpController extends HttpServlet {
     private CacheService cacheService;
     private EmailService emailService;
 
-    private static final Logger log =
-            Logger.getLogger(SignUpController.class.getName());
-
     @Override
     public void init() {
         this.authService = new AuthService();
         this.userService = new UserService();
-        this.cacheService = new CacheService();
+        this.cacheService = CacheService.getInstance();
         this.emailService = new EmailService();
     }
 
@@ -58,7 +55,8 @@ public class SignUpController extends HttpServlet {
 
             this.emailService.sendOtpEmail(signUpUserDTO.getUser().getEmail(), otp);
 
-            req.getRequestDispatcher("/common/verify-otp.jsp").forward(req, resp);
+            req.getSession().setAttribute("pendingUser", signUpUserDTO);
+            resp.sendRedirect( req.getContextPath() + "/verify-otp");
         } catch (IllegalArgumentException | EmailAlreadyExistsException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher( "/sign-up.jsp").forward(req, resp);

@@ -22,6 +22,8 @@ public class Location extends BaseModel {
         this.province = province;
     }
 
+    public Location(){}
+
     public String getAddress() {
         return address;
     }
@@ -36,5 +38,14 @@ public class Location extends BaseModel {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", province='" + province + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

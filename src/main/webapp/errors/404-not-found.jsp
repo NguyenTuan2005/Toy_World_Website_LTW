@@ -1,0 +1,135 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container{
+            text-align: center;
+            padding: 20px;
+        }
+
+        .oops-text {
+            font-size: 132px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23192a56;stop-opacity:1" /><stop offset="50%" style="stop-color:%234a69bd;stop-opacity:1" /><stop offset="100%" style="stop-color:%238e44ad;stop-opacity:1" /></linearGradient><pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.8"/><circle cx="50" cy="30" r="0.5" fill="white" opacity="0.6"/><circle cx="80" cy="60" r="1.5" fill="white" opacity="0.7"/><circle cx="30" cy="80" r="0.8" fill="white" opacity="0.5"/><circle cx="70" cy="20" r="1" fill="white" opacity="0.9"/></pattern></defs><rect width="1200" height="300" fill="url(%23grad)"/><rect width="1200" height="300" fill="url(%23stars)"/></svg>');
+            background-size: cover;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(74, 105, 189, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(74, 105, 189, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(142, 68, 173, 0.8));
+            }
+        }
+
+        .error-code {
+            font-size: 32px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .error-message {
+            font-size: 20px;
+            color: #7f8c8d;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-home {
+            background-color: #d51b1b;
+            color: white;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(207, 16, 45, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-home:hover {
+            background-color: #a50d24;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(207, 16, 45, 0.4);
+            color: white;
+        }
+
+        .btn-home:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .oops-text {
+                font-size: 80px;
+            }
+
+            .error-code {
+                font-size: 22px;
+            }
+
+            .error-message {
+                font-size: 14px;
+                padding: 0 20px;
+            }
+
+            .btn-home {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .oops-text {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="oops-text">Oops!</h1>
+    <h2 class="error-code">404 - Không tìm thấy trang</h2>
+    <p class="error-message">
+        Trang bạn yêu cầu không tồn tại hoặc đã bị di chuyển.<br>
+        Vui lòng kiểm tra lại đường dẫn!
+    </p>
+    <a href="${pageContext.request.contextPath}/home" class="btn-home">Về Trang Chủ</a>
+</div>
+</body>
+</html>

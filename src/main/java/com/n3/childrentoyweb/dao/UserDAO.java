@@ -166,9 +166,36 @@ public class UserDAO extends BaseDAO {
     }
 
 
+    public boolean delete(long id){
+        return this.getJdbi().withHandle(handle ->
+                handle.createUpdate("""
+                                            UPDATE users
+                                            SET is_active = 0
+                                            WHERE id = :id
+                                        """)
+                        .bind("id", id)
+                        .execute()
+                ) > 0;
+    }
+
+    public boolean activeUser(long id) {
+        return this.getJdbi().withHandle(handle ->
+                handle.createUpdate("""
+                                            UPDATE users
+                                            SET is_active = 1
+                                            WHERE id = :id
+                                        """)
+                        .bind("id", id)
+                        .execute()
+        ) > 0;
+    }
+
     public static void main(String[] args) {
         new UserDAO().findByCriteria(new UserCriteria("1", "user",null,null)).stream().forEach(System.out::println);
     }
 
 
+    public void update(User user) {
+        
+    }
 }

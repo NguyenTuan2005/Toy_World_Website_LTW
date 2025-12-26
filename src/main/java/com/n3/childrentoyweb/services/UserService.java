@@ -28,14 +28,6 @@ public class UserService {
         }
     }
 
-    public List<ManageUserDTO> findAllUserForManagement(int page, int pageSize){
-        List<ManageUserDTO> manageUserDTOS = this.userDAO.findAllUserForManagement(page, pageSize);
-        for(ManageUserDTO manageUserDTO : manageUserDTOS){
-            String role = this.roleDAO.findAllByUserId(manageUserDTO.getUserId()).stream().filter(RoleEnum::isAdmin).map(Enum::toString).findFirst().get();
-            manageUserDTO.setRole(role);
-        }
-        return manageUserDTOS;
-    }
 
     public Pagination<ManageUserDTO> findAllUsersForManagements(int page, int pageSize){
         List<ManageUserDTO> manageUserDTOS = this.userDAO.findAllUserForManagement(page, pageSize);
@@ -63,4 +55,19 @@ public class UserService {
         int totalPages =  totalElements / 10;
         return  new Pagination<ManageUserDTO>(manageUserDTOS,10,totalElements,totalPages);
     }
+
+
+    public boolean delete(long id){
+        return this.userDAO.delete(id);
+    }
+
+    public boolean activeUser(long id){
+        return this.userDAO.activeUser(id);
+    }
+
+    public void update(User user){
+        this.userDAO.update(user);
+    }
+
+
 }

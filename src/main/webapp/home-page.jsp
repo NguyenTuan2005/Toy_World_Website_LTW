@@ -191,7 +191,7 @@
               <c:if test="${not empty newProductsInMonth}">
                 <!-- new product -->
                 <section class="container-lg">
-  
+
                   <h2 class="title d-flex align-items-center justify-content-center gap-2 text-center">
                     Sản phẩm mới về - Bé thích mê
                   </h2>

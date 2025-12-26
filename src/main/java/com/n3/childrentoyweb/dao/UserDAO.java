@@ -1,7 +1,9 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.dto.UserCriteria;
+import com.n3.childrentoyweb.dto.UserDetailDTO;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import com.n3.childrentoyweb.utils.MD5Util;
@@ -189,6 +191,22 @@ public class UserDAO extends BaseDAO {
                         .bind("id", id)
                         .execute()
         ) > 0;
+    }
+
+    public User findById(long id){
+        String sql = """
+        select first_name, last_name, phone, gender, password, email, location_id
+        from users
+        where id = :id
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", id)
+                        .mapToBean(User.class)
+                        .findOne()
+                        .orElse(null)
+        );
     }
 
     public static void main(String[] args) {

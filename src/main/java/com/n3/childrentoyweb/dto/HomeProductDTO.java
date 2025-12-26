@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.dto;
 
+import com.n3.childrentoyweb.models.Location;
+import com.n3.childrentoyweb.models.User;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 public class HomeProductDTO {

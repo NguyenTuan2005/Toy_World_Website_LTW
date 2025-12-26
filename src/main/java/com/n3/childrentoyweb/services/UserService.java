@@ -1,25 +1,28 @@
 package com.n3.childrentoyweb.services;
 
-import com.n3.childrentoyweb.controllers.admin.UserController;
+import com.n3.childrentoyweb.dao.LocationDAO;
 import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dao.RoleDAO;
 import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.dto.UserCriteria;
+import com.n3.childrentoyweb.dto.UserDetailDTO;
 import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.exception.EmailAlreadyExistsException;
+import com.n3.childrentoyweb.models.Location;
 import com.n3.childrentoyweb.models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
     private UserDAO userDAO;
     private RoleDAO roleDAO;
+    private LocationDAO locationDAO;
 
     public UserService() {
         this.userDAO = new UserDAO();
         this.roleDAO = new RoleDAO();
+        this.locationDAO = new LocationDAO();
     }
 
     public void isEmailExist(String email) {
@@ -69,5 +72,10 @@ public class UserService {
         this.userDAO.update(user);
     }
 
-
+    public UserDetailDTO findUserDetailById(long id) {
+        User user = this.userDAO.findById(id);
+        Location location = this.locationDAO.findByLocation(id);
+        String role = this.roleDAO.findAllByUserId(id).stream().filter(RoleEnum::isAdmin).map(RoleEnum::getRoleName).findFirst().orElse("user");
+        return new UserDetailDTO(user,location,role);
+    }
 }

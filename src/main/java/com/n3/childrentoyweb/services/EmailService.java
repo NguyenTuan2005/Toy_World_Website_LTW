@@ -34,7 +34,7 @@ public class EmailService {
             <head>
             <style>
             body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-            .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 2px solid #D51B1B; border-radius: 8px; padding: 30px; }
+            .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px #D51B1B; border-radius: 8px; padding: 30px; }
             h1 { color: #333333; margin-bottom: 10px; }
             h2 { color: #666666; font-weight: normal; margin-top: 0; margin-bottom: 20px; }
             hr { border: none; border-top: 1px solid #dddddd; margin: 20px 0; }
@@ -55,7 +55,7 @@ public class EmailService {
             <div class='otp-box'>
             <p class='otp-code'>%s</p>
             </div>
-            <p class='warning'>Mã này sẽ hết hạn sau 90 giây.</p>
+            <p class='warning'>Mã này sẽ hết hạn sau %d giây.</p>
             <p>Vui lòng nhập mã OTP vào trang xác thực để tiếp tục.</p>
             <hr>
             <p style='color: #999999; font-size: 14px;'>Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này. Tài khoản của bạn vẫn được bảo mật.</p>
@@ -65,7 +65,7 @@ public class EmailService {
             </div>
             </body>
             </html>
-            """, otp.toUpperCase());
+            """, otp.toUpperCase(), OTP_DELAY_IN_SECOND);
 
             message.setContent(htmlContent, "text/html; charset=UTF-8");
 

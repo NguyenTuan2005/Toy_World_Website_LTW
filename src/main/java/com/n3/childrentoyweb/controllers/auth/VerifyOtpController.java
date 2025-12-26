@@ -1,6 +1,8 @@
 package com.n3.childrentoyweb.controllers.auth;
 
-import com.n3.childrentoyweb.dto.SignUpUserDTO;
+import com.n3.childrentoyweb.exception.EmailInvalidException;
+import com.n3.childrentoyweb.exception.OTPInvalidException;
+import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.CacheService;
 import com.n3.childrentoyweb.services.UserService;
 import jakarta.servlet.ServletException;
@@ -29,24 +31,31 @@ public class VerifyOtpController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SignUpUserDTO signUpUserDTO = (SignUpUserDTO) req.getSession().getAttribute("pendingUser");
+        User user = (User) req.getSession().getAttribute("pendingUser");
         String otp, userInput = req.getParameter("otpCode");
         try {
-            if (signUpUserDTO != null && signUpUserDTO.isValidEmail()) {
-                otp = cacheService.get(signUpUserDTO.getUser().getEmail());
+            boolean isValidEmail =  user != null && user.isValidEmail();
+            if (!isValidEmail)
+                throw new EmailInvalidException("Vui lòng nhập thông tin để tiếp tục");
 
-                if (!userInput.isEmpty() && otp != null && otp.equalsIgnoreCase(userInput.trim())) {
-                    userService.save(signUpUserDTO.getUser());
-                    req.getSession().removeAttribute("pendingUser");
-                    resp.sendRedirect(req.getContextPath() + "/login");
-                }
-            } else {
-                req.setAttribute("error", "Không thể truy cập trang xác thực otp");
-                req.getRequestDispatcher( "/sign-up").forward(req, resp);
-            }
-        } catch (IllegalArgumentException e) {
+            otp = cacheService.get(user.getEmail());
+
+            if (userInput == null) req.getRequestDispatcher( "/common/verify-otp.jsp").forward(req, resp);
+
+            boolean isValidOTP = !userInput.trim().isEmpty() && otp != null && otp.equalsIgnoreCase(userInput.trim());
+            if (!isValidOTP)
+                throw new OTPInvalidException("Không thể xác thực OTP");
+
+            userService.save(user);
+            req.getSession().removeAttribute("pendingUser");
+            resp.sendRedirect(req.getContextPath() + "/login");
+
+        } catch (OTPInvalidException e) {
             req.setAttribute("error", e.getMessage());
-            req.getRequestDispatcher( "/sign-up").forward(req, resp);
+            req.getRequestDispatcher( "/common/verify-otp.jsp").forward(req, resp);
+        } catch (EmailInvalidException e) {
+            req.setAttribute("error", e.getMessage());
+            req.getRequestDispatcher( "/sign-up.jsp").forward(req, resp);
         }
     }
 }

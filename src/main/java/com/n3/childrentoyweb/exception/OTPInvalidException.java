@@ -1,8 +1,9 @@
 package com.n3.childrentoyweb.exception;
 
-public class EmailAlreadyExistsException extends RuntimeException {
+public class OTPInvalidException extends RuntimeException{
     private String message;
-    public EmailAlreadyExistsException(String message) {
+
+    public OTPInvalidException(String message){
         super(message);
         this.message = message;
     }

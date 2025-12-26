@@ -33,7 +33,7 @@ function handleSignUpEvent(e) {
         email.classList.add('is-valid');
     }
 
-    const phoneRegex = /^(0|\+84)[0-9]{9,10}$/;
+    const phoneRegex = /^(0)[0-9]{9,10}$/;
     if (!phone.value.trim() || !phoneRegex.test(phone.value)) {
         phoneError.classList.remove('d-none');
         phone.classList.add('is-invalid');

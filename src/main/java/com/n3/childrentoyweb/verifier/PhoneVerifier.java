@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class PhoneVerifier implements Verifier{
     public static final Pattern PHONE_PATTERN = Pattern.compile(
-            "^(\\+84|0)[0-9]{9,10}$"
+            "^(0)[0-9]{9,10}$"
     );
 
     @Override

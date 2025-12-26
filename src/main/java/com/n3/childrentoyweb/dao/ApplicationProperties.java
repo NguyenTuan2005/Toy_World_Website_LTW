@@ -32,6 +32,8 @@ public class ApplicationProperties {
     public static final String SMTP_USERNAME = properties.getProperty("mail.username");
     public static final String SMTP_PASSWORD = properties.getProperty("mail.password");
 
+    public static final int OTP_DELAY_IN_SECOND = Integer.parseInt(properties.getProperty("otp.delay-in-second"));
+
     public static final String SIGNATURE_BRAND_NAME = properties.getProperty("home-page.signature-brand-name");
     public static  final int DISPLAY_PRODUCT_SIZE = Integer.parseInt(properties.getProperty("home-page.display-product-size"));
 }

@@ -43,6 +43,8 @@ public class UserDetailController extends HttpServlet {
             return;
         }
 
+        System.out.println(userDetailDTO.getUser());
+
         request.setAttribute("user",userDetailDTO.getUser());
         request.setAttribute("role",userDetailDTO.getRole());
 

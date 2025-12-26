@@ -577,9 +577,25 @@
                                     ${role}
                                 </span>
                             </div>
+                            <style>
+                                .status-active {
+                                    background-color: #e6f4ea;
+                                    color: #1e7e34;
+                                    border: 1px solid #1e7e34;
+                                }
+
+                                .status-locked {
+                                    background-color: #fdecea;
+                                    color: #dc3545;
+                                    border: 1px solid #dc3545;
+                                }
+
+                            </style>
                             <div class="info-row">
                                 <span class="info-label">Trạng thái</span>
-                                <span class="gender-badge gender-male">
+
+                                <span class="gender-badge
+                                    ${user.active ? 'status-active' : 'status-locked'}">
                                     <c:choose>
                                         <c:when test="${user.active}">
                                             Hoạt động
@@ -590,6 +606,7 @@
                                     </c:choose>
                                 </span>
                             </div>
+
                         </div>
 
                         <!-- Thông tin liên hệ -->

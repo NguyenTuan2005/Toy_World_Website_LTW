@@ -55,6 +55,10 @@ public abstract class BaseModel implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public void revertActive(){
+        this.isActive = !this.isActive;
+    }
+
     @Override
     public String toString() {
         return "BaseModel{" +

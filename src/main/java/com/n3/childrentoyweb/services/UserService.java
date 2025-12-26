@@ -13,6 +13,7 @@ import com.n3.childrentoyweb.models.Location;
 import com.n3.childrentoyweb.models.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
     private UserDAO userDAO;
@@ -74,8 +75,13 @@ public class UserService {
 
     public UserDetailDTO findUserDetailById(long id) {
         User user = this.userDAO.findById(id);
-        Location location = this.locationDAO.findByLocation(id);
+        Location location = this.locationDAO.findByUserId(id);
         String role = this.roleDAO.findAllByUserId(id).stream().filter(RoleEnum::isAdmin).map(RoleEnum::getRoleName).findFirst().orElse("user");
         return new UserDetailDTO(user,location,role);
     }
+
+    public Optional<User> findById(long id){
+        return Optional.ofNullable(this.userDAO.findById(id));
+    }
+
 }

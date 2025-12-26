@@ -26,7 +26,6 @@ public class AdminAuthFilter implements Filter {
 
         if (session == null || session.getAttribute("currentUser") == null || session.getAttribute("roles") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
-            System.out.println("NO SESSION");
             return;
         }
 

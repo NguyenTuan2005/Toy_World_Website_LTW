@@ -171,7 +171,7 @@ public class UserDAO extends BaseDAO {
 
     public User findById(long id){
         String sql = """
-        select first_name, last_name, phone, gender, password, email, location_id
+        select id, first_name, last_name, phone, gender, password, email, location_id, is_active, created_at
         from users
         where id = :id
         """;
@@ -179,18 +179,49 @@ public class UserDAO extends BaseDAO {
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("id", id)
-                        .mapToBean(User.class)
+                        .map((rs, ctx) -> {
+                            User user = new User();
+                            user.setId(rs.getLong("id"));
+                            user.setFirstName(rs.getString("first_name"));
+                            user.setLastName(rs.getString("last_name"));
+                            user.setPhone(rs.getString("phone"));
+                            user.setGender(rs.getString("gender"));
+                            user.setEmail(rs.getString("email"));
+                            user.setLocationId(rs.getLong("location_id"));
+                            user.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                            user.setActive(rs.getBoolean("is_active"));
+                            return user;
+                        })
                         .findOne()
                         .orElse(null)
         );
     }
 
-    public static void main(String[] args) {
-        new UserDAO().findByCriteria(new UserCriteria("1", "user",null,null)).stream().forEach(System.out::println);
-    }
-
 
     public void update(User user) {
+            String sql = """
+                            UPDATE users
+                            SET first_name  = :firstName,
+                                last_name   = :lastName,
+                                phone       = :phone,
+                                gender      = :gender,
+                                password    = :password,
+                                email       = :email,
+                                is_active   = :isActive
+                            WHERE id = :id
+                        """;
 
+             this.getJdbi().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("id", user.getId())
+                            .bind("firstName", user.getFirstName())
+                            .bind("lastName", user.getLastName())
+                            .bind("phone", user.getPhone())
+                            .bind("gender", user.getGender())
+                            .bind("password", user.getPassword())
+                            .bind("email", user.getEmail())
+                            .bind("isActive",user.getActive())
+                            .execute()
+            );
     }
 }

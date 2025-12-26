@@ -25,7 +25,18 @@ public class AuthService {
         }
         String hashPassword = MD5Util.encryptMd5(password);
 
-        return userDAO.login(email, hashPassword);
+        User user = userDAO.findByEmail(email);
+
+        if (user == null) {
+            throw new IllegalArgumentException("User không tồn tại");
+        }
+
+        if (hashPassword.equals(user.getPassword())) {
+            user.setPassword(null);
+            return user;
+        }
+
+        return null;
     }
 
     public boolean validate(SignUpUserDTO signUpUserDTO) throws IllegalArgumentException {

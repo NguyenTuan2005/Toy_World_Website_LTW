@@ -4,9 +4,10 @@ import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.utils.MD5Util;
 
 public class UserDAO extends BaseDAO {
+
     public User findByEmail(String email) {
         String sql = """
-        select first_name, last_name, phone, gender, password, email, location_id
+        select id, first_name, last_name, phone, gender, password, email, location_id
         from users
         where email = :email
         """;
@@ -14,26 +15,6 @@ public class UserDAO extends BaseDAO {
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("email", email)
-                        .mapToBean(User.class)
-                        .findOne()
-                        .orElse(null)
-        );
-    }
-
-    public User login(String email, String password) {
-
-        String sql = """
-            SELECT u.id, u.first_name, u.last_name, phone, gender, password, email, location_id
-            FROM users u
-            WHERE u.email = :email
-              AND u.password = :password
-              AND u.is_active = 1
-        """;
-
-        return super.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("email", email)
-                        .bind("password", password)
                         .mapToBean(User.class)
                         .findOne()
                         .orElse(null)

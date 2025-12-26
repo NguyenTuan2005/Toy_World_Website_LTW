@@ -26,7 +26,7 @@ public class MyAccountController extends HttpServlet {
 
         User currentUser  = (User) session.getAttribute("currentUser");
 
-        Location currentUserLocation = locationService.findByLocation(currentUser.getId());
+        Location currentUserLocation = locationService.findByUserId(currentUser.getId());
 
         session.setAttribute("currentUserLocation",currentUserLocation);
 

@@ -8,7 +8,7 @@ import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 public class LocationDAO extends BaseDAO{
 
 
-    public Location findByLocation(Long userId) {
+    public Location findByUserId(Long userId) {
         String sql = """
             SELECT l.id, l.address, l.province
             FROM locations l 
@@ -23,10 +23,6 @@ public class LocationDAO extends BaseDAO{
                         .orElse(null)
         );
 
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new LocationDAO().findByLocation(1L));
     }
 
 }

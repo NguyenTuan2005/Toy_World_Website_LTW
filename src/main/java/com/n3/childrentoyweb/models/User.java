@@ -1,6 +1,10 @@
 package com.n3.childrentoyweb.models;
 
 
+import com.n3.childrentoyweb.verifier.EmailVerifier;
+import com.n3.childrentoyweb.verifier.NameVerifier;
+import com.n3.childrentoyweb.verifier.PasswordVerifier;
+import com.n3.childrentoyweb.verifier.PhoneVerifier;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.io.Serializable;
@@ -117,6 +121,26 @@ public class User extends BaseModel implements Serializable {
                 ", locationId=" + locationId +
                 ", id=" + id +
                 '}';
+    }
+
+    public boolean isValidFirstName() throws IllegalArgumentException {
+        return new NameVerifier().verify(this.firstName);
+    }
+
+    public boolean isValidLastName() throws IllegalArgumentException {
+        return new NameVerifier().verify(this.lastName);
+    }
+
+    public boolean isValidPhone() throws IllegalArgumentException {
+        return new PhoneVerifier().verify(this.phone);
+    }
+
+    public boolean isValidEmail() throws IllegalArgumentException {
+        return new EmailVerifier().verify(this.email);
+    }
+
+    public boolean isValidPassword() throws IllegalArgumentException {
+        return new PasswordVerifier().verify(this.password);
     }
 
     public boolean matchPassword(String confirmPassword) {

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<fmt:setLocale value="vi_VN" />
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -16,6 +17,97 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
 </head>
+<style>
+    .stats-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: transform 0.2s;
+    }
+
+    .stats-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .stats-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .stats-card.primary .stats-icon {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .stats-card.success .stats-icon {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+    }
+
+    .stats-card.warning .stats-icon {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+    }
+
+    .stats-card.info .stats-icon {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        color: white;
+    }
+
+    .stats-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+    }
+
+    .stats-label {
+        color: #6c757d;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    .content-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        margin-bottom: 2rem;
+    }
+
+    .card-header-custom {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e9ecef;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0;
+    }
+
+    .search-box {
+        position: relative;
+        width: 300px;
+    }
+
+    .search-box input {
+        padding-left: 2.5rem;
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+    }
+</style>
 
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
@@ -32,9 +124,47 @@
             </div>
         </div>
     </div>
+    <hr>
 
-    <div class="container mb-3">
-        <div class="filter-section">
+        <div class="container mb-3">
+
+
+            <div class="container-fluid">
+                <!-- Statistics Cards -->
+                <div class="row mb-4">
+                    <div class="col-xl-3 col-md-6 mb-3">
+                        <div class="stats-card primary">
+                            <div class="stats-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="stats-value"><fmt:formatNumber value="${total_users_num}" type="number" /></h3>
+                            <p class="stats-label">Tổng người dùng</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-3">
+                        <div class="stats-card warning">
+                            <div class="stats-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h3 class="stats-value"><fmt:formatNumber value="${total_new_users_num}" type="number" /></h3>
+                            <p class="stats-label">Mới tháng này</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-3">
+                        <div class="stats-card info">
+                            <div class="stats-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h3 class="stats-value"><fmt:formatNumber value="${total_admins_num}" type="number" /></h3>
+                            <p class="stats-label">Quản trị viên</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="filter-section">
             <div class="row align-items-center">
                 <div class="col-md-6 hstack align-items-center">
                     <div class="search-wrapper flex-grow-1">
@@ -78,119 +208,141 @@
             </div>
         </div>
 
-
-
-
-
-        <div class="table-container">
-            <table class="table">
-                <thead class="table-primary">
-                <tr>
-                    <th class ="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAl"/>
-                    </th>
-                    <th class="sortable text-white text-nowrap " data-column="name">Họ Tên<i class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap " data-column="email">Email<i class="fas fa-sort ms-1 text-white"></i>
-                    </th>
-                    <th class="sortable text-white text-nowrap" data-column="phone">Điện thoại<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap" data-column="gender">Giới tính<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap" data-column="address">Địa chỉ<i class="fas fa-sort ms-1 text-white"></i>
-                    </th>
-                    <th class="sortable text-white text-nowrap" data-column="role">Vai trò<i class="fas fa-sort ms-1 text-white"></i>
-                    </th>
-                    <th class="sortable text-white text-nowrap" data-column="status">Trạng thái<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap" data-column="created">Ngày tạo<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="text-white">Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <c:forEach var="u" items="${manage_users}">
+             <div class="table-container">
+                <table class="table">
+                    <thead class="table-primary">
                     <tr>
-                        <td class ="text-center align-middle" style="width: 40px">
-                            <input class="form-check-input" type="checkbox" id="selectl"/>
-                        </td>
-                        <td>${u.firstName}</td>
-                        <td>${u.email}</td>
-                        <td>${u.phone}</td>
-                        <td>${u.sex}</td>
-                        <td>${u.province}</td>
-                        <td><span class="badge bg-secondary">
-                                ${u.role}
-                        </span></td>
-                        <td>
-                            <span class="badge bg-success">
-                                ${u.status}
-                            </span>
-                        </td>
-                        <td>${u.createdAt}</td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
-
-                                <button class="btn btn-link text-success text-decoration-none">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
+                        <th class ="text-center align-middle" style="width: 40px">
+                            <input class="form-check-input" type="checkbox" id="selectAl"/>
+                        </th>
+                        <th class="sortable text-white text-nowrap " data-column="name">Họ Tên<i class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white text-nowrap " data-column="email">Email<i class="fas fa-sort ms-1 text-white"></i>
+                        </th>
+                        <th class="sortable text-white text-nowrap" data-column="phone">Điện thoại<i
+                                class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white text-nowrap" data-column="gender">Giới tính<i
+                                class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white text-nowrap" data-column="address">Địa chỉ<i class="fas fa-sort ms-1 text-white"></i>
+                        </th>
+                        <th class="sortable text-white text-nowrap" data-column="role">Vai trò<i class="fas fa-sort ms-1 text-white"></i>
+                        </th>
+                        <th class="sortable text-white text-nowrap" data-column="status">Trạng thái<i
+                                class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="sortable text-white text-nowrap" data-column="created">Ngày tạo<i
+                                class="fas fa-sort ms-1 text-white"></i></th>
+                        <th class="text-white">Hành động</th>
                     </tr>
-                </c:forEach>
+                    </thead>
+                    <tbody>
+                    <style>
+                        .status-active {
+                            background-color: #e6f4ea;
+                            color: #1e7e34;
+                            border: 1px solid #1e7e34;
+                        }
 
-                </tbody>
-            </table>
+                        .status-locked {
+                            background-color: #fdecea;
+                            color: #dc3545;
+                            border: 1px solid #dc3545;
+                        }
 
-            <hr class="mx-5"/>
-            <div class="d-flex justify-content-between align-items-center m-3">
+                    </style>
+                    <c:forEach var="u" items="${manage_users}">
+                        <tr>
+                            <td class ="text-center align-middle" style="width: 40px">
+                                <input class="form-check-input" type="checkbox" id="selectl"/>
+                            </td>
+                            <td>${u.firstName}</td>
+                            <td>${u.email}</td>
+                            <td>${u.phone}</td>
+                            <td>${u.sex}</td>
+                            <td>${u.province}</td>
+                            <td><span class="badge bg-secondary">
+                                    ${u.role}
+                            </span></td>
+                            <td>
+                                <span class="badge ${u.active ? 'status-active' : 'status-locked'}">
+                                  <c:choose>
+                                      <c:when test="${u.active}">
+                                          Hoạt động
+                                      </c:when>
+                                      <c:otherwise>
+                                          Khóa
+                                      </c:otherwise>
+                                  </c:choose>
+                                </span>
+                            </td>
+                            <td>${u.createdAt}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a href="${pageContext.request.contextPath}/admin/user-details?userId=${u.userId}" class="btn btn-link text-primary text-decoration-none">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
 
-                <c:if test="${find_user == null}">
-                    <p class="mb-0">
-                        Hiển thị ${pageSize} trong ${totalElements} người dùng,
-                        trang hiện tại ${currentPage },
-                        tổng trang ${totalPages}
-                    </p>
+                                    <button class="btn btn-link text-success text-decoration-none">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
 
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
+                                    <form method="post" action="/childrentoyweb_war/admin/hidden-users">
+                                        <input type="hidden" name="userId" value="${u.userId}">
+                                        <input type="hidden" name="active" value="${u.active}">
+                                        <button class="btn btn-link text-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
 
-                                <c:choose>
-                                    <c:when test="${st.index+1 == currentPage}">
-                                        <li class="page-item active">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                    ${st.index + 1}
-                                            </a>
-                                        </li>
-                                    </c:when>
 
-                                    <c:otherwise>
-                                        <li class="page-item">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                    ${st.index + 1}
-                                            </a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
-                            </c:forEach>
-                        </ul>
-                    </nav>
-                </c:if>
+                    </tbody>
+                </table>
 
+                <hr class="mx-5"/>
+                <div class="d-flex justify-content-between align-items-center m-3">
+
+                    <c:if test="${find_user == null}">
+                        <p class="mb-0">
+                            Hiển thị ${pageSize} trong ${totalElements} người dùng,
+                            trang hiện tại ${currentPage },
+                            tổng trang ${totalPages}
+                        </p>
+
+                        <nav>
+                            <ul class="pagination mb-0">
+                                <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
+
+                                    <c:choose>
+                                        <c:when test="${st.index+1 == currentPage}">
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                   href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                        ${st.index + 1}
+                                                </a>
+                                            </li>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                        ${st.index + 1}
+                                                </a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </c:forEach>
+                            </ul>
+                        </nav>
+                    </c:if>
+
+                </div>
             </div>
         </div>
-    </div>
 
     <!-- Modal thêm/sửa người dùng -->
     <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">

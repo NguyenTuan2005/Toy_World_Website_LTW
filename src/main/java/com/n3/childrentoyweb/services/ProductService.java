@@ -40,8 +40,7 @@ public class ProductService {
     public List<HomeProductDTO> findSignatureProduct() {
         return this.productDAO.findSignatureProduct(FIRST_PAGE, ApplicationProperties.DISPLAY_PRODUCT_SIZE, ApplicationProperties.SIGNATURE_BRAND_NAME);
     }
-
-    public Optional<Product> findById(Long id) {
+    public Optional<Product> findById(Long id ){
         return this.productDAO.findById(id);
     }
 

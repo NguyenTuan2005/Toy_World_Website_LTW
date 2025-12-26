@@ -30,6 +30,7 @@ public class UserController extends HttpServlet {
             page = Integer.parseInt(req.getParameter("page"));
         }
         this.addUsersPagination(page,req);
+        this.addStatisticUsers(req);
 
         req.getRequestDispatcher("/adminPages/users.jsp").forward(req,resp);
     }
@@ -39,12 +40,18 @@ public class UserController extends HttpServlet {
         String keyword = req.getParameter("keyword");
         UserCriteria userCriteria = new UserCriteria(keyword);
         System.out.println(userCriteria);
+
         this.findUserByCriteria(userCriteria,req);
+        this.addStatisticUsers(req);
+
         req.getRequestDispatcher("/adminPages/users.jsp").forward(req,resp);
     }
 
+
     private void findUserByCriteria(UserCriteria userCriteria, HttpServletRequest request){
         Pagination<ManageUserDTO>  manageUserDTOPagination = this.userService.findByCriteria(userCriteria);
+
+        System.out.println(manageUserDTOPagination.getData());
 
         request.setAttribute("find_user","find-user");
         request.setAttribute("manage_users",manageUserDTOPagination.getData());
@@ -53,6 +60,8 @@ public class UserController extends HttpServlet {
         request.setAttribute("totalPages",manageUserDTOPagination.getTotalPages());
         request.setAttribute("pageSize",manageUserDTOPagination.getData().size());
     }
+
+
     private void addUsersPagination(int page, HttpServletRequest request){
         Pagination<ManageUserDTO> manageUserDTOPagination = this.userService.findAllUsersForManagements(page,PAGE_SIZE);
         System.out.println(manageUserDTOPagination);
@@ -64,5 +73,15 @@ public class UserController extends HttpServlet {
         request.setAttribute("pageSize",PAGE_SIZE);
     }
 
+
+    public void addStatisticUsers(HttpServletRequest request){
+        int totalUsers = this.userService.countAllUsers();
+        int totalAdmins = this.userService.countAllAdmins();
+        int totalNewUsersInMonth = this.userService.countNewUsersInMonth();
+
+        request.setAttribute("total_users_num",totalUsers);
+        request.setAttribute("total_admins_num",totalAdmins);
+        request.setAttribute("total_new_users_num",totalNewUsersInMonth);
+    }
 
 }

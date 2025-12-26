@@ -225,4 +225,35 @@ public class UserDAO extends BaseDAO {
                             .execute()
             );
     }
+    public int countAllAdmins() {
+        String sql = """
+                        select count(ur.id)
+                        from user_roles ur
+                                 join roles r on ur.role_id = r.id
+                        where r.role_name = 'ROLE_ADMIN'
+                          and r.is_active = 1
+                          and ur.is_active = 1
+                    """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public int countNewUsersInMonth() {
+        String sql = """
+                select  count(u.id)
+                from users u
+                where u.created_at >= DATE_FORMAT(NOW(), '%Y-%m-01')
+                  AND u.created_at <  DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH);
+                    """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
 }

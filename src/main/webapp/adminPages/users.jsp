@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<fmt:setLocale value="vi_VN" />
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -136,17 +137,8 @@
                             <div class="stats-icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <h3 class="stats-value">1,245</h3>
+                            <h3 class="stats-value"><fmt:formatNumber value="${total_users_num}" type="number" /></h3>
                             <p class="stats-label">Tổng người dùng</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-3">
-                        <div class="stats-card success">
-                            <div class="stats-icon">
-                                <i class="fas fa-user-check"></i>
-                            </div>
-                            <h3 class="stats-value">1,180</h3>
-                            <p class="stats-label">Đang hoạt động</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6 mb-3">
@@ -154,7 +146,7 @@
                             <div class="stats-icon">
                                 <i class="fas fa-user-plus"></i>
                             </div>
-                            <h3 class="stats-value">+48</h3>
+                            <h3 class="stats-value"><fmt:formatNumber value="${total_new_users_num}" type="number" /></h3>
                             <p class="stats-label">Mới tháng này</p>
                         </div>
                     </div>
@@ -163,7 +155,7 @@
                             <div class="stats-icon">
                                 <i class="fas fa-user-shield"></i>
                             </div>
-                            <h3 class="stats-value">12</h3>
+                            <h3 class="stats-value"><fmt:formatNumber value="${total_admins_num}" type="number" /></h3>
                             <p class="stats-label">Quản trị viên</p>
                         </div>
                     </div>

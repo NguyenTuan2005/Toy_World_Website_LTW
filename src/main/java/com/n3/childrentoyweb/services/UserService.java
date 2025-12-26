@@ -84,4 +84,15 @@ public class UserService {
         return Optional.ofNullable(this.userDAO.findById(id));
     }
 
+    public int countAllUsers(){
+        return this.userDAO.countAllUsers();
+    }
+
+    public int countAllAdmins(){
+        return this.userDAO.countAllAdmins();
+    }
+
+    public int countNewUsersInMonth(){
+        return this.userDAO.countNewUsersInMonth();
+    }
 }

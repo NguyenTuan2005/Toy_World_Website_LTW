@@ -32,16 +32,15 @@
 
           <c:choose>
             <c:when test="${not empty error}">
-              <div id="error" class="alert alert-danger" role="alert">
+                <div id="alert" class="alert alert-danger text-center mb-4" role="alert">
                 ${error}
-              </div>
             </c:when>
             <c:otherwise>
-              <div id="countdown" class="alert alert-info text-center mb-4">
-                Mã OTP sẽ hết hạn trong: <strong id="countdownValue">90</strong> giây
-              </div>
+                <div id="alert" class="alert alert-info text-center mb-4">
+                Mã OTP sẽ hết hạn trong: <strong id="countdownValue">${otpDelay != null ? otpDelay : 90}</strong> giây
             </c:otherwise>
           </c:choose>
+          </div>
 
           <form method="post" action="/verify-otp">
             <div class="mb-3">
@@ -61,7 +60,7 @@
     </div>
 
     <script>
-      let timeLeft = 90;
+      let timeLeft = ${otpDelay != null ? otpDelay : 90};
       const countdownElement = document.getElementById('countdownValue');
 
       const timer = setInterval(function() {
@@ -71,16 +70,10 @@
         if (timeLeft <= 0) {
           clearInterval(timer);
           countdownElement.textContent = '0';
-          let error = document.getElementById('error'), countdown = document.getElementById('countdown');
-          if (error) {
-            error.textContent = 'Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới.';
-          } else {
-            if (countdown) {
-              countdown.classList.remove('alert-info');
-              countdown.classList.add('alert-danger');
-              countdown.textContent = 'Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới.';
-            }
-          }
+          let alert = document.getElementById('alert');
+          alert.classList.remove('alert-info');
+          alert.classList.add('alert-danger');
+          alert.textContent = 'Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới.';
         }
       }, 1000);
     </script>

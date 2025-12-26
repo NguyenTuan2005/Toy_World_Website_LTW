@@ -59,7 +59,7 @@ public class UserDAO extends BaseDAO {
                             manageUserDTO.setProvince(rs.getString("province"));
                             manageUserDTO.setEmail(rs.getString("email"));
                             manageUserDTO.setPhone(rs.getString("phone"));
-                            manageUserDTO.setStatus(rs.getBoolean("is_active") ?"hoạt động":"khóa");
+                            manageUserDTO.setActive(rs.getBoolean("is_active"));
                             manageUserDTO.setCreatedAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("created_at")));
                             return manageUserDTO;
                         })
@@ -114,7 +114,7 @@ public class UserDAO extends BaseDAO {
                     u.is_active
                 from users u
                 join locations l on l.id = u.location_id
-                where  l.is_active = 1
+                where  1 = 1
                 """);
 
         sql.append(userCriteria.getIdForSql());
@@ -137,7 +137,7 @@ public class UserDAO extends BaseDAO {
                             manageUserDTO.setProvince(rs.getString("province"));
                             manageUserDTO.setEmail(rs.getString("email"));
                             manageUserDTO.setPhone(rs.getString("phone"));
-                            manageUserDTO.setStatus(rs.getBoolean("is_active") ?"hoạt động":"khóa");
+                            manageUserDTO.setActive(rs.getBoolean("is_active"));
                             manageUserDTO.setCreatedAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("created_at")));
                             return manageUserDTO;
                         })

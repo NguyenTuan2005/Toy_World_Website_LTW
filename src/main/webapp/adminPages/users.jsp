@@ -242,7 +242,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <style>
+                        .status-active {
+                            background-color: #e6f4ea;
+                            color: #1e7e34;
+                            border: 1px solid #1e7e34;
+                        }
 
+                        .status-locked {
+                            background-color: #fdecea;
+                            color: #dc3545;
+                            border: 1px solid #dc3545;
+                        }
+
+                    </style>
                     <c:forEach var="u" items="${manage_users}">
                         <tr>
                             <td class ="text-center align-middle" style="width: 40px">
@@ -257,8 +270,15 @@
                                     ${u.role}
                             </span></td>
                             <td>
-                                <span class="badge bg-success">
-                                    ${u.status}
+                                <span class="badge ${u.active ? 'status-active' : 'status-locked'}">
+                                  <c:choose>
+                                      <c:when test="${u.active}">
+                                          Hoạt động
+                                      </c:when>
+                                      <c:otherwise>
+                                          Khóa
+                                      </c:otherwise>
+                                  </c:choose>
                                 </span>
                             </td>
                             <td>${u.createdAt}</td>

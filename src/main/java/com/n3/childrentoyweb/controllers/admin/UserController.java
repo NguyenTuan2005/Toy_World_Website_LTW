@@ -46,6 +46,8 @@ public class UserController extends HttpServlet {
     private void findUserByCriteria(UserCriteria userCriteria, HttpServletRequest request){
         Pagination<ManageUserDTO>  manageUserDTOPagination = this.userService.findByCriteria(userCriteria);
 
+        System.out.println(manageUserDTOPagination.getData());
+
         request.setAttribute("find_user","find-user");
         request.setAttribute("manage_users",manageUserDTOPagination.getData());
         request.setAttribute("currentPage",1);

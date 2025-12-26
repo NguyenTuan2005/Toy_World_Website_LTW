@@ -185,6 +185,7 @@ public class UserDAO extends BaseDAO {
                             user.setFirstName(rs.getString("first_name"));
                             user.setLastName(rs.getString("last_name"));
                             user.setPhone(rs.getString("phone"));
+                            user.setPassword(rs.getString("password"));
                             user.setGender(rs.getString("gender"));
                             user.setEmail(rs.getString("email"));
                             user.setLocationId(rs.getLong("location_id"));

@@ -292,9 +292,15 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <button class="btn btn-link text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <form method="post" action="/childrentoyweb_war/admin/hidden-users">
+                                        <input type="hidden" name="userId" value="${u.userId}">
+                                        <input type="hidden" name="active" value="${u.active}">
+                                        <button class="btn btn-link text-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+
+
                                 </div>
                             </td>
                         </tr>

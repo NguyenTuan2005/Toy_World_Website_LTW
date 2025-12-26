@@ -34,13 +34,17 @@ public class HiddenUserController extends HttpServlet {
 
             user.revertActive();
 
-            System.out.println(user);
+            System.out.println("Load  for hiddent"+user);
 
             this.userService.update(user);
 
-        }catch (Exception e){
+        }catch (ObjectNotFoundException e){
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        } catch (Exception e){
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return;
         }
 

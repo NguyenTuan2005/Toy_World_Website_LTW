@@ -42,4 +42,8 @@ public class ProductService {
     public Optional<Product> findById(Long id ){
         return this.productDAO.findById(id);
     }
+
+    public static void main(String[] args) {
+        System.out.println(new ProductService().findSignatureProduct());
+    }
 }

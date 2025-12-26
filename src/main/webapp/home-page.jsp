@@ -105,158 +105,165 @@
                   </button>
                 </div>
               </section>
+              <c:if test="${not empty signatureProducts}">
+                <!-- Lego -->
+                <section class="lego container-lg">
+                  <h2 class="title inline-richtext">LEGO Mega Sale 2025</h2>
 
-              <!-- Lego -->
-              <section class="lego container-lg">
-                <h2 class="title inline-richtext">LEGO Mega Sale 2025</h2>
-
-                <div class="center">
-                  <a
-                    href="product.html"
-                    class="view-more-button"
-                    aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE"
-                    >Xem thêm <i class="bi bi-caret-right-fill"></i
-                  ></a>
-                </div>
-
-                <!-- products -->
-                <div class="container">
-                  <div id="legoCarousel" class="carousel  pt-2"  data-bs-ride="false">
-                    <div class="carousel-inner">
-                      <!-- Slide 1 -->
-                      <div class="carousel-item active">
-                        <div class="row g-4">
+                  <div class="center">
+                    <a
+                      href="product.html"
+                      class="view-more-button"
+                      aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE"
+                      >Xem thêm <i class="bi bi-caret-right-fill"></i
+                    ></a>
+                  </div>
 
 
-                          <c:forEach var="p" items="${signatureProducts}" varStatus="counter" >
-                            <div id ="${counter.count}" class="col-md-4 product-status-s  cursor-pointer"  >
-                              <div class="product-card">
-                                <span class="discount-badge">
-                                  <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
-                                </span>
-                                <img     src="${not empty p.imageUrl ? p.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}"    alt="Kylo-Ren-helmet" class="product-image" />
-                                <div class="product-brand">
-                                    ${p.brandName}
-                                  <span class="product-sku ps-3"></span
-                                  >
-                                </div>
-                                <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
-                                </h3>
-                                <div class="price-section">
-                                  <span class="current-price">
-                                        <fmt:formatNumber value="${p.currentPrice}" type="currency" currencyCode="VND"/>
+                  <!-- products -->
+                  <div class="container">
+                    <div id="legoCarousel" class="carousel  pt-2"  data-bs-ride="false">
+                      <div class="carousel-inner">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active">
+                          <div class="row g-4">
+
+
+                            <c:forEach var="p" items="${signatureProducts}" varStatus="counter" >
+                              <div id ="${counter.count}" class="col-md-4 product-status-s  cursor-pointer"  >
+                                <div class="product-card">
+                                  <span class="discount-badge">
+                                    <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
                                   </span>
-                                  <span class="original-price">
-                                          <fmt:formatNumber value="${p.originalPrice}" type="currency" currencyCode="VND"/>
-                                  </span>
-                                </div>
-                                <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
-                                  <form action="${pageContext.request.contextPath}/cart" method="post">
-                                    <input type="hidden" name="productId" value="${p.id}" />
-                                    <input type="hidden" name="quantity" value="1" />
-                                    <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
-                                      Thêm Vào Giỏ Hàng
+                                  <img     src="${not empty p.imageUrl ? p.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}"    alt="Kylo-Ren-helmet" class="product-image" />
+                                  <div class="product-brand">
+                                      ${p.brandName}
+                                    <span class="product-sku ps-3"></span
+                                    >
+                                  </div>
+                                  <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
+                                  </h3>
+                                  <div class="price-section">
+                                    <span class="current-price">
+                                          <fmt:formatNumber value="${p.currentPrice}" type="currency" currencyCode="VND"/>
+                                    </span>
+                                    <span class="original-price">
+                                            <fmt:formatNumber value="${p.originalPrice}" type="currency" currencyCode="VND"/>
+                                    </span>
+                                  </div>
+                                  <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
+                                    <form action="${pageContext.request.contextPath}/cart" method="post">
+                                      <input type="hidden" name="productId" value="${p.id}" />
+                                      <input type="hidden" name="quantity" value="1" />
+                                      <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
+                                        Thêm Vào Giỏ Hàng
+                                      </button>
+                                    </form>
+                                    <button class="btn btn-wishlist">
+                                      <i class="bi bi-heart"></i>
                                     </button>
-                                  </form>
-                                  <button class="btn btn-wishlist">
-                                    <i class="bi bi-heart"></i>
-                                  </button>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
 
-                          </c:forEach>
+                            </c:forEach>
 
+                          </div>
                         </div>
                       </div>
+
+
+
+
+                      <button class="carousel-control-prev"  type="button"   onclick="prevProductsForLego()">
+                        <i class="bi bi-caret-left-fill"></i>
+                      </button>
+                      <button  class="carousel-control-next" type="button" onclick="nextProductsForLego()">
+                        <i class="bi bi-caret-right-fill"></i>
+                      </button>
                     </div>
-
-
-
-
-                    <button class="carousel-control-prev"  type="button"   onclick="prevProductsForLego()">
-                      <i class="bi bi-caret-left-fill"></i>
-                    </button>
-                    <button  class="carousel-control-next" type="button" onclick="nextProductsForLego()">
-                      <i class="bi bi-caret-right-fill"></i>
-                    </button>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              <!-- new product -->
-              <section class="container-lg">
+              </c:if>
 
-                <h2 class="title d-flex align-items-center justify-content-center gap-2 text-center">
-                  Sản phẩm mới về - Bé thích mê
-                </h2>
 
-                <div class="center">
-                  <a href="product.html" class="view-more-button"  aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE">Xem thêm <i class="bi bi-caret-right-fill"></i></a>
-                </div>
+              <c:if test="${not empty newProductsInMonth}">
+                <!-- new product -->
+                <section class="container-lg">
+  
+                  <h2 class="title d-flex align-items-center justify-content-center gap-2 text-center">
+                    Sản phẩm mới về - Bé thích mê
+                  </h2>
 
-                <!-- products -->
-                <div class="container">
-                  <div id="new-product" class="carousel  pt-2"  data-bs-ride="false">
-                    <div class="carousel-inner">
-                      <!-- Slide 1 -->
-                      <div class="carousel-item active">
-                        <div class="row g-4">
+                  <div class="center">
+                    <a href="product.html" class="view-more-button"  aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE">Xem thêm <i class="bi bi-caret-right-fill"></i></a>
+                  </div>
 
-                          <c:forEach var="p" items="${newProductsInMonth}" varStatus="counter">
-                            <div id ="${counter.count}" class="col-md-4 product-status  cursor-pointer"  >
-                              <div class="product-card">
-                                <span class="discount-badge">
-                                  <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
-                                </span>
-                                <img     src="${not empty p.imageUrl ? p.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}"    alt="Kylo-Ren-helmet" class="product-image" />
-                                <div class="product-brand">
-                                    ${p.brandName}
-                                  <span class="product-sku ps-3"></span
-                                  >
-                                </div>
-                                <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
-                                </h3>
-                                <div class="price-section">
-                                  <span class="current-price">
-                                        <fmt:formatNumber value="${p.currentPrice}" type="currency" currencyCode="VND"/>
+                  <!-- products -->
+                  <div class="container">
+                    <div id="new-product" class="carousel  pt-2"  data-bs-ride="false">
+                      <div class="carousel-inner">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active">
+                          <div class="row g-4">
+
+
+                            <c:forEach var="p" items="${newProductsInMonth}" varStatus="counter">
+                              <div id ="${counter.count}" class="col-md-4 product-status  cursor-pointer"  >
+                                <div class="product-card">
+                                  <span class="discount-badge">
+                                    <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
                                   </span>
-                                  <span class="original-price">
-                                          <fmt:formatNumber value="${p.originalPrice}" type="currency" currencyCode="VND"/>
-                                  </span>
-                                </div>
-                                <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
-                                  <form action="${pageContext.request.contextPath}/cart" method="post">
-                                    <input type="hidden" name="productId" value="${p.id}" />
-                                    <input type="hidden" name="quantity" value="1" />
-                                    <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
-                                      Thêm Vào Giỏ Hàng
+                                  <img     src="${not empty p.imageUrl ? p.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}"    alt="Kylo-Ren-helmet" class="product-image" />
+                                  <div class="product-brand">
+                                      ${p.brandName}
+                                    <span class="product-sku ps-3"></span
+                                    >
+                                  </div>
+                                  <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
+                                  </h3>
+                                  <div class="price-section">
+                                    <span class="current-price">
+                                          <fmt:formatNumber value="${p.currentPrice}" type="currency" currencyCode="VND"/>
+                                    </span>
+                                    <span class="original-price">
+                                            <fmt:formatNumber value="${p.originalPrice}" type="currency" currencyCode="VND"/>
+                                    </span>
+                                  </div>
+                                  <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
+                                    <form action="${pageContext.request.contextPath}/cart" method="post">
+                                      <input type="hidden" name="productId" value="${p.id}" />
+                                      <input type="hidden" name="quantity" value="1" />
+                                      <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
+                                        Thêm Vào Giỏ Hàng
+                                      </button>
+                                    </form>
+                                    <button class="btn btn-wishlist">
+                                      <i class="bi bi-heart"></i>
                                     </button>
-                                  </form>
-                                  <button class="btn btn-wishlist">
-                                    <i class="bi bi-heart"></i>
-                                  </button>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
 
-                          </c:forEach>
+                            </c:forEach>
 
+                          </div>
                         </div>
                       </div>
+
+
+                      <button class="carousel-control-prev"  type="button"   onclick="prevProducts()">
+                        <i class="bi bi-caret-left-fill"></i>
+                      </button>
+                      <button  class="carousel-control-next" type="button" onclick="nextProducts()">
+                        <i class="bi bi-caret-right-fill"></i>
+                      </button>
                     </div>
-
-                    
-                    <button class="carousel-control-prev"  type="button"   onclick="prevProducts()">
-                      <i class="bi bi-caret-left-fill"></i>
-                    </button>
-                    <button  class="carousel-control-next" type="button" onclick="nextProducts()">
-                      <i class="bi bi-caret-right-fill"></i>
-                    </button>
                   </div>
-                </div>
 
-              </section>
+                </section>
+              </c:if>
 
             </div>
 

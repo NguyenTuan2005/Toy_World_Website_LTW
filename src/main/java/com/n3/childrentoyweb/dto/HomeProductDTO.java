@@ -25,9 +25,7 @@ public class HomeProductDTO {
     private String brandName;
 
     public HomeProductDTO(){
-
     }
-
 
     public HomeProductDTO(int id, String name, double originalPrice, float discountPercent, String imageUrl, String brandName) {
         this.id = id;

@@ -12,7 +12,7 @@ INSERT INTO locations (id,address, province) VALUES
 INSERT INTO users (id,first_name, last_name, phone, gender, password, email, location_id)
 VALUES
 (1,'User1', 'Test', '0900000001', 'Male', 'c4ca4238a0b923820dcc509a6f75849b', 'user1@gmail.com', 1),
-(2,'User2', 'Test', '0900000002', 'Female', 'c4ca4238a0b923820dcc509a6f75849b', 'user2@gmail.com', 2),
+(2,'Admin', 'Pro', '0900000002', 'Male', 'c4ca4238a0b923820dcc509a6f75849b', 'user2@gmail.com', 2),
 (3,'User3', 'Test', '0900000003', 'Male', 'c4ca4238a0b923820dcc509a6f75849b', 'user3@gmail.com', 3),
 (4,'User4', 'Test', '0900000004', 'Female', 'c4ca4238a0b923820dcc509a6f75849b', 'user4@gmail.com', 4),
 (5,'User5', 'Test', '0900000005', 'Male', 'c4ca4238a0b923820dcc509a6f75849b', 'user5@gmail.com', 5),
@@ -63,7 +63,7 @@ VALUES
 (50,'User50', 'Test', '0900000050', 'Female', 'c4ca4238a0b923820dcc509a6f75849b', 'user50@gmail.com', 5);
 
 INSERT INTO user_roles (user_id, role_id) VALUES
-  (1,1),(2,1),(3,1),(4,1),(5,1),
+  (1,1),(2,2),(3,1),(4,1),(5,1),
   (6,1),(7,1),(8,1),(9,1),(10,1),
   (11,1),(12,1),(13,1),(14,1),(15,1),
   (16,1),(17,1),(18,1),(19,1),(20,1),

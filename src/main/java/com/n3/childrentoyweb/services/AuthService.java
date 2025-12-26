@@ -1,7 +1,5 @@
 package com.n3.childrentoyweb.services;
 
-import com.n3.childrentoyweb.dto.SignUpUserDTO;
-
 import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.utils.EmailValidation;
@@ -25,14 +23,26 @@ public class AuthService {
         }
         String hashPassword = MD5Util.encryptMd5(password);
 
-        return userDAO.login(email, hashPassword);
+        User user = userDAO.findByEmail(email);
+
+        if (user == null) {
+            throw new IllegalArgumentException("User không tồn tại");
+        }
+
+        if (hashPassword.equals(user.getPassword())) {
+            user.setPassword(null);
+            return user;
+        }
+
+        return null;
     }
 
-    public boolean validate(SignUpUserDTO signUpUserDTO) throws IllegalArgumentException {
-        return signUpUserDTO.isValidFirstName() &&
-                signUpUserDTO.isValidLastName() &&
-                signUpUserDTO.isValidPhone() &&
-                signUpUserDTO.isValidEmail() &&
-                signUpUserDTO.isValidPassword();
+    public boolean validate(User user, String confirmPassword) throws IllegalArgumentException {
+        return user.isValidFirstName() &&
+                user.isValidLastName() &&
+                user.isValidPhone() &&
+                user.isValidEmail() &&
+                user.isValidPassword() &&
+                user.matchPassword(confirmPassword);
     }
 }

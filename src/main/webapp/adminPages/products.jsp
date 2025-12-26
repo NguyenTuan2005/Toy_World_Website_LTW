@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
+
 </head>
 
 <body>

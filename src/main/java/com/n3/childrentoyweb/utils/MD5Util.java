@@ -17,10 +17,4 @@ public class MD5Util {
             throw new RuntimeException(e);
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println(encryptMd5("123"));
-    }
-
-
 }

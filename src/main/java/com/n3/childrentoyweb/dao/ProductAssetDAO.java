@@ -1,6 +1,5 @@
 package com.n3.childrentoyweb.dao;
 
-import com.n3.childrentoyweb.models.Category;
 import com.n3.childrentoyweb.models.ProductAsset;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
@@ -20,7 +19,23 @@ public class ProductAssetDAO extends BaseDAO {
                         .mapTo(ProductAsset.class)
                         .list()
         );
-
     }
+
+    public List<String> findImagePathByProductId(Long productId) {
+        String sql = """
+            SELECT img_path
+            FROM product_assets
+            WHERE product_id = :productId
+        """;
+
+        return super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("productId", productId)
+                        .mapTo(String.class)
+                        .list()
+        );
+    }
+
+
 
 }

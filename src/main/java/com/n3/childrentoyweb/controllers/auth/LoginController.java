@@ -30,29 +30,35 @@ public class LoginController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        User user = authService.login(email, password);
+        try {
+            User user = authService.login(email, password);
 
-        if (user != null) {
-            HttpSession session = request.getSession();
+            if (user == null) {
+                request.setAttribute("error", "Sai email hoặc mật khẩu");
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                return;
+            }
+
+            HttpSession session = request.getSession(true);
             session.setAttribute("currentUser", user);
 
-            List<RoleEnum> roles = this.roleService.findAllByUserId(user.getId());
-            session.setAttribute("roles",roles);
-            //            session.setMaxInactiveInterval(30 * 60); // 30 phút
-            session.setMaxInactiveInterval(10*60);
+            List<RoleEnum> roles = roleService.findAllByUserId(user.getId());
+            session.setAttribute("roles", roles);
+
+            session.setMaxInactiveInterval(10 * 60); // session
 
             response.sendRedirect(request.getContextPath() + "/home");
 
-        } else {
-            request.setAttribute("error", "Sai tài khoản hoặc mật khẩu");
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
-
-
-
     }
+
 }

@@ -1,6 +1,5 @@
 package com.n3.childrentoyweb.interceptor;
 
-import com.n3.childrentoyweb.models.CurrentUser;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/account", "/account/*"})
-public class AuthUserFilter implements Filter {
+public class UserAuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)

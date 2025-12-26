@@ -1,21 +1,16 @@
 package com.n3.childrentoyweb.dao;
-
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.dto.UserCriteria;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import com.n3.childrentoyweb.utils.MD5Util;
-import org.jdbi.v3.core.mapper.RowMapper;
-import org.jdbi.v3.core.result.RowView;
-
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public class UserDAO extends BaseDAO {
+
     public User findByEmail(String email) {
         String sql = """
-        select first_name, last_name, phone, gender, password, email, location_id
+        select id, first_name, last_name, phone, gender, password, email, location_id
         from users
         where email = :email
         """;
@@ -23,26 +18,6 @@ public class UserDAO extends BaseDAO {
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("email", email)
-                        .mapToBean(User.class)
-                        .findOne()
-                        .orElse(null)
-        );
-    }
-
-    public User login(String email, String password) {
-
-        String sql = """
-            SELECT u.id, u.first_name, u.last_name, phone, gender, password, email, location_id
-            FROM users u
-            WHERE u.email = :email
-              AND u.password = :password
-              AND u.is_active = 1
-        """;
-
-        return super.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("email", email)
-                        .bind("password", password)
                         .mapToBean(User.class)
                         .findOne()
                         .orElse(null)

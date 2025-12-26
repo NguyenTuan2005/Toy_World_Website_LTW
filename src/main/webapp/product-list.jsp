@@ -13,10 +13,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="css/header.css"/>
     <link rel="stylesheet" href="css/root.css"/>
-    <link rel="stylesheet" href="css/product.css">
+
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
+
 <main class="px-0 mt-5">
 
     <div class="container-lg mb-5">
@@ -92,17 +93,7 @@
             <!-- Products List Section -->
             <section class="col-md-9">
                 <div class="d-flex align-items-center flex-nowrap mb-4">
-                    <div class="hstack gap-1">
-                        <label>Kiểu xem: </label>
-                        <button id="btnGrid" class="btn btn-sm text-center gap-1 active" onclick="switchToGrid()">
-                            <i class="fa fa-th"></i> Lưới
-                        </button>
-
-                        <button id="btnList" class="btn btn-sm text-center gap-1" onclick="switchToLine()">
-                            <i class="fa fa-bars"></i> Dòng
-                        </button>
-                    </div>
-                    <span class="text-muted mx-auto">Có 24 sản phẩm</span>
+                    <span class="text-muted me-2">Có 24 sản phẩm</span>
                     <div class="hstack gap-1">
                         <label>Sắp xếp theo: </label>
                         <div class="dropdown">
@@ -127,9 +118,9 @@
                                 <img src="${productAssetMap.get(p.id).get(0)}"
                                      class="card-img-top p-3 cursor-pointer"
                                      alt="LEGO Classic"
-                                     role="button" onclick="window.location.href='product-detail.html'">
+                                     role="button" onclick="window.location.href='${pageContext.request.contextPath}/products/${p.id}'">
                                 <div class="card-body d-flex flex-column"
-                                     onclick="window.location.href='product-detail.html'">
+                                     onclick="window.location.href='${pageContext.request.contextPath}/products/${p.id}'">
                                     <p class="text-muted small mb-1">
                                             ${categoryMap.get(p.categoryId)}
                                     </p>

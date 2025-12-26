@@ -1,7 +1,9 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.HomeProductDTO;
+import com.n3.childrentoyweb.dto.ProductDetailDTO;
 import com.n3.childrentoyweb.models.Product;
+import com.n3.childrentoyweb.utils.JsonColumnMapper;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
@@ -157,14 +159,10 @@ public class ProductDAO  extends BaseDAO{
         );
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProductDAO().findNewImportProductsInMonth(1,3));
-    }
-
-
     public Optional<Product> findById(Long id) {
         String sql = """
             SELECT id, name, price, quantity, description,
+                   rest_info AS restInfo,
                    brand_id AS brandId,
                    category_id AS categoryId
             FROM products
@@ -174,9 +172,46 @@ public class ProductDAO  extends BaseDAO{
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("id",id)
+                        .registerColumnMapper(new JsonColumnMapper())
                         .registerRowMapper(BeanMapper.factory(Product.class))
                         .mapTo(Product.class)
                         .findOne()
         );
+    }
+
+    public Optional<ProductDetailDTO> findDetailById(Long id) {
+        String sql = """
+            SELECT p.id, p.name, 
+                   p.price AS originalPrice,
+                   p.quantity, 
+                   p.description,
+                   p.rest_info AS restInfo,
+                   p.brand_id AS brandId,
+                   b.name AS brandName,
+                   p.category_id AS categoryId,
+                   c.name AS categoryName,
+                   pm.id AS promotionId,
+                   pm.discount_percent AS discountPercent,
+                   pm.discount_price AS discountPrice
+            FROM products p
+            JOIN brands b ON p.brand_id = b.id
+            JOIN categories c ON p.category_id = c.id
+            LEFT JOIN promotions pm ON p.promotion_id = pm.id
+            WHERE p.is_active = 1 AND p.id = :id
+        """;
+
+        return super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id",id)
+                        .registerColumnMapper(new JsonColumnMapper())
+                        .registerRowMapper(BeanMapper.factory(ProductDetailDTO.class))
+                        .mapTo(ProductDetailDTO.class)
+                        .findOne()
+        );
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ProductDAO().findDetailById(1L));
     }
 }

@@ -280,11 +280,11 @@
                                         <i class="bi bi-eye-fill"></i>
                                     </a>
 
-                                    <button class="btn btn-link text-success text-decoration-none">
+                                    <button class="btn btn-link text-success text-decoration-none"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <form method="post" action="/childrentoyweb_war/admin/hidden-users">
+                                    <form method="post" action="/childrentoyweb_war/admin/hidden-users"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
                                         <input type="hidden" name="userId" value="${u.userId}">
                                         <input type="hidden" name="active" value="${u.active}">
                                         <button class="btn btn-link text-danger">
@@ -428,7 +428,7 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             <i class="fas fa-times"></i> Hủy
                         </button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
                             <i class="fas fa-check"></i> Lưu
                         </button>
                     </div>

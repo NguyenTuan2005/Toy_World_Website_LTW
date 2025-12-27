@@ -348,27 +348,27 @@
     <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Thêm người dùng mới</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="userForm">
+                <form method="post" action="${pageContext.request.contextPath}/admin/new-users">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="userModalLabel">Thêm người dùng mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="firstName" class="form-label">Họ <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="firstName" required>
+                                <input type="text" class="form-control" id="firstName" name="firstName" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="lastName" class="form-label">Tên <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="lastName" required>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="gender" class="form-label">Giới tính</label>
-                                <select class="form-select" id="gender">
+                                <select class="form-select" id="gender" name="gender">
                                     <option value="">Chọn giới tính</option>
                                     <option value="male">Nam</option>
                                     <option value="female">Nữ</option>
@@ -377,23 +377,23 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="phone" class="form-label">Điện thoại</label>
-                                <input type="tel" class="form-control" id="phone">
+                                <input type="tel" class="form-control" id="phone" name="phone">
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
                         <div id="userModalPassword" class="mb-3">
                             <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="province" class="form-label">Tỉnh/TP</label>
-                            <select class="form-select" id="province">
+                            <select class="form-select" id="province" name="province">
                                 <option value="">Chọn địa điểm</option>
                                 <option value="hanoi">Hà Nội</option>
                                 <option value="hcm">TP. Hồ Chí Minh</option>
@@ -404,13 +404,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="address" class="form=label">Địa chỉ</label>
-                            <textarea class="form-control" id="address"></textarea>
+                            <label for="address" class="form-label">Địa chỉ</label>
+                            <textarea class="form-control" id="address" name="address"></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="roles" class="form-label">Vai trò</label>
-                            <select class="form-select" id="roles" multiple>
+                            <select class="form-select" id="roles" name="roles" multiple>
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
                                 <option value="moderator">Moderator</option>
@@ -420,19 +420,19 @@
                         </div>
 
                         <div class="mb-3 form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="status" checked>
+                            <input class="form-check-input" type="checkbox" id="status" name="status" value="active" checked>
                             <label class="form-check-label" for="status">Trạng thái hoạt động</label>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times"></i> Hủy
-                    </button>
-                    <button type="button" class="btn btn-primary" id="btnSaveUser">
-                        <i class="fas fa-check"></i> Lưu
-                    </button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Hủy
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Lưu
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

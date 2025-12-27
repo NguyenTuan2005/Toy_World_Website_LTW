@@ -35,6 +35,7 @@ public class UserController extends HttpServlet {
         req.getRequestDispatcher("/adminPages/users.jsp").forward(req,resp);
     }
 
+    // API search by id, email, name or phone.
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String keyword = req.getParameter("keyword");

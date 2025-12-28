@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.dto;
 
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.time.LocalDateTime;
@@ -67,6 +68,10 @@ public class UserCommentDTO {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public String getCreatedAtToString() {
+        return LocalDateTimeConverterUtil.convertToTimeAgo(createdAt);
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {

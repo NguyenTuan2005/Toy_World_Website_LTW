@@ -222,7 +222,7 @@
                 <div class="bg-light p-3 rounded w-100">
                     <strong>${comment.userName}</strong>
                     <p class="mb-1">${comment.content}</p>
-                    <small class="text-muted">${comment.createdAt}</small>
+                    <small class="text-muted">${comment.createdAtToString}</small>
                 </div>
             </div>
         </c:forEach>

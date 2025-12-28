@@ -44,6 +44,7 @@ public class HomeController extends HttpServlet {
 
     public void addSignatureProducts(HttpServletRequest request){
         List<HomeProductDTO> homeProductDTOS = this.productService.findSignatureProduct();
+        System.out.println("SignatureProducts size:"+homeProductDTOS.size());
         request.setAttribute("signatureProducts",homeProductDTOS);
     }
 

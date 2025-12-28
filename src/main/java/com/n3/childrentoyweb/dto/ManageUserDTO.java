@@ -1,13 +1,5 @@
 package com.n3.childrentoyweb.dto;
 
-import com.n3.childrentoyweb.enums.RoleEnum;
-import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
-import org.jdbi.v3.core.mapper.RowMapper;
-import org.jdbi.v3.core.statement.StatementContext;
-
-import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class ManageUserDTO  {
@@ -19,7 +11,7 @@ public class ManageUserDTO  {
     private String sex;
     private String province;
     private String role;
-    private String status;
+    private Boolean isActive;
     private LocalDateTime createdAt;
 
     public ManageUserDTO() {
@@ -90,12 +82,12 @@ public class ManageUserDTO  {
         this.role = role;
     }
 
-    public String getStatus() {
-        return status;
+    public Boolean getActive() {
+        return isActive;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -106,7 +98,23 @@ public class ManageUserDTO  {
         this.createdAt = createdAt;
     }
 
-    public ManageUserDTO(Long userId, String email, String phone, String firstName, String lastName, String sex, String province, String role, String status, LocalDateTime createdAt) {
+    @Override
+    public String toString() {
+        return "ManageUserDTO{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", sex='" + sex + '\'' +
+                ", province='" + province + '\'' +
+                ", role='" + role + '\'' +
+                ", isActive=" + isActive +
+                ", createdAt=" + createdAt +
+                '}';
+    }
+
+    public ManageUserDTO(Long userId, String email, String phone, String firstName, String lastName, String sex, String province, String role, Boolean isActive, LocalDateTime createdAt) {
         this.userId = userId;
         this.email = email;
         this.phone = phone;
@@ -115,7 +123,7 @@ public class ManageUserDTO  {
         this.sex = sex;
         this.province = province;
         this.role = role;
-        this.status = status;
+        this.isActive = isActive;
         this.createdAt = createdAt;
     }
 }

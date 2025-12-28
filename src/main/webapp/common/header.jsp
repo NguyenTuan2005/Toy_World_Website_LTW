@@ -7,11 +7,11 @@
         <div class="d-flex align-items-center justify-content-center flex-wrap">
             <!-- Logo -->
             <div class="d-flex align-items-center">
-                <a href="${pageContext.request.contextPath}/">
+                <a href="${pageContext.request.contextPath}/home">
                     <img src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png"
                          alt="ToyWorld Logo"
                          class="img-fluid"
-                         style="width: 190px; height: 50px;" />
+                         style="width: 200px; height: 50px;" />
                 </a>
             </div>
             <!-- Logo -->

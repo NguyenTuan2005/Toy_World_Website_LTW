@@ -78,7 +78,9 @@
 <div class="sidebar bg-white shadow">
     <!-- Header -->
     <div class="text-center border-bottom border-danger" style ="padding: 31px">
-        <img src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png" alt="Toy World Logo" class="img-fluid">
+        <a href="${pageContext.request.contextPath}/home">
+            <img src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png" alt="Toy World Logo" class="img-fluid">
+        </a>
     </div>
 
     <!-- Menu -->

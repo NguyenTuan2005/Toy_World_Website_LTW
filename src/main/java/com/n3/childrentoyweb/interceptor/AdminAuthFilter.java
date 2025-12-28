@@ -20,6 +20,8 @@ public class AdminAuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
+        System.out.println("Path :"+((HttpServletRequest) req).getPathInfo());
+
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("currentUser") == null || session.getAttribute("roles") == null) {

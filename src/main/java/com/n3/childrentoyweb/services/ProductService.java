@@ -3,6 +3,7 @@ package com.n3.childrentoyweb.services;
 import com.n3.childrentoyweb.dao.ApplicationProperties;
 import com.n3.childrentoyweb.dao.ProductAssetDAO;
 import com.n3.childrentoyweb.dao.ProductDAO;
+import com.n3.childrentoyweb.dao.UserCommentDAO;
 import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
 import com.n3.childrentoyweb.models.Product;
@@ -14,11 +15,13 @@ import java.util.Optional;
 public class ProductService {
     private ProductDAO productDAO;
     private ProductAssetDAO productAssetDAO;
+    private UserCommentDAO userCommentDAO;
     private static final int FIRST_PAGE = 1;
 
     public ProductService() {
         this.productDAO = new ProductDAO();
         this.productAssetDAO = new ProductAssetDAO();
+        this.userCommentDAO = new UserCommentDAO();
     }
 
     public List<Product> findAll() {
@@ -74,6 +77,8 @@ public class ProductService {
         }
 
         product.setImagePaths(productAssetDAO.findImagePathByProductId(id));
+
+        product.setComments(userCommentDAO.findByProductId(id));
 
 
         return product;

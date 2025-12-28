@@ -66,6 +66,7 @@
                 </div>
 
                 <div class="price-section">
+                    <span class="brand-badge me-2">Giá Bán: </span>
                     <c:if test="${product.promotionId != null}">
                         <span class="price-current">
                         <fmt:formatNumber value="${product.discountPrice}" type="currency" currencyCode="VND"/>
@@ -129,7 +130,7 @@
         <div class="product-description">
             <hr class="desc-line">
             <br>
-            <h4 class="fs-2">Mô tả sản phẩm</h4>
+            <h4 class="fs-2 ms-2">Mô tả sản phẩm</h4>
             <div class="description-content" id="desc">
                 <h4>${product.name}</h4>
                 <p>
@@ -168,72 +169,77 @@
     </div>
 </div>
 
+<%--User comments--%>
 <div class=" container  my-4 p-3 mt-4 bg-white border rounded shadow-sm">
 
     <h4 class="mb-3">Bình luận</h4>
 
     <!-- Ô thêm bình luận -->
-    <div class="mb-4">
-        <label class="form-label fw-semibold">Thêm bình luận</label>
+    <c:if test="${not empty sessionScope.currentUser}">
+        <form action="${pageContext.request.contextPath}/comment/create" method="post" id="comment-form">
+            <input type="hidden" name="productId" value="${product.id}"/>
+            <div class="mb-4">
+                <label class="form-label fw-semibold">Thêm bình luận</label>
 
-        <div class="d-flex">
-            <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png" class="rounded-circle me-3" width="45"
-                 height="45"/>
+                <div class="d-flex">
+                    <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png"
+                         class="rounded-circle me-3"
+                         width="45" height="45"/>
 
-            <textarea
-                    id="new-comment"
-                    class="form-control"
-                    rows="3"
-                    placeholder="Viết bình luận của bạn..."
-            ></textarea>
-        </div>
+                    <textarea name="content"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Viết bình luận của bạn..."
+                            required ></textarea>
+                </div>
 
-        <div class="text-end mt-2">
-            <button class="btn btn-primary btn-sm">Gửi bình luận</button>
-        </div>
-    </div>
+                <div class="text-end mt-2">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        Gửi bình luận
+                    </button>
+                </div>
+            </div>
+        </form>
+    </c:if>
+
+    <c:if test="${empty sessionScope.currentUser}">
+        <p class="text-muted">Vui lòng đăng nhập để bình luận.</p>
+    </c:if>
+
 
     <hr/>
 
     <!-- Danh sách bình luận -->
-    <div class="mt-3">
+    <div class="mt-3" id="commentSection">
 
-        <!-- Comment 1 -->
-        <div class="d-flex mb-3">
-            <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png" class="rounded-circle me-3" width="40"
-                 height="40"/>
-            <div class="bg-light p-3 rounded w-100">
-                <strong>Nguyễn Hữu Duy</strong>
-                <p class="mb-1">Sản phẩm dùng rất ổn ní ơi!</p>
-                <small class="text-muted">2 giờ trước</small>
-            </div>
-        </div>
+        <c:forEach items="${product.comments}" var="comment" varStatus="status">
+            <div class="d-flex mb-3 comment-item
+        <c:if test='${status.index >= 2}'>d-none extra-comment</c:if>">
 
-        <!-- Comment 1 -->
-        <div class="d-flex mb-3">
-            <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png" class="rounded-circle me-3" width="40"
-                 height="40"/>
-            <div class="bg-light p-3 rounded w-100">
-                <strong>Nguyễn Võ Quốc Tuấn</strong>
-                <p class="mb-1">Hàng rất tốt</p>
-                <small class="text-muted">1 giờ trước</small>
-            </div>
-        </div>
+                <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png"
+                     class="rounded-circle me-3" width="40" height="40"/>
 
-        <!-- Comment 2 -->
-        <div class="d-flex mb-3">
-            <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png" class="rounded-circle me-3" width="40"
-                 height="40"/>
-            <div class="bg-light p-3 rounded w-100">
-                <strong>Phan Bá Huy Hoàng</strong>
-                <p class="mb-1">Giao hàng nhanh, chất lượng tuyệt vời.</p>
-                <small class="text-muted">1 ngày trước</small>
+                <div class="bg-light p-3 rounded w-100">
+                    <strong>${comment.userName}</strong>
+                    <p class="mb-1">${comment.content}</p>
+                    <small class="text-muted">${comment.createdAt}</small>
+                </div>
             </div>
-        </div>
-        <div class="text-end mt-2">
-            <button class="btn btn-primary btn-sm">Xem Thêm</button>
-        </div>
+        </c:forEach>
+
+
+        <c:if test="${product.comments.size() > 2}">
+            <div class="text-end mt-2">
+                <button class="btn btn-outline-primary btn-sm"
+                        id="btnShowMore"
+                        onclick="showMoreComments()">
+                    Xem thêm
+                </button>
+            </div>
+        </c:if>
     </div>
+
+
 </div>
 
 <jsp:include page="/common/footer.jsp"/>
@@ -241,5 +247,14 @@
 <script src="js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/product-detail.js"></script>
+<script>
+    function showMoreComments() {
+        const hiddenComments = document.querySelectorAll('.extra-comment');
+        hiddenComments.forEach(c => c.classList.remove('d-none'));
+
+        document.getElementById('btnShowMore').style.display = 'none';
+    }
+</script>
+
 </body>
 </html>

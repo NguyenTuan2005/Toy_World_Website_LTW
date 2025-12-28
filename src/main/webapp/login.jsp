@@ -41,7 +41,7 @@
                     <div class="hstack justify-content-between">
                         <a href="#" onclick="forgotPassword()" class="text-secondary text-decoration-none">Quên mật
                             khẩu?</a>
-                        <a href="/sign-up" class="text-secondary text-decoration-none">Đăng kí tài khoản</a>
+                        <a href="${pageContext.request.contextPath}/sign-up" class="text-secondary text-decoration-none">Đăng kí tài khoản</a>
                     </div>
                 </form>
 

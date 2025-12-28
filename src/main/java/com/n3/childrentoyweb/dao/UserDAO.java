@@ -12,7 +12,7 @@ public class UserDAO extends BaseDAO {
         String sql = """
         select id, first_name, last_name, phone, gender, password, email, location_id
         from users
-        where email = :email
+        where email = :email AND is_active = 1
         """;
 
         return this.getJdbi().withHandle(handle ->

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductDetailDTO {
-    protected Long id;
+    private Long id;
     private Double originalPrice;
     private Double discountPrice;
     private Integer quantity;
@@ -21,27 +21,29 @@ public class ProductDetailDTO {
     private Double maxDiscountPrice;
     private List<String> imagePaths;
 
-    public ProductDetailDTO(List<String> imagePaths, Double maxDiscountPrice, Double discountPercent, Long promotionId, String categoryName, Long categoryId, String brandName, Long brandId, String description, Map<String, String> restInfo, String name, Integer quantity, Double discountPrice, Double originalPrice, Long id) {
-        this.imagePaths = imagePaths;
-        this.maxDiscountPrice = maxDiscountPrice;
-        this.discountPercent = discountPercent;
-        this.promotionId = promotionId;
-        this.categoryName = categoryName;
-        this.categoryId = categoryId;
-        this.brandName = brandName;
-        this.brandId = brandId;
-        this.description = description;
-        this.restInfo = restInfo;
-        this.name = name;
-        this.quantity = quantity;
-        this.discountPrice = discountPrice;
-        this.originalPrice = originalPrice;
+    private List<UserCommentDTO> comments;
+
+    public ProductDetailDTO(Long id, Double originalPrice, Double discountPrice, Integer quantity, String name, Map<String, String> restInfo, String description, Long brandId, String brandName, Long categoryId, String categoryName, Long promotionId, Double discountPercent, Double maxDiscountPrice, List<String> imagePaths, List<UserCommentDTO> comments) {
         this.id = id;
+        this.originalPrice = originalPrice;
+        this.discountPrice = discountPrice;
+        this.quantity = quantity;
+        this.name = name;
+        this.restInfo = restInfo;
+        this.description = description;
+        this.brandId = brandId;
+        this.brandName = brandName;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.promotionId = promotionId;
+        this.discountPercent = discountPercent;
+        this.maxDiscountPrice = maxDiscountPrice;
+        this.imagePaths = imagePaths;
+        this.comments = comments;
     }
 
     public ProductDetailDTO() {
     }
-
 
     public Long getId() {
         return id;
@@ -163,24 +165,11 @@ public class ProductDetailDTO {
         this.imagePaths = imagePaths;
     }
 
-    @Override
-    public String toString() {
-        return "ProductDetailDTO{" +
-                "id=" + id +
-                ", originalPrice=" + originalPrice +
-                ", discountPrice=" + discountPrice +
-                ", quantity=" + quantity +
-                ", name='" + name + '\'' +
-                ", restInfo=" + restInfo +
-                ", description='" + description + '\'' +
-                ", brandId=" + brandId +
-                ", brandName='" + brandName + '\'' +
-                ", categoryId=" + categoryId +
-                ", categoryName='" + categoryName + '\'' +
-                ", promotionId=" + promotionId +
-                ", discountPercent=" + discountPercent +
-                ", maxDiscountPrice=" + maxDiscountPrice +
-                ", imagePaths=" + imagePaths +
-                '}';
+    public List<UserCommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<UserCommentDTO> comments) {
+        this.comments = comments;
     }
 }

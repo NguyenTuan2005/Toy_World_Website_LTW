@@ -57,15 +57,17 @@ const modalImg = document.getElementById('modalImage');
 const closeBtn = document.querySelector('.close-btn');
 
 document.getElementById('mainImage').addEventListener('click', () => {
-  modal.style.display = 'flex';
-  modalImg.src = document.getElementById('mainImage').src;
+    modal.style.display = 'flex';
+    modalImg.src = document.getElementById('mainImage').src;
 });
 
 // Đóng modal
 closeBtn.addEventListener('click', () => modal.style.display = 'none');
-modal.addEventListener('click', (e) => { 
-  if (e.target === modal) modal.style.display = 'none'; 
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.style.display = 'none';
 });
-document.addEventListener('keydown', (e) => { 
-  if (e.key === 'Escape') modal.style.display = 'none'; 
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') modal.style.display = 'none';
 });
+
+

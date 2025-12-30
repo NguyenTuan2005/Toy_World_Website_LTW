@@ -13,7 +13,6 @@ import com.n3.childrentoyweb.models.Location;
 import com.n3.childrentoyweb.models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
     private UserDAO userDAO;
@@ -45,7 +44,8 @@ public class UserService {
     }
 
     public void save(User user) {
-        userDAO.save(user);
+        Long userId = userDAO.saveAndReturnId(user);
+        roleDAO.assignRoleToUser(userId, 1L);
     }
 
 

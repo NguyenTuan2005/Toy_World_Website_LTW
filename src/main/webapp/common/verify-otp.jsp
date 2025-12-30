@@ -11,11 +11,11 @@
     <div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
         <div class="container">
            <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-left: -1px; ">
-              <a href="/home" aria-label="Trang Chủ">Trang Chủ</a>
+              <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
               <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                  <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <a href="/verify-otp" style="width: 235px; color:#444;">Xác thực mã otp</a>
+              <a href="${pageContext.request.contextPath}/verify-otp" style="width: 235px; color:#444;">Xác thực mã otp</a>
            </nav>
         </div>
     </div>
@@ -42,18 +42,22 @@
           </c:choose>
           </div>
 
-          <form method="post" action="/verify-otp">
+          <form method="post" action="${pageContext.request.contextPath}/verify-otp">
             <div class="mb-3">
               <label for="otpCode" class="form-label">Mã OTP</label>
-              <input type="text" class="form-control" id="otpCode" name="otpCode" 
+              <input type="text" class="form-control" id="otpCode" name="otpCode"
                      placeholder="Nhập mã 6 số" maxlength="6" required autofocus>
             </div>
             
             <button type="submit" class="btn btn-primary w-100">Xác nhận</button>
           </form>
 
-          <div class="text-center mt-3">
-            <small class="text-muted">Không nhận được mã? <a href="/resend-otp">Gửi lại</a></small>
+          <div class="hstack justify-content-center align-items-center mt-3">
+            <small class="text-muted">Không nhận được mã?
+            </small>
+            <form class="ms-1 mb-0" method="post" action="${pageContext.request.contextPath}/resend-otp">
+                <button type="submit" class="btn btn-link p-0 align-baseline">Gửi lại</button>
+            </form>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 package com.n3.childrentoyweb.services;
 
-import com.n3.childrentoyweb.controllers.admin.UserController;
 import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dao.RoleDAO;
 import com.n3.childrentoyweb.dao.UserDAO;
@@ -11,7 +10,6 @@ import com.n3.childrentoyweb.exception.EmailAlreadyExistsException;
 import com.n3.childrentoyweb.models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
     private UserDAO userDAO;
@@ -49,7 +47,8 @@ public class UserService {
     }
 
     public void save(User user) {
-        userDAO.save(user);
+        Long userId = userDAO.saveAndReturnId(user);
+        roleDAO.assignRoleToUser(userId, 1L);
     }
 
 

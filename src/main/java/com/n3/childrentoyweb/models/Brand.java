@@ -3,6 +3,7 @@ package com.n3.childrentoyweb.models;
 
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Brand extends BaseModel {
@@ -23,11 +24,18 @@ public class Brand extends BaseModel {
         this.imgPath = imgPath;
     }
 
+    public Brand() {
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {this.name = name;}
+
     public String getImgPath() {
         return imgPath;
     }
+
+    public void setImgPath(String imgPath) {this.imgPath = imgPath;}
 }

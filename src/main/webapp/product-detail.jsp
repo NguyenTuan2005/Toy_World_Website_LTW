@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product-details.css">
+    <style>
+
+    </style>
+
 </head>
 
 <body>
@@ -34,7 +38,10 @@
                 <img id="mainImage"
                      src="${product.imagePaths.get(0)}"
                      alt="${product.name}"
-                     class="img-fluid">
+                     class="img-fluid"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal"
+                     style="cursor: zoom-in;">
             </div>
 
             <div class="thumbnail-container">
@@ -45,27 +52,36 @@
                     </div>
                 </c:forEach>
             </div>
-
-            <!-- Modal phóng to ảnh -->
-            <div id="imageModal" class="image-modal">
-                <span class="close-btn">&times;</span>
-                <img class="modal-content" id="modalImage">
-            </div>
-
         </div>
+
+        <!-- Modal zoom ảnh sản phẩm -->
+        <div class="modal fade" id="imageModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content modal-content border border-1 shadow-sm">
+                    <div class="modal-body text-center">
+                        <img id="modalImage" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Product Info Section -->
         <div class="col-md-6">
             <div class="product-info">
-                <div class="product-title">
-                    ${product.name}
+                <div class="d-flex align-items-center justify-content-between">
+                    <h4 class="product-title mb-0">${product.name}</h4>
+
+                    <i class="bi bi-heart wishlist-icon fs-2"
+                       data-product-id="${product.id}"
+                       title="Thêm vào danh sách yêu thích"></i>
                 </div>
 
-                <div class="brand-badge">
+                <div class="brand-badge my-2">
                     Thương hiệu: <a href="#" class="text-decoration-none">${product.brandName}</a>
                 </div>
 
-                <div class="price-section">
+                <div class="price-section my-3">
                     <span class="brand-badge me-2">Giá Bán: </span>
                     <c:if test="${product.promotionId != null}">
                         <span class="price-current">
@@ -130,9 +146,9 @@
         <div class="product-description">
             <hr class="desc-line">
             <br>
-            <h4 class="fs-2 ms-2">Mô tả sản phẩm</h4>
+            <h4 class="fs-5 ms-2">Mô tả sản phẩm</h4>
             <div class="description-content" id="desc">
-                <h4>${product.name}</h4>
+                <span class="fs-4 pb-2">${product.name}</span>
                 <p>
                     ${product.description}
                 </p>
@@ -187,10 +203,10 @@
                          width="45" height="45"/>
 
                     <textarea name="content"
-                            class="form-control"
-                            rows="3"
-                            placeholder="Viết bình luận của bạn..."
-                            required ></textarea>
+                              class="form-control"
+                              rows="3"
+                              placeholder="Viết bình luận của bạn..."
+                              required></textarea>
                 </div>
 
                 <div class="text-end mt-2">
@@ -254,6 +270,12 @@
 
         document.getElementById('btnShowMore').style.display = 'none';
     }
+
+    document.getElementById('imageModal')
+        .addEventListener('show.bs.modal', function (e) {
+            document.getElementById('modalImage').src =
+                e.relatedTarget.src;
+        });
 </script>
 
 </body>

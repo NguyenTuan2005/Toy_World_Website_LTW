@@ -1,12 +1,15 @@
 package com.n3.childrentoyweb.services;
 
+import com.n3.childrentoyweb.dao.LocationDAO;
 import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dao.RoleDAO;
 import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.dto.UserCriteria;
+import com.n3.childrentoyweb.dto.UserDetailDTO;
 import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.exception.EmailAlreadyExistsException;
+import com.n3.childrentoyweb.models.Location;
 import com.n3.childrentoyweb.models.User;
 
 import java.util.List;
@@ -14,10 +17,12 @@ import java.util.List;
 public class UserService {
     private UserDAO userDAO;
     private RoleDAO roleDAO;
+    private LocationDAO locationDAO;
 
     public UserService() {
         this.userDAO = new UserDAO();
         this.roleDAO = new RoleDAO();
+        this.locationDAO = new LocationDAO();
     }
 
     public void isEmailExist(String email) {
@@ -26,14 +31,6 @@ public class UserService {
         }
     }
 
-    public List<ManageUserDTO> findAllUserForManagement(int page, int pageSize){
-        List<ManageUserDTO> manageUserDTOS = this.userDAO.findAllUserForManagement(page, pageSize);
-        for(ManageUserDTO manageUserDTO : manageUserDTOS){
-            String role = this.roleDAO.findAllByUserId(manageUserDTO.getUserId()).stream().filter(RoleEnum::isAdmin).map(Enum::toString).findFirst().get();
-            manageUserDTO.setRole(role);
-        }
-        return manageUserDTOS;
-    }
 
     public Pagination<ManageUserDTO> findAllUsersForManagements(int page, int pageSize){
         List<ManageUserDTO> manageUserDTOS = this.userDAO.findAllUserForManagement(page, pageSize);
@@ -61,5 +58,41 @@ public class UserService {
         int totalElements =this.userDAO.countAllUsers();
         int totalPages =  totalElements / 10;
         return  new Pagination<ManageUserDTO>(manageUserDTOS,10,totalElements,totalPages);
+    }
+
+
+    public boolean delete(long id){
+        return this.userDAO.delete(id);
+    }
+
+    public boolean activeUser(long id){
+        return this.userDAO.activeUser(id);
+    }
+
+    public void update(User user){
+        this.userDAO.update(user);
+    }
+
+    public UserDetailDTO findUserDetailById(long id) {
+        User user = this.userDAO.findById(id);
+        Location location = this.locationDAO.findByUserId(id);
+        String role = this.roleDAO.findAllByUserId(id).stream().filter(RoleEnum::isAdmin).map(RoleEnum::getRoleName).findFirst().orElse("user");
+        return new UserDetailDTO(user,location,role);
+    }
+
+    public Optional<User> findById(long id){
+        return Optional.ofNullable(this.userDAO.findById(id));
+    }
+
+    public int countAllUsers(){
+        return this.userDAO.countAllUsers();
+    }
+
+    public int countAllAdmins(){
+        return this.userDAO.countAllAdmins();
+    }
+
+    public int countNewUsersInMonth(){
+        return this.userDAO.countNewUsersInMonth();
     }
 }

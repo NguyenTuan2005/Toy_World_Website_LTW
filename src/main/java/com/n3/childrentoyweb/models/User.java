@@ -120,6 +120,7 @@ public class User extends BaseModel implements Serializable {
                 ", email='" + email + '\'' +
                 ", locationId=" + locationId +
                 ", id=" + id +
+                ", Super = "+ super.toString() +
                 '}';
     }
 

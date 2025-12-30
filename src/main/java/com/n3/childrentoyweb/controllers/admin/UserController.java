@@ -44,7 +44,6 @@ public class UserController extends HttpServlet {
 
         this.findUserByCriteria(userCriteria,req);
         this.addStatisticUsers(req);
-
         req.getRequestDispatcher("/adminPages/users.jsp").forward(req,resp);
     }
 

@@ -23,4 +23,20 @@ public class RoleDAO extends BaseDAO{
     public static void main(String[] args) {
         System.out.println(new RoleDAO().findAllByUserId(1L));
     }
+
+    public List<Long> findAllRoleIdsByRoleName(String[] roles) {
+        String sql = """
+                        select r.id
+                        from roles r
+                        where r.role_name in (<roles>)
+                    """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bindList("roles", roles)
+                        .mapTo(Long.class)
+                        .list()
+        );
+    }
+
 }

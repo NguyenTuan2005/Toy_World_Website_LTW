@@ -689,44 +689,50 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="userModalLabel">Thêm người dùng mới</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <c:if test="${not empty error}">
+                        <div class="alert alert-danger">
+                                ${error}
+                        </div>
+                    </c:if>
                 </div>
                 <div class="modal-body">
                     <form id="userForm">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="firstName" class="form-label">Họ <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="firstName" required>
+                                <input type="text" class="form-control" id="firstName" value="${user.firstName}"  required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="lastName" class="form-label">Tên <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="lastName" required>
+                                <input type="text" class="form-control" id="lastName" value="${user.lastName}" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="gender" class="form-label">Giới tính</label>
-                                <select class="form-select" id="gender">
+                                <select class="form-select" id="gender" name="gender">
                                     <option value="">Chọn giới tính</option>
-                                    <option value="male">Nam</option>
-                                    <option value="female">Nữ</option>
-                                    <option value="other">Khác</option>
+                                    <option value="male"   ${user.gender == 'Male' ? 'selected' : ''}>Nam</option>
+                                    <option value="female" ${user.gender == 'Female' ? 'selected' : ''}>Nữ</option>
+                                    <option value="other"  ${user.gender == 'Other' ? 'selected' : ''}>Khác</option>
                                 </select>
+
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="phone" class="form-label">Điện thoại</label>
-                                <input type="tel" class="form-control" id="phone">
+                                <input type="tel" class="form-control" id="phone" value="${user.phone}">
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" value="${user.email}" required>
                         </div>
 
                         <div id="userModalPassword" class="mb-3">
                             <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" value="${user.password}"  required>
                         </div>
 
                         <div class="mb-3">
@@ -749,10 +755,8 @@
                         <div class="mb-3">
                             <label for="roles" class="form-label">Vai trò</label>
                             <select class="form-select" id="roles" multiple>
-                                <option value="user">User</option>
-                                <option value="admin">Admin</option>
-                                <option value="moderator">Moderator</option>
-                                <option value="editor">Editor</option>
+                                <option value="ROLE_USER">Người dùng</option>
+                                <option value="ROLE_ADMIN">Admin</option>
                             </select>
                             <small class="form-text text-muted">Giữ Ctrl (hoặc Cmd) để chọn nhiều vai trò</small>
                         </div>
@@ -761,16 +765,18 @@
                             <input class="form-check-input" type="checkbox" id="status" checked>
                             <label class="form-check-label" for="status">Trạng thái hoạt động</label>
                         </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                            <button type="submit" class="btn btn-primary"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                <i class="fas fa-check"></i> Lưu
+                            </button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times me-2"></i>Hủy
-                    </button>
-                    <button type="button" class="btn btn-primary" id="btnSaveUser">
-                        <i class="fas fa-check me-2"></i>Lưu
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>

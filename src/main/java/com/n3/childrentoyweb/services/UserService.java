@@ -95,4 +95,9 @@ public class UserService {
     public int countNewUsersInMonth(){
         return this.userDAO.countNewUsersInMonth();
     }
+
+    public void createNewUser(User user,Location location,String [] roles){
+        List<Long>  roleIds = this.roleDAO.findAllRoleIdsByRoleName(roles);
+        this.userDAO.createNewUser(user,location,roleIds);
+    }
 }

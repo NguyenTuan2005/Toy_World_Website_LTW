@@ -54,4 +54,18 @@ public class RoleDAO extends BaseDAO{
         );
     }
 
+
+    public void assignRoleToUser(Long userId, Long roleId) {
+        String sql = """
+                Insert into user_roles (user_id, role_id)
+                Values (:userId, :roleId)
+                """;
+
+        this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("userId", userId)
+                        .bind("roleId", roleId)
+                        .execute()
+        );
+    }
 }

@@ -5,7 +5,6 @@ import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.CacheService;
 import com.n3.childrentoyweb.services.EmailService;
 import com.n3.childrentoyweb.utils.OTPUtil;
-import com.n3.childrentoyweb.verifier.EmailVerifier;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,8 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-
-import static com.n3.childrentoyweb.dao.ApplicationProperties.OTP_DELAY_IN_SECOND;
 
 @WebServlet(name="resendOtp", value="/resend-otp")
 public class ResendOtpController extends HttpServlet {
@@ -28,7 +25,7 @@ public class ResendOtpController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("pendingUser");
         String otp;
         try {

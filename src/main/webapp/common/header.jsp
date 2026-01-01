@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="brand.html">Thương hiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/brand">Thương hiệu</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link text-white" href="handbook.html">Cẩm nang</a>

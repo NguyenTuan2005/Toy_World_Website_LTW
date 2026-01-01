@@ -209,7 +209,8 @@ public class UserDAO extends BaseDAO {
                                 gender      = :gender,
                                 password    = :password,
                                 email       = :email,
-                                is_active   = :isActive
+                                is_active   = :isActive,
+                                location_id = :locationId
                             WHERE id = :id
                         """;
 
@@ -222,6 +223,7 @@ public class UserDAO extends BaseDAO {
                             .bind("gender", user.getGender())
                             .bind("password", user.getPassword())
                             .bind("email", user.getEmail())
+                            .bind("locationId",user.getLocationId())
                             .bind("isActive",user.getActive())
                             .execute()
             );
@@ -258,23 +260,7 @@ public class UserDAO extends BaseDAO {
         );
     }
 
-//    public void createNewUser(User user, Location location, List<Long> roles) {
-//
-//        String sqlCreateUser = """
-//            Insert into users (first_name, last_name, phone, gender, password, email, location_id)
-//            Values (:firstName, :lastName, :phone, :gender, :password, :email, :locationId);
-//        """;
-//
-//        String sqlCreateLocation= """
-//                                    Insert into locations (address, province)
-//                                    values (:address,:province);
-//                                    """;
-//        String sqlCreateUserRole = """
-//                                    insert into user_roles(user_id,role_id)
-//                                    values (:userId,roleId);
-//                                    """;
-//
-//    }
+
 
     public void createNewUser(User user, Location location, List<Long> roles) {
 

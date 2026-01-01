@@ -39,4 +39,19 @@ public class RoleDAO extends BaseDAO{
         );
     }
 
+    public Long findRoleIdByRoleName(RoleEnum role) {
+        String sql = """
+                        select r.id
+                        from roles r
+                        where r.role_name = :role
+                    """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("role", role)
+                        .mapTo(Long.class)
+                        .one()
+        );
+    }
+
 }

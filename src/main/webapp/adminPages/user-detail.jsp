@@ -647,9 +647,6 @@
                                 <span class="info-value">
                                     <i class="fas fa-lock me-2"></i>
                                     ••••••••
-<%--                                    <button class="btn btn-sm btn-link text-primary p-0 ms-2">--%>
-<%--                                        <i class="fas fa-key"></i> Đổi mật khẩu--%>
-<%--                                    </button>--%>
                                 </span>
                             </div>
                         </div>
@@ -830,7 +827,6 @@
                                 </div>
 
                                 <div class="mb-3 form-check form-switch">
-<%--                                    <input type="hidden" name="status" value="inactive">--%>
                                     <input class="form-check-input" type="checkbox" id="status" name="status" value="active" checked>
                                     <label class="form-check-label" for="status">Trạng thái hoạt động</label>
                                     <input hidden="hidden" value="${user.id}" name="userId">
@@ -848,8 +844,6 @@
                     </div>
                 </div>
 
-<%--            </div>--%>
-<%--        </div>--%>
     </div>
 </main>
 

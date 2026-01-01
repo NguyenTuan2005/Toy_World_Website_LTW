@@ -54,6 +54,7 @@ public class RoleDAO extends BaseDAO{
         );
     }
 
+
     public void assignRoleToUser(Long userId, Long roleId) {
         String sql = """
                 Insert into user_roles (user_id, role_id)

@@ -20,7 +20,7 @@
 
     <!-- Banner -->
     <div class="container-fluid mb-5">
-        <img src="https://www.mykingdom.com.vn/cdn/shop/files/1280_x_496_b7fa6078-33c8-42d5-a658-75427e3e780a.jpg?v=1761932777&width=1200"
+        <img src="${banner}"
              alt="Banner khuyến mãi"
              class="rounded w-100 object-fit-fill" style="height: 50vh">
     </div>

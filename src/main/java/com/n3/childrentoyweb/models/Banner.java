@@ -24,6 +24,10 @@ public class Banner extends BaseModel {
 
     public Banner() {}
 
+    public Banner(String imgPath){
+        this.imgPath = imgPath;
+    }
+
     public Banner(Long id, String title, String imgPath, String groupTag, Integer sortOrder, Long eventId, Boolean isActive, LocalDateTime createdAt) {
         super(id, isActive, createdAt);
         this.title = title;

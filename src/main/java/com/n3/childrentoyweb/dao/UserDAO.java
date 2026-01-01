@@ -81,13 +81,13 @@ public class UserDAO extends BaseDAO {
         );
     }
 
-    public void save(User user) {
+    public Long saveAndReturnId(User user) {
         String sql = """
             Insert into users (first_name, last_name, phone, gender, password, email, location_id)
             Values (:firstName, :lastName, :phone, :gender, :password, :email, :locationId) 
         """;
 
-        super.getJdbi().useHandle(handle ->
+        return this.getJdbi().withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("firstName", user.getFirstName())
                         .bind("lastName", user.getLastName())
@@ -96,7 +96,9 @@ public class UserDAO extends BaseDAO {
                         .bind("email", user.getEmail())
                         .bind("password", MD5Util.encryptMd5(user.getPassword()))
                         .bind("locationId", user.getLocationId())
-                        .execute()
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class)
+                        .one()
                 );
     }
 

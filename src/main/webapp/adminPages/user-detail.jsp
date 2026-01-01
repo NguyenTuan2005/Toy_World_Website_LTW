@@ -647,9 +647,9 @@
                                 <span class="info-value">
                                     <i class="fas fa-lock me-2"></i>
                                     ••••••••
-                                    <button class="btn btn-sm btn-link text-primary p-0 ms-2">
-                                        <i class="fas fa-key"></i> Đổi mật khẩu
-                                    </button>
+<%--                                    <button class="btn btn-sm btn-link text-primary p-0 ms-2">--%>
+<%--                                        <i class="fas fa-key"></i> Đổi mật khẩu--%>
+<%--                                    </button>--%>
                                 </span>
                             </div>
                         </div>
@@ -684,97 +684,194 @@
 
     <!-- Modal thêm/sửa người dùng -->
     <div class="modal fade" id="userModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Thêm người dùng mới</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="userForm">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="firstName" class="form-label">Họ <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="firstName" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="lastName" class="form-label">Tên <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="lastName" required>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="gender" class="form-label">Giới tính</label>
-                                <select class="form-select" id="gender">
-                                    <option value="">Chọn giới tính</option>
-                                    <option value="male">Nam</option>
-                                    <option value="female">Nữ</option>
-                                    <option value="other">Khác</option>
-                                </select>
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form method="post" action="${pageContext.request.contextPath}/change-user-info">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userModalLabel">Cập nhật lại thông tin</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <c:if test="${not empty error}">
+                                    <div class="alert alert-danger">
+                                            ${error}
+                                    </div>
+                                </c:if>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="phone" class="form-label">Điện thoại</label>
-                                <input type="tel" class="form-control" id="phone">
-                            </div>
-                        </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">Họ <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" value="${user.firstName}" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Tên <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" value="${user.lastName}" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="gender" class="form-label">Giới tính</label>
+                                        <select class="form-select" id="gender" name="gender">
+                                            <option value="">Chọn giới tính</option>
+                                            <option value="male"   ${user.gender == 'Male' ? 'selected' : ''}>Nam</option>
+                                            <option value="female" ${user.gender == 'Female' ? 'selected' : ''}>Nữ</option>
+                                            <option value="other"  ${user.gender == 'Other' ? 'selected' : ''}>Khác</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Điện thoại</label>
+                                        <input type="tel" class="form-control" id="phone" value="${user.phone}" name="phone">
+                                    </div>
+                                </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" value="${user.email}" required>
                         </div>
 
                         <div id="userModalPassword" class="mb-3">
                             <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" value="${user.password}"  required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="province" class="form-label">Tỉnh/TP</label>
-                            <select class="form-select" id="province">
-                                <option value="">Chọn địa điểm</option>
-                                <option value="hanoi">Hà Nội</option>
-                                <option value="hcm">TP. Hồ Chí Minh</option>
-                                <option value="danang">Đà Nẵng</option>
-                                <option value="haiphong">Hải Phòng</option>
-                                <option value="cantho">Cần Thơ</option>
-                            </select>
-                        </div>
+                                <div class="mb-3">
+                                    <label for="province" class="form-label">Tỉnh/TP</label>
+                                    <select class="form-select" id="province" name="province">
+                                        <option value="">Chọn địa điểm</option>
 
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Địa chỉ</label>
-                            <textarea class="form-control" id="address" rows="3"></textarea>
-                        </div>
+                                        <!-- Thành phố trực thuộc TW -->
+                                        <option value="Hà Nội" ${location.province == 'Hà Nội' ? 'selected' : ''}>Hà Nội</option>
+                                        <option value="TP. Hồ Chí Minh" ${location.province == 'TP. Hồ Chí Minh' ? 'selected' : ''}>TP. Hồ Chí Minh</option>
+                                        <option value="Đà Nẵng" ${location.province == 'Đà Nẵng' ? 'selected' : ''}>Đà Nẵng</option>
+                                        <option value="Hải Phòng" ${location.province == 'Hải Phòng' ? 'selected' : ''}>Hải Phòng</option>
+                                        <option value="Cần Thơ" ${location.province == 'Cần Thơ' ? 'selected' : ''}>Cần Thơ</option>
 
-                        <div class="mb-3">
-                            <label for="roles" class="form-label">Vai trò</label>
-                            <select class="form-select" id="roles" multiple>
-                                <option value="user">User</option>
-                                <option value="admin">Admin</option>
-                                <option value="moderator">Moderator</option>
-                                <option value="editor">Editor</option>
-                            </select>
-                            <small class="form-text text-muted">Giữ Ctrl (hoặc Cmd) để chọn nhiều vai trò</small>
-                        </div>
+                                        <!-- Các tỉnh -->
+                                        <option value="An Giang" ${location.province == 'An Giang' ? 'selected' : ''}>An Giang</option>
+                                        <option value="Bà Rịa - Vũng Tàu" ${location.province == 'Bà Rịa - Vũng Tàu' ? 'selected' : ''}>Bà Rịa - Vũng Tàu</option>
+                                        <option value="Bắc Giang" ${location.province == 'Bắc Giang' ? 'selected' : ''}>Bắc Giang</option>
+                                        <option value="Bắc Kạn" ${location.province == 'Bắc Kạn' ? 'selected' : ''}>Bắc Kạn</option>
+                                        <option value="Bạc Liêu" ${location.province == 'Bạc Liêu' ? 'selected' : ''}>Bạc Liêu</option>
+                                        <option value="Bắc Ninh" ${location.province == 'Bắc Ninh' ? 'selected' : ''}>Bắc Ninh</option>
+                                        <option value="Bến Tre" ${location.province == 'Bến Tre' ? 'selected' : ''}>Bến Tre</option>
+                                        <option value="Bình Dương" ${location.province == 'Bình Dương' ? 'selected' : ''}>Bình Dương</option>
+                                        <option value="Bình Định" ${location.province == 'Bình Định' ? 'selected' : ''}>Bình Định</option>
+                                        <option value="Bình Phước" ${location.province == 'Bình Phước' ? 'selected' : ''}>Bình Phước</option>
+                                        <option value="Bình Thuận" ${location.province == 'Bình Thuận' ? 'selected' : ''}>Bình Thuận</option>
+                                        <option value="Cà Mau" ${location.province == 'Cà Mau' ? 'selected' : ''}>Cà Mau</option>
+                                        <option value="Cao Bằng" ${location.province == 'Cao Bằng' ? 'selected' : ''}>Cao Bằng</option>
+                                        <option value="Đắk Lắk" ${location.province == 'Đắk Lắk' ? 'selected' : ''}>Đắk Lắk</option>
+                                        <option value="Đắk Nông" ${location.province == 'Đắk Nông' ? 'selected' : ''}>Đắk Nông</option>
+                                        <option value="Điện Biên" ${location.province == 'Điện Biên' ? 'selected' : ''}>Điện Biên</option>
+                                        <option value="Gia Lai" ${location.province == 'Gia Lai' ? 'selected' : ''}>Gia Lai</option>
+                                        <option value="Hà Giang" ${location.province == 'Hà Giang' ? 'selected' : ''}>Hà Giang</option>
+                                        <option value="Hà Nam" ${location.province == 'Hà Nam' ? 'selected' : ''}>Hà Nam</option>
+                                        <option value="Hà Tĩnh" ${location.province == 'Hà Tĩnh' ? 'selected' : ''}>Hà Tĩnh</option>
+                                        <option value="Hải Dương" ${location.province == 'Hải Dương' ? 'selected' : ''}>Hải Dương</option>
+                                        <option value="Hậu Giang" ${location.province == 'Hậu Giang' ? 'selected' : ''}>Hậu Giang</option>
+                                        <option value="Hòa Bình" ${location.province == 'Hòa Bình' ? 'selected' : ''}>Hòa Bình</option>
+                                        <option value="Hưng Yên" ${location.province == 'Hưng Yên' ? 'selected' : ''}>Hưng Yên</option>
+                                        <option value="Khánh Hòa" ${location.province == 'Khánh Hòa' ? 'selected' : ''}>Khánh Hòa</option>
+                                        <option value="Kiên Giang" ${location.province == 'Kiên Giang' ? 'selected' : ''}>Kiên Giang</option>
+                                        <option value="Kon Tum" ${location.province == 'Kon Tum' ? 'selected' : ''}>Kon Tum</option>
+                                        <option value="Lai Châu" ${location.province == 'Lai Châu' ? 'selected' : ''}>Lai Châu</option>
+                                        <option value="Lâm Đồng" ${location.province == 'Lâm Đồng' ? 'selected' : ''}>Lâm Đồng</option>
+                                        <option value="Lạng Sơn" ${location.province == 'Lạng Sơn' ? 'selected' : ''}>Lạng Sơn</option>
+                                        <option value="Lào Cai" ${location.province == 'Lào Cai' ? 'selected' : ''}>Lào Cai</option>
+                                        <option value="Long An" ${location.province == 'Long An' ? 'selected' : ''}>Long An</option>
+                                        <option value="Nam Định" ${location.province == 'Nam Định' ? 'selected' : ''}>Nam Định</option>
+                                        <option value="Nghệ An" ${location.province == 'Nghệ An' ? 'selected' : ''}>Nghệ An</option>
+                                        <option value="Ninh Bình" ${location.province == 'Ninh Bình' ? 'selected' : ''}>Ninh Bình</option>
+                                        <option value="Ninh Thuận" ${location.province == 'Ninh Thuận' ? 'selected' : ''}>Ninh Thuận</option>
+                                        <option value="Phú Thọ" ${location.province == 'Phú Thọ' ? 'selected' : ''}>Phú Thọ</option>
+                                        <option value="Phú Yên" ${location.province == 'Phú Yên' ? 'selected' : ''}>Phú Yên</option>
+                                        <option value="Quảng Bình" ${location.province == 'Quảng Bình' ? 'selected' : ''}>Quảng Bình</option>
+                                        <option value="Quảng Nam" ${location.province == 'Quảng Nam' ? 'selected' : ''}>Quảng Nam</option>
+                                        <option value="Quảng Ngãi" ${location.province == 'Quảng Ngãi' ? 'selected' : ''}>Quảng Ngãi</option>
+                                        <option value="Quảng Ninh" ${location.province == 'Quảng Ninh' ? 'selected' : ''}>Quảng Ninh</option>
+                                        <option value="Quảng Trị" ${location.province == 'Quảng Trị' ? 'selected' : ''}>Quảng Trị</option>
+                                        <option value="Sóc Trăng" ${location.province == 'Sóc Trăng' ? 'selected' : ''}>Sóc Trăng</option>
+                                        <option value="Sơn La" ${location.province == 'Sơn La' ? 'selected' : ''}>Sơn La</option>
+                                        <option value="Tây Ninh" ${location.province == 'Tây Ninh' ? 'selected' : ''}>Tây Ninh</option>
+                                        <option value="Thái Bình" ${location.province == 'Thái Bình' ? 'selected' : ''}>Thái Bình</option>
+                                        <option value="Thái Nguyên" ${location.province == 'Thái Nguyên' ? 'selected' : ''}>Thái Nguyên</option>
+                                        <option value="Thanh Hóa" ${location.province == 'Thanh Hóa' ? 'selected' : ''}>Thanh Hóa</option>
+                                        <option value="Thừa Thiên Huế" ${location.province == 'Thừa Thiên Huế' ? 'selected' : ''}>Thừa Thiên Huế</option>
+                                        <option value="Tiền Giang" ${location.province == 'Tiền Giang' ? 'selected' : ''}>Tiền Giang</option>
+                                        <option value="Trà Vinh" ${location.province == 'Trà Vinh' ? 'selected' : ''}>Trà Vinh</option>
+                                        <option value="Tuyên Quang" ${location.province == 'Tuyên Quang' ? 'selected' : ''}>Tuyên Quang</option>
+                                        <option value="Vĩnh Long" ${location.province == 'Vĩnh Long' ? 'selected' : ''}>Vĩnh Long</option>
+                                        <option value="Vĩnh Phúc" ${location.province == 'Vĩnh Phúc' ? 'selected' : ''}>Vĩnh Phúc</option>
+                                        <option value="Yên Bái" ${location.province == 'Yên Bái' ? 'selected' : ''}>Yên Bái</option>
+                                    </select>
+                                </div>
 
-                        <div class="mb-3 form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="status" checked>
-                            <label class="form-check-label" for="status">Trạng thái hoạt động</label>
-                        </div>
-                    </form>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Địa chỉ</label>
+                                    <textarea class="form-control" id="address" name="address" >${location.address}</textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="roles" class="form-label">Vai trò</label>
+                                    <select class="form-select" id="roles" name="roles">
+                                        <option value="">Chọn vai trò  ${role}</option>
+                                        <option value="ROLE_USER"
+                                        ${role == 'user' ? 'selected' : ''}>
+                                            Người dùng
+                                        </option>
+                                        <option value="ROLE_ADMIN"
+                                        ${role == 'admin' ? 'selected' : ''}>
+                                            Admin
+                                        </option>
+                                    </select>
+
+                                    <small class="form-text text-muted">Giữ Ctrl (hoặc Cmd) để chọn nhiều vai trò</small>
+                                </div>
+
+                                <div class="mb-3 form-check form-switch">
+<%--                                    <input type="hidden" name="status" value="inactive">--%>
+                                    <input class="form-check-input" type="checkbox" id="status" name="status" value="active" checked>
+                                    <label class="form-check-label" for="status">Trạng thái hoạt động</label>
+                                    <input hidden="hidden" value="${user.id}" name="userId">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    <i class="fas fa-times"></i> Hủy
+                                </button>
+                                <button type="submit" class="btn btn-primary"  onclick="return confirm('Bạn có chắc muốn lưu không?')">
+                                    <i class="fas fa-check"></i> Lưu
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times me-2"></i>Hủy
-                    </button>
-                    <button type="button" class="btn btn-primary" id="btnSaveUser">
-                        <i class="fas fa-check me-2"></i>Lưu
-                    </button>
-                </div>
-            </div>
-        </div>
+
+<%--            </div>--%>
+<%--        </div>--%>
     </div>
 </main>
+
+
+<c:if test="${not empty error}">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const modalEl = document.getElementById("userModal");
+            const modal = new bootstrap.Modal(modalEl);
+            modal.show();
+        });
+    </script>
+</c:if>
+
+<c:if test="${not empty notify}">
+    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3"
+         role="alert" style="z-index: 9999">
+            ${notify}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+</c:if>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>

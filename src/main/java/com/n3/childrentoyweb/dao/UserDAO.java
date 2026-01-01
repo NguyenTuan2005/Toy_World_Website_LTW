@@ -4,6 +4,7 @@ import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.dto.UserCriteria;
 import com.n3.childrentoyweb.dto.UserDetailDTO;
+import com.n3.childrentoyweb.models.Location;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import com.n3.childrentoyweb.utils.MD5Util;
@@ -210,7 +211,8 @@ public class UserDAO extends BaseDAO {
                                 gender      = :gender,
                                 password    = :password,
                                 email       = :email,
-                                is_active   = :isActive
+                                is_active   = :isActive,
+                                location_id = :locationId
                             WHERE id = :id
                         """;
 
@@ -223,6 +225,7 @@ public class UserDAO extends BaseDAO {
                             .bind("gender", user.getGender())
                             .bind("password", user.getPassword())
                             .bind("email", user.getEmail())
+                            .bind("locationId",user.getLocationId())
                             .bind("isActive",user.getActive())
                             .execute()
             );
@@ -258,4 +261,47 @@ public class UserDAO extends BaseDAO {
                         .one()
         );
     }
+
+
+
+    public void createNewUser(User user, Location location, List<Long> roles) {
+
+        this.getJdbi().useTransaction(handle -> {
+
+            Long locationId = handle.createUpdate("""
+                INSERT INTO locations (address, province)
+                VALUES (:address, :province)
+                """)
+                    .bind("address", location.getAddress())
+                    .bind("province", location.getProvince())
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Long.class)
+                    .one();
+
+            System.out.println("location Id : "+ locationId);
+
+            Long userId = handle.createUpdate("""
+                INSERT INTO users (first_name, last_name, phone, gender, password, email, location_id)
+                VALUES (:firstName, :lastName, :phone, :gender, :password, :email, :locationId)
+                """)
+                    .bindBean(user)
+                    .bind("locationId", locationId)
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Long.class)
+                    .one();
+
+            System.out.println("user id : "+ userId);
+            for (Long roleId : roles) {
+                handle.createUpdate("""
+                    INSERT INTO user_roles (user_id, role_id)
+                    VALUES (:userId, :roleId)
+                    """)
+                        .bind("userId", userId)
+                        .bind("roleId", roleId)
+                        .execute();
+            }
+
+        });
+    }
+
 }

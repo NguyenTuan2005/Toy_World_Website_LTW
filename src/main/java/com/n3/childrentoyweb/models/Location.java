@@ -40,6 +40,10 @@ public class Location extends BaseModel {
         this.province = province;
     }
 
+    public boolean equal(Location l) {
+        return l.address.equals(this.address) && l.province.equals(this.province);
+    }
+
     @Override
     public String toString() {
         return "Location{" +

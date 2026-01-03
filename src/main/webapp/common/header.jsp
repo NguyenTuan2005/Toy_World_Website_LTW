@@ -60,7 +60,7 @@
 
                     <!-- Cart -->
                     <button class="btn d-flex align-items-center"
-                            onclick="window.location.href='${pageContext.request.contextPath}/'">
+                            onclick="window.location.href='${pageContext.request.contextPath}/cart'">
                         <i class="bi bi-basket2-fill me-2"></i>
                         <c:if test="${sessionScope.cart != null}">
                             Giỏ hàng(${sessionScope.cart.totalQuantity})
@@ -69,10 +69,6 @@
                             Giỏ hàng
                         </c:if>
                     </button>
-
-
-
-
                 </div>
             </div>
         </div>

@@ -8,9 +8,3 @@
 
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/root.css"/>
-
-<c:if test="${not empty pageCSS}">
-    <c:forEach var="css" items="${pageCSS}">
-        <link rel="stylesheet" href="${css}">
-    </c:forEach>
-</c:if>

@@ -43,22 +43,6 @@ CREATE TABLE wish_lists (
                             created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE carts (
-                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                       user_id BIGINT,
-                       is_active TINYINT(1) DEFAULT 1,
-                       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE cart_items (
-                            id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                            cart_id BIGINT,
-                            product_id BIGINT,
-                            quantity INT,
-                            is_active TINYINT(1) DEFAULT 1,
-                            created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE orders (
                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
                         user_id BIGINT,

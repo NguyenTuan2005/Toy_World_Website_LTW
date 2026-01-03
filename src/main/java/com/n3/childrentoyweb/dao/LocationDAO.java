@@ -1,9 +1,6 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.models.Location;
-import com.n3.childrentoyweb.models.Product;
-import com.n3.childrentoyweb.models.User;
-import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 public class LocationDAO extends BaseDAO{
 

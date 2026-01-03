@@ -1,7 +1,6 @@
 package com.n3.childrentoyweb.controllers;
 
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
-import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.services.ProductService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,7 +8,6 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @WebServlet(value = "/products/*")
 public class ProductDetailsController extends HttpServlet {

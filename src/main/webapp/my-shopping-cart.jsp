@@ -7,6 +7,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <jsp:include page="/common/head.jsp" />
     <link rel="stylesheet" href="css/my-shopping-cart.css" />
+    <fmt:setLocale value="vi_VN"/>
   </head>
   <body>
     <jsp:include page="/common/header.jsp" />
@@ -21,6 +22,9 @@
                 <a href="/cart" aria-label="Dạy Con Thông Minh" style="width: 235px; color:#444;">Giỏ Hàng</a>
             </nav>
         </div>
+    </div>
+    <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert">
+      ${error}
     </div>
 
     <div class="container py-4">
@@ -37,23 +41,32 @@
                 class="img-fluid"
                 style="max-width: 100px"
               />
+
+              <div class="continue-shopping">
+                <a href="/home" class="continue-shopping">
+                  <i class="fas fa-arrow-left"></i> Tiếp tục mua sắm
+                </a>
+              </div>
             </div>
 
             <!-- Product Item -->
             <c:forEach var="cartItem" items="${cart.cartItems}">
-              <div class="product-item">
+              <div id="${cartItem.cartProductDTO.productId}" class="product-item">
                 <img
                   src="${cartItem.cartProductDTO.imgPath}"
                   alt="${cartItem.cartProductDTO.name}"
                   class="product-image"
                 />
                 <div class="product-details">
-                  <div class="product-title">
-                      ${cartItem.cartProductDTO.name}
+                  <div class="hstack align-items-start">
+                    <div class="product-title text-wrap" title="${cartItem.cartProductDTO.name}">
+                        ${cartItem.cartProductDTO.name}
+                    </div>
+                    <button class="ms-auto mt-0 remove-btn" title="Xóa" onclick="removeItem(${cartItem.cartProductDTO.productId})"><i class="fa fa-trash"></i></button>
                   </div>
                   <div class="quantity-control">
                     <span class="quantity-label">Số lượng</span>
-                    <button class="quantity-btn" onclick="decreaseQty()">
+                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, ${cartItem.quantity} - 1)">
                       −
                     </button>
                     <input
@@ -64,7 +77,7 @@
                       min="1"
                       readonly
                     />
-                    <button class="quantity-btn" onclick="increaseQty()">
+                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, ${cartItem.quantity} + 1)">
                       +
                     </button>
                   </div>
@@ -72,31 +85,24 @@
                   <div
                     class="product-price d-flex justify-content-between align-items-center mt-3"
                   >
-                    <button class="remove-btn" onclick="removeItem()">Xóa</button>
+                    <small>Giá sản phẩm: </small>
                     <span id="itemPrice">
-                      <fmt:setLocale value="vi_VN"/>
                       <fmt:formatNumber value="${cartItem.cartProductDTO.price}" type="currency" currencyCode="VND"/>
                     </span>
                   </div>
                 </div>
               </div>
             </c:forEach>
-
-            <div class="total-items">
-              Tổng cộng: <span id="totalItems">${cart.totalQuantity}</span> Sản phẩm
-            </div>
-
-            <div class="continue-shopping">
-              <a href="/home" class="continue-shopping">
-                <i class="fas fa-arrow-left"></i> Tiếp tục mua sắm
-              </a>
-            </div>
           </div>
         </div>
 
         <!--Order Summary -->
         <div class="col-lg-4">
           <div class="summary-section">
+            <div class="total-items">
+              Tổng số: <span id="totalItems">${cart.totalQuantity}</span> Sản phẩm
+            </div>
+            <hr>
             <div class="summary-row">
               <span>Tiền hàng hoá</span>
               <span id="subtotal">
@@ -130,6 +136,37 @@
       </div>
     </div>
 
+    <!-- Confirm Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title">Xác nhận</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body" id="confirmMessage">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="confirmCancel">
+              Hủy
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" id="confirmOk">
+              Xóa
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
     <jsp:include page="/common/footer.jsp" />
+    <script>
+      const contextPath = '${pageContext.request.contextPath}';
+    </script>
+    <script src="js/cart.js"></script>
   </body>
 </html>

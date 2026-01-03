@@ -28,4 +28,8 @@ public class CartItem implements Serializable {
     public Long getProductId(){
         return this.cartProductDTO.getProductId();
     }
+
+    public boolean checkQuantity(int quantity) {
+        return this.cartProductDTO.checkQuantity(quantity);
+    }
 }

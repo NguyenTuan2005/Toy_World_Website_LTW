@@ -6,14 +6,16 @@ import com.n3.childrentoyweb.models.Promotion;
 
 public class CartProductDTO {
     private Long productId;
+    private Integer quantity;
     private String name;
     private String imgPath;
     private Double price;
     private Double discountPercent;
     private Double discountPrice;
 
-    public CartProductDTO(Long productId, String name, String imgPath, Double price, Double discountPercent, Double discountPrice) {
+    public CartProductDTO(Long productId,Integer quantity, String name, String imgPath, Double price, Double discountPercent, Double discountPrice) {
         this.productId = productId;
+        this.quantity = quantity;
         this.name = name;
         this.imgPath = imgPath;
         this.price = price;
@@ -23,11 +25,20 @@ public class CartProductDTO {
 
     public CartProductDTO(Product product, ProductAsset asset, Promotion promotion) {
         this.productId = product.getId();
+        this.quantity = product.getQuantity();
         this.name = product.getName();
         this.imgPath = asset.getImgPath();
         this.price = product.getPrice();
         this.discountPercent = promotion.getDiscountPercent();
         this.discountPrice = promotion.getDiscountPrice();
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Long getProductId() {
@@ -76,5 +87,9 @@ public class CartProductDTO {
 
     public void setDiscountPrice(Double discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    public boolean checkQuantity(int quantity) {
+        return this.quantity >= quantity;
     }
 }

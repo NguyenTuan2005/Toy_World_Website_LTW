@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.models;
 
+import com.n3.childrentoyweb.exception.InvalidQuantityException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +32,14 @@ public class Cart implements Serializable {
         this.items.remove(productId);
     }
 
-    public void updateQuantity(long productId, int quantity){
+    public void updateQuantity(long productId, int quantity) throws InvalidQuantityException {
+        if (quantity < 1) {
+            throw new InvalidQuantityException("Số lượng phải lớn hơn hoặc bằng 1");
+        }
+        if (!this.items.get(productId).checkQuantity(quantity)) {
+            throw new InvalidQuantityException("Số lượng phải nhỏ hơn trong kho cho sản phẩm: " + this.items.get(productId).getCartProductDTO().getName());
+        }
+
         if(this.items.containsKey(productId))
             this.items.get(productId).setQuantity(quantity);
     }

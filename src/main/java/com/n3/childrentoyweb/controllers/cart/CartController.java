@@ -1,4 +1,4 @@
-package com.n3.childrentoyweb.controllers;
+package com.n3.childrentoyweb.controllers.cart;
 
 import com.n3.childrentoyweb.dto.CartProductDTO;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;

@@ -22,4 +22,20 @@ public class LocationDAO extends BaseDAO{
 
     }
 
+    public Long save(Location location) {
+        String sql = """
+        INSERT INTO locations (address, province)
+        VALUES (:address, :province)
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("address", location.getAddress())
+                        .bind("province", location.getProvince())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class)
+                        .one()
+        );
+    }
+
 }

@@ -62,6 +62,17 @@ VALUES
 (49,'User49', 'Test', '0900000049', 'Male', 'c4ca4238a0b923820dcc509a6f75849b', 'user49@gmail.com', 4),
 (50,'User50', 'Test', '0900000050', 'Female', 'c4ca4238a0b923820dcc509a6f75849b', 'user50@gmail.com', 5);
 
+UPDATE `users`
+SET `created_at` = FROM_UNIXTIME(
+        UNIX_TIMESTAMP('2024-01-01 00:00:00') +
+        FLOOR(
+                RAND() * (UNIX_TIMESTAMP('2026-01-31 23:59:59') - UNIX_TIMESTAMP('2024-01-01 00:00:00'))
+        )
+                   )
+WHERE `id` BETWEEN 1 AND 50;
+
+
+
 INSERT INTO user_roles (user_id, role_id) VALUES
   (1,1),(2,2),(3,1),(4,1),(5,1),
   (6,1),(7,1),(8,1),(9,1),(10,1),

@@ -7,4 +7,19 @@ import com.n3.childrentoyweb.models.OrderDetail;
 public class OrderService {
     private OrderDAO orderDAO;
     private OrderDetailDAO orderDetailDAO;
+
+
+    public OrderService(){
+        this.orderDAO = new OrderDAO();
+        this.orderDetailDAO = new OrderDetailDAO();
+    }
+
+    public long countAllInMonth(int year, int month){
+        return this.orderDAO.countAllInMonth(year, month);
+    }
+
+    public double calculateRevenueInMonth(int year, int month) {
+        return this.orderDAO.calculateRevenueInMonth(year, month);
+    }
+
 }

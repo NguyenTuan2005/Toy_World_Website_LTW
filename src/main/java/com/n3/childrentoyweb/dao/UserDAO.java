@@ -80,6 +80,22 @@ public class UserDAO extends BaseDAO {
         );
     }
 
+    public int countAllInMonth(int year, int month){
+        String sql = """
+                SELECT COUNT(*)
+                FROM users
+                WHERE YEAR(created_at) = :year AND MONTH(created_at) = :month AND is_active = 1;
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("year", year)
+                        .bind("month", month)
+                        .mapTo(int.class)
+                        .one()
+        );
+    }
+
     public void save(User user) {
         String sql = """
             Insert into users (first_name, last_name, phone, gender, password, email, location_id)

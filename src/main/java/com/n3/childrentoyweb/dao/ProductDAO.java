@@ -211,7 +211,23 @@ public class ProductDAO  extends BaseDAO{
 
     }
 
+    public long countProductInMonth(int year, int month) {
+        String sql = """
+                SELECT COUNT(*)
+                FROM products p
+                WHERE YEAR(p.created_at) = :year AND MONTH(p.created_at) = :month AND p.is_active = 1;
+                    """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("year", year)
+                        .bind("month", month)
+                        .mapTo(Long.class)
+                        .one()
+        );
+    }
+
     public static void main(String[] args) {
-        System.out.println(new ProductDAO().findDetailById(1L));
+        System.out.println(new ProductDAO().countProductInMonth(2025, 12));
     }
 }

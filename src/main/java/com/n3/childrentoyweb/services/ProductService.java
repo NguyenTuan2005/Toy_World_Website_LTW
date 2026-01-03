@@ -83,6 +83,10 @@ public class ProductService {
         return product;
     }
 
+    public long countProductInMonth(int year, int month){
+        return productDAO.countProductInMonth(year, month);
+    }
+
     public static void main(String[] args) {
         System.out.println(new ProductService().findProductDetailById(1L));
     }

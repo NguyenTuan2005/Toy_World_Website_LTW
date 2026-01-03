@@ -32,7 +32,6 @@ public class UserService {
         }
     }
 
-
     public Pagination<ManageUserDTO> findAllUsersForManagements(int page, int pageSize){
         List<ManageUserDTO> manageUserDTOS = this.userDAO.findAllUserForManagement(page, pageSize);
         for(ManageUserDTO manageUserDTO : manageUserDTOS){
@@ -94,5 +93,9 @@ public class UserService {
 
     public int countNewUsersInMonth(){
         return this.userDAO.countNewUsersInMonth();
+    }
+
+    public int countAllInMonth(int year, int month){
+        return this.userDAO.countAllInMonth(year, month);
     }
 }

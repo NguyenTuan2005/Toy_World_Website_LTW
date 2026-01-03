@@ -1,4 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -21,283 +25,615 @@
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
 
-<main class="col-md-9 col-lg-10 px-4 py-3 main-content">
-    <script src="js/Chart.extension.js"></script>
-    <script src="js/chartjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
-        <div class="container-fluid py-2">
-            <div class="row gy-3">
-                <div class="ms-3">
-                    <h3 class="mb-0 h4 font-weight-bolder"></h3>
-                    <p class="mb-4">
-                    <h1>Thống kê tổng quan về cửa hàng của bạn</h1>
-                    </p>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize">Sản Phẩm Mới Của Tháng </p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-box-seam text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize">Số Lượng Đơn Hàng </p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-receipt text-white"></i>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize">Đơn Hàng Đã Thành Công</p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-receipt text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize">Số Lượng Đơn Hàng Không Thành
-                                        công</p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-receipt text-white"></i>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize text-truncate">Số Lượng Khách Hàng
-                                        Mới Trong Tháng</p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-people text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize">Số Lượng Khuyển Mãi</p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-tags-fill text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize">Số Lượng Bài Viết Của Tuần</p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-file-earmark-text text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-2 ps-3">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-sm mb-0 text-capitalize">Số Lượng Thương Hiệu</p>
-                                    <h4 class="mb-0">120</h4>
-                                </div>
-
-                                <div
-                                        class="d-flex justify-content-center align-items-center bg-danger rounded"
-                                        style="width: 40px; height: 40px; background-color: #cf102d;"
-                                >
-                                    <i class="bi bi-patch-check-fill text-white"></i>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+<main class ="main-content">
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p>Chào mừng trở lại! Đây là tổng quan về cửa hàng của bạn.</p>
         </div>
-        <br>
-        <div class="container">
-            <div class="row justify-content-center align-items-start">
 
-                <!-- sản phẩm đã bán ra -->
-                <div class="col-md-6 col-lg-6 text-center mb-4">
-                    <h3>Biểu đồ sản phẩm đã bán ra trong tháng</h3>
-                    <div id="chart" class="chart-card"></div>
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <!-- Revenue -->
+            <div class="stat-card primary">
+                <div class="stat-card-header">
+                    <div>
+                        <div class="stat-value">
+                            <fmt:formatNumber value="${revenueThisMonth}" type="number" maxFractionDigits="0"/>
+                        </div>
+                        <div class="stat-label">Tổng doanh thu</div>
+                    </div>
+                    <div class="stat-icon">
+                        <span class="mb-2 fs-4">₫</span>
+                    </div>
                 </div>
-
-                <!-- doanh thu theo tuần -->
-                <div class="col-md-6 col-lg-6 text-center mb-4">
-                    <h3>Biểu đồ doanh thu theo tuần</h3>
-                    <div id="container" class="chart-card"></div>
+                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <div class="stat-change ${growClass}">
+                    <i class="bi ${arrow}"></i>
+                    <fmt:formatNumber value="${revenueGrowth}" maxFractionDigits="1"/>% so với tháng trước
                 </div>
-
+            </div>
+            <!-- Order -->
+            <div class="stat-card warning">
+                <div class="stat-card-header">
+                    <div>
+                        <div class="stat-value">${totalOrderThisMonth}</div>
+                        <div class="stat-label">Đơn hàng</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="bi bi-cart-check"></i>
+                    </div>
+                </div>
+                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <div class="stat-change ${growClass}">
+                    <i class="bi ${arrow}"></i>
+                    <fmt:formatNumber value="${orderGrowth}" maxFractionDigits="1"/>% so với tháng trước
+                </div>
+            </div>
+            <!-- product -->
+            <div class="stat-card success">
+                <div class="stat-card-header">
+                    <div>
+                        <div class="stat-value">${totalProductThisMonth}</div>
+                        <div class="stat-label">Sản phẩm</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                </div>
+                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <div class="stat-change ${growClass}">
+                    <i class="bi ${arrow}"></i>
+                    <fmt:formatNumber value="${productGrowth}" maxFractionDigits="1"/>% so với tháng trước
+                </div>
+            </div>
+            <!-- User -->
+            <div class="stat-card info">
+                <div class="stat-card-header">
+                    <div>
+                        <div class="stat-value">${totalUserThisMonth}</div>
+                        <div class="stat-label">Khách hàng</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+                </div>
+                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <div class="stat-change ${growClass}">
+                    <i class="bi ${arrow}"></i>
+                    <fmt:formatNumber value="${userGrowth}" maxFractionDigits="1"/>% so với tháng trước
+                </div>
             </div>
         </div>
 
+        <!-- Charts Row -->
+        <div class="charts-row">
+            <!-- Revenue Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Doanh thu theo thời gian</h2>
+                    <div class="chart-actions">
+                        <select class="form-select form-select-sm" style="width: auto;">
+                            <option>7 ngày qua</option>
+                            <option>30 ngày qua</option>
+                            <option>3 tháng qua</option>
+                            <option>Năm nay</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="height: 300px;">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
 
-        <script>
-            // Khởi tạo biểu đồ
-            var chart = echarts.init(document.getElementById("chart"));
-
-            // Option cấu hình
-            var option = {
-                title: {
-                    text: "",
-                    left: "center",
-                },
-                tooltip: {},
-                xAxis: {
-                    type: "category",
-                    data: ["Logo", "Car", "Th3", "Th4", "Th5", "Th6"]
-                },
-                yAxis: {
-                    type: "value"
-                },
-                series: [
-                    {
-                        name: "Số lượng",
-                        type: "bar",
-                        data: [120, 200, 150, 80, 70, 110],
-                        itemStyle: {
-                            color: "#ff4d4f"
-                        }
-                    }
-                ]
-            };
-            chart.setOption(option);
-        </script>
-
-
-        <script type="text/javascript"
-                src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-
-        <script type="text/javascript">
-            var dom = document.getElementById('container');
-            var myChart = echarts.init(dom, null, {
-                renderer: 'canvas',
-                useDirtyRect: false
-            });
-            var app = {};
-
-            var option;
-
-            option = {
-                xAxis: {
-                    type: 'category',
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [
-                    {
-                        data: [820, 932, 901, 934, 1290, 1330, 1320],
-                        type: 'line',
-                        smooth: true
-                    }
-                ]
-            };
-
-            if (option && typeof option === 'object') {
-                myChart.setOption(option);
-            }
-
-            window.addEventListener('resize', myChart.resize);
-        </script>
+            <!-- Top Products -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Sản phẩm bán chạy</h2>
+                    <button class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                </div>
+                <ul class="top-products-list">
+                    <li class="product-item">
+                        <div class="product-info">
+                            <div class="product-rank">1</div>
+                            <div class="product-details">
+                                <h6>Xe điều khiển từ xa</h6>
+                                <p>Đồ chơi điện tử</p>
+                            </div>
+                        </div>
+                        <div class="product-sales">
+                            <strong>1,234</strong>
+                            <span>đã bán</span>
+                        </div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-info">
+                            <div class="product-rank">2</div>
+                            <div class="product-details">
+                                <h6>Bộ Lego Classic</h6>
+                                <p>Lắp ráp sáng tạo</p>
+                            </div>
+                        </div>
+                        <div class="product-sales">
+                            <strong>987</strong>
+                            <span>đã bán</span>
+                        </div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-info">
+                            <div class="product-rank">3</div>
+                            <div class="product-details">
+                                <h6>Búp bê Barbie</h6>
+                                <p>Búp bê thời trang</p>
+                            </div>
+                        </div>
+                        <div class="product-sales">
+                            <strong>856</strong>
+                            <span>đã bán</span>
+                        </div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-info">
+                            <div class="product-rank">4</div>
+                            <div class="product-details">
+                                <h6>Robot biến hình</h6>
+                                <p>Đồ chơi siêu nhân</p>
+                            </div>
+                        </div>
+                        <div class="product-sales">
+                            <strong>745</strong>
+                            <span>đã bán</span>
+                        </div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-info">
+                            <div class="product-rank">5</div>
+                            <div class="product-details">
+                                <h6>Bộ đồ chơi bác sĩ</h6>
+                                <p>Đồ chơi giáo dục</p>
+                            </div>
+                        </div>
+                        <div class="product-sales">
+                            <strong>623</strong>
+                            <span>đã bán</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </main>
 
+        <!-- Additional Charts Row -->
+        <div class="charts-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 32px;">
+            <!-- Orders Over Time -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Số đơn hàng theo thời gian</h2>
+                    <select class="form-select form-select-sm" style="width: auto;">
+                        <option>7 ngày qua</option>
+                        <option>30 ngày qua</option>
+                        <option>3 tháng qua</option>
+                    </select>
+                </div>
+                <div style="height: 280px;">
+                    <canvas id="ordersTimeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Order Status -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Trạng thái đơn hàng</h2>
+                    <button class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                </div>
+                <div style="height: 280px;">
+                    <canvas id="orderStatusChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer & Inventory Row -->
+        <div class="charts-row" style="grid-template-columns: 1fr 1fr;">
+            <!-- Customer Analysis -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Phân tích khách hàng</h2>
+                    <select class="form-select form-select-sm" style="width: auto;">
+                        <option>Tháng này</option>
+                        <option>Quý này</option>
+                        <option>Năm nay</option>
+                    </select>
+                </div>
+                <div style="height: 300px;">
+                    <canvas id="customerChart"></canvas>
+                </div>
+                <div class="customer-stats">
+                    <div class="customer-stat-item">
+                        <div class="customer-stat-label">
+                            <span class="stat-dot" style="background: #0d6efd;"></span>
+                            Khách hàng mới
+                        </div>
+                        <strong>2,456</strong>
+                    </div>
+                    <div class="customer-stat-item">
+                        <div class="customer-stat-label">
+                            <span class="stat-dot" style="background: #198754;"></span>
+                            Khách hàng quay lại
+                        </div>
+                        <strong>6,086</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Status -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Top sản phẩm tồn kho</h2>
+                    <select class="form-select form-select-sm" style="width: auto;">
+                        <option>Tồn kho cao nhất</option>
+                        <option>Tồn kho thấp nhất</option>
+                        <option>Cần nhập thêm</option>
+                    </select>
+                </div>
+                <div style="height: 300px;">
+                    <canvas id="inventoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>
 
-
 <script src="js/index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+    // Revenue Chart
+    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+    const gradient = revenueCtx.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, 'rgba(13, 110, 253, 0.2)');
+    gradient.addColorStop(1, 'rgba(13, 110, 253, 0)');
+
+    new Chart(revenueCtx, {
+        type: 'line',
+        data: {
+            labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'CN'],
+            datasets: [{
+                label: 'Doanh thu (triệu đồng)',
+                data: [12, 15, 13, 18, 16, 22, 20],
+                borderColor: '#0d6efd',
+                backgroundColor: gradient,
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 4,
+                pointBackgroundColor: '#0d6efd',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 2.5,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#1a1a1a',
+                    bodyColor: '#6c757d',
+                    borderColor: '#e9ecef',
+                    borderWidth: 1,
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.y + ' triệu đồng';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        borderDash: [5, 5],
+                        color: '#f1f3f5'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return value + 'M';
+                        },
+                        color: '#6c757d'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#6c757d'
+                    }
+                }
+            }
+        }
+    });
+
+    // Inventory Chart
+    const inventoryCtx = document.getElementById('inventoryChart').getContext('2d');
+    new Chart(inventoryCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Xe điều khiển', 'Lego Classic', 'Búp bê Barbie', 'Robot biến hình', 'Bộ đồ bác sĩ', 'Xe đẩy búp bê', 'Bộ đồ nhà bếp', 'Gấu bông Teddy'],
+            datasets: [{
+                label: 'Số lượng tồn kho',
+                data: [456, 389, 367, 342, 298, 276, 245, 223],
+                backgroundColor: [
+                    '#0d6efd',
+                    '#198754',
+                    '#fd7e14',
+                    '#0dcaf0',
+                    '#6f42c1',
+                    '#d63384',
+                    '#ffc107',
+                    '#20c997'
+                ],
+                borderRadius: 6,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 1.5,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#1a1a1a',
+                    bodyColor: '#6c757d',
+                    borderColor: '#e9ecef',
+                    borderWidth: 1,
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.x + ' sản phẩm';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    grid: {
+                        borderDash: [5, 5],
+                        color: '#f1f3f5'
+                    },
+                    ticks: {
+                        color: '#6c757d'
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#6c757d',
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Customer Analysis Chart
+    const customerCtx = document.getElementById('customerChart').getContext('2d');
+    new Chart(customerCtx, {
+        type: 'bar',
+        data: {
+            labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+            datasets: [
+                {
+                    label: 'Khách hàng mới',
+                    data: [120, 150, 180, 220, 190, 210, 240, 260, 230, 250, 280, 300],
+                    backgroundColor: '#0d6efd',
+                    borderRadius: 6,
+                    borderSkipped: false
+                },
+                {
+                    label: 'Khách hàng quay lại',
+                    data: [300, 320, 340, 380, 360, 390, 420, 450, 430, 460, 490, 520],
+                    backgroundColor: '#198754',
+                    borderRadius: 6,
+                    borderSkipped: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 2,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#1a1a1a',
+                    bodyColor: '#6c757d',
+                    borderColor: '#e9ecef',
+                    borderWidth: 1,
+                    padding: 12
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        borderDash: [5, 5],
+                        color: '#f1f3f5'
+                    },
+                    ticks: {
+                        color: '#6c757d'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#6c757d'
+                    }
+                }
+            }
+        }
+    });
+
+    // Orders Over Time Chart
+    const ordersTimeCtx = document.getElementById('ordersTimeChart').getContext('2d');
+    new Chart(ordersTimeCtx, {
+        type: 'line',
+        data: {
+            labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'CN'],
+            datasets: [{
+                label: 'Số đơn hàng',
+                data: [45, 52, 48, 65, 58, 72, 68],
+                borderColor: '#198754',
+                backgroundColor: 'rgba(25, 135, 84, 0.1)',
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 4,
+                pointBackgroundColor: '#198754',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 2.2,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#1a1a1a',
+                    bodyColor: '#6c757d',
+                    borderColor: '#e9ecef',
+                    borderWidth: 1,
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.y + ' đơn hàng';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        borderDash: [5, 5],
+                        color: '#f1f3f5'
+                    },
+                    ticks: {
+                        color: '#6c757d'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#6c757d'
+                    }
+                }
+            }
+        }
+    });
+
+    // Order Status Chart (keeping this one)
+    const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+    new Chart(orderStatusCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Chờ xử lý', 'Đang xử lý', 'Đang giao', 'Đã giao', 'Đã hủy'],
+            datasets: [{
+                label: 'Số đơn hàng',
+                data: [45, 78, 92, 234, 12],
+                backgroundColor: [
+                    '#ffc107',
+                    '#0dcaf0',
+                    '#0d6efd',
+                    '#198754',
+                    '#dc3545'
+                ],
+                borderRadius: 8,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#1a1a1a',
+                    bodyColor: '#6c757d',
+                    borderColor: '#e9ecef',
+                    borderWidth: 1,
+                    padding: 12
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        borderDash: [5, 5],
+                        color: '#f1f3f5'
+                    },
+                    ticks: {
+                        color: '#6c757d'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#6c757d',
+                        font: {
+                            size: 11
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>

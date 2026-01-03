@@ -42,9 +42,6 @@ public class Promotion extends BaseModel {
         this.eventId = eventId;
     }
 
-    public Promotion() {
-    }
-
     public String getName() {
         return name;
     }

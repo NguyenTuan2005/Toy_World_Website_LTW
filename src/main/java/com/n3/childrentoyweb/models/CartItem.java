@@ -29,7 +29,11 @@ public class CartItem implements Serializable {
         return this.cartProductDTO.getProductId();
     }
 
-    public boolean checkQuantity(int quantity) {
-        return this.cartProductDTO.checkQuantity(quantity);
+    public boolean isHigherOrEqualThan(int quantity) {
+        return this.cartProductDTO.isHigherOrEqualThan(quantity);
+    }
+
+    public boolean hasPromotion() {
+        return this.cartProductDTO.hasPromotion();
     }
 }

@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<html lang="vi">
   <head>
     <title>Giỏ Hàng Của Bạn</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
@@ -99,23 +100,51 @@
         <!--Order Summary -->
         <div class="col-lg-4">
           <div class="summary-section">
-            <div class="total-items">
-              Tổng số: <span id="totalItems">${cart.totalQuantity}</span> Sản phẩm
-            </div>
-            <hr>
+            <c:if test="${not empty cart.cartItems}">
+              <div class="total-items hstack justify-content-between">
+                <span>Tổng số: </span>
+                <span id="totalItems">${cart.totalQuantity} Sản phẩm</span>
+              </div>
+              <hr>
+            </c:if>
             <div class="summary-row">
               <span>Tiền hàng hoá</span>
               <span id="subtotal">
-                <fmt:formatNumber value="${cart.totalCost}" type="currency" currencyCode="VND"/>
+                <c:choose>
+                  <c:when test="${not empty cart.cartItems}">
+                    <fmt:formatNumber value="${cart.totalCost}" type="currency" currencyCode="VND"/>
+                  </c:when>
+                  <c:otherwise>
+                    <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
+                  </c:otherwise>
+                </c:choose>
               </span>
             </div>
             <div class="summary-row discount">
               <span>Giảm giá</span>
-              <span>0</span>
+              <span>
+                <c:choose>
+                  <c:when test="${not empty cart.cartItems}">
+                    <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
+                  </c:when>
+                  <c:otherwise>
+                    <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
+                  </c:otherwise>
+                </c:choose>
+              </span>
             </div>
             <div class="summary-row total">
               <span>Tổng cộng</span>
-              <span class="amount"><span id="total">1.259.300</span> ₫</span>
+              <span id="total" class="amount">
+                <c:choose>
+                  <c:when test="${not empty cart.cartItems}">
+                    <fmt:formatNumber value="${cart.totalPrice}" type="currency" currencyCode="VND"/>
+                  </c:when>
+                  <c:otherwise>
+                    <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
+                  </c:otherwise>
+                </c:choose>
+              </span>
             </div>
 
             <div class="terms-checkbox">

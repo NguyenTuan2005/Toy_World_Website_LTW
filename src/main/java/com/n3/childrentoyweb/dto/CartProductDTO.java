@@ -89,7 +89,11 @@ public class CartProductDTO {
         this.discountPrice = discountPrice;
     }
 
-    public boolean checkQuantity(int quantity) {
+    public boolean isHigherOrEqualThan(int quantity) {
         return this.quantity >= quantity;
+    }
+
+    public boolean hasPromotion() {
+        return this.discountPercent != null || this.discountPrice != null;
     }
 }

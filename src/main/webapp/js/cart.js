@@ -31,11 +31,12 @@ async function removeItem(productId) {
     const confirmed = await showConfirm('Bạn có chắc muốn xóa sản phẩm này?');
     if (!confirmed) return;
 
-    fetch(contextPath + "/cart-remove?productId=" + productId, {
+    fetch(contextPath + "/cart-remove", {
         method: 'POST',
         headers: {
             "Content-Type": 'application/x-www-form-urlencoded',
-        }
+        },
+        body: new URLSearchParams({ productId: productId })
     })
         .then(response => response.json())
         .then(data => {
@@ -48,7 +49,7 @@ async function removeItem(productId) {
         .catch(error => {
             alert.classList.remove("d-none");
             alert.textContent = error.message;
-        })
+        });
 }
 
 function updateQty(productId, quantity) {

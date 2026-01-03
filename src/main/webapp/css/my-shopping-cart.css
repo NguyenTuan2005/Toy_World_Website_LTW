@@ -205,8 +205,8 @@ body {
 }
 
 .total-items {
+  color: #666;
   font-weight: 600;
-  margin: 32px 0;
 }
 
 /* Mobile Responsive */

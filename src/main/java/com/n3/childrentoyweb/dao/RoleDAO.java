@@ -24,7 +24,7 @@ public class RoleDAO extends BaseDAO{
         System.out.println(new RoleDAO().findAllByUserId(1L));
     }
 
-    public void assignRoleToUser(Long userId, Long roleId) {
+    public void assignRoleToUser(long userId, long roleId) {
         String sql = """
                 Insert into user_roles (user_id, role_id)
                 Values (:userId, :roleId)

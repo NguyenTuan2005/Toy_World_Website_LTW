@@ -6,15 +6,17 @@ import java.util.Optional;
 
 public class PromotionDAO  extends BaseDAO{
 
-    public Optional<Promotion> findById(int id) {
-        return super.getJdbi().withHandle(handle -> handle.createQuery("""
+    public Optional<Promotion> findById(long id) {
+        String sql = """
                 Select p.*
-                from Promotion p
+                from promotions p
                 where p.id = :id
-                """))
+                """;
+
+        return super.getJdbi().withHandle(handle -> handle.createQuery(sql)
                 .bind("id", 1)
                 .mapToBean(Promotion.class)
-                .findOne();
+                .findOne());
     }
 
 

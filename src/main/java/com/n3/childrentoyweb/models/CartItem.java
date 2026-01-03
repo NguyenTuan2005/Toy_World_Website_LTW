@@ -1,17 +1,19 @@
 package com.n3.childrentoyweb.models;
 
+import com.n3.childrentoyweb.dto.CartProductDTO;
+
 import java.io.Serializable;
 
 public class CartItem implements Serializable {
-    private Product product;
+    private CartProductDTO cartProductDTO;
     private Integer quantity;
 
-    public CartItem(Product product, Integer quantity) {
-        this.product = product;
+    public CartItem(CartProductDTO product, Integer quantity) {
+        this.cartProductDTO = product;
         this.quantity = quantity;
     }
-    public Product getProduct() {
-        return product;
+    public CartProductDTO getCartProductDTO() {
+        return cartProductDTO;
     }
     public Integer getQuantity() {
         return quantity;
@@ -20,10 +22,10 @@ public class CartItem implements Serializable {
         this.quantity = quantity;
     }
     public Double getPrice(){
-        return product.getPrice() * quantity;
+        return cartProductDTO.getPrice() * quantity;
     }
 
     public Long getProductId(){
-        return this.product.getId();
+        return this.cartProductDTO.getProductId();
     }
 }

@@ -36,4 +36,9 @@ public class ApplicationProperties {
 
     public static final String SIGNATURE_BRAND_NAME = properties.getProperty("home-page.signature-brand-name");
     public static  final int DISPLAY_PRODUCT_SIZE = Integer.parseInt(properties.getProperty("home-page.display-product-size"));
+
+
+//    public static  final int PROMOTION_DISPLAY_PRODUCT_SIZE = Integer.parseInt(properties.getProperty("promotion.size-display"));
+
+
 }

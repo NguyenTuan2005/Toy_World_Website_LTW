@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -63,94 +65,74 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><img
-                            src="https://www.mykingdom.com.vn/cdn/shop/files/LEGO_SEASONS_AND_OCCASIONS.png?v=1760351932"
-                            alt="Ninjago" class="img-thumbnail">
-                    </td>
-                    <td>Ninjago</td>
-                    <td>125</td>
-                    <td class="text-nowrap"><span class="badge bg-success">Hoạt động</span></td>
-                    <td>15/01/2024</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-link text-primary text-decoration-none">
-                                <i class="bi bi-eye-fill"></i>
-                            </button>
+                    <c:forEach var="b" items="${brandManages}">
+                        <tr>
+                            <td><img
+                                    src="${b.logo}"
+                                    alt="Ninjago" class="img-thumbnail">
+                            </td>
+                            <td>${b.name}</td>
+                            <td>${b.quantity}</td>
+                            <td class="text-nowrap"><span class="badge bg-success">${b.status}</span></td>
+                            <td>${b.createdAt}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-link text-primary text-decoration-none">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
 
-                            <button class="btn btn-link text-success text-decoration-none">
-                                <i class="fas fa-edit"></i>
-                            </button>
+                                    <button class="btn btn-link text-success text-decoration-none">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
 
-                            <button class="btn btn-link text-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><img
-                            src="https://www.mykingdom.com.vn/cdn/shop/files/LEGO_SEASONS_AND_OCCASIONS.png?v=1760351932"
-                            alt="Ninjago" class="img-thumbnail">
-                    </td>
-                    <td>Ninjago</td>
-                    <td>125</td>
-                    <td class="text-nowrap"><span class="badge bg-danger">Tạm Khóa</span></td>
-                    <td>15/01/2024</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-link text-primary text-decoration-none">
-                                <i class="bi bi-eye-fill"></i>
-                            </button>
-
-                            <button class="btn btn-link text-success text-decoration-none">
-                                <i class="fas fa-edit"></i>
-                            </button>
-
-                            <button class="btn btn-link text-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                                    <button class="btn btn-link text-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
                 </tbody>
             </table>
 
             <hr class="mx-5"/>
-            <div
-                    class="d-flex justify-content-between align-items-center m-3"
-            >
-                <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
+            <div class="d-flex justify-content-between align-items-center m-3">
+                <c:if test="${find_brand == null}">
+                    <p class="mb-0">
+                        Hiển thị ${pageSize} trong ${totalElements} brands,
+                        trang hiện tại ${currentPage },
+                        tổng trang ${totalPages}
+                    </p>
 
-                <nav>
-                    <ul class="pagination mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link">|&lt;</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link">&lt;</a>
-                        </li>
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
 
-                        <li class="page-item active">
-                            <a class="page-link">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link">2</a></li>
-                        <li class="page-item"><a class="page-link">3</a></li>
-                        <li class="page-item"><a class="page-link">4</a></li>
-                        <li class="page-item"><a class="page-link">5</a></li>
-                        <li class="page-item"><a class="page-link">…</a></li>
-                        <li class="page-item"><a class="page-link">10</a></li>
+                                <c:choose>
+                                    <c:when test="${st.index+1 == currentPage}">
+                                        <li class="page-item active">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/brands?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:when>
 
-                        <li class="page-item">
-                            <a class="page-link">&gt;</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link">&gt;|</a>
-                        </li>
-                    </ul>
-                </nav>
+                                    <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/brands?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
             </div>
         </div>
     </div>

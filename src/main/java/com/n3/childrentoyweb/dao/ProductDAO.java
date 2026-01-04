@@ -249,7 +249,7 @@ public class ProductDAO  extends BaseDAO{
                     """;
 
         return this.getJdbi().withHandle(handle -> {
-                handle.createQuery(sql)
+                return handle.createQuery(sql)
                     .bind("promotionId", promotionId)
                     .map(((rs, ctx) ->{
                         ProductPromotionDTO productPromotionDTO = new ProductPromotionDTO();

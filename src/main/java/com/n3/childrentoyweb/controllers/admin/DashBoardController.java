@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
 
-@WebServlet(value = "/d")
+@WebServlet(value = "/admin/dashboard")
 public class DashBoardController extends HttpServlet {
     private UserService userService;
     private ProductService productService;
@@ -31,10 +31,8 @@ public class DashBoardController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LocalDate today = LocalDate.now();
-//        int thisYear = today.getYear();
-        int thisYear = 2026;
-//        int thisMonth = today.getMonthValue();
-        int thisMonth = 1;
+        int thisYear = today.getYear();
+        int thisMonth = today.getMonthValue();
 
         int totalUserThisMonth = userService.countAllInMonth(thisYear, thisMonth);
         long totalProductThisMonth = productService.countProductInMonth(thisYear, thisMonth);

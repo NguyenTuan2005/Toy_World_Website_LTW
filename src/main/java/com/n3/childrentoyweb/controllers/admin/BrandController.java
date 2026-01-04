@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "BrandManage",value = "/admin/brands")
@@ -34,8 +33,12 @@ public class BrandController extends HttpServlet {
         req.getRequestDispatcher("/adminPages/brands.jsp").forward(req,resp);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    public void addBrandIntoTable(int page,HttpServletRequest request){
+    }
+
+    public void addBrandIntoTable(int page, HttpServletRequest request){
         Pagination<ManageBrandDTO> manageBrandDTOPagination = this.brandService.findAllBrandsForManagements(page,PAGE_SIZE);
         List<ManageBrandDTO> manageBrandDTOS = manageBrandDTOPagination.getData();
 

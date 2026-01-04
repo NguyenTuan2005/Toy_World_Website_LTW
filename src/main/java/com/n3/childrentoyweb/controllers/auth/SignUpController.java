@@ -15,7 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import static com.n3.childrentoyweb.dao.ApplicationProperties.OTP_DELAY_IN_SECOND;
 
 @WebServlet(name = "signUp", value = "/sign-up")
 public class SignUpController extends HttpServlet {

@@ -6,6 +6,7 @@ import com.n3.childrentoyweb.dao.ProductDAO;
 import com.n3.childrentoyweb.dao.UserCommentDAO;
 import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
+import com.n3.childrentoyweb.dto.ProductPromotionDTO;
 import com.n3.childrentoyweb.models.Product;
 
 import java.util.List;
@@ -85,6 +86,14 @@ public class ProductService {
 
     public long countProductInMonth(int year, int month){
         return productDAO.countProductInMonth(year, month);
+    }
+
+//    public List<Product> findProductsWithAvailablePromotion(){
+//        return this.productDAO. findProductsWithAvailablePromotion();
+//    }
+
+    public List<ProductPromotionDTO> findProductsByPromotionId(Long promotionId) {
+        return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
     public static void main(String[] args) {

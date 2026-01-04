@@ -2,10 +2,12 @@ package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
+import com.n3.childrentoyweb.dto.ProductPromotionDTO;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.utils.JsonColumnMapper;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
@@ -227,7 +229,38 @@ public class ProductDAO  extends BaseDAO{
         );
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProductDAO().countProductInMonth(2025, 12));
+    public List<ProductPromotionDTO> findProductsByPromotionId(Long promotionId) {
+        String sql = """
+                select
+                   p.id,
+                   p.name,
+                   p.price,
+                        (
+                      select pa.img_path
+                      from  product_assets pa
+                      where pa.product_id =p.id
+                      and pa.is_active =1
+                      limit 1
+                  ) as "img_url"
+                from products p
+                where p.quantity >0
+                and p.promotion_id = :promotionId
+                and p.is_active = 1
+                    """;
+
+        return this.getJdbi().withHandle(handle -> {
+                handle.createQuery(sql)
+                    .bind("promotionId", promotionId)
+                    .map(((rs, ctx) ->{
+                        ProductPromotionDTO productPromotionDTO = new ProductPromotionDTO();
+                        productPromotionDTO.setId(rs.getLong("id"));
+                        productPromotionDTO.setName(rs.getString("name"));
+                        productPromotionDTO.setOriginalPrice(rs.getDouble("price"));
+                        productPromotionDTO.setFirstImg(rs.getString("img_url"));
+                        return productPromotionDTO;
+                    } ))
+                    .list();
+        }) ;
     }
+
 }

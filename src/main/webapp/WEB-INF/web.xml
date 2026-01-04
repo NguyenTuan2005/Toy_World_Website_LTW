@@ -17,7 +17,7 @@
 
     <error-page>
         <exception-type>com.n3.childrentoyweb.exception.PermissionDeniedException</exception-type>
-        <location>/errors/403-forbidden.jsp</location>
+        <location>/errors/404-not-found.jsp</location>
     </error-page>
 
     <error-page>

@@ -13,4 +13,8 @@ public class RoleService {
     }
 
 
+    public List<Long> findAllRoleIdsByRoleName(String [] roles){
+        return this.roleDAO.findAllRoleIdsByRoleName(roles);
+    }
+
 }

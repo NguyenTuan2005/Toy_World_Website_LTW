@@ -20,4 +20,22 @@ public class BannerDAO extends BaseDAO{
                 );
 
     }
+
+    public Banner findBannerForCurrentPromotion(){
+        String sql = """
+        select b.id, b.title, b.img_path, b.group_tag, b.sort_order, b.event_id, b.is_active
+        from banners b where b.group_tag = 'KHUYEN_MAI'
+        and b.is_active = 1
+        Limit 1
+        """;
+        return this.getJdbi().withHandle(handle-> handle.createQuery(sql)
+                .mapToBean(Banner.class)
+                .one()
+        );
+    }
+
+    public static void main(String[] args) {
+      var i =  new BannerDAO().findBannerForCurrentPromotion();
+        System.out.println(i);
+    }
 }

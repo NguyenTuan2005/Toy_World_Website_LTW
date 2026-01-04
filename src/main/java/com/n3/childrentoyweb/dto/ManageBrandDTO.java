@@ -9,6 +9,7 @@ public class ManageBrandDTO {
     private String status;
     private LocalDateTime createdAt;
     private String logo;
+    private boolean isActive;
 
     public String getStatus() {
         return status;
@@ -16,6 +17,11 @@ public class ManageBrandDTO {
 
     public void setStatus(boolean isActive) {
         this.status = isActive ?"Hoạt động":"Tạm khóa";
+        this.isActive = isActive;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
     }
 
     public long getId() {

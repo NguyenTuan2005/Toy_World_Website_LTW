@@ -52,6 +52,21 @@
             </div>
         </div>
 
+        <style>
+            .status-active {
+                background-color: #e6f4ea;
+                color: #1e7e34;
+                border: 1px solid #1e7e34;
+            }
+
+            .status-locked {
+                background-color: #fdecea;
+                color: #dc3545;
+                border: 1px solid #dc3545;
+            }
+
+        </style>
+
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -73,7 +88,11 @@
                             </td>
                             <td>${b.name}</td>
                             <td>${b.quantity}</td>
-                            <td class="text-nowrap"><span class="badge bg-success">${b.status}</span></td>
+                            <td class="text-nowrap">
+                                <span class="badge  ${b.isActive ? 'status-active' : 'status-locked'}">
+                                        ${b.status}
+                                </span>
+                            </td>
                             <td>${b.createdAt}</td>
                             <td>
                                 <div class="d-flex gap-2">
@@ -85,9 +104,13 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <button class="btn btn-link text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <form method="post" action="${pageContext.request.contextPath}/admin/hidden-brands"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                        <input type="hidden" name="brandId" value="${b.id}">
+                                        <input type="hidden" name="active" value="${b.isActive}">
+                                        <button class="btn btn-link text-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

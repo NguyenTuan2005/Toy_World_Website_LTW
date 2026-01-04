@@ -7,6 +7,7 @@ import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.models.Brand;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BrandService {
     private BrandDAO brandDAO;
@@ -28,5 +29,13 @@ public class BrandService {
         List<ManageBrandDTO> manageBrandDTOS= this.brandDAO.findAllBrandsForManagements(page,pageSize);
 
         return new Pagination<>(manageBrandDTOS,page,totalElements,totalPages);
+    }
+
+    public Optional<Brand> findById(long id){
+        return Optional.ofNullable(this.brandDAO.findById(id));
+    }
+
+    public boolean update(Brand brand) {
+       return this.brandDAO.update(brand) > 0;
     }
 }

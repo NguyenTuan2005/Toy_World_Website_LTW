@@ -6,6 +6,7 @@ import com.n3.childrentoyweb.models.Brand;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BrandDAO  extends BaseDAO{
     public List<Brand> findALl() {
@@ -64,4 +65,33 @@ public class BrandDAO  extends BaseDAO{
                        .list()
        );
    }
+
+    public Brand findById(long id) {
+        String sql = """
+                select * from brands
+                where id =:id
+                """;
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id",id)
+                        .mapToBean(Brand.class)
+                        .one()
+        );
+    }
+
+    public int update(Brand brand) {
+        String sql = """
+                update brands
+                set name =:name, img_path =:logo, is_active =:isActive
+                where id =:id
+                """;
+        return  this.getJdbi().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("id",brand.getId())
+                            .bind("logo",brand.getImgPath())
+                            .bind("isActive",brand.getActive())
+                            .bind("name",brand.getName())
+                            .execute()
+            );
+    }
 }

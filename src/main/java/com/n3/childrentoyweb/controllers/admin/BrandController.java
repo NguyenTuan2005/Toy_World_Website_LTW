@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "BrandManage",value = "/br")
+@WebServlet(name = "BrandManage",value = "/admin/brands")
 public class BrandController extends HttpServlet {
     public static final int  PAGE_SIZE = 10;
     private BrandService brandService;
@@ -40,7 +40,6 @@ public class BrandController extends HttpServlet {
         List<ManageBrandDTO> manageBrandDTOS = manageBrandDTOPagination.getData();
 
         request.setAttribute("brandManages",manageBrandDTOS);
-
         request.setAttribute("currentPage",manageBrandDTOPagination.getCurrentPage());
         request.setAttribute("totalElements",manageBrandDTOPagination.getTotalElements());
         request.setAttribute("totalPages",manageBrandDTOPagination.getTotalPages());

@@ -38,7 +38,8 @@ public class ApplicationProperties {
     public static  final int DISPLAY_PRODUCT_SIZE = Integer.parseInt(properties.getProperty("home-page.display-product-size"));
 
 
-//    public static  final int PROMOTION_DISPLAY_PRODUCT_SIZE = Integer.parseInt(properties.getProperty("promotion.size-display"));
-
+    public static final String CLOUDINARY_NAME = properties.getProperty("cloudinary.name");
+    public static final String  CLOUDINARY_API_KEY = properties.getProperty("cloudinary.api-key");
+    public static final String  CLOUDINARY_SECRET_KEY = properties.getProperty("cloudinary.api-secret");
 
 }

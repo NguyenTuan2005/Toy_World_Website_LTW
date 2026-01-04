@@ -44,10 +44,9 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-end mt-3 mt-md-0">
-                    <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                            data-bs-target="#brandModal">
+                    <a href="${pageContext.request.contextPath}/admin/new-brand" class="btn-add fw-medium px-4 py-2 text-decoration-none">
                         <i class="fas fa-plus"></i> Thêm thương hiệu
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -82,9 +81,8 @@
                 <tbody>
                     <c:forEach var="b" items="${brandManages}">
                         <tr>
-                            <td><img
-                                    src="${b.logo}"
-                                    alt="Ninjago" class="img-thumbnail">
+                            <td>
+                                <img src="${b.logo}"  alt="Ninjago" class="img-thumbnail"  style="width: 200px; height: 100px; object-fit: cover;"  >
                             </td>
                             <td>${b.name}</td>
                             <td>${b.quantity}</td>

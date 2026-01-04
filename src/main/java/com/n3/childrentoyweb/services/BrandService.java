@@ -38,4 +38,8 @@ public class BrandService {
     public boolean update(Brand brand) {
        return this.brandDAO.update(brand) > 0;
     }
+
+    public void save(Brand brand) {
+        this.brandDAO.save(brand);
+    }
 }

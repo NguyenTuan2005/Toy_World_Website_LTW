@@ -94,4 +94,19 @@ public class BrandDAO  extends BaseDAO{
                             .execute()
             );
     }
+    public void save(Brand brand) {
+        String sql = """
+        insert into brands (name, img_path, is_active)
+        values (:name, :imgPath, :isActive)
+        """;
+
+        this.getJdbi().useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("name", brand.getName())
+                        .bind("imgPath", brand.getImgPath())
+                        .bind("isActive", brand.getActive())
+                        .execute()
+        );
+    }
+
 }

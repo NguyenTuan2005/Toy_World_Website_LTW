@@ -3,11 +3,13 @@ package com.n3.childrentoyweb.controllers.admin;
 import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dto.ManageBrandDTO;
 import com.n3.childrentoyweb.services.BrandService;
+import com.n3.childrentoyweb.services.CloudinaryService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,9 +18,11 @@ import java.util.List;
 public class BrandController extends HttpServlet {
     public static final int  PAGE_SIZE = 10;
     private BrandService brandService;
+    private CloudinaryService cloudinaryService;
 
     public void init(){
         this.brandService = new BrandService();
+        this.cloudinaryService = new CloudinaryService();
     }
 
 
@@ -35,6 +39,10 @@ public class BrandController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Part filePart = req.getPart("image");
+        String url = this.cloudinaryService.upload(filePart);
+        System.out.println("url: "+url);
+
 
     }
 

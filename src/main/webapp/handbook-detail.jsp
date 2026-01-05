@@ -1,0 +1,300 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Đồ Chơi - MyKingdom</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
+    <jsp:include page="/common/head.jsp"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <link rel="stylesheet" href="css/handbook.css">
+    <link rel="stylesheet" href="css/handbook-detail.css">
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/root.css"/>
+</head>
+<body>
+    <jsp:include page="/common/header.jsp" />
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="sidebar">
+
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Nhập từ khóa để tìm kiếm (ví dụ: lego, búp bê...)">
+                </div>
+
+     
+                <div class="sidebar-header">
+                    <div class="sidebar-title">Danh Mục Bài Viết</div>
+                </div>
+
+                <!-- Menu Item 1: 360 độ Mykingdom -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-label">360 độ Mykingdom</span>
+                        <span class="menu-icon"></span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item" onclick="handleClick('Ra Mắt Sản Phẩm')">Ra Mắt Sản Phẩm</div>
+                        <div class="submenu-item" onclick="handleClick('Thông Tin Khuyến Mại')">Thông Tin Khuyến Mại</div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2: Dạy con thông minh -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-label">Dạy con thông minh</span>
+                        <span class="menu-icon"></span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item" onclick="handleClick('Từ 0-12 Tháng')">Từ 0-12 Tháng</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 1-3 Tuổi')">Từ 1-3 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 3-6 Tuổi')">Từ 3-6 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 6-12 Tuổi')">Từ 6-12 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Trên 12 Tuổi')">Trên 12 Tuổi</div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3: Chơi cùng con -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-label">Chơi cùng con</span>
+                        <span class="menu-icon"></span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item" onclick="handleClick('Từ 0-12 Tháng')">Từ 0-12 Tháng</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 1-3 Tuổi')">Từ 1-3 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 3-6 Tuổi')">Từ 3-6 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Từ 6-12 Tuổi')">Từ 6-12 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Trên 12 Tuổi')">Trên 12 Tuổi</div>
+                        <div class="submenu-item" onclick="handleClick('Let\'s Be Kids New Content')">Let's Be Kids New Content</div>
+                    </div>
+                </div>
+
+                <!-- Menu Items without children -->
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Nuôi con khỏe')">
+                        <span class="menu-label">Nuôi con khỏe</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Mẹo hữu ích')">
+                        <span class="menu-label">Mẹo hữu ích</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Hôm nay con chơi gì?')">
+                        <span class="menu-label">Hôm nay con chơi gì?</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-header no-children" onclick="handleClick('Vòng quanh thế giới')">
+                        <span class="menu-label">Vòng quanh thế giới</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- begin -->
+            <article class="main-content-blog article-template">
+                <header class="">
+                    <div>
+                        <h1 class="fw-bold" style="font-size: 24px;  color: #041675;">${title}</h1>
+                        <h3 class="text-secondary small mb-0">${createdAt} </h3>
+                        <h3 class="text-secondary small mb-0">${username} </h3>
+                    </div>
+                </header>
+            <div class="short-content"> 
+                <!-- <div class="left-box"></div> -->
+                <div class="right-box">
+                    <ul class="d-flex" style="    margin-bottom: 0; padding-left: 2px; gap: 4px;">
+
+                        <li class="list-social__item">
+                            <a href="https://www.facebook.com/mykingdomvn/" class="link list-social__link">
+                                <svg class="icon icon-facebook" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <g clip-path="url(#clip0_1749_8219)">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16 32H8C5.8783 31.9999 3.84352 31.157 2.34325 29.6568C0.842977 28.1565 9.28184e-05 26.1217 0 24L0 8C9.28184e-05 5.8783 0.842977 3.84352 2.34325 2.34325C3.84352 0.842977 5.8783 9.28184e-05 8 0L24 0C26.1217 0 28.1566 0.842855 29.6569 2.34315C31.1571 3.84344 32 5.87827 32 8V24C32 26.1217 31.1571 28.1566 29.6569 29.6569C28.1566 31.1571 26.1217 32 24 32H21C21 31.337 20.7366 30.7011 20.2678 30.2322C19.7989 29.7634 19.163 29.5 18.5 29.5C17.837 29.5 17.2011 29.7634 16.7322 30.2322C16.2634 30.7011 16 31.337 16 32Z" fill="#3764B9"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15 9H24C25.1536 8.99993 26.2632 8.55683 27.0995 7.7622C27.9359 6.96758 28.4351 5.88213 28.4941 4.73C28.5532 3.57788 28.1675 2.44708 27.4168 1.57113C26.666 0.695185 25.6076 0.140991 24.46 0.023C24.307 0.0145 24.1555 0 24 0H8C5.8783 9.28184e-05 3.84352 0.842977 2.34325 2.34325C0.842977 3.84352 9.28184e-05 5.8783 0 8L0 24C9.28219e-05 20.0218 1.58048 16.2065 4.3935 13.3935C7.20653 10.5805 11.0218 9.00009 15 9Z" fill="#507DD2"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 16C22.4178 16 20.871 16.4692 19.5554 17.3482C18.2399 18.2273 17.2145 19.4767 16.609 20.9385C16.0035 22.4003 15.845 24.0089 16.1537 25.5607C16.4624 27.1126 17.2243 28.538 18.3431 29.6569C19.462 30.7757 20.8874 31.5376 22.4393 31.8463C23.9911 32.155 25.5997 31.9965 27.0615 31.391C28.5233 30.7855 29.7727 29.7602 30.6518 28.4446C31.5308 27.129 32 25.5823 32 24V8C32 10.1217 31.1572 12.1566 29.6569 13.6569C28.1566 15.1571 26.1217 16 24 16Z" fill="#1E4BA0"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26 9C26 9.26522 25.8946 9.51957 25.7071 9.70711C25.5196 9.89464 25.2652 10 25 10H22C21.7348 10 21.4804 10.1054 21.2929 10.2929C21.1054 10.4804 21 10.7348 21 11V15H24.78C24.9279 15 25.074 15.0328 25.2078 15.0961C25.3415 15.1594 25.4595 15.2516 25.5533 15.366C25.6471 15.4804 25.7143 15.6142 25.7502 15.7577C25.786 15.9012 25.7896 16.0509 25.7606 16.196C25.5749 17.1245 25.3228 18.3855 25.1606 19.196C25.1153 19.4227 24.9928 19.6267 24.814 19.7733C24.6352 19.9199 24.4112 20 24.18 20H21V32H16V20H13C12.7348 20 12.4804 19.8946 12.2929 19.7071C12.1054 19.5196 12 19.2652 12 19V16C12 15.7348 12.1054 15.4804 12.2929 15.2929C12.4804 15.1054 12.7348 15 13 15H16V11C16 9.4087 16.6321 7.88258 17.7574 6.75736C18.8826 5.63214 20.4087 5 22 5H25C25.2652 5 25.5196 5.10536 25.7071 5.29289C25.8946 5.48043 26 5.73478 26 6V9Z" fill="white"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_1749_8219">
+                                        <rect width="32" height="32" fill="white"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span class="visually-hidden">Facebook</span>
+                            </a>
+                        </li>
+
+                        <li class="list-social__item">
+                            <a href="https://www.instagram.com/mykingdom_vietnam/" class="link list-social__link">
+                                <svg class="icon icon-instagram" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <g clip-path="url(#clip0_1749_8231)">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 32H8C5.8783 31.9999 3.84352 31.157 2.34325 29.6568C0.842977 28.1565 9.28184e-05 26.1217 0 24L0 8C9.28184e-05 5.8783 0.842977 3.84352 2.34325 2.34325C3.84352 0.842977 5.8783 9.28184e-05 8 0L24 0C26.1217 0 28.1566 0.842855 29.6569 2.34315C31.1571 3.84344 32 5.87827 32 8V24C32 26.1217 31.1571 28.1566 29.6569 29.6569C28.1566 31.1571 26.1217 32 24 32Z" fill="#FF3A55"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15 9H24C25.1536 8.99993 26.2632 8.55683 27.0995 7.7622C27.9359 6.96758 28.4351 5.88213 28.4941 4.73C28.5532 3.57788 28.1675 2.44708 27.4168 1.57113C26.666 0.695185 25.6076 0.140991 24.46 0.023C24.307 0.0145 24.1555 0 24 0H8C5.8783 9.28184e-05 3.84352 0.842977 2.34325 2.34325C0.842977 3.84352 9.28184e-05 5.8783 0 8L0 24C9.28219e-05 20.0218 1.58048 16.2065 4.3935 13.3935C7.20653 10.5805 11.0218 9.00009 15 9Z" fill="#FF796C"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 16C22.4178 16 20.871 16.4692 19.5554 17.3482C18.2399 18.2273 17.2145 19.4767 16.609 20.9385C16.0035 22.4003 15.845 24.0089 16.1537 25.5607C16.4624 27.1126 17.2243 28.538 18.3431 29.6569C19.462 30.7757 20.8874 31.5376 22.4393 31.8463C23.9911 32.155 25.5997 31.9965 27.0615 31.391C28.5233 30.7855 29.7727 29.7602 30.6518 28.4446C31.5308 27.129 32 25.5823 32 24V8C32 10.1217 31.1572 12.1566 29.6569 13.6569C28.1566 15.1571 26.1217 16 24 16Z" fill="#E00047"></path>
+                                        <path d="M22.25 11C22.9404 11 23.5 10.4404 23.5 9.75C23.5 9.05964 22.9404 8.5 22.25 8.5C21.5596 8.5 21 9.05964 21 9.75C21 10.4404 21.5596 11 22.25 11Z" fill="white"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16 12C16.7911 12 17.5645 12.2346 18.2223 12.6741C18.8801 13.1136 19.3928 13.7384 19.6955 14.4693C19.9983 15.2002 20.0775 16.0044 19.9231 16.7804C19.7688 17.5563 19.3878 18.269 18.8284 18.8284C18.269 19.3878 17.5563 19.7688 16.7804 19.9231C16.0044 20.0775 15.2002 19.9983 14.4693 19.6955C13.7384 19.3928 13.1136 18.8801 12.6741 18.2223C12.2346 17.5645 12 16.7911 12 16C12.0006 14.9393 12.4222 13.9222 13.1722 13.1722C13.9222 12.4222 14.9393 12.0006 16 12ZM16 10C17.1867 10 18.3467 10.3519 19.3334 11.0112C20.3201 11.6705 21.0892 12.6075 21.5433 13.7039C21.9974 14.8003 22.1162 16.0067 21.8847 17.1705C21.6532 18.3344 21.0818 19.4035 20.2426 20.2426C19.4035 21.0818 18.3344 21.6532 17.1705 21.8847C16.0067 22.1162 14.8003 21.9974 13.7039 21.5433C12.6075 21.0892 11.6705 20.3201 11.0112 19.3334C10.3519 18.3467 10 17.1867 10 16C10.0008 14.4089 10.6331 12.8832 11.7582 11.7582C12.8832 10.6331 14.4089 10.0008 16 10Z" fill="white"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26 11C26 9.67392 25.4732 8.40215 24.5355 7.46447C23.5979 6.52678 22.3261 6 21 6H11C9.67392 6 8.40215 6.52678 7.46447 7.46447C6.52678 8.40215 6 9.67392 6 11V21C6 22.3261 6.52678 23.5979 7.46447 24.5355C8.40215 25.4732 9.67392 26 11 26H21C22.3261 26 23.5979 25.4732 24.5355 24.5355C25.4732 23.5979 26 22.3261 26 21V11ZM28 11C28 9.14348 27.2625 7.36301 25.9497 6.05025C24.637 4.7375 22.8565 4 21 4H11C9.14348 4 7.36301 4.7375 6.05025 6.05025C4.7375 7.36301 4 9.14348 4 11V21C4 22.8565 4.7375 24.637 6.05025 25.9497C7.36301 27.2625 9.14348 28 11 28H21C22.8565 28 24.637 27.2625 25.9497 25.9497C27.2625 24.637 28 22.8565 28 21V11Z" fill="white"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_1749_8231">
+                                        <rect width="32" height="32" fill="white"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span class="visually-hidden">Instagram</span>
+                            </a>
+                        </li>
+
+                        <li class="list-social__item">
+                            <a href="https://www.youtube.com/channel/UCGeeH3wqD2AWB3NsyBwVrbw" class="link list-social__link">
+                                <svg class="icon icon-youtube" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <g clip-path="url(#clip0_1749_8225)">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 32H8C5.8783 31.9999 3.84352 31.157 2.34325 29.6568C0.842977 28.1565 9.28184e-05 26.1217 0 24L0 8C9.28184e-05 5.8783 0.842977 3.84352 2.34325 2.34325C3.84352 0.842977 5.8783 9.28184e-05 8 0L24 0C26.1217 0 28.1566 0.842855 29.6569 2.34315C31.1571 3.84344 32 5.87827 32 8V24C32 26.1217 31.1571 28.1566 29.6569 29.6569C28.1566 31.1571 26.1217 32 24 32Z" fill="#FF0000"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15 9H24C25.1536 8.99993 26.2632 8.55683 27.0995 7.7622C27.9359 6.96758 28.4351 5.88213 28.4941 4.73C28.5532 3.57788 28.1675 2.44708 27.4168 1.57113C26.666 0.695185 25.6076 0.140991 24.46 0.023C24.307 0.0145 24.1555 0 24 0H8C5.8783 9.28184e-05 3.84352 0.842977 2.34325 2.34325C0.842977 3.84352 9.28184e-05 5.8783 0 8L0 24C9.28219e-05 20.0218 1.58048 16.2065 4.3935 13.3935C7.20653 10.5805 11.0218 9.00009 15 9Z" fill="#FF5A51"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 16C22.4178 16 20.871 16.4692 19.5554 17.3482C18.2399 18.2273 17.2145 19.4767 16.609 20.9385C16.0035 22.4003 15.845 24.0089 16.1537 25.5607C16.4624 27.1126 17.2243 28.538 18.3431 29.6569C19.462 30.7757 20.8874 31.5376 22.4393 31.8463C23.9911 32.155 25.5997 31.9965 27.0615 31.391C28.5233 30.7855 29.7727 29.7602 30.6518 28.4446C31.5308 27.129 32 25.5823 32 24V8C32 10.1217 31.1572 12.1566 29.6569 13.6569C28.1566 15.1571 26.1217 16 24 16Z" fill="#D5002C"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.524 8.93807C12.3725 8.84476 12.1989 8.79356 12.021 8.78978C11.8431 8.78599 11.6674 8.82975 11.5121 8.91653C11.3568 9.00332 11.2274 9.12998 11.1374 9.28346C11.0474 9.43693 10.9999 9.61164 11 9.78957V22.2106C10.9999 22.3885 11.0474 22.5632 11.1374 22.7167C11.2274 22.8702 11.3568 22.9968 11.5121 23.0836C11.6674 23.1704 11.8431 23.2141 12.021 23.2104C12.1989 23.2066 12.3725 23.1554 12.524 23.0621C15.0735 21.4936 20.1635 18.3611 22.616 16.8516C22.7615 16.7621 22.8816 16.6369 22.9649 16.4878C23.0483 16.3388 23.092 16.1708 23.092 16.0001C23.092 15.8293 23.0483 15.6614 22.9649 15.5123C22.8816 15.3632 22.7615 15.238 22.616 15.1486C20.1635 13.6391 15.0735 10.5066 12.524 8.93807Z" fill="white"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_1749_8225">
+                                        <rect width="32" height="32" fill="white"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span class="visually-hidden">YouTube</span>
+                            </a>
+                        </li>
+
+                        <li class="list-social__item">
+                            <a href="https://www.tiktok.com/@mykingdomofficial?lang=vi-VN" class="link list-social__link">
+                                <svg class="icon icon-tiktok" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <g clip-path="url(#clip0_1749_8239)">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 32H8C5.8783 31.9999 3.84352 31.157 2.34325 29.6568C0.842977 28.1565 9.28184e-05 26.1217 0 24L0 8C9.28184e-05 5.8783 0.842977 3.84352 2.34325 2.34325C3.84352 0.842977 5.8783 9.28184e-05 8 0L24 0C26.1217 0 28.1566 0.842855 29.6569 2.34315C31.1571 3.84344 32 5.87827 32 8V24C32 26.1217 31.1571 28.1566 29.6569 29.6569C28.1566 31.1571 26.1217 32 24 32Z" fill="#2D0F1E"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15 9H24C25.1536 8.99993 26.2632 8.55683 27.0995 7.7622C27.9359 6.96758 28.4351 5.88213 28.4941 4.73C28.5532 3.57788 28.1675 2.44708 27.4168 1.57113C26.666 0.695185 25.6076 0.140991 24.46 0.023C24.307 0.0145 24.1555 0 24 0H8C5.8783 9.28184e-05 3.84352 0.842977 2.34325 2.34325C0.842977 3.84352 9.28184e-05 5.8783 0 8L0 24C9.28219e-05 20.0218 1.58048 16.2065 4.3935 13.3935C7.20653 10.5805 11.0218 9.00009 15 9Z" fill="#501432"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 16C22.4178 16 20.871 16.4692 19.5554 17.3482C18.2399 18.2273 17.2145 19.4767 16.609 20.9385C16.0035 22.4003 15.845 24.0089 16.1537 25.5607C16.4624 27.1126 17.2243 28.538 18.3431 29.6569C19.462 30.7757 20.8874 31.5376 22.4393 31.8463C23.9911 32.155 25.5997 31.9965 27.0615 31.391C28.5233 30.7855 29.7727 29.7602 30.6518 28.4446C31.5308 27.129 32 25.5823 32 24V8C32 10.1217 31.1572 12.1566 29.6569 13.6569C28.1566 15.1571 26.1217 16 24 16Z" fill="black"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9998 7C16.9998 6.86867 17.0256 6.73861 17.0758 6.61727C17.1261 6.49593 17.1997 6.38567 17.2926 6.29281C17.3855 6.19994 17.4957 6.12628 17.6171 6.07604C17.7384 6.0258 17.8685 5.99996 17.9998 6H20.1143C20.3455 6.00005 20.5696 6.08024 20.7484 6.22692C20.9272 6.37361 21.0496 6.57771 21.0948 6.8045C21.2758 7.70655 21.7638 8.51798 22.4758 9.10062C23.1878 9.68327 24.0798 10.0011 24.9998 10C25.1311 9.99996 25.2612 10.0258 25.3825 10.076C25.5039 10.1263 25.6141 10.1999 25.707 10.2928C25.7999 10.3857 25.8735 10.4959 25.9238 10.6173C25.974 10.7386 25.9998 10.8687 25.9998 11V13C25.9998 13.1313 25.974 13.2614 25.9238 13.3827C25.8735 13.5041 25.7999 13.6143 25.707 13.7072C25.6141 13.8001 25.5039 13.8737 25.3825 13.924C25.2612 13.9742 25.1311 14 24.9998 14C23.5953 14.0021 22.2152 13.6324 20.9998 12.9285V21C20.9997 22.3844 20.5891 23.7376 19.82 24.8887C19.0508 26.0397 17.9576 26.9368 16.6786 27.4666C15.3996 27.9963 13.9923 28.1349 12.6345 27.8648C11.2767 27.5947 10.0295 26.928 9.05064 25.9492C8.07174 24.9703 7.4051 23.7231 7.135 22.3653C6.86491 21.0075 7.0035 19.6002 7.53324 18.3212C8.06298 17.0422 8.96009 15.949 10.1111 15.1798C11.2622 14.4106 12.6154 14.0001 13.9998 14C14.1311 14 14.2612 14.0258 14.3825 14.076C14.5039 14.1263 14.6141 14.1999 14.707 14.2928C14.7999 14.3857 14.8735 14.4959 14.9238 14.6173C14.974 14.7386 14.9998 14.8687 14.9998 15V17C14.9998 17.1313 14.974 17.2614 14.9238 17.3827C14.8735 17.5041 14.7999 17.6143 14.707 17.7072C14.6141 17.8001 14.5039 17.8737 14.3825 17.924C14.2612 17.9742 14.1311 18 13.9998 18C13.4064 18 12.8263 18.1759 12.3328 18.5055C11.8394 18.8352 11.4548 19.3038 11.2277 19.852C11.0006 20.4002 10.9412 21.0035 11.0569 21.5855C11.1727 22.1675 11.4584 22.7021 11.878 23.1217C12.2977 23.5414 12.8323 23.8271 13.4143 23.9429C13.9963 24.0586 14.5996 23.9992 15.1478 23.7721C15.696 23.545 16.1646 23.1604 16.4943 22.6669C16.8239 22.1735 16.9998 21.5934 16.9998 21V7Z" fill="#FE2C55"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.9998 6C15.9998 5.86867 16.0256 5.73861 16.0758 5.61727C16.1261 5.49593 16.1997 5.38567 16.2926 5.29281C16.3855 5.19994 16.4957 5.12628 16.6171 5.07604C16.7384 5.0258 16.8685 4.99996 16.9998 5H19.1143C19.3455 5.00005 19.5696 5.08024 19.7484 5.22692C19.9272 5.37361 20.0496 5.57771 20.0948 5.8045C20.2758 6.70655 20.7638 7.51798 21.4758 8.10062C22.1878 8.68327 23.0798 9.0011 23.9998 9C24.1311 8.99996 24.2612 9.0258 24.3825 9.07604C24.5039 9.12628 24.6141 9.19994 24.707 9.29281C24.7999 9.38567 24.8735 9.49593 24.9238 9.61727C24.974 9.73861 24.9998 9.86867 24.9998 10V12C24.9998 12.1313 24.974 12.2614 24.9238 12.3827C24.8735 12.5041 24.7999 12.6143 24.707 12.7072C24.6141 12.8001 24.5039 12.8737 24.3825 12.924C24.2612 12.9742 24.1311 13 23.9998 13C22.5953 13.0021 21.2152 12.6324 19.9998 11.9285V20C19.9997 21.3844 19.5891 22.7376 18.82 23.8887C18.0508 25.0397 16.9576 25.9368 15.6786 26.4666C14.3996 26.9963 12.9923 27.1349 11.6345 26.8648C10.2767 26.5947 9.02954 25.928 8.05064 24.9492C7.07174 23.9703 6.4051 22.7231 6.135 21.3653C5.86491 20.0075 6.0035 18.6002 6.53324 17.3212C7.06298 16.0422 7.96009 14.949 9.11113 14.1798C10.2622 13.4106 11.6154 13.0001 12.9998 13C13.1311 13 13.2612 13.0258 13.3825 13.076C13.5039 13.1263 13.6141 13.1999 13.707 13.2928C13.7999 13.3857 13.8735 13.4959 13.9238 13.6173C13.974 13.7386 13.9998 13.8687 13.9998 14V16C13.9998 16.1313 13.974 16.2614 13.9238 16.3827C13.8735 16.5041 13.7999 16.6143 13.707 16.7072C13.6141 16.8001 13.5039 16.8737 13.3825 16.924C13.2612 16.9742 13.1311 17 12.9998 17C12.4064 17 11.8263 17.1759 11.3328 17.5055C10.8394 17.8352 10.4548 18.3038 10.2277 18.852C10.0006 19.4002 9.94117 20.0035 10.0569 20.5855C10.1727 21.1675 10.4584 21.7021 10.878 22.1217C11.2977 22.5414 11.8323 22.8271 12.4143 22.9429C12.9963 23.0586 13.5996 22.9992 14.1478 22.7721C14.696 22.545 15.1646 22.1604 15.4943 21.6669C15.8239 21.1735 15.9998 20.5934 15.9998 20V6Z" fill="#25F4EE"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4382 22.562C11.7788 23.1207 12.2928 23.5528 12.9017 23.7923C13.5106 24.0318 14.1812 24.0657 14.8112 23.8888C15.4412 23.7119 15.996 23.3338 16.3912 22.8123C16.7864 22.2908 17.0003 21.6544 17.0002 21V7C17.0002 6.86867 17.026 6.73861 17.0763 6.61727C17.1265 6.49593 17.2002 6.38567 17.293 6.29281C17.3859 6.19994 17.4962 6.12628 17.6175 6.07604C17.7388 6.0258 17.8689 5.99996 18.0002 6H20.1147C20.1232 6 20.1312 6 20.1392 6.0005C20.3743 6.9299 20.9379 7.7428 21.7257 8.289C22.0925 8.8177 22.5821 9.24956 23.1524 9.54756C23.7227 9.84556 24.3568 10.0008 25.0002 10V12C25.0003 12.1313 24.9744 12.2614 24.9242 12.3827C24.874 12.5041 24.8003 12.6143 24.7074 12.7072C24.6146 12.8001 24.5043 12.8737 24.383 12.924C24.2616 12.9742 24.1316 13 24.0002 13C22.5957 13.0021 21.2157 12.6324 20.0002 11.9285V20C20.0003 21.3242 19.6247 22.6213 18.9171 23.7406C18.2095 24.8599 17.1989 25.7555 16.0027 26.3235C14.8064 26.8915 13.4736 27.1085 12.159 26.9494C10.8444 26.7903 9.60188 26.2615 8.57573 25.4245C7.73888 24.3983 7.21024 23.1558 7.05118 21.8412C6.89212 20.5267 7.10917 19.1939 7.67713 17.9978C8.24508 16.8016 9.14065 15.791 10.2599 15.0834C11.3791 14.3758 12.6761 14.0001 14.0002 14V16C14.0003 16.1313 13.9744 16.2614 13.9242 16.3827C13.874 16.5041 13.8003 16.6143 13.7074 16.7072C13.6146 16.8001 13.5043 16.8737 13.383 16.924C13.2616 16.9742 13.1316 17 13.0002 17C12.346 17.0001 11.7096 17.214 11.1882 17.6093C10.6668 18.0045 10.2889 18.5593 10.112 19.1892C9.93506 19.8191 9.9689 20.4896 10.2083 21.0985C10.4478 21.7074 10.8797 22.2213 11.4382 22.562Z" fill="white"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_1749_8239">
+                                        <rect width="32" height="32" fill="white"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span class="visually-hidden">TikTok</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="article-template__hero-container">
+            </div>
+            <div id="MainContent-article" class="article-template__content rte" itemprop="articleBody">
+                <div class="toc-wrapper card shadow-sm">
+                    <div class="card-header fw-bold">
+                        NỘI DUNG BÀI VIẾT
+                    </div>
+
+                    <div class="list-group list-group-flush">
+                        <c:forEach items="${paragraphs}" var="pa">
+                            <a href="#section-${pa.displayIndex}"
+                               class="list-group-item list-group-item-action">
+                                 <h2>
+                                         ${pa.displayIndex}. ${pa.header}
+                                 </h2>
+                            </a>
+                        </c:forEach>
+                    </div>
+                </div>
+
+                <div data-content="">
+                    <c:forEach items="${paragraphs}" var="pa">
+
+                        <h2 id="section-${pa.displayIndex}"  >${pa.displayIndex}.${pa.header}</h2>
+                        <br>
+                        ${pa.description}
+                        <br>
+                        <div style="text-align: left;">
+                            <img src="${pa.imagePath}" alt="${pa.imageDescription}" style="float: none;">
+                        </div>
+                    </c:forEach>
+                </div>
+                <h2>Hết</h2>
+                <hr>
+            </div>
+
+            </article>
+            <!-- end -->
+        
+        </div>
+    </div>
+
+   <div class="container my-5">
+        <div class="section-title">Có thể bạn sẽ thích</div>
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946" class="card-img-top" alt="Europe Toy Fair">
+                        <div class="card-body">
+                            <div class="meta">02.11.2025 · BTV Nguyễn Yến</div>
+                            <h5 class="card-title">Europe toy fair – Lễ hội đồ chơi châu Âu 2025 Ưu đãi đến 40% tại Mykingdom</h5>
+                            <p class="card-text">Europe toy fair - Lễ hội đồ chơi Châu Âu 2025 đã chính thức đến MyKingdom! Từ 01/11 đến 30/11, bạn sẽ có cơ hội sở hữu những món đồ chơi đẳng cấp từ các thương hiệu uy tín...</p>
+                            <a href="#" class="read-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946" class="card-img-top" alt="Xe điều khiển Lamborghini">
+                        <div class="card-body">
+                            <div class="meta">01.11.2025 · BTV Nguyễn Yến</div>
+                            <h5 class="card-title">Ưu đãi độc quyền online dành riêng cho bạn! Mừng sinh nhật tháng 11</h5>
+                            <p class="card-text">Dịp sinh nhật tháng 11 này, MyKingdom mang đến cho bạn những ưu đãi độc quyền hấp dẫn cùng loạt sản phẩm hot trend, giúp bạn chọn lựa món đồ chơi chất lượng...</p>
+                            <a href="#" class="read-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="https://www.mykingdom.com.vn/cdn/shop/articles/lego-mega-sale_5a80f6e6-ed9a-4a0a-879d-7b2de1314c52.jpg?v=1760622737" class="card-img-top" alt="LEGO Mega Sale">
+                        <div class="card-body">
+                            <div class="meta">16.10.2025 · BTV Nguyễn Yến</div>
+                            <h5 class="card-title">LEGO MEGA SALE – Tiết kiệm đến 50% cho tín đồ lắp ráp!</h5>
+                            <p class="card-text">Nếu bạn là fan trung thành của LEGO, thì đợt sale siêu khủng này không thể bỏ lỡ! Từ 16 – 31/10/2025, hàng loạt sản phẩm LEGO chính hãng giảm đến 50%...</p>
+                            <a href="#" class="read-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+
+
+    <jsp:include page="/common/footer.jsp" />
+    <script src="js/index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../archive/js/handbook.js"></script>
+</body>
+</html>

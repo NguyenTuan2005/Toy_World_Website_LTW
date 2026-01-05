@@ -10,6 +10,8 @@ public class Handbook extends BaseModel {
     private String status;
     private Long categoryHandBookId;
 
+    public Handbook(){}
+
     public Handbook( Long userId, String title, Long views, String status, Long categoryHandBookId) {
         this.userId = userId;
         this.title = title;
@@ -43,7 +45,29 @@ public class Handbook extends BaseModel {
         return status;
     }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCategoryHandBookId(Long categoryHandBookId) {
+        this.categoryHandBookId = categoryHandBookId;
+    }
+
     public Long getCategoryHandBookId() {
         return categoryHandBookId;
     }
+
+
 }

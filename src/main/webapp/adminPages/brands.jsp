@@ -36,20 +36,40 @@
                 <div class="col-md-6">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
-                        <input
-                                type="text"
-                                class="search-input"
-                                placeholder="Tìm theo tên thương hiệu..."
-                        />
+                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/brands" method="post">
+                            <input
+                                    type="text"
+                                    id="searchInput"
+                                    class="search-input"
+                                    name="keyword"
+                                    placeholder="Nhập ID / Tên"
+                            />
+                        </form>
                     </div>
                 </div>
-                <div class="col-md-6 text-end mt-3 mt-md-0">
+                <div class="col-md-6 d-flex align-items-center justify-content-end">
+                    <c:if test="${find_brand != null || brandManages == null}">
+                        <nav>
+                            <ul class="pagination mb-0 me-2">
+                                <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/brands">Load lại bảng</a></li>
+                            </ul>
+                        </nav>
+                    </c:if>
                     <a href="${pageContext.request.contextPath}/admin/new-brand" class="btn-add fw-medium px-4 py-2 text-decoration-none">
                         <i class="fas fa-plus"></i> Thêm thương hiệu
                     </a>
                 </div>
             </div>
         </div>
+        <script>
+            document.getElementById("searchInput")
+                .addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // tránh reload không mong muốn
+                        document.getElementById("searchForm").submit();
+                    }
+                });
+        </script>
 
         <style>
             .status-active {
@@ -111,11 +131,6 @@
                             <td>${b.createdAt}</td>
                             <td>
                                 <div class="d-flex gap-2">
-
-
-                                    <button class="btn btn-link text-success text-decoration-none">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
 
                                     <form method="post" action="${pageContext.request.contextPath}/admin/hidden-brands"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
                                         <input type="hidden" name="brandId" value="${b.id}">

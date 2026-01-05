@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.controllers.admin;
 
 import com.n3.childrentoyweb.dao.Pagination;
+import com.n3.childrentoyweb.dto.BrandCriteria;
 import com.n3.childrentoyweb.dto.ManageBrandDTO;
 import com.n3.childrentoyweb.services.BrandService;
 import com.n3.childrentoyweb.services.CloudinaryService;
@@ -37,13 +38,28 @@ public class BrandController extends HttpServlet {
         req.getRequestDispatcher("/adminPages/brands.jsp").forward(req,resp);
     }
 
+    //FInd by brandCriteria
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Part filePart = req.getPart("image");
-        String url = this.cloudinaryService.upload(filePart);
-        System.out.println("url: "+url);
 
+        String keyword = req.getParameter("keyword");
+        System.out.println(" keyword : "+keyword);
+        BrandCriteria brandCriteria = new BrandCriteria(keyword);
+        System.out.println(brandCriteria);
+        this.findBrandsByCriteria(brandCriteria,req);
 
+        req.getRequestDispatcher("/adminPages/brands.jsp").forward(req,resp);
+    }
+
+    private void findBrandsByCriteria(BrandCriteria brandCriteria,HttpServletRequest request){
+        Pagination<ManageBrandDTO> manageBrandDTOPagination = this.brandService.findBrandsByCriteria(brandCriteria);
+
+        request.setAttribute("brandManages",manageBrandDTOPagination.getData());
+        request.setAttribute("currentPage",manageBrandDTOPagination.getCurrentPage());
+        request.setAttribute("totalElements",manageBrandDTOPagination.getTotalElements());
+        request.setAttribute("totalPages",manageBrandDTOPagination.getTotalPages());
+        request.setAttribute("pageSize",PAGE_SIZE);
+        request.setAttribute("find_brand","active");
     }
 
     public void addBrandIntoTable(int page, HttpServletRequest request){

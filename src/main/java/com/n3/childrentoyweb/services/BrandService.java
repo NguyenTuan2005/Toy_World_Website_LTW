@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.BrandDAO;
 import com.n3.childrentoyweb.dao.Pagination;
+import com.n3.childrentoyweb.dto.BrandCriteria;
 import com.n3.childrentoyweb.dto.ManageBrandDTO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.models.Brand;
@@ -41,5 +42,10 @@ public class BrandService {
 
     public void save(Brand brand) {
         this.brandDAO.save(brand);
+    }
+
+    public Pagination<ManageBrandDTO> findBrandsByCriteria(BrandCriteria brandCriteria) {
+        List<ManageBrandDTO> manageBrandDTOS = this.brandDAO.findBrandsByCriteria(brandCriteria);
+        return new Pagination<>(manageBrandDTOS,1, manageBrandDTOS.size(), 1);
     }
 }

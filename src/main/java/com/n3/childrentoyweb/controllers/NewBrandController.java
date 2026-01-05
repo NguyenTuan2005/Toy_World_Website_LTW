@@ -41,12 +41,20 @@ public class NewBrandController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String brandName = req.getParameter("brandName");
+        boolean isValidBrandName = brandName != null && !brandName.isEmpty();
+
+        if (isValidBrandName) {
+            req.setAttribute("notify", "Tên không hợp lệ");
+            req.getRequestDispatcher("/adminPages/new-brand.jsp").forward(req, resp);
+            return;
+        }
+        String url = "https://ccx.smu.edu.sg/sites/cmp.smu.edu.sg/files/perspectives/Brand.jpg";
         Part filePart = req.getPart("imgFile");
 
-        boolean isActive = req.getParameter("status").equals("active");
-        System.out.println("active: " + isActive);
+        if (filePart != null)
+            cloudinaryService.upload(filePart);
 
-       String url =  cloudinaryService.upload(filePart);
+        boolean isActive = req.getParameter("status").equals("active");
 
         Brand brand = new Brand();
         brand.setName(brandName);
@@ -55,7 +63,7 @@ public class NewBrandController extends HttpServlet {
 
         brandService.save(brand);
 
-        req.setAttribute("notify", "Đã cập nhật thành công");
+        req.setAttribute("notify", "Đã thêm thành công");
 
         req.getRequestDispatcher("/adminPages/new-brand.jsp").forward(req, resp);
     }

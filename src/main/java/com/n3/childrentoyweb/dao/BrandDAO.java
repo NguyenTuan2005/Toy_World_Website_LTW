@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.BrandCriteria;
 import com.n3.childrentoyweb.dto.ManageBrandDTO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.models.Brand;
@@ -109,4 +110,38 @@ public class BrandDAO  extends BaseDAO{
         );
     }
 
+    public List<ManageBrandDTO> findBrandsByCriteria(BrandCriteria brandCriteria) {
+        StringBuilder sql = new StringBuilder("""
+                       select b.id,
+                        b.name,
+                        b.img_path,
+                        b.created_at,
+                        b.is_active,
+                        (select count(p.id)
+                         from products p
+                         where p.brand_id = b.id) as quantity
+                 from brands b
+                 where 1 = 1
+                 """);
+        sql.append(brandCriteria.getIdForSql());
+        sql.append(brandCriteria.getNameForSql());
+        sql.append(" limit 10");
+        System.out.println(sql);
+
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .map((rs, ctx) -> {
+                            ManageBrandDTO manageBrandDTO = new ManageBrandDTO();
+                            manageBrandDTO.setId(rs.getLong("id"));
+                            manageBrandDTO.setName(rs.getString("name"));
+                            manageBrandDTO.setLogo(rs.getString("img_path"));
+                            manageBrandDTO.setCreatedAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("created_at")));
+                            manageBrandDTO.setStatus(rs.getBoolean("is_active"));
+                            manageBrandDTO.setQuantity(rs.getInt("quantity"));
+                            return manageBrandDTO;
+                        })
+                        .list()
+        );
+    }
 }

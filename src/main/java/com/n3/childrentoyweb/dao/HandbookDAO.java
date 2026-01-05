@@ -1,7 +1,11 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.HandBookCardDTO;
+import com.n3.childrentoyweb.dto.HandBookCriteria;
 import com.n3.childrentoyweb.models.Handbook;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
+
+import java.util.List;
 
 public class HandbookDAO extends BaseDAO{
 
@@ -60,6 +64,68 @@ public class HandbookDAO extends BaseDAO{
         );
     }
 
+    public Integer countAll(){
+        String sql = """
+                select  count(h.id) as total
+                from handbooks h
+                """;
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+                );
+    }
+
+    public Integer countAllHidden(){
+        String sql = """
+                select  count(h.id) as total
+                from handbooks h
+                where d.status = 'HIDDEN'
+                """;
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
 
 
+    public List<HandBookCardDTO> findHandbookCardByCriteria(HandBookCriteria handBookCriteria) {
+        StringBuilder  sql =new StringBuilder( """
+                select h.id,h.user_id,h.title,h.views, h.status,p.description,p.image_path
+                from handbooks h
+                join paragraphs p on h.id = p.handbook_id
+                where p.display_index = 1
+                """);
+        sql.append(handBookCriteria.getIdForSql());
+        sql.append(handBookCriteria.getIsOnDayForSql());
+        sql.append(handBookCriteria.getIsOnMonthForSql());
+        sql.append(handBookCriteria.getIsHiddenForSql());
+        sql.append(handBookCriteria.getTitleForSql());
+        sql.append(handBookCriteria.getUserIdForSql());
+        sql.append(handBookCriteria.getPaginationForSql());
+
+        System.out.println(sql);
+        return this.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                .map((rs,e)->{
+                    HandBookCardDTO handBookCardDTO = new HandBookCardDTO();
+                    handBookCardDTO.setId(rs.getLong("id"));
+                    handBookCardDTO.setUserId(rs.getLong("user_id"));
+                    handBookCardDTO.setViews(rs.getLong("views"));
+                    handBookCardDTO.setTitle(rs.getString("title"));
+                    handBookCardDTO.setTitle(rs.getString("status"));
+                    handBookCardDTO.setDescription(rs.getString("description"));
+                    handBookCardDTO.setFirstImage(rs.getString("image_path"));
+
+                    return handBookCardDTO;
+                }).list()
+        );
+    }
+
+    public static void main(String[] args) {
+
+        HandBookCriteria criteria = new HandBookCriteria();
+        criteria.setOnMonth(true);
+        System.out.println(new HandbookDAO().findHandbookCardByCriteria(criteria) );
+    }
 }

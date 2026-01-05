@@ -1,9 +1,7 @@
 package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.*;
-import com.n3.childrentoyweb.dto.HandbookDTO;
-import com.n3.childrentoyweb.dto.HandbookDetailDTO;
-import com.n3.childrentoyweb.dto.ParagraphDTO;
+import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Handbook;
 import com.n3.childrentoyweb.models.HandbookCategory;
 import com.n3.childrentoyweb.models.Paragraph;
@@ -122,4 +120,10 @@ public class HandBookService {
     public boolean updateHandbook(Handbook handbook){
         return  this.handbookDAO.updateHandbook(handbook) > 0;
     }
+
+    public Pagination<HandBookCardDTO> findHandbookCardByCriteria(HandBookCriteria handBookCriteria){
+        List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
+        return new Pagination<>(handBookCardDTOS,1,handBookCardDTOS.size(),0);
+    }
+
 }

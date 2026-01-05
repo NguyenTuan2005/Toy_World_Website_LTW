@@ -64,12 +64,28 @@
                 border: 1px solid #dc3545;
             }
 
+            .img-thumbnail {
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            .img-thumbnail:hover {
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            .zoomed {
+                width: 400px !important;
+                height: 200px !important;
+                transform: scale(1.05);
+            }
+
         </style>
 
         <div class="table-container">
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Ảnh Logo</th>
                     <th>Tên Thương Hiệu</th>
                     <th>Số Lượng Sản Phẩm</th>
@@ -81,6 +97,7 @@
                 <tbody>
                     <c:forEach var="b" items="${brandManages}">
                         <tr>
+                            <td>${b.id}</td>
                             <td>
                                 <img src="${b.logo}"  alt="Ninjago" class="img-thumbnail"  style="width: 200px; height: 100px; object-fit: cover;"  >
                             </td>
@@ -155,7 +172,15 @@
             </div>
         </div>
     </div>
+<%--    zooom --%>
+    <script>
+        document.querySelectorAll('.img-thumbnail').forEach(img => {
+            img.addEventListener('click', () => {
+                img.classList.toggle('zoomed');
+            });
+        });
 
+    </script>
     <div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="brandModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

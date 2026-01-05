@@ -54,7 +54,7 @@ public class ParagraphDTO {
                 "index=" + index +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", imageBase64='" + imageBase64.length() + '\'' +
+                ", imageBase64='" + imageBase64 + '\'' +
                 '}';
     }
 }

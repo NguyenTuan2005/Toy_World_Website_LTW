@@ -21,13 +21,14 @@ public class HandBookDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        long handbookId = Long.parseLong(req.getParameter("id"));
         this.displayHandbookDetail(req);
         req.getRequestDispatcher("/handbook-detail.jsp").forward(req,resp);
     }
 
     private void displayHandbookDetail(HttpServletRequest request){
-        HandbookDetailDTO handbookDetailDTO = this.handBookService.findHandbookDetailById(4);
+        long handbookId = Long.parseLong(request.getParameter("id"));
+        HandbookDetailDTO handbookDetailDTO = this.handBookService.findHandbookDetailById(handbookId);
 
         request.setAttribute("title",handbookDetailDTO.getTitle());
         request.setAttribute("createdAt",handbookDetailDTO.getCreated());

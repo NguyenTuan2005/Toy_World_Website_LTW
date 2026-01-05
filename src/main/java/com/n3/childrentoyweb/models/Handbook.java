@@ -61,6 +61,10 @@ public class Handbook extends BaseModel {
         this.status = status;
     }
 
+    public void revertStatus(){
+        this.status = ( "POSTED".equals(this.status) ? "HIDDEN":"POSTED");
+    }
+
     public void setCategoryHandBookId(Long categoryHandBookId) {
         this.categoryHandBookId = categoryHandBookId;
     }
@@ -69,5 +73,17 @@ public class Handbook extends BaseModel {
         return categoryHandBookId;
     }
 
-
+    @Override
+    public String toString() {
+        return "Handbook{" +
+                "userId=" + userId +
+                ", title='" + title + '\'' +
+                ", views=" + views +
+                ", status='" + status + '\'' +
+                ", categoryHandBookId=" + categoryHandBookId +
+                ", id=" + id +
+                ", isActive=" + isActive +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

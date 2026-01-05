@@ -9,6 +9,7 @@ public class HandbookDetailDTO {
     private long id;
     private String title;
     private LocalDateTime created;
+    private String status;
 
     private long userId;
     private String fullName;
@@ -17,6 +18,15 @@ public class HandbookDetailDTO {
     private String categoryName;
 
     private List<Paragraph> paragraphs;
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public long getId() {
         return id;

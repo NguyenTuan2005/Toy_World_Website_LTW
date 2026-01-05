@@ -10,10 +10,11 @@ import com.n3.childrentoyweb.models.Paragraph;
 import com.n3.childrentoyweb.models.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+
 
 public class HandBookService {
     private HandbookDAO handbookDAO;
@@ -90,6 +91,7 @@ public class HandBookService {
                         handbookDetailDTO.setId(handbook.getId());
                         handbookDetailDTO.setTitle(handbook.getTitle());
                         handbookDetailDTO.setCreated(handbook.getCreatedAt());
+                        handbookDetailDTO.setStatus(handbook.getStatus());
 
                         handbookDetailDTO.setUserId(user.getId());
                         handbookDetailDTO.setFullName(user.getFirstName() + " "+user.getLastName());
@@ -111,5 +113,13 @@ public class HandBookService {
     public static void main(String[] args) {
         HandBookService handBookService = new HandBookService();
         System.out.println(handBookService.findHandbookDetailById(4));
+    }
+
+    public Optional<Handbook> findById(long handbookId) {
+        return Optional.ofNullable(this.handbookDAO.findById(handbookId));
+    }
+
+    public boolean updateHandbook(Handbook handbook){
+        return  this.handbookDAO.updateHandbook(handbook) > 0;
     }
 }

@@ -74,7 +74,7 @@ public class NewHandbookController extends HttpServlet {
 //            Long postedUserId = this.getUserIdFromSession(request);
             handbookDTO.setPostedUserId(1);
 
-            handbookDTO.posted();
+            handbookDTO.hidden();
             handbookDTO.setCategoryId(categoryId);
 
             System.out.println(handbookDTO);

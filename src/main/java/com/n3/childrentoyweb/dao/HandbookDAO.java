@@ -44,4 +44,22 @@ public class HandbookDAO extends BaseDAO{
                         }).one()
         );
     }
+
+    public int updateHandbook(Handbook handbook) {
+        String sql = """
+                update handbooks
+                set  user_id =:userId, title =:title, status =:status
+                where id =:id
+                """;
+        return this.getJdbi().withHandle(handle -> handle.createUpdate(sql)
+                .bind("id",handbook.getId())
+                .bind("userId",handbook.getUserId())
+                .bind("title",handbook.getTitle())
+                .bind("status",handbook.getStatus())
+                .execute()
+        );
+    }
+
+
+
 }

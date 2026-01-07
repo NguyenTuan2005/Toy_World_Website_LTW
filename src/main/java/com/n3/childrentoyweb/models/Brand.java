@@ -38,4 +38,15 @@ public class Brand extends BaseModel {
     }
 
     public void setImgPath(String imgPath) {this.imgPath = imgPath;}
+
+    @Override
+    public String toString() {
+        return "Brand{" +
+                "name='" + name + '\'' +
+                ", imgPath='" + imgPath + '\'' +
+                ", id=" + id +
+                ", isActive=" + isActive +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

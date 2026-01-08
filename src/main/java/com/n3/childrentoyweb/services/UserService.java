@@ -25,6 +25,7 @@ public class UserService {
         this.userDAO = new UserDAO();
         this.roleDAO = new RoleDAO();
         this.locationDAO = new LocationDAO();
+        this.userRoleDAO = new UserRoleDAO();
     }
 
     public void isEmailExist(String email) {
@@ -44,9 +45,9 @@ public class UserService {
         return new Pagination<ManageUserDTO>(manageUserDTOS, page, totalElements, totalPages);
     }
 
-    public void save(User user) {
-        long userId = userDAO.saveAndReturnId(user);
-        roleDAO.assignRoleToUser(userId, RoleEnum.ROLE_USER.getRoleId());
+    public void save(User user) throws ObjectNotFoundException {
+        long userId = userDAO.save(user);
+        roleDAO.assignRoleToUser(userId, userRoleDAO.findId(RoleEnum.ROLE_USER.getRoleName()));
     }
 
 

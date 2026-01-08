@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.controllers.auth;
 
 import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.exception.OTPInvalidException;
+import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.CacheService;
 import com.n3.childrentoyweb.services.UserService;
@@ -50,7 +51,7 @@ public class VerifyOtpController extends HttpServlet {
             req.getSession().removeAttribute("pendingUser");
             resp.sendRedirect(req.getContextPath() + "/login");
 
-        } catch (OTPInvalidException e) {
+        } catch (OTPInvalidException | ObjectNotFoundException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher( "/common/verify-otp.jsp").forward(req, resp);
         } catch (DataInvalidException e) {

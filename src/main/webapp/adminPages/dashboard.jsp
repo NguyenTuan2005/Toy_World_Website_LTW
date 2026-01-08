@@ -30,13 +30,13 @@
         <!-- Header -->
         <div class="dashboard-header">
             <h1>Dashboard</h1>
-            <p>Chào mừng trở lại! Đây là tổng quan về cửa hàng của bạn.</p>
+            <p>Chào mừng trở lại! Đây là tổng quan về cửa hàng của bạn trong tháng hiện tại.</p>
         </div>
 
         <!-- Stats Cards -->
         <div class="stats-grid">
             <!-- Revenue -->
-            <div class="stat-card primary">
+            <div class="stat-card success">
                 <div class="stat-card-header">
                     <div>
                         <div class="stat-value">
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <!-- Order -->
-            <div class="stat-card warning">
+            <div class="stat-card primary">
                 <div class="stat-card-header">
                     <div>
                         <div class="stat-value">${totalOrderThisMonth}</div>
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <!-- User -->
-            <div class="stat-card info">
+            <div class="stat-card primary">
                 <div class="stat-card-header">
                     <div>
                         <div class="stat-value">${totalUserThisMonth}</div>
@@ -111,18 +111,18 @@
             </div>
         </div>
 
-        <!-- Charts Row -->
-        <div class="charts-row">
-            <!-- Revenue Chart -->
+        <!-- Charts -->
+        <div class="charts-row" style="grid-template-columns: 1fr 1fr;">
+            <!-- Revenue -->
             <div class="chart-card">
                 <div class="chart-header">
                     <h2>Doanh thu theo thời gian</h2>
                     <div class="chart-actions">
-                        <select class="form-select form-select-sm" style="width: auto;">
-                            <option>7 ngày qua</option>
-                            <option>30 ngày qua</option>
-                            <option>3 tháng qua</option>
-                            <option>Năm nay</option>
+                        <select class="form-select form-select-sm" style="width: auto;" onchange="loadRevenue(this.value)">
+                            <option value="7">7 ngày qua</option>
+                            <option value="30">30 ngày qua</option>
+                            <option value="3month" >3 tháng qua</option>
+                            <option value="1year" >1 năm qua</option>
                         </select>
                     </div>
                 </div>
@@ -131,98 +131,37 @@
                 </div>
             </div>
 
-            <!-- Top Products -->
-            <div class="chart-card">
-                <div class="chart-header">
-                    <h2>Sản phẩm bán chạy</h2>
-                    <button class="btn btn-sm btn-outline-secondary">
-                        <i class="bi bi-three-dots"></i>
-                    </button>
-                </div>
-                <ul class="top-products-list">
-                    <li class="product-item">
-                        <div class="product-info">
-                            <div class="product-rank">1</div>
-                            <div class="product-details">
-                                <h6>Xe điều khiển từ xa</h6>
-                                <p>Đồ chơi điện tử</p>
-                            </div>
-                        </div>
-                        <div class="product-sales">
-                            <strong>1,234</strong>
-                            <span>đã bán</span>
-                        </div>
-                    </li>
-                    <li class="product-item">
-                        <div class="product-info">
-                            <div class="product-rank">2</div>
-                            <div class="product-details">
-                                <h6>Bộ Lego Classic</h6>
-                                <p>Lắp ráp sáng tạo</p>
-                            </div>
-                        </div>
-                        <div class="product-sales">
-                            <strong>987</strong>
-                            <span>đã bán</span>
-                        </div>
-                    </li>
-                    <li class="product-item">
-                        <div class="product-info">
-                            <div class="product-rank">3</div>
-                            <div class="product-details">
-                                <h6>Búp bê Barbie</h6>
-                                <p>Búp bê thời trang</p>
-                            </div>
-                        </div>
-                        <div class="product-sales">
-                            <strong>856</strong>
-                            <span>đã bán</span>
-                        </div>
-                    </li>
-                    <li class="product-item">
-                        <div class="product-info">
-                            <div class="product-rank">4</div>
-                            <div class="product-details">
-                                <h6>Robot biến hình</h6>
-                                <p>Đồ chơi siêu nhân</p>
-                            </div>
-                        </div>
-                        <div class="product-sales">
-                            <strong>745</strong>
-                            <span>đã bán</span>
-                        </div>
-                    </li>
-                    <li class="product-item">
-                        <div class="product-info">
-                            <div class="product-rank">5</div>
-                            <div class="product-details">
-                                <h6>Bộ đồ chơi bác sĩ</h6>
-                                <p>Đồ chơi giáo dục</p>
-                            </div>
-                        </div>
-                        <div class="product-sales">
-                            <strong>623</strong>
-                            <span>đã bán</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Additional Charts Row -->
-        <div class="charts-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 32px;">
             <!-- Orders Over Time -->
             <div class="chart-card">
                 <div class="chart-header">
                     <h2>Số đơn hàng theo thời gian</h2>
-                    <select class="form-select form-select-sm" style="width: auto;">
-                        <option>7 ngày qua</option>
-                        <option>30 ngày qua</option>
-                        <option>3 tháng qua</option>
+                    <select class="form-select form-select-sm" style="width: auto;" onchange="loadOrdersOverTime(this.value)">
+                        <option value="7">7 ngày qua</option>
+                        <option value="30">30 ngày qua</option>
+                        <option value="3month" >3 tháng qua</option>
+                        <option value="1year" >1 năm qua</option>
                     </select>
                 </div>
                 <div style="height: 280px;">
-                    <canvas id="ordersTimeChart"></canvas>
+                    <canvas id="ordersOverTimeChart"></canvas>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="charts-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 32px;">
+            <!-- Inventory Status -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Top sản phẩm tồn kho</h2>
+                    <select class="form-select form-select-sm" style="width: auto;" onchange="loadProductStock(this.value)">
+                        <option value="desc">Tồn kho cao nhất</option>
+                        <option value="asc">Tồn kho thấp nhất</option>
+                    </select>
+                </div>
+                <div style="height: 300px;">
+                    <canvas id="productStockChart"></canvas>
                 </div>
             </div>
 
@@ -230,9 +169,12 @@
             <div class="chart-card">
                 <div class="chart-header">
                     <h2>Trạng thái đơn hàng</h2>
-                    <button class="btn btn-sm btn-outline-secondary">
-                        <i class="bi bi-three-dots"></i>
-                    </button>
+                    <select class="form-select form-select-sm" style="width: auto;" onchange="loadProductStock(this.value)">
+                        <option value="7">7 ngày qua</option>
+                        <option value="30">30 ngày qua</option>
+                        <option value="3month" >3 tháng qua</option>
+                        <option value="1year" >1 năm qua</option>
+                    </select>
                 </div>
                 <div style="height: 280px;">
                     <canvas id="orderStatusChart"></canvas>
@@ -240,54 +182,6 @@
             </div>
         </div>
 
-        <!-- Customer & Inventory Row -->
-        <div class="charts-row" style="grid-template-columns: 1fr 1fr;">
-            <!-- Customer Analysis -->
-            <div class="chart-card">
-                <div class="chart-header">
-                    <h2>Phân tích khách hàng</h2>
-                    <select class="form-select form-select-sm" style="width: auto;">
-                        <option>Tháng này</option>
-                        <option>Quý này</option>
-                        <option>Năm nay</option>
-                    </select>
-                </div>
-                <div style="height: 300px;">
-                    <canvas id="customerChart"></canvas>
-                </div>
-                <div class="customer-stats">
-                    <div class="customer-stat-item">
-                        <div class="customer-stat-label">
-                            <span class="stat-dot" style="background: #0d6efd;"></span>
-                            Khách hàng mới
-                        </div>
-                        <strong>2,456</strong>
-                    </div>
-                    <div class="customer-stat-item">
-                        <div class="customer-stat-label">
-                            <span class="stat-dot" style="background: #198754;"></span>
-                            Khách hàng quay lại
-                        </div>
-                        <strong>6,086</strong>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Inventory Status -->
-            <div class="chart-card">
-                <div class="chart-header">
-                    <h2>Top sản phẩm tồn kho</h2>
-                    <select class="form-select form-select-sm" style="width: auto;">
-                        <option>Tồn kho cao nhất</option>
-                        <option>Tồn kho thấp nhất</option>
-                        <option>Cần nhập thêm</option>
-                    </select>
-                </div>
-                <div style="height: 300px;">
-                    <canvas id="inventoryChart"></canvas>
-                </div>
-            </div>
-        </div>
     </div>
 
 </main>
@@ -297,283 +191,273 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
     // Revenue Chart
-    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-    const gradient = revenueCtx.createLinearGradient(0, 0, 0, 300);
-    gradient.addColorStop(0, 'rgba(13, 110, 253, 0.2)');
-    gradient.addColorStop(1, 'rgba(13, 110, 253, 0)');
+    let revenueChart;
 
-    new Chart(revenueCtx, {
-        type: 'line',
-        data: {
-            labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'CN'],
-            datasets: [{
-                label: 'Doanh thu (triệu đồng)',
-                data: [12, 15, 13, 18, 16, 22, 20],
-                borderColor: '#0d6efd',
-                backgroundColor: gradient,
-                borderWidth: 2,
-                tension: 0.4,
-                fill: true,
-                pointRadius: 4,
-                pointBackgroundColor: '#0d6efd',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-                pointHoverRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: 2.5,
-            plugins: {
-                legend: {
-                    display: false
+    function loadRevenue(range) {
+        fetch(`${pageContext.request.contextPath}/api/orders/analytics?metric=revenue&range=` + range)
+            .then(res => res.json())
+            .then(data => {
+                const labels = data.map(d => d.label);
+                const values = data.map(d => d.value);
+                renderRevenueChart(labels, values);
+            })
+            .catch(err => console.error(err));
+    }
+
+    function renderRevenueChart(labels, values) {
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+
+        if (!revenueChart) {
+            revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Doanh thu (VNĐ)',
+                        data: values,
+                        borderColor: '#0d6efd',
+                        backgroundColor: 'rgba(231,243,255,1)',
+                        borderWidth: 3,
+                        tension: 0.35,
+                        fill: true,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        pointBackgroundColor: '#0d6efd'
+                    }]
                 },
-                tooltip: {
-                    backgroundColor: '#fff',
-                    titleColor: '#1a1a1a',
-                    bodyColor: '#6c757d',
-                    borderColor: '#e9ecef',
-                    borderWidth: 1,
-                    padding: 12,
-                    displayColors: false,
-                    callbacks: {
-                        label: function(context) {
-                            return context.parsed.y + ' triệu đồng';
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#fff',
+                            titleColor: '#1a1a1a',
+                            bodyColor: '#6c757d',
+                            borderColor: '#e9ecef',
+                            padding: 12,
+                            callbacks: {
+                                label: ctx =>
+                                    ctx.raw.toLocaleString('vi-VN') + ' đ'
+                            }
                         }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        borderDash: [5, 5],
-                        color: '#f1f3f5'
                     },
-                    ticks: {
-                        callback: function(value) {
-                            return value + 'M';
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#6b7280' },
+                            title: { display: true, text: 'Thời gian' }
                         },
-                        color: '#6c757d'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e5e7eb' },
+                            ticks: {
+                                color: '#6b7280',
+                                callback: v => v.toLocaleString('vi-VN')
+                            },
+                            title: {
+                                display: true,
+                                text: 'Doanh thu (VNĐ)'
+                            }
+                        }
                     },
-                    ticks: {
-                        color: '#6c757d'
+                    animation: {
+                        duration: 900,
+                        easing: 'easeOutQuart'
                     }
                 }
-            }
+            });
+        } else {
+            revenueChart.data.labels = labels;
+            revenueChart.data.datasets[0].data = values;
+            revenueChart.update();
         }
-    });
+    }
 
-    // Inventory Chart
-    const inventoryCtx = document.getElementById('inventoryChart').getContext('2d');
-    new Chart(inventoryCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Xe điều khiển', 'Lego Classic', 'Búp bê Barbie', 'Robot biến hình', 'Bộ đồ bác sĩ', 'Xe đẩy búp bê', 'Bộ đồ nhà bếp', 'Gấu bông Teddy'],
-            datasets: [{
-                label: 'Số lượng tồn kho',
-                data: [456, 389, 367, 342, 298, 276, 245, 223],
-                backgroundColor: [
-                    '#0d6efd',
-                    '#198754',
-                    '#fd7e14',
-                    '#0dcaf0',
-                    '#6f42c1',
-                    '#d63384',
-                    '#ffc107',
-                    '#20c997'
-                ],
-                borderRadius: 6,
-                borderSkipped: false
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: 1.5,
-            plugins: {
-                legend: {
-                    display: false
+    // Product Stock Chart
+    let productStockChart;
+
+    function loadProductStock(order) {
+        fetch(`${pageContext.request.contextPath}/api/products/analytics?order=` + order)
+            .then(res => res.json())
+            .then(data => {
+                const labels = data.map(d => d.name);
+                const values = data.map(d => d.quantity);
+                renderProductStockChart(labels, values);
+            })
+            .catch(err => console.error(err));
+    }
+
+    function renderProductStockChart(labels, values) {
+        const ctx = document.getElementById('productStockChart').getContext('2d');
+
+        if (!productStockChart) {
+            productStockChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số lượng tồn kho',
+                        data: values,
+                        backgroundColor: [
+                            '#0d6efd',
+                            '#198754',
+                            '#fd7e14',
+                            '#0dcaf0',
+                            '#6f42c1',
+                            '#d63384',
+                            '#ffc107',
+                            '#20c997'
+                        ],
+                        borderRadius: 6,
+                        borderSkipped: false
+                    }]
                 },
-                tooltip: {
-                    backgroundColor: '#fff',
-                    titleColor: '#1a1a1a',
-                    bodyColor: '#6c757d',
-                    borderColor: '#e9ecef',
-                    borderWidth: 1,
-                    padding: 12,
-                    displayColors: false,
-                    callbacks: {
-                        label: function(context) {
-                            return context.parsed.x + ' sản phẩm';
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: 1.5,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#fff',
+                            titleColor: '#1a1a1a',
+                            bodyColor: '#6c757d',
+                            borderColor: '#e9ecef',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x + ' sản phẩm';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                borderDash: [5, 5],
+                                color: '#f1f3f5'
+                            },
+                            ticks: {
+                                color: '#6c757d'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6c757d',
+                                font: {
+                                    size: 12
+                                }
+                            }
                         }
                     }
                 }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    grid: {
-                        borderDash: [5, 5],
-                        color: '#f1f3f5'
-                    },
-                    ticks: {
-                        color: '#6c757d'
-                    }
-                },
-                y: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: '#6c757d',
-                        font: {
-                            size: 12
-                        }
-                    }
-                }
-            }
+            });
+        } else {
+            productStockChart.data.labels = labels;
+            productStockChart.data.datasets[0].data = values;
+            productStockChart.update();
         }
-    });
-
-    // Customer Analysis Chart
-    const customerCtx = document.getElementById('customerChart').getContext('2d');
-    new Chart(customerCtx, {
-        type: 'bar',
-        data: {
-            labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
-            datasets: [
-                {
-                    label: 'Khách hàng mới',
-                    data: [120, 150, 180, 220, 190, 210, 240, 260, 230, 250, 280, 300],
-                    backgroundColor: '#0d6efd',
-                    borderRadius: 6,
-                    borderSkipped: false
-                },
-                {
-                    label: 'Khách hàng quay lại',
-                    data: [300, 320, 340, 380, 360, 390, 420, 450, 430, 460, 490, 520],
-                    backgroundColor: '#198754',
-                    borderRadius: 6,
-                    borderSkipped: false
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: 2,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: '#fff',
-                    titleColor: '#1a1a1a',
-                    bodyColor: '#6c757d',
-                    borderColor: '#e9ecef',
-                    borderWidth: 1,
-                    padding: 12
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        borderDash: [5, 5],
-                        color: '#f1f3f5'
-                    },
-                    ticks: {
-                        color: '#6c757d'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: '#6c757d'
-                    }
-                }
-            }
-        }
-    });
+    }
 
     // Orders Over Time Chart
-    const ordersTimeCtx = document.getElementById('ordersTimeChart').getContext('2d');
-    new Chart(ordersTimeCtx, {
-        type: 'line',
-        data: {
-            labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'CN'],
-            datasets: [{
-                label: 'Số đơn hàng',
-                data: [45, 52, 48, 65, 58, 72, 68],
-                borderColor: '#198754',
-                backgroundColor: 'rgba(25, 135, 84, 0.1)',
-                borderWidth: 2,
-                tension: 0.4,
-                fill: true,
-                pointRadius: 4,
-                pointBackgroundColor: '#198754',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-                pointHoverRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: 2.2,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: '#fff',
-                    titleColor: '#1a1a1a',
-                    bodyColor: '#6c757d',
-                    borderColor: '#e9ecef',
-                    borderWidth: 1,
-                    padding: 12,
-                    displayColors: false,
-                    callbacks: {
-                        label: function(context) {
-                            return context.parsed.y + ' đơn hàng';
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        borderDash: [5, 5],
-                        color: '#f1f3f5'
-                    },
-                    ticks: {
-                        color: '#6c757d'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: '#6c757d'
-                    }
-                }
-            }
-        }
-    });
+    let ordersOverTimeChart;
 
-    // Order Status Chart (keeping this one)
+    function loadOrdersOverTime(range) {
+        fetch(`${pageContext.request.contextPath}/api/orders/analytics?metric=order&range=` + range)
+            .then(res => res.json())
+            .then(data => {
+                const labels = data.map(d => d.label);
+                const values = data.map(d => d.value);
+                renderOrdersOverTimeChart(labels, values);
+            })
+            .catch(err => console.error(err));
+    }
+
+    function renderOrdersOverTimeChart(labels, values) {
+        const ctx = document.getElementById('ordersOverTimeChart').getContext('2d');
+
+        if (!ordersOverTimeChart) {
+            ordersOverTimeChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số đơn',
+                        data: values,
+                        borderColor: '#198754',
+                        backgroundColor: 'rgba(231,243,255,1)',
+                        borderWidth: 3,
+                        tension: 0.35,
+                        fill: true,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        pointBackgroundColor: '#198754',
+                        pointBorderColor: '#fff',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#fff',
+                            titleColor: '#1a1a1a',
+                            bodyColor: '#6c757d',
+                            borderColor: '#e9ecef',
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + ' đơn hàng';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#6b7280' },
+                            title: { display: true, text: 'Thời gian' }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e5e7eb' },
+                            ticks: {
+                                color: '#6b7280',
+                                callback: v => v.toLocaleString('vi-VN')
+                            },
+                            title: {
+                                display: true,
+                                text: 'Số đơn'
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 900,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        } else {
+            ordersOverTimeChart.data.labels = labels;
+            ordersOverTimeChart.data.datasets[0].data = values;
+            ordersOverTimeChart.update();
+        }
+    }
+
+
+
+    // Order Status Chart
     const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
     new Chart(orderStatusCtx, {
         type: 'bar',
@@ -633,6 +517,12 @@
                 }
             }
         }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadRevenue(7);// 7 ngày
+        loadOrdersOverTime(7);
+        loadProductStock("desc");
     });
 </script>
 </body>

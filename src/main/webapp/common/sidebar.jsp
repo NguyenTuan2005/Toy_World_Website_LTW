@@ -119,7 +119,6 @@
             <a href="${pageContext.request.contextPath}/admin/orders" class="<%= "orders".equals(active) ? "active" : "" %> menu-link d-flex align-items-center text-danger text-decoration-none p-3 rounded-3 fw-medium transition-all">
                 <span class="me-3 fs-5"><i class="fas fa-shopping-cart"></i></span>
                 <span class="flex-grow-1">Quản lý đơn hàng</span>
-                <span class="badge bg-danger rounded-pill">5</span>
             </a>
         </li>
 

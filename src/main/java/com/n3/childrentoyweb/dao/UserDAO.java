@@ -83,9 +83,14 @@ public class UserDAO extends BaseDAO {
 
     public int countAllInMonth(int year, int month){
         String sql = """
-                SELECT COUNT(*)
-                FROM users
-                WHERE YEAR(created_at) = :year AND MONTH(created_at) = :month AND is_active = 1;
+                SELECT COUNT(u.id)
+                FROM users u
+                JOIN user_roles ur ON u.id = ur.user_id 
+                                    AND ur.is_active = 1
+                WHERE YEAR(u.created_at) = :year 
+                    AND MONTH(u.created_at) = :month 
+                    AND u.is_active = 1
+                    AND ur.role_id = 1;
                 """;
 
         return this.getJdbi().withHandle(handle ->

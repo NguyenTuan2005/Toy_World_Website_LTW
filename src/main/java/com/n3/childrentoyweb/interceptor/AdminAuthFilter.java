@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebFilter(urlPatterns = {"/admin/*"})
+@WebFilter(urlPatterns = {"/admin/*", "/api/*"})
 public class AdminAuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)

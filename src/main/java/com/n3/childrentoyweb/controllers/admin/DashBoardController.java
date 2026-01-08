@@ -2,7 +2,7 @@ package com.n3.childrentoyweb.controllers.admin;
 
 import com.n3.childrentoyweb.services.OrderService;
 import com.n3.childrentoyweb.services.ProductService;
-import com.n3.childrentoyweb.services.StatisticsService;
+import com.n3.childrentoyweb.services.StatisticService;
 import com.n3.childrentoyweb.services.UserService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -17,7 +17,7 @@ public class DashBoardController extends HttpServlet {
     private UserService userService;
     private ProductService productService;
     private OrderService orderService;
-    private StatisticsService statisticsService;
+    private StatisticService statisticService;
 
     @Override
     public void init() throws ServletException {
@@ -25,7 +25,7 @@ public class DashBoardController extends HttpServlet {
         userService = new UserService();
         productService = new ProductService();
         orderService = new OrderService();
-        statisticsService = new StatisticsService();
+        statisticService = new StatisticService();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DashBoardController extends HttpServlet {
         request.setAttribute("totalUserThisMonth", totalUserThisMonth);
 
 
-        Map<String, Double> stat = statisticsService.getGrowthRates(thisYear, thisMonth);
+        Map<String, Double> stat = statisticService.getGrowthRates(thisYear, thisMonth);
 
         request.setAttribute("revenueGrowth", stat.get("revenueGrowth"));
         request.setAttribute("orderGrowth", stat.get("orderGrowth"));

@@ -3,7 +3,7 @@
     <div class="row align-items-start">
         <div class="col">
             <div class="hstack gap-3">
-                <img   src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png" alt="Logo" onclick="window.location.href='home-page.html'" style="width: 190px; height: 50px">
+                <img   src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png" alt="Logo" onclick="window.location.href='home-page.html'" style="width: 200px; height: 50px">
                 <div class="w-100">
                     <p class="mb-3 fw-bold">Tham gia ngay để nhận về tay thông tin ưu đãi và hữu ích</p>
                     <form id="footer-subscribe-form" onsubmit="return handleFooterSubscribe(event)" novalidate>

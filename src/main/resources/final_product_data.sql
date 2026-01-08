@@ -1814,3 +1814,18 @@ VALUES
 INSERT INTO `products` (`id`, `price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
 VALUES
     (206, 299000, NULL, 6, 'Thú Nhồi Bông CatNap POPPY PLAYTIME CP7751', JSON_OBJECT('Chủ đề', 'POPPY PLAYTIME PLUSH', 'Mã sản phẩm', 'CP7751', 'Tuổi', '6 tuổi trở lên', 'Thương hiệu', 'POPPY PLAYTIME', 'Xuất xứ thương hiệu', 'Mỹ', 'Giới tính', 'Boy', 'Nơi sản xuất', 'Trung Quốc'), 'Đồ Chơi Thú Nhồi Bông CatNap POPPY PLAYTIME CP7751...', 37, 35);
+
+UPDATE `products`
+SET `created_at` = CASE
+                       WHEN RAND() < 0.5 THEN
+                           CASE
+                               WHEN RAND() < 0.5 THEN
+                                   FROM_UNIXTIME(UNIX_TIMESTAMP('2025-12-01 00:00:00') + FLOOR(RAND() * 2678400))
+                               ELSE
+                                   FROM_UNIXTIME(UNIX_TIMESTAMP('2026-01-01 00:00:00') + FLOOR(RAND() * 2678400))
+                               END
+
+                       ELSE
+                           FROM_UNIXTIME(UNIX_TIMESTAMP('2025-01-01 00:00:00') + FLOOR(RAND() * 28944000))
+    END
+WHERE `id` BETWEEN 1 AND 206;

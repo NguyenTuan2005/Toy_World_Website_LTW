@@ -40,7 +40,7 @@ body {
     padding: 0;
 }
 .product-title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     color: #333;
     margin-bottom: 15px;
@@ -48,11 +48,7 @@ body {
 .brand-badge {
     display: inline-block;
     color: #666;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-.price-section {
-    margin: 20px 0;
+    font-size: 16px;
 }
 .price-current {
     font-size: 28px;
@@ -70,7 +66,7 @@ body {
     color: white;
     padding: 4px 12px;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 16px;
     margin-left: 10px;
 }
 .features-list {
@@ -81,7 +77,7 @@ body {
 .features-list li {
     padding: 8px 0;
     color: #333;
-    font-size: 14px;
+    font-size: 16px;
 }
 .features-list li:before {
     content: "✓";
@@ -125,6 +121,7 @@ body {
     padding: 12px 30px;
     border-radius: 4px;
     font-weight: 600;
+    font-size: 18px;
     width: 100%;
     margin: 10px 0;
 }
@@ -196,15 +193,10 @@ body {
     right: 10px;
 }
 
-
-
-
-
 .product-description {
 width: 80%;
 margin: 20px auto;
 background: #fff;
-/* border-radius: 10px; */
 padding: 20px;
 
 }
@@ -328,4 +320,20 @@ margin-top: 10px;
 #mainImage {
   cursor: zoom-in;
   transition: transform 0.2s ease;
+}
+
+.wishlist-icon {
+    font-size: 22px;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wishlist-icon:hover {
+    color: #dc3545;
+    transform: scale(1.1);
+}
+
+.wishlist-icon.active {
+    color: #dc3545;
 }

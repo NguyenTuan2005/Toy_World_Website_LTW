@@ -34,6 +34,30 @@ public class Event extends BaseModel {
         this.typeEvent = typeEvent;
     }
 
+    public Event() {
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOpenedAt(LocalDateTime openedAt) {
+        this.openedAt = openedAt;
+    }
+
+    public void setClosedAt(LocalDateTime closedAt) {
+        this.closedAt = closedAt;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTypeEvent(String typeEvent) {
+        this.typeEvent = typeEvent;
+    }
+
     public String getName() {
         return name;
     }

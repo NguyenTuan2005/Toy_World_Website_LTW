@@ -48,6 +48,130 @@ public class PromotionDAO  extends BaseDAO{
         );
     }
 
+    public Long save(Promotion p) {
+
+        String sql = """
+        insert into promotions
+        (name, expired_at, discount_percent, discount_price, event_id, is_active)
+        values
+        (:name, :expiredAt, :discountPercent, :discountPrice, :eventId, :isActive)
+        """;
+
+        return this.getJdbi().withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("name", p.getName())
+                        .bind("expiredAt", p.getExpiredAt())
+                        .bind("discountPercent", p.getDiscountPercent())
+                        .bind("discountPrice", p.getDiscountPrice())
+                        .bind("eventId", p.getEventId())
+                        .bind("isActive", p.getActive())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class)
+                        .one()
+        );
+    }
+
+
+    public void update(Promotion p) {
+
+        String sql = """
+        update promotions
+        set name = :name,
+            expired_at = :expiredAt,
+            discount_percent = :discountPercent,
+            discount_price = :discountPrice,
+            event_id = :eventId,
+            is_active = :isActive
+        where id = :id
+        """;
+
+        this.getJdbi().useHandle(h ->
+                h.createUpdate(sql)
+                        .bind("id", p.getId())
+                        .bind("name", p.getName())
+                        .bind("expiredAt", p.getExpiredAt())
+                        .bind("discountPercent", p.getDiscountPercent())
+                        .bind("discountPrice", p.getDiscountPrice())
+                        .bind("eventId", p.getEventId())
+                        .bind("isActive", p.getActive())
+                        .execute()
+        );
+    }
+
+    public Promotion findById(Long id) {
+
+        String sql = "select * from promotions where id = :id";
+
+        return this.getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .bind("id", id)
+                        .map((rs, ctx) -> {
+                            Promotion p = new Promotion();
+                            p.setId(rs.getLong("id"));
+                            p.setName(rs.getString("name"));
+                            p.setExpiredAt(
+                                    rs.getTimestamp("expired_at").toLocalDateTime()
+                            );
+                            p.setDiscountPercent(rs.getDouble("discount_percent"));
+                            p.setDiscountPrice(rs.getDouble("discount_price"));
+                            p.setEventId(rs.getLong("event_id"));
+                            p.setActive(rs.getBoolean("is_active"));
+                            p.setCreatedAt(
+                                    rs.getTimestamp("created_at").toLocalDateTime()
+                            );
+                            return p;
+                        })
+                        .one()
+        );
+    }
+
+    public List<Promotion> findPaging(int currentPage, int pageSize) {
+
+        int offset = (currentPage - 1) * pageSize;
+
+        String sql = """
+        select * from promotions
+        order by created_at desc
+        limit :limit offset :offset
+        """;
+
+        return this.getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .bind("limit", pageSize)
+                        .bind("offset", offset)
+                        .map((rs, ctx) -> {
+                            Promotion p = new Promotion();
+                            p.setId(rs.getLong("id"));
+                            p.setName(rs.getString("name"));
+                            p.setExpiredAt(
+                                    rs.getTimestamp("expired_at").toLocalDateTime()
+                            );
+                            p.setDiscountPercent(rs.getDouble("discount_percent"));
+                            p.setDiscountPrice(rs.getDouble("discount_price"));
+                            p.setEventId(rs.getLong("event_id"));
+                            p.setActive(rs.getBoolean("is_active"));
+                            p.setCreatedAt(
+                                    rs.getTimestamp("created_at").toLocalDateTime()
+                            );
+                            return p;
+                        })
+                        .list()
+        );
+    }
+
+    public int countAll() {
+
+        String sql = "select count(*) from promotions";
+
+        return this.getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+
+
     public static void main(String[] args) {
         System.out.println(new PromotionDAO().findPromotionsByEventId(10));
     }

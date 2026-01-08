@@ -102,7 +102,7 @@ public class UserDAO extends BaseDAO {
         );
     }
 
-    public Long saveAndReturnId(User user) {
+    public long saveAndReturnId(User user) {
         String sql = """
             Insert into users (first_name, last_name, phone, gender, password, email, location_id)
             Values (:firstName, :lastName, :phone, :gender, :password, :email, :locationId) 

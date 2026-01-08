@@ -1,7 +1,6 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.models.Category;
-import com.n3.childrentoyweb.models.Product;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;

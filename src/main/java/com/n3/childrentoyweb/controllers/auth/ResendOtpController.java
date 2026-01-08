@@ -1,6 +1,6 @@
 package com.n3.childrentoyweb.controllers.auth;
 
-import com.n3.childrentoyweb.exception.EmailInvalidException;
+import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.CacheService;
 import com.n3.childrentoyweb.services.EmailService;
@@ -31,7 +31,7 @@ public class ResendOtpController extends HttpServlet {
         try {
             boolean isValidEmail = user != null && user.isValidEmail();
             if (!isValidEmail)
-                throw new EmailInvalidException("Vui lòng nhập thông tin để tiếp tục");
+                throw new DataInvalidException("Vui lòng nhập thông tin để tiếp tục");
 
             cacheService.remove(user.getEmail());
             otp = OTPUtil.generate();
@@ -40,7 +40,7 @@ public class ResendOtpController extends HttpServlet {
             emailService.sendOtpEmail(user.getEmail(), otp);
 
             req.getRequestDispatcher("/common/verify-otp.jsp").forward(req, resp);
-        } catch (IllegalArgumentException | EmailInvalidException e) {
+        } catch (IllegalArgumentException | DataInvalidException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher( "/sign-up").forward(req, resp);
         }

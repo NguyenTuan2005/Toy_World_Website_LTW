@@ -1,11 +1,11 @@
-package com.n3.childrentoyweb.controllers;
+package com.n3.childrentoyweb.controllers.cart;
 
+import com.n3.childrentoyweb.dto.CartProductDTO;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
-import com.n3.childrentoyweb.models.Cart;
-import com.n3.childrentoyweb.models.CartItem;
-import com.n3.childrentoyweb.models.Product;
+import com.n3.childrentoyweb.models.*;
+import com.n3.childrentoyweb.services.ProductAssetService;
 import com.n3.childrentoyweb.services.ProductService;
-import jakarta.servlet.ServletConfig;
+import com.n3.childrentoyweb.services.PromotionService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,17 +19,20 @@ import java.io.IOException;
 @WebServlet(name = "cart", value = "/cart")
 public class CartController  extends HttpServlet {
     private ProductService productService;
+    private ProductAssetService productAssetService;
+    private PromotionService promotionService;
 
     @Override
     public void init() {
         this.productService = new ProductService();
+        this.productAssetService = new ProductAssetService();
+        this.promotionService = new PromotionService();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long productId = Long.parseLong(req.getParameter("productId"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
-        System.out.println("productId" +productId);
         HttpSession session =  req.getSession();
 
         Cart cart = (Cart) session.getAttribute(Cart.CART);
@@ -39,19 +42,21 @@ public class CartController  extends HttpServlet {
         }
 
         Product product = this.productService.findById(productId).orElseThrow(ObjectNotFoundException::new);
+        ProductAsset asset = this.productAssetService.findFirstByProductId(productId).orElseThrow(ObjectNotFoundException::new);
+        Promotion promotion = this.promotionService.findById(product.getPromotionId()).orElse(new Promotion());
 
-        cart.addItem(new CartItem(product,quantity));
+        CartProductDTO cartProductDTO = new com.n3.childrentoyweb.dto.CartProductDTO(product,asset,promotion);
+        cart.addItem(new CartItem(cartProductDTO,quantity));
         session.setAttribute(Cart.CART,cart);
 
         resp.sendRedirect(req.getHeader("Referer"));
     }
 
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doGet(req, resp);
+        Cart cart = (Cart) req.getSession().getAttribute(Cart.CART);
+
+        req.setAttribute(Cart.CART, cart);
+        req.getRequestDispatcher("/my-shopping-cart.jsp").forward(req, resp);
     }
-
-
 }

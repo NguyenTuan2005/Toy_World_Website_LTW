@@ -1,6 +1,6 @@
 package com.n3.childrentoyweb.controllers.auth;
 
-import com.n3.childrentoyweb.exception.EmailInvalidException;
+import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.exception.OTPInvalidException;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.CacheService;
@@ -36,7 +36,7 @@ public class VerifyOtpController extends HttpServlet {
         try {
             boolean isValidEmail =  user != null && user.isValidEmail();
             if (!isValidEmail)
-                throw new EmailInvalidException("Vui lòng nhập thông tin để tiếp tục");
+                throw new DataInvalidException("Vui lòng nhập thông tin để tiếp tục");
 
             otp = cacheService.get(user.getEmail());
 
@@ -53,7 +53,7 @@ public class VerifyOtpController extends HttpServlet {
         } catch (OTPInvalidException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher( "/common/verify-otp.jsp").forward(req, resp);
-        } catch (EmailInvalidException e) {
+        } catch (DataInvalidException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher( "/sign-up.jsp").forward(req, resp);
         }

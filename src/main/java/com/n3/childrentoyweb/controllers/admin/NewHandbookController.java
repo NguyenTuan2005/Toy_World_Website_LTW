@@ -36,7 +36,7 @@ public class NewHandbookController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        this.addCategoryOfHandbook(req);
-        req.getRequestDispatcher("/adminPages/handbook-demo.jsp").forward(req, resp);
+        req.getRequestDispatcher("/adminPages/new-handbook.jsp").forward(req, resp);
     }
 
     private void addCategoryOfHandbook(HttpServletRequest request){

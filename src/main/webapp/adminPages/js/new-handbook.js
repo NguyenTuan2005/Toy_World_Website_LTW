@@ -2,6 +2,8 @@
 var paragraphCount = 0;
 var editorInstances = [];
 
+
+
 // Thêm đoạn mới
 function addParagraph() {
     paragraphCount++;

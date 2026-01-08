@@ -1,5 +1,11 @@
 let alert = document.getElementById("alert");
 
+function showAlert(message) {
+    alert.classList.remove("d-none");
+    alert.textContent = message;
+    setTimeout(()=> alert.classList.add('d-none'), 3000);
+}
+
 function showConfirm(message) {
     return new Promise(resolve => {
         const modalEl = document.getElementById("confirmModal");
@@ -41,15 +47,9 @@ async function removeItem(productId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {location.reload();}
-            else {
-                alert.classList.remove("d-none");
-                alert.textContent = data.message;
-            }
+            else {showAlert(data.message);}
         })
-        .catch(error => {
-            alert.classList.remove("d-none");
-            alert.textContent = error.message;
-        });
+        .catch(error => showAlert(error.message));
 }
 
 function updateQty(productId, quantity) {
@@ -63,13 +63,7 @@ function updateQty(productId, quantity) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {location.reload();}
-            else {
-                alert.classList.remove("d-none");
-                alert.textContent = data.message;
-            }
+            else {showAlert(data.message);}
         })
-        .catch(error => {
-            alert.classList.remove("d-none");
-            alert.textContent = error.message;
-        })
+        .catch(error => showAlert(error.message))
 }

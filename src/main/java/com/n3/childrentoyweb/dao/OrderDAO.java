@@ -1,5 +1,8 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.models.Order;
+import com.n3.childrentoyweb.models.OrderDetail;
+
 public class OrderDAO extends BaseDAO{
 
     public long countAllInMonth(int year, int month){
@@ -38,4 +41,35 @@ public class OrderDAO extends BaseDAO{
     }
 
 
+    public long save(Order order) {
+        String sql = """
+                insert into orders (user_id, total_price, status)
+                values (:userId, :totalPrice, :status)
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("userId", order.getUserId())
+                        .bind("totalPrice", order.getTotalPrice())
+                        .bind("status", order.getStatus())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class)
+                        .one()
+        );
+    }
+
+    public void saveOrderDetail(OrderDetail detail) {
+        String sql = """
+                insert into order_details (order_id, product_id, quantity)
+                values (:orderId, :productId, :quantity)
+                """;
+
+        this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("orderId", detail.getOrderId())
+                        .bind("productId", detail.getProductId())
+                        .bind("quantity", detail.getQuantity())
+                        .execute()
+        );
+    }
 }

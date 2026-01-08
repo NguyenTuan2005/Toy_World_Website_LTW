@@ -32,7 +32,7 @@
           </div>
         </c:if>
 
-        <form id="signupForm" onsubmit="return handleSignUpEvent(event)" method="post">
+        <form id="signupForm" action="${pageContext.request.contextPath}/sign-up" onsubmit="return handleSignUpEvent(event)" method="post">
           <div class="row mb-3">
             <div class="col">
               <label for="firstName" class="form-label">Tên<span class="text-danger">*</span></label>

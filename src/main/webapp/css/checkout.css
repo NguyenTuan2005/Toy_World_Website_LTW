@@ -1,0 +1,243 @@
+/* Navbar */
+.navbar {
+  background-color: #fff;
+  padding: 16px 0; /* was 1rem */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* Alerts / panels */
+.alert-warning-custom {
+  background-color: #f5f5f5;
+  border: 1px solid #f0e5d3;
+  border-radius: 8px;
+  padding: 16px; /* was 1rem */
+}
+.alert-warning-custom .icon {
+  color: #f39c12;
+  font-size: 1.2rem;
+}
+
+/* Form sections */
+.form-section {
+  background: #fff;
+  padding: 32px; /* was 2rem */
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 20px; /* was 1.25rem */
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  color: #666;
+  font-size: 14px; /* ~0.9rem */
+  margin-bottom: 16px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.required-field::after {
+  content: " *";
+  color: #cf102d;
+}
+
+/* Shipping / payment boxes */
+.shipping-method {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+}
+.shipping-method:hover {
+  border-color: #e6f0e6;
+}
+.shipping-method.selected {
+  border-color: #24a745;
+  background-color: #f3f8f3;
+}
+
+
+.payment-method {
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  padding: 24px;
+  background-color: #f0fdf4;
+}
+
+/* Buttons */
+.btn-checkout {
+  background-color: #cf102d;
+  color: #fff;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+}
+.btn-checkout:hover {
+  background-color: #a20a21;
+}
+
+/* Order summary */
+.order-summary {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  position: sticky;
+  top: 20px;
+}
+
+.product-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  position: relative;
+}
+
+.product-badge {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background: #333;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.product-info {
+  flex: 1;
+}
+.product-name {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.product-price {
+  font-weight: 600;
+}
+
+.voucher-freeship {
+  background: #e8f7f7;
+  border-radius: 10px;
+}
+
+/* Summary layout */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.summary-total {
+  font-size: 20px;
+  font-weight: 600;
+  padding-top: 16px;
+  border-top: 2px solid #eee;
+}
+.total-amount {
+  color: #cf102d;
+}
+
+/* Account header */
+.account-info-header {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 16px 32px;
+}
+.account-info-header .fw-bold {
+  background-color: #f0f0f0;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Payment option details */
+.payment-option {
+  background: #fff;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.payment-option.active {
+  border-color: #24a745;
+}
+.payment-header {
+  padding: 16px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.radio-circle {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #dee2e6;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.payment-option.active .radio-circle {
+  border-color: #24a745;
+  background-color: #24a745;
+}
+.radio-circle::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+.payment-option.active .radio-circle::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.payment-content {
+  flex: 1;
+}
+
+.payment-logos .plus-badge {
+  color: #24a745;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.payment-option.active {
+  max-height: 500px;
+  opacity: 1;
+}

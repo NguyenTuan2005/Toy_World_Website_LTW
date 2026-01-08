@@ -1,9 +1,7 @@
 package com.n3.childrentoyweb.dao;
 
-import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.dto.UserCriteria;
-import com.n3.childrentoyweb.dto.UserDetailDTO;
 import com.n3.childrentoyweb.models.Location;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
@@ -102,7 +100,7 @@ public class UserDAO extends BaseDAO {
         );
     }
 
-    public long saveAndReturnId(User user) {
+    public long save(User user) {
         String sql = """
             Insert into users (first_name, last_name, phone, gender, password, email, location_id)
             Values (:firstName, :lastName, :phone, :gender, :password, :email, :locationId) 

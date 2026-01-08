@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.OrderDAO;
 import com.n3.childrentoyweb.dao.OrderDetailDAO;
+import com.n3.childrentoyweb.models.Order;
 import com.n3.childrentoyweb.models.OrderDetail;
 
 public class OrderService {
@@ -22,4 +23,11 @@ public class OrderService {
         return this.orderDAO.calculateRevenueInMonth(year, month);
     }
 
+    public long save(Order order) {
+        return this.orderDAO.save(order);
+    }
+
+    public void saveOrderDetail(OrderDetail detail) {
+        this.orderDAO.saveOrderDetail(detail);
+    }
 }

@@ -46,8 +46,8 @@ public class UserService {
     }
 
     public void save(User user) {
-        Long userId = userDAO.saveAndReturnId(user);
-        roleDAO.assignRoleToUser(userId, 1L);
+        long userId = userDAO.saveAndReturnId(user);
+        roleDAO.assignRoleToUser(userId, RoleEnum.ROLE_USER.getRoleId());
     }
 
 

@@ -4,6 +4,7 @@ import com.n3.childrentoyweb.models.ProductAsset;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductAssetDAO extends BaseDAO {
 
@@ -36,6 +37,18 @@ public class ProductAssetDAO extends BaseDAO {
         );
     }
 
+    public Optional<ProductAsset> findFirstByProductId(long productId) {
+        String sql = """
+                select id, img_path, product_id
+                from product_assets
+                where product_id = :productId
+                limit 1
+                """;
 
-
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("productId", productId)
+                        .mapToBean(ProductAsset.class)
+                        .findOne());
+    }
 }

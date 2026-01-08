@@ -5,10 +5,7 @@ import com.n3.childrentoyweb.enums.PaymentMethod;
 import com.n3.childrentoyweb.enums.PaymentStatus;
 import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.models.*;
-import com.n3.childrentoyweb.services.LocationService;
-import com.n3.childrentoyweb.services.OrderService;
-import com.n3.childrentoyweb.services.PaymentService;
-import com.n3.childrentoyweb.services.UserService;
+import com.n3.childrentoyweb.services.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 @WebServlet(name = "checkout", value = "/checkout")
 public class CheckoutController extends HttpServlet {
@@ -24,6 +22,7 @@ public class CheckoutController extends HttpServlet {
     private PaymentService paymentService;
     private OrderService orderService;
     private UserService userService;
+    private EmailService emailService;
 
     @Override
     public void init() throws ServletException {
@@ -31,6 +30,7 @@ public class CheckoutController extends HttpServlet {
         this.paymentService = new PaymentService();
         this.orderService = new OrderService();
         this.userService = new UserService();
+        this.emailService = new EmailService();
     }
 
     @Override
@@ -72,6 +72,10 @@ public class CheckoutController extends HttpServlet {
             if (!hasLocation) {
                 String province = req.getParameter("province");
                 String address = req.getParameter("address");
+
+                if (province == null || province.trim().isEmpty() || address == null || address.trim().isEmpty())
+                    throw new DataInvalidException("Thông tin địa chỉ không hợp lệ");
+
                 Location location = new Location(address, province);
                 long locationId = this.locationService.save(location);
                 user.setLocationId(locationId);
@@ -93,6 +97,7 @@ public class CheckoutController extends HttpServlet {
             Payment payment = new Payment(paymentMethodId, orderId, cart.getTotalCost(), PaymentStatus.UNPAID.getStatus());
             this.paymentService.save(payment);
 
+            req.getSession().setAttribute(Cart.CART, new Cart());
             resp.sendRedirect("/home");
         } catch (DataInvalidException e) {
             req.setAttribute("error", e.getMessage());

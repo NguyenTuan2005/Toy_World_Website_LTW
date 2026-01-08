@@ -2,54 +2,225 @@ package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
+import com.n3.childrentoyweb.dto.ProductListDTO;
 import com.n3.childrentoyweb.dto.ProductPromotionDTO;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.utils.JsonColumnMapper;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 
 public class ProductDAO  extends BaseDAO{
 
-    public List<Product> findAll() {
+    public List<ProductListDTO> findAll() {
         String sql = """
-            SELECT id, name, price, quantity, description,
-                   brand_id AS brandId,
-                   category_id AS categoryId
-            FROM products
-            WHERE is_active = 1
+            SELECT p.id, 
+                   p.name, 
+                   p.price AS originPrice, 
+                   pa.img_path AS imgPath,
+                   p.quantity,
+                   b.name AS brand,
+                   c.name AS category,
+                   pm.discount_percent AS discountPercent,
+                   pm.discount_price AS maxDiscountPrice
+            FROM products p
+            JOIN brands b ON p.brand_id = b.id
+            JOIN categories c ON p.category_id = c.id
+            JOIN promotions pm ON p.promotion_id = pm.id
+            JOIN product_assets pa ON p.id = pa.product_id
+            WHERE p.is_active = 1
         """;
 
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
-                        .registerRowMapper(BeanMapper.factory(Product.class))
-                        .mapTo(Product.class)
+                        .registerRowMapper(BeanMapper.factory(ProductListDTO.class))
+                        .mapTo(ProductListDTO.class)
                         .list()
         );
     }
 
-    public List<Product> findAllByPage(int page, int pageSize) {
+    public List<ProductListDTO> findAllByPage(int page, int pageSize) {
         int offset = (page - 1) * pageSize;
 
         String sql = """
-            SELECT id, name, price, quantity, description,
-                   brand_id AS brandId,
-                   category_id AS categoryId
-            FROM products
-            WHERE is_active = 1
-            LIMIT :pageSize OFFSET :offset
+        SELECT p.id,
+               p.name,
+               p.price AS originPrice,
+               p.quantity,
+               b.name AS brand,
+               c.name AS category,
+               pm.discount_percent AS discountPercent,
+               pm.discount_price AS maxDiscountPrice,
+               pa.img_path AS imgPath
+        FROM products p
+        JOIN brands b ON p.brand_id = b.id
+        JOIN categories c ON p.category_id = c.id
+        LEFT JOIN promotions pm ON p.promotion_id = pm.id
+        LEFT JOIN product_assets pa ON p.id = pa.product_id
+        WHERE p.id IN (<ids>)
+        ORDER BY p.id
         """;
 
-        return super.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("offset", offset)
-                        .bind("pageSize", pageSize)
-                        .registerRowMapper(BeanMapper.factory(Product.class))
-                        .mapTo(Product.class)
-                        .list()
-        );
+        return this.getJdbi().withHandle(handle -> {
+
+            List<Long> ids = handle.createQuery("""
+            SELECT id
+            FROM products
+            WHERE is_active = 1
+            ORDER BY id
+            LIMIT :pageSize OFFSET :offset
+            """).bind("pageSize", pageSize)
+                    .bind("offset", offset)
+                    .mapTo(Long.class)
+                    .list();
+
+            if (ids.isEmpty()) return List.of();
+
+
+            return handle.createQuery(sql)
+                        .bindList("ids", ids)
+                        .reduceRows(new LinkedHashMap<Long, ProductListDTO>(), (map, rowView) -> {
+
+                            Long productId = rowView.getColumn("id", Long.class);
+
+                            ProductListDTO dto = map.computeIfAbsent(productId, id -> {
+                                ProductListDTO p = new ProductListDTO();
+                                p.setId(id);
+                                p.setName(rowView.getColumn("name", String.class));
+
+                                long originPrice = rowView.getColumn("originPrice", Long.class);
+                                p.setOriginPrice(originPrice);
+
+                                Double discountPercent =
+                                        rowView.getColumn("discountPercent", Double.class);
+                                Long maxDiscountPrice =
+                                        rowView.getColumn("maxDiscountPrice", Long.class);
+
+                                p.setDiscountPercent(discountPercent != null ? discountPercent : 0);
+                                p.setMaxDiscountPrice(maxDiscountPrice != null ? maxDiscountPrice : 0);
+
+                                long finalPrice;
+                                if (discountPercent != null && discountPercent > 0) {
+                                    long discounted = Math.round(originPrice * (1 - discountPercent / 100));
+                                    if (maxDiscountPrice != null && discounted > maxDiscountPrice) {
+                                        finalPrice = maxDiscountPrice;
+                                    } else {
+                                        finalPrice = discounted;
+                                    }
+                                } else if (maxDiscountPrice != null && maxDiscountPrice > 0) {
+                                    finalPrice = maxDiscountPrice;
+                                } else {
+                                    finalPrice = originPrice;
+                                }
+                                p.setFinalPrice(finalPrice);
+
+                                p.setQuantity(rowView.getColumn("quantity", Integer.class));
+                                p.setBrand(rowView.getColumn("brand", String.class));
+                                p.setCategory(rowView.getColumn("category", String.class));
+
+                                p.setImgPaths(new ArrayList<>());
+                                return p;
+                            });
+
+                            String img = rowView.getColumn("imgPath", String.class);
+                            if (img != null) {
+                                dto.getImgPaths().add(img);
+                            }
+
+                            return map;
+                        })
+                        .values()
+                        .stream()
+                        .toList();
+        });
+    }
+
+    public List<ProductListDTO> findByFilter(List<Integer> brandIds, int pageSize, int offset) {
+        if(brandIds == null || brandIds.isEmpty()){
+            throw new IllegalArgumentException("BrandIds must not be empty");
+        }
+
+        String sql = """
+        SELECT p.id,
+               p.name,
+               p.price AS originPrice,
+               p.quantity,
+               b.name AS brand,
+               c.name AS category,
+               pm.discount_percent AS discountPercent,
+               pm.discount_price AS maxDiscountPrice,
+               pa.img_path AS imgPath
+        FROM products p
+        JOIN brands b ON p.brand_id = b.id
+        JOIN categories c ON p.category_id = c.id
+        LEFT JOIN promotions pm ON p.promotion_id = pm.id
+        LEFT JOIN product_assets pa ON p.id = pa.product_id
+        WHERE p.id IN (<ids>)
+        ORDER BY p.id
+        """;
+
+        return this.getJdbi().withHandle(handle -> {
+
+            List<Long> ids = handle.createQuery("""
+            SELECT id
+            FROM products
+            WHERE is_active = 1
+                AND brand_id IN (<brandIds>)
+            ORDER BY id
+            LIMIT :pageSize OFFSET :offset
+            """).bind("pageSize", pageSize)
+                    .bind("offset", offset)
+                    .bindList("brandIds", brandIds)
+                    .mapTo(Long.class)
+                    .list();
+
+            if (ids.isEmpty()) return List.of();
+
+
+            return handle.createQuery(sql)
+                    .bindList("ids", ids)
+                    .reduceRows(new LinkedHashMap<Long, ProductListDTO>(), (map, rowView) -> {
+
+                        Long productId = rowView.getColumn("id", Long.class);
+
+                        ProductListDTO dto = map.computeIfAbsent(productId, id -> {
+                            ProductListDTO p = new ProductListDTO();
+                            p.setId(id);
+                            p.setName(rowView.getColumn("name", String.class));
+
+                            long originPrice = rowView.getColumn("originPrice", Long.class);
+                            p.setOriginPrice(originPrice);
+
+                            Double discountPercent =
+                                    rowView.getColumn("discountPercent", Double.class);
+                            Long maxDiscountPrice =
+                                    rowView.getColumn("maxDiscountPrice", Long.class);
+
+                            p.setDiscountPercent(discountPercent != null ? discountPercent : 0);
+                            p.setMaxDiscountPrice(maxDiscountPrice != null ? maxDiscountPrice : 0);
+
+                            p.setQuantity(rowView.getColumn("quantity", Integer.class));
+                            p.setBrand(rowView.getColumn("brand", String.class));
+                            p.setCategory(rowView.getColumn("category", String.class));
+
+                            p.setImgPaths(new ArrayList<>());
+                            return p;
+                        });
+
+                        String img = rowView.getColumn("imgPath", String.class);
+                        if (img != null) {
+                            dto.getImgPaths().add(img);
+                        }
+
+                        return map;
+                    })
+                    .values()
+                    .stream()
+                    .toList();
+        });
     }
 
 
@@ -262,5 +433,42 @@ public class ProductDAO  extends BaseDAO{
                     .list();
         }) ;
     }
+
+    public int countByFilter(List<Integer> brandIds) {
+
+        if (brandIds != null && !brandIds.isEmpty()) {
+            String sql = """
+            SELECT COUNT(*)
+            FROM products
+            WHERE brand_id IN (<brandIds>)
+              AND is_active = 1
+            """;
+
+            return getJdbi().withHandle(h ->
+                    h.createQuery(sql)
+                            .bindList("brandIds", brandIds)
+                            .mapTo(Integer.class)
+                            .one()
+            );
+        }
+
+        String sql = """
+        SELECT COUNT(*)
+        FROM products
+        WHERE is_active = 1
+        """;
+
+        return getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(new ProductDAO().findByFilter(List.of(1,2,3,5,6,7,8,9),10,0));
+    }
+
 
 }

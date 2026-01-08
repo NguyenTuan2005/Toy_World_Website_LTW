@@ -6,9 +6,11 @@ import com.n3.childrentoyweb.dao.ProductDAO;
 import com.n3.childrentoyweb.dao.UserCommentDAO;
 import com.n3.childrentoyweb.dto.HomeProductDTO;
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
+import com.n3.childrentoyweb.dto.ProductListDTO;
 import com.n3.childrentoyweb.dto.ProductPromotionDTO;
 import com.n3.childrentoyweb.models.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -25,11 +27,11 @@ public class ProductService {
         this.userCommentDAO = new UserCommentDAO();
     }
 
-    public List<Product> findAll() {
+    public List<ProductListDTO> findAll() {
         return productDAO.findAll();
     }
 
-    public List<Product> findAllByPage(int page, int pageSize) {
+    public List<ProductListDTO> findAllByPage(int page, int pageSize) {
         return productDAO.findAllByPage(page, pageSize);
     }
 
@@ -96,8 +98,39 @@ public class ProductService {
         return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
+    public List<ProductListDTO> findByFilter(List<Integer> brandIds, int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        List<ProductListDTO> products;
+
+        if (brandIds == null || brandIds.isEmpty()) {
+            products = productDAO.findAllByPage(page, pageSize);
+        } else {
+            products = productDAO.findByFilter(brandIds, pageSize, offset);
+        }
+
+        for (ProductListDTO p : products) {
+            long originPrice = p.getOriginPrice();
+            long maxDiscountPrice = p.getMaxDiscountPrice();
+            double discountPercent = p.getDiscountPercent();
+
+            long discountPrice = (long) (originPrice * discountPercent/100);
+
+            if(discountPrice > maxDiscountPrice){
+                p.setFinalPrice( originPrice - maxDiscountPrice);
+            }else{
+                p.setFinalPrice(originPrice - discountPrice);
+            }
+        }
+        return products;
+    }
+
+
+    public int countByFilter(List<Integer> brandIds) {
+        return productDAO.countByFilter(brandIds);
+    }
+
     public static void main(String[] args) {
-        System.out.println(new ProductService().findProductDetailById(1L));
+        System.out.println(new ProductService().findAllByPage(1,10));
     }
 
 

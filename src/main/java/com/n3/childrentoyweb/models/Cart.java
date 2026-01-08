@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Cart implements Serializable {
     public static final String CART = "cart";
-    private Map<Long,CartItem> items;
+    private Map<Long, CartItem> items;
 
     public Cart() {
         this.items = new HashMap<>();

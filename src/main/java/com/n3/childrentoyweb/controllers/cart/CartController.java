@@ -46,8 +46,8 @@ public class CartController  extends HttpServlet {
         Promotion promotion = this.promotionService.findById(product.getPromotionId()).orElse(new Promotion());
 
         CartProductDTO cartProductDTO = new com.n3.childrentoyweb.dto.CartProductDTO(product,asset,promotion);
-        cart.addItem(new CartItem(cartProductDTO,quantity));
-        session.setAttribute(Cart.CART,cart);
+        cart.addItem(new CartItem(cartProductDTO, quantity));
+        session.setAttribute(Cart.CART, cart);
 
         resp.sendRedirect(req.getHeader("Referer"));
     }

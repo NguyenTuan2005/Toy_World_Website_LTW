@@ -43,6 +43,10 @@ public class Paragraph extends BaseModel {
         this.handbookId = handbookId;
     }
 
+    public Paragraph() {
+
+    }
+
     public String getHeader() {
         return header;
     }
@@ -63,7 +67,46 @@ public class Paragraph extends BaseModel {
         return displayIndex;
     }
 
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public void setImageDescription(String imageDescription) {
+        this.imageDescription = imageDescription;
+    }
+
+    public void setDisplayIndex(Integer displayIndex) {
+        this.displayIndex = displayIndex;
+    }
+
+    public void setHandbookId(Long handbookId) {
+        this.handbookId = handbookId;
+    }
+
     public Long getHandbookId() {
         return handbookId;
+    }
+
+    @Override
+    public String toString() {
+        return "Paragraph{" +
+                "header='" + header + '\'' +
+                ", description='" + description + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", imageDescription='" + imageDescription + '\'' +
+                ", displayIndex=" + displayIndex +
+                ", handbookId=" + handbookId +
+                ", id=" + id +
+                ", isActive=" + isActive +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

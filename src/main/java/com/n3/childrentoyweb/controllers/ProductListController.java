@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@WebServlet(name = "ProductListController", value = "/products")
+@WebServlet(value = "/products")
 public class ProductListController extends HttpServlet {
     private static final int PAGE_SIZE = 9;
     private ProductService productService;

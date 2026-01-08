@@ -45,7 +45,7 @@
             <div class="flex-grow-1">
               <!-- image slicer -->
               <section class="section-image-slider container-lg">
-                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div id="imageCarousel" class="carousel slide pt-3" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     <button
                       type="button"
@@ -78,8 +78,7 @@
                   <div class="carousel-inner">
                       <c:forEach var="banner" items="${banners}">
                         <div class="carousel-item active">
-                          <img
-                                  src="${banner}"
+                          <img src="${banner}"
                                   class="d-block w-100"
                                   alt="Lego mega sale"
                           />

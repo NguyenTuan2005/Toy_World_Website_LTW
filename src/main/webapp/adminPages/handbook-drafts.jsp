@@ -75,7 +75,7 @@
     <div class="row g-4">
         <!-- Cột thêm mới -->
         <a
-                href="post-handbook.jsp"
+                href="handbook-detail.jsp"
                 class="image-upload col-md-4 d-flex flex-column align-items-center justify-content-center"
                 style="cursor: pointer; color: #cf102d; text-decoration: none;"
         >

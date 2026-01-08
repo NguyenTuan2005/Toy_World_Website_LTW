@@ -213,8 +213,20 @@ public class ProductDAO  extends BaseDAO{
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProductDAO().findProductsByPromotionId(10L));
+    public long countProductInMonth(int year, int month) {
+        String sql = """
+                SELECT COUNT(*)
+                FROM products p
+                WHERE YEAR(p.created_at) = :year AND MONTH(p.created_at) = :month AND p.is_active = 1;
+                    """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("year", year)
+                        .bind("month", month)
+                        .mapTo(Long.class)
+                        .one()
+        );
     }
 
     public List<ProductPromotionDTO> findProductsByPromotionId(Long promotionId) {
@@ -237,7 +249,7 @@ public class ProductDAO  extends BaseDAO{
                     """;
 
         return this.getJdbi().withHandle(handle -> {
-            return handle.createQuery(sql)
+                return handle.createQuery(sql)
                     .bind("promotionId", promotionId)
                     .map(((rs, ctx) ->{
                         ProductPromotionDTO productPromotionDTO = new ProductPromotionDTO();

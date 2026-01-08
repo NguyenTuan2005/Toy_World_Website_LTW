@@ -16,7 +16,7 @@ public class UserDAO extends BaseDAO {
         String sql = """
         select id, first_name, last_name, phone, gender, password, email, location_id
         from users
-        where email = :email
+        where email = :email AND is_active = 1
         """;
 
         return this.getJdbi().withHandle(handle ->
@@ -76,6 +76,27 @@ public class UserDAO extends BaseDAO {
 
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
+                        .mapTo(int.class)
+                        .one()
+        );
+    }
+
+    public int countAllInMonth(int year, int month){
+        String sql = """
+                SELECT COUNT(u.id)
+                FROM users u
+                JOIN user_roles ur ON u.id = ur.user_id 
+                                    AND ur.is_active = 1
+                WHERE YEAR(u.created_at) = :year 
+                    AND MONTH(u.created_at) = :month 
+                    AND u.is_active = 1
+                    AND ur.role_id = 1;
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("year", year)
+                        .bind("month", month)
                         .mapTo(int.class)
                         .one()
         );

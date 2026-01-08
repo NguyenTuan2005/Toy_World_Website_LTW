@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.dto;
 
+import java.time.LocalDateTime;
+
 public class HandBookCardDTO {
     private Long id;
     private Long userId;
@@ -8,6 +10,8 @@ public class HandBookCardDTO {
     private String description;
     private String firstImage;
     private String status;
+    private LocalDateTime createdAt;
+    private String username;
 
     public HandBookCardDTO() {
     }
@@ -19,6 +23,22 @@ public class HandBookCardDTO {
         this.title = title;
         this.description = description;
         this.firstImage = firstImage;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getStatus() {

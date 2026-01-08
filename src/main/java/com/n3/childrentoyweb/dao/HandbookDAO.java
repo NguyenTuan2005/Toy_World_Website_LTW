@@ -92,9 +92,18 @@ public class HandbookDAO extends BaseDAO{
 
     public List<HandBookCardDTO> findHandbookCardByCriteria(HandBookCriteria handBookCriteria) {
         StringBuilder  sql =new StringBuilder( """
-                select h.id,h.user_id,h.title,h.views, h.status,p.description,p.image_path
+                select h.id
+                        ,h.user_id
+                        ,h.title
+                        ,h.views
+                        , h.status
+                        ,p.description
+                        ,p.image_path
+                        ,concat(u.first_name,' ',u.last_name) as fullname
+                        , h.created_at
                 from handbooks h
-                join paragraphs p on h.id = p.handbook_id
+                         join paragraphs p on h.id = p.handbook_id
+                         join users u on h.user_id = u.id
                 where p.display_index = 1
                 """);
         sql.append(handBookCriteria.getIdForSql());
@@ -113,19 +122,16 @@ public class HandbookDAO extends BaseDAO{
                     handBookCardDTO.setUserId(rs.getLong("user_id"));
                     handBookCardDTO.setViews(rs.getLong("views"));
                     handBookCardDTO.setTitle(rs.getString("title"));
-                    handBookCardDTO.setTitle(rs.getString("status"));
+                    handBookCardDTO.setStatus(rs.getString("status"));
                     handBookCardDTO.setDescription(rs.getString("description"));
                     handBookCardDTO.setFirstImage(rs.getString("image_path"));
+                    handBookCardDTO.setCreatedAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("created_at")));
+                    handBookCardDTO.setUsername(rs.getString("fullname"));
 
                     return handBookCardDTO;
                 }).list()
         );
     }
 
-    public static void main(String[] args) {
 
-        HandBookCriteria criteria = new HandBookCriteria();
-        criteria.setOnMonth(true);
-        System.out.println(new HandbookDAO().findHandbookCardByCriteria(criteria) );
-    }
 }

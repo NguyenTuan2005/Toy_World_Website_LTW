@@ -10,10 +10,18 @@ public class HandBookCriteria {
     private String title;
 
     private Integer currentPage;
-    private Integer pageSize;
+    private Integer pageSize = 1;
 
 
     public HandBookCriteria(){}
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
 
     public void setCurrentPage(Integer currentPage) {
         this.currentPage = currentPage;

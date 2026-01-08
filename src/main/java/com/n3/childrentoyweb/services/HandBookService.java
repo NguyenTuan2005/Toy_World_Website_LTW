@@ -123,7 +123,8 @@ public class HandBookService {
 
     public Pagination<HandBookCardDTO> findHandbookCardByCriteria(HandBookCriteria handBookCriteria){
         List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
-        return new Pagination<>(handBookCardDTOS,1,handBookCardDTOS.size(),0);
+        int totalElements  =  this.handbookDAO.countAll();
+        int totalPages = totalElements / handBookCriteria.getPageSize();
+        return new Pagination<>(handBookCardDTOS,handBookCriteria.getCurrentPage(),totalElements,totalPages == 0 ? 1 : totalPages);
     }
-
 }

@@ -22,7 +22,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(value = "/handbooks")
+@WebServlet(value = "/admin/new-handbooks")
 public class NewHandbookController extends HttpServlet {
 
     private HandBookService handBookService;
@@ -71,8 +71,8 @@ public class NewHandbookController extends HttpServlet {
             handbookDTO.setTitle(title);
             handbookDTO.setParagraphs(paragraphsList);
 
-//            Long postedUserId = this.getUserIdFromSession(request);
-            handbookDTO.setPostedUserId(1);
+            Long postedUserId = this.getUserIdFromSession(request);
+            handbookDTO.setPostedUserId(postedUserId);
 
             handbookDTO.hidden();
             handbookDTO.setCategoryId(categoryId);

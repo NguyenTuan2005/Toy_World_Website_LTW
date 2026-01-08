@@ -119,7 +119,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <h1 class="page-title">Quản lý người dùng</h1>
+                    <h1 class="page-title">Quản lý cẩm nang</h1>
                 </div>
             </div>
         </div>
@@ -187,7 +187,7 @@
                 <div class="col-md-6 hstack align-items-center">
                     <div class="search-wrapper flex-grow-1">
                         <i class="fas fa-search search-icon"></i>
-                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/users" method="post">
+                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/#" method="post">
                             <input
                                     type="text"
                                     id="searchInput"
@@ -218,176 +218,141 @@
                         </nav>
                     </c:if>
                     <div class="text-end mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal" data-bs-target="#userModal">
-                            <i class="fas fa-plus"></i> Thêm người dùng
-                        </button>
+                        <a  href="${pageContext.request.contextPath}/admin/new-handbooks"  class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal" data-bs-target="#userModal">
+                            <i class="fas fa-plus"></i> Thêm bài viết
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="table-container">
-            <h1>James update</h1>
-        </div>
-    </div>
+        <style>
+            /* Ảnh card đều nhau */
+            .img-cover {
+                /*height: 260px;*/
+                /*object-fit: cover;*/
+            }
 
-    <!-- Modal thêm/sửa người dùng -->
-    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form method="post" action="${pageContext.request.contextPath}/admin/new-users">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="userModalLabel">Thêm người dùng mới</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <c:if test="${not empty error}">
-                            <div class="alert alert-danger">
-                                    ${error}
+            /* Giới hạn mô tả 3 dòng */
+            .clamp-3 {
+                display: -webkit-box;
+                -webkit-line-clamp: 5;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .card {
+                border-radius: 16px;
+                border: 2px solid #dee2e6;
+                overflow: hidden;
+                transition: all 0.25s ease;
+            }
+
+            .card:hover {
+                border-color: #0d6efd;
+                box-shadow: 0 12px 28px rgba(13,110,253,0.25);
+            }
+
+        </style>
+
+        <div class="container my-5">
+            <div class="section-title">Có thể bạn sẽ thích</div>
+            <div class="row g-4">
+                <c:forEach var="hb" items="${handbooks}">
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="${hb.firstImage}"
+                                 class="card-img-top img-cover"
+                                 alt="Europe Toy Fair">
+
+                            <div class="card-body d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted">
+                                            ${hb.createdAt} - ${hb.username}
+                                    </small>
+                                    <small class="text-muted">
+                                        <i class="bi bi-eye me-1"></i> <fmt:formatNumber value="${hb.views}" type="number" />
+                                    </small>
+
+                                    <c:choose>
+                                        <c:when test="${hb.status == 'POSTED'}">
+                                            <span class="text-danger">
+                                                <i class="bi bi-send"></i>
+
+                                            </span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="text-secondary">
+                                               <i class="bi bi-eye-slash"></i>
+                                            </span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+
+                                <h2 class="card-title text-truncate" style="color:  #0d6efd;"> ${hb.title}</h2>
+
+                                <p class="card-text text-muted clamp-3">
+                                        ${hb.description}
+                                </p>
+                                <!-- FIX CỨNG Ở ĐÂY -->
+                                <div class="card-footer bg-white border-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="#" class="action-link text-warning">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+
+                                        <a href="#" class="action-link text-primary">
+                                            Xem thêm <i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
                             </div>
-                        </c:if>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="firstName" class="form-label">Họ <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="firstName" name="firstName" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="lastName" class="form-label">Tên <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="lastName" name="lastName" required>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="gender" class="form-label">Giới tính</label>
-                                <select class="form-select" id="gender" name="gender">
-                                    <option value="">Chọn giới tính</option>
-                                    <option value="Male">Nam</option>
-                                    <option value="Female">Nữ</option>
-                                    <option value="Other">Khác</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="phone" class="form-label">Điện thoại</label>
-                                <input type="tel" class="form-control" id="phone" name="phone">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-
-                        <div id="userModalPassword" class="mb-3">
-                            <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="province" class="form-label">Tỉnh/TP</label>
-                            <select class="form-select" id="province" name="province">
-                                <option value="">Chọn địa điểm</option>
-
-                                <!-- Thành phố trực thuộc TW -->
-                                <option value="Hà Nội">Hà Nội</option>
-                                <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                                <option value="Đà Nẵng">Đà Nẵng</option>
-                                <option value="Hải Phòng">Hải Phòng</option>
-                                <option value="Cần Thơ">Cần Thơ</option>
-
-                                <!-- Các tỉnh -->
-                                <option value="An Giang">An Giang</option>
-                                <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
-                                <option value="Bắc Giang">Bắc Giang</option>
-                                <option value="Bắc Kạn">Bắc Kạn</option>
-                                <option value="Bạc Liêu">Bạc Liêu</option>
-                                <option value="Bắc Ninh">Bắc Ninh</option>
-                                <option value="Bến Tre">Bến Tre</option>
-                                <option value="Bình Dương">Bình Dương</option>
-                                <option value="Bình Định">Bình Định</option>
-                                <option value="Bình Phước">Bình Phước</option>
-                                <option value="Bình Thuận">Bình Thuận</option>
-                                <option value="Cà Mau">Cà Mau</option>
-                                <option value="Cao Bằng">Cao Bằng</option>
-                                <option value="Đắk Lắk">Đắk Lắk</option>
-                                <option value="Đắk Nông">Đắk Nông</option>
-                                <option value="Điện Biên">Điện Biên</option>
-                                <option value="Gia Lai">Gia Lai</option>
-                                <option value="Hà Giang">Hà Giang</option>
-                                <option value="Hà Nam">Hà Nam</option>
-                                <option value="Hà Tĩnh">Hà Tĩnh</option>
-                                <option value="Hải Dương">Hải Dương</option>
-                                <option value="Hậu Giang">Hậu Giang</option>
-                                <option value="Hòa Bình">Hòa Bình</option>
-                                <option value="Hưng Yên">Hưng Yên</option>
-                                <option value="Khánh Hòa">Khánh Hòa</option>
-                                <option value="Kiên Giang">Kiên Giang</option>
-                                <option value="Kon Tum">Kon Tum</option>
-                                <option value="Lai Châu">Lai Châu</option>
-                                <option value="Lâm Đồng">Lâm Đồng</option>
-                                <option value="Lạng Sơn">Lạng Sơn</option>
-                                <option value="Lào Cai">Lào Cai</option>
-                                <option value="Long An">Long An</option>
-                                <option value="Nam Định">Nam Định</option>
-                                <option value="Nghệ An">Nghệ An</option>
-                                <option value="Ninh Bình">Ninh Bình</option>
-                                <option value="Ninh Thuận">Ninh Thuận</option>
-                                <option value="Phú Thọ">Phú Thọ</option>
-                                <option value="Phú Yên">Phú Yên</option>
-                                <option value="Quảng Bình">Quảng Bình</option>
-                                <option value="Quảng Nam">Quảng Nam</option>
-                                <option value="Quảng Ngãi">Quảng Ngãi</option>
-                                <option value="Quảng Ninh">Quảng Ninh</option>
-                                <option value="Quảng Trị">Quảng Trị</option>
-                                <option value="Sóc Trăng">Sóc Trăng</option>
-                                <option value="Sơn La">Sơn La</option>
-                                <option value="Tây Ninh">Tây Ninh</option>
-                                <option value="Thái Bình">Thái Bình</option>
-                                <option value="Thái Nguyên">Thái Nguyên</option>
-                                <option value="Thanh Hóa">Thanh Hóa</option>
-                                <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
-                                <option value="Tiền Giang">Tiền Giang</option>
-                                <option value="Trà Vinh">Trà Vinh</option>
-                                <option value="Tuyên Quang">Tuyên Quang</option>
-                                <option value="Vĩnh Long">Vĩnh Long</option>
-                                <option value="Vĩnh Phúc">Vĩnh Phúc</option>
-                                <option value="Yên Bái">Yên Bái</option>
-                            </select>
-
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Địa chỉ</label>
-                            <textarea class="form-control" id="address" name="address"></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="roles" class="form-label">Vai trò</label>
-                            <select class="form-select" id="roles" name="roles" multiple>
-                                <option value="ROLE_USER">Người dùng</option>
-                                <option value="ROLE_ADMIN">Admin</option>
-                            </select>
-                            <small class="form-text text-muted">Giữ Ctrl (hoặc Cmd) để chọn nhiều vai trò</small>
-                        </div>
-
-                        <div class="mb-3 form-check form-switch">
-                            <input type="hidden" name="status" value="inactive">
-                            <input class="form-check-input" type="checkbox" id="status" name="status" value="active" checked>
-                            <label class="form-check-label" for="status">Trạng thái hoạt động</label>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                            <i class="fas fa-times"></i> Hủy
-                        </button>
-                        <button type="submit" class="btn btn-primary"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
-                            <i class="fas fa-check"></i> Lưu
-                        </button>
-                    </div>
-                </form>
+                </c:forEach>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center m-3">
+                 <p class="mb-0">
+                    Hiển thị ${pageSize} trong ${totalElements} cẩm nang,
+                    trang hiện tại ${currentPage },
+                    tổng trang ${totalPages}
+                </p>
+                <c:if test="${totalPages > 0}">
+                    <nav>
+                    <ul class="pagination mb-0">
+                        <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
+
+                            <c:choose>
+                                <c:when test="${st.index+1 == currentPage}">
+                                    <li class="page-item active">
+                                        <a class="page-link"
+                                           href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                ${st.index + 1}
+                                        </a>
+                                    </li>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                ${st.index + 1}
+                                        </a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </c:forEach>
+                    </ul>
+                </nav>
+                </c:if>
             </div>
         </div>
     </div>
+
+
 </main>
 
 

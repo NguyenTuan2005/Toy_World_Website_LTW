@@ -96,7 +96,7 @@ public class HandbookDAO extends BaseDAO{
                         ,h.user_id
                         ,h.title
                         ,h.views
-                        , h.status
+                        ,h.status
                         ,p.description
                         ,p.image_path
                         ,concat(u.first_name,' ',u.last_name) as fullname

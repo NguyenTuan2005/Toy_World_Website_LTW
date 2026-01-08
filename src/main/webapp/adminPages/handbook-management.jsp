@@ -187,13 +187,13 @@
                 <div class="col-md-6 hstack align-items-center">
                     <div class="search-wrapper flex-grow-1">
                         <i class="fas fa-search search-icon"></i>
-                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/#" method="post">
+                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin-x/handbooks" method="post">
                             <input
                                     type="text"
                                     id="searchInput"
                                     name="keyword"
                                     class="search-input"
-                                    placeholder="Nhập ID / Email / Phone / Tên"
+                                    placeholder="Nhập ID / Title"
                             >
                         </form>
 
@@ -218,7 +218,7 @@
                         </nav>
                     </c:if>
                     <div class="text-end mt-md-0">
-                        <a  href="${pageContext.request.contextPath}/admin/new-handbooks"  class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal" data-bs-target="#userModal">
+                        <a  href="${pageContext.request.contextPath}/admin/new-handbooks"  class="btn-add fw-medium px-4 py-2 text-decoration-none">
                             <i class="fas fa-plus"></i> Thêm bài viết
                         </a>
                     </div>

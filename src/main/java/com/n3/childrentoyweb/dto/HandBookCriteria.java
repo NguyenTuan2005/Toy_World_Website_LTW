@@ -75,7 +75,7 @@ public class HandBookCriteria {
     }
 
     public String getIsOnMonthForSql(){
-        if (isOnMonth)
+        if (isOnMonth != null && isOnMonth)
             return " AND YEAR(h.created_at) = YEAR(CURDATE())\n" +
                     "AND MONTH(h.created_at) = MONTH(CURDATE())\n ";
         return this.SKIP;
@@ -100,7 +100,7 @@ public class HandBookCriteria {
     }
 
     public String getTitleForSql(){
-        if (this.title != null && this.title.isEmpty())
+        if (this.title != null)
             return " AND h.title like '%"+this.title.trim()+"%'";
         return this.SKIP;
     }
@@ -110,5 +110,20 @@ public class HandBookCriteria {
             return " AND h.user_id = "+this.userId;
         }
         return this.SKIP;
+    }
+
+    @Override
+    public String toString() {
+        return "HandBookCriteria{" +
+                "SKIP='" + SKIP + '\'' +
+                ", id=" + id +
+                ", isOnMonth=" + isOnMonth +
+                ", isOnDay=" + isOnDay +
+                ", isHidden=" + isHidden +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", currentPage=" + currentPage +
+                ", pageSize=" + pageSize +
+                '}';
     }
 }

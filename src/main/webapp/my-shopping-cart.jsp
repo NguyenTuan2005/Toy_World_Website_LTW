@@ -24,9 +24,19 @@
             </nav>
         </div>
     </div>
-    <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert">
-      ${error}
-    </div>
+
+    <c:set var="cart" value="${sessionScope.cart}" />
+
+    <c:choose>
+      <c:when test="${not empty error}">
+        <div id="alert" class="alert alert-danger text-center mb-4" role="alert">
+            ${error}
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert"></div>
+      </c:otherwise>
+    </c:choose>
 
     <div class="container py-4">
       <div class="row">
@@ -155,11 +165,20 @@
               </label>
             </div>
 
-            <a href ="checkout.html">
-              <button class ="checkout-btn">
+            <c:choose>
+              <c:when test="${not empty cart.cartItems}">
+                <a href="${pageContext.request.contextPath}/checkout">
+                  <button class="checkout-btn">
+                    Thanh toán ngay
+                  </button>
+                </a>
+              </c:when>
+              <c:otherwise>
+                <button id="emptyCartBtn" class="checkout-btn" >
                   Thanh toán ngay
-              </button>
-            </a>
+                </button>
+              </c:otherwise>
+            </c:choose>
           </div>
         </div>
       </div>
@@ -195,6 +214,10 @@
     <jsp:include page="/common/footer.jsp" />
     <script>
       const contextPath = '${pageContext.request.contextPath}';
+      const emptyCartBtn = document.getElementById('emptyCartBtn');
+      if (emptyCartBtn) {
+        emptyCartBtn.addEventListener('click', () => showAlert('Giỏ hàng trống'));
+      }
     </script>
     <script src="js/cart.js"></script>
   </body>

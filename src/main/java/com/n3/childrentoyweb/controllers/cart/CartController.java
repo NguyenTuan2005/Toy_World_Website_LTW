@@ -54,9 +54,6 @@ public class CartController  extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cart cart = (Cart) req.getSession().getAttribute(Cart.CART);
-
-        req.setAttribute(Cart.CART, cart);
         req.getRequestDispatcher("/my-shopping-cart.jsp").forward(req, resp);
     }
 }

@@ -1,10 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
     <title>Thanh Toán - Toy World</title>
-    <<link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <jsp:include page="/common/head.jsp" />
     <link rel="stylesheet" href="css/checkout.css" />
     <style>
@@ -27,6 +28,9 @@
         </div>
     </div>
 
+    <c:set var="user" value="${sessionScope.currentUser}"/>
+    <c:set var="cart" value="${sessionScope.cart}"/>
+
     <div class="container mt-4">
       <div class="row">
         <!-- Left Column - Forms -->
@@ -36,15 +40,11 @@
             class="account-info-header mb-4 bg-white rounded d-flex justify-content-between align-items-center"
           >
             <div class="d-flex align-items-center">
-              <span class="fw-bold me-2 rounded-circle">AB</span>
-              <span>abc123@gmail.com</span>
+              <span class="fw-bold me-2 rounded-circle">
+                ${fn:substring(user.firstName, 0, 1)}
+              </span>
+              <span>${user.email}</span>
             </div>
-            <button
-              class="btn btn-link text-dark p-0"
-              style="font-size: 1.5rem; text-decoration: none"
-            >
-              ⋮
-            </button>
           </div>
 
           <!-- Delivery Section -->
@@ -71,16 +71,13 @@
               
             </div>
 
-  
-      
-
             <!-- Name Fields -->
             <div class="row mb-3 py-2">
               <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Tên" />
+                <input type="text" class="form-control" placeholder="Tên" value="${user.firstName}"/>
               </div>
               <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Họ" />
+                <input type="text" class="form-control" placeholder="Họ" value="${user.lastName}"/>
               </div>
             </div>
 
@@ -99,30 +96,7 @@
             </div>
           </div>
 
-          <!-- Shipping Method -->
-          <div class="form-section">
-            <h2 class="section-title">Phương thức vận chuyển</h2>
-
-            <div class="shipping-method selected">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <strong>VTA Tiêu Chuẩn (miễn phí)</strong>
-                  <div class="text-muted small">
-                    Nội thành (1-3 ngày), ngoại thành (3-5 ngày), biên lấn (5-7
-                    ngày)
-                  </div>
-                </div>
-                <span class="badge">MIỄN PHÍ</span>
-              </div>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="vat" />
-              <label class="form-check-label" for="vat">
-                Yêu cầu xuất thông tin VAT
-              </label>
-            </div>
-
+          <div>
             <div class="alert alert-info mt-3">
               <i class="fas fa-info-circle"></i>
               Theo quy định: Theo quy định, Toy World chỉ xuất hóa đơn trong
@@ -153,7 +127,7 @@
                     >
                       <div>
                         <h3 class="payment-title">
-                          Cổng thanh toán Online ZaloPay
+                          Cổng thanh toán Online VNPay
                         </h3>
                         <p class="payment-subtitle">
                           (Visa, Master, JCB, QR, thẻ ATM)
@@ -212,7 +186,7 @@
 
                     <p class="payment-info-text">
                       Sau khi nhấp vào "<strong>Thanh toán ngay</strong>", bạn
-                      sẽ được chuyển hướng đến Cổng thanh toán Online ZaloPay
+                      sẽ được chuyển hướng đến Cổng thanh toán Online VNPay
                       (Visa, Master, JCB, QR, thẻ ATM) để hoàn tất việc mua hàng
                       một cách an toàn.
                     </p>
@@ -305,14 +279,6 @@
     </div>
 
     <jsp:include page="/common/footer.jsp" />
-    <script>
-      function selectPayment(paymentId) {
-        document.querySelectorAll(".payment-option").forEach((option) => {
-          option.classList.remove("active");
-        });
-
-        document.getElementById(paymentId).classList.add("active");
-      }
-    </script>
+    <script src="js/checkout.js"></script>
   </body>
 </html>

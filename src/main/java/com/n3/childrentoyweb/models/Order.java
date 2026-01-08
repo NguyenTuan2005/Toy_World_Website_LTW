@@ -16,7 +16,7 @@ public class Order extends BaseModel {
     }
 
 
-    public Order( Long userId, Double totalPrice, Voucher voucher, String status) {
+    public Order( Long userId, Double totalPrice, String status) {
         this.userId = userId;
         this.totalPrice = totalPrice;
         this.status = status;

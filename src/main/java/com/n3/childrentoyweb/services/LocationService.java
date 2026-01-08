@@ -9,4 +9,8 @@ public class LocationService {
     public Location findByUserId(Long userId){
         return locationDAO.findByUserId(userId);
     }
+
+    public long save(Location location) {
+        return this.locationDAO.save(location);
+    }
 }

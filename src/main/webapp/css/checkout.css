@@ -138,39 +138,13 @@
   font-size: 14px;
   margin-bottom: 4px;
 }
-.product-code {
-  font-size: 13px;
-  color: #666;
-}
 .product-price {
   font-weight: 600;
-}
-.discount-code {
-  display: inline-block;
-}
-
-/* Ô voucher */
-.voucher-mini {
-  background: #ffeef0;
-  border-radius: 10px;
 }
 
 .voucher-freeship {
   background: #e8f7f7;
   border-radius: 10px;
-}
-
-/* Icon bên trái */
-.voucher-icon {
-  width: 36px;
-  height: 36px;
-  background: #ffffff;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Summary layout */
@@ -186,23 +160,6 @@
   border-top: 2px solid #eee;
 }
 .total-amount {
-  color: #cf102d;
-}
-
-/* Footer links */
-.footer-links {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid #eee;
-  font-size: 14px;
-}
-.footer-links a {
-  color: #666;
-  text-decoration: none;
-  margin-right: 16px;
-  font-weight: 800;
-}
-.footer-links a:hover {
   color: #cf102d;
 }
 
@@ -273,58 +230,14 @@
 .payment-content {
   flex: 1;
 }
-.payment-title {
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0;
-}
-.payment-subtitle {
-  color: #6c757d;
-  font-size: 14px;
-  margin-top: 4px;
-}
 
-.payment-logos {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.payment-logos img {
-  height: 32px;
-}
 .payment-logos .plus-badge {
   color: #24a745;
   font-weight: 600;
   font-size: 18px;
 }
 
-.payment-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-}
-.payment-option.active .payment-details {
+.payment-option.active {
   max-height: 500px;
   opacity: 1;
-}
-
-.payment-info-box {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 32px;
-  margin: 0 24px 16px 24px;
-  border-top: 1px solid #dee2e6;
-  text-align: center;
-}
-
-.browser-icon {
-  width: 100px;
-  height: 80px;
-  margin: 0 auto 16px;
-  color: #adb5bd;
-}
-.payment-info-text {
-  color: #495057;
-  line-height: 1.6;
 }

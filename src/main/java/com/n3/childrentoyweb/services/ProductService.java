@@ -4,13 +4,9 @@ import com.n3.childrentoyweb.dao.ApplicationProperties;
 import com.n3.childrentoyweb.dao.ProductAssetDAO;
 import com.n3.childrentoyweb.dao.ProductDAO;
 import com.n3.childrentoyweb.dao.UserCommentDAO;
-import com.n3.childrentoyweb.dto.HomeProductDTO;
-import com.n3.childrentoyweb.dto.ProductDetailDTO;
-import com.n3.childrentoyweb.dto.ProductListDTO;
-import com.n3.childrentoyweb.dto.ProductPromotionDTO;
+import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -46,7 +42,8 @@ public class ProductService {
     public List<HomeProductDTO> findSignatureProduct() {
         return this.productDAO.findSignatureProduct(FIRST_PAGE, ApplicationProperties.DISPLAY_PRODUCT_SIZE, ApplicationProperties.SIGNATURE_BRAND_NAME);
     }
-    public Optional<Product> findById(Long id ){
+
+    public Optional<Product> findById(Long id) {
         return this.productDAO.findById(id);
     }
 
@@ -86,7 +83,7 @@ public class ProductService {
         return product;
     }
 
-    public long countProductInMonth(int year, int month){
+    public long countProductInMonth(int year, int month) {
         return productDAO.countProductInMonth(year, month);
     }
 
@@ -98,28 +95,24 @@ public class ProductService {
         return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
-    public List<ProductListDTO> findByFilter(List<Integer> brandIds, int page, int pageSize) {
-        int offset = (page - 1) * pageSize;
-        List<ProductListDTO> products;
+    public List<ProductListDTO> findByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int page, int pageSize) {
 
-        if (brandIds == null || brandIds.isEmpty()) {
-            products = productDAO.findAllByPage(page, pageSize);
-        } else {
-            products = productDAO.findByFilter(brandIds, pageSize, offset);
-        }
+        int offset = (page - 1) * pageSize;
+        List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, pageSize, offset);
+
 
         for (ProductListDTO p : products) {
             long originPrice = p.getOriginPrice();
             long maxDiscountPrice = p.getMaxDiscountPrice();
             double discountPercent = p.getDiscountPercent();
 
-            long discountPrice = (long) (originPrice * discountPercent/100);
+            if (originPrice <= 0) continue;
+            if (discountPercent < 0) discountPercent = 0;
+            if (discountPercent > 100) discountPercent = 100;
 
-            if(discountPrice > maxDiscountPrice){
-                p.setFinalPrice( originPrice - maxDiscountPrice);
-            }else{
-                p.setFinalPrice(originPrice - discountPrice);
-            }
+            long discountByPercent = Math.round(originPrice * discountPercent / 100);
+            long finalDiscount = Math.min(discountByPercent, maxDiscountPrice);
+            p.setFinalPrice(originPrice - finalDiscount);
         }
         return products;
     }
@@ -130,7 +123,8 @@ public class ProductService {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ProductService().findAllByPage(1,10));
+        System.out.println(new ProductService().findByFilter(List.of(), List.of(),
+                List.of(  new PriceRangeFilterDTO(1000000, 2000000, "1.000.000₫ - 2.000.000₫")), 1, 10));
     }
 
 

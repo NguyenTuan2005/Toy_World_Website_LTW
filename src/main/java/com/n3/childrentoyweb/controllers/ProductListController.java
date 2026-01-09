@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.controllers;
 
+import com.n3.childrentoyweb.dto.PriceRangeFilterDTO;
 import com.n3.childrentoyweb.dto.ProductListDTO;
 import com.n3.childrentoyweb.services.BrandService;
 import com.n3.childrentoyweb.services.CategoryService;
@@ -10,12 +11,13 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(value = "/products")
 public class ProductListController extends HttpServlet {
-    private static final int PAGE_SIZE = 9;
+    private static final int PAGE_SIZE = 18;
     private ProductService productService;
     private CategoryService categoryService;
     private BrandService brandService;
@@ -33,44 +35,76 @@ public class ProductListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        int page = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
 
-        int page = 1;
-        if (request.getParameter("page") != null) {
-            page = Integer.parseInt(request.getParameter("page"));
-        }
+        //category filter
+        String[] categoryParams = request.getParameterValues("categoryId");
 
-        String[] brandIdsParam = request.getParameterValues("brandId");
-        List<Integer> brandIds;
-
-        if (brandIdsParam != null) {
-            brandIds = Arrays.stream(brandIdsParam)
+        List<Integer> categoryIds = null;
+        if (categoryParams != null) {
+            categoryIds = Arrays.stream(categoryParams)
                     .map(Integer::parseInt)
                     .toList();
-
-            session.setAttribute("selectedBrandIds", brandIds);
-            page = 1;
-        } else {
-            brandIds = (List<Integer>) session.getAttribute("selectedBrandIds");
         }
 
+        //price filter
+        String[] priceParams = request.getParameterValues("priceRange");
 
-        List<ProductListDTO> products = productService.findByFilter(brandIds, page, PAGE_SIZE);
+        List<PriceRangeFilterDTO> selectedPriceRanges = new ArrayList<>();
+
+        if (priceParams != null) {
+            for (String p : priceParams) {
+                String[] parts = p.split(" - ");
+                int min = Integer.parseInt(parts[0].trim());
+                int max = Integer.parseInt(parts[1].trim());
+
+                selectedPriceRanges.add(new PriceRangeFilterDTO(min, max, null));
+            }
+        }
+
+        request.setAttribute("selectedPriceRanges", selectedPriceRanges);
+
+
+        //brand filter
+        String[] brandParams = request.getParameterValues("brandId");
+        List<Integer> brandIds = null;
+        if (brandParams != null) {
+            brandIds = Arrays.stream(brandParams)
+                    .map(Integer::parseInt)
+                    .toList();
+        }
+
+        List<ProductListDTO> products;
+
+        if(brandIds==null && categoryIds== null && selectedPriceRanges==null){
+            products = productService.findAllByPage(page, PAGE_SIZE);
+        }else
+            products = productService.findByFilter(brandIds, categoryIds, selectedPriceRanges, page, PAGE_SIZE);
 
         int totalItems = productService.countByFilter(brandIds);
 
-        int totalPages = (int) Math.ceil((double) totalItems / PAGE_SIZE);
+        int totalPages =
+                (int) Math.ceil((double) totalItems / PAGE_SIZE);
 
-        // 6. Data chung
         request.setAttribute("products", products);
         request.setAttribute("brands", brandService.findAll());
         request.setAttribute("categories", categoryService.findAll());
-
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
 
-        request.getRequestDispatcher("/product-list.jsp")
-                .forward(request, response);
+        //default price filter
+        List<PriceRangeFilterDTO> priceRanges = List.of(
+                new PriceRangeFilterDTO(0, 200000, "Dưới 200.000₫"),
+                new PriceRangeFilterDTO(200000, 500000, "200.000₫ - 500.000₫"),
+                new PriceRangeFilterDTO(500000, 1000000, "500.000₫ - 1.000.000₫"),
+                new PriceRangeFilterDTO(1000000, 2000000, "1.000.000₫ - 2.000.000₫"),
+                new PriceRangeFilterDTO(2000000, 3000000, "2.000.000₫ - 3.000.000₫"),
+                new PriceRangeFilterDTO(3000000, 999999999, "Trên 3.000.000₫")
+        );
+        request.setAttribute("priceRanges", priceRanges);
+
+
+        request.getRequestDispatcher("/product-list.jsp").forward(request, response);
     }
 
     @Override

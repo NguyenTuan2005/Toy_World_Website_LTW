@@ -30,21 +30,41 @@ public class WishListController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-       User user = (User) session.getAttribute("currentUser");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-       if(user == null)
-           resp.sendRedirect("/login.jsp");
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
-       long userid = user.getId();
-       long productId = Long.parseLong(req.getParameter("productId"));
+        User user = (User) session.getAttribute("currentUser");
+        if (user == null) {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
-       Product product = this.productService.findById(productId).orElseThrow(ObjectNotFoundException::new);
+
+        long userid = user.getId();
+        String pid = req.getParameter("productId");
+        if(pid == null){
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        long productId = Long.parseLong(pid);
+
+        Product product = this.productService.findById(productId).orElseThrow(ObjectNotFoundException::new);
 
         WishList wishList = new WishList(userid, product.getId());
-       this.wishListService.save(wishList);
+        this.wishListService.save(wishList);
 
-        resp.sendRedirect(req.getHeader("Referer"));
+        resp.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
     }
 }

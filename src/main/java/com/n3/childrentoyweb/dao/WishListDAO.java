@@ -6,7 +6,7 @@ public class WishListDAO extends BaseDAO {
 
     public void save(WishList wishList) {
         String sql = """
-                    INSERT INTO wish_list (is_active, user_id, product_id, created_at)
+                    INSERT INTO wish_lists (is_active, user_id, product_id, created_at)
                     VALUES (:isActive, :userId, :productId, :createdAt)
                     """;
         this.getJdbi().withHandle(handle ->
@@ -19,5 +19,21 @@ public class WishListDAO extends BaseDAO {
         );
     }
 
+    public boolean exists(WishList wishList) {
+        String sql = """
+                    SELECT 1
+                    FROM wish_lists
+                    WHERE user_id = :userId AND product_id = :productId AND is_active = :isActive
+                    """;
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", wishList.getUserId())
+                        .bind("productId", wishList.getProductId())
+                        .bind("isActive", wishList.getActive())
+                        .mapTo(Integer.class)
+                        .findFirst()
+                        .isPresent()
+        );
+    }
 
 }

@@ -11,6 +11,8 @@ public class WishListService {
     }
 
     public void save(WishList wishList){
-        this.wishListDAO.save(wishList);
+        if (!this.wishListDAO.exists(wishList)) {
+            this.wishListDAO.save(wishList);
+        }
     }
 }

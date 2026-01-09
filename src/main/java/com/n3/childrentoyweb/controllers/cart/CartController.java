@@ -46,9 +46,12 @@ public class CartController  extends HttpServlet {
             ProductAsset asset = this.productAssetService.findFirstByProductId(productId).orElseThrow(ObjectNotFoundException::new);
             Promotion promotion = this.promotionService.findById(product.getPromotionId()).orElse(new Promotion());
 
-            CartProductDTO cartProductDTO = new com.n3.childrentoyweb.dto.CartProductDTO(product,asset,promotion);
-            cart.addItem(new CartItem(cartProductDTO,quantity));
-            session.setAttribute(Cart.CART,cart);
+            CartProductDTO cartProductDTO = new CartProductDTO(product,asset,promotion);
+            cart.addItem(new CartItem(cartProductDTO, quantity));
+            session.setAttribute(Cart.CART, cart);
+
+            resp.setContentType("text/plain");
+            resp.getWriter().print(cart.getTotalQuantity());
 
             resp.sendRedirect(req.getHeader("Referer"));
         } catch (Exception e) {

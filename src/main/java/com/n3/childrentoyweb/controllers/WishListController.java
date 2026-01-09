@@ -30,21 +30,36 @@ public class WishListController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-       User user = (User) session.getAttribute("currentUser");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-       if(user == null)
-           resp.sendRedirect("/login.jsp");
+    }
 
-       long userid = user.getId();
-       long productId = Long.parseLong(req.getParameter("productId"));
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-       Product product = this.productService.findById(productId).orElseThrow(ObjectNotFoundException::new);
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
-        WishList wishList = new WishList(userid, product.getId());
-       this.wishListService.save(wishList);
+        User user = (User) session.getAttribute("currentUser");
+        if (user == null) {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
-        resp.sendRedirect(req.getHeader("Referer"));
+        long userId = user.getId();
+        String pid = req.getParameter("productId");
+        if (pid == null) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        long productId = Long.parseLong(pid);
+        boolean isNowWishlisted = wishListService.toggleWishList(userId, productId);
+
+        resp.setContentType("application/json");
+        resp.getWriter().write("{\"wishlisted\": " + isNowWishlisted + "}");
     }
 }

@@ -48,4 +48,7 @@ public class BrandService {
         List<ManageBrandDTO> manageBrandDTOS = this.brandDAO.findBrandsByCriteria(brandCriteria);
         return new Pagination<>(manageBrandDTOS,1, manageBrandDTOS.size(), 1);
     }
+
+
+
 }

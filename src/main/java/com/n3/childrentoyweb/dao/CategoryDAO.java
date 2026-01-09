@@ -21,7 +21,4 @@ public class CategoryDAO extends BaseDAO{
         );
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProductDAO().findAll());
-    }
 }

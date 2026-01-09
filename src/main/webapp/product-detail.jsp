@@ -20,9 +20,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product-details.css">
-    <style>
-
-    </style>
 
 </head>
 

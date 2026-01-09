@@ -43,15 +43,7 @@
         <!--Cart Items -->
         <div class="col-lg-8">
           <div class="cart-container mb-md-5">
-            <div
-              class="cart-header d-flex justify-content-between align-items-center mb-1 px-2 pb-2"
-            >
-              <img
-                src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png"
-                alt="Logo TOY WORLD"
-                class="img-fluid"
-                style="max-width: 100px"
-              />
+            <div class="cart-header d-flex justify-content-between align-items-center mb-1 px-2 pb-2">
 
               <div class="continue-shopping">
                 <a href="${pageContext.request.contextPath}/home" class="continue-shopping">

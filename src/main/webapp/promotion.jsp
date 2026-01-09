@@ -56,35 +56,35 @@
                         <!-- WRAPPER -->
                         <div class="product-slider d-flex gap-3 overflow-hidden px-5">
 
-                            <c:forEach var="p" items="${products}">
+                            <c:forEach var="priceRange" items="${products}">
                                 <div class="card border-0 shadow-sm flex-shrink-0 product-card">
                                     <div class="position-relative">
                                     <span class="badge bg-danger position-absolute top-0 end-0 m-2">
                                         -${promotion.discountPercent}%
                                     </span>
-                                        <img src="${p.firstImg}"
+                                        <img src="${priceRange.firstImg}"
                                              class="card-img-top p-3"
                                              style="cursor:pointer"
-                                             role="button" onclick="window.location.href='${pageContext.request.contextPath}/products/${p.id}'">
+                                             role="button" onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'">
                                     </div>
 
                                     <div class="card-body">
                                         <h6 class="card-title text-truncate mb-2">
-                                                ${p.name}
+                                                ${priceRange.name}
                                         </h6>
 
                                         <div class="d-flex align-items-center mb-3">
                                             <span class="fw-bold text-danger fs-5">
-                                                <fmt:formatNumber value="${p.discountPrice}" type="number"/>
+                                                <fmt:formatNumber value="${priceRange.discountPrice}" type="number"/>
                                             </span>
                                                         <span class="text-decoration-line-through text-muted ms-auto">
-                                                <fmt:formatNumber value="${p.originalPrice}" type="number"/>
+                                                <fmt:formatNumber value="${priceRange.originalPrice}" type="number"/>
                                             </span>
                                         </div>
 
                                         <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
                                             <form action="${pageContext.request.contextPath}/cart" method="post">
-                                                <input type="hidden" name="productId" value="${p.id}" />
+                                                <input type="hidden" name="productId" value="${priceRange.id}" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
                                                     Thêm Vào Giỏ Hàng

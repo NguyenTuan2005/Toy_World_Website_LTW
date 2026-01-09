@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
 </head>
 
+
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
 
@@ -26,23 +27,19 @@
                     <h1 class="page-title">Quản lý sự kiện</h1>
                 </div>
                 <div class="nav col d-flex gap-2 justify-content-end">
-                    <button class="nav-link btn-nav active fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#events" type="button">
+                    <button class="nav-link btn-nav  fw-medium px-4 py-2 text-decoration-none"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/events'">
                         <i class="fas fa-calendar-check me-2"></i>Events
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#promotions" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" type="button"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/promotions'">
                         <i class="fas fa-percentage me-2"></i>Promotions
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#vouchers" type="button">
-                        <i class="fas fa-ticket-alt me-2"></i>Vouchers
-                    </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#banners" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none active "
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/events'">
                         <i class="fas fa-image me-2"></i>Banners
                     </button>
                 </div>
@@ -52,7 +49,7 @@
 
     <div class="tab-content">
         <!-- Banners Tab -->
-        <div class="tab-pane fade container mb-3" id="banners">
+        <div class=" container mb-3" >
             <div class="filter-section">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -66,8 +63,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#bannerModal">
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" >
                             <i class="fas fa-plus"></i> Thêm banner
                         </button>
                     </div>
@@ -80,34 +76,48 @@
                     <tr>
                         <th>Tên Banner</th>
                         <th>Ảnh</th>
-                        <th>Sự kiện</th>
+                        <th>Nhom</th>
                         <th>Trạng Thái</th>
                         <th>Thao Tác</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Black Friday Hero Banner</td>
-                        <td><img src="" alt=""></td>
-                        <td>/events/black-friday</td>
-                        <td><span class="badge badge-active">Hiển thị</span></td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
 
-                                <button class="btn btn-link text-success text-decoration-none">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+                        <c:forEach var="banner" items="${banners}">
+                            <tr>
+                                <td>${banner.title}</td>
+                                <td><img src="${banner.imgPath}" alt="hehe" class="zoom-img" width="190" height="70"  ></td>
+                                <td>${banner.groupTag}</td>
+                                <td>
+                                  <c:choose>
+                                      <c:when test="${banner.active}">
+                                          Hoạt động
+                                      </c:when>
+                                      <c:otherwise>
+                                          Khóa
+                                      </c:otherwise>
+                                  </c:choose>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
 
+                                         <a href="/childrentoyweb_war/admin/update-banners?id=${banner.id}">
+                                             <i class="fas fa-edit"></i>
+                                         </a>
+
+
+                                        <form method="post" action="/childrentoyweb_war/admin/banners"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                            <input type="hidden" name="id" value="${banner.id}">
+                                            <input type="hidden" name="page" value="${currentPage_banner}">
+                                            <button class="btn btn-link text-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
 

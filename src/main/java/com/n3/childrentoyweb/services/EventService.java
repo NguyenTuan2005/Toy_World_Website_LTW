@@ -55,4 +55,7 @@ public class EventService {
         int totalPages = totalElements / 10;
         return new Pagination<>(events,1,totalElements,totalPages);
     }
+    public List<Event> findActiveEvent(){
+        return this.eventDAO.findActiveEvent();
+    }
 }

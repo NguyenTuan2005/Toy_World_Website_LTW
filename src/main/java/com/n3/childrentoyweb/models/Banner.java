@@ -93,6 +93,7 @@ public class Banner extends BaseModel {
                 ", groupTag='" + groupTag + '\'' +
                 ", sortOrder=" + sortOrder +
                 ", eventId=" + eventId +
+                ", "+super.toString()+
                 '}';
     }
 }

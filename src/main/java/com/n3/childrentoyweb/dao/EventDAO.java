@@ -193,4 +193,31 @@ public class EventDAO  extends BaseDAO{
     public static void main(String[] args) {
         System.out.println(new EventDAO().findById(51L));
     }
+
+    public List<Event> findActiveEvent() {
+
+        String sql = """
+        select *
+        from events
+        where opened_at <= now()
+        limit :limit
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit", 20)
+                        .map((rs, ctx) -> {
+                            Event e = new Event();
+                            e.setId(rs.getLong("id"));
+                            e.setName(rs.getString("name"));
+                            e.setOpenedAt(rs.getTimestamp("opened_at").toLocalDateTime());
+                            e.setClosedAt(rs.getTimestamp("closed_at").toLocalDateTime());
+                            e.setDescription(rs.getString("description"));
+                            e.setTypeEvent(rs.getString("type_event"));
+                            e.setActive(rs.getBoolean("is_active"));
+                            return e;
+                        })
+                        .list()
+        );
+    }
 }

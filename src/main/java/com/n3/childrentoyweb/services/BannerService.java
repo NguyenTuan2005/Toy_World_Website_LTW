@@ -27,14 +27,14 @@ public class BannerService {
         bannerDAO.update(banner);
     }
 
-    public Banner getBannerById(Long id) {
-        return bannerDAO.findById(id);
+    public Optional<Banner> getBannerById(Long id) {
+        return Optional.ofNullable(bannerDAO.findById(id));
     }
 
     public Pagination<Banner> findBannerPaging(int currentPage, int pageSize) {
         List<Banner> banners = bannerDAO.findPaging(currentPage, pageSize);
         int totalElements = this.bannerDAO.countAll();
-        int totalPages = totalElements / pageSize;
+        int totalPages = totalElements / pageSize > 0 ? totalElements / pageSize : 1;
         return new Pagination<>(banners,currentPage,totalElements,totalPages);
     }
 

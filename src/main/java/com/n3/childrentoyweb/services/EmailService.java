@@ -1,28 +1,49 @@
 package com.n3.childrentoyweb.services;
 
+import com.n3.childrentoyweb.models.Cart;
+import com.n3.childrentoyweb.models.Location;
+import com.n3.childrentoyweb.models.Payment;
+import com.n3.childrentoyweb.models.User;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.concurrent.*;
 
 import static com.n3.childrentoyweb.dao.ApplicationProperties.*;
 
 public class EmailService {
+    private static EmailService instance;
+    private ExecutorService executorService;
+
+    private EmailService() {
+        int corePoolSize = 3;
+        int maxPoolSize = 10;
+        long keepAliveTime = 60L;
+
+        executorService = new ThreadPoolExecutor(
+                corePoolSize,
+                maxPoolSize,
+                keepAliveTime,
+                TimeUnit.SECONDS,
+                new LinkedBlockingDeque<>()
+        );
+    }
+
+    public static EmailService getInstance() {
+        if (instance == null) {
+            synchronized (EmailService.class) {
+                if (instance == null) {
+                    instance = new EmailService();
+                }
+            }
+        }
+        return instance;
+    }
 
     public void sendOtpEmail(String email, String otp) {
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", SMTP_AUTH);
-        props.put("mail.smtp.starttls.enable", SMTP_STARTTLS);
-        props.put("mail.smtp.host", SMTP_HOST);
-        props.put("mail.smtp.port", SMTP_PORT);
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(SMTP_USERNAME, SMTP_PASSWORD);
-            }
-        });
-
+        Session session = createMailSession();
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(SMTP_USERNAME));
@@ -73,5 +94,135 @@ public class EmailService {
         } catch (MessagingException e) {
             throw new RuntimeException("Failed to send OTP email", e);
         }
+    }
+
+    public void sendCheckoutEmail(User user, Cart cart,Location location, long orderId, Payment payment) {
+        Session session = createMailSession();
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(SMTP_USERNAME));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
+            message.setSubject(String.format("ToyWorld - Xác nhận đơn hàng #%d", orderId));
+
+            String htmlContent = String.format("""
+            <html>
+            <head>
+            <style>
+            body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+            .container { max-width: 700px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .header { text-align: center; border-bottom: 2px solid #D51B1B; padding-bottom: 20px; margin-bottom: 20px; }
+            .header h1 { color: #D51B1B; margin: 0; }
+            .order-info { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+            .order-info p { margin: 8px 0; color: #333; }
+            .items-table { width: 100%%; border-collapse: collapse; margin: 20px 0; }
+            .items-table th { background-color: #D51B1B; color: white; padding: 12px; text-align: left; }
+            .items-table td { padding: 12px; border-bottom: 1px solid #ddd; }
+            .summary { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 20px; }
+            .summary-row { display: flex; justify-content: space-between; margin: 8px 0; }
+            .total { font-weight: bold; font-size: 18px; color: #D51B1B; }
+            .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #999; }
+            </style>
+            </head>
+            <body>
+            <div class='container'>
+            <div class='header'>
+            <h1>HÓA ĐƠN THANH TOÁN</h1>
+            <p>ToyWorld - Đồ chơi trẻ em chất lượng</p>
+            </div>
+            <div class='order-info'>
+            <p><strong>Mã đơn hàng:</strong> #%d</p>
+            <p><strong>Khách hàng:</strong> %s %s</p>
+            <p><strong>Số điện thoại:</strong> %s</p>
+            <p><strong>Địa chỉ giao hàng:</strong> %s</p>
+            </div>
+            <table class='items-table'>
+            <thead>
+            <tr>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            </tr>
+            </thead>
+            <tbody>
+            %s
+            </tbody>
+            </table>
+            <div class='summary'>
+            <div class='summary-row'><span>Tổng cộng:</span><span> %,.0f đ</span></div>
+            <div class='summary-row'><span>Giảm giá:</span><span> %,.0f đ</span></div>
+            <div class='summary-row total'><span>Thành tiền:</span><span> %,.0f đ</span></div>
+            <div class='summary-row'><span>Khách trả:</span><span> %,.0f đ</span></div>
+            </div>
+            <div class='footer'>
+            <p>Cảm ơn quý khách đã mua hàng tại ToyWorld!</p>
+            <p>Mọi thắc mắc xin liên hệ: support@toyworld.com</p>
+            <p>© 2026 ToyWorld. All rights reserved.</p>
+            </div>
+            </div>
+            </body>
+            </html>
+            """,
+            orderId, user.getFirstName(), user.getLastName(), user.getPhone(), location.getAddress(),
+            buildItemsRows(cart), cart.getTotalCost(), cart.getTotalPromotion(), cart.getTotalPrice(),
+            payment.getBalance());
+
+            message.setContent(htmlContent, "text/html; charset=UTF-8");
+
+            executorService.submit(() -> {
+                try {
+                    Transport.send(message);
+                } catch (Exception e) {
+                    System.out.println("EmailService: " + e.getMessage());
+                }
+            });
+
+        } catch (MessagingException e) {
+            throw new RuntimeException("Failed to send checkout email", e);
+        }
+    }
+
+    public void shutdown() {
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+            try {
+                if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+                    executorService.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                executorService.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    private String buildItemsRows(Cart cart) {
+        StringBuilder rows = new StringBuilder();
+        cart.getCartItems().forEach(item -> {
+            double itemTotal = item.getCartProductDTO().getPrice() * item.getQuantity();
+            rows.append(String.format(
+                    "<tr><td>%s</td><td>%,.0f đ</td><td>%d</td><td>%,.0f đ</td></tr>",
+                    item.getCartProductDTO().getName(),
+                    item.getCartProductDTO().getPrice(),
+                    item.getQuantity(),
+                    itemTotal
+            ));
+        });
+        return rows.toString();
+    }
+
+    private Session createMailSession() {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", SMTP_AUTH);
+        props.put("mail.smtp.starttls.enable", SMTP_STARTTLS);
+        props.put("mail.smtp.host", SMTP_HOST);
+        props.put("mail.smtp.port", SMTP_PORT);
+
+        return Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(SMTP_USERNAME, SMTP_PASSWORD);
+            }
+        });
     }
 }

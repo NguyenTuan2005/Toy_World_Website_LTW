@@ -37,7 +37,7 @@
             </c:when>
             <c:otherwise>
                 <div id="alert" class="alert alert-info text-center mb-4">
-                Mã OTP sẽ hết hạn trong: <strong id="countdownValue">${otpDelay != null ? otpDelay : 90}</strong> giây
+                Mã OTP sẽ hết hạn trong: <strong id="countdownValue">${otpDelay != null ? otpDelay : 120}</strong> giây
             </c:otherwise>
           </c:choose>
           </div>
@@ -64,7 +64,7 @@
     </div>
 
     <script>
-      let timeLeft = ${otpDelay != null ? otpDelay : 90};
+      let timeLeft = ${otpDelay != null ? otpDelay : 120};
       const countdownElement = document.getElementById('countdownValue');
 
       const timer = setInterval(function() {

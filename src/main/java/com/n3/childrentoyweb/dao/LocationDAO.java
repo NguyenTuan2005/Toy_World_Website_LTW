@@ -38,4 +38,19 @@ public class LocationDAO extends BaseDAO{
         );
     }
 
+    public void update(Location location) {
+        String sql = """
+                update locations
+                set address = :address,
+                    province = :province
+                where id = :id
+                """;
+
+        this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("address", location.getAddress())
+                        .bind("province", location.getProvince())
+                        .bind("id", location.getId())
+        );
+    }
 }

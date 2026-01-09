@@ -21,11 +21,11 @@
     <div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
         <div class="container">
             <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-left: -1px; ">
-                <a href="/home" aria-label="Trang Chủ">Trang Chủ</a>
+                <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
                 <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <a href="/checkout" aria-label="Dạy Con Thông Minh" style="width: 200px; color:#444;">Thanh toán</a>
+                <a href="${pageContext.request.contextPath}/checkout" aria-label="Dạy Con Thông Minh" style="width: 200px; color:#444;">Thanh toán</a>
             </nav>
         </div>
     </div>
@@ -65,14 +65,24 @@
               <!-- Location Selects -->
               <div class="mb-3">
                 <select id="province" class="form-select" name="province">
-                  <option disabled>Tỉnh/TP</option>
-                  <option>TPHCM</option>
-                  <option>Lâm Đồng</option>
-                  <option>Tiền Giang</option>
-                  <option>Đồng Nai</option>
-                  <c:if test="${not empty location}">
-                    <option selected value="${location.province}"></option>
-                  </c:if>
+                    <option disabled>Tỉnh/TP</option>
+                    <c:choose>
+                        <c:when test="${not empty location}">
+                            <option value="TPHCM" ${location.province eq 'TPHCM' ? 'selected' : ''}>TPHCM</option>
+                            <option value="Lâm Đồng" ${location.province eq 'Lâm Đồng' ? 'selected' : ''}>Lâm Đồng</option>
+                            <option value="Tiền Giang" ${location.province eq 'Tiền Giang' ? 'selected' : ''}>Tiền Giang</option>
+                            <option value="Đồng Nai" ${location.province eq 'Đồng Nai' ? 'selected' : ''}>Đồng Nai</option>
+                            <c:if test="${location.province ne 'TPHCM' && location.province ne 'Lâm Đồng' && location.province ne 'Tiền Giang' && location.province ne 'Đồng Nai'}">
+                                <option value="${location.province}" selected>${location.province}</option>
+                            </c:if>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="TPHCM" selected>TPHCM</option>
+                            <option value="Lâm Đồng">Lâm Đồng</option>
+                            <option value="Tiền Giang">Tiền Giang</option>
+                            <option value="Đồng Nai">Đồng Nai</option>
+                        </c:otherwise>
+                    </c:choose>
                 </select>
               </div>
 
@@ -103,16 +113,6 @@
                 <input id="phone" type="tel" class="form-control" placeholder="Điện thoại" value="${user.phone}" name="phone"/>
               </div>
 
-              <!-- Notes -->
-              <div class="mt-3">
-                <textarea
-                        class="form-control"
-                        rows="3"
-                        placeholder="Ghi chú / Notes"
-                        name="notes"
-                ></textarea>
-              </div>
-
               <div class="alert alert-info mt-3">
                 <i class="fas fa-info-circle"></i>
                 Theo quy định: Theo quy định, Toy World chỉ xuất hóa đơn trong
@@ -129,9 +129,9 @@
                     <div class="payment-header" onclick="selectPayment('${method.name}')">
                       <div class="radio-circle"></div>
                       <div class="payment-content">
-                        <h3 class="payment-title">
+                        <span class="payment-title fw-bold">
                           ${method.name}
-                        </h3>
+                        </span>
                       </div>
                     </div>
                   </div>

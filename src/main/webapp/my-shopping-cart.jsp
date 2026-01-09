@@ -16,11 +16,11 @@
     <div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
         <div class="container">
             <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-left: -1px; ">
-                <a href="/home" aria-label="Trang Chủ">Trang Chủ</a>
+                <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
                 <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <a href="/cart" aria-label="Dạy Con Thông Minh" style="width: 235px; color:#444;">Giỏ Hàng</a>
+                <a href="${pageContext.request.contextPath}/cart" aria-label="Dạy Con Thông Minh" style="width: 235px; color:#444;">Giỏ Hàng</a>
             </nav>
         </div>
     </div>
@@ -54,7 +54,7 @@
               />
 
               <div class="continue-shopping">
-                <a href="/home" class="continue-shopping">
+                <a href="${pageContext.request.contextPath}/home" class="continue-shopping">
                   <i class="fas fa-arrow-left"></i> Tiếp tục mua sắm
                 </a>
               </div>
@@ -132,16 +132,18 @@
             </div>
             <div class="summary-row discount">
               <span>Giảm giá</span>
-              <span>
                 <c:choose>
-                  <c:when test="${not empty cart.cartItems}">
-                    <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
+                  <c:when test="${not empty cart.cartItems and cart.totalPromotion != 0}">
+                    <span style ="color: #cf102d;">
+                      - <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
+                    </span>
                   </c:when>
                   <c:otherwise>
-                    <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
+                    <span>
+                      <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
+                    </span>
                   </c:otherwise>
                 </c:choose>
-              </span>
             </div>
             <div class="summary-row total">
               <span>Tổng cộng</span>

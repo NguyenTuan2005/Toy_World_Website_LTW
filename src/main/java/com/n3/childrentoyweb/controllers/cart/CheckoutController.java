@@ -35,11 +35,11 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user;
+        Cart cart = (Cart) req.getSession().getAttribute(Cart.CART);
         try {
             if ((user = (User) req.getSession().getAttribute("currentUser")) == null)
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
-
-            if (req.getSession().getAttribute(Cart.CART) == null)
+            if (cart == null || cart.getTotalQuantity() == 0)
                 throw new DataInvalidException("Giỏ hàng trống");
 
             if (user.getLocationId() != null) {
@@ -60,11 +60,11 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user;
-        Cart cart;
+        Cart cart = (Cart) req.getSession().getAttribute(Cart.CART);
         try {
             if ((user = (User) req.getSession().getAttribute("currentUser")) == null)
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
-            if ((cart = (Cart) req.getSession().getAttribute("cart")) == null)
+            if (cart == null || cart.getTotalQuantity() == 0)
                 throw new DataInvalidException("Giỏ hàng trống");
 
             String province = req.getParameter("province");
@@ -109,7 +109,8 @@ public class CheckoutController extends HttpServlet {
             emailService.sendCheckoutEmail(user, cart, location, orderId, payment);
 
             req.getSession().setAttribute(Cart.CART, new Cart());
-            resp.sendRedirect("/home");
+            req.setAttribute("success", "Đã thanh toán thành công, chúng tôi sẽ gửi bạn email hóa đơn thông tin.");
+            req.getRequestDispatcher("/checkout.jsp").forward(req, resp);
         } catch (Exception e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("/my-shopping-cart.jsp").forward(req, resp);

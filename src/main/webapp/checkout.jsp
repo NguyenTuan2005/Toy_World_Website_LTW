@@ -199,6 +199,34 @@
       </div>
     </div>
 
+    <c:if test="${not empty success}">
+      <!-- Success Modal -->
+      <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body text-center py-4">
+              <div class="success-icon mb-3">
+                <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Đặt hàng thành công!</h4>
+              <p class="text-muted mb-0">${success}</p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center pb-4">
+              <a href="${pageContext.request.contextPath}/history" class="btn btn-primary px-4">Xem đơn hàng</a>
+              <a href="${pageContext.request.contextPath}/home" class="btn btn-outline-secondary px-4">Về trang chủ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+          successModal.show();
+        });
+      </script>
+    </c:if>
+
     <jsp:include page="/common/footer.jsp" />
     <script src="js/checkout.js"></script>
   </body>

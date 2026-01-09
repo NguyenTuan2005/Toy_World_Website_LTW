@@ -77,7 +77,7 @@
                   </div>
                   <div class="quantity-control">
                     <span class="quantity-label">Số lượng</span>
-                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, ${cartItem.quantity} - 1)">
+                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, parseInt(this.parentElement.querySelector('#quantity').value) - 1)">
                       −
                     </button>
                     <input
@@ -88,7 +88,7 @@
                       min="1"
                       readonly
                     />
-                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, ${cartItem.quantity} + 1)">
+                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, parseInt(this.parentElement.querySelector('#quantity').value) + 1)">
                       +
                     </button>
                   </div>

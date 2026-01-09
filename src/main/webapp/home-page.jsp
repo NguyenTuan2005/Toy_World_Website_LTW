@@ -41,7 +41,14 @@
               </nav>
             </div>
             </div>
-
+          <form action="${pageContext.request.contextPath}/cart" method="post">
+            <% java.util.Random rn = new java.util.Random(); %>
+            <input type="hidden" name="productId" value="<%= rn.nextInt(200) + 1 %>" />
+            <input type="hidden" name="quantity" value="<%= rn.nextInt(5) + 1 %>" />
+            <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
+              Thêm Vào Giỏ Hàng
+            </button>
+          </form>
             <div class="flex-grow-1">
               <!-- image slicer -->
               <section class="section-image-slider container-lg">

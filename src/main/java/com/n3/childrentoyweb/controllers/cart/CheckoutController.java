@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 @WebServlet(name = "checkout", value = "/checkout")
 public class CheckoutController extends HttpServlet {
@@ -30,21 +29,21 @@ public class CheckoutController extends HttpServlet {
         this.paymentService = new PaymentService();
         this.orderService = new OrderService();
         this.userService = new UserService();
-        this.emailService = new EmailService();
+        this.emailService = EmailService.getInstance();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user;
+        Cart cart = (Cart) req.getSession().getAttribute(Cart.CART);
         try {
             if ((user = (User) req.getSession().getAttribute("currentUser")) == null)
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
-
-            if (req.getSession().getAttribute(Cart.CART) == null)
+            if (cart == null || cart.getTotalQuantity() == 0)
                 throw new DataInvalidException("Giỏ hàng trống");
 
             if (user.getLocationId() != null) {
-                Location location = locationService.findByUserId(user.getLocationId());
+                Location location = locationService.findByUserId(user.getId());
                 req.setAttribute("location", location);
             }
 
@@ -61,25 +60,32 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user;
-        Cart cart;
+        Cart cart = (Cart) req.getSession().getAttribute(Cart.CART);
         try {
             if ((user = (User) req.getSession().getAttribute("currentUser")) == null)
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
-            if ((cart = (Cart) req.getSession().getAttribute("cart")) == null)
+            if (cart == null || cart.getTotalQuantity() == 0)
                 throw new DataInvalidException("Giỏ hàng trống");
 
+            String province = req.getParameter("province");
+            String address = req.getParameter("address");
+
+            if (province == null || province.trim().isEmpty() || address == null || address.trim().isEmpty())
+                throw new DataInvalidException("Thông tin địa chỉ không hợp lệ");
+
+            Location location;
             boolean hasLocation = user.getLocationId() != null;
             if (!hasLocation) {
-                String province = req.getParameter("province");
-                String address = req.getParameter("address");
-
-                if (province == null || province.trim().isEmpty() || address == null || address.trim().isEmpty())
-                    throw new DataInvalidException("Thông tin địa chỉ không hợp lệ");
-
-                Location location = new Location(address, province);
+                location = new Location(address, province);
                 long locationId = this.locationService.save(location);
                 user.setLocationId(locationId);
-                this.userService.update(user);
+                location.setId(locationId);
+                this.userService.updateLocation(user, location);
+            } else {
+                location = this.locationService.findByUserId(user.getId());
+                boolean isSameLocation = location.equal(new Location(address, province));
+                if (!isSameLocation)
+                    location = this.locationService.update(new Location(location.getId(),address, province));
             }
 
             Order order = new Order(user.getId(), cart.getTotalPrice(), OrderStatus.IN_PREPARE.getStatus());
@@ -92,14 +98,20 @@ public class CheckoutController extends HttpServlet {
             }
 
             String paymentMethodName = req.getParameter("paymentMethod");
+            if (paymentMethodName == null || paymentMethodName.trim().isEmpty())
+                throw new DataInvalidException("Thông tin phương thức thanh toán không hợp lệ");
+
             long paymentMethodId = this.paymentService.findPaymentMethodIdByName(paymentMethodName);
 
             Payment payment = new Payment(paymentMethodId, orderId, cart.getTotalCost(), PaymentStatus.UNPAID.getStatus());
             this.paymentService.save(payment);
 
+            emailService.sendCheckoutEmail(user, cart, location, orderId, payment);
+
             req.getSession().setAttribute(Cart.CART, new Cart());
-            resp.sendRedirect("/home");
-        } catch (DataInvalidException e) {
+            req.setAttribute("success", "Đã thanh toán thành công, chúng tôi sẽ gửi bạn email hóa đơn thông tin.");
+            req.getRequestDispatcher("/checkout.jsp").forward(req, resp);
+        } catch (Exception e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("/my-shopping-cart.jsp").forward(req, resp);
         }

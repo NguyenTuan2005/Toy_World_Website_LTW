@@ -30,7 +30,7 @@ public class EventService {
         return eventDAO.countEndedEvent();
     }
 
-    public Long createEvent(Event event){
+    public Long save(Event event){
         return eventDAO.save(event);
     }
 

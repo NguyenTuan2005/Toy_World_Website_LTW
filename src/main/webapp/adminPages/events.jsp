@@ -623,7 +623,7 @@
 <%--                </div>--%>
 <%--            </div>--%>
 <%--        </div>--%>
-    </div>
+<%--    </div>--%>
 
     <!-- Modal Thêm/Sửa Event -->
     <div class="modal fade" id="eventModal" tabindex="-1">

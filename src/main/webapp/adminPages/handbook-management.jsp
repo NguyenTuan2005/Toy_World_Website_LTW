@@ -187,7 +187,7 @@
                 <div class="col-md-6 hstack align-items-center">
                     <div class="search-wrapper flex-grow-1">
                         <i class="fas fa-search search-icon"></i>
-                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin-x/handbooks" method="post">
+                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/handbooks" method="post">
                             <input
                                     type="text"
                                     id="searchInput"

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(value = "/admin-x/promotions")
+@WebServlet(value = "/admin/promotions")
 public class PromotionController extends HttpServlet {
     private PromotionService promotionService;
     private int PAGE_SIZE =10;

@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.controllers.admin;
 
+import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.Event;
 import com.n3.childrentoyweb.services.EventService;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
@@ -11,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(value = "/admin/new-events")
-public class NewEventController extends HttpServlet {
+@WebServlet(value = "/admin/update-events")
+public class UpdateEventController extends HttpServlet {
 
     private EventService eventService;
 
@@ -24,18 +25,38 @@ public class NewEventController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("isNewEvent", true);
-        req.getRequestDispatcher("/adminPages/new-events.jsp").forward(req,resp);
+        this.loadEvent(req);
+        req.getRequestDispatcher("/adminPages/update-event.jsp").forward(req, resp);
+    }
+
+    private void loadEvent(HttpServletRequest req){
+        if(req.getParameter("id") == null){
+            System.out.println("ok");
+            throw new ObjectNotFoundException();
+        }
+
+        long id = Long.parseLong(req.getParameter("id"));
+        Event event = this.eventService.findEventById(id).orElseThrow(ObjectNotFoundException::new);
+        req.setAttribute("event", event);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.updateEvent(req);
+        resp.sendRedirect(req.getHeader("Referer"));
+    }
+
+    private void updateEvent(HttpServletRequest request){
+        if(request.getParameter("id") == null){
+            throw new ObjectNotFoundException();
+        }
         String eventName = request.getParameter("eventName");
         String eventType = request.getParameter("eventType");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         String description = request.getParameter("description");
         String status = request.getParameter("status");
+        long id = Long.parseLong(request.getParameter("id"));
 
         // In ra console
         System.out.println("===== NEW EVENT =====");
@@ -46,7 +67,7 @@ public class NewEventController extends HttpServlet {
         System.out.println("Mô tả: " + description);
         System.out.println("Trạng thái: " + status);
         try {
-            Event event = new Event();
+            Event event = this.eventService.findEventById(id).orElseThrow(ObjectNotFoundException::new);
 
             event.setName(eventName);
             event.setTypeEvent(eventType);
@@ -54,12 +75,9 @@ public class NewEventController extends HttpServlet {
             event.setActive(Boolean.parseBoolean(status));
             event.setOpenedAt(LocalDateTimeConverterUtil.convertDateStringToLocalDateTime(startDate));
             event.setClosedAt(LocalDateTimeConverterUtil.convertDateStringToLocalDateTime(endDate));
-            request.setAttribute("isNewEvent", true);
-            this.eventService.save(event);
+            this.eventService.updateEvent(event);
         } catch (Exception e) {
             throw new  RuntimeException();
         }
-
-        request.getRequestDispatcher("/adminPages/new-events.jsp").forward(request,resp);
     }
 }

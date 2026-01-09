@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(value = "/banners")
+@WebServlet(value = "/admin/banners")
 public class BannerController extends HttpServlet {
     private EventService eventService;
     private BannerService bannerService;

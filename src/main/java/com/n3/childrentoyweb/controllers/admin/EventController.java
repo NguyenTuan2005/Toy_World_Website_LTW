@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@WebServlet(value = "/admin-x/events")
+@WebServlet(value = "/admin/events")
 public class EventController extends HttpServlet {
     private EventService eventService;
     private PromotionService promotionService;

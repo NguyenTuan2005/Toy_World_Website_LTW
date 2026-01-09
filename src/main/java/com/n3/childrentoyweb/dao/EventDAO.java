@@ -191,6 +191,6 @@ public class EventDAO  extends BaseDAO{
     }
 
     public static void main(String[] args) {
-        System.out.println(new EventDAO().findByName("Khai truong"));
+        System.out.println(new EventDAO().findById(51L));
     }
 }

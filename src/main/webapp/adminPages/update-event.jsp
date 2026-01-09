@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
@@ -33,23 +34,23 @@
                class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
+            <h2>Cap nhat</h2>
 
-            <h2>Them event</h2>
         </div>
         <form id="eventForm"
-              action="${pageContext.request.contextPath}/admin/new-events"
+              action="${pageContext.request.contextPath}/admin/update-events"
               method="post">
-
+            <input hidden="hidden" value="${event.id}" name="id">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Tên Sự Kiện *</label>
-                    <input type="text" class="form-control" name="eventName" required>
+                    <input type="text" class="form-control" name="eventName" value="${event.name}" required>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Loại Sự Kiện *</label>
                     <select class="form-select" name="eventType" required>
-                        <option value="">Chọn loại</option>
+                        <option value="${event.typeEvent}">${event.typeEvent}</option>
                         <option value="Sale Event">Sale Event</option>
                         <option value="Festival">Festival</option>
                         <option value="Flash Sale">Flash Sale</option>
@@ -59,22 +60,32 @@
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Ngày Bắt Đầu *</label>
-                    <input type="date" class="form-control" name="startDate" required>
+                    <input type="date"
+                           class="form-control"
+                           name="startDate"
+                           value="${fn:substring(event.openedAt,0,10)}"
+                           required>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Ngày Kết Thúc *</label>
-                    <input type="date" class="form-control" name="endDate" required>
+
+                    <input type="date"
+                           class="form-control"
+                           name="endDate"
+                           value="${fn:substring(event.closedAt,0,10)}"
+                           required>
                 </div>
 
                 <div class="col-12 mb-3">
                     <label class="form-label">Mô Tả</label>
-                    <textarea class="form-control" name="description" rows="3"></textarea>
+                    <textarea class="form-control" name="description" rows="3">${event.description}</textarea>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Trạng Thái *</label>
                     <select class="form-select" name="status" required>
+                        <option value="true">Hien thi</option>
                         <option value="true">Hien thi</option>
                         <option value="false">An</option>
                     </select>
@@ -87,7 +98,7 @@
             </div>
         </form>
 
-<%--    </div>--%>
+        <%--    </div>--%>
 </main>
 
 <script src="js/index.js"></script>

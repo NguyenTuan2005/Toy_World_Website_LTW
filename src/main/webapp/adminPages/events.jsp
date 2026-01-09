@@ -31,18 +31,15 @@
                         <i class="fas fa-calendar-check me-2"></i>Events
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#promotions" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/promotions'"
+                            type="button">
                         <i class="fas fa-percentage me-2"></i>Promotions
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#vouchers" type="button">
-                        <i class="fas fa-ticket-alt me-2"></i>Vouchers
-                    </button>
-
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#banners" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/banners'"
+                            type="button">
                         <i class="fas fa-image me-2"></i>Banners
                     </button>
                 </div>
@@ -122,7 +119,7 @@
                     <div class="col-md-6">
                         <div class="search-wrapper">
                             <i class="fas fa-search search-icon"></i>
-                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin-x/find-events" method="post">
+                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/find-events" method="post">
                                 <input
                                         type="text"
                                         id="searchInput"
@@ -143,8 +140,13 @@
                             });
                     </script>
                     <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#eventModal">
+<%--                        <button type="button"--%>
+<%--                                class="btn btn-secondary"--%>
+<%--                                onclick="window.location.href='${pageContext.request.contextPath}/admin/new-events'">--%>
+<%--                            <i class="bi bi-arrow-left"></i>--%>
+<%--                        </button>--%>
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none"
+                                onclick="window.location.href='${pageContext.request.contextPath}/admin/new-events'">
                             <i class="fas fa-plus"></i> Thêm sự kiện
                         </button>
                     </div>
@@ -231,7 +233,7 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <form method="post" action="/childrentoyweb_war/admin-x/events"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                    <form method="post" action="${pageContext.request.contextPath}/admin/events"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
                                         <input type="hidden" name="id" value="${event.id}">
                                         <input type="hidden" name="page" value="${currentPage}">
                                         <button class="btn btn-link text-danger">

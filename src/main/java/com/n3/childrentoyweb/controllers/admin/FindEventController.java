@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(value = "/admin-x/find-events")
+@WebServlet(value = "/admin/find-events")
 public class FindEventController extends HttpServlet {
 
     private EventService eventService;

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "StatisticManage",value = "/statistics")
+@WebServlet(name = "StatisticManage",value = "/admin/statistics")
 public class StatisticController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

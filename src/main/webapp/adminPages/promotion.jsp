@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
@@ -26,23 +27,19 @@
                     <h1 class="page-title">Quản lý sự kiện</h1>
                 </div>
                 <div class="nav col d-flex gap-2 justify-content-end">
-                    <button class="nav-link btn-nav active fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#events" type="button">
+                    <button class="nav-link btn-nav  fw-medium px-4 py-2 text-decoration-none"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/events'">
                         <i class="fas fa-calendar-check me-2"></i>Events
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#promotions" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none active" type="button"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/promotions'">
                         <i class="fas fa-percentage me-2"></i>Promotions
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#vouchers" type="button">
-                        <i class="fas fa-ticket-alt me-2"></i>Vouchers
-                    </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#banners" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none "
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/events'">
                         <i class="fas fa-image me-2"></i>Banners
                     </button>
                 </div>
@@ -79,7 +76,8 @@
                     <thead>
                     <tr>
                         <th>Tên promotion</th>
-                        <th>mức giảm</th>
+                        <th> % </th>
+                        <th> price </th>
                         <th>Thời hạn</th>
                         <th>Trạng thái</th>
                         <th>Hành động</th>
@@ -90,40 +88,25 @@
                         <tr>
                             <td>${prom.name}</td>
                             <td>
-                                <c:choose>
-
-                                    <c:when test="${promotion.discountPercent > 0}">
-                                                <span class="text-primary fw-bold">
-                                                    -${promotion.discountPercent}%
-                                                </span>
-                                    </c:when>
-
-                                    <c:when test="${promotion.discountPrice > 0}">
-                                                <span class="text-danger fw-bold">
-                                                    -<fmt:formatNumber value="${promotion.discountPrice}"
-                                                                       type="currency"/>
-                                                </span>
-                                    </c:when>
-
-                                    <c:otherwise>
-                                        <span class="text-muted">Không giảm</span>
-                                    </c:otherwise>
-
-                                </c:choose>
+                                <span class="badge bg-success">  -${prom.discountPercent}%</span>
+                            </td>
+                            <td>
+                                    <span class="badge bg-success"> -<fmt:formatNumber value="${prom.discountPrice}" type="currency"/> </span>
                             </td>
 
                             <td>${prom.expiredAt}</td>
                             <td class="text-nowrap">
-
                                 <c:choose>
-                                    <c:when test="${promotion.expiredAt.time > now}">
-                                        <span class="badge bg-success">Còn hạn</span>
+                                    <c:when test="${prom.active}">
+                                        <span class="badge bg-success">Hoạt động</span>
                                     </c:when>
 
                                     <c:otherwise>
-                                        <span class="badge bg-danger">Hết hạn</span>
+                                        <span class="badge bg-danger">ẩn</span>
                                     </c:otherwise>
                                 </c:choose>
+
+
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
@@ -161,7 +144,7 @@
                                     <c:when test="${st.index+1 == currentPage_promotion}">
                                         <li class="page-item active">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/promotions?page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -170,7 +153,7 @@
                                     <c:otherwise>
                                         <li class="page-item">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/promotions?page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>

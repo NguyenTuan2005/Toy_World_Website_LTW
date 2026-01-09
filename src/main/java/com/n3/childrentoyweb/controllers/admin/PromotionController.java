@@ -23,8 +23,9 @@ public class PromotionController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("Dm chay adadsadasdasdsadsa ");
         this.addPromotionsPagination(req);
-        req.getRequestDispatcher("/adminPages/promotion.jsp");
+        req.getRequestDispatcher("/adminPages/promotion.jsp").forward(req,resp);
     }
 
     @Override
@@ -39,6 +40,7 @@ public class PromotionController extends HttpServlet {
             page = Integer.parseInt(request.getParameter("promotion-page"));
 
         Pagination<Promotion> promotionPagination = this.promotionService.findPromotionPaging(page,PAGE_SIZE);
+        System.out.println(promotionPagination);
         request.setAttribute("promotions",promotionPagination.getData());
         request.setAttribute("currentPage_promotion",promotionPagination.getCurrentPage());
         request.setAttribute("totalElements_promotion",promotionPagination.getTotalElements());

@@ -1,9 +1,6 @@
 package com.n3.childrentoyweb.services;
 
-import com.n3.childrentoyweb.models.Cart;
-import com.n3.childrentoyweb.models.Location;
-import com.n3.childrentoyweb.models.Payment;
-import com.n3.childrentoyweb.models.User;
+import com.n3.childrentoyweb.models.*;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -108,19 +105,14 @@ public class EmailService {
             <html>
             <head>
             <style>
-            body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+            body { font-family: 'Courier New', monospace; background-color: #f4f4f4; margin: 0; padding: 20px; }
             .container { max-width: 700px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
             .header { text-align: center; border-bottom: 2px solid #D51B1B; padding-bottom: 20px; margin-bottom: 20px; }
             .header h1 { color: #D51B1B; margin: 0; }
-            .order-info { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+            .order-info { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; font-family: Arial, sans-serif; }
             .order-info p { margin: 8px 0; color: #333; }
-            .items-table { width: 100%%; border-collapse: collapse; margin: 20px 0; }
-            .items-table th { background-color: #D51B1B; color: white; padding: 12px; text-align: left; }
-            .items-table td { padding: 12px; border-bottom: 1px solid #ddd; }
-            .summary { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 20px; }
-            .summary-row { display: flex; justify-content: space-between; margin: 8px 0; }
-            .total { font-weight: bold; font-size: 18px; color: #D51B1B; }
-            .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #999; }
+            .items-section { white-space: pre-wrap; background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0; line-height: 1.8; }
+            .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #999; font-family: Arial, sans-serif; }
             </style>
             </head>
             <body>
@@ -135,25 +127,7 @@ public class EmailService {
             <p><strong>Số điện thoại:</strong> %s</p>
             <p><strong>Địa chỉ giao hàng:</strong> %s</p>
             </div>
-            <table class='items-table'>
-            <thead>
-            <tr>
-            <th>Sản phẩm</th>
-            <th>Giá</th>
-            <th>Số lượng</th>
-            <th>Thành tiền</th>
-            </tr>
-            </thead>
-            <tbody>
-            %s
-            </tbody>
-            </table>
-            <div class='summary'>
-            <div class='summary-row'><span>Tổng cộng:</span><span> %,.0f đ</span></div>
-            <div class='summary-row'><span>Giảm giá:</span><span> %,.0f đ</span></div>
-            <div class='summary-row total'><span>Thành tiền:</span><span> %,.0f đ</span></div>
-            <div class='summary-row'><span>Khách trả:</span><span> %,.0f đ</span></div>
-            </div>
+            <div class='items-section'>%s</div>
             <div class='footer'>
             <p>Cảm ơn quý khách đã mua hàng tại ToyWorld!</p>
             <p>Mọi thắc mắc xin liên hệ: support@toyworld.com</p>
@@ -164,8 +138,7 @@ public class EmailService {
             </html>
             """,
             orderId, user.getFirstName(), user.getLastName(), user.getPhone(), location.getAddress(),
-            buildItemsRows(cart), cart.getTotalCost(), cart.getTotalPromotion(), cart.getTotalPrice(),
-            payment.getBalance());
+            buildItemsSection(cart, payment));
 
             message.setContent(htmlContent, "text/html; charset=UTF-8");
 
@@ -173,7 +146,7 @@ public class EmailService {
                 try {
                     Transport.send(message);
                 } catch (Exception e) {
-                    System.out.println("EmailService: " + e.getMessage());
+                    throw new RuntimeException("Không thể gửi email, lỗi: " + e.getMessage());
                 }
             });
 
@@ -196,19 +169,28 @@ public class EmailService {
         }
     }
 
-    private String buildItemsRows(Cart cart) {
-        StringBuilder rows = new StringBuilder();
-        cart.getCartItems().forEach(item -> {
-            double itemTotal = item.getCartProductDTO().getPrice() * item.getQuantity();
-            rows.append(String.format(
-                    "<tr><td>%s</td><td>%,.0f đ</td><td>%d</td><td>%,.0f đ</td></tr>",
-                    item.getCartProductDTO().getName(),
-                    item.getCartProductDTO().getPrice(),
-                    item.getQuantity(),
-                    itemTotal
-            ));
-        });
-        return rows.toString();
+    private String buildItemsSection(Cart cart, Payment payment) {
+        StringBuilder section = new StringBuilder();
+
+        section.append("<hr>\n");
+
+        // Items
+        for (CartItem item : cart.getCartItems()) {
+            section.append(String.format("  %s\n", item.getCartProductDTO().getName()));
+            section.append(String.format("  Giá:\t\t\t%,.0f đ\n", item.getCartProductDTO().getPrice()));
+            section.append(String.format("  Số lượng:\t\t%d\n", item.getQuantity()));
+            section.append("\n");
+        }
+
+        // Summary
+        section.append("<hr>\n");
+        section.append(String.format("Tổng cộng:\t\t%,.0f đ\n", cart.getTotalCost()));
+        section.append(String.format("Giảm giá:\t\t%,.0f đ\n", cart.getTotalPromotion()));
+        section.append(String.format("Thành tiền:\t\t%,.0f đ\n", cart.getTotalPrice()));
+        section.append(String.format("Khách trả:\t\t%,.0f đ\n", payment.getBalance()));
+        section.append("<hr>\n");
+
+        return section.toString();
     }
 
     private Session createMailSession() {

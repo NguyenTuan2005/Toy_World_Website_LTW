@@ -85,7 +85,7 @@ public class CheckoutController extends HttpServlet {
                 location = this.locationService.findByUserId(user.getId());
                 boolean isSameLocation = location.equal(new Location(address, province));
                 if (!isSameLocation)
-                    location = this.locationService.update(new Location(address, province));
+                    location = this.locationService.update(new Location(location.getId(),address, province));
             }
 
             Order order = new Order(user.getId(), cart.getTotalPrice(), OrderStatus.IN_PREPARE.getStatus());

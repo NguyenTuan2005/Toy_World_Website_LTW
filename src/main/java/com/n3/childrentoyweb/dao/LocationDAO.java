@@ -51,6 +51,7 @@ public class LocationDAO extends BaseDAO{
                         .bind("address", location.getAddress())
                         .bind("province", location.getProvince())
                         .bind("id", location.getId())
+                        .execute()
         );
     }
 }

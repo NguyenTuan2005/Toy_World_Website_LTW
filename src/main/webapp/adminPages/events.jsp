@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -29,18 +31,15 @@
                         <i class="fas fa-calendar-check me-2"></i>Events
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#promotions" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/promotions'"
+                            type="button">
                         <i class="fas fa-percentage me-2"></i>Promotions
                     </button>
 
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#vouchers" type="button">
-                        <i class="fas fa-ticket-alt me-2"></i>Vouchers
-                    </button>
-
-                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="tab"
-                            data-bs-target="#banners" type="button">
+                    <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none"
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/banners'"
+                            type="button">
                         <i class="fas fa-image me-2"></i>Banners
                     </button>
                 </div>
@@ -57,7 +56,9 @@
                     <div class="stats-card">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
-                                <div class="stats-number fs-2 fw-bold text-dark">56</div>
+                                <div class="stats-number fs-2 fw-bold text-dark">
+                                    <fmt:formatNumber value="${total_events}" type="number" maxFractionDigits="0"/>
+                                </div>
                                 <div class="stats-label text-primary bold-title">
                                     Tổng sự kiện
                                 </div>
@@ -71,7 +72,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <div class="stats-number fs-2 fw-bold text-dark">
-                                    1,248
+                                    <fmt:formatNumber value="${total_in_process}" type="number" maxFractionDigits="0"/>
                                 </div>
                                 <div class="stats-label text-success bold-title">
                                     Đang diễn ra
@@ -85,7 +86,9 @@
                     <div class="stats-card">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
-                                <div class="stats-number fs-2 fw-bold text-dark">124</div>
+                                <div class="stats-number fs-2 fw-bold text-dark">
+                                    <fmt:formatNumber value="${total_by_take_place}" type="number" maxFractionDigits="0"/>
+                                </div>
                                 <div class="stats-label text-warning bold-title">
                                     Sắp diễn ra
                                 </div>
@@ -98,7 +101,9 @@
                     <div class="stats-card">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
-                                <div class="stats-number fs-2 fw-bold text-dark">32</div>
+                                <div class="stats-number fs-2 fw-bold text-dark">
+                                    <fmt:formatNumber value="${total_done}" type="number" maxFractionDigits="0"/>
+                                </div>
                                 <div class="stats-label text-danger bold-title">
                                     Đã kết thúc
                                 </div>
@@ -114,12 +119,34 @@
                     <div class="col-md-6">
                         <div class="search-wrapper">
                             <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" placeholder="Tìm theo tên sự kiện..."/>
+                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/find-events" method="post">
+                                <input
+                                        type="text"
+                                        id="searchInput"
+                                        name="keyword"
+                                        class="search-input"
+                                        placeholder="Nhập ten"
+                                >
+                            </form>
                         </div>
                     </div>
+                    <script>
+                        document.getElementById("searchInput")
+                            .addEventListener("keydown", function (e) {
+                                if (e.key === "Enter") {
+                                    e.preventDefault(); // tránh reload không mong muốn
+                                    document.getElementById("searchForm").submit();
+                                }
+                            });
+                    </script>
                     <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#eventModal">
+<%--                        <button type="button"--%>
+<%--                                class="btn btn-secondary"--%>
+<%--                                onclick="window.location.href='${pageContext.request.contextPath}/admin/new-events'">--%>
+<%--                            <i class="bi bi-arrow-left"></i>--%>
+<%--                        </button>--%>
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none"
+                                onclick="window.location.href='${pageContext.request.contextPath}/admin/new-events'">
                             <i class="fas fa-plus"></i> Thêm sự kiện
                         </button>
                     </div>
@@ -134,7 +161,7 @@
                             <input
                                     class="form-check-input"
                                     type="checkbox"
-                                    id="selectAll"
+                                    id="selecAll"
                             />
                         </th>
                         <th>Tên Sự Kiện</th>
@@ -142,411 +169,463 @@
                         <th>Thời gian bắt đầu</th>
                         <th>Thời gian kết thúc</th>
                         <th>Trạng thái</th>
+                        <th>Hiện thị</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="width: 40px">
-                            <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    id="selectAll"
-                            />
-                        </td>
+                        <c:forEach items="${events}" var="event">
+                             <tr>
+                            <td style="width: 40px">
+                                <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        id="selectAl"
+                                />
+                            </td>
 
-                        <td class="bold-title">Black Friday 2024</td>
-                        <td class="text-nowrap">
-                            <span class="badge bg-primary">Sale event</span>
-                        </td>
-                        <td>23/9/2025</td>
-                        <td>23/10/2025</td>
-                        <td class="text-nowrap">
-                            <span class="badge bg-success">Đang diễn ra</span>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none"
-                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+                            <td class="bold-title">${event.name}</td>
+                            <td class="text-nowrap">
+                                <span class="badge bg-primary">${event.typeEvent}</span>
+                            </td>
+                            <td>${event.openedAt}</td>
+                            <td>${event.closedAt}</td>
+                            <td class="text-nowrap">
 
-                                <button class="btn btn-link text-success text-decoration-none"
-                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+                                    <c:choose>
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                                        <c:when test="${event.openedAt <= now && event.closedAt >= now}">
+                                            <span class="badge bg-success">Đang diễn ra</span>
+                                        </c:when>
 
-                    <tr>
-                        <td style="width: 40px">
-                            <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    id="selectAll"
-                            />
-                        </td>
 
-                        <td class="bold-title">Black Friday 2024</td>
-                        <td class="text-nowrap">
-                            <span class="badge bg-primary">Sale event</span>
-                        </td>
-                        <td>23/9/2025</td>
-                        <td>23/10/2025</td>
-                        <td class="text-nowrap">
-                            <span class="badge bg-success">Đang diễn ra</span>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none"
-                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+                                        <c:when test="${event.openedAt > now}">
+                                            <span class="badge bg-warning text-dark">Sắp diễn ra</span>
+                                        </c:when>
 
-                                <button class="btn btn-link text-success text-decoration-none"
-                                        onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
-                                    <i class="fas fa-edit"></i>
-                                </button>
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                                        <c:otherwise>
+                                            <span class="badge bg-secondary">Đã kết thúc</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                            </td>
+                                 <td>
+                                     <c:choose>
+
+                                         <c:when test="${event.active}">
+                                             <span class="badge bg-success">Hiện thị</span>
+                                         </c:when>
+
+                                         <c:otherwise>
+                                             <span class="badge bg-secondary">Ẩn</span>
+                                         </c:otherwise>
+                                     </c:choose>
+                                 </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-link text-primary text-decoration-none"
+                                            onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
+
+                                    <button class="btn btn-link text-success text-decoration-none"
+                                            onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+
+                                    <form method="post" action="${pageContext.request.contextPath}/admin/events"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                        <input type="hidden" name="id" value="${event.id}">
+                                        <input type="hidden" name="page" value="${currentPage}">
+                                        <button class="btn btn-link text-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
 
                 <hr class="mx-5"/>
                 <div class="d-flex justify-content-between align-items-center m-3">
-                    <p class="mb-0">Hiển thị 4 trong 100 sự kiện</p>
+                    <p class="mb-0">
+                        Hiển thị ${pageSize} trong ${totalElements} người dùng,
+                        trang hiện tại ${currentPage },
+                        tổng trang ${totalPages}
+                    </p>
+
                     <nav>
                         <ul class="pagination mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link">|&lt;</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link">&lt;</a>
-                            </li>
+                            <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
 
-                            <li class="page-item active">
-                                <a class="page-link">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link">2</a></li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item"><a class="page-link">4</a></li>
-                            <li class="page-item"><a class="page-link">5</a></li>
-                            <li class="page-item"><a class="page-link">…</a></li>
-                            <li class="page-item"><a class="page-link">10</a></li>
+                                <c:choose>
+                                    <c:when test="${st.index+1 == currentPage}">
+                                        <li class="page-item active">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/events?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:when>
 
-                            <li class="page-item">
-                                <a class="page-link">&gt;</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">&gt;|</a>
-                            </li>
+                                    <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/events?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </c:forEach>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
-
-        <!-- Promotions Tab -->
-        <div class="tab-pane fade container mb-3" id="promotions">
-            <div class="filter-section">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên promotion..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#promotionModal">
-                            <i class="fas fa-plus"></i> Thêm promotion
-                        </button>
-                    </div>
-                </div>
+        <c:if test="${not empty notify}">
+            <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3"
+                 role="alert" style="z-index: 9999">
+                    ${notify}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
+        </c:if>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Tên promotion</th>
-                        <th>mức giảm</th>
-                        <th>Thời hạn</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Giảm 90% cho đồ chơi LEGO</td>
-                        <td>90%</td>
-                        <td>15/01/2024</td>
-                        <td class="text-nowrap"><span class="badge bg-success">Đang diễn ra</span></td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+<%--        <!-- Promotions Tab -->--%>
+<%--        <div class="tab-pane fade container mb-3" id="promotions">--%>
+<%--            <div class="filter-section">--%>
+<%--                <div class="row align-items-center">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="search-wrapper">--%>
+<%--                            <i class="fas fa-search search-icon"></i>--%>
+<%--                            <input--%>
+<%--                                    type="text"--%>
+<%--                                    class="search-input"--%>
+<%--                                    placeholder="Tìm theo tên promotion..."--%>
+<%--                            />--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6 text-end mt-3 mt-md-0">--%>
+<%--                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#promotionModal">--%>
+<%--                            <i class="fas fa-plus"></i> Thêm promotion--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-                                <button class="btn btn-link text-success text-decoration-none">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+<%--            <div class="table-container">--%>
+<%--                <table class="table">--%>
+<%--                    <thead>--%>
+<%--                    <tr>--%>
+<%--                        <th>Tên promotion</th>--%>
+<%--                        <th>mức giảm</th>--%>
+<%--                        <th>Thời hạn</th>--%>
+<%--                        <th>Trạng thái</th>--%>
+<%--                        <th>Hành động</th>--%>
+<%--                    </tr>--%>
+<%--                    </thead>--%>
+<%--                    <tbody>--%>
+<%--                            <c:forEach items="${promotions}" var="prom">--%>
+<%--                                    <tr>--%>
+<%--                                    <td>${prom.name}</td>--%>
+<%--                                        <td>--%>
+<%--                                            <c:choose>--%>
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+<%--                                                <c:when test="${promotion.discountPercent > 0}">--%>
+<%--                                                <span class="text-primary fw-bold">--%>
+<%--                                                    -${promotion.discountPercent}%--%>
+<%--                                                </span>--%>
+<%--                                                </c:when>--%>
 
-                    </tbody>
-                </table>
+<%--                                                <c:when test="${promotion.discountPrice > 0}">--%>
+<%--                                                <span class="text-danger fw-bold">--%>
+<%--                                                    -<fmt:formatNumber value="${promotion.discountPrice}"--%>
+<%--                                                                       type="currency"/>--%>
+<%--                                                </span>--%>
+<%--                                                </c:when>--%>
 
-                <hr class="mx-5"/>
-                <div class="d-flex justify-content-between align-items-center m-3">
-                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
+<%--                                                <c:otherwise>--%>
+<%--                                                    <span class="text-muted">Không giảm</span>--%>
+<%--                                                </c:otherwise>--%>
 
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link">|&lt;</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link">&lt;</a>
-                            </li>
+<%--                                            </c:choose>--%>
+<%--                                        </td>--%>
 
-                            <li class="page-item active">
-                                <a class="page-link">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link">2</a></li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item"><a class="page-link">4</a></li>
-                            <li class="page-item"><a class="page-link">5</a></li>
-                            <li class="page-item"><a class="page-link">…</a></li>
-                            <li class="page-item"><a class="page-link">10</a></li>
+<%--                                        <td>${prom.expiredAt}</td>--%>
+<%--                                    <td class="text-nowrap">--%>
 
-                            <li class="page-item">
-                                <a class="page-link">&gt;</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">&gt;|</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+<%--                                         <c:choose>--%>
+<%--                                             <c:when test="${promotion.expiredAt.time > now}">--%>
+<%--                                                 <span class="badge bg-success">Còn hạn</span>--%>
+<%--                                             </c:when>--%>
 
-        <!-- Vouchers Tab -->
-        <div class="tab-pane fade container mb-3" id="vouchers">
-            <div class="filter-section">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên voucher..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#voucherModal">
-                            <i class="fas fa-plus"></i> Thêm voucher
-                        </button>
-                    </div>
-                </div>
-            </div>
+<%--                                             <c:otherwise>--%>
+<%--                                                 <span class="badge bg-danger">Hết hạn</span>--%>
+<%--                                             </c:otherwise>--%>
+<%--                                         </c:choose>--%>
+<%--                                    </td>--%>
+<%--                                    <td>--%>
+<%--                                        <div class="d-flex gap-2">--%>
+<%--                                            <button class="btn btn-link text-primary text-decoration-none">--%>
+<%--                                                <i class="bi bi-eye-fill"></i>--%>
+<%--                                            </button>--%>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Tên Voucher</th>
-                        <th>Mã Voucher</th>
-                        <th>Phẩn Trăm</th>
-                        <th>Số Lượt</th>
-                        <th>Đã Dùng</th>
-                        <th>Hết Hạn</th>
-                        <th>Trạng Thái</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Miễn Phí Ship</td>
-                        <td><code>FREESHIP</code></td>
-                        <td>5%</td>
-                        <td>10</td>
-                        <td>2</td>
-                        <td>31/12/2024</td>
-                        <td><span class="badge badge-active">Còn hạn</span></td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+<%--                                            <button class="btn btn-link text-success text-decoration-none">--%>
+<%--                                                <i class="fas fa-edit"></i>--%>
+<%--                                            </button>--%>
 
-                                <button class="btn btn-link text-success text-decoration-none">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+<%--                                            <button class="btn btn-link text-danger">--%>
+<%--                                                <i class="fas fa-trash"></i>--%>
+<%--                                            </button>--%>
+<%--                                        </div>--%>
+<%--                                    </td>--%>
+<%--                                </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                    </tbody>--%>
+<%--                </table>--%>
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+<%--                <hr class="mx-5"/>--%>
+<%--                <div class="d-flex justify-content-between align-items-center m-3">--%>
+<%--                    <p class="mb-0">--%>
+<%--                        Hiển thị ${pageSize_promotion} trong ${totalElements_promotion} giam gia,--%>
+<%--                        trang hiện tại ${currentPage_promotion },--%>
+<%--                        tổng trang ${totalPages_promotion}--%>
+<%--                    </p>--%>
 
-                    </tbody>
-                </table>
+<%--                    <nav>--%>
+<%--                        <ul class="pagination mb-0">--%>
+<%--                            <c:forEach var="i" begin="0" end="${totalPages_promotion - 1}" varStatus="st">--%>
 
-                <hr class="mx-5"/>
-                <div class="d-flex justify-content-between align-items-center m-3">
-                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
+<%--                                <c:choose>--%>
+<%--                                    <c:when test="${st.index+1 == currentPage_promotion}">--%>
+<%--                                        <li class="page-item active">--%>
+<%--                                            <a class="page-link"--%>
+<%--                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">--%>
+<%--                                                    ${st.index + 1}--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                    </c:when>--%>
 
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link">|&lt;</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link">&lt;</a>
-                            </li>
+<%--                                    <c:otherwise>--%>
+<%--                                        <li class="page-item">--%>
+<%--                                            <a class="page-link"--%>
+<%--                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">--%>
+<%--                                                    ${st.index + 1}--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                    </c:otherwise>--%>
+<%--                                </c:choose>--%>
 
-                            <li class="page-item active">
-                                <a class="page-link">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link">2</a></li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item"><a class="page-link">4</a></li>
-                            <li class="page-item"><a class="page-link">5</a></li>
-                            <li class="page-item"><a class="page-link">…</a></li>
-                            <li class="page-item"><a class="page-link">10</a></li>
+<%--                            </c:forEach>--%>
+<%--                        </ul>--%>
+<%--                    </nav>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-                            <li class="page-item">
-                                <a class="page-link">&gt;</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">&gt;|</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+<%--        <!-- Vouchers Tab -->--%>
+<%--        <div class="tab-pane fade container mb-3" id="vouchers">--%>
+<%--            <div class="filter-section">--%>
+<%--                <div class="row align-items-center">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="search-wrapper">--%>
+<%--                            <i class="fas fa-search search-icon"></i>--%>
+<%--                            <input--%>
+<%--                                    type="text"--%>
+<%--                                    class="search-input"--%>
+<%--                                    placeholder="Tìm theo tên voucher..."--%>
+<%--                            />--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6 text-end mt-3 mt-md-0">--%>
+<%--                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#voucherModal">--%>
+<%--                            <i class="fas fa-plus"></i> Thêm voucher--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-        <!-- Banners Tab -->
-        <div class="tab-pane fade container mb-3" id="banners">
-            <div class="filter-section">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên banner..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#bannerModal">
-                            <i class="fas fa-plus"></i> Thêm banner
-                        </button>
-                    </div>
-                </div>
-            </div>
+<%--            <div class="table-container">--%>
+<%--                <table class="table">--%>
+<%--                    <thead>--%>
+<%--                    <tr>--%>
+<%--                        <th>Tên Voucher</th>--%>
+<%--                        <th>Mã Voucher</th>--%>
+<%--                        <th>Phẩn Trăm</th>--%>
+<%--                        <th>Số Lượt</th>--%>
+<%--                        <th>Đã Dùng</th>--%>
+<%--                        <th>Hết Hạn</th>--%>
+<%--                        <th>Trạng Thái</th>--%>
+<%--                        <th>Thao Tác</th>--%>
+<%--                    </tr>--%>
+<%--                    </thead>--%>
+<%--                    <tbody>--%>
+<%--                    <tr>--%>
+<%--                        <td>Miễn Phí Ship</td>--%>
+<%--                        <td><code>FREESHIP</code></td>--%>
+<%--                        <td>5%</td>--%>
+<%--                        <td>10</td>--%>
+<%--                        <td>2</td>--%>
+<%--                        <td>31/12/2024</td>--%>
+<%--                        <td><span class="badge badge-active">Còn hạn</span></td>--%>
+<%--                        <td>--%>
+<%--                            <div class="d-flex gap-2">--%>
+<%--                                <button class="btn btn-link text-primary text-decoration-none">--%>
+<%--                                    <i class="bi bi-eye-fill"></i>--%>
+<%--                                </button>--%>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Tên Banner</th>
-                        <th>Ảnh</th>
-                        <th>Sự kiện</th>
-                        <th>Trạng Thái</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Black Friday Hero Banner</td>
-                        <td><img src="" alt=""></td>
-                        <td>/events/black-friday</td>
-                        <td><span class="badge badge-active">Hiển thị</span></td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+<%--                                <button class="btn btn-link text-success text-decoration-none">--%>
+<%--                                    <i class="fas fa-edit"></i>--%>
+<%--                                </button>--%>
 
-                                <button class="btn btn-link text-success text-decoration-none">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+<%--                                <button class="btn btn-link text-danger">--%>
+<%--                                    <i class="fas fa-trash"></i>--%>
+<%--                                </button>--%>
+<%--                            </div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+<%--                    </tbody>--%>
+<%--                </table>--%>
 
-                    </tbody>
-                </table>
+<%--                <hr class="mx-5"/>--%>
+<%--                <div class="d-flex justify-content-between align-items-center m-3">--%>
+<%--                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>--%>
 
-                <hr class="mx-5"/>
-                <div class="d-flex justify-content-between align-items-center m-3">
-                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
+<%--                    <nav>--%>
+<%--                        <ul class="pagination mb-0">--%>
+<%--                            <li class="page-item disabled">--%>
+<%--                                <a class="page-link">|&lt;</a>--%>
+<%--                            </li>--%>
+<%--                            <li class="page-item disabled">--%>
+<%--                                <a class="page-link">&lt;</a>--%>
+<%--                            </li>--%>
 
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link">|&lt;</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link">&lt;</a>
-                            </li>
+<%--                            <li class="page-item active">--%>
+<%--                                <a class="page-link">1</a>--%>
+<%--                            </li>--%>
+<%--                            <li class="page-item"><a class="page-link">2</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">3</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">4</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">5</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">…</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">10</a></li>--%>
 
-                            <li class="page-item active">
-                                <a class="page-link">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link">2</a></li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item"><a class="page-link">4</a></li>
-                            <li class="page-item"><a class="page-link">5</a></li>
-                            <li class="page-item"><a class="page-link">…</a></li>
-                            <li class="page-item"><a class="page-link">10</a></li>
+<%--                            <li class="page-item">--%>
+<%--                                <a class="page-link">&gt;</a>--%>
+<%--                            </li>--%>
+<%--                            <li class="page-item">--%>
+<%--                                <a class="page-link">&gt;|</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </nav>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-                            <li class="page-item">
-                                <a class="page-link">&gt;</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">&gt;|</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+<%--        <!-- Banners Tab -->--%>
+<%--        <div class="tab-pane fade container mb-3" id="banners">--%>
+<%--            <div class="filter-section">--%>
+<%--                <div class="row align-items-center">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="search-wrapper">--%>
+<%--                            <i class="fas fa-search search-icon"></i>--%>
+<%--                            <input--%>
+<%--                                    type="text"--%>
+<%--                                    class="search-input"--%>
+<%--                                    placeholder="Tìm theo tên banner..."--%>
+<%--                            />--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6 text-end mt-3 mt-md-0">--%>
+<%--                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#bannerModal">--%>
+<%--                            <i class="fas fa-plus"></i> Thêm banner--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+
+<%--            <div class="table-container">--%>
+<%--                <table class="table">--%>
+<%--                    <thead>--%>
+<%--                    <tr>--%>
+<%--                        <th>Tên Banner</th>--%>
+<%--                        <th>Ảnh</th>--%>
+<%--                        <th>Sự kiện</th>--%>
+<%--                        <th>Trạng Thái</th>--%>
+<%--                        <th>Thao Tác</th>--%>
+<%--                    </tr>--%>
+<%--                    </thead>--%>
+<%--                    <tbody>--%>
+<%--                    <tr>--%>
+<%--                        <td>Black Friday Hero Banner</td>--%>
+<%--                        <td><img src="" alt=""></td>--%>
+<%--                        <td>/events/black-friday</td>--%>
+<%--                        <td><span class="badge badge-active">Hiển thị</span></td>--%>
+<%--                        <td>--%>
+<%--                            <div class="d-flex gap-2">--%>
+<%--                                <button class="btn btn-link text-primary text-decoration-none">--%>
+<%--                                    <i class="bi bi-eye-fill"></i>--%>
+<%--                                </button>--%>
+
+<%--                                <button class="btn btn-link text-success text-decoration-none">--%>
+<%--                                    <i class="fas fa-edit"></i>--%>
+<%--                                </button>--%>
+
+<%--                                <button class="btn btn-link text-danger">--%>
+<%--                                    <i class="fas fa-trash"></i>--%>
+<%--                                </button>--%>
+<%--                            </div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+
+<%--                    </tbody>--%>
+<%--                </table>--%>
+
+<%--                <hr class="mx-5"/>--%>
+<%--                <div class="d-flex justify-content-between align-items-center m-3">--%>
+<%--&lt;%&ndash;                    <p class="mb-0">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        Hiển thị ${pageSize_banner} trong ${totalElements_banner} giam gia,&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        trang hiện tại ${currentPage_banner},&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        tổng trang ${totalPages_banner}&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    </p>&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;                    <nav>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <ul class="pagination mb-0">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <c:forEach var="i" begin="0" end="${totalPages_banner - 1}" varStatus="st">&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;                                <c:choose>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <c:when test="${st.index+1 == currentPage_banner}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <li class="page-item active">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <a class="page-link"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    ${st.index + 1}&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </c:when>&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;                                    <c:otherwise>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <li class="page-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <a class="page-link"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    ${st.index + 1}&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </c:otherwise>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                </c:choose>&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;                            </c:forEach>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        </ul>&ndash;%&gt;--%>
+<%--                    </nav>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
     <!-- Modal Thêm/Sửa Event -->
     <div class="modal fade" id="eventModal" tabindex="-1">

@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.utils;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +16,11 @@ public class LocalDateTimeConverterUtil {
 
     public static String convertToString(LocalDateTime createdAt) {
         return createdAt == null ? "" : createdAt.format(FORMATTER);
+    }
+
+    public static LocalDateTime convertDateStringToLocalDateTime(String dateStr) {
+        LocalDate localDate = LocalDate.parse(dateStr);
+        return localDate.atStartOfDay();
     }
 
     public static String convertToTimeAgo(LocalDateTime createdAt) {

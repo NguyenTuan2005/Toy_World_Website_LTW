@@ -8,6 +8,7 @@ import com.n3.childrentoyweb.enums.BannerGroupTag;
 import com.n3.childrentoyweb.models.Banner;
 import com.n3.childrentoyweb.services.BannerService;
 import com.n3.childrentoyweb.services.ProductService;
+import com.n3.childrentoyweb.utils.EndpointUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -22,6 +23,7 @@ public class HomeController extends HttpServlet {
     public void init()  {
         bannerService = new BannerService();
         productService = new ProductService();
+        EndpointUtil.printAllEndpoints(getServletContext());
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

@@ -20,4 +20,5 @@ public class CategoryDAO extends BaseDAO{
                         .list()
         );
     }
+
 }

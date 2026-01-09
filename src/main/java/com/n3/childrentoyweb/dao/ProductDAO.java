@@ -344,40 +344,57 @@ public class ProductDAO extends BaseDAO {
         });
     }
 
-    public int countByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
-        StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM products WHERE is_active = 1");
+    public int countByFilter(List<Integer> brandIds,
+                             List<Integer> categoryIds,
+                             List<PriceRangeFilterDTO> priceRanges) {
 
-        Map<String, Object> params = new HashMap<>();
-
-        if (brandIds != null && !brandIds.isEmpty()) {
-            sql.append(" AND brand_id IN (<brandIds>)");
-            params.put("brandIds", brandIds);
-        }
-
-        if (categoryIds != null && !categoryIds.isEmpty()) {
-            sql.append(" AND category_id IN (<categoryIds>)");
-            params.put("categoryIds", categoryIds);
-        }
-
-        if (priceRanges != null && !priceRanges.isEmpty()) {
-            sql.append(" AND (");
-            for (int i = 0; i < priceRanges.size(); i++) {
-                PriceRangeFilterDTO range = priceRanges.get(i);
-                if (i > 0) sql.append(" OR ");
-                sql.append("(price >= :min").append(i).append(" AND price <= :max").append(i).append(")");
-                params.put("min" + i, range.getMin());
-                params.put("max" + i, range.getMax());
-            }
-            sql.append(")");
-        }
+        StringBuilder sql = new StringBuilder(
+                "SELECT COUNT(*) FROM products WHERE is_active = 1"
+        );
 
         return this.getJdbi().withHandle(h -> {
-            var query = h.createQuery(sql.toString());
-            params.forEach(query::bind);
+            var query = h.createQuery("");
+
+            if (brandIds != null && !brandIds.isEmpty()) {
+                sql.append(" AND brand_id IN (<brandIds>)");
+            }
+
+            if (categoryIds != null && !categoryIds.isEmpty()) {
+                sql.append(" AND category_id IN (<categoryIds>)");
+            }
+
+            if (priceRanges != null && !priceRanges.isEmpty()) {
+                sql.append(" AND (");
+                for (int i = 0; i < priceRanges.size(); i++) {
+                    if (i > 0) sql.append(" OR ");
+                    sql.append("(price >= :min").append(i)
+                            .append(" AND price <= :max").append(i).append(")");
+                }
+                sql.append(")");
+            }
+
+            query = h.createQuery(sql.toString());
+
+            // bind list
+            if (brandIds != null && !brandIds.isEmpty()) {
+                query.bindList("brandIds", brandIds);
+            }
+
+            if (categoryIds != null && !categoryIds.isEmpty()) {
+                query.bindList("categoryIds", categoryIds);
+            }
+
+            // bind giá
+            if (priceRanges != null && !priceRanges.isEmpty()) {
+                for (int i = 0; i < priceRanges.size(); i++) {
+                    query.bind("min" + i, priceRanges.get(i).getMin());
+                    query.bind("max" + i, priceRanges.get(i).getMax());
+                }
+            }
+
             return query.mapTo(Integer.class).one();
         });
     }
-
 
     //filter
     public List<ProductListDTO> findByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int pageSize, int offset) {

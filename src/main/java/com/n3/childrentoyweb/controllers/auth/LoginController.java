@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
             List<RoleEnum> roles = roleService.findAllByUserId(user.getId());
             session.setAttribute("roles", roles);
 
-            session.setMaxInactiveInterval(60 * 60); // session timeout
+            session.setMaxInactiveInterval(180 * 60); // session timeout
 
             response.sendRedirect(request.getContextPath() + "/home");
 

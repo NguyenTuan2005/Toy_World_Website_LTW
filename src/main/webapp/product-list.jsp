@@ -387,7 +387,6 @@
             var productId = this.getAttribute("data-id");
             var icon = this.querySelector("i");
 
-
             fetch("${pageContext.request.contextPath}/wish-list", {
                 method: "POST",
                 headers: {
@@ -395,18 +394,29 @@
                 },
                 body: "productId=" + productId
             }).then(function (res) {
-                if (res.ok) {
-                    icon.classList.remove("bi-heart");
-                    icon.classList.add("bi-heart-fill");
-                    button.classList.add("active");
-                }
                 if (res.status === 401) {
                     window.location.href = '${pageContext.request.contextPath}/login';
                     return;
                 }
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then(function(data){
+                if(!data) return;
+
+                if(data.wishlisted){
+                    icon.classList.remove("bi-heart");
+                    icon.classList.add("bi-heart-fill");
+                    button.classList.add("active");
+                } else {
+                    icon.classList.remove("bi-heart-fill");
+                    icon.classList.add("bi-heart");
+                    button.classList.remove("active");
+                }
             });
         };
     }
+
 
 
 </script>

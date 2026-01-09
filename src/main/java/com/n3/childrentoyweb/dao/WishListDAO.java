@@ -1,23 +1,21 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.models.WishList;
-
+import java.util.Optional;
 import java.util.List;
 
 public class WishListDAO extends BaseDAO {
 
     public void save(WishList wishList) {
         String sql = """
-                    INSERT INTO wish_lists (is_active, user_id, product_id, created_at)
-                    VALUES (:isActive, :userId, :productId, :createdAt)
-                    """;
-        this.getJdbi().withHandle(handle ->
+                INSERT INTO wish_lists (user_id, product_id)
+                VALUES (:userId, :productId)
+                """;
+        this.getJdbi().useHandle(handle ->
                 handle.createUpdate(sql)
-            .bind("isActive", wishList.getActive())
-            .bind("userId", wishList.getUserId())
-            .bind("productId", wishList.getProductId())
-            .bind("createdAt", wishList.getCreatedAt())
-            .execute()
+                        .bind("userId", wishList.getUserId())
+                        .bind("productId", wishList.getProductId())
+                        .execute()
         );
     }
 
@@ -38,6 +36,20 @@ public class WishListDAO extends BaseDAO {
         );
     }
 
+    public void update(WishList w) {
+        String sql = """
+                    UPDATE wish_lists 
+                    SET is_active = :active
+                    WHERE id = :id
+                    """;
+        this.getJdbi().useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("active", w.getActive())
+                        .bind("id", w.getId())
+                        .execute()
+        );
+    }
+
     public List<Long> findAllProductIdByUserId(Long userId) {
         String sql = """
                 SELECT product_id
@@ -51,4 +63,25 @@ public class WishListDAO extends BaseDAO {
                 .list()
         );
     }
+
+    public Optional<WishList> findByUserIdAndProductId(long userId, long productId) {
+        String sql = """
+                    SELECT id, user_id, product_id, is_active AS active
+                    FROM wish_lists 
+                    WHERE user_id = :userId AND product_id = :productId
+                    """;
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .bind("productId", productId)
+                        .mapToBean(WishList.class)
+                        .findOne()
+        );
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(new WishListDAO().findByUserIdAndProductId(1, 1));
+    }
+
 }

@@ -30,6 +30,11 @@ public class WishListController extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         HttpSession session = req.getSession(false);
@@ -44,27 +49,17 @@ public class WishListController extends HttpServlet {
             return;
         }
 
-
-        long userid = user.getId();
+        long userId = user.getId();
         String pid = req.getParameter("productId");
-        if(pid == null){
+        if (pid == null) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
         long productId = Long.parseLong(pid);
+        boolean isNowWishlisted = wishListService.toggleWishList(userId, productId);
 
-        Product product = this.productService.findById(productId).orElseThrow(ObjectNotFoundException::new);
-
-        WishList wishList = new WishList(userid, product.getId());
-        this.wishListService.save(wishList);
-
-        resp.setStatus(HttpServletResponse.SC_OK);
-    }
-
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-
+        resp.setContentType("application/json");
+        resp.getWriter().write("{\"wishlisted\": " + isNowWishlisted + "}");
     }
 }

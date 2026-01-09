@@ -38,4 +38,8 @@ public class LocationDAO extends BaseDAO{
         );
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(new LocationDAO());
+    }
 }

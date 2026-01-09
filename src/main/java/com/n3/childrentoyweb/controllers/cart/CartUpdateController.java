@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.controllers.cart;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.n3.childrentoyweb.dto.CartResponseDTO;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.Cart;
 import jakarta.servlet.ServletException;
@@ -33,7 +35,10 @@ public class CartUpdateController extends HttpServlet {
 
             cart.updateQuantity(productId, quantity);
             session.setAttribute(Cart.CART, cart);
-            resp.getWriter().write("{\"success\": true}");
+            CartResponseDTO cartResponseDTO =
+                    new CartResponseDTO(true, "Cập nhật thành công", cart.getTotalQuantity()
+                            ,cart.getTotalCost(), cart.getTotalPromotion(), cart.getTotalPrice());
+            new ObjectMapper().writeValue(resp.getWriter(), cartResponseDTO);
         } catch (Exception e) {
             resp.getWriter().write("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
         }

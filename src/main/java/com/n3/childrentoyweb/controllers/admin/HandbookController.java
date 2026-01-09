@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet( value = "/admin-x/handbooks")
+@WebServlet( value = "/admin/handbooks")
 public class HandbookController extends HttpServlet {
     private HandBookService handBookService;
 

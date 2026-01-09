@@ -24,6 +24,12 @@ public class Location extends BaseModel {
 
     public Location(){}
 
+    public Location(Long id, String address, String province) {
+        this.id = id;
+        this.address = address;
+        this.province = province;
+    }
+
     public String getAddress() {
         return address;
     }

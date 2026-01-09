@@ -106,4 +106,8 @@ public class Promotion extends BaseModel {
     public int hashCode() {
         return Objects.hash(name, expiredAt, discountPercent, discountPrice, eventId);
     }
+
+    private boolean isExpiredAt(){
+        return this.expiredAt.isAfter(LocalDateTime.now());
+    }
 }

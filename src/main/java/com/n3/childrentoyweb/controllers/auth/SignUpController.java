@@ -28,7 +28,7 @@ public class SignUpController extends HttpServlet {
         this.authService = new AuthService();
         this.userService = new UserService();
         this.cacheService = CacheService.getInstance();
-        this.emailService = new EmailService();
+        this.emailService = EmailService.getInstance();
     }
 
     @Override

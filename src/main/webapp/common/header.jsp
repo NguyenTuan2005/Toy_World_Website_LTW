@@ -58,25 +58,19 @@
                     </c:if>
 
                     <!-- Cart -->
-<%--                    <button class="btn d-flex align-items-center"--%>
-<%--                            onclick="window.location.href='${pageContext.request.contextPath}/cart'">--%>
-<%--                        <i class="bi bi-basket2-fill me-2"></i>--%>
-<%--                        <c:if test="${sessionScope.cart != null}">--%>
-<%--                            Giỏ hàng(${sessionScope.cart.totalQuantity})--%>
-<%--                        </c:if>--%>
-<%--                        <c:if test="${sessionScope.cart == null}">--%>
-<%--                            Giỏ hàng--%>
-<%--                        </c:if>--%>
-<%--                    </button>--%>
-
                     <button class="btn d-flex align-items-center"
                             onclick="window.location.href='${pageContext.request.contextPath}/cart'">
                         <i class="bi bi-basket2-fill me-2"></i>
-                        Giỏ hàng (
-                        <span id="cartCount">
-                        <c:out value="${sessionScope.cart != null ? sessionScope.cart.totalQuantity : 0}" />
+                        <span id="cart-count">
+                        <c:choose>
+                            <c:when test="${sessionScope.cart != null and sessionScope.cart.totalQuantity != 0}">
+                                Giỏ hàng(${sessionScope.cart.totalQuantity})
+                            </c:when>
+                            <c:otherwise>
+                                Giỏ hàng
+                            </c:otherwise>
+                        </c:choose>
                         </span>
-                        )
                     </button>
                 </div>
             </div>

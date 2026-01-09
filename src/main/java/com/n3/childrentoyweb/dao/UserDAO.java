@@ -323,4 +323,18 @@ public class UserDAO extends BaseDAO {
         });
     }
 
+    public void updateLocation(User user, Location location) {
+        String sql = """
+                update users
+                set location_id = :locationId
+                where id = :userId
+                """;
+
+        this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("locationId", location.getId())
+                        .bind("userId", user.getId())
+                        .execute()
+        );
+    }
 }

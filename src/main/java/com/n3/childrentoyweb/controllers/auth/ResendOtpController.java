@@ -21,7 +21,7 @@ public class ResendOtpController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         this.cacheService = CacheService.getInstance();
-        this.emailService = new EmailService();
+        this.emailService = EmailService.getInstance();
     }
 
     @Override

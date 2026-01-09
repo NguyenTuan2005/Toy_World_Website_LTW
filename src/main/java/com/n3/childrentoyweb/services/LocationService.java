@@ -13,4 +13,9 @@ public class LocationService {
     public long save(Location location) {
         return this.locationDAO.save(location);
     }
+
+    public Location update(Location location) {
+        this.locationDAO.update(location);
+        return location;
+    }
 }

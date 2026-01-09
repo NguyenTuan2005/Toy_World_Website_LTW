@@ -151,5 +151,7 @@ public class UserService {
 
     }
 
-
+    public void updateLocation(User user, Location location) {
+        this.userDAO.updateLocation(user, location);
+    }
 }

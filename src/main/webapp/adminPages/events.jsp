@@ -122,9 +122,26 @@
                     <div class="col-md-6">
                         <div class="search-wrapper">
                             <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" placeholder="Tìm theo tên sự kiện..."/>
+                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin-x/find-events" method="post">
+                                <input
+                                        type="text"
+                                        id="searchInput"
+                                        name="keyword"
+                                        class="search-input"
+                                        placeholder="Nhập ten"
+                                >
+                            </form>
                         </div>
                     </div>
+                    <script>
+                        document.getElementById("searchInput")
+                            .addEventListener("keydown", function (e) {
+                                if (e.key === "Enter") {
+                                    e.preventDefault(); // tránh reload không mong muốn
+                                    document.getElementById("searchForm").submit();
+                                }
+                            });
+                    </script>
                     <div class="col-md-6 text-end mt-3 mt-md-0">
                         <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
                                 data-bs-target="#eventModal">
@@ -150,6 +167,7 @@
                         <th>Thời gian bắt đầu</th>
                         <th>Thời gian kết thúc</th>
                         <th>Trạng thái</th>
+                        <th>Hiện thị</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
@@ -189,6 +207,18 @@
                                         </c:otherwise>
                                     </c:choose>
                             </td>
+                                 <td>
+                                     <c:choose>
+
+                                         <c:when test="${event.active}">
+                                             <span class="badge bg-success">Hiện thị</span>
+                                         </c:when>
+
+                                         <c:otherwise>
+                                             <span class="badge bg-secondary">Ẩn</span>
+                                         </c:otherwise>
+                                     </c:choose>
+                                 </td>
                             <td>
                                 <div class="d-flex gap-2">
                                     <button class="btn btn-link text-primary text-decoration-none"
@@ -201,9 +231,13 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <button class="btn btn-link text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <form method="post" action="/childrentoyweb_war/admin-x/events"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                        <input type="hidden" name="id" value="${event.id}">
+                                        <input type="hidden" name="page" value="${currentPage}">
+                                        <button class="btn btn-link text-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -227,7 +261,7 @@
                                     <c:when test="${st.index+1 == currentPage}">
                                         <li class="page-item active">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/events?page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -236,7 +270,7 @@
                                     <c:otherwise>
                                         <li class="page-item">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/events?page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -249,339 +283,346 @@
                 </div>
             </div>
         </div>
-
-        <!-- Promotions Tab -->
-        <div class="tab-pane fade container mb-3" id="promotions">
-            <div class="filter-section">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên promotion..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#promotionModal">
-                            <i class="fas fa-plus"></i> Thêm promotion
-                        </button>
-                    </div>
-                </div>
+        <c:if test="${not empty notify}">
+            <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3"
+                 role="alert" style="z-index: 9999">
+                    ${notify}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
+        </c:if>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Tên promotion</th>
-                        <th>mức giảm</th>
-                        <th>Thời hạn</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                            <c:forEach items="${promotions}" var="prom">
-                                    <tr>
-                                    <td>${prom.name}</td>
-                                        <td>
-                                            <c:choose>
+<%--        <!-- Promotions Tab -->--%>
+<%--        <div class="tab-pane fade container mb-3" id="promotions">--%>
+<%--            <div class="filter-section">--%>
+<%--                <div class="row align-items-center">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="search-wrapper">--%>
+<%--                            <i class="fas fa-search search-icon"></i>--%>
+<%--                            <input--%>
+<%--                                    type="text"--%>
+<%--                                    class="search-input"--%>
+<%--                                    placeholder="Tìm theo tên promotion..."--%>
+<%--                            />--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6 text-end mt-3 mt-md-0">--%>
+<%--                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#promotionModal">--%>
+<%--                            <i class="fas fa-plus"></i> Thêm promotion--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-                                                <c:when test="${promotion.discountPercent > 0}">
-                                                <span class="text-primary fw-bold">
-                                                    -${promotion.discountPercent}%
-                                                </span>
-                                                </c:when>
+<%--            <div class="table-container">--%>
+<%--                <table class="table">--%>
+<%--                    <thead>--%>
+<%--                    <tr>--%>
+<%--                        <th>Tên promotion</th>--%>
+<%--                        <th>mức giảm</th>--%>
+<%--                        <th>Thời hạn</th>--%>
+<%--                        <th>Trạng thái</th>--%>
+<%--                        <th>Hành động</th>--%>
+<%--                    </tr>--%>
+<%--                    </thead>--%>
+<%--                    <tbody>--%>
+<%--                            <c:forEach items="${promotions}" var="prom">--%>
+<%--                                    <tr>--%>
+<%--                                    <td>${prom.name}</td>--%>
+<%--                                        <td>--%>
+<%--                                            <c:choose>--%>
 
-                                                <c:when test="${promotion.discountPrice > 0}">
-                                                <span class="text-danger fw-bold">
-                                                    -<fmt:formatNumber value="${promotion.discountPrice}"
-                                                                       type="currency"/>
-                                                </span>
-                                                </c:when>
+<%--                                                <c:when test="${promotion.discountPercent > 0}">--%>
+<%--                                                <span class="text-primary fw-bold">--%>
+<%--                                                    -${promotion.discountPercent}%--%>
+<%--                                                </span>--%>
+<%--                                                </c:when>--%>
 
-                                                <c:otherwise>
-                                                    <span class="text-muted">Không giảm</span>
-                                                </c:otherwise>
+<%--                                                <c:when test="${promotion.discountPrice > 0}">--%>
+<%--                                                <span class="text-danger fw-bold">--%>
+<%--                                                    -<fmt:formatNumber value="${promotion.discountPrice}"--%>
+<%--                                                                       type="currency"/>--%>
+<%--                                                </span>--%>
+<%--                                                </c:when>--%>
 
-                                            </c:choose>
-                                        </td>
+<%--                                                <c:otherwise>--%>
+<%--                                                    <span class="text-muted">Không giảm</span>--%>
+<%--                                                </c:otherwise>--%>
 
-                                        <td>${prom.expiredAt}</td>
-                                    <td class="text-nowrap">
+<%--                                            </c:choose>--%>
+<%--                                        </td>--%>
 
-                                         <c:choose>
-                                             <c:when test="${promotion.expiredAt.time > now}">
-                                                 <span class="badge bg-success">Còn hạn</span>
-                                             </c:when>
+<%--                                        <td>${prom.expiredAt}</td>--%>
+<%--                                    <td class="text-nowrap">--%>
 
-                                             <c:otherwise>
-                                                 <span class="badge bg-danger">Hết hạn</span>
-                                             </c:otherwise>
-                                         </c:choose>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex gap-2">
-                                            <button class="btn btn-link text-primary text-decoration-none">
-                                                <i class="bi bi-eye-fill"></i>
-                                            </button>
+<%--                                         <c:choose>--%>
+<%--                                             <c:when test="${promotion.expiredAt.time > now}">--%>
+<%--                                                 <span class="badge bg-success">Còn hạn</span>--%>
+<%--                                             </c:when>--%>
 
-                                            <button class="btn btn-link text-success text-decoration-none">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+<%--                                             <c:otherwise>--%>
+<%--                                                 <span class="badge bg-danger">Hết hạn</span>--%>
+<%--                                             </c:otherwise>--%>
+<%--                                         </c:choose>--%>
+<%--                                    </td>--%>
+<%--                                    <td>--%>
+<%--                                        <div class="d-flex gap-2">--%>
+<%--                                            <button class="btn btn-link text-primary text-decoration-none">--%>
+<%--                                                <i class="bi bi-eye-fill"></i>--%>
+<%--                                            </button>--%>
 
-                                            <button class="btn btn-link text-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+<%--                                            <button class="btn btn-link text-success text-decoration-none">--%>
+<%--                                                <i class="fas fa-edit"></i>--%>
+<%--                                            </button>--%>
 
-                <hr class="mx-5"/>
-                <div class="d-flex justify-content-between align-items-center m-3">
-                    <p class="mb-0">
-                        Hiển thị ${pageSize_promotion} trong ${totalElements_promotion} giam gia,
-                        trang hiện tại ${currentPage_promotion },
-                        tổng trang ${totalPages_promotion}
-                    </p>
+<%--                                            <button class="btn btn-link text-danger">--%>
+<%--                                                <i class="fas fa-trash"></i>--%>
+<%--                                            </button>--%>
+<%--                                        </div>--%>
+<%--                                    </td>--%>
+<%--                                </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                    </tbody>--%>
+<%--                </table>--%>
 
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <c:forEach var="i" begin="0" end="${totalPages_promotion - 1}" varStatus="st">
+<%--                <hr class="mx-5"/>--%>
+<%--                <div class="d-flex justify-content-between align-items-center m-3">--%>
+<%--                    <p class="mb-0">--%>
+<%--                        Hiển thị ${pageSize_promotion} trong ${totalElements_promotion} giam gia,--%>
+<%--                        trang hiện tại ${currentPage_promotion },--%>
+<%--                        tổng trang ${totalPages_promotion}--%>
+<%--                    </p>--%>
 
-                                <c:choose>
-                                    <c:when test="${st.index+1 == currentPage_promotion}">
-                                        <li class="page-item active">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                    ${st.index + 1}
-                                            </a>
-                                        </li>
-                                    </c:when>
+<%--                    <nav>--%>
+<%--                        <ul class="pagination mb-0">--%>
+<%--                            <c:forEach var="i" begin="0" end="${totalPages_promotion - 1}" varStatus="st">--%>
 
-                                    <c:otherwise>
-                                        <li class="page-item">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                    ${st.index + 1}
-                                            </a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
+<%--                                <c:choose>--%>
+<%--                                    <c:when test="${st.index+1 == currentPage_promotion}">--%>
+<%--                                        <li class="page-item active">--%>
+<%--                                            <a class="page-link"--%>
+<%--                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">--%>
+<%--                                                    ${st.index + 1}--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                    </c:when>--%>
 
-                            </c:forEach>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+<%--                                    <c:otherwise>--%>
+<%--                                        <li class="page-item">--%>
+<%--                                            <a class="page-link"--%>
+<%--                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">--%>
+<%--                                                    ${st.index + 1}--%>
+<%--                                            </a>--%>
+<%--                                        </li>--%>
+<%--                                    </c:otherwise>--%>
+<%--                                </c:choose>--%>
 
-        <!-- Vouchers Tab -->
-        <div class="tab-pane fade container mb-3" id="vouchers">
-            <div class="filter-section">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên voucher..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#voucherModal">
-                            <i class="fas fa-plus"></i> Thêm voucher
-                        </button>
-                    </div>
-                </div>
-            </div>
+<%--                            </c:forEach>--%>
+<%--                        </ul>--%>
+<%--                    </nav>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Tên Voucher</th>
-                        <th>Mã Voucher</th>
-                        <th>Phẩn Trăm</th>
-                        <th>Số Lượt</th>
-                        <th>Đã Dùng</th>
-                        <th>Hết Hạn</th>
-                        <th>Trạng Thái</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Miễn Phí Ship</td>
-                        <td><code>FREESHIP</code></td>
-                        <td>5%</td>
-                        <td>10</td>
-                        <td>2</td>
-                        <td>31/12/2024</td>
-                        <td><span class="badge badge-active">Còn hạn</span></td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+<%--        <!-- Vouchers Tab -->--%>
+<%--        <div class="tab-pane fade container mb-3" id="vouchers">--%>
+<%--            <div class="filter-section">--%>
+<%--                <div class="row align-items-center">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="search-wrapper">--%>
+<%--                            <i class="fas fa-search search-icon"></i>--%>
+<%--                            <input--%>
+<%--                                    type="text"--%>
+<%--                                    class="search-input"--%>
+<%--                                    placeholder="Tìm theo tên voucher..."--%>
+<%--                            />--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6 text-end mt-3 mt-md-0">--%>
+<%--                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#voucherModal">--%>
+<%--                            <i class="fas fa-plus"></i> Thêm voucher--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-                                <button class="btn btn-link text-success text-decoration-none">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+<%--            <div class="table-container">--%>
+<%--                <table class="table">--%>
+<%--                    <thead>--%>
+<%--                    <tr>--%>
+<%--                        <th>Tên Voucher</th>--%>
+<%--                        <th>Mã Voucher</th>--%>
+<%--                        <th>Phẩn Trăm</th>--%>
+<%--                        <th>Số Lượt</th>--%>
+<%--                        <th>Đã Dùng</th>--%>
+<%--                        <th>Hết Hạn</th>--%>
+<%--                        <th>Trạng Thái</th>--%>
+<%--                        <th>Thao Tác</th>--%>
+<%--                    </tr>--%>
+<%--                    </thead>--%>
+<%--                    <tbody>--%>
+<%--                    <tr>--%>
+<%--                        <td>Miễn Phí Ship</td>--%>
+<%--                        <td><code>FREESHIP</code></td>--%>
+<%--                        <td>5%</td>--%>
+<%--                        <td>10</td>--%>
+<%--                        <td>2</td>--%>
+<%--                        <td>31/12/2024</td>--%>
+<%--                        <td><span class="badge badge-active">Còn hạn</span></td>--%>
+<%--                        <td>--%>
+<%--                            <div class="d-flex gap-2">--%>
+<%--                                <button class="btn btn-link text-primary text-decoration-none">--%>
+<%--                                    <i class="bi bi-eye-fill"></i>--%>
+<%--                                </button>--%>
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+<%--                                <button class="btn btn-link text-success text-decoration-none">--%>
+<%--                                    <i class="fas fa-edit"></i>--%>
+<%--                                </button>--%>
 
-                    </tbody>
-                </table>
+<%--                                <button class="btn btn-link text-danger">--%>
+<%--                                    <i class="fas fa-trash"></i>--%>
+<%--                                </button>--%>
+<%--                            </div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
 
-                <hr class="mx-5"/>
-                <div class="d-flex justify-content-between align-items-center m-3">
-                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>
+<%--                    </tbody>--%>
+<%--                </table>--%>
 
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link">|&lt;</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link">&lt;</a>
-                            </li>
+<%--                <hr class="mx-5"/>--%>
+<%--                <div class="d-flex justify-content-between align-items-center m-3">--%>
+<%--                    <p class="mb-0">Hiện thị 2 trong 100 Thương hiệu</p>--%>
 
-                            <li class="page-item active">
-                                <a class="page-link">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link">2</a></li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item"><a class="page-link">4</a></li>
-                            <li class="page-item"><a class="page-link">5</a></li>
-                            <li class="page-item"><a class="page-link">…</a></li>
-                            <li class="page-item"><a class="page-link">10</a></li>
+<%--                    <nav>--%>
+<%--                        <ul class="pagination mb-0">--%>
+<%--                            <li class="page-item disabled">--%>
+<%--                                <a class="page-link">|&lt;</a>--%>
+<%--                            </li>--%>
+<%--                            <li class="page-item disabled">--%>
+<%--                                <a class="page-link">&lt;</a>--%>
+<%--                            </li>--%>
 
-                            <li class="page-item">
-                                <a class="page-link">&gt;</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">&gt;|</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+<%--                            <li class="page-item active">--%>
+<%--                                <a class="page-link">1</a>--%>
+<%--                            </li>--%>
+<%--                            <li class="page-item"><a class="page-link">2</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">3</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">4</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">5</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">…</a></li>--%>
+<%--                            <li class="page-item"><a class="page-link">10</a></li>--%>
 
-        <!-- Banners Tab -->
-        <div class="tab-pane fade container mb-3" id="banners">
-            <div class="filter-section">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên banner..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#bannerModal">
-                            <i class="fas fa-plus"></i> Thêm banner
-                        </button>
-                    </div>
-                </div>
-            </div>
+<%--                            <li class="page-item">--%>
+<%--                                <a class="page-link">&gt;</a>--%>
+<%--                            </li>--%>
+<%--                            <li class="page-item">--%>
+<%--                                <a class="page-link">&gt;|</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </nav>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Tên Banner</th>
-                        <th>Ảnh</th>
-                        <th>Sự kiện</th>
-                        <th>Trạng Thái</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Black Friday Hero Banner</td>
-                        <td><img src="" alt=""></td>
-                        <td>/events/black-friday</td>
-                        <td><span class="badge badge-active">Hiển thị</span></td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-link text-primary text-decoration-none">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+<%--        <!-- Banners Tab -->--%>
+<%--        <div class="tab-pane fade container mb-3" id="banners">--%>
+<%--            <div class="filter-section">--%>
+<%--                <div class="row align-items-center">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="search-wrapper">--%>
+<%--                            <i class="fas fa-search search-icon"></i>--%>
+<%--                            <input--%>
+<%--                                    type="text"--%>
+<%--                                    class="search-input"--%>
+<%--                                    placeholder="Tìm theo tên banner..."--%>
+<%--                            />--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6 text-end mt-3 mt-md-0">--%>
+<%--                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"--%>
+<%--                                data-bs-target="#bannerModal">--%>
+<%--                            <i class="fas fa-plus"></i> Thêm banner--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-                                <button class="btn btn-link text-success text-decoration-none">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+<%--            <div class="table-container">--%>
+<%--                <table class="table">--%>
+<%--                    <thead>--%>
+<%--                    <tr>--%>
+<%--                        <th>Tên Banner</th>--%>
+<%--                        <th>Ảnh</th>--%>
+<%--                        <th>Sự kiện</th>--%>
+<%--                        <th>Trạng Thái</th>--%>
+<%--                        <th>Thao Tác</th>--%>
+<%--                    </tr>--%>
+<%--                    </thead>--%>
+<%--                    <tbody>--%>
+<%--                    <tr>--%>
+<%--                        <td>Black Friday Hero Banner</td>--%>
+<%--                        <td><img src="" alt=""></td>--%>
+<%--                        <td>/events/black-friday</td>--%>
+<%--                        <td><span class="badge badge-active">Hiển thị</span></td>--%>
+<%--                        <td>--%>
+<%--                            <div class="d-flex gap-2">--%>
+<%--                                <button class="btn btn-link text-primary text-decoration-none">--%>
+<%--                                    <i class="bi bi-eye-fill"></i>--%>
+<%--                                </button>--%>
 
-                                <button class="btn btn-link text-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+<%--                                <button class="btn btn-link text-success text-decoration-none">--%>
+<%--                                    <i class="fas fa-edit"></i>--%>
+<%--                                </button>--%>
 
-                    </tbody>
-                </table>
+<%--                                <button class="btn btn-link text-danger">--%>
+<%--                                    <i class="fas fa-trash"></i>--%>
+<%--                                </button>--%>
+<%--                            </div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
 
-                <hr class="mx-5"/>
-                <div class="d-flex justify-content-between align-items-center m-3">
-                    <p class="mb-0">
-                        Hiển thị ${pageSize_banner} trong ${totalElements_banner} giam gia,
-                        trang hiện tại ${currentPage_banner},
-                        tổng trang ${totalPages_banner}
-                    </p>
+<%--                    </tbody>--%>
+<%--                </table>--%>
 
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <c:forEach var="i" begin="0" end="${totalPages_banner - 1}" varStatus="st">
+<%--                <hr class="mx-5"/>--%>
+<%--                <div class="d-flex justify-content-between align-items-center m-3">--%>
+<%--&lt;%&ndash;                    <p class="mb-0">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        Hiển thị ${pageSize_banner} trong ${totalElements_banner} giam gia,&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        trang hiện tại ${currentPage_banner},&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        tổng trang ${totalPages_banner}&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    </p>&ndash;%&gt;--%>
 
-                                <c:choose>
-                                    <c:when test="${st.index+1 == currentPage_banner}">
-                                        <li class="page-item active">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                    ${st.index + 1}
-                                            </a>
-                                        </li>
-                                    </c:when>
+<%--&lt;%&ndash;                    <nav>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <ul class="pagination mb-0">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <c:forEach var="i" begin="0" end="${totalPages_banner - 1}" varStatus="st">&ndash;%&gt;--%>
 
-                                    <c:otherwise>
-                                        <li class="page-item">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                    ${st.index + 1}
-                                            </a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
+<%--&lt;%&ndash;                                <c:choose>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <c:when test="${st.index+1 == currentPage_banner}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <li class="page-item active">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <a class="page-link"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    ${st.index + 1}&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </c:when>&ndash;%&gt;--%>
 
-                            </c:forEach>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+<%--&lt;%&ndash;                                    <c:otherwise>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <li class="page-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <a class="page-link"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    ${st.index + 1}&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </c:otherwise>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                </c:choose>&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;                            </c:forEach>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        </ul>&ndash;%&gt;--%>
+<%--                    </nav>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
     </div>
 
     <!-- Modal Thêm/Sửa Event -->

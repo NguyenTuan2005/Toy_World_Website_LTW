@@ -136,5 +136,61 @@ public class EventDAO  extends BaseDAO{
     }
 
 
+    public Event findById(Long id) {
+        String sql = """
+                        SELECT *
+                        FROM events
+                        WHERE id = :id
+                    """;
+        return this.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                .bind("id",id)
+                .map((rs,stx)->{
+                    Event e = new Event();
+                    e.setId(rs.getLong("id"));
+                    e.setName(rs.getString("name"));
+                    e.setOpenedAt(rs.getTimestamp("opened_at").toLocalDateTime());
+                    e.setClosedAt(rs.getTimestamp("closed_at").toLocalDateTime());
+                    e.setDescription(rs.getString("description"));
+                    e.setTypeEvent(rs.getString("type_event"));
+                    e.setActive(rs.getBoolean("is_active"));
+                    e.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
 
+                    return e;
+                }).one()
+        );
+    }
+
+    public List<Event> findByName(String name) {
+
+
+        String sql = """
+        select *
+        from events
+        where name like :name
+        limit :limit
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit", 10)
+                        .bind("name", "%"+name+"%")
+                        .map((rs, ctx) -> {
+                            Event e = new Event();
+                            e.setId(rs.getLong("id"));
+                            e.setName(rs.getString("name"));
+                            e.setOpenedAt(rs.getTimestamp("opened_at").toLocalDateTime());
+                            e.setClosedAt(rs.getTimestamp("closed_at").toLocalDateTime());
+                            e.setDescription(rs.getString("description"));
+                            e.setTypeEvent(rs.getString("type_event"));
+                            e.setActive(rs.getBoolean("is_active"));
+                            return e;
+                        })
+                        .list()
+        );
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new EventDAO().findByName("Khai truong"));
+    }
 }

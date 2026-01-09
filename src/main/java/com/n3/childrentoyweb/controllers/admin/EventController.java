@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.controllers.admin;
 
 import com.n3.childrentoyweb.dao.Pagination;
+import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.Event;
 import com.n3.childrentoyweb.services.BannerService;
 import com.n3.childrentoyweb.services.EventService;
@@ -12,8 +13,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
-@WebServlet(value = "/events")
+@WebServlet(value = "/admin-x/events")
 public class EventController extends HttpServlet {
     private EventService eventService;
     private PromotionService promotionService;
@@ -29,7 +33,7 @@ public class EventController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         this.addStatisticEvent(req);
-
+        this.addEventsPagination(req);
         req.getRequestDispatcher("/adminPages/events.jsp").forward(req,resp);
     }
 
@@ -48,8 +52,8 @@ public class EventController extends HttpServlet {
 
     private void addEventsPagination( HttpServletRequest request){
         int page = 1;
-        if(request.getParameter("event-page") != null)
-            page = Integer.parseInt(request.getParameter("event-page"));
+        if(request.getParameter("page") != null)
+            page = Integer.parseInt(request.getParameter("page").trim());
 
         Pagination<Event> eventPagination = this.eventService.findEventForManagement(page,PAGE_SIZE);
         System.out.println(eventPagination);
@@ -60,6 +64,26 @@ public class EventController extends HttpServlet {
         request.setAttribute("pageSize",PAGE_SIZE);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getParameter("id") == null){
+            throw new ObjectNotFoundException();
+        }
 
+        long id = Long.parseLong(req.getParameter("id"));
+        System.out.println("ID : "+id);
+        Event event = this.eventService.findEventById(id).orElseThrow(ObjectNotFoundException::new);
+
+        event.revertActive();
+
+        this.eventService.updateEvent(event);
+
+        String message = (event.getActive())? "Ẩn sự kiện " :"Hiện thị sự kiện ";
+        req.setAttribute("notify", message+ event.getName() + LocalDate.now());
+
+        this.addStatisticEvent(req);
+        this.addEventsPagination(req);
+        req.getRequestDispatcher("/adminPages/events.jsp").forward(req,resp);
+    }
 
 }

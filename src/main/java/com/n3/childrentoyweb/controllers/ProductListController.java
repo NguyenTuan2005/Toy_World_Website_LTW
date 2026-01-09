@@ -2,10 +2,8 @@ package com.n3.childrentoyweb.controllers;
 
 import com.n3.childrentoyweb.dto.PriceRangeFilterDTO;
 import com.n3.childrentoyweb.dto.ProductListDTO;
-import com.n3.childrentoyweb.services.BrandService;
-import com.n3.childrentoyweb.services.CategoryService;
-import com.n3.childrentoyweb.services.ProductAssetService;
-import com.n3.childrentoyweb.services.ProductService;
+import com.n3.childrentoyweb.models.User;
+import com.n3.childrentoyweb.services.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -74,17 +72,20 @@ public class ProductListController extends HttpServlet {
                     .toList();
         }
 
+        //load product data
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+        Long userId = (currentUser != null) ? currentUser.getId() : null;
+
         List<ProductListDTO> products;
-
-        if(brandIds==null && categoryIds== null && selectedPriceRanges==null){
+        if (brandIds == null && categoryIds == null && selectedPriceRanges == null && userId == null) {
             products = productService.findAllByPage(page, PAGE_SIZE);
-        }else
-            products = productService.findByFilter(brandIds, categoryIds, selectedPriceRanges, page, PAGE_SIZE);
+        } else {
+            products = productService.findByFilter(userId, brandIds, categoryIds, selectedPriceRanges, page, PAGE_SIZE);
+        }
 
-        int totalItems = productService.countByFilter(brandIds);
-
-        int totalPages =
-                (int) Math.ceil((double) totalItems / PAGE_SIZE);
+        //page
+        int totalItems = productService.countByFilter(brandIds, categoryIds, selectedPriceRanges);
+        int totalPages = (int) Math.ceil((double) totalItems / PAGE_SIZE);
 
         request.setAttribute("products", products);
         request.setAttribute("brands", brandService.findAll());
@@ -103,6 +104,7 @@ public class ProductListController extends HttpServlet {
         );
         request.setAttribute("priceRanges", priceRanges);
 
+        //wishlist for current user
 
         request.getRequestDispatcher("/product-list.jsp").forward(request, response);
     }

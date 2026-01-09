@@ -2,6 +2,8 @@ package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.models.WishList;
 
+import java.util.List;
+
 public class WishListDAO extends BaseDAO {
 
     public void save(WishList wishList) {
@@ -36,4 +38,17 @@ public class WishListDAO extends BaseDAO {
         );
     }
 
+    public List<Long> findAllProductIdByUserId(Long userId) {
+        String sql = """
+                SELECT product_id
+                FROM wish_lists
+                WHERE user_id = :userId
+                    AND is_active = 1
+                """;
+        return this.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                .bind("userId", userId)
+                .mapTo(Long.class)
+                .list()
+        );
+    }
 }

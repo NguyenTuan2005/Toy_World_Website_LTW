@@ -7,10 +7,7 @@ import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 import org.jdbi.v3.core.statement.Query;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ProductDAO extends BaseDAO {
 
@@ -347,36 +344,40 @@ public class ProductDAO extends BaseDAO {
         });
     }
 
-    public int countByFilter(List<Integer> brandIds) {
+    public int countByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
+        StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM products WHERE is_active = 1");
+
+        Map<String, Object> params = new HashMap<>();
 
         if (brandIds != null && !brandIds.isEmpty()) {
-            String sql = """
-                    SELECT COUNT(*)
-                    FROM products
-                    WHERE brand_id IN (<brandIds>)
-                      AND is_active = 1
-                    """;
-
-            return getJdbi().withHandle(h ->
-                    h.createQuery(sql)
-                            .bindList("brandIds", brandIds)
-                            .mapTo(Integer.class)
-                            .one()
-            );
+            sql.append(" AND brand_id IN (<brandIds>)");
+            params.put("brandIds", brandIds);
         }
 
-        String sql = """
-                SELECT COUNT(*)
-                FROM products
-                WHERE is_active = 1
-                """;
+        if (categoryIds != null && !categoryIds.isEmpty()) {
+            sql.append(" AND category_id IN (<categoryIds>)");
+            params.put("categoryIds", categoryIds);
+        }
 
-        return getJdbi().withHandle(h ->
-                h.createQuery(sql)
-                        .mapTo(Integer.class)
-                        .one()
-        );
+        if (priceRanges != null && !priceRanges.isEmpty()) {
+            sql.append(" AND (");
+            for (int i = 0; i < priceRanges.size(); i++) {
+                PriceRangeFilterDTO range = priceRanges.get(i);
+                if (i > 0) sql.append(" OR ");
+                sql.append("(price >= :min").append(i).append(" AND price <= :max").append(i).append(")");
+                params.put("min" + i, range.getMin());
+                params.put("max" + i, range.getMax());
+            }
+            sql.append(")");
+        }
+
+        return this.getJdbi().withHandle(h -> {
+            var query = h.createQuery(sql.toString());
+            params.forEach(query::bind);
+            return query.mapTo(Integer.class).one();
+        });
     }
+
 
     //filter
     public List<ProductListDTO> findByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int pageSize, int offset) {

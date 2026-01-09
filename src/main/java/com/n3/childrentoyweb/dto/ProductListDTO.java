@@ -15,7 +15,9 @@ public class ProductListDTO {
     private long maxDiscountPrice;
     private double discountPercent;
 
-    public ProductListDTO(Long id, String name, List<String> imgPaths, Integer quantity, String category, String brand, long originPrice, long finalPrice, long maxDiscountPrice, double discountPercent) {
+    private boolean wishlisted;
+
+    public ProductListDTO(Long id, String name, List<String> imgPaths, Integer quantity, String category, String brand, long originPrice, long finalPrice, long maxDiscountPrice, double discountPercent, boolean wishlisted) {
         this.id = id;
         this.name = name;
         this.imgPaths = imgPaths;
@@ -26,6 +28,7 @@ public class ProductListDTO {
         this.finalPrice = finalPrice;
         this.maxDiscountPrice = maxDiscountPrice;
         this.discountPercent = discountPercent;
+        this.wishlisted = wishlisted;
     }
 
     public ProductListDTO() {
@@ -111,19 +114,28 @@ public class ProductListDTO {
         this.brand = brand;
     }
 
+    public boolean isWishlisted() {
+        return wishlisted;
+    }
+
+    public void setWishlisted(boolean wishlisted) {
+        this.wishlisted = wishlisted;
+    }
+
     @Override
     public String toString() {
         return "ProductListDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", imgPaths=" + imgPaths +
-                ", quantity=" + quantity +
+                "\n, quantity=" + quantity +
                 ", category='" + category + '\'' +
                 ", brand='" + brand + '\'' +
                 ", originPrice=" + originPrice +
                 ", finalPrice=" + finalPrice +
                 ", maxDiscountPrice=" + maxDiscountPrice +
                 ", discountPercent=" + discountPercent +
+                ", wishlisted=" + wishlisted +
                 "}\n";
     }
 }

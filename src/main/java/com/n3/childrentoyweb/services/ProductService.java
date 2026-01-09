@@ -1,9 +1,6 @@
 package com.n3.childrentoyweb.services;
 
-import com.n3.childrentoyweb.dao.ApplicationProperties;
-import com.n3.childrentoyweb.dao.ProductAssetDAO;
-import com.n3.childrentoyweb.dao.ProductDAO;
-import com.n3.childrentoyweb.dao.UserCommentDAO;
+import com.n3.childrentoyweb.dao.*;
 import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Product;
 
@@ -15,12 +12,14 @@ public class ProductService {
     private ProductDAO productDAO;
     private ProductAssetDAO productAssetDAO;
     private UserCommentDAO userCommentDAO;
+    private WishListDAO wishListDAO;
     private static final int FIRST_PAGE = 1;
 
     public ProductService() {
         this.productDAO = new ProductDAO();
         this.productAssetDAO = new ProductAssetDAO();
         this.userCommentDAO = new UserCommentDAO();
+        this.wishListDAO = new WishListDAO();
     }
 
     public List<ProductListDTO> findAll() {
@@ -95,10 +94,12 @@ public class ProductService {
         return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
-    public List<ProductListDTO> findByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int page, int pageSize) {
+    public List<ProductListDTO> findByFilter(Long currentUserId, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int page, int pageSize) {
 
         int offset = (page - 1) * pageSize;
         List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, pageSize, offset);
+
+        List<Long> wishlistProductIds = wishListDAO.findAllProductIdByUserId(currentUserId);
 
 
         for (ProductListDTO p : products) {
@@ -113,18 +114,17 @@ public class ProductService {
             long discountByPercent = Math.round(originPrice * discountPercent / 100);
             long finalDiscount = Math.min(discountByPercent, maxDiscountPrice);
             p.setFinalPrice(originPrice - finalDiscount);
+
+            if(wishlistProductIds.contains(p.getId())){
+                p.setWishlisted(true);
+            }
         }
         return products;
     }
 
 
-    public int countByFilter(List<Integer> brandIds) {
-        return productDAO.countByFilter(brandIds);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new ProductService().findByFilter(List.of(), List.of(),
-                List.of(  new PriceRangeFilterDTO(1000000, 2000000, "1.000.000₫ - 2.000.000₫")), 1, 10));
+    public int countByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
+        return productDAO.countByFilter(brandIds, categoryIds, priceRanges);
     }
 
 

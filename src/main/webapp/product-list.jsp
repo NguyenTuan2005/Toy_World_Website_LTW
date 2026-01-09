@@ -202,56 +202,56 @@
                 </div>
                 <%-- products --%>
                 <div id="productContainer" class="row g-4">
-                    <c:forEach items="${products}" var="priceRange">
+                    <c:forEach items="${products}" var="product">
                         <div class="col-sm-6 col-lg-4">
                             <div class="card h-100 position-relative">
                                 <!-- Badge giảm giá -->
-                                <c:if test="${priceRange.discountPercent > 0}">
+                                <c:if test="${product.discountPercent > 0}">
                                     <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">
-                                        -${priceRange.discountPercent}%
+                                        -${product.discountPercent}%
                                     </span>
                                 </c:if>
 
-                                <img src="${priceRange.imgPaths.get(0)}"
+                                <img src="${product.imgPaths.get(0)}"
                                      class="card-img-top p-3 cursor-pointer"
-                                     alt="${priceRange.name}"
+                                     alt="${product.name}"
                                      role="button"
-                                     onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'">
+                                     onclick="window.location.href='${pageContext.request.contextPath}/products/${product.id}'">
 
                                 <div class="card-body d-flex flex-column">
-                                    <p class="text-muted small mb-1">${priceRange.category}</p>
-                                    <h5 class="card-title text-truncate">${priceRange.name}</h5>
+                                    <p class="text-muted small mb-1">${product.category}</p>
+                                    <h5 class="card-title text-truncate">${product.name}</h5>
 
                                     <!-- Giá -->
                                     <div class="mb-3">
-                                        <c:if test="${priceRange.discountPercent > 0}">
+                                        <c:if test="${product.discountPercent > 0}">
                                             <!-- Giá giảm -->
                                             <span class="text-danger fw-bold fs-5">
-                                                <fmt:formatNumber value="${priceRange.finalPrice}" type="currency"
+                                                <fmt:formatNumber value="${product.finalPrice}" type="currency"
                                                                   currencyCode="VND"/>
                                             </span>
                                             <!-- Giá gốc -->
                                             <span class="text-muted text-decoration-line-through me-2">
-                                                <fmt:formatNumber value="${priceRange.originPrice}" type="currency"
+                                                <fmt:formatNumber value="${product.originPrice}" type="currency"
                                                                   currencyCode="VND"/>
                                             </span>
                                         </c:if>
-                                        <c:if test="${priceRange.discountPercent == 0}">
+                                        <c:if test="${product.discountPercent == 0}">
                                             <!-- Chỉ giá gốc nếu không giảm -->
                                             <span class="text-danger fw-bold fs-5">
-                                                <fmt:formatNumber value="${priceRange.originPrice}" type="currency"
+                                                <fmt:formatNumber value="${product.originPrice}" type="currency"
                                                                   currencyCode="VND"/>
                                             </span>
                                         </c:if>
                                     </div>
 
                                     <div class="action-buttons d-flex justify-content-between align-items-center gap-3">
-                                        <button type="button" class="btn-add-cart" data-id="${priceRange.id}">
+                                        <button type="button" class="btn-add-cart" data-id="${product.id}">
                                             Thêm Vào Giỏ Hàng
                                         </button>
 
-                                        <button type="button" class="wishlist-icon" data-id="${priceRange.id}">
-                                            <i class="bi bi-heart"></i>
+                                        <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}" data-id="${product.id}">
+                                            <i class="bi ${product.wishlisted ? 'bi-heart-fill' : 'bi-heart'}"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -268,6 +268,20 @@
                     <c:if test="${paramValues.brandId != null}">
                         <c:forEach items="${paramValues.brandId}" var="cid">
                             <c:set var="filterQuery" value="${filterQuery}&brandId=${cid}"/>
+                        </c:forEach>
+                    </c:if>
+
+                    <!-- Category -->
+                    <c:if test="${paramValues.categoryId != null}">
+                        <c:forEach items="${paramValues.categoryId}" var="id">
+                            <c:set var="filterQuery" value="${filterQuery}&categoryId=${id}"/>
+                        </c:forEach>
+                    </c:if>
+
+                    <!-- Price Range -->
+                    <c:if test="${paramValues.priceRange != null}">
+                        <c:forEach items="${paramValues.priceRange}" var="pr">
+                            <c:set var="filterQuery" value="${filterQuery}&priceRange=${pr}"/>
                         </c:forEach>
                     </c:if>
 

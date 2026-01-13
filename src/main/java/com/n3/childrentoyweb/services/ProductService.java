@@ -1,12 +1,7 @@
 package com.n3.childrentoyweb.services;
 
-import com.n3.childrentoyweb.dao.ApplicationProperties;
-import com.n3.childrentoyweb.dao.ProductAssetDAO;
-import com.n3.childrentoyweb.dao.ProductDAO;
-import com.n3.childrentoyweb.dao.UserCommentDAO;
-import com.n3.childrentoyweb.dto.HomeProductDTO;
-import com.n3.childrentoyweb.dto.ProductDetailDTO;
-import com.n3.childrentoyweb.dto.ProductPromotionDTO;
+import com.n3.childrentoyweb.dao.*;
+import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Product;
 
 import java.util.List;
@@ -17,19 +12,21 @@ public class ProductService {
     private ProductDAO productDAO;
     private ProductAssetDAO productAssetDAO;
     private UserCommentDAO userCommentDAO;
+    private WishListDAO wishListDAO;
     private static final int FIRST_PAGE = 1;
 
     public ProductService() {
         this.productDAO = new ProductDAO();
         this.productAssetDAO = new ProductAssetDAO();
         this.userCommentDAO = new UserCommentDAO();
+        this.wishListDAO = new WishListDAO();
     }
 
-    public List<Product> findAll() {
+    public List<ProductListDTO> findAll() {
         return productDAO.findAll();
     }
 
-    public List<Product> findAllByPage(int page, int pageSize) {
+    public List<ProductListDTO> findAllByPage(int page, int pageSize) {
         return productDAO.findAllByPage(page, pageSize);
     }
 
@@ -44,7 +41,8 @@ public class ProductService {
     public List<HomeProductDTO> findSignatureProduct() {
         return this.productDAO.findSignatureProduct(FIRST_PAGE, ApplicationProperties.DISPLAY_PRODUCT_SIZE, ApplicationProperties.SIGNATURE_BRAND_NAME);
     }
-    public Optional<Product> findById(Long id ){
+
+    public Optional<Product> findById(Long id) {
         return this.productDAO.findById(id);
     }
 
@@ -84,7 +82,7 @@ public class ProductService {
         return product;
     }
 
-    public long countProductInMonth(int year, int month){
+    public long countProductInMonth(int year, int month) {
         return productDAO.countProductInMonth(year, month);
     }
 
@@ -96,8 +94,37 @@ public class ProductService {
         return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProductService().findProductDetailById(1L));
+    public List<ProductListDTO> findByFilter(Long currentUserId, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int page, int pageSize) {
+
+        int offset = (page - 1) * pageSize;
+        List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, pageSize, offset);
+
+        List<Long> wishlistProductIds = wishListDAO.findAllProductIdByUserId(currentUserId);
+
+
+        for (ProductListDTO p : products) {
+            long originPrice = p.getOriginPrice();
+            long maxDiscountPrice = p.getMaxDiscountPrice();
+            double discountPercent = p.getDiscountPercent();
+
+            if (originPrice <= 0) continue;
+            if (discountPercent < 0) discountPercent = 0;
+            if (discountPercent > 100) discountPercent = 100;
+
+            long discountByPercent = Math.round(originPrice * discountPercent / 100);
+            long finalDiscount = Math.min(discountByPercent, maxDiscountPrice);
+            p.setFinalPrice(originPrice - finalDiscount);
+
+            if(wishlistProductIds.contains(p.getId())){
+                p.setWishlisted(true);
+            }
+        }
+        return products;
+    }
+
+
+    public int countByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
+        return productDAO.countByFilter(brandIds, categoryIds, priceRanges);
     }
 
 

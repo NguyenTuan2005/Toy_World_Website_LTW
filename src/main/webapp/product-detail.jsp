@@ -69,9 +69,9 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <h4 class="product-title mb-0">${product.name}</h4>
 
-                    <i class="bi bi-heart wishlist-icon fs-2"
-                       data-product-id="${product.id}"
-                       title="Thêm vào danh sách yêu thích"></i>
+                    <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}" data-id="${product.id}">
+                        <i class="bi ${product.wishlisted ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                    </button>
                 </div>
 
                 <div class="brand-badge my-2">
@@ -273,6 +273,44 @@
             document.getElementById('modalImage').src =
                 e.relatedTarget.src;
         });
+
+    var wishlistButtons = document.getElementsByClassName("wishlist-icon");
+
+    for (var i = 0; i < wishlistButtons.length; i++) {
+        wishlistButtons[i].onclick = function () {
+            var button = this;
+            var productId = this.getAttribute("data-id");
+            var icon = this.querySelector("i");
+
+            fetch("${pageContext.request.contextPath}/wish-list", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "productId=" + productId
+            }).then(function (res) {
+                if (res.status === 401) {
+                    window.location.href = '${pageContext.request.contextPath}/login';
+                    return;
+                }
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then(function(data){
+                if(!data) return;
+
+                if(data.wishlisted){
+                    icon.classList.remove("bi-heart");
+                    icon.classList.add("bi-heart-fill");
+                    button.classList.add("active");
+                } else {
+                    icon.classList.remove("bi-heart-fill");
+                    icon.classList.add("bi-heart");
+                    button.classList.remove("active");
+                }
+            });
+        };
+    }
 </script>
 
 </body>

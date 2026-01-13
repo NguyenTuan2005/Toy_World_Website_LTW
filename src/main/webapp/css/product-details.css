@@ -323,7 +323,12 @@ margin-top: 10px;
 }
 
 .wishlist-icon {
-    font-size: 22px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    font-size: 35px;
     color: #999;
     cursor: pointer;
     transition: all 0.2s ease;

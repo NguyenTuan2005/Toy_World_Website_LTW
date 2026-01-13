@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.controllers;
 
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
+import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.ProductService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -35,8 +36,9 @@ public class ProductDetailsController extends HttpServlet {
                 return;
             }
 
+            User currentUser = (User) request.getSession().getAttribute("currentUser");
 
-            ProductDetailDTO product = productService.findProductDetailById(id);
+            ProductDetailDTO product = productService.findProductDetailById(currentUser, id);
 
             request.setAttribute("product", product);
             request.getRequestDispatcher("/product-detail.jsp").forward(request, response);

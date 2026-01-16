@@ -42,14 +42,6 @@
             </div>
             </div>
 
-            <form action="${pageContext.request.contextPath}/cart" method="post">
-                <input type="hidden" name="productId" value="1" />
-                <input type="hidden" name="quantity" value="1" />
-                <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
-                    Thêm Vào Giỏ Hàng
-                </button>
-            </form>
-
             <div class="flex-grow-1">
               <!-- image slicer -->
               <section class="section-image-slider container-lg">

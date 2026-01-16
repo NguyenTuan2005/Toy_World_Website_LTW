@@ -107,16 +107,16 @@
                     <li>Mở hộp và kiểm tra hàng trước khi nhận.</li>
                 </ul>
 
-                <div class="quantity-selector">
-                    <strong>Số lượng</strong>
+                <div class="add-cart-box">
+                    <strong style="font-size: 18px">Số lượng</strong>
                     <div class="quantity-input">
                         <button type="button" id="decreaseQty">-</button>
-                        <input type="number" id="quantity" value="1" min="1">
+                        <input type="number" class="quantity" id="quantity" value="1" min="1">
                         <button type="button" id="increaseQty">+</button>
                     </div>
-                </div>
 
-                <button class="btn-add-cart">Thêm Vào Giỏ Hàng</button>
+                    <button class="btn-add-cart" data-id="${product.id}">Thêm Vào Giỏ Hàng</button>
+                </div>
 
                 <c:choose>
                     <c:when test="${not empty product.restInfo}">
@@ -131,7 +131,6 @@
                         <p>Chưa có thông tin chi tiết</p>
                     </c:otherwise>
                 </c:choose>
-
             </div>
         </div>
     </div>
@@ -273,7 +272,7 @@
             document.getElementById('modalImage').src =
                 e.relatedTarget.src;
         });
-
+    // wishlist
     var wishlistButtons = document.getElementsByClassName("wishlist-icon");
 
     for (var i = 0; i < wishlistButtons.length; i++) {
@@ -311,6 +310,53 @@
             });
         };
     }
+
+    //add to cart
+    var buttons = document.getElementsByClassName("btn-add-cart");
+
+    for (var i = 0; i < buttons.length; i++) {
+
+        buttons[i].onclick = function () {
+
+            var productId = this.getAttribute("data-id");
+
+            var quantity = 1;
+
+            var box = this.closest(".add-cart-box");
+
+            if (box != null) {
+                var qtyInput = box.getElementsByClassName("quantity")[0];
+                quantity = qtyInput.value;
+            }
+
+            fetch("${pageContext.request.contextPath}/cart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "productId=" + productId + "&quantity=" + quantity
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (quantityData) {
+                    var totalQuantity = quantityData.totalQuantity;
+
+                    var cartText = "Giỏ hàng";
+
+                    if (totalQuantity > 0) {
+                        cartText = "Giỏ hàng (" + totalQuantity + ")";
+                    }
+
+                    document.getElementById("cart-count").innerText = cartText;
+
+                    alert("Đã thêm sản phẩm vào giỏ!");
+                });
+        };
+    }
+
+
+
 </script>
 
 </body>

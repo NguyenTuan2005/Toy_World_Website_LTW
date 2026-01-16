@@ -23,7 +23,7 @@
         .btn-add-cart {
             flex: 1 1 auto;
             white-space: nowrap;
-            background: #cf102d;
+            background: #d51b1b;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -371,9 +371,19 @@
                 body: "productId=" + productId + "&quantity=1"
 
             }).then(function (response) {
-                return response.text();
-            }).then(function (totalQuantity) {
-                document.getElementById("cartCount").innerText = totalQuantity;
+                return response.json();
+
+            }).then(function (quantityData) {
+                var totalQuantity = quantityData.totalQuantity;
+
+                var cartText = "Giỏ hàng";
+
+                if (totalQuantity > 0) {
+                    cartText = "Giỏ hàng (" + totalQuantity + ")";
+                }
+
+                document.getElementById("cart-count").innerText = cartText;
+
                 alert("Đã thêm sản phẩm vào giỏ!");
             });
         };

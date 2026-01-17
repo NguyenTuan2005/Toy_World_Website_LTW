@@ -50,7 +50,13 @@ public class ProductDAO extends BaseDAO {
                        c.name AS category,
                        pm.discount_percent AS discountPercent,
                        pm.discount_price AS maxDiscountPrice,
-                       pa.img_path AS imgPath
+                       (
+                        select pa.img_path
+                        from  product_assets pa
+                        where pa.product_id =p.id
+                        and pa.is_active =1
+                        limit 1
+                        ) AS imgPath
                 FROM products p
                 JOIN brands b ON p.brand_id = b.id
                 JOIN categories c ON p.category_id = c.id
@@ -117,14 +123,9 @@ public class ProductDAO extends BaseDAO {
                             p.setBrand(rowView.getColumn("brand", String.class));
                             p.setCategory(rowView.getColumn("category", String.class));
 
-                            p.setImgPaths(new ArrayList<>());
+                            p.setImgPath(rowView.getColumn("imgPath", String.class));
                             return p;
                         });
-
-                        String img = rowView.getColumn("imgPath", String.class);
-                        if (img != null) {
-                            dto.getImgPaths().add(img);
-                        }
 
                         return map;
                     })
@@ -245,6 +246,7 @@ public class ProductDAO extends BaseDAO {
     public Optional<Product> findById(Long id) {
         String sql = """
                     SELECT id, name, price, quantity, description,
+                           promotion_id AS promotionId,
                            rest_info AS restInfo,
                            brand_id AS brandId,
                            category_id AS categoryId
@@ -292,6 +294,42 @@ public class ProductDAO extends BaseDAO {
                         .findOne()
         );
 
+    }
+
+    public List<ProductListDTO> findRelatedByCategoryAndBrand(Long categoryId, Long brandId, Long excludeProductId, int limit) {
+        String sql = """
+        SELECT p.id,
+               p.name,
+               p.price AS originPrice,
+               pa.img_path AS imgPath,
+               p.quantity,
+               b.name AS brand,
+               c.name AS category,
+               pm.discount_percent AS discountPercent,
+               pm.discount_price AS maxDiscountPrice
+        FROM products p
+        JOIN brands b ON p.brand_id = b.id
+        JOIN categories c ON p.category_id = c.id
+        LEFT JOIN promotions pm ON p.promotion_id = pm.id
+        JOIN product_assets pa ON p.id = pa.product_id
+        WHERE p.is_active = 1
+          AND p.category_id = :categoryId
+          AND p.brand_id = :brandId
+          AND p.id <> :excludeId
+        ORDER BY p.created_at DESC
+        LIMIT :limit
+        """;
+
+        return super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("categoryId", categoryId)
+                        .bind("brandId", brandId)
+                        .bind("excludeId", excludeProductId)
+                        .bind("limit", limit)
+                        .registerRowMapper(BeanMapper.factory(ProductListDTO.class))
+                        .mapTo(ProductListDTO.class)
+                        .list()
+        );
     }
 
     public long countProductInMonth(int year, int month) {
@@ -502,7 +540,11 @@ public class ProductDAO extends BaseDAO {
                c.name AS category,
                pm.discount_percent AS discountPercent,
                pm.discount_price AS maxDiscountPrice,
-               pa.img_path AS imgPath
+               (   select pa.img_path
+                   from  product_assets pa
+                   where pa.product_id =p.id
+                         and pa.is_active =1
+                   limit 1) AS imgPath
         FROM products p
         JOIN brands b ON p.brand_id = b.id
         JOIN categories c ON p.category_id = c.id
@@ -539,14 +581,9 @@ public class ProductDAO extends BaseDAO {
                                         ).orElse(0L)
                                 );
 
-                                p.setImgPaths(new ArrayList<>());
+                                p.setImgPath(row.getColumn("imgPath", String.class));
                                 return p;
                             });
-
-                            String img = row.getColumn("imgPath", String.class);
-                            if (img != null) {
-                                dto.getImgPaths().add(img);
-                            }
 
                             return map;
                         })

@@ -50,10 +50,12 @@ public class CartController  extends HttpServlet {
             cart.addItem(new CartItem(cartProductDTO, quantity));
             session.setAttribute(Cart.CART, cart);
 
-            resp.setContentType("text/plain");
-            resp.getWriter().print(cart.getTotalQuantity());
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().print(
+                    "{\"totalQuantity\":" + cart.getTotalQuantity() + "}"
+            );
 
-            resp.sendRedirect(req.getHeader("Referer"));
         } catch (Exception e) {
             resp.getWriter().write("{\"error\":" + e.getMessage() + "\"}");
         }

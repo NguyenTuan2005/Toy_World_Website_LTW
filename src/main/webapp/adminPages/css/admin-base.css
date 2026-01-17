@@ -77,11 +77,12 @@
 }
 
 .nav-pills .nav-link.active{
-    background-color: #cf102d;
+    color: white !important;
+    background-color: #cf102d !important;
 }
 
 .nav-link {
-    color: #cf102d;
+    color: #cf102d !important;
 }
 
 .search-input {

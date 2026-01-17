@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -43,6 +44,10 @@
     </div>
 
     <div class="container">
+        <div id="alert" class="alert alert-danger text-center d-none" role="alert">
+            ${error}
+        </div>
+
         <!-- Tab Content -->
         <div class="tab-content" id="productTabsContent">
             <!-- PRODUCTS TAB -->
@@ -98,13 +103,10 @@
                             <td><span class="badge bg-success">Còn hàng</span></td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-secondary p-0" title="Xem chi tiết">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
                                     <button class="btn btn-link text-secondary p-0" data-bs-toggle="modal" data-bs-target="#updateProductModal" title="Chỉnh sửa">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-link text-secondary p-0" title="Bình luận">
+                                    <button class="btn btn-link text-secondary p-0" title="Xem bình luận">
                                         <i class="fas fa-comment"></i>
                                     </button>
                                 </div>
@@ -174,7 +176,7 @@
                             <td><small>19/11/2025<br/>23:23:23</small></td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-warning p-0" title="Ẩn bình luận">
+                                    <button class="btn btn-link text-primary p-0" title="Ẩn bình luận">
                                         <i class="fas fa-eye-slash"></i>
                                     </button>
                                 </div>
@@ -197,8 +199,8 @@
                             <td><small>18/11/2025<br/>15:30:00</small></td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-warning p-0" title="Hiện bình luận">
-                                        <i class="fas fa-eye-fill"></i>
+                                    <button class="btn btn-link text-primary p-0" title="Hiện bình luận">
+                                        <i class="bi bi-eye-fill"></i>
                                     </button>
                                 </div>
                             </td>

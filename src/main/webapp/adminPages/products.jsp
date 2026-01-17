@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/products.css">
 </head>
 
 <body>
@@ -20,246 +20,208 @@
 <main class="main-content">
     <div class="header-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
                     <h1 class="page-title">Quản lý sản phẩm</h1>
                 </div>
+
+                <!-- Nav Tabs -->
+                <ul class="nav nav-pills" id="productTabs" role="tablist">
+                    <li class="nav-item me-1" role="presentation">
+                        <button class="nav-link active" id="products-tab" data-bs-toggle="tab" data-bs-target="#products" type="button" role="tab">
+                            <i class="fas fa-box"></i> Danh sách sản phẩm
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab">
+                            <i class="fas fa-comments"></i> Bình luận sản phẩm
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="filter-section">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="search-wrapper">
-                        <i class="fas fa-search search-icon"></i>
-                        <input
-                                type="text"
-                                class="search-input"
-                                placeholder="Tìm theo tên sản phẩm..."
-                        />
-                    </div>
-                </div>
-                <div class="col-md-6 text-end mt-3 mt-md-0">
-                    <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
-                            data-bs-target="#addProductModal">
-                        <i class="fas fa-plus"></i> Thêm sản phẩm mới
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="table-container">
-            <table class="table">
-                <thead class="table-primary">
-                <tr>
-                    <th class="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
-                    </th>
-                    <th class="sortable text-white text-nowrap " data-column="name">Mã SP<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap " data-column="email">Tên Sản Phẩm<i
-                            class="fas fa-sort ms-1 text-white"></i>
-                    </th>
-                    <th class="sortable text-white text-nowrap" data-column="phone">Ảnh<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap" data-column="gender">Giá Tiền<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap" data-column="address">Thương Hiệu<i
-                            class="fas fa-sort ms-1 text-white"></i>
-                    </th>
-                    <th class="sortable text-white text-nowrap" data-column="role">Danh Mục<i
-                            class="fas fa-sort ms-1 text-white"></i>
-                    </th>
-                    <th class="sortable text-white text-nowrap" data-column="status">Số lượng<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap" data-column="created">Trạng thái<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="text-white">Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
-                    </td>
-                    <td>123</td>
-                    <td>Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic FD2 Type-R HOT WHEELS JBK53/FPY86</td>
-                    <td>
-                        <img src="https://www.mykingdom.com.vn/cdn/shop/articles/do-choi-tri-tue-cho-be-6-9-tuoi_0c2a3283-b493-44f6-8e2d-db8803a38067.jpg?v=1761885332"
-                             class="thumb-img w-75"
-                             alt="thumbnail"/>
-                    <td>1.200.000₫</td>
-                    <td>Toy's Việt</td>
-                    <td>Xe Đồ Chơi</td>
-                    <td>100</td>
-                    <td><span class="badge bg-success">Còn hàng</span></td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-link text-primary text-decoration-none">
-                                <i class="bi bi-eye-fill"></i>
-                            </button>
-
-                            <button class="btn btn-link text-success text-decoration-none" data-bs-toggle="modal"
-                                    data-bs-target="#updateProductModal">
-                                <i class="fas fa-edit"></i>
-                            </button>
-
-                            <button class="btn btn-link text-danger">
-                                <i class="fas fa-trash"></i>
+        <!-- Tab Content -->
+        <div class="tab-content" id="productTabsContent">
+            <!-- PRODUCTS TAB -->
+            <div class="tab-pane fade show active" id="products" role="tabpanel">
+                <div class="filter-section">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="search-wrapper">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" class="search-input" placeholder="Tìm theo tên sản phẩm..."/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-end mt-3 mt-md-0">
+                            <button class="btn-add fw-medium px-4 py-2" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                <i class="fas fa-plus"></i> Thêm sản phẩm mới
                             </button>
                         </div>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-            <hr class="mx-5"/>
-            <div class="d-flex justify-content-between align-items-center m-3">
-                <p class="mb-0">Hiển thị 2 trong 100 sản phẩm</p>
-                <nav>
-                    <ul class="pagination mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link">|&lt;</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link">&lt;</a>
-                        </li>
-
-                        <li class="page-item active">
-                            <a class="page-link">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link">2</a></li>
-                        <li class="page-item"><a class="page-link">3</a></li>
-                        <li class="page-item"><a class="page-link">4</a></li>
-                        <li class="page-item"><a class="page-link">5</a></li>
-                        <li class="page-item"><a class="page-link">…</a></li>
-                        <li class="page-item"><a class="page-link">10</a></li>
-
-                        <li class="page-item">
-                            <a class="page-link">&gt;</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link">&gt;|</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-section mt-3">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h1 class="page-title">Quản lý bình luận về sản phẩm</h1>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="container mb-3">
-        <div class="filter-section">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="search-wrapper">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" class="search-input" placeholder="Tìm theo tên người dùng..."/>
+                <div class="table-container">
+                    <table class="table">
+                        <thead class="table-primary">
+                        <tr>
+                            <th class="text-center align-middle" style="width: 40px">
+                                <input class="form-check-input" type="checkbox" id="selectAllProducts"/>
+                            </th>
+                            <th class="sortable text-white text-nowrap">Mã SP <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Tên Sản Phẩm <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Ảnh <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Giá Tiền <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Thương Hiệu <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Danh Mục <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Số lượng <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Trạng thái <i class="fas fa-sort ms-1"></i></th>
+                            <th class="text-white">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center align-middle">
+                                <input class="form-check-input" type="checkbox"/>
+                            </td>
+                            <td>123</td>
+                            <td>Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic FD2 Type-R</td>
+                            <td>
+                                <img src="https://www.mykingdom.com.vn/cdn/shop/articles/do-choi-tri-tue-cho-be-6-9-tuoi_0c2a3283-b493-44f6-8e2d-db8803a38067.jpg?v=1761885332" class="thumb-img w-75" alt="thumbnail"/>
+                            </td>
+                            <td>1.200.000₫</td>
+                            <td>Toy's Việt</td>
+                            <td>Xe Đồ Chơi</td>
+                            <td>100</td>
+                            <td><span class="badge bg-success">Còn hàng</span></td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-link text-secondary p-0" title="Xem chi tiết">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
+                                    <button class="btn btn-link text-secondary p-0" data-bs-toggle="modal" data-bs-target="#updateProductModal" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-link text-secondary p-0" title="Bình luận">
+                                        <i class="fas fa-comment"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <hr class="mx-5"/>
+                    <div class="d-flex justify-content-between align-items-center m-3">
+                        <p class="mb-0">Hiển thị 1-10 trong 100 sản phẩm</p>
+                        <nav>
+                            <ul class="pagination mb-0">
+                                <li class="page-item disabled"><a class="page-link">|&lt;</a></li>
+                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                <li class="page-item active"><a class="page-link">1</a></li>
+                                <li class="page-item"><a class="page-link">2</a></li>
+                                <li class="page-item"><a class="page-link">3</a></li>
+                                <li class="page-item"><a class="page-link">&gt;</a></li>
+                                <li class="page-item"><a class="page-link">&gt;|</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="table-container">
-            <table class="table">
-                <thead class="table-primary">
-                <tr>
-                    <th class="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
-                    </th>
-                    <th class="sortable text-white text-nowrap " data-column="name">Tên Khách Hàng<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap " data-column="email">Tên Sản Phẩm<i
-                            class="fas fa-sort ms-1 text-white"></i>
-                    </th>
-                    <th class="sortable text-white text-nowrap" data-column="phone">Nội Dung
-                        <i class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="sortable text-white text-nowrap" data-column="gender">Thời Gian<i
-                            class="fas fa-sort ms-1 text-white"></i></th>
-                    <th class="text-white">Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
-                    </td>
-                    <td>Nguyễn Hữu Duy</td>
-                    <td>Đồ chơi cát</td>
-                    <td>Sản phẩm tốt quá hehe</td>
-                    <td>23:23:23 11-19-2025</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-link text-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
+            <!-- COMMENTS TAB -->
+            <div class="tab-pane fade" id="comments" role="tabpanel">
+                <div class="filter-section">
+                    <div class="align-items-center">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Tìm theo tên người dùng hoặc sản phẩm..."/>
                         </div>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-                <tr>
-                    <td class="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAll"/>
-                    </td>
-                    <td>Nguyễn Hữu Duy</td>
-                    <td>Đồ chơi cát</td>
-                    <td>Sản phẩm tốt quá hehe</td>
-                    <td>23:23:23 11-19-2025</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-link text-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                <div class="table-container">
+                    <table class="table">
+                        <thead class="table-primary">
+                        <tr>
+                            <th class="text-center align-middle" style="width: 40px">
+                                <input class="form-check-input" type="checkbox" id="selectAllComments"/>
+                            </th>
+                            <th class="sortable text-white text-nowrap">Khách Hàng <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Sản Phẩm <i class="fas fa-sort ms-1"></i></th>
+                            <th class="text-white" style="min-width: 250px">Nội Dung</th>
+                            <th class="sortable text-white text-nowrap">Thời Gian <i class="fas fa-sort ms-1"></i></th>
+                            <th class="text-white">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center align-middle">
+                                <input class="form-check-input" type="checkbox"/>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="avatar" width="32" height="32"/>
+                                    <span>Nguyễn Hữu Duy</span>
+                                </div>
+                            </td>
+                            <td>Đồ chơi cát</td>
+                            <td>
+                                <div class="comment-content">Sản phẩm tốt quá hehe, con tôi rất thích chơi!</div>
+                            </td>
+                            <td><small>19/11/2025<br/>23:23:23</small></td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-link text-warning p-0" title="Ẩn bình luận">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center align-middle">
+                                <input class="form-check-input" type="checkbox"/>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="avatar" width="32" height="32"/>
+                                    <span>Trần Văn A</span>
+                                </div>
+                            </td>
+                            <td>Đồ chơi xếp hình</td>
+                            <td>
+                                <div class="comment-content">Chất lượng tốt, giao hàng nhanh</div>
+                            </td>
+                            <td><small>18/11/2025<br/>15:30:00</small></td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-link text-warning p-0" title="Hiện bình luận">
+                                        <i class="fas fa-eye-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-
-                </tbody>
-            </table>
-
-            <hr class="mx-5"/>
-            <div class="d-flex justify-content-between align-items-center m-3">
-                <p class="mb-0">Hiển thị 2 trong 100 bình luận</p>
-                <nav>
-                    <ul class="pagination mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link">|&lt;</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link">&lt;</a>
-                        </li>
-
-                        <li class="page-item active">
-                            <a class="page-link">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link">2</a></li>
-                        <li class="page-item"><a class="page-link">3</a></li>
-                        <li class="page-item"><a class="page-link">4</a></li>
-                        <li class="page-item"><a class="page-link">5</a></li>
-                        <li class="page-item"><a class="page-link">…</a></li>
-                        <li class="page-item"><a class="page-link">10</a></li>
-
-                        <li class="page-item">
-                            <a class="page-link">&gt;</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link">&gt;|</a>
-                        </li>
-                    </ul>
-                </nav>
+                    <hr class="mx-5"/>
+                    <div class="d-flex justify-content-between align-items-center m-3">
+                        <p class="mb-0">Hiển thị 1-10 trong 150 bình luận</p>
+                        <nav>
+                            <ul class="pagination mb-0">
+                                <li class="page-item disabled"><a class="page-link">|&lt;</a></li>
+                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
+                                <li class="page-item active"><a class="page-link">1</a></li>
+                                <li class="page-item"><a class="page-link">2</a></li>
+                                <li class="page-item"><a class="page-link">3</a></li>
+                                <li class="page-item"><a class="page-link">&gt;</a></li>
+                                <li class="page-item"><a class="page-link">&gt;|</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

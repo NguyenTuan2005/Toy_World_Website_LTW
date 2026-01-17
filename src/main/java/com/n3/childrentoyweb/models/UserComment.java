@@ -48,4 +48,13 @@ public class UserComment extends BaseModel {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "UserComment{" +
+                "content='" + content + '\'' +
+                ", userId=" + userId +
+                ", productId=" + productId +
+                '}';
+    }
 }

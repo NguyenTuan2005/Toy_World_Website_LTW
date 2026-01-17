@@ -26,30 +26,6 @@ thumbnails.forEach((thumb, index) => {
     });
 });
 
-// Heart icon toggle
-const heartIcon = document.querySelector('.heart-icon');
-heartIcon.addEventListener('click', () => {
-    heartIcon.classList.toggle('far');
-    heartIcon.classList.toggle('fas');
-});
-
-// Description toggle
-const toggleBtn = document.getElementById('toggleBtn');
-const moreText = document.getElementById('moreText');
-const shortText = document.getElementById('shortText');
-
-toggleBtn.addEventListener('click', () => {
-    if (moreText.style.display === 'none') {
-        moreText.style.display = 'inline';
-        shortText.style.display = 'none';
-        toggleBtn.textContent = 'Thu gọn';
-    } else {
-        moreText.style.display = 'none';
-        shortText.style.display = 'inline';
-        toggleBtn.textContent = 'Xem thêm';
-    }
-});
-
 
 // ZOOM IMAGE
 const modal = document.getElementById('imageModal');
@@ -70,4 +46,27 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') modal.style.display = 'none';
 });
 
+// comments
+function showMoreComments() {
+    const hiddenComments = document.querySelectorAll('.extra-comment');
+    hiddenComments.forEach(c => c.classList.remove('d-none'));
 
+    document.getElementById('btnShowMore').style.display = 'none';
+}
+
+document.getElementById('imageModal')
+    .addEventListener('show.bs.modal', function (e) {
+        document.getElementById('modalImage').src =
+            e.relatedTarget.src;
+    });
+
+// Related products
+function scrollRelated(direction) {
+    const container = document.getElementById('relatedScroll');
+    const itemWidth = container.querySelector('.product-item').offsetWidth + 16;
+
+    container.scrollBy({
+        left: direction * itemWidth,
+        behavior: 'smooth'
+    });
+}

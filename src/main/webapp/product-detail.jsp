@@ -17,9 +17,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product-details.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product-details.css">
 
 </head>
 
@@ -27,7 +27,7 @@
 <!-- header -->
 <jsp:include page="/common/header.jsp"/>
 
-<div class="container my-5">
+<div class="container my-4">
     <div class="row">
         <!-- Product Images Section -->
         <div class="col-md-6">
@@ -62,14 +62,14 @@
             </div>
         </div>
 
-
         <!-- Product Info Section -->
         <div class="col-md-6">
             <div class="product-info">
                 <div class="d-flex align-items-center justify-content-between">
                     <h4 class="product-title mb-0">${product.name}</h4>
 
-                    <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}" data-id="${product.id}">
+                    <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}"
+                            data-id="${product.id}">
                         <i class="bi ${product.wishlisted ? 'bi-heart-fill' : 'bi-heart'}"></i>
                     </button>
                 </div>
@@ -137,7 +137,7 @@
 </div>
 
 <!-- Product Description Section -->
-<div class="row mt-4">
+<div class="container rounded">
     <div class="col-12">
         <div class="product-description">
             <hr class="desc-line">
@@ -181,8 +181,92 @@
     </div>
 </div>
 
+<%-- related products--%>
+<div class="container my-5 pt-3 pb-3">
+    <span class="title d-block text-center">Sản Phẩm Liên Quan</span>
+
+    <div class="related-products-container position-relative">
+
+        <!-- Left -->
+        <button type="button"
+                class="scroll-btn scroll-left"
+                onclick="scrollRelated(-1)">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <!-- products -->
+        <div class="related-products-scroll" id="relatedScroll">
+            <c:forEach var="product" items="${relatedProducts}">
+                <div class="product-item">
+                    <div class="card h-100 position-relative">
+                        <!-- Badge giảm giá -->
+                        <c:if test="${product.discountPercent > 0}">
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-${product.discountPercent}%
+                            </span>
+                        </c:if>
+
+                        <img src="${product.imgPath}"
+                             class="card-img-top p-3 cursor-pointer"
+                             alt="${product.name}"
+                             role="button"
+                             onclick="window.location.href='${pageContext.request.contextPath}/products/${product.id}'">
+
+                        <div class="card-body d-flex flex-column">
+                            <p class="text-muted small mb-1">${product.category}</p>
+                            <h5 class="card-title text-truncate">${product.name}</h5>
+
+                            <!-- Giá -->
+                            <div class="mb-3">
+                                <c:if test="${product.discountPercent > 0}">
+                                    <!-- Giá giảm -->
+                                    <span class="text-danger fw-bold fs-5">
+                                    <fmt:formatNumber value="${product.finalPrice}" type="currency" currencyCode="VND"/>
+                                </span>
+                                    <!-- Giá gốc -->
+                                    <span class="text-muted text-decoration-line-through me-2">
+                                    <fmt:formatNumber value="${product.originPrice}" type="currency"
+                                                      currencyCode="VND"/>
+                                </span>
+                                </c:if>
+                                <c:if test="${product.discountPercent == 0}">
+                                    <!-- Chỉ giá gốc nếu không giảm -->
+                                    <span class="text-danger fw-bold fs-5">
+                                    <fmt:formatNumber value="${product.originPrice}" type="currency"
+                                                      currencyCode="VND"/>
+                                </span>
+                                </c:if>
+                            </div>
+
+                            <div class="action-buttons d-flex justify-content-between align-items-center gap-3 mt-auto">
+                                <button type="button" class="btn-add-cart text-nowrap" data-id="${product.id}">
+                                    Thêm Vào Giỏ Hàng
+                                </button>
+
+                                <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}"
+                                        data-id="${product.id}">
+                                    <i class="bi ${product.wishlisted ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+
+        <!-- right -->
+        <button type="button"
+                class="scroll-btn scroll-right"
+                onclick="scrollRelated(1)">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+
+    </div>
+
+
+</div>
+
 <%--User comments--%>
-<div class=" container  my-4 p-3 mt-4 bg-white border rounded shadow-sm">
+<div class="container  my-4 p-3 bg-white border rounded shadow-sm">
 
     <h4 class="mb-3">Bình luận</h4>
 
@@ -226,7 +310,7 @@
 
         <c:forEach items="${product.comments}" var="comment" varStatus="status">
             <div class="d-flex mb-3 comment-item
-        <c:if test='${status.index >= 2}'>d-none extra-comment</c:if>">
+        <c:if test='${status.index >= 5}'>d-none extra-comment</c:if>">
 
                 <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png"
                      class="rounded-circle me-3" width="40" height="40"/>
@@ -240,12 +324,12 @@
         </c:forEach>
 
 
-        <c:if test="${product.comments.size() > 2}">
+        <c:if test="${product.comments.size() > 5}">
             <div class="text-end mt-2">
-                <button class="btn btn-outline-primary btn-sm"
+                <button class="btn-primary bg-primary text-white"
                         id="btnShowMore"
                         onclick="showMoreComments()">
-                    Xem thêm
+                    Xem tất cả
                 </button>
             </div>
         </c:if>
@@ -260,18 +344,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/product-detail.js"></script>
 <script>
-    function showMoreComments() {
-        const hiddenComments = document.querySelectorAll('.extra-comment');
-        hiddenComments.forEach(c => c.classList.remove('d-none'));
-
-        document.getElementById('btnShowMore').style.display = 'none';
-    }
-
-    document.getElementById('imageModal')
-        .addEventListener('show.bs.modal', function (e) {
-            document.getElementById('modalImage').src =
-                e.relatedTarget.src;
-        });
     // wishlist
     var wishlistButtons = document.getElementsByClassName("wishlist-icon");
 
@@ -295,10 +367,10 @@
                 if (res.ok) {
                     return res.json();
                 }
-            }).then(function(data){
-                if(!data) return;
+            }).then(function (data) {
+                if (!data) return;
 
-                if(data.wishlisted){
+                if (data.wishlisted) {
                     icon.classList.remove("bi-heart");
                     icon.classList.add("bi-heart-fill");
                     button.classList.add("active");
@@ -354,7 +426,6 @@
                 });
         };
     }
-
 
 
 </script>

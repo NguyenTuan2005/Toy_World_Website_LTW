@@ -200,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-                <%-- products --%>
+                <!-- products -->
                 <div id="productContainer" class="row g-4">
                     <c:forEach items="${products}" var="product">
                         <div class="col-sm-6 col-lg-4">
@@ -212,7 +212,7 @@
                                     </span>
                                 </c:if>
 
-                                <img src="${product.imgPaths.get(0)}"
+                                <img src="${product.imgPath}"
                                      class="card-img-top p-3 cursor-pointer"
                                      alt="${product.name}"
                                      role="button"

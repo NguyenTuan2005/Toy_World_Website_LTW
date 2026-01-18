@@ -206,6 +206,8 @@
 
 
     <jsp:include page="/common/footer.jsp" />
+
+
     <script>
       const contextPath = '${pageContext.request.contextPath}';
       const emptyCartBtn = document.getElementById('emptyCartBtn');

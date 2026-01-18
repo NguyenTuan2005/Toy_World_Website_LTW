@@ -44,8 +44,6 @@ public class ProductDetailsController extends HttpServlet {
 
             List<ProductListDTO> relatedProducts = productService.findRelatedProduct(currentUser, id, 8);
 
-            System.out.println(relatedProducts);
-
             request.setAttribute("product", product);
             request.setAttribute("relatedProducts", relatedProducts);
 

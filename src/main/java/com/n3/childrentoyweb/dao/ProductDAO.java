@@ -3,7 +3,6 @@ package com.n3.childrentoyweb.dao;
 import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.utils.JsonColumnMapper;
-import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 import org.jdbi.v3.core.statement.Query;
 
@@ -36,103 +35,6 @@ public class ProductDAO extends BaseDAO {
                         .mapTo(ProductListDTO.class)
                         .list()
         );
-    }
-
-    public List<ProductListDTO> findAllByPage(int page, int pageSize) {
-        int offset = (page - 1) * pageSize;
-
-        String sql = """
-                SELECT p.id,
-                       p.name,
-                       p.price AS originPrice,
-                       p.quantity,
-                       b.name AS brand,
-                       c.name AS category,
-                       pm.discount_percent AS discountPercent,
-                       pm.discount_price AS maxDiscountPrice,
-                       (
-                        select pa.img_path
-                        from  product_assets pa
-                        where pa.product_id =p.id
-                        and pa.is_active =1
-                        limit 1
-                        ) AS imgPath
-                FROM products p
-                JOIN brands b ON p.brand_id = b.id
-                JOIN categories c ON p.category_id = c.id
-                LEFT JOIN promotions pm ON p.promotion_id = pm.id
-                LEFT JOIN product_assets pa ON p.id = pa.product_id
-                WHERE p.id IN (<ids>)
-                ORDER BY p.id
-                """;
-
-        return this.getJdbi().withHandle(handle -> {
-
-            List<Long> ids = handle.createQuery("""
-                            SELECT id
-                            FROM products
-                            WHERE is_active = 1
-                            ORDER BY id
-                            LIMIT :pageSize OFFSET :offset
-                            """).bind("pageSize", pageSize)
-                    .bind("offset", offset)
-                    .mapTo(Long.class)
-                    .list();
-
-            if (ids.isEmpty()) return List.of();
-
-
-            return handle.createQuery(sql)
-                    .bindList("ids", ids)
-                    .reduceRows(new LinkedHashMap<Long, ProductListDTO>(), (map, rowView) -> {
-
-                        Long productId = rowView.getColumn("id", Long.class);
-
-                        ProductListDTO dto = map.computeIfAbsent(productId, id -> {
-                            ProductListDTO p = new ProductListDTO();
-                            p.setId(id);
-                            p.setName(rowView.getColumn("name", String.class));
-
-                            long originPrice = rowView.getColumn("originPrice", Long.class);
-                            p.setOriginPrice(originPrice);
-
-                            Double discountPercent =
-                                    rowView.getColumn("discountPercent", Double.class);
-                            Long maxDiscountPrice =
-                                    rowView.getColumn("maxDiscountPrice", Long.class);
-
-                            p.setDiscountPercent(discountPercent != null ? discountPercent : 0);
-                            p.setMaxDiscountPrice(maxDiscountPrice != null ? maxDiscountPrice : 0);
-
-                            long finalPrice;
-                            if (discountPercent != null && discountPercent > 0) {
-                                long discounted = Math.round(originPrice * (1 - discountPercent / 100));
-                                if (maxDiscountPrice != null && discounted > maxDiscountPrice) {
-                                    finalPrice = maxDiscountPrice;
-                                } else {
-                                    finalPrice = discounted;
-                                }
-                            } else if (maxDiscountPrice != null && maxDiscountPrice > 0) {
-                                finalPrice = maxDiscountPrice;
-                            } else {
-                                finalPrice = originPrice;
-                            }
-                            p.setFinalPrice(finalPrice);
-
-                            p.setQuantity(rowView.getColumn("quantity", Integer.class));
-                            p.setBrand(rowView.getColumn("brand", String.class));
-                            p.setCategory(rowView.getColumn("category", String.class));
-
-                            p.setImgPath(rowView.getColumn("imgPath", String.class));
-                            return p;
-                        });
-
-                        return map;
-                    })
-                    .values()
-                    .stream()
-                    .toList();
-        });
     }
 
     public int countAll() {
@@ -298,27 +200,32 @@ public class ProductDAO extends BaseDAO {
 
     public List<ProductListDTO> findRelatedByCategoryAndBrand(Long categoryId, Long brandId, Long excludeProductId, int limit) {
         String sql = """
-        SELECT p.id,
-               p.name,
-               p.price AS originPrice,
-               pa.img_path AS imgPath,
-               p.quantity,
-               b.name AS brand,
-               c.name AS category,
-               pm.discount_percent AS discountPercent,
-               pm.discount_price AS maxDiscountPrice
-        FROM products p
-        JOIN brands b ON p.brand_id = b.id
-        JOIN categories c ON p.category_id = c.id
-        LEFT JOIN promotions pm ON p.promotion_id = pm.id
-        JOIN product_assets pa ON p.id = pa.product_id
-        WHERE p.is_active = 1
-          AND p.category_id = :categoryId
-          AND p.brand_id = :brandId
-          AND p.id <> :excludeId
-        ORDER BY p.created_at DESC
-        LIMIT :limit
-        """;
+                SELECT p.id,
+                       p.name,
+                       p.price AS originPrice,
+                       p.quantity,
+                       b.name AS brand,
+                       c.name AS category,
+                       pm.discount_percent AS discountPercent,
+                       pm.discount_price AS maxDiscountPrice,
+                       (
+                       SELECT pa.img_path
+                       FROM product_assets pa
+                       WHERE pa.product_id = p.id
+                             AND pa.is_active = 1
+                       LIMIT 1
+                        ) AS imgPath
+                FROM products p
+                JOIN brands b ON p.brand_id = b.id
+                JOIN categories c ON p.category_id = c.id
+                LEFT JOIN promotions pm ON p.promotion_id = pm.id
+                WHERE p.is_active = 1
+                  AND p.category_id = :categoryId
+                  AND p.brand_id = :brandId
+                  AND p.id <> :excludeId
+                ORDER BY p.created_at DESC
+                LIMIT :limit
+                """;
 
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
@@ -330,6 +237,10 @@ public class ProductDAO extends BaseDAO {
                         .mapTo(ProductListDTO.class)
                         .list()
         );
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ProductDAO().findRelatedByCategoryAndBrand(1L, 1L, 1L, 10));
     }
 
     public long countProductInMonth(int year, int month) {
@@ -422,7 +333,6 @@ public class ProductDAO extends BaseDAO {
                 query.bindList("categoryIds", categoryIds);
             }
 
-            // bind giá
             if (priceRanges != null && !priceRanges.isEmpty()) {
                 for (int i = 0; i < priceRanges.size(); i++) {
                     query.bind("min" + i, priceRanges.get(i).getMin());
@@ -435,45 +345,66 @@ public class ProductDAO extends BaseDAO {
     }
 
     //filter
-    public List<ProductListDTO> findByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int pageSize, int offset) {
+    public List<ProductListDTO> findByFilter(
+            List<Integer> brandIds,
+            List<Integer> categoryIds,
+            List<PriceRangeFilterDTO> priceRanges,
+            String sortType,
+            int pageSize,
+            int offset
+    ) {
 
-        return this.getJdbi().withHandle(handle -> {
+        return getJdbi().withHandle(handle -> {
 
-            List<Long> productIds = findProductIds(
-                    handle, brandIds, categoryIds, priceRanges, pageSize, offset
-            );
+            StringBuilder sql = new StringBuilder("""
+            SELECT p.id,
+                   p.name,
+                   p.price AS originPrice,
+                   GREATEST(p.price - LEAST( ROUND(p.price * COALESCE(pm.discount_percent, 0) / 100),
+                                       COALESCE( NULLIF(pm.discount_price, 0), ROUND(p.price * pm.discount_percent / 100))
+                                   ),
+                                   0
+                   ) AS finalPrice,
+                   p.quantity,
+                   b.name AS brand,
+                   c.name AS category,
+                   COALESCE(pm.discount_percent, 0) AS discountPercent,
+                   COALESCE(pm.discount_price, 0) AS maxDiscountPrice,
+                   (
+                       SELECT pa.img_path
+                       FROM product_assets pa
+                       WHERE pa.product_id = p.id
+                             AND pa.is_active = 1
+                       LIMIT 1
+                   ) AS imgPath
+            FROM products p
+            JOIN brands b ON p.brand_id = b.id
+            JOIN categories c ON p.category_id = c.id
+            LEFT JOIN promotions pm ON p.promotion_id = pm.id
+            WHERE p.is_active = 1
+        """);
 
-            if (productIds.isEmpty()) {
-                return List.of();
-            }
+            appendBrandFilter(sql, brandIds);
+            appendCategoryFilter(sql, categoryIds);
+            appendFinalPriceFilter(sql, priceRanges);
 
-            return findProductsByIds(handle, productIds);
+            sql.append(" ORDER BY ").append(convertSortTypeToOrderBy(sortType));
+            sql.append(" LIMIT :limit OFFSET :offset");
+
+            Query query = handle.createQuery(sql.toString())
+                    .bind("limit", pageSize)
+                    .bind("offset", offset);
+
+            bindBrand(query, brandIds);
+            bindCategory(query, categoryIds);
+            bindFinalPrice(query, priceRanges);
+
+            return query
+                    .mapToBean(ProductListDTO.class)
+                    .list();
         });
     }
 
-    private List<Long> findProductIds(Handle handle, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int pageSize, int offset) {
-        StringBuilder sql = new StringBuilder("""
-        SELECT id
-        FROM products
-        WHERE is_active = 1
-        """);
-
-        appendBrandFilter(sql, brandIds);
-        appendCategoryFilter(sql, categoryIds);
-        appendPriceFilter(sql, priceRanges);
-
-        sql.append(" ORDER BY id LIMIT :pageSize OFFSET :offset");
-
-        var query = handle.createQuery(sql.toString())
-                .bind("pageSize", pageSize)
-                .bind("offset", offset);
-
-        bindBrand(query, brandIds);
-        bindCategory(query, categoryIds);
-        bindPrice(query, priceRanges);
-
-        return query.mapTo(Long.class).list();
-    }
 
     private void appendBrandFilter(StringBuilder sql, List<Integer> brandIds) {
         if (brandIds != null && !brandIds.isEmpty()) {
@@ -487,16 +418,23 @@ public class ProductDAO extends BaseDAO {
         }
     }
 
-    private void appendPriceFilter(StringBuilder sql, List<PriceRangeFilterDTO> priceRanges) {
+    private void appendFinalPriceFilter(StringBuilder sql, List<PriceRangeFilterDTO> priceRanges) {
         if (priceRanges == null || priceRanges.isEmpty()) return;
 
-        sql.append(" AND (");
+        sql.append("""
+                AND (
+                """);
 
         for (int i = 0; i < priceRanges.size(); i++) {
-            sql.append("(price BETWEEN :min")
-                    .append(i)
-                    .append(" AND :max")
-                    .append(i)
+            sql.append("""
+                            (
+                                p.price
+                                - LEAST(
+                                    ROUND(p.price * COALESCE(pm.discount_percent, 0) / 100),
+                                    COALESCE(pm.discount_price, 0)
+                                )
+                                BETWEEN :min""").append(i)
+                    .append(" AND :max").append(i)
                     .append(")");
 
             if (i < priceRanges.size() - 1) {
@@ -506,6 +444,7 @@ public class ProductDAO extends BaseDAO {
 
         sql.append(")");
     }
+
 
     private void bindBrand(Query query, List<Integer> brandIds) {
         if (brandIds != null && !brandIds.isEmpty()) {
@@ -519,7 +458,7 @@ public class ProductDAO extends BaseDAO {
         }
     }
 
-    private void bindPrice(Query query, List<PriceRangeFilterDTO> priceRanges) {
+    private void bindFinalPrice(Query query, List<PriceRangeFilterDTO> priceRanges) {
         if (priceRanges == null) return;
 
         int i = 0;
@@ -530,68 +469,31 @@ public class ProductDAO extends BaseDAO {
         }
     }
 
-    private List<ProductListDTO> findProductsByIds(Handle handle, List<Long> ids) {
-        String sql = """
-        SELECT p.id,
-               p.name,
-               p.price AS originPrice,
-               p.quantity,
-               b.name AS brand,
-               c.name AS category,
-               pm.discount_percent AS discountPercent,
-               pm.discount_price AS maxDiscountPrice,
-               (   select pa.img_path
-                   from  product_assets pa
-                   where pa.product_id =p.id
-                         and pa.is_active =1
-                   limit 1) AS imgPath
-        FROM products p
-        JOIN brands b ON p.brand_id = b.id
-        JOIN categories c ON p.category_id = c.id
-        LEFT JOIN promotions pm ON p.promotion_id = pm.id
-        LEFT JOIN product_assets pa ON p.id = pa.product_id
-        WHERE p.id IN (<ids>)
-        ORDER BY p.id
-    """;
-        return handle.createQuery(sql)
-                .bindList("ids", ids)
-                .reduceRows(new LinkedHashMap<Long, ProductListDTO>(),
-                        (map, row) -> {
+    private String convertSortTypeToOrderBy(String sort) {
+        String orderBy;
+        switch (sort) {
+            case "name_asc":
+                orderBy = "p.name ASC";
+                break;
+            case "name_desc":
+                orderBy = "p.name DESC";
+                break;
+            case "price_asc":
+                orderBy = "finalPrice ASC";
+                break;
+            case "price_desc":
+                orderBy = "finalPrice DESC";
+                break;
+            case "discount":
+                orderBy = "discountPercent DESC";
+                break;
+            default:
+                orderBy = "p.created_at DESC";
+                break;
+        }
+        return orderBy;
 
-                            Long id = row.getColumn("id", Long.class);
-
-                            ProductListDTO dto = map.computeIfAbsent(id, k -> {
-                                ProductListDTO p = new ProductListDTO();
-                                p.setId(id);
-                                p.setName(row.getColumn("name", String.class));
-                                p.setOriginPrice(row.getColumn("originPrice", Long.class));
-                                p.setQuantity(row.getColumn("quantity", Integer.class));
-                                p.setBrand(row.getColumn("brand", String.class));
-                                p.setCategory(row.getColumn("category", String.class));
-
-                                p.setDiscountPercent(
-                                        Optional.ofNullable(
-                                                row.getColumn("discountPercent", Double.class)
-                                        ).orElse(0.0)
-                                );
-
-                                p.setMaxDiscountPrice(
-                                        Optional.ofNullable(
-                                                row.getColumn("maxDiscountPrice", Long.class)
-                                        ).orElse(0L)
-                                );
-
-                                p.setImgPath(row.getColumn("imgPath", String.class));
-                                return p;
-                            });
-
-                            return map;
-                        })
-                .values()
-                .stream()
-                .toList();
     }
-
 
 
 }

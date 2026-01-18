@@ -42,8 +42,8 @@
       <div class="row">
         <!--Cart Items -->
         <div class="col-lg-8">
-          <div class="cart-container mb-md-5">
-            <div class="cart-header d-flex justify-content-between align-items-center mb-1 px-2 pb-2">
+          <div class="cart-container md-5">
+            <div class="cart-header d-flex justify-content-between align-items-center mb-1 px-3 pb-3">
 
               <div class="continue-shopping">
                 <a href="${pageContext.request.contextPath}/home" class="continue-shopping">

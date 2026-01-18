@@ -10,6 +10,8 @@ public class PasswordVerifier implements Verifier{
     @Override
     public boolean verify(String input) throws IllegalArgumentException {
         if (input != null && PASSWORD_PATTERN.matcher(input).matches()) return true;
-        else throw new IllegalArgumentException("Mật khẩu không hợp lệ vui lòng nhập lại");
+        else throw new IllegalArgumentException("Mật khẩu phải có ít nhất 8 ký tự, gồm chữ hoa, chữ thường và số.");
     }
+
+
 }

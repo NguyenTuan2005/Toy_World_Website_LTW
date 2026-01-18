@@ -55,7 +55,7 @@
           <div class="hstack justify-content-center align-items-center mt-3">
             <small class="text-muted">Không nhận được mã?
             </small>
-            <form class="ms-1 mb-0" method="post" action="${pageContext.request.contextPath}/resend-otp">
+            <form class="ms-1 mb-0" method="post" action="${pageContext.request.contextPath}/sign-up">
                 <button type="submit" class="btn btn-link p-0 align-baseline">Gửi lại</button>
             </form>
           </div>

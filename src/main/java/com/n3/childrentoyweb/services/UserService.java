@@ -34,6 +34,13 @@ public class UserService {
         }
     }
 
+    public void validateEmailForForgotPassword(String email) {
+        if (userDAO.findByEmail(email) == null) {
+            throw new ObjectNotFoundException("Email không tồn tại trong hệ thống");
+        }
+    }
+
+
     public Pagination<ManageUserDTO> findAllUsersForManagements(int page, int pageSize) {
         List<ManageUserDTO> manageUserDTOS = this.userDAO.findAllUserForManagement(page, pageSize);
         for (ManageUserDTO manageUserDTO : manageUserDTOS) {
@@ -84,6 +91,10 @@ public class UserService {
 
     public Optional<User> findById(long id) {
         return Optional.ofNullable(this.userDAO.findById(id));
+    }
+
+    public  Optional<User> findByEmail(String email) {
+        return Optional.ofNullable(this.userDAO.findByEmail(email));
     }
 
     public int countAllUsers() {

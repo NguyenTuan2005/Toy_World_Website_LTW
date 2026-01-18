@@ -1,8 +1,7 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<fmt:setLocale value="vi_VN" />
+<fmt:setLocale value="vi_VN"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -22,13 +21,13 @@
         background: white;
         border-radius: 12px;
         padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         transition: transform 0.2s;
     }
 
     .stats-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     .stats-icon {
@@ -78,7 +77,7 @@
     .content-card {
         background: white;
         border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         margin-bottom: 2rem;
     }
 
@@ -113,7 +112,6 @@
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
 
 
-
 <main class="main-content">
     <div class="header-section">
         <div class="container">
@@ -124,52 +122,49 @@
             </div>
         </div>
     </div>
-    <hr>
+    <div class="container mb-3">
 
-        <div class="container mb-3">
-
-
-            <div class="container-fluid">
-                <!-- Statistics Cards -->
-                <div class="row mb-4">
-                    <div class="col-xl-3 col-md-6 mb-3">
-                        <div class="stats-card primary">
-                            <div class="stats-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3 class="stats-value"><fmt:formatNumber value="${total_users_num}" type="number" /></h3>
-                            <p class="stats-label">Tổng người dùng</p>
+        <div class="container-fluid">
+            <!-- Statistics Cards -->
+            <div class="row my-4">
+                <div class="col-xl-3 col-md-6 mb-3">
+                    <div class="stats-card primary">
+                        <div class="stats-icon">
+                            <i class="fas fa-users"></i>
                         </div>
+                        <h3 class="stats-value"><fmt:formatNumber value="${total_users_num}" type="number"/></h3>
+                        <p class="stats-label">Tổng người dùng</p>
                     </div>
-                    <div class="col-xl-3 col-md-6 mb-3">
-                        <div class="stats-card warning">
-                            <div class="stats-icon">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <h3 class="stats-value"><fmt:formatNumber value="${total_new_users_num}" type="number" /></h3>
-                            <p class="stats-label">Mới tháng này</p>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-3">
+                    <div class="stats-card warning">
+                        <div class="stats-icon">
+                            <i class="fas fa-user-plus"></i>
                         </div>
+                        <h3 class="stats-value"><fmt:formatNumber value="${total_new_users_num}" type="number"/></h3>
+                        <p class="stats-label">Mới tháng này</p>
                     </div>
-                    <div class="col-xl-3 col-md-6 mb-3">
-                        <div class="stats-card info">
-                            <div class="stats-icon">
-                                <i class="fas fa-user-shield"></i>
-                            </div>
-                            <h3 class="stats-value"><fmt:formatNumber value="${total_admins_num}" type="number" /></h3>
-                            <p class="stats-label">Quản trị viên</p>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-3">
+                    <div class="stats-card info">
+                        <div class="stats-icon">
+                            <i class="fas fa-user-shield"></i>
                         </div>
+                        <h3 class="stats-value"><fmt:formatNumber value="${total_admins_num}" type="number"/></h3>
+                        <p class="stats-label">Quản trị viên</p>
                     </div>
                 </div>
             </div>
+        </div>
 
 
-
-            <div class="filter-section">
+        <div class="filter-section">
             <div class="row align-items-center">
                 <div class="col-md-6 hstack align-items-center">
                     <div class="search-wrapper flex-grow-1">
                         <i class="fas fa-search search-icon"></i>
-                        <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/users" method="post">
+                        <form class="mb-0" id="searchForm" action="${pageContext.request.contextPath}/admin/users"
+                              method="post">
                             <input
                                     type="text"
                                     id="searchInput"
@@ -195,12 +190,15 @@
                     <c:if test="${find_user != null || manage_user == null}">
                         <nav>
                             <ul class="pagination mb-0 me-2">
-                                <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/users?page=1">Load lại bảng</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="${pageContext.request.contextPath}/admin/users?page=1">Load
+                                    lại bảng</a></li>
                             </ul>
                         </nav>
                     </c:if>
                     <div class="text-end mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal" data-bs-target="#userModal">
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#userModal">
                             <i class="fas fa-plus"></i> Thêm người dùng
                         </button>
                     </div>
@@ -208,60 +206,64 @@
             </div>
         </div>
 
-             <div class="table-container">
-                <table class="table">
-                    <thead class="table-primary">
+        <div class="table-container">
+            <table class="table">
+                <thead class="table-primary">
+                <tr>
+                    <th class="text-center align-middle" style="width: 40px">
+                        <input class="form-check-input" type="checkbox" id="selectAl"/>
+                    </th>
+                    <th class="sortable text-white text-nowrap " data-column="name">Họ Tên<i
+                            class="fas fa-sort ms-1 text-white"></i></th>
+                    <th class="sortable text-white text-nowrap " data-column="email">Email<i
+                            class="fas fa-sort ms-1 text-white"></i>
+                    </th>
+                    <th class="sortable text-white text-nowrap" data-column="phone">Điện thoại<i
+                            class="fas fa-sort ms-1 text-white"></i></th>
+                    <th class="sortable text-white text-nowrap" data-column="gender">Giới tính<i
+                            class="fas fa-sort ms-1 text-white"></i></th>
+                    <th class="sortable text-white text-nowrap" data-column="address">Địa chỉ<i
+                            class="fas fa-sort ms-1 text-white"></i>
+                    </th>
+                    <th class="sortable text-white text-nowrap" data-column="role">Vai trò<i
+                            class="fas fa-sort ms-1 text-white"></i>
+                    </th>
+                    <th class="sortable text-white text-nowrap" data-column="status">Trạng thái<i
+                            class="fas fa-sort ms-1 text-white"></i></th>
+                    <th class="sortable text-white text-nowrap" data-column="created">Ngày tạo<i
+                            class="fas fa-sort ms-1 text-white"></i></th>
+                    <th class="text-white">Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <style>
+                    .status-active {
+                        background-color: #e6f4ea;
+                        color: #1e7e34;
+                        border: 1px solid #1e7e34;
+                    }
+
+                    .status-locked {
+                        background-color: #fdecea;
+                        color: #dc3545;
+                        border: 1px solid #dc3545;
+                    }
+
+                </style>
+                <c:forEach var="u" items="${manage_users}">
                     <tr>
-                        <th class ="text-center align-middle" style="width: 40px">
-                            <input class="form-check-input" type="checkbox" id="selectAl"/>
-                        </th>
-                        <th class="sortable text-white text-nowrap " data-column="name">Họ Tên<i class="fas fa-sort ms-1 text-white"></i></th>
-                        <th class="sortable text-white text-nowrap " data-column="email">Email<i class="fas fa-sort ms-1 text-white"></i>
-                        </th>
-                        <th class="sortable text-white text-nowrap" data-column="phone">Điện thoại<i
-                                class="fas fa-sort ms-1 text-white"></i></th>
-                        <th class="sortable text-white text-nowrap" data-column="gender">Giới tính<i
-                                class="fas fa-sort ms-1 text-white"></i></th>
-                        <th class="sortable text-white text-nowrap" data-column="address">Địa chỉ<i class="fas fa-sort ms-1 text-white"></i>
-                        </th>
-                        <th class="sortable text-white text-nowrap" data-column="role">Vai trò<i class="fas fa-sort ms-1 text-white"></i>
-                        </th>
-                        <th class="sortable text-white text-nowrap" data-column="status">Trạng thái<i
-                                class="fas fa-sort ms-1 text-white"></i></th>
-                        <th class="sortable text-white text-nowrap" data-column="created">Ngày tạo<i
-                                class="fas fa-sort ms-1 text-white"></i></th>
-                        <th class="text-white">Hành động</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <style>
-                        .status-active {
-                            background-color: #e6f4ea;
-                            color: #1e7e34;
-                            border: 1px solid #1e7e34;
-                        }
-
-                        .status-locked {
-                            background-color: #fdecea;
-                            color: #dc3545;
-                            border: 1px solid #dc3545;
-                        }
-
-                    </style>
-                    <c:forEach var="u" items="${manage_users}">
-                        <tr>
-                            <td class ="text-center align-middle" style="width: 40px">
-                                <input class="form-check-input" type="checkbox" id="selectl"/>
-                            </td>
-                            <td>${u.firstName}</td>
-                            <td>${u.email}</td>
-                            <td>${u.phone}</td>
-                            <td>${u.sex}</td>
-                            <td>${u.province}</td>
-                            <td><span class="badge bg-secondary">
-                                    ${u.role}
-                            </span></td>
-                            <td>
+                        <td class="text-center align-middle" style="width: 40px">
+                            <input class="form-check-input" type="checkbox" id="selectl"/>
+                        </td>
+                        <td>${u.firstName}</td>
+                        <td>${u.email}</td>
+                        <td>${u.phone}</td>
+                        <td>${u.sex}</td>
+                        <td>${u.province}</td>
+                        <td><span class="badge bg-secondary">
+                                ${u.role}
+                        </span></td>
+                        <td>
                                 <span class="badge ${u.active ? 'status-active' : 'status-locked'}">
                                   <c:choose>
                                       <c:when test="${u.active}">
@@ -272,77 +274,79 @@
                                       </c:otherwise>
                                   </c:choose>
                                 </span>
-                            </td>
-                            <td>${u.createdAt}</td>
-                            <td>
-                                <div class="d-flex gap-2">
-                                    <a href="${pageContext.request.contextPath}/admin/user-details?userId=${u.userId}" class="btn btn-link text-primary text-decoration-none">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </a>
+                        </td>
+                        <td>${u.createdAt}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="${pageContext.request.contextPath}/admin/user-details?userId=${u.userId}"
+                                   class="btn btn-link text-primary text-decoration-none">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
 
-<%--                                    <button class="btn btn-link text-success text-decoration-none"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">--%>
-<%--                                        <i class="fas fa-edit"></i>--%>
-<%--                                    </button>--%>
+                                    <%--                                    <button class="btn btn-link text-success text-decoration-none"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">--%>
+                                    <%--                                        <i class="fas fa-edit"></i>--%>
+                                    <%--                                    </button>--%>
 
-                                    <form method="post" action="/childrentoyweb_war/admin/hidden-users"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
-                                        <input type="hidden" name="userId" value="${u.userId}">
-                                        <input type="hidden" name="active" value="${u.active}">
-                                        <button class="btn btn-link text-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                                <form method="post" action="/childrentoyweb_war/admin/hidden-users"
+                                      onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                    <input type="hidden" name="userId" value="${u.userId}">
+                                    <input type="hidden" name="active" value="${u.active}">
+                                    <button class="btn btn-link text-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
 
 
-                                </div>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
 
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
 
-                <hr class="mx-5"/>
-                <div class="d-flex justify-content-between align-items-center m-3">
+            <hr class="mx-5"/>
+            <div class="d-flex justify-content-between align-items-center m-3">
 
-                    <c:if test="${find_user == null}">
-                        <p class="mb-0">
-                            Hiển thị ${pageSize} trong ${totalElements} người dùng,
-                            trang hiện tại ${currentPage },
-                            tổng trang ${totalPages}
-                        </p>
+                <c:if test="${find_user == null}">
+                    <p class="mb-0">
+                        Hiển thị ${pageSize} trong ${totalElements} người dùng,
+                        trang hiện tại ${currentPage },
+                        tổng trang ${totalPages}
+                    </p>
 
-                        <nav>
-                            <ul class="pagination mb-0">
-                                <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
 
-                                    <c:choose>
-                                        <c:when test="${st.index+1 == currentPage}">
-                                            <li class="page-item active">
-                                                <a class="page-link"
-                                                   href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                        ${st.index + 1}
-                                                </a>
-                                            </li>
-                                        </c:when>
+                                <c:choose>
+                                    <c:when test="${st.index+1 == currentPage}">
+                                        <li class="page-item active">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:when>
 
-                                        <c:otherwise>
-                                            <li class="page-item">
-                                                <a class="page-link"
-                                                   href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                        ${st.index + 1}
-                                                </a>
-                                            </li>
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                                    ${st.index + 1}
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
 
-                                </c:forEach>
-                            </ul>
-                        </nav>
-                    </c:if>
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
 
-                </div>
             </div>
         </div>
+    </div>
 
     <!-- Modal thêm/sửa người dùng -->
     <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
@@ -485,7 +489,8 @@
 
                         <div class="mb-3 form-check form-switch">
                             <input type="hidden" name="status" value="inactive">
-                            <input class="form-check-input" type="checkbox" id="status" name="status" value="active" checked>
+                            <input class="form-check-input" type="checkbox" id="status" name="status" value="active"
+                                   checked>
                             <label class="form-check-label" for="status">Trạng thái hoạt động</label>
                         </div>
                     </div>
@@ -493,7 +498,8 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             <i class="fas fa-times"></i> Hủy
                         </button>
-                        <button type="submit" class="btn btn-primary"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                        <button type="submit" class="btn btn-primary"
+                                onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
                             <i class="fas fa-check"></i> Lưu
                         </button>
                     </div>
@@ -520,8 +526,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 </c:if>
-
-
 
 
 <script src="js/index.js"></script>

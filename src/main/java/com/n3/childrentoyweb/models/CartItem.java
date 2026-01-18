@@ -15,12 +15,15 @@ public class CartItem implements Serializable {
     public CartProductDTO getCartProductDTO() {
         return cartProductDTO;
     }
+
     public Integer getQuantity() {
         return quantity;
     }
+
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
     public Double getPrice(){
         return cartProductDTO.getPrice() * quantity;
     }

@@ -76,15 +76,6 @@
     border-radius: 6px;
 }
 
-.nav-pills .nav-link.active{
-    color: white !important;
-    background-color: #cf102d !important;
-}
-
-.nav-link {
-    color: #cf102d !important;
-}
-
 .search-input {
     border: 1px solid #dee2e6;
     padding: 8px 16px 8px 40px;

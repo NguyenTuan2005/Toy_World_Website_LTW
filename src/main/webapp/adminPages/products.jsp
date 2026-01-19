@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/products.css">
+    <fmt:setLocale value="vi_VN"/>
 </head>
 
 <body>
@@ -21,10 +23,8 @@
 <main class="main-content">
     <div class="header-section">
         <div class="container">
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                    <h1 class="page-title">Quản lý sản phẩm</h1>
-                </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <h1 class="page-title">Quản lý sản phẩm</h1>
 
                 <!-- Nav Tabs -->
                 <ul class="nav nav-pills" id="productTabs" role="tablist">
@@ -51,16 +51,14 @@
         <!-- Tab Content -->
         <div class="tab-content" id="productTabsContent">
             <!-- PRODUCTS TAB -->
-            <div class="tab-pane fade show active" id="products" role="tabpanel">
+            <div class="tab-pane fade show active mb-4" id="products" role="tabpanel">
                 <div class="filter-section">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="search-wrapper">
-                                <i class="fas fa-search search-icon"></i>
-                                <input type="text" class="search-input" placeholder="Tìm theo tên sản phẩm..."/>
-                            </div>
+                    <div class="hstack align-items-center justify-content-between">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Tìm theo tên sản phẩm..."/>
                         </div>
-                        <div class="col-md-6 text-end mt-3 mt-md-0">
+                        <div class="mt-3 mt-md-0">
                             <button class="btn-add fw-medium px-4 py-2" data-bs-toggle="modal" data-bs-target="#addProductModal">
                                 <i class="fas fa-plus"></i> Thêm sản phẩm mới
                             </button>
@@ -72,61 +70,74 @@
                     <table class="table">
                         <thead class="table-primary">
                         <tr>
-                            <th class="text-center align-middle" style="width: 40px">
-                                <input class="form-check-input" type="checkbox" id="selectAllProducts"/>
-                            </th>
-                            <th class="sortable text-white text-nowrap">Mã SP <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Tên Sản Phẩm <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Ảnh <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Giá Tiền <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Thương Hiệu <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Danh Mục <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Số lượng <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Trạng thái <i class="fas fa-sort ms-1"></i></th>
-                            <th class="text-white">Hành động</th>
+                            <th class="sortable text-white text-nowrap">Mã SP</th>
+                            <th class="sortable text-white text-nowrap">Tên Sản Phẩm</th>
+                            <th class="sortable text-white text-nowrap">Ảnh</th>
+                            <th class="sortable text-white text-nowrap">Giá Tiền</th>
+                            <th class="sortable text-white text-nowrap">Thương Hiệu</th>
+                            <th class="sortable text-white text-nowrap">Danh Mục</th>
+                            <th class="sortable text-white text-nowrap">Số lượng</th>
+                            <th class="sortable text-white text-nowrap">Trạng thái</th>
+                            <th class="text-white text-nowrap">Hành động</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td class="text-center align-middle">
-                                <input class="form-check-input" type="checkbox"/>
-                            </td>
-                            <td>123</td>
-                            <td>Đồ Chơi Mô Hình Siêu Xe Sang Trọng Honda Civic FD2 Type-R</td>
-                            <td>
-                                <img src="https://www.mykingdom.com.vn/cdn/shop/articles/do-choi-tri-tue-cho-be-6-9-tuoi_0c2a3283-b493-44f6-8e2d-db8803a38067.jpg?v=1761885332" class="thumb-img w-75" alt="thumbnail"/>
-                            </td>
-                            <td>1.200.000₫</td>
-                            <td>Toy's Việt</td>
-                            <td>Xe Đồ Chơi</td>
-                            <td>100</td>
-                            <td><span class="badge bg-success">Còn hàng</span></td>
-                            <td>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-secondary p-0" data-bs-toggle="modal" data-bs-target="#updateProductModal" title="Chỉnh sửa">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-link text-secondary p-0" title="Xem bình luận">
-                                        <i class="fas fa-comment"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        <tbody id="productTableBody">
+                            <c:forEach var="p" items="${products}">
+                                <tr>
+                                    <td>${p.productId}</td>
+                                    <td title="${p.name}" class="product-name-cell">${p.name}</td>
+                                    <td>
+                                        <img src="${p.imgPath}" class="thumb-img w-75" alt="thumbnail"/>
+                                    </td>
+                                    <td><fmt:formatNumber value="${p.price}" type="currency" currencyCode="VND"/></td>
+                                    <td>${p.brand}</td>
+                                    <td>${p.category}</td>
+                                    <td>${p.quantity}</td>
+                                    <td><span class="badge bg-secondary">${p.status}</span></td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-link text-secondary p-0" title="Xem chi tiết">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-link text-secondary p-0" data-bs-toggle="modal" data-bs-target="#updateProductModal" title="Chỉnh sửa">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-link text-secondary p-0" title="Xem bình luận">
+                                                <i class="fas fa-comment"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
 
                     <hr class="mx-5"/>
                     <div class="d-flex justify-content-between align-items-center m-3">
-                        <p class="mb-0">Hiển thị 1-10 trong 100 sản phẩm</p>
+                        <p id="pageInfo" class="mb-0">Hiển thị ${currentPage}-${totalPages} trong ${totalProduct} sản phẩm</p>
                         <nav>
-                            <ul class="pagination mb-0">
-                                <li class="page-item disabled"><a class="page-link">|&lt;</a></li>
-                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
-                                <li class="page-item active"><a class="page-link">1</a></li>
-                                <li class="page-item"><a class="page-link">2</a></li>
-                                <li class="page-item"><a class="page-link">3</a></li>
-                                <li class="page-item"><a class="page-link">&gt;</a></li>
-                                <li class="page-item"><a class="page-link">&gt;|</a></li>
+                            <ul id="productPagination" class="pagination mb-0" data-current-page="${currentPage}">
+                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="#">|&lt;</a>
+                                </li>
+                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="#">&lt;</a>
+                                </li>
+
+                                <c:forEach var="i"
+                                           begin="${(totalPages <= 5) ? 1 : (currentPage <= 3 ? 1 : (currentPage >= (totalPages - 2) ? totalPages - 4 : currentPage - 2))}"
+                                           end="${(totalPages <= 5) ? totalPages : (currentPage <= 3 ? 5 : (currentPage >= (totalPages - 2) ? totalPages : currentPage + 2))}">
+                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                        <a class="page-link" href="#">${i}</a>
+                                    </li>
+                                </c:forEach>
+
+                                <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="#">&gt;</a>
+                                </li>
+                                <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="#">&gt;|</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -134,7 +145,7 @@
             </div>
 
             <!-- COMMENTS TAB -->
-            <div class="tab-pane fade" id="comments" role="tabpanel">
+            <div class="tab-pane fade mb-5" id="comments" role="tabpanel">
                 <div class="filter-section">
                     <div class="align-items-center">
                         <div class="search-wrapper">
@@ -151,10 +162,10 @@
                             <th class="text-center align-middle" style="width: 40px">
                                 <input class="form-check-input" type="checkbox" id="selectAllComments"/>
                             </th>
-                            <th class="sortable text-white text-nowrap">Khách Hàng <i class="fas fa-sort ms-1"></i></th>
-                            <th class="sortable text-white text-nowrap">Sản Phẩm <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Khách Hàng</th>
+                            <th class="sortable text-white text-nowrap">Sản Phẩm</th>
                             <th class="text-white" style="min-width: 250px">Nội Dung</th>
-                            <th class="sortable text-white text-nowrap">Thời Gian <i class="fas fa-sort ms-1"></i></th>
+                            <th class="sortable text-white text-nowrap">Thời Gian</th>
                             <th class="text-white">Hành động</th>
                         </tr>
                         </thead>
@@ -487,7 +498,11 @@
     </div>
 </main>
 
-<script src="js/index.js"></script>
+<script>
+    const totalPages = ${totalPages};
+    const contextPath = "${pageContext.request.contextPath}";
+</script>
+<script src="${pageContext.request.contextPath}/adminPages/js/products.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

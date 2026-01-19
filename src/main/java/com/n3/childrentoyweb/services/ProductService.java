@@ -30,6 +30,14 @@ public class ProductService {
         return productDAO.findAllByPage(page, pageSize);
     }
 
+    public Pagination<ProductManagementDTO> findAllProductsForManagement(int page, int pageSize) {
+        List<ProductManagementDTO> products= productDAO.findAllProductsForManagement(page, pageSize);
+        int totalElement = productDAO.countAll();
+        int totalPages = totalElement / pageSize;
+
+        return new Pagination<>(products, page, totalElement, totalPages);
+    }
+
     public int countAll() {
         return this.productDAO.countAll();
     }

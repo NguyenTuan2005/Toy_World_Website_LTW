@@ -17,6 +17,15 @@
     background-color: transparent;
 }
 
+.nav-pills .nav-link.active{
+    color: white !important;
+    background-color: #cf102d !important;
+}
+
+.nav-link {
+    color: #cf102d !important;
+}
+
 .comment-content {
     max-width: 300px;
     overflow: hidden;
@@ -24,4 +33,15 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+
+.product-name-cell {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    line-height: 1.4;
+    word-wrap: break-word;
 }

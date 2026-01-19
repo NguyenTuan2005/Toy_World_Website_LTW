@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.*;
+import com.n3.childrentoyweb.enums.ProductStatus;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.utils.JsonColumnMapper;
 import org.jdbi.v3.core.Handle;
@@ -556,5 +557,47 @@ public class ProductDAO extends BaseDAO {
     }
 
 
+    public List<ProductManagementDTO> findAllProductsForManagement(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
 
+        String sql = """
+                select p.id as productId,
+                       p.name,
+                       (
+                        select img_path
+                        from product_assets
+                        where product_id = p.id
+                        and is_active = 1
+                        limit 1
+                       ) as imgPath,
+                       p.price,
+                       b.name as brand,
+                       c.name as category,
+                       p.quantity
+                from products p
+                join brands b on b.id = p.brand_id
+                join categories c on c.id = p.category_id
+                where p.is_active = 1
+                limit :limit offset :offset
+                """;
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind("limit", pageSize)
+                            .bind("offset", offset)
+                            .map((rs, ctx) -> {
+                                ProductManagementDTO productManagementDTO = new ProductManagementDTO();
+                                productManagementDTO.setProductId(rs.getInt("productId"));
+                                productManagementDTO.setName(rs.getString("name"));
+                                productManagementDTO.setImgPath(rs.getString("imgPath"));
+                                productManagementDTO.setPrice(rs.getDouble("price"));
+                                productManagementDTO.setBrand(rs.getString("brand"));
+                                productManagementDTO.setCategory(rs.getString("category"));
+                                int quantity = rs.getInt("quantity");
+                                productManagementDTO.setQuantity(quantity);
+                                productManagementDTO.setStatus(quantity == 0 ? ProductStatus.OUT_OF_STOCK.getStatus() : ProductStatus.AVAILABLE.getStatus());
+                                return productManagementDTO;
+                            })
+                            .list()
+                );
+    }
 }

@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.dto;
 
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,8 @@ public class ProductDetailDTO {
     private Double discountPercent;
     private Double maxDiscountPrice;
     private List<String> imagePaths;
+
+    private boolean wishlisted;
 
     private List<UserCommentDTO> comments;
 
@@ -171,5 +175,13 @@ public class ProductDetailDTO {
 
     public void setComments(List<UserCommentDTO> comments) {
         this.comments = comments;
+    }
+
+    public boolean isWishlisted() {
+        return wishlisted;
+    }
+
+    public void setWishlisted(boolean wishlisted) {
+        this.wishlisted = wishlisted;
     }
 }

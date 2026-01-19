@@ -1,57 +1,41 @@
 package com.n3.childrentoyweb.dao;
 
-import com.n3.childrentoyweb.dto.HomeProductDTO;
-import com.n3.childrentoyweb.dto.ProductDetailDTO;
-import com.n3.childrentoyweb.dto.ProductPromotionDTO;
+import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.utils.JsonColumnMapper;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
+import org.jdbi.v3.core.statement.Query;
 
-import java.net.URL;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-public class ProductDAO  extends BaseDAO{
+public class ProductDAO extends BaseDAO {
 
-    public List<Product> findAll() {
+    public List<ProductListDTO> findAll() {
         String sql = """
-            SELECT id, name, price, quantity, description,
-                   brand_id AS brandId,
-                   category_id AS categoryId
-            FROM products
-            WHERE is_active = 1
-        """;
+                    SELECT p.id, 
+                           p.name, 
+                           p.price AS originPrice, 
+                           pa.img_path AS imgPath,
+                           p.quantity,
+                           b.name AS brand,
+                           c.name AS category,
+                           pm.discount_percent AS discountPercent,
+                           pm.discount_price AS maxDiscountPrice
+                    FROM products p
+                    JOIN brands b ON p.brand_id = b.id
+                    JOIN categories c ON p.category_id = c.id
+                    JOIN promotions pm ON p.promotion_id = pm.id
+                    JOIN product_assets pa ON p.id = pa.product_id
+                    WHERE p.is_active = 1
+                """;
 
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
-                        .registerRowMapper(BeanMapper.factory(Product.class))
-                        .mapTo(Product.class)
+                        .registerRowMapper(BeanMapper.factory(ProductListDTO.class))
+                        .mapTo(ProductListDTO.class)
                         .list()
         );
     }
-
-    public List<Product> findAllByPage(int page, int pageSize) {
-        int offset = (page - 1) * pageSize;
-
-        String sql = """
-            SELECT id, name, price, quantity, description,
-                   brand_id AS brandId,
-                   category_id AS categoryId
-            FROM products
-            WHERE is_active = 1
-            LIMIT :pageSize OFFSET :offset
-        """;
-
-        return super.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("offset", offset)
-                        .bind("pageSize", pageSize)
-                        .registerRowMapper(BeanMapper.factory(Product.class))
-                        .mapTo(Product.class)
-                        .list()
-        );
-    }
-
 
     public int countAll() {
         String sql = "SELECT COUNT(*) FROM products WHERE is_active = 1";
@@ -63,39 +47,39 @@ public class ProductDAO  extends BaseDAO{
         );
     }
 
-    public List<HomeProductDTO> findSignatureProduct(int page, int pageSize, String brandName){
+    public List<HomeProductDTO> findSignatureProduct(int page, int pageSize, String brandName) {
         int offset = (page - 1) * pageSize;
 
         String sql = """
-                SELECT
-                  p.id,
-                  p.name,
-                  p.price AS original_price,
-                  prom.discount_percent,
-                  (
-                      select pa.img_path
-                      from  product_assets pa
-                      where pa.product_id =p.id
-                      and pa.is_active =1
-                      limit 1
-                  ) as "img_url",
-                  b.name as brand_name
-              FROM products p
-              JOIN brands b ON b.id = p.brand_id
-              JOIN promotions prom
-                    ON prom.id = p.promotion_id
-                    AND prom.is_active = 1
-                    AND prom.expired_at >= NOW()
-              WHERE p.is_active = 1 AND b.name like :brandName
-              ORDER BY prom.discount_percent, prom.discount_price desc
-              LIMIT :limit OFFSET :offset
+                  SELECT
+                    p.id,
+                    p.name,
+                    p.price AS original_price,
+                    prom.discount_percent,
+                    (
+                        select pa.img_path
+                        from  product_assets pa
+                        where pa.product_id =p.id
+                        and pa.is_active =1
+                        limit 1
+                    ) as "img_url",
+                    b.name as brand_name
+                FROM products p
+                JOIN brands b ON b.id = p.brand_id
+                JOIN promotions prom
+                      ON prom.id = p.promotion_id
+                      AND prom.is_active = 1
+                      AND prom.expired_at >= NOW()
+                WHERE p.is_active = 1 AND b.name like :brandName
+                ORDER BY prom.discount_percent, prom.discount_price desc
+                LIMIT :limit OFFSET :offset
                 """;
 
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("limit", pageSize)
                         .bind("offset", offset)
-                        .bind("brandName", "%"+brandName+"%")
+                        .bind("brandName", "%" + brandName + "%")
                         .map((rs, ctx) -> {
                             HomeProductDTO dto = new HomeProductDTO();
 
@@ -112,33 +96,33 @@ public class ProductDAO  extends BaseDAO{
         );
     }
 
-    public List<HomeProductDTO> findNewImportProductsInMonth(int page, int pageSize){
+    public List<HomeProductDTO> findNewImportProductsInMonth(int page, int pageSize) {
         int offset = (page - 1) * pageSize;
 
         String sql = """
-                SELECT
-                  p.id,
-                  p.name,
-                  p.price AS original_price,
-                  prom.discount_percent,
-                  (
-                      select pa.img_path
-                      from  product_assets pa
-                      where pa.product_id =p.id
-                      and pa.is_active =1
-                      limit 1
-                  ) as "img_url",
-                  b.name as brand_name
-              FROM products p
-              JOIN brands b ON b.id = p.brand_id
-              JOIN promotions prom
-                    ON prom.id = p.promotion_id
-                    AND prom.is_active = 1
-                    AND prom.expired_at >= NOW()
-              WHERE p.is_active = 1
-              AND p.created_at >= DATE_FORMAT(NOW(), '%Y-%m-01')
-              AND p.created_at <  DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)
-              LIMIT :limit OFFSET :offset
+                  SELECT
+                    p.id,
+                    p.name,
+                    p.price AS original_price,
+                    prom.discount_percent,
+                    (
+                        select pa.img_path
+                        from  product_assets pa
+                        where pa.product_id =p.id
+                        and pa.is_active =1
+                        limit 1
+                    ) as "img_url",
+                    b.name as brand_name
+                FROM products p
+                JOIN brands b ON b.id = p.brand_id
+                JOIN promotions prom
+                      ON prom.id = p.promotion_id
+                      AND prom.is_active = 1
+                      AND prom.expired_at >= NOW()
+                WHERE p.is_active = 1
+                AND p.created_at >= DATE_FORMAT(NOW(), '%Y-%m-01')
+                AND p.created_at <  DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)
+                LIMIT :limit OFFSET :offset
                 """;
 
         return super.getJdbi().withHandle(handle ->
@@ -163,17 +147,18 @@ public class ProductDAO  extends BaseDAO{
 
     public Optional<Product> findById(Long id) {
         String sql = """
-            SELECT id, name, price, quantity, description,
-                   rest_info AS restInfo,
-                   brand_id AS brandId,
-                   category_id AS categoryId
-            FROM products
-            WHERE is_active = 1 AND id = :id
-        """;
+                    SELECT id, name, price, quantity, description,
+                           promotion_id AS promotionId,
+                           rest_info AS restInfo,
+                           brand_id AS brandId,
+                           category_id AS categoryId
+                    FROM products
+                    WHERE is_active = 1 AND id = :id
+                """;
 
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
-                        .bind("id",id)
+                        .bind("id", id)
                         .registerColumnMapper(new JsonColumnMapper())
                         .registerRowMapper(BeanMapper.factory(Product.class))
                         .mapTo(Product.class)
@@ -183,28 +168,28 @@ public class ProductDAO  extends BaseDAO{
 
     public Optional<ProductDetailDTO> findDetailById(Long id) {
         String sql = """
-            SELECT p.id, p.name, 
-                   p.price AS originalPrice,
-                   p.quantity, 
-                   p.description,
-                   p.rest_info AS restInfo,
-                   p.brand_id AS brandId,
-                   b.name AS brandName,
-                   p.category_id AS categoryId,
-                   c.name AS categoryName,
-                   pm.id AS promotionId,
-                   pm.discount_percent AS discountPercent,
-                   pm.discount_price AS discountPrice
-            FROM products p
-            JOIN brands b ON p.brand_id = b.id
-            JOIN categories c ON p.category_id = c.id
-            LEFT JOIN promotions pm ON p.promotion_id = pm.id
-            WHERE p.is_active = 1 AND p.id = :id
-        """;
+                    SELECT p.id, p.name, 
+                           p.price AS originalPrice,
+                           p.quantity, 
+                           p.description,
+                           p.rest_info AS restInfo,
+                           p.brand_id AS brandId,
+                           b.name AS brandName,
+                           p.category_id AS categoryId,
+                           c.name AS categoryName,
+                           pm.id AS promotionId,
+                           pm.discount_percent AS discountPercent,
+                           pm.discount_price AS discountPrice
+                    FROM products p
+                    JOIN brands b ON p.brand_id = b.id
+                    JOIN categories c ON p.category_id = c.id
+                    LEFT JOIN promotions pm ON p.promotion_id = pm.id
+                    WHERE p.is_active = 1 AND p.id = :id
+                """;
 
         return super.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
-                        .bind("id",id)
+                        .bind("id", id)
                         .registerColumnMapper(new JsonColumnMapper())
                         .registerRowMapper(BeanMapper.factory(ProductDetailDTO.class))
                         .mapTo(ProductDetailDTO.class)
@@ -213,12 +198,57 @@ public class ProductDAO  extends BaseDAO{
 
     }
 
+    public List<ProductListDTO> findRelatedByCategoryAndBrand(Long categoryId, Long brandId, Long excludeProductId, int limit) {
+        String sql = """
+                SELECT p.id,
+                       p.name,
+                       p.price AS originPrice,
+                       p.quantity,
+                       b.name AS brand,
+                       c.name AS category,
+                       pm.discount_percent AS discountPercent,
+                       pm.discount_price AS maxDiscountPrice,
+                       (
+                       SELECT pa.img_path
+                       FROM product_assets pa
+                       WHERE pa.product_id = p.id
+                             AND pa.is_active = 1
+                       LIMIT 1
+                        ) AS imgPath
+                FROM products p
+                JOIN brands b ON p.brand_id = b.id
+                JOIN categories c ON p.category_id = c.id
+                LEFT JOIN promotions pm ON p.promotion_id = pm.id
+                WHERE p.is_active = 1
+                  AND p.category_id = :categoryId
+                  AND p.brand_id = :brandId
+                  AND p.id <> :excludeId
+                ORDER BY p.created_at DESC
+                LIMIT :limit
+                """;
+
+        return super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("categoryId", categoryId)
+                        .bind("brandId", brandId)
+                        .bind("excludeId", excludeProductId)
+                        .bind("limit", limit)
+                        .registerRowMapper(BeanMapper.factory(ProductListDTO.class))
+                        .mapTo(ProductListDTO.class)
+                        .list()
+        );
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ProductDAO().findRelatedByCategoryAndBrand(1L, 1L, 1L, 10));
+    }
+
     public long countProductInMonth(int year, int month) {
         String sql = """
                 SELECT COUNT(*)
                 FROM products p
                 WHERE YEAR(p.created_at) = :year AND MONTH(p.created_at) = :month AND p.is_active = 1;
-                    """;
+                """;
 
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
@@ -246,21 +276,224 @@ public class ProductDAO  extends BaseDAO{
                 where p.quantity >0
                 and p.promotion_id = :promotionId
                 and p.is_active = 1
-                    """;
+                """;
 
         return this.getJdbi().withHandle(handle -> {
-                return handle.createQuery(sql)
+            return handle.createQuery(sql)
                     .bind("promotionId", promotionId)
-                    .map(((rs, ctx) ->{
+                    .map(((rs, ctx) -> {
                         ProductPromotionDTO productPromotionDTO = new ProductPromotionDTO();
                         productPromotionDTO.setId(rs.getLong("id"));
                         productPromotionDTO.setName(rs.getString("name"));
                         productPromotionDTO.setOriginalPrice(rs.getDouble("price"));
                         productPromotionDTO.setFirstImg(rs.getString("img_url"));
                         return productPromotionDTO;
-                    } ))
+                    }))
                     .list();
-        }) ;
+        });
     }
+
+    public int countByFilter(List<Integer> brandIds,
+                             List<Integer> categoryIds,
+                             List<PriceRangeFilterDTO> priceRanges) {
+
+        StringBuilder sql = new StringBuilder(
+                "SELECT COUNT(*) FROM products WHERE is_active = 1"
+        );
+
+        return this.getJdbi().withHandle(h -> {
+            var query = h.createQuery("");
+
+            if (brandIds != null && !brandIds.isEmpty()) {
+                sql.append(" AND brand_id IN (<brandIds>)");
+            }
+
+            if (categoryIds != null && !categoryIds.isEmpty()) {
+                sql.append(" AND category_id IN (<categoryIds>)");
+            }
+
+            if (priceRanges != null && !priceRanges.isEmpty()) {
+                sql.append(" AND (");
+                for (int i = 0; i < priceRanges.size(); i++) {
+                    if (i > 0) sql.append(" OR ");
+                    sql.append("(price >= :min").append(i)
+                            .append(" AND price <= :max").append(i).append(")");
+                }
+                sql.append(")");
+            }
+
+            query = h.createQuery(sql.toString());
+
+            // bind list
+            if (brandIds != null && !brandIds.isEmpty()) {
+                query.bindList("brandIds", brandIds);
+            }
+
+            if (categoryIds != null && !categoryIds.isEmpty()) {
+                query.bindList("categoryIds", categoryIds);
+            }
+
+            if (priceRanges != null && !priceRanges.isEmpty()) {
+                for (int i = 0; i < priceRanges.size(); i++) {
+                    query.bind("min" + i, priceRanges.get(i).getMin());
+                    query.bind("max" + i, priceRanges.get(i).getMax());
+                }
+            }
+
+            return query.mapTo(Integer.class).one();
+        });
+    }
+
+    //filter
+    public List<ProductListDTO> findByFilter(
+            List<Integer> brandIds,
+            List<Integer> categoryIds,
+            List<PriceRangeFilterDTO> priceRanges,
+            String sortType,
+            int pageSize,
+            int offset
+    ) {
+
+        return getJdbi().withHandle(handle -> {
+
+            StringBuilder sql = new StringBuilder("""
+            SELECT p.id,
+                   p.name,
+                   p.price AS originPrice,
+                   GREATEST(p.price - LEAST( ROUND(p.price * COALESCE(pm.discount_percent, 0) / 100),
+                                       COALESCE( NULLIF(pm.discount_price, 0), ROUND(p.price * pm.discount_percent / 100))
+                                   ),
+                                   0
+                   ) AS finalPrice,
+                   p.quantity,
+                   b.name AS brand,
+                   c.name AS category,
+                   COALESCE(pm.discount_percent, 0) AS discountPercent,
+                   COALESCE(pm.discount_price, 0) AS maxDiscountPrice,
+                   (
+                       SELECT pa.img_path
+                       FROM product_assets pa
+                       WHERE pa.product_id = p.id
+                             AND pa.is_active = 1
+                       LIMIT 1
+                   ) AS imgPath
+            FROM products p
+            JOIN brands b ON p.brand_id = b.id
+            JOIN categories c ON p.category_id = c.id
+            LEFT JOIN promotions pm ON p.promotion_id = pm.id
+            WHERE p.is_active = 1
+        """);
+
+            appendBrandFilter(sql, brandIds);
+            appendCategoryFilter(sql, categoryIds);
+            appendFinalPriceFilter(sql, priceRanges);
+
+            sql.append(" ORDER BY ").append(convertSortTypeToOrderBy(sortType));
+            sql.append(" LIMIT :limit OFFSET :offset");
+
+            Query query = handle.createQuery(sql.toString())
+                    .bind("limit", pageSize)
+                    .bind("offset", offset);
+
+            bindBrand(query, brandIds);
+            bindCategory(query, categoryIds);
+            bindFinalPrice(query, priceRanges);
+
+            return query
+                    .mapToBean(ProductListDTO.class)
+                    .list();
+        });
+    }
+
+
+    private void appendBrandFilter(StringBuilder sql, List<Integer> brandIds) {
+        if (brandIds != null && !brandIds.isEmpty()) {
+            sql.append(" AND brand_id IN (<brandIds>)");
+        }
+    }
+
+    private void appendCategoryFilter(StringBuilder sql, List<Integer> categoryIds) {
+        if (categoryIds != null && !categoryIds.isEmpty()) {
+            sql.append(" AND category_id IN (<categoryIds>)");
+        }
+    }
+
+    private void appendFinalPriceFilter(StringBuilder sql, List<PriceRangeFilterDTO> priceRanges) {
+        if (priceRanges == null || priceRanges.isEmpty()) return;
+
+        sql.append("""
+                AND (
+                """);
+
+        for (int i = 0; i < priceRanges.size(); i++) {
+            sql.append("""
+                            (
+                                p.price
+                                - LEAST(
+                                    ROUND(p.price * COALESCE(pm.discount_percent, 0) / 100),
+                                    COALESCE(pm.discount_price, 0)
+                                )
+                                BETWEEN :min""").append(i)
+                    .append(" AND :max").append(i)
+                    .append(")");
+
+            if (i < priceRanges.size() - 1) {
+                sql.append(" OR ");
+            }
+        }
+
+        sql.append(")");
+    }
+
+
+    private void bindBrand(Query query, List<Integer> brandIds) {
+        if (brandIds != null && !brandIds.isEmpty()) {
+            query.bindList("brandIds", brandIds);
+        }
+    }
+
+    private void bindCategory(Query query, List<Integer> categoryIds) {
+        if (categoryIds != null && !categoryIds.isEmpty()) {
+            query.bindList("categoryIds", categoryIds);
+        }
+    }
+
+    private void bindFinalPrice(Query query, List<PriceRangeFilterDTO> priceRanges) {
+        if (priceRanges == null) return;
+
+        int i = 0;
+        for (PriceRangeFilterDTO range : priceRanges) {
+            query.bind("min" + i, range.getMin());
+            query.bind("max" + i, range.getMax());
+            i++;
+        }
+    }
+
+    private String convertSortTypeToOrderBy(String sort) {
+        String orderBy;
+        switch (sort) {
+            case "name_asc":
+                orderBy = "p.name ASC";
+                break;
+            case "name_desc":
+                orderBy = "p.name DESC";
+                break;
+            case "price_asc":
+                orderBy = "finalPrice ASC";
+                break;
+            case "price_desc":
+                orderBy = "finalPrice DESC";
+                break;
+            case "discount":
+                orderBy = "discountPercent DESC";
+                break;
+            default:
+                orderBy = "p.created_at DESC";
+                break;
+        }
+        return orderBy;
+
+    }
+
 
 }

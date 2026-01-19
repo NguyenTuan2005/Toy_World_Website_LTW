@@ -128,31 +128,31 @@
                           <div class="row g-4">
 
 
-                            <c:forEach var="p" items="${signatureProducts}" varStatus="counter" >
+                            <c:forEach var="priceRange" items="${signatureProducts}" varStatus="counter" >
                               <div id ="${counter.count}" class="col-md-4 product-status-s  cursor-pointer"  >
                                 <div class="product-card">
                                   <span class="discount-badge">
-                                    <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
+                                    <fmt:formatNumber value="${priceRange.discountPercent / 100}" type="percent"/>
                                   </span>
-                                  <img     src="${not empty p.imageUrl ? p.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}"    alt="Kylo-Ren-helmet" class="product-image" />
+                                  <img src="${not empty priceRange.imageUrl ? priceRange.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}" alt="Kylo-Ren-helmet" class="product-image" />
                                   <div class="product-brand">
-                                      ${p.brandName}
+                                      ${priceRange.brandName}
                                     <span class="product-sku ps-3"></span
                                     >
                                   </div>
-                                  <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
+                                  <h3 title="${priceRange.name}" class="product-title text-truncate "> ${priceRange.name}
                                   </h3>
                                   <div class="price-section">
                                     <span class="current-price">
-                                          <fmt:formatNumber value="${p.currentPrice}" type="currency" currencyCode="VND"/>
+                                          <fmt:formatNumber value="${priceRange.currentPrice}" type="currency" currencyCode="VND"/>
                                     </span>
                                     <span class="original-price">
-                                            <fmt:formatNumber value="${p.originalPrice}" type="currency" currencyCode="VND"/>
+                                            <fmt:formatNumber value="${priceRange.originalPrice}" type="currency" currencyCode="VND"/>
                                     </span>
                                   </div>
                                   <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
                                     <form action="${pageContext.request.contextPath}/cart" method="post">
-                                      <input type="hidden" name="productId" value="${p.id}" />
+                                      <input type="hidden" name="productId" value="${priceRange.id}" />
                                       <input type="hidden" name="quantity" value="1" />
                                       <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
                                         Thêm Vào Giỏ Hàng
@@ -208,31 +208,31 @@
                           <div class="row g-4">
 
 
-                            <c:forEach var="p" items="${newProductsInMonth}" varStatus="counter">
+                            <c:forEach var="priceRange" items="${newProductsInMonth}" varStatus="counter">
                               <div id ="${counter.count}" class="col-md-4 product-status  cursor-pointer"  >
                                 <div class="product-card">
                                   <span class="discount-badge">
-                                    <fmt:formatNumber value="${p.discountPercent / 100}" type="percent"/>
+                                    <fmt:formatNumber value="${priceRange.discountPercent / 100}" type="percent"/>
                                   </span>
-                                  <img     src="${not empty p.imageUrl ? p.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}"    alt="Kylo-Ren-helmet" class="product-image" />
+                                  <img src="${not empty priceRange.imageUrl ? priceRange.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}" alt="Kylo-Ren-helmet" class="product-image" />
                                   <div class="product-brand">
-                                      ${p.brandName}
+                                      ${priceRange.brandName}
                                     <span class="product-sku ps-3"></span
                                     >
                                   </div>
-                                  <h3 title="${p.name}" class="product-title text-truncate "> ${p.name}
+                                  <h3 title="${priceRange.name}" class="product-title text-truncate "> ${priceRange.name}
                                   </h3>
                                   <div class="price-section">
                                     <span class="current-price">
-                                          <fmt:formatNumber value="${p.currentPrice}" type="currency" currencyCode="VND"/>
+                                          <fmt:formatNumber value="${priceRange.currentPrice}" type="currency" currencyCode="VND"/>
                                     </span>
                                     <span class="original-price">
-                                            <fmt:formatNumber value="${p.originalPrice}" type="currency" currencyCode="VND"/>
+                                            <fmt:formatNumber value="${priceRange.originalPrice}" type="currency" currencyCode="VND"/>
                                     </span>
                                   </div>
                                   <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
                                     <form action="${pageContext.request.contextPath}/cart" method="post">
-                                      <input type="hidden" name="productId" value="${p.id}" />
+                                      <input type="hidden" name="productId" value="${priceRange.id}" />
                                       <input type="hidden" name="quantity" value="1" />
                                       <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
                                         Thêm Vào Giỏ Hàng
@@ -346,10 +346,6 @@
       document.addEventListener('DOMContentLoaded', renderProductsForLego);
     </script>
 
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </html>

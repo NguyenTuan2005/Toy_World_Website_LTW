@@ -16,35 +16,37 @@
     <div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
         <div class="container">
             <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-left: -1px; ">
-                <a href="/home" aria-label="Trang Chủ">Trang Chủ</a>
+                <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
                 <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <a href="/cart" aria-label="Dạy Con Thông Minh" style="width: 235px; color:#444;">Giỏ Hàng</a>
+                <a href="${pageContext.request.contextPath}/cart" aria-label="Dạy Con Thông Minh" style="width: 235px; color:#444;">Giỏ Hàng</a>
             </nav>
         </div>
     </div>
-    <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert">
-      ${error}
-    </div>
+
+    <c:set var="cart" value="${sessionScope.cart}" />
+
+    <c:choose>
+      <c:when test="${not empty error}">
+        <div id="alert" class="alert alert-danger text-center mb-4" role="alert">
+            ${error}
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert"></div>
+      </c:otherwise>
+    </c:choose>
 
     <div class="container py-4">
       <div class="row">
         <!--Cart Items -->
         <div class="col-lg-8">
-          <div class="cart-container mb-md-5">
-            <div
-              class="cart-header d-flex justify-content-between align-items-center mb-1 px-2 pb-2"
-            >
-              <img
-                src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png"
-                alt="Logo TOY WORLD"
-                class="img-fluid"
-                style="max-width: 100px"
-              />
+          <div class="cart-container md-5">
+            <div class="cart-header d-flex justify-content-between align-items-center mb-1 px-3 pb-3">
 
               <div class="continue-shopping">
-                <a href="/home" class="continue-shopping">
+                <a href="${pageContext.request.contextPath}/home" class="continue-shopping">
                   <i class="fas fa-arrow-left"></i> Tiếp tục mua sắm
                 </a>
               </div>
@@ -67,7 +69,7 @@
                   </div>
                   <div class="quantity-control">
                     <span class="quantity-label">Số lượng</span>
-                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, ${cartItem.quantity} - 1)">
+                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, parseInt(this.parentElement.querySelector('#quantity').value) - 1)">
                       −
                     </button>
                     <input
@@ -78,7 +80,7 @@
                       min="1"
                       readonly
                     />
-                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, ${cartItem.quantity} + 1)">
+                    <button class="quantity-btn" onclick="updateQty(${cartItem.cartProductDTO.productId}, parseInt(this.parentElement.querySelector('#quantity').value) + 1)">
                       +
                     </button>
                   </div>
@@ -122,16 +124,18 @@
             </div>
             <div class="summary-row discount">
               <span>Giảm giá</span>
-              <span>
                 <c:choose>
-                  <c:when test="${not empty cart.cartItems}">
-                    <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
+                  <c:when test="${not empty cart.cartItems and cart.totalPromotion != 0}">
+                    <span style ="color: #cf102d;">
+                      - <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
+                    </span>
                   </c:when>
                   <c:otherwise>
-                    <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
+                    <span>
+                      <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
+                    </span>
                   </c:otherwise>
                 </c:choose>
-              </span>
             </div>
             <div class="summary-row total">
               <span>Tổng cộng</span>
@@ -155,11 +159,20 @@
               </label>
             </div>
 
-            <a href ="checkout.html">
-              <button class ="checkout-btn">
+            <c:choose>
+              <c:when test="${not empty cart.cartItems}">
+                <a href="${pageContext.request.contextPath}/checkout">
+                  <button class="checkout-btn">
+                    Thanh toán ngay
+                  </button>
+                </a>
+              </c:when>
+              <c:otherwise>
+                <button id="emptyCartBtn" class="checkout-btn" >
                   Thanh toán ngay
-              </button>
-            </a>
+                </button>
+              </c:otherwise>
+            </c:choose>
           </div>
         </div>
       </div>
@@ -193,8 +206,14 @@
 
 
     <jsp:include page="/common/footer.jsp" />
+
+
     <script>
       const contextPath = '${pageContext.request.contextPath}';
+      const emptyCartBtn = document.getElementById('emptyCartBtn');
+      if (emptyCartBtn) {
+        emptyCartBtn.addEventListener('click', () => showAlert('Giỏ hàng trống'));
+      }
     </script>
     <script src="js/cart.js"></script>
   </body>

@@ -28,7 +28,7 @@ public class SignUpController extends HttpServlet {
         this.authService = new AuthService();
         this.userService = new UserService();
         this.cacheService = CacheService.getInstance();
-        this.emailService = new EmailService();
+        this.emailService = EmailService.getInstance();
     }
 
     @Override
@@ -40,17 +40,23 @@ public class SignUpController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String otp;
         try {
-             User user = new User(req.getParameter("firstName"),
-                        req.getParameter("lastName"),
-                        req.getParameter("phone"),
-                        req.getParameter("gender"),
-                        req.getParameter("email"),
-                        req.getParameter("password"));
+            User user = (User) req.getSession().getAttribute("pendingUser");
+            if (user == null) {
+                user = new User(req.getParameter("firstName"),
+                            req.getParameter("lastName"),
+                            req.getParameter("phone"),
+                            req.getParameter("gender"),
+                            req.getParameter("email"),
+                            req.getParameter("password"));
+            }
 
             this.authService.validate(user, req.getParameter("confirmPassword"));
             this.userService.isEmailExist(user.getEmail());
 
+            cacheService.remove(user.getEmail());
+
             otp = OTPUtil.generate();
+
             this.cacheService.add(user.getEmail(), otp);
 
             this.emailService.sendOtpEmail(user.getEmail(), otp);

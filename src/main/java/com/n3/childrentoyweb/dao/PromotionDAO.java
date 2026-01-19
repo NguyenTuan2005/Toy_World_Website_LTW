@@ -42,6 +42,7 @@ public class PromotionDAO  extends BaseDAO{
                             promotion.setExpiredAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("expired_at")));
                             promotion.setDiscountPercent(rs.getDouble("discount_percent"));
                             promotion.setDiscountPrice(rs.getDouble("discount_price"));
+                            promotion.setActive(rs.getBoolean("is_active"));
                             return promotion;
                         })
                         .list()
@@ -173,7 +174,7 @@ public class PromotionDAO  extends BaseDAO{
 
 
     public static void main(String[] args) {
-        System.out.println(new PromotionDAO().findPromotionsByEventId(10));
+        System.out.println(new PromotionDAO().findPromotionsByEventId(1));
     }
 
 

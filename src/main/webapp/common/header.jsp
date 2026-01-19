@@ -11,7 +11,7 @@
                     <img src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png"
                          alt="ToyWorld Logo"
                          class="img-fluid"
-                         style="width: 200px; height: 50px;" />
+                         style="width: 200px; height: 50px;"/>
                 </a>
             </div>
             <!-- Logo -->
@@ -61,12 +61,12 @@
                     <button class="btn d-flex align-items-center"
                             onclick="window.location.href='${pageContext.request.contextPath}/cart'">
                         <i class="bi bi-basket2-fill me-2"></i>
-                        <c:if test="${sessionScope.cart != null}">
-                            Giỏ hàng(${sessionScope.cart.totalQuantity})
-                        </c:if>
-                        <c:if test="${sessionScope.cart == null}">
-                            Giỏ hàng
-                        </c:if>
+
+                        <span id="cart-count">Giỏ hàng
+                            <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                                (${sessionScope.cart.totalQuantity})
+                            </c:if>
+                        </span>
                     </button>
                 </div>
             </div>
@@ -118,13 +118,15 @@
                             </a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/brand">Thương hiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/brand">Thương
+                                hiệu</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link text-white" href="handbook.html">Cẩm nang</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">Giới thiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">Giới
+                                thiệu</a>
                         </li>
                     </ul>
                 </div>

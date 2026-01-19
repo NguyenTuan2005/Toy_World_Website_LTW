@@ -25,6 +25,7 @@ public class UserService {
         this.userDAO = new UserDAO();
         this.roleDAO = new RoleDAO();
         this.locationDAO = new LocationDAO();
+        this.userRoleDAO = new UserRoleDAO();
     }
 
     public void isEmailExist(String email) {
@@ -32,6 +33,13 @@ public class UserService {
             throw new EmailAlreadyExistsException("Email này đã tồn tại");
         }
     }
+
+    public void validateEmailForForgotPassword(String email) {
+        if (userDAO.findByEmail(email) == null) {
+            throw new ObjectNotFoundException("Email không tồn tại trong hệ thống");
+        }
+    }
+
 
     public Pagination<ManageUserDTO> findAllUsersForManagements(int page, int pageSize) {
         List<ManageUserDTO> manageUserDTOS = this.userDAO.findAllUserForManagement(page, pageSize);
@@ -44,9 +52,9 @@ public class UserService {
         return new Pagination<ManageUserDTO>(manageUserDTOS, page, totalElements, totalPages);
     }
 
-    public void save(User user) {
-        long userId = userDAO.saveAndReturnId(user);
-        roleDAO.assignRoleToUser(userId, RoleEnum.ROLE_USER.getRoleId());
+    public void save(User user) throws ObjectNotFoundException {
+        long userId = userDAO.save(user);
+        roleDAO.assignRoleToUser(userId, userRoleDAO.findId(RoleEnum.ROLE_USER.getRoleName()));
     }
 
 
@@ -83,6 +91,10 @@ public class UserService {
 
     public Optional<User> findById(long id) {
         return Optional.ofNullable(this.userDAO.findById(id));
+    }
+
+    public  Optional<User> findByEmail(String email) {
+        return Optional.ofNullable(this.userDAO.findByEmail(email));
     }
 
     public int countAllUsers() {
@@ -150,5 +162,7 @@ public class UserService {
 
     }
 
-
+    public void updateLocation(User user, Location location) {
+        this.userDAO.updateLocation(user, location);
+    }
 }

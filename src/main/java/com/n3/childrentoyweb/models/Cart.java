@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Cart implements Serializable {
     public static final String CART = "cart";
-    private Map<Long,CartItem> items;
+    private Map<Long, CartItem> items;
 
     public Cart() {
         this.items = new HashMap<>();
@@ -43,8 +43,15 @@ public class Cart implements Serializable {
                 .sum();
     }
 
-    public void addItem(CartItem item){
-        this.items.put(item.getProductId(), item);
+    public void addItem(CartItem item) throws DataInvalidException{
+        if(contain(item.getProductId())){
+
+            int currentQuantity = this.items.get(item.getProductId()).getQuantity();
+            int quantity = currentQuantity +  item.getQuantity();
+            updateQuantity(item.getProductId(), quantity);
+
+        }else
+            this.items.put(item.getProductId(), item);
     }
 
     public void removeItem(long productId){
@@ -66,4 +73,9 @@ public class Cart implements Serializable {
     public List<CartItem> getCartItems(){
         return  new ArrayList<>(this.items.values());
     }
+
+    public boolean contain(long productId){
+        return this.items.containsKey(productId);
+    }
+
 }

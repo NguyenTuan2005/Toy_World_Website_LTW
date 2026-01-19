@@ -4,6 +4,8 @@ import com.n3.childrentoyweb.dao.OrderDAO;
 import com.n3.childrentoyweb.dao.ProductDAO;
 import com.n3.childrentoyweb.dao.StatisticDAO;
 import com.n3.childrentoyweb.dao.UserDAO;
+import com.n3.childrentoyweb.dto.PaymentMethodChartDTO;
+import com.n3.childrentoyweb.dto.ProductChartDTO;
 import com.n3.childrentoyweb.dto.ProductStockStatDTO;
 import com.n3.childrentoyweb.dto.OrderAnalyticsDTO;
 
@@ -220,6 +222,13 @@ public class StatisticService {
         return statisticDAO.topStockProduct(limit, order);
     }
 
+    public List<PaymentMethodChartDTO> getPaymentMethodChart(){
+        return this.statisticDAO.percentByPaymentMethod();
+    }
+
+    public List<ProductChartDTO> top3ProductByMonth(int month){
+        return this.statisticDAO.top3ProductByMonth(month,LocalDate.now().getYear());
+    }
 
     public static void main(String[] args) {
         System.out.println(new StatisticService().getOrderStats("7"));

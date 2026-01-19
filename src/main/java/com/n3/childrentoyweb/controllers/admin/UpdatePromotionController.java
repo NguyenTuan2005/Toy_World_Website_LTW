@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 public class UpdatePromotionController extends HttpServlet {
     private PromotionService promotionService = new PromotionService();
     private EventService eventService = new EventService();
+
     private static boolean isNotification = false;
     private static String error  = "Không tạo đc Giảm giá";
     private static String ok  = "Thành công";

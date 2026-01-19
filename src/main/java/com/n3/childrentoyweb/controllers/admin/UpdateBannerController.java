@@ -24,6 +24,10 @@ public class UpdateBannerController extends HttpServlet {
     private CloudinaryService cloudinaryService;
 
     public static final int  PAGE_SIZE = 10;
+    private static boolean isNotification = false;
+    private static String error  = "Không cập nhật dc";
+    private static String ok  = "Thành công";
+    private static String message = "";
 
     @Override
     public void init() throws ServletException {
@@ -35,12 +39,14 @@ public class UpdateBannerController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.loadBannerDetail(req);
         this.loadEvents(req);
+        req.setAttribute("notify",isNotification);
+        req.setAttribute("message",message);
+        isNotification = false;
         req.getRequestDispatcher("/adminPages/update-banner.jsp").forward(req,resp);
     }
 
     private void loadBannerDetail(HttpServletRequest request){
         if(request.getParameter("id") == null){
-            System.out.println("null roifo");
             throw new ObjectNotFoundException();
         }
         long id = Long.parseLong(request.getParameter("id"));
@@ -55,16 +61,9 @@ public class UpdateBannerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        this.updateBanner(req);
+        this.update(req,resp);
 
         req.getRequestDispatcher("/adminPages/update-banner.jsp").forward(req,resp);
-    }
-
-    private void updateBanner(HttpServletRequest request) throws ServletException, IOException {
-        Part filePart = request.getPart("bannerImage");
-        String bannerName = request.getParameter("bannerName");
-        String eventId = request.getParameter("eventId");
     }
 
 
@@ -73,51 +72,44 @@ public class UpdateBannerController extends HttpServlet {
         request.setAttribute("events",events);
     }
 
-    private void update(HttpServletRequest request){
+    private void update(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
+        String bannerName = request.getParameter("bannerName");
+        String event = request.getParameter("eventId");
+        String status = request.getParameter("status");
 
-        try {
-            // 1. Lấy dữ liệu từ form
-            String bannerName = request.getParameter("bannerName");
-            String event = request.getParameter("eventId");
-            String status = request.getParameter("status");
+        isNotification = true;
 
-            // 2. Xử lý upload file
-            String fileName = null;
-            String filePath = null;
-
-            Part filePart = request.getPart("bannerImage");
-
-            if (filePart != null && filePart.getSize() > 0) {
-               fileName = this.cloudinaryService.upload(filePart);
-            }
-
-            // 3. Tạo object Banner
-             Banner banner = new Banner();
-             banner.setTitle(bannerName);
-
-             banner.setImgPath(filePath);
-//             banner.setStatus(Boolean.parseBoolean(status));
-
-            // 4. Lưu vào database
-            // bannerDAO.save(banner);
-
-            // 5. Thông báo thành công
-            request.getSession().setAttribute("message", "Lưu banner thành công!");
-            request.getSession().setAttribute("messageType", "success");
-
-            // 6. Redirect về danh sách
-//            response.sendRedirect(request.getContextPath() + "/admin/banners");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            // Thông báo lỗi
-            request.getSession().setAttribute("message", "Lỗi: " + e.getMessage());
-            request.getSession().setAttribute("messageType", "danger");
-
-//            response.sendRedirect(request.getContextPath() + "/admin/banner");
+        if(request.getParameter("id") == null){
+            message = error;
+            return;
         }
+
+        String fileName = null;
+        String filePath = null;
+
+        Part filePart = request.getPart("bannerImage");
+
+        if (filePart != null && filePart.getSize() > 0) {
+           fileName = this.cloudinaryService.upload(filePart);
+        }
+
+        long id = Long.parseLong(request.getParameter("id"));
+         Banner banner = this.bannerService.getBannerById(id).orElseThrow(ObjectNotFoundException::new);
+         banner.setTitle(bannerName);
+         banner.setEventId(Long.parseLong(event));
+         banner.setImgPath(filePath);
+         banner.setActive(Boolean.parseBoolean(status));
+
+        try{
+            this.bannerService.updateBanner(banner);
+            message = ok;
+        } catch (Exception e){
+            message = error;
+        }
+
+        response.sendRedirect(request.getHeader("Referer"));
+
     }
 
 }

@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @WebServlet(value = "/admin/promotions")
 public class PromotionController extends HttpServlet {
@@ -23,15 +25,8 @@ public class PromotionController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Dm chay adadsadasdasdsadsa ");
         this.addPromotionsPagination(req);
         req.getRequestDispatcher("/adminPages/promotion.jsp").forward(req,resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
     }
 
     private void addPromotionsPagination(HttpServletRequest request){

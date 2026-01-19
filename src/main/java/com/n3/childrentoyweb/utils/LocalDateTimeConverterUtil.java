@@ -10,6 +10,8 @@ public class LocalDateTimeConverterUtil {
 
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter FORMATTER_FOR_INPUT_TAG =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static LocalDateTime convertToLocalDateTime(String createdAt){
         return LocalDateTime.parse(createdAt, FORMATTER);
@@ -17,6 +19,10 @@ public class LocalDateTimeConverterUtil {
 
     public static String convertToString(LocalDateTime createdAt) {
         return createdAt == null ? "" : createdAt.format(FORMATTER);
+    }
+
+    public static String convertToStringForInputTag(LocalDateTime createdAt) {
+        return createdAt == null ? "" : createdAt.format(FORMATTER_FOR_INPUT_TAG);
     }
 
     public static LocalDateTime convertDateStringToLocalDateTime(String dateStr) {

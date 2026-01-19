@@ -3,6 +3,8 @@ package com.n3.childrentoyweb.dao;
 import com.n3.childrentoyweb.models.Order;
 import com.n3.childrentoyweb.models.OrderDetail;
 
+import java.time.LocalDate;
+
 public class OrderDAO extends BaseDAO{
 
     public long countAllInMonth(int year, int month){
@@ -72,4 +74,52 @@ public class OrderDAO extends BaseDAO{
                         .execute()
         );
     }
+
+    public int countOrdersByMonth(int month) {
+
+        LocalDate start = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate end = start.plusMonths(1);
+
+        String sql = """
+        SELECT COUNT(*) 
+        FROM orders
+        WHERE created_at >= :start
+        AND created_at < :end
+    """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("start", start.atStartOfDay())
+                        .bind("end", end.atStartOfDay())
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public double sumRevenueByMonth(int month) {
+
+        LocalDate start = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate end = start.plusMonths(1);
+
+        String sql = """
+        SELECT COALESCE(SUM(total_price), 0)
+        FROM orders
+        WHERE created_at >= :start
+        AND created_at < :end
+    """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("start", start.atStartOfDay())
+                        .bind("end", end.atStartOfDay())
+                        .mapTo(Double.class)
+                        .one()
+        );
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(new OrderDAO().countOrdersByMonth(1));
+    }
+
 }

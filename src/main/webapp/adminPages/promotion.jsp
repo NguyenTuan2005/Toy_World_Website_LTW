@@ -110,17 +110,18 @@
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-primary text-decoration-none">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
 
                                     <button class="btn btn-link text-success text-decoration-none">
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <button class="btn btn-link text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <form method="post" action="/childrentoyweb_war/admin/hidden-promotions"
+                                          onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                        <input type="hidden" name="promotionId" value="${prom.id}">
+                                        <button class="btn btn-link text-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

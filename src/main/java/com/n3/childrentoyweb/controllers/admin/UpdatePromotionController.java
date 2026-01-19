@@ -1,7 +1,6 @@
 package com.n3.childrentoyweb.controllers.admin;
 
-import com.n3.childrentoyweb.dao.Pagination;
-import com.n3.childrentoyweb.models.Event;
+import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.Promotion;
 import com.n3.childrentoyweb.services.EventService;
 import com.n3.childrentoyweb.services.PromotionService;
@@ -13,48 +12,38 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@WebServlet(value = "/admin/new-promotions")
-public class NewPromotionController extends HttpServlet {
-
-    private EventService eventService = new EventService();
+@WebServlet(value = "/admin/update-promotions")
+public class UpdatePromotionController extends HttpServlet {
     private PromotionService promotionService = new PromotionService();
+    private EventService eventService = new EventService();
     private static boolean isNotification = false;
     private static String error  = "Không tạo đc Giảm giá";
     private static String ok  = "Thành công";
     private static String message = "";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getParameter("promotionId") == null){
+            throw  new ObjectNotFoundException();
+        }
+        long promotionId = Long.parseLong(req.getParameter("promotionId"));
+        var promotion = this.promotionService.getPromotionById(promotionId).orElseThrow(ObjectNotFoundException::new);
+        req.setAttribute("promotion",promotion);
 
-        this.addEventsPagination(req);
+        var pagination = this.eventService.findEventForManagement(1,20);
+        req.setAttribute("events",pagination.getData());
 
-        req.getRequestDispatcher("/adminPages/new-promotion.jsp").forward(req,resp);
-    }
-
-    private void addEventsPagination( HttpServletRequest request){
-        int page = 1;
-        if(request.getParameter("page") != null)
-            page = Integer.parseInt(request.getParameter("page").trim());
-
-        Pagination<Event> eventPagination = this.eventService.findEventForManagement(page,20);
-        System.out.println(eventPagination);
-        request.setAttribute("events",eventPagination.getData());
-        request.setAttribute("notify",isNotification);
-        request.setAttribute("message",message);
+        req.setAttribute("notify",isNotification);
+        req.setAttribute("message",message);
+        req.setAttribute("date",LocalDateTimeConverterUtil.convertToStringForInputTag(promotion.getExpiredAt()));
         isNotification = false;
-
+        req.getRequestDispatcher("/adminPages/update-promotion.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.createPromotion(req);
-
-        resp.sendRedirect(req.getHeader("Referer"));
-    }
-
-    public void  createPromotion(HttpServletRequest req){
         String name = req.getParameter("promotionName");
         String expiryDateStr = req.getParameter("expiryDate");
 
@@ -63,20 +52,21 @@ public class NewPromotionController extends HttpServlet {
 
         if( expiryDateStr == null
                 || req.getParameter("eventId") == null
-                || req.getParameter("expiryDate") == null ) {
+                || req.getParameter("expiryDate") == null
+                || req.getParameter("id") == null) {
 
             System.out.println(" invalid");
             message = error;
             return;
         }
-
+        long id = 1;
         long eventId = Long.parseLong(req.getParameter("eventId"));
         double discountPrice =  Double.parseDouble(req.getParameter("discountPrice"));
         double discountPercent =  Double.parseDouble(req.getParameter("discountPercent"));
         boolean status = Boolean.parseBoolean(req.getParameter("status"));
         LocalDateTime expiredAt = LocalDateTimeConverterUtil.convertDateStringToLocalDateTime(expiryDateStr);
 
-        Promotion promotion = new Promotion();
+        Promotion promotion =  this.promotionService.getPromotionById(id).orElseThrow(ObjectNotFoundException::new);
         promotion.setName(name);
         promotion.setDiscountPrice(discountPrice);
         promotion.setDiscountPercent(discountPercent);
@@ -85,12 +75,14 @@ public class NewPromotionController extends HttpServlet {
         promotion.setEventId(eventId);
 
         try{
-            promotionService.save(promotion);
+            promotionService.updatePromotion(promotion);
             message = ok;
 
         } catch (Exception e){
             message = error;
         }
 
+        resp.sendRedirect(req.getHeader("Referer"));
     }
+
 }

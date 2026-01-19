@@ -13,12 +13,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
-    <style>
-        .container-event {
-            width: calc(100% - 280px);
-        }
 
-    </style>
 </head>
 
 <body>
@@ -40,43 +35,61 @@
         <form id="eventForm"
               action="${pageContext.request.contextPath}/admin/new-promotions"
               method="post">
-
+            <input hidden="hidden" value="${promotion.id}" name="id">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Tên Promotion *</label>
-                    <input type="text" class="form-control" name="promotionName" required>
+                    <input type="text" class="form-control" name="promotionName" required value="${promotion.name}">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Số tiền tối đa được giảm</label>
                     <input type="text" class="form-control" name="discountPrice" required
-                           placeholder="VD: 70.000">
+                           placeholder="VD: 70.000" value="${promotion.discountPrice}">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Phần Trăm Giảm</label>
                     <input type="text" class="form-control" name="discountPercent" required
-                           placeholder="VD: 70%">
+                           placeholder="VD: 70%" value="${promotion.discountPercent}">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Hết Hạn *</label>
-                    <input type="date" class="form-control" name="expiryDate" required>
+                    <input type="date"
+                           class="form-control"
+                           name="expiryDate"
+                           required
+                           value="${date}">
+
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Trạng Thái *</label>
                     <select class="form-select" name="status" required>
-                        <option value="true">Đang hoạt động</option>
-                        <option value="false">Ngưng hoạt động</option>
+                        <option value="true"
+                        ${promotion.active == true ? "selected" : ""}>
+                            Đang hoạt động
+                        </option>
+
+                        <option value="false"
+                        ${promotion.active == false ? "selected" : ""}>
+                            Ngưng hoạt động
+                        </option>
                     </select>
                 </div>
+
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Chọn Events</label>
                     <select class="form-select" name="eventId" required>
-                        <c:forEach items="${events}" var="event">
-                            <option class="bold-title" value="${event.id}">${event.name}</option>
 
+                        <c:forEach items="${events}" var="event">
+                            <option value="${event.id}"
+                                ${event.id == promotion.eventId ? "selected" : ""}>
+                                    ${event.name}
+                            </option>
                         </c:forEach>
+
                     </select>
                 </div>
+
 
             </div>
 
@@ -154,11 +167,11 @@
             showError(form.discountPercent, "Nhập % hợp lệ (0 - 100%)");
         }
 
-        // 4. Ngày hết hạn
-        const today = new Date().toISOString().split("T")[0];
-        if (expiryDate <= today) {
-            showError(form.expiryDate, "Ngày hết hạn phải lớn hơn hôm nay");
-        }
+        // // 4. Ngày hết hạn
+        // const today = new Date().toISOString().split("T")[0];
+        // if (expiryDate <= today) {
+        //     showError(form.expiryDate, "Ngày hết hạn phải lớn hơn hôm nay");
+        // }
 
         // 5. Event
         if (!eventId) {

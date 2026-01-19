@@ -181,6 +181,29 @@ public class ProductDetailDTO {
         return wishlisted;
     }
 
+    @Override
+    public String toString() {
+        return "ProductDetailDTO{" +
+                "id=" + id +
+                ", originalPrice=" + originalPrice +
+                ", discountPrice=" + discountPrice +
+                ", quantity=" + quantity +
+                ", name='" + name + '\'' +
+                ", restInfo=" + restInfo +
+                ", description='" + description + '\'' +
+                ", brandId=" + brandId +
+                ", brandName='" + brandName + '\'' +
+                ", categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", promotionId=" + promotionId +
+                ", discountPercent=" + discountPercent +
+                ", maxDiscountPrice=" + maxDiscountPrice +
+                ", imagePaths=" + imagePaths +
+                ", wishlisted=" + wishlisted +
+                ", comments=" + comments +
+                '}';
+    }
+
     public void setWishlisted(boolean wishlisted) {
         this.wishlisted = wishlisted;
     }

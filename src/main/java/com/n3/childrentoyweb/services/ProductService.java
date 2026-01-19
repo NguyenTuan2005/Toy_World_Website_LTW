@@ -27,10 +27,6 @@ public class ProductService {
         return productDAO.findAll();
     }
 
-    public List<ProductListDTO> findAllByPage(int page, int pageSize) {
-        return productDAO.findAllByPage(page, pageSize);
-    }
-
     public int countAll() {
         return this.productDAO.countAll();
     }
@@ -102,31 +98,16 @@ public class ProductService {
         return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
-    public List<ProductListDTO> findByFilter(Long currentUserId, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int page, int pageSize) {
+    public List<ProductListDTO> findByFilter(Long currentUserId, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, String sortType, int page, int pageSize) {
 
         int offset = (page - 1) * pageSize;
-        List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, pageSize, offset);
+
+        List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, sortType, pageSize, offset);
 
         List<Long> wishlistProductIds = wishListDAO.findAllProductIdByUserId(currentUserId);
 
+        products.forEach(p -> p.setWishlisted(wishlistProductIds.contains(p.getId())));
 
-        for (ProductListDTO p : products) {
-            long originPrice = p.getOriginPrice();
-            long maxDiscountPrice = p.getMaxDiscountPrice();
-            double discountPercent = p.getDiscountPercent();
-
-            if (originPrice <= 0) continue;
-            if (discountPercent < 0) discountPercent = 0;
-            if (discountPercent > 100) discountPercent = 100;
-
-            long discountByPercent = Math.round(originPrice * discountPercent / 100);
-            long finalDiscount = Math.min(discountByPercent, maxDiscountPrice);
-            p.setFinalPrice(originPrice - finalDiscount);
-
-            if(wishlistProductIds.contains(p.getId())){
-                p.setWishlisted(true);
-            }
-        }
         return products;
     }
 
@@ -187,10 +168,6 @@ public class ProductService {
         }
 
         return result;
-    }
-
-    public static void main(String[] args) {
-
     }
 
 }

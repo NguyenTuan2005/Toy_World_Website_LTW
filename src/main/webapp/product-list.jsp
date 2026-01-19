@@ -14,57 +14,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="css/header.css"/>
     <link rel="stylesheet" href="css/root.css"/>
-    <style>
-        .filter-scroll {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .btn-add-cart {
-            flex: 1 1 auto;
-            white-space: nowrap;
-            background: #d51b1b;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            width: calc(100% - 50px);
-            font-weight: bold;
-        }
-
-        .btn-add-cart:hover {
-            color: white;
-            background: #b01030;
-        }
-
-        .wishlist-icon {
-            background: none;
-            border: none;
-            padding: 0;
-            margin: 0;
-
-            font-size: 35px;
-            color: #999;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .wishlist-icon:hover {
-            color: #dc3545;
-            transform: scale(1.1);
-        }
-
-
-        .wishlist-icon.active {
-            color: #dc3545;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/products.css"/>
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
 
-<main class="px-0 mt-5">
+<div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
+    <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-left: -1px; ">
+            <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
+            <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+            <a href="${pageContext.request.contextPath}/products" aria-label="Tất cả sản phẩm"
+               style="width: 235px; color:#444;">Tất cả sản phẩm</a>
+        </nav>
+    </div>
+</div>
+
+<main class="mt-2">
 
     <div class="container-lg mb-5">
         <div class="row">
@@ -104,8 +73,10 @@
                                                id="cat-${c.id}"
                                             ${checked ? 'checked' : ''}>
 
-                                        <label class="form-check-label" for="cat-${c.id}">
-                                                ${c.name}
+                                        <label class="form-check-label d-flex justify-content-between w-100"
+                                               for="cat-${c.id}">
+                                            <span>${c.name}</span>
+                                            <span class="text-muted">(${c.productCount})</span>
                                         </label>
                                     </div>
                                 </c:forEach>
@@ -117,7 +88,7 @@
 
                             <div class="mb-4">
                                 <c:forEach items="${priceRanges}" var="priceRange" varStatus="st">
-                                    <c:set var="rangeValue" value="${priceRange.min} - ${priceRange.max}" />
+                                    <c:set var="rangeValue" value="${priceRange.min} - ${priceRange.max}"/>
                                     <c:set var="checked" value="false"/>
 
                                     <c:if test="${paramValues.priceRange != null}">
@@ -165,37 +136,110 @@
                                                id="brand-${b.id}"
                                             ${checked ? 'checked' : ''}>
 
-                                        <label class="form-check-label" for="brand-${b.id}">
-                                                ${b.name}
+                                        <label class="form-check-label d-flex justify-content-between w-100"
+                                               for="cat-${b.id}">
+                                            <span>${b.name}</span>
+                                            <span class="text-muted">(${b.productCount})</span>
                                         </label>
                                     </div>
                                 </c:forEach>
                             </div>
 
-                            <button type="submit"
-                                    class="btn btn-sm btn-primary w-100">
-                                Áp dụng
-                            </button>
+                            <c:if test="${param.sort != null}">
+                                <input type="hidden" name="sort" value="${param.sort}">
+                            </c:if>
+
+                            <div class ="d-flex justify-content-between align-items-center gap-3">
+                                <button type="submit"
+                                        class="btn btn-sm btn-primary w-100">
+                                    Áp dụng
+                                </button>
+                                <a href="${pageContext.request.contextPath}/products"
+                                   class="btn btn-sm btn-outline-secondary w-100">
+                                    Bỏ lọc
+                                </a>
+                            </div>
                         </form>
 
                     </div>
                 </div>
             </aside>
 
+
+            <c:set var="sortQuery" value=""/>
+
+            <c:if test="${param.sort != null}">
+                <c:set var="sortQuery" value="&sort=${param.sort}"/>
+            </c:if>
+
+
+            <c:set var="filterQuery" value=""/>
+
+            <c:if test="${paramValues.brandId != null}">
+                <c:forEach items="${paramValues.brandId}" var="cid">
+                    <c:set var="filterQuery" value="${filterQuery}&brandId=${cid}"/>
+                </c:forEach>
+            </c:if>
+
+            <!-- Category -->
+            <c:if test="${paramValues.categoryId != null}">
+                <c:forEach items="${paramValues.categoryId}" var="id">
+                    <c:set var="filterQuery" value="${filterQuery}&categoryId=${id}"/>
+                </c:forEach>
+            </c:if>
+
+            <!-- Price Range -->
+            <c:if test="${paramValues.priceRange != null}">
+                <c:forEach items="${paramValues.priceRange}" var="pr">
+                    <c:set var="filterQuery" value="${filterQuery}&priceRange=${pr}"/>
+                </c:forEach>
+            </c:if>
+
+            <c:set var="fullFilterSortQuery" value="${filterQuery}${sortQuery}"/>
+
+
             <!-- Products List Section -->
             <section class="col-md-9">
-                <div class="d-flex align-items-center flex-nowrap mb-4">
-                    <span class="text-muted me-2">Có 24 sản phẩm</span>
+                <div class="d-flex align-items-center justify-content-between flex-nowrap mb-4">
+                    <span class="mx-2">Có ${totalItems} sản phẩm</span>
                     <div class="hstack gap-1">
-                        <label>Sắp xếp theo: </label>
+                        <label>Sắp xếp theo:  </label>
                         <div class="dropdown">
-                            <button id="sortBtn" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <c:set var="sortLabel" value="Sản phẩm mới"/>
+
+                            <c:choose>
+                                <c:when test="${param.sort == 'discount'}">
+                                    <c:set var="sortLabel" value="Hàng khuyến mãi"/>
+                                </c:when>
+                                <c:when test="${param.sort == 'name_asc'}">
+                                    <c:set var="sortLabel" value="Tên A-Z"/>
+                                </c:when>
+                                <c:when test="${param.sort == 'name_desc'}">
+                                    <c:set var="sortLabel" value="Tên Z-A"/>
+                                </c:when>
+                                <c:when test="${param.sort == 'price_asc'}">
+                                    <c:set var="sortLabel" value="Giá tăng dần"/>
+                                </c:when>
+                                <c:when test="${param.sort == 'price_desc'}">
+                                    <c:set var="sortLabel" value="Giá giảm dần"/>
+                                </c:when>
+                            </c:choose>
+
+                            <button class="btn sort-btn dropdown-toggle"
+                                    type="button"
+                                    id="sortDropdown"
+                                    data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                Tên sản phẩm A-Z
+                                ${sortLabel}
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="sortBtn">
-                                <li><a class="dropdown-item" href="#">Tên sản phẩm A-Z</a></li>
-                                <li><a class="dropdown-item" href="#">Tên sản phẩm Z-A</a></li>
+
+                            <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                                <li><a class="dropdown-item" data-value="new" data-label="Sản phẩm mới" href="?page=1${filterQuery}&sort=new">Sản phẩm mới</a></li>
+                                <li><a class="dropdown-item" data-value="discount" data-label="Hàng khuyến mãi" href="?page=1${filterQuery}&sort=discount">Hàng khuyến mãi</a></li>
+                                <li><a class="dropdown-item" data-value="name_asc" data-label="Tên A-Z" href="?page=1${filterQuery}&sort=name_asc">Tên A-Z</a></li>
+                                <li><a class="dropdown-item" data-value="name_desc" data-label="Tên Z-A" href="?page=1${filterQuery}&sort=name_desc">Tên Z-A</a></li>
+                                <li><a class="dropdown-item" data-value="price_desc" data-label="Giá giảm dần" href="?page=1${filterQuery}&sort=price_desc">Giá giảm dần</a></li>
+                                <li><a class="dropdown-item" data-value="price_asc" data-label="Giá tăng dần" href="?page=1${filterQuery}&sort=price_asc">Giá tăng dần</a></li>
                             </ul>
                         </div>
                     </div>
@@ -250,7 +294,9 @@
                                             Thêm Vào Giỏ Hàng
                                         </button>
 
-                                        <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}" data-id="${product.id}">
+                                        <button type="button"
+                                                class="wishlist-icon ${product.wishlisted ? 'active' : ''}"
+                                                data-id="${product.id}">
                                             <i class="bi ${product.wishlisted ? 'bi-heart-fill' : 'bi-heart'}"></i>
                                         </button>
                                     </div>
@@ -263,34 +309,12 @@
                 <!-- Pagination Section -->
                 <nav aria-label="Phân trang" class="mt-5">
 
-                    <c:set var="filterQuery" value=""/>
-
-                    <c:if test="${paramValues.brandId != null}">
-                        <c:forEach items="${paramValues.brandId}" var="cid">
-                            <c:set var="filterQuery" value="${filterQuery}&brandId=${cid}"/>
-                        </c:forEach>
-                    </c:if>
-
-                    <!-- Category -->
-                    <c:if test="${paramValues.categoryId != null}">
-                        <c:forEach items="${paramValues.categoryId}" var="id">
-                            <c:set var="filterQuery" value="${filterQuery}&categoryId=${id}"/>
-                        </c:forEach>
-                    </c:if>
-
-                    <!-- Price Range -->
-                    <c:if test="${paramValues.priceRange != null}">
-                        <c:forEach items="${paramValues.priceRange}" var="pr">
-                            <c:set var="filterQuery" value="${filterQuery}&priceRange=${pr}"/>
-                        </c:forEach>
-                    </c:if>
-
                     <ul class="pagination justify-content-center gap-1">
 
                         <!-- Previous -->
                         <li class="page-item text-primary ${currentPage == 1 ? 'disabled' : ''}">
                             <a class="page-link text-primary"
-                               href="?page=${currentPage - 1}${filterQuery}"
+                               href="?page=${currentPage - 1}${fullFilterSortQuery}"
                                aria-label="Previous">
                                 &laquo;
                             </a>
@@ -314,7 +338,7 @@
                         <!-- First page -->
                         <c:if test="${startPage > 1}">
                             <li class="page-item">
-                                <a class="page-link text-primary" href="?page=1">1</a>
+                                <a class="page-link text-primary" href="?page=1${fullFilterSortQuery}">1</a>
                             </li>
                             <li class="page-item disabled"><span class="page-link">...</span></li>
                         </c:if>
@@ -323,7 +347,7 @@
                         <c:forEach var="i" begin="${startPage}" end="${endPage}">
                             <li class="page-item ${i == currentPage ? 'active' : ''}">
                                 <a class="page-link ${i == currentPage ? '' : 'text-primary'}"
-                                   href="?page=${i}${filterQuery}">${i}</a>
+                                   href="?page=${i}${fullFilterSortQuery}">${i}</a>
                             </li>
                         </c:forEach>
 
@@ -331,13 +355,13 @@
                         <c:if test="${endPage < totalPages}">
                             <li class="page-item disabled"><span class="page-link">...</span></li>
                             <li class="page-item">
-                                <a class="page-link text-primary" href="?page=${totalPages}">${totalPages}</a>
+                                <a class="page-link text-primary" href="?page=${totalPages}${fullFilterSortQuery}">${totalPages}</a>
                             </li>
                         </c:if>
 
                         <!-- Next -->
                         <li class="page-item text-primary ${currentPage == totalPages ? 'disabled' : ''}">
-                            <a class="page-link text-primary" href="?page=${currentPage + 1}${filterQuery}"
+                            <a class="page-link text-primary" href="?page=${currentPage + 1}${fullFilterSortQuery}"
                                aria-label="Next">&raquo;</a>
                         </li>
 
@@ -352,8 +376,6 @@
 
 <script src="js/index.js"></script>
 <script src="js/product.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     var buttons = document.getElementsByClassName("btn-add-cart");
@@ -411,10 +433,10 @@
                 if (res.ok) {
                     return res.json();
                 }
-            }).then(function(data){
-                if(!data) return;
+            }).then(function (data) {
+                if (!data) return;
 
-                if(data.wishlisted){
+                if (data.wishlisted) {
                     icon.classList.remove("bi-heart");
                     icon.classList.add("bi-heart-fill");
                     button.classList.add("active");
@@ -426,7 +448,6 @@
             });
         };
     }
-
 
 
 </script>

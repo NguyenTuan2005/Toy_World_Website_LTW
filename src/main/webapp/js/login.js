@@ -1,16 +1,3 @@
-function forgotPassword() {
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('forgotPasswordForm').style.display = 'block';
-    clearErrors();
-}
-
-function backToLogin() {
-    document.getElementById('forgotPasswordForm').style.display = 'none';
-    document.getElementById('resetPasswordForm').style.display = 'none';
-    document.getElementById('loginForm').style.display = 'block';
-    clearErrors();
-}
-
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);

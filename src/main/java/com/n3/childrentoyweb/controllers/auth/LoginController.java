@@ -25,8 +25,17 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
 
+        if (session != null) {
+            String message = (String) session.getAttribute("resetSuccessMessage");
+            if (message != null) {
+                request.setAttribute("resetSuccessMessage", message);
+                session.removeAttribute("resetSuccessMessage");
+            }
+        }
+
+        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
     }
 
     @Override
@@ -41,7 +50,7 @@ public class LoginController extends HttpServlet {
 
             if (user == null) {
                 request.setAttribute("error", "Sai email hoặc mật khẩu");
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/login/login.jsp").forward(request, response);
                 return;
             }
 
@@ -57,7 +66,7 @@ public class LoginController extends HttpServlet {
 
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/login/login.jsp").forward(request, response);
         }
     }
 

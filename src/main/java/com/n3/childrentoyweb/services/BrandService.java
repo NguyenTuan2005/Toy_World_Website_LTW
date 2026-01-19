@@ -3,11 +3,13 @@ package com.n3.childrentoyweb.services;
 import com.n3.childrentoyweb.dao.BrandDAO;
 import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dto.BrandCriteria;
+import com.n3.childrentoyweb.dto.BrandFilterDTO;
 import com.n3.childrentoyweb.dto.ManageBrandDTO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.models.Brand;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class BrandService {
@@ -19,6 +21,10 @@ public class BrandService {
 
     public List<Brand> findAll() {
         return brandDAO.findALl();
+    }
+
+    public List<BrandFilterDTO> findBrandProductCount(){
+        return brandDAO.findBrandProductCount();
     }
 
 

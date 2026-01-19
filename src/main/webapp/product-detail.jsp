@@ -27,6 +27,24 @@
 <!-- header -->
 <jsp:include page="/common/header.jsp"/>
 
+<div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
+    <div class="container">
+        <nav class="breadcrumb mb-0 d-flex align-items-center justify-content-start overflow-visible flex-nowrap"
+             aria-label="Breadcrumb">
+            <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
+            <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="${pageContext.request.contextPath}/products" aria-label="Tất cả sản phẩm">Tất cả sản phẩm</a>
+
+            <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="${pageContext.request.contextPath}/products/${product.id}" aria-label="${product.name}">${product.name}</a>
+        </nav>
+    </div>
+</div>
+
 <div class="container my-4">
     <div class="row">
         <!-- Product Images Section -->

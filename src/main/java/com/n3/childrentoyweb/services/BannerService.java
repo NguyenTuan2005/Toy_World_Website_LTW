@@ -42,4 +42,23 @@ public class BannerService {
         return bannerDAO.countAll();
     }
 
+    public long  save(Banner banner) {
+       return this.bannerDAO.save(banner);
+    }
+
+    public List<Banner> findByGroupTag(String groupTag) {
+        return this.bannerDAO.findByGroupTag(groupTag);
+    }
+
+    public List<String> findAllGroupTags() {
+        return this.bannerDAO.findAllGroupTags();
+    }
+
+    public Pagination<Banner> findByTile(int currentPage, int pageSize,String title) {
+        List<Banner> banners = bannerDAO.findByTitleLike(title);
+        int totalElements = this.bannerDAO.countAll();
+        int totalPages = totalElements / pageSize > 0 ? totalElements / pageSize : 1;
+        return new Pagination<>(banners,currentPage,totalElements,totalPages);
+    }
+
 }

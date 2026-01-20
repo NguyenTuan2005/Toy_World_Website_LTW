@@ -48,21 +48,40 @@
     </div>
 
     <div class="tab-content">
+        <script>
+            document.getElementById("searchInput")
+                .addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // tránh reload không mong muốn
+                        document.getElementById("searchForm").submit();
+                    }
+                });
+        </script>
         <!-- Promotions Tab -->
         <div class="tab-pane active fade show container mb-3"  id="promotions">
             <div class="filter-section">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên promotion..."
-                            />
+                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/promotions" method="post">
+                                <input
+                                        type="text"
+                                        id="searchInput"
+                                        class="search-input"
+                                        name="keyword"
+                                        placeholder="Nhập  Tên"
+                                />
+                            </form>
                         </div>
                     </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
+                    <div class="col-md-6 d-flex align-items-center justify-content-end">
+                        <c:if test="${find_promotions != null }">
+                            <nav>
+                                <ul class="pagination mb-0 me-2">
+                                    <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/promotions">Load lại bảng</a></li>
+                                </ul>
+                            </nav>
+                        </c:if>
                         <a class="btn-add fw-medium px-4 py-2 text-decoration-none"  href="${pageContext.request.contextPath}/admin/new-promotions"
                                 data-bs-target="#promotionModal">
                             <i class="fas fa-plus"></i> Thêm promotion
@@ -111,7 +130,7 @@
                             <td>
                                 <div class="d-flex gap-2">
 
-                                    <button class="btn btn-link text-success text-decoration-none">
+                                    <button class="btn btn-link text-success text-decoration-none"   onclick="window.location.href='${pageContext.request.contextPath}/admin/update-promotions?promotionId=${prom.id}'">
                                         <i class="fas fa-edit"></i>
                                     </button>
 
@@ -145,7 +164,7 @@
                                     <c:when test="${st.index+1 == currentPage_promotion}">
                                         <li class="page-item active">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/promotions?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/promotions?promotion-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -154,7 +173,7 @@
                                     <c:otherwise>
                                         <li class="page-item">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/promotions?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/promotions?promotion-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>

@@ -26,7 +26,9 @@ public class HiddenBrandController extends HttpServlet {
 
             long brandId = Long.parseLong(req.getParameter("brandId"));
             Brand brand = this.brandService.findById(brandId).orElseThrow(ObjectNotFoundException::new);
+            System.out.println(brand);
             brand.revertActive();
+            System.out.println(brand);
             boolean isUpdated =  this.brandService.update(brand);
             req.setAttribute("isUpdated",isUpdated);
             System.out.println("isUpdated "+isUpdated);

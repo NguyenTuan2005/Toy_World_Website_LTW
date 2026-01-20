@@ -14,7 +14,90 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
 </head>
+<style>
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap; /* không cho xuống dòng */
+        padding: 4px 10px;
+    }
 
+
+    .filter-section select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    .group-section {
+        margin-bottom: 40px;
+    }
+    .group-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th {
+        background: #f8f9fa;
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        color: #333;
+        border-bottom: 2px solid #dee2e6;
+    }
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    tr:hover {
+        background: #f8f9fa;
+    }
+    .banner-img {
+        width: 100px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    .status-active {
+        background: #d4edda;
+        color: #155724;
+    }
+    .status-inactive {
+        background: #f8d7da;
+        color: #721c24;
+    }
+    .actions {
+        display: flex;
+        gap: 8px;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 40px;
+        color: #999;
+    }
+    .sort-order {
+        font-weight: 600;
+        color: #667eea;
+        font-size: 16px;
+    }
+</style>
 
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
@@ -48,22 +131,41 @@
     </div>
 
     <div class="tab-content">
+        <script>
+            document.getElementById("searchInput")
+                .addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // tránh reload không mong muốn
+                        document.getElementById("searchForm").submit();
+                    }
+                });
+        </script>
         <!-- Banners Tab -->
         <div class=" container mb-3" >
             <div class="filter-section">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên banner..."
-                            />
+                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/search-banners" method="post">
+                                <input
+                                        type="text"
+                                        id="searchInput"
+                                        class="search-input"
+                                        name="keyword"
+                                        placeholder="Nhập  Tên"
+                                />
+                            </form>
                         </div>
                     </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" >
+                    <div class="col-md-6 d-flex align-items-center justify-content-end">
+                        <c:if test="${find_banners != null }">
+                            <nav>
+                                <ul class="pagination mb-0 me-2">
+                                    <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/banners">Load lại bảng</a></li>
+                                </ul>
+                            </nav>
+                        </c:if>
+                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none"    onclick="window.location.href='${pageContext.request.contextPath}/admin/banners/new'">
                             <i class="fas fa-plus"></i> Thêm banner
                         </button>
                     </div>
@@ -71,55 +173,78 @@
             </div>
 
             <div class="table-container">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Tên Banner</th>
-                        <th>Ảnh</th>
-                        <th>Nhom</th>
-                        <th>Trạng Thái</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <c:choose>
+                    <c:when test="${empty bannersByGroup}">
+                        <div class="empty-state">
+                            <h3>Chưa có banner nào</h3>
+                            <p>Hãy thêm banner đầu tiên của bạn!</p>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="entry" items="${bannersByGroup}">
+                            <div class="group-section">
+                                <div class="group-header">
+                                    📌 Nhóm: ${entry.key}
+                                </div>
 
-                        <c:forEach var="banner" items="${banners}">
-                            <tr>
-                                <td>${banner.title}</td>
-                                <td><img src="${banner.imgPath}" alt="hehe" class="zoom-img" width="190" height="70"  ></td>
-                                <td>${banner.groupTag}</td>
-                                <td>
-                                  <c:choose>
-                                      <c:when test="${banner.active}">
-                                          Hoạt động
-                                      </c:when>
-                                      <c:otherwise>
-                                          Khóa
-                                      </c:otherwise>
-                                  </c:choose>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-2">
-
-
-                                         <a href="/childrentoyweb_war/admin/update-banners?id=${banner.id}">
-                                             <i class="fas fa-edit"></i>
-                                         </a>
-
-
-                                        <form method="post" action="/childrentoyweb_war/admin/banners"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
-                                            <input type="hidden" name="id" value="${banner.id}">
-                                            <input type="hidden" name="page" value="${currentPage_banner}">
-                                            <button class="btn btn-link text-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 60px;">Thứ tự</th>
+                                        <th style="width: 120px;">Hình ảnh</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Event ID</th>
+                                        <th style="width: 100px;">Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th style="width: 150px;">Thao tác</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="banner" items="${entry.value}">
+                                        <tr>
+                                            <td class="sort-order">#${banner.sortOrder}</td>
+                                            <td>
+                                                <img src="${banner.imgPath}"
+                                                     alt="${banner.title}"
+                                                     class="banner-img"
+                                                     onerror="this.src='${pageContext.request.contextPath}/images/no-image.png'">
+                                            </td>
+                                            <td>${banner.title}</td>
+                                            <td>${banner.eventId != null ? banner.eventId : '-'}</td>
+                                            <td>
+                                                <span class="status-badge ${banner.active ? 'status-active' : 'status-inactive'}">
+                                                        ${banner.active ? 'Hoạt động' : 'Tắt'}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div>"${banner.createdAt}"</div>
+                                                    <%--                                    <fmt:formatDate value="${banner.createdAt}" pattern="dd/MM/yyyy HH:mm" />--%>
+                                            </td>
+                                            <td>
+                                                <div class="actions">
+                                                    <a href="${pageContext.request.contextPath}/admin/banners/update?id=${banner.id}"
+                                                       class="btn btn-edit">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <form action="${pageContext.request.contextPath}/admin/banners"
+                                                          method="post"
+                                                          style="display: inline;"
+                                                          onsubmit="return confirm('Bạn có chắc muốn xóa banner này?');">
+                                                        <input type="hidden" name="id" value="${banner.id}">
+                                                        <button type="submit" class="btn btn-delete">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </c:forEach>
-                    </tbody>
-                </table>
+                    </c:otherwise>
+                </c:choose>
 
                 <hr class="mx-5"/>
                 <div class="d-flex justify-content-between align-items-center m-3">
@@ -137,7 +262,7 @@
                                     <c:when test="${st.index+1 == currentPage_banner}">
                                         <li class="page-item active">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/banners?banner-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -146,7 +271,7 @@
                                     <c:otherwise>
                                         <li class="page-item">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/banners?banner-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>

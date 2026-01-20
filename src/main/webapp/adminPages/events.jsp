@@ -225,7 +225,7 @@
                                 <div class="d-flex gap-2">
 
                                     <button class="btn btn-link text-success text-decoration-none"
-                                            onclick="location.href='${pageContext.request.contextPath}/admin/order/update-events?id=${event.id}'">
+                                            onclick="location.href='${pageContext.request.contextPath}/admin/update-events?id=${event.id}'">
                                         <i class="fas fa-edit"></i>
                                     </button>
 

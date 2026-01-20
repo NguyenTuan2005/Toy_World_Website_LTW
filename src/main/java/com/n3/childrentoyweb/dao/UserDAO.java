@@ -249,6 +249,7 @@ public class UserDAO extends BaseDAO {
                             .execute()
             );
     }
+
     public int countAllAdmins() {
         String sql = """
                         select count(ur.id)

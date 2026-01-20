@@ -20,9 +20,6 @@ public class RoleDAO extends BaseDAO{
         );
     }
 
-    public static void main(String[] args) {
-        System.out.println(new RoleDAO().findAllByUserId(1L));
-    }
 
     public List<Long> findAllRoleIdsByRoleName(String[] roles) {
         String sql = """

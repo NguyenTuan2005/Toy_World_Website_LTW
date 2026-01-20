@@ -12,7 +12,7 @@ public class LocalDateTimeConverterUtil {
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private static final DateTimeFormatter HTML_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
     public static LocalDateTime convertToLocalDateTime(String createdAt){
         return LocalDateTime.parse(createdAt, FORMATTER);

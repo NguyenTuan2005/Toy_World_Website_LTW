@@ -1,9 +1,9 @@
 package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.WishListDAO;
+import com.n3.childrentoyweb.dto.WishlistProductDTO;
 import com.n3.childrentoyweb.models.WishList;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,10 +36,21 @@ public class WishListService {
         }
     }
 
-    public static void main(String[] args) {
-        WishListService wishListService = new WishListService();
+    public List<WishlistProductDTO> findUserWishlist(Long userId) {
+        if (userId == null) {
+            throw new IllegalArgumentException("ID người dùng không được null");
+        }
+        return wishListDAO.findWishlistByUserId(userId);
+    }
 
-        System.out.println(wishListService.toggleWishList(1, 1));
+
+    public void removeFromWishlist(Long userId, Long productId) {
+
+        if (userId == null || productId == null || productId <= 0) {
+            throw new IllegalArgumentException("Id người dùng và sản phẩm không hợp lệ");
+        }
+
+        wishListDAO.delete(userId, productId);
     }
 
 

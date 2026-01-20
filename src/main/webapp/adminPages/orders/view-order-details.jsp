@@ -34,27 +34,39 @@
                     <div>
                         <div class="order-title">
                             Đơn hàng #${orderDetail.id}
-                            <span class="badge ms-3
-                                ${orderDetail.paymentStatus eq 'DA_THANH_TOAN'
-                                    ? 'bg-success bg-opacity-25 text-success'
-                                    : 'bg-danger bg-opacity-25 text-danger'}">
+                            
+                            <c:choose>
+                                <c:when test="${orderDetail.paymentStatus == 'CHUA_THANH_TOAN'}">
+                                    <span class="badge ms-3 bg-danger-subtle text-danger">Chưa thanh toán</span>
+                                </c:when>
 
-                                ${orderDetail.paymentStatus eq 'DA_THANH_TOAN'
-                                        ? 'Đã thanh toán'
-                                        : 'Chưa thanh toán'}
-                            </span>
+                                <c:when test="${orderDetail.paymentStatus == 'DA_THANH_TOAN'}">
+                                    <span class="badge ms-3 bg-success-subtle text-success">Đã thanh toán</span>
+                                </c:when>
 
-                            <span class="badge ms-3 bg-primary bg-opacity-25 text-primary
-                                ${orderDetail.orderStatus == 'DA_HUY' ? 'bg-danger bg-opacity-25 text-danger' :
-                                  orderDetail.orderStatus == 'CHUAN_BI_HANG' ? 'bg-primary bg-opacity-25 text-primary' :
-                                  'bg-success bg-opacity-25 text-success'}">
-                                <c:choose>
-                                    <c:when test="${orderDetail.orderStatus == 'DA_GIAO'}">Đã giao</c:when>
-                                    <c:when test="${orderDetail.orderStatus == 'DANG_GIAO'}">Đang giao</c:when>
-                                    <c:when test="${orderDetail.orderStatus == 'DA_HUY'}">Đã hủy</c:when>
-                                    <c:when test="${orderDetail.orderStatus == 'CHUAN_BI_HANG'}">Chuẩn bị hàng</c:when>
-                                </c:choose>
-                            </span>
+                                <c:when test="${orderDetail.paymentStatus == 'HOAN_TIEN'}">
+                                    <span class="badge ms-3 bg-dark-subtle text-dark">Hoàn tiền</span>
+                                </c:when>
+                            </c:choose>
+                            
+
+                            <c:choose>
+                                <c:when test="${orderDetail.orderStatus == 'CHUAN_BI_HANG'}">
+                                    <span class="badge ms-3 bg-primary-subtle text-primary">Chuẩn bị hàng</span>
+                                </c:when>
+
+                                <c:when test="${orderDetail.orderStatus == 'DANG_GIAO'}">
+                                    <span class="badge ms-3 bg-success-subtle text-success">Đang giao</span>
+                                </c:when>
+
+                                <c:when test="${orderDetail.orderStatus == 'DA_GIAO'}">
+                                    <span class="badge ms-3 bg-success-subtle text-success">Đã Giao</span>
+                                </c:when>
+
+                                <c:when test="${orderDetail.orderStatus == 'DA_HUY'}">
+                                    <span class="badge ms-3 bg-danger-subtle text-danger">Đã hủy</span>
+                                </c:when>
+                            </c:choose>
                         </div>
                         <div class="order-date">${orderDate}</div>
                     </div>

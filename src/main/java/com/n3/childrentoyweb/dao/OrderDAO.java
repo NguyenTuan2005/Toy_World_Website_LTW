@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.AdminOrderListDTO;
+import com.n3.childrentoyweb.dto.UserOrderDTO;
 import com.n3.childrentoyweb.models.Order;
 import com.n3.childrentoyweb.models.OrderDetail;
 
@@ -122,6 +123,35 @@ public class OrderDAO extends BaseDAO {
                 handle.createUpdate(sql)
                         .bind("id", orderId)
                         .execute() > 0
+        );
+    }
+
+    public List<UserOrderDTO> findOrdersByUserId(long userId) {
+        String sql = """
+            SELECT o.id,
+                   o.status AS orderStatus,
+                   p.status AS paymentStatus,
+                   o.created_at,
+                   o.total_price
+            FROM orders o
+            JOIN payments p ON o.id = p.order_id
+            WHERE o.user_id = :userId
+            ORDER BY o.created_at DESC
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .map((rs, ctx) -> {
+                            UserOrderDTO dto = new UserOrderDTO();
+                            dto.setId(rs.getLong("id"));
+                            dto.setOrderStatus(rs.getString("orderStatus"));
+                            dto.setPaymentStatus(rs.getString("paymentStatus"));
+                            dto.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                            dto.setTotalPrice(rs.getLong("total_price"));
+                            return dto;
+                        })
+                        .list()
         );
     }
 }

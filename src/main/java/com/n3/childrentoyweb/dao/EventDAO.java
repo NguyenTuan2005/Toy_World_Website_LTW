@@ -190,10 +190,6 @@ public class EventDAO  extends BaseDAO{
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(new EventDAO().findById(51L));
-    }
-
     public List<Event> findActiveEvent() {
 
         String sql = """

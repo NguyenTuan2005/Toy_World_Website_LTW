@@ -134,4 +134,76 @@ public class BannerDAO extends BaseDAO{
       var i =  new BannerDAO().findBannerForCurrentPromotion();
         System.out.println(i);
     }
+
+
+    public Long save(Banner banner) {
+
+        String sql = """
+            INSERT INTO banners
+            (title, img_path, group_tag, sort_order, event_id, is_active)
+            VALUES
+            (:title, :imgPath, :groupTag, :sortOrder, :eventId, :isActive)
+        """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("title", banner.getTitle())
+                        .bind("imgPath", banner.getImgPath())
+                        .bind("groupTag", banner.getGroupTag())
+                        .bind("sortOrder", banner.getSortOrder())
+                        .bind("eventId", banner.getEventId())
+                        .bind("isActive", banner.getActive())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class)
+                        .one()
+        );
+    }
+
+
+    // Lấy banners theo groupTag
+    public List<Banner> findByGroupTag(String groupTag) {
+
+        String sql = """
+            SELECT *
+            FROM banners
+            WHERE group_tag = :groupTag
+            ORDER BY sort_order
+        """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("groupTag", groupTag)
+                        .map((rs, ctx) -> {
+                            Banner b = new Banner();
+                            b.setId(rs.getLong("id"));
+                            b.setTitle(rs.getString("title"));
+                            b.setImgPath(rs.getString("img_path"));
+                            b.setGroupTag(rs.getString("group_tag"));
+                            b.setSortOrder(rs.getInt("sort_order"));
+                            b.setEventId(rs.getLong("event_id"));
+                            b.setActive(rs.getBoolean("is_active"));
+                            b.setCreatedAt(
+                                    rs.getTimestamp("created_at").toLocalDateTime()
+                            );
+                            return b;
+                        })
+                        .list()
+        );
+    }
+
+    // Lấy danh sách tất cả groupTag
+    public List<String> findAllGroupTags() {
+
+        String sql = """
+            SELECT DISTINCT group_tag
+            FROM banners
+            ORDER BY group_tag
+        """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(String.class)
+                        .list()
+        );
+    }
 }

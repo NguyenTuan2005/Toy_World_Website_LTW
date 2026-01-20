@@ -42,4 +42,15 @@ public class BannerService {
         return bannerDAO.countAll();
     }
 
+    public long  save(Banner banner) {
+       return this.bannerDAO.save(banner);
+    }
+
+    public List<Banner> findByGroupTag(String groupTag) {
+        return this.bannerDAO.findByGroupTag(groupTag);
+    }
+
+    public List<String> findAllGroupTags() {
+        return this.bannerDAO.findAllGroupTags();
+    }
 }

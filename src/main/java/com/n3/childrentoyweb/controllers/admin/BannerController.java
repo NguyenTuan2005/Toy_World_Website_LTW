@@ -12,6 +12,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet(value = "/admin/banners")
 public class BannerController extends HttpServlet {
@@ -43,6 +47,12 @@ public class BannerController extends HttpServlet {
         request.setAttribute("totalElements_banner",bannerPagination.getTotalElements());
         request.setAttribute("totalPages_banner",bannerPagination.getTotalPages());
         request.setAttribute("pageSize_banner",PAGE_SIZE);
+
+
+        Map<String, List<Banner>> bannersByGroup = bannerPagination.getData().stream()
+                        .collect(Collectors.groupingBy(Banner::getGroupTag));
+        request.setAttribute("bannersByGroup", bannersByGroup);
+
     }
 
 

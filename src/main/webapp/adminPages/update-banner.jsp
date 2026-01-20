@@ -41,14 +41,14 @@
         Form Banner
     </h4>
 
-    <form id="bannerForm" method="post" enctype="multipart/form-data">
-        <input hidden="hidden" value="${banner.id}" name="id">
+    <form id="bannerForm" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/update-banners" >
+        <input type="hidden" value="${banner.id}" name="id">
 
         <div class="mb-3">
             <label class="form-label">Tên Banner *</label>
             <input type="text"
                    class="form-control"
-                   name="bannerName"
+                   name="name"
                    value="${banner.title}"
                    required>
         </div>

@@ -7,6 +7,7 @@ import com.n3.childrentoyweb.services.BannerService;
 import com.n3.childrentoyweb.services.CloudinaryService;
 import com.n3.childrentoyweb.services.EventService;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +19,11 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @WebServlet(value = "/admin/update-banners")
+@MultipartConfig(
+        maxFileSize = 5242880,      // 5MB
+        maxRequestSize = 10485760,  // 10MB
+        fileSizeThreshold = 0
+)
 public class UpdateBannerController extends HttpServlet {
     private EventService eventService;
     private BannerService bannerService;
@@ -54,7 +60,7 @@ public class UpdateBannerController extends HttpServlet {
         System.out.println("Ok id ="+id);
         Banner banner =this.bannerService.getBannerById(id).orElseThrow(ObjectNotFoundException::new);
 
-        System.out.println(banner);
+//        System.out.println(banner);
         request.setAttribute("banner",banner);
     }
 
@@ -63,7 +69,7 @@ public class UpdateBannerController extends HttpServlet {
 
         this.update(req,resp);
 
-        req.getRequestDispatcher("/adminPages/update-banner.jsp").forward(req,resp);
+//        req.getRequestDispatcher("/adminPages/update-banner.jsp").forward(req,resp);
     }
 
 
@@ -73,14 +79,17 @@ public class UpdateBannerController extends HttpServlet {
     }
 
     private void update(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-
-        String bannerName = request.getParameter("bannerName");
+        System.out.println("------DEBUG------");
+        String bannerName = request.getParameter("name");
         String event = request.getParameter("eventId");
         String status = request.getParameter("status");
 
+        System.out.println("name "+bannerName+" event "+event);
+        System.out.println("status "+status);
+
         isNotification = true;
 
-        if(request.getParameter("id") == null){
+        if(request.getParameter("id") == null || request.getParameter("eventId") == null){
             message = error;
             return;
         }
@@ -98,7 +107,8 @@ public class UpdateBannerController extends HttpServlet {
          Banner banner = this.bannerService.getBannerById(id).orElseThrow(ObjectNotFoundException::new);
          banner.setTitle(bannerName);
          banner.setEventId(Long.parseLong(event));
-         banner.setImgPath(filePath);
+         if ( fileName != null)
+            banner.setImgPath(filePath);
          banner.setActive(Boolean.parseBoolean(status));
 
         try{

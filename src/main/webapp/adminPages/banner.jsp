@@ -131,21 +131,40 @@
     </div>
 
     <div class="tab-content">
+        <script>
+            document.getElementById("searchInput")
+                .addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // tránh reload không mong muốn
+                        document.getElementById("searchForm").submit();
+                    }
+                });
+        </script>
         <!-- Banners Tab -->
         <div class=" container mb-3" >
             <div class="filter-section">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên banner..."
-                            />
+                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/search-banners" method="post">
+                                <input
+                                        type="text"
+                                        id="searchInput"
+                                        class="search-input"
+                                        name="keyword"
+                                        placeholder="Nhập  Tên"
+                                />
+                            </form>
                         </div>
                     </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
+                    <div class="col-md-6 d-flex align-items-center justify-content-end">
+                        <c:if test="${find_banners != null }">
+                            <nav>
+                                <ul class="pagination mb-0 me-2">
+                                    <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/banners">Load lại bảng</a></li>
+                                </ul>
+                            </nav>
+                        </c:if>
                         <button class="btn-add fw-medium px-4 py-2 text-decoration-none"    onclick="window.location.href='${pageContext.request.contextPath}/admin/banners/new'">
                             <i class="fas fa-plus"></i> Thêm banner
                         </button>
@@ -239,7 +258,7 @@
                                     <c:when test="${st.index+1 == currentPage_banner}">
                                         <li class="page-item active">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/banners?banner-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -248,7 +267,7 @@
                                     <c:otherwise>
                                         <li class="page-item">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/banners?banner-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>

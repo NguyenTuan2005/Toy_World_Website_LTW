@@ -191,7 +191,6 @@ public class BannerDAO extends BaseDAO{
         );
     }
 
-    // Lấy danh sách tất cả groupTag
     public List<String> findAllGroupTags() {
 
         String sql = """
@@ -206,4 +205,37 @@ public class BannerDAO extends BaseDAO{
                         .list()
         );
     }
+
+
+    public List<Banner> findByTitleLike(String keyword) {
+
+        String sql = """
+        SELECT *
+        FROM banners
+        WHERE title LIKE :kw
+        ORDER BY created_at DESC
+        LIMIT 20
+    """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("kw", "%" + keyword + "%")
+                        .map((rs, ctx) -> {
+                            Banner b = new Banner();
+                            b.setId(rs.getLong("id"));
+                            b.setTitle(rs.getString("title"));
+                            b.setImgPath(rs.getString("img_path"));
+                            b.setGroupTag(rs.getString("group_tag"));
+                            b.setSortOrder(rs.getInt("sort_order"));
+                            b.setEventId(rs.getLong("event_id"));
+                            b.setActive(rs.getBoolean("is_active"));
+                            b.setCreatedAt(
+                                    rs.getTimestamp("created_at").toLocalDateTime()
+                            );
+                            return b;
+                        })
+                        .list()
+        );
+    }
+
 }

@@ -1,43 +1,34 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.AdminOrderListDTO;
 import com.n3.childrentoyweb.models.Order;
 import com.n3.childrentoyweb.models.OrderDetail;
 
-public class OrderDAO extends BaseDAO{
+import java.util.List;
 
-    public long countAllInMonth(int year, int month){
+public class OrderDAO extends BaseDAO {
+
+    public long countAllInMonth(int year, int month) {
         String sql = """
                 SELECT COUNT(*)
                 FROM orders
                 WHERE YEAR(created_at) = :year AND MONTH(created_at) = :month AND is_active = 1;
-                    """;
+                """;
 
-        return this.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("year", year)
-                        .bind("month", month)
-                        .mapTo(Long.class)
-                        .one()
-        );
+        return this.getJdbi().withHandle(handle -> handle.createQuery(sql).bind("year", year).bind("month", month).mapTo(Long.class).one());
     }
 
     public double calculateRevenueInMonth(int year, int month) {
         String sql = """
-            SELECT COALESCE(SUM(total_price), 0)
-            FROM orders
-            WHERE YEAR(created_at) = :year 
-              AND MONTH(created_at) = :month 
-              AND status != 'DA_HUY' 
-              AND is_active = 1;
-            """;
+                SELECT COALESCE(SUM(total_price), 0)
+                FROM orders
+                WHERE YEAR(created_at) = :year 
+                  AND MONTH(created_at) = :month 
+                  AND status != 'DA_HUY' 
+                  AND is_active = 1;
+                """;
 
-        return this.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("year", year)
-                        .bind("month", month)
-                        .mapTo(Double.class)
-                        .one()
-        );
+        return this.getJdbi().withHandle(handle -> handle.createQuery(sql).bind("year", year).bind("month", month).mapTo(Double.class).one());
     }
 
 
@@ -47,16 +38,26 @@ public class OrderDAO extends BaseDAO{
                 values (:userId, :totalPrice, :status)
                 """;
 
-        return this.getJdbi().withHandle(handle ->
-                handle.createUpdate(sql)
-                        .bind("userId", order.getUserId())
-                        .bind("totalPrice", order.getTotalPrice())
-                        .bind("status", order.getStatus())
-                        .executeAndReturnGeneratedKeys("id")
-                        .mapTo(Long.class)
-                        .one()
+        return this.getJdbi().withHandle(handle -> handle.createUpdate(sql).bind("userId", order.getUserId()).bind("totalPrice", order.getTotalPrice()).bind("status", order.getStatus()).executeAndReturnGeneratedKeys("id").mapTo(Long.class).one());
+    }
+
+    public void update(Order order) {
+        String sql = """
+        UPDATE orders
+        SET status = :orderStatus,
+            created_at = :createdAt
+        WHERE id = :id
+        """;
+
+        this.getJdbi().useHandle(h ->
+                h.createUpdate(sql)
+                        .bind("id", order.getId())
+                        .bind("orderStatus", order.getStatus())
+                        .bind("createdAt", order.getCreatedAt())
+                        .execute()
         );
     }
+
 
     public void saveOrderDetail(OrderDetail detail) {
         String sql = """
@@ -64,12 +65,63 @@ public class OrderDAO extends BaseDAO{
                 values (:orderId, :productId, :quantity)
                 """;
 
-        this.getJdbi().withHandle(handle ->
+        this.getJdbi().withHandle(handle -> handle.createUpdate(sql).bind("orderId", detail.getOrderId()).bind("productId", detail.getProductId()).bind("quantity", detail.getQuantity()).execute());
+    }
+
+    public List<AdminOrderListDTO> findAll(String searchKeyword, String where, String orderBy, int pageSize, int offset) {
+        String sql = """
+                    SELECT o.id,
+                           CONCAT(u.last_name, ' ', u.first_name) AS customerName,
+                           u.email AS customerEmail,
+                           u.phone AS customerPhoneNumber,
+                           o.created_at AS createdAt,
+                           o.status AS orderStatus,
+                           p.status AS paymentStatus,
+                           o.total_price AS totalPrice
+                    FROM orders o
+                    JOIN users u ON o.user_id = u.id
+                    JOIN payments p ON o.id = p.order_id
+                    WHERE o.is_active = 1 %s
+                    ORDER BY %s
+                    LIMIT :limit OFFSET :offset;
+                """.formatted(where, orderBy);
+        ;
+
+        return this.getJdbi().withHandle(handle -> {
+            var q = handle.createQuery(sql)
+                    .bind("limit", pageSize)
+                    .bind("offset", offset);
+
+            if (searchKeyword != null) {
+                q.bind("kw", searchKeyword);
+            }
+            return q.mapToBean(AdminOrderListDTO.class).list();
+        });
+    }
+
+    public int countAll() {
+        String sql = "SELECT COUNT(*) FROM orders WHERE is_active = 1";
+
+        return this.getJdbi().withHandle(handle -> handle.createQuery(sql).mapTo(Integer.class).one());
+    }
+
+    public Order findById(long id) {
+        String sql = "SELECT * FROM orders WHERE id = :id AND is_active = 1";
+        return this.getJdbi().withHandle(handle -> handle.createQuery(sql).bind("id", id).mapToBean(Order.class).one());
+    }
+
+    public boolean delete(Long orderId) {
+        String sql = """
+            UPDATE orders
+            SET is_active = 0
+            WHERE id = :id
+              AND is_active = 1
+        """;
+
+        return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
-                        .bind("orderId", detail.getOrderId())
-                        .bind("productId", detail.getProductId())
-                        .bind("quantity", detail.getQuantity())
-                        .execute()
+                        .bind("id", orderId)
+                        .execute() > 0
         );
     }
 }

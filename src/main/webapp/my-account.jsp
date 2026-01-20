@@ -57,6 +57,12 @@
                         </button>
                     </li>
                     <li>
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'" class="d-flex">
+                            <i class="bi bi-clipboard-data-fill me-2"></i>
+                            Quản lí cửa hàng
+                        </button>
+                    </li>
+                    <li>
                         <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#logoutModal">
                             <i class="bi bi-door-open-fill me-2"></i>
                             Đăng xuất
@@ -80,7 +86,7 @@
                             </span>
                         Họ và tên
                     </div>
-                    <div class="info-value">${sessionScope.currentUser.firstName} ${sessionScope.currentUser.lastName}</div>
+                    <div class="info-value">${sessionScope.currentUser.lastName} ${sessionScope.currentUser.firstName}</div>
                 </div>
 
                 <div class="info-row">

@@ -54,4 +54,20 @@ public class LocationDAO extends BaseDAO{
                         .execute()
         );
     }
+
+    public Location findById(Long locationId) {
+        String sql = """
+            SELECT l.id, l.address, l.province, l.created_at
+            FROM locations l 
+            WHERE l.is_active = 1 AND l.id = :locationId
+        """;
+
+        return super.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                .bind("locationId", locationId)
+                .mapToBean(Location.class)
+                .findOne()
+                .orElse(null)
+        );
+
+    }
 }

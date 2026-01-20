@@ -11,8 +11,15 @@ public class LocalDateTimeConverterUtil {
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+    private static final DateTimeFormatter HTML_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
     public static LocalDateTime convertToLocalDateTime(String createdAt){
         return LocalDateTime.parse(createdAt, FORMATTER);
+    }
+
+    public static LocalDateTime convertHTMLDateToLocalDateTime(String createdAt){
+        return LocalDateTime.parse(createdAt, HTML_FORMAT);
     }
 
     public static String convertToString(LocalDateTime createdAt) {

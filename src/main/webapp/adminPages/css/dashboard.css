@@ -48,7 +48,7 @@ body {
     background: white;
     border-radius: 12px;
     padding: 24px;
-    border: 1px solid #e9ecef;
+    border: 1px solid #d9dde2;
     transition: all 0.2s ease;
 }
 
@@ -140,7 +140,7 @@ body {
     background: white;
     border-radius: 12px;
     padding: 24px;
-    border: 1px solid #e9ecef;
+    border: 1px solid #d9dde2;
 }
 
 .chart-header {

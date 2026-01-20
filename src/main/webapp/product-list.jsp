@@ -149,7 +149,7 @@
                                 <input type="hidden" name="sort" value="${param.sort}">
                             </c:if>
 
-                            <div class ="d-flex justify-content-between align-items-center gap-3">
+                            <div class="d-flex justify-content-between align-items-center gap-3">
                                 <button type="submit"
                                         class="btn btn-sm btn-primary w-100">
                                     Áp dụng
@@ -203,7 +203,7 @@
                 <div class="d-flex align-items-center justify-content-between flex-nowrap mb-4">
                     <span class="mx-2">Có ${totalItems} sản phẩm</span>
                     <div class="hstack gap-1">
-                        <label>Sắp xếp theo:  </label>
+                        <label>Sắp xếp theo: </label>
                         <div class="dropdown">
                             <c:set var="sortLabel" value="Sản phẩm mới"/>
 
@@ -212,10 +212,10 @@
                                     <c:set var="sortLabel" value="Hàng khuyến mãi"/>
                                 </c:when>
                                 <c:when test="${param.sort == 'name_asc'}">
-                                    <c:set var="sortLabel" value="Tên A-Z"/>
+                                    <c:set var="sortLabel" value="Tên từ A-Z"/>
                                 </c:when>
                                 <c:when test="${param.sort == 'name_desc'}">
-                                    <c:set var="sortLabel" value="Tên Z-A"/>
+                                    <c:set var="sortLabel" value="Tên từ Z-A"/>
                                 </c:when>
                                 <c:when test="${param.sort == 'price_asc'}">
                                     <c:set var="sortLabel" value="Giá tăng dần"/>
@@ -234,12 +234,18 @@
                             </button>
 
                             <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                                <li><a class="dropdown-item" data-value="new" data-label="Sản phẩm mới" href="?page=1${filterQuery}&sort=new">Sản phẩm mới</a></li>
-                                <li><a class="dropdown-item" data-value="discount" data-label="Hàng khuyến mãi" href="?page=1${filterQuery}&sort=discount">Hàng khuyến mãi</a></li>
-                                <li><a class="dropdown-item" data-value="name_asc" data-label="Tên A-Z" href="?page=1${filterQuery}&sort=name_asc">Tên A-Z</a></li>
-                                <li><a class="dropdown-item" data-value="name_desc" data-label="Tên Z-A" href="?page=1${filterQuery}&sort=name_desc">Tên Z-A</a></li>
-                                <li><a class="dropdown-item" data-value="price_desc" data-label="Giá giảm dần" href="?page=1${filterQuery}&sort=price_desc">Giá giảm dần</a></li>
-                                <li><a class="dropdown-item" data-value="price_asc" data-label="Giá tăng dần" href="?page=1${filterQuery}&sort=price_asc">Giá tăng dần</a></li>
+                                <li><a class="dropdown-item" data-value="new" data-label="Sản phẩm mới"
+                                       href="?page=1${filterQuery}&sort=new">Sản phẩm mới</a></li>
+                                <li><a class="dropdown-item" data-value="discount" data-label="Hàng khuyến mãi"
+                                       href="?page=1${filterQuery}&sort=discount">Hàng khuyến mãi</a></li>
+                                <li><a class="dropdown-item" data-value="name_asc" data-label="Tên từ A-Z"
+                                       href="?page=1${filterQuery}&sort=name_asc">Tên từ A-Z</a></li>
+                                <li><a class="dropdown-item" data-value="name_desc" data-label="Tên từ Z-A"
+                                       href="?page=1${filterQuery}&sort=name_desc">Tên từ Z-A</a></li>
+                                <li><a class="dropdown-item" data-value="price_desc" data-label="Giá giảm dần"
+                                       href="?page=1${filterQuery}&sort=price_desc">Giá giảm dần</a></li>
+                                <li><a class="dropdown-item" data-value="price_asc" data-label="Giá tăng dần"
+                                       href="?page=1${filterQuery}&sort=price_asc">Giá tăng dần</a></li>
                             </ul>
                         </div>
                     </div>
@@ -355,7 +361,8 @@
                         <c:if test="${endPage < totalPages}">
                             <li class="page-item disabled"><span class="page-link">...</span></li>
                             <li class="page-item">
-                                <a class="page-link text-primary" href="?page=${totalPages}${fullFilterSortQuery}">${totalPages}</a>
+                                <a class="page-link text-primary"
+                                   href="?page=${totalPages}${fullFilterSortQuery}">${totalPages}</a>
                             </li>
                         </c:if>
 

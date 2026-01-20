@@ -22,6 +22,9 @@ public class Order extends BaseModel {
         this.status = status;
     }
 
+    public Order() {
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -34,5 +37,15 @@ public class Order extends BaseModel {
         return status;
     }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

@@ -47,6 +47,7 @@ CREATE TABLE orders (
                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
                         user_id BIGINT,
                         total_price DECIMAL(15,2) NOT NULL,
+                        discount_price DECIMAL(15,2),
                         status VARCHAR(255) NOT NULL DEFAULT 'CHUAN_BI_HANG',
                         is_active TINYINT(1) DEFAULT 1,
                         created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP

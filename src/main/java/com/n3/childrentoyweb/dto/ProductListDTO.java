@@ -6,7 +6,7 @@ public class ProductListDTO {
     private Long id;
     private String name;
     private String imgPath;
-    private Integer quantity;
+    private int quantity;
     private String category;
     private String brand;
 
@@ -17,7 +17,7 @@ public class ProductListDTO {
 
     private boolean wishlisted;
 
-    public ProductListDTO(Long id, String name, String imgPath, Integer quantity, String category, String brand, long originPrice, long finalPrice, long maxDiscountPrice, double discountPercent, boolean wishlisted) {
+    public ProductListDTO(Long id, String name, String imgPath, int quantity, String category, String brand, long originPrice, long finalPrice, long maxDiscountPrice, double discountPercent, boolean wishlisted) {
         this.id = id;
         this.name = name;
         this.imgPath = imgPath;
@@ -58,11 +58,11 @@ public class ProductListDTO {
         this.imgPath = imgPath;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

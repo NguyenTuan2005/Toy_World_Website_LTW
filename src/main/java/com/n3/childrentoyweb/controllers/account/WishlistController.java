@@ -45,7 +45,7 @@ public class WishlistController extends HttpServlet {
 
         request.setAttribute("wishlist", wishListService.findUserWishlist(userId));
 
-        request.getRequestDispatcher("/account-wishlist.jsp").forward(request,response);
+        request.getRequestDispatcher("/myAccount/account-wishlist.jsp").forward(request,response);
     }
 
     @Override

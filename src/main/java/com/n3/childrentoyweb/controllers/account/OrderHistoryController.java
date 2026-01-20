@@ -39,7 +39,7 @@ public class OrderHistoryController extends HttpServlet {
 
         request.setAttribute("orders", userOrders);
 
-        request.getRequestDispatcher("/account-order-history.jsp").forward(request, response);
+        request.getRequestDispatcher("/myAccount/account-order-history.jsp").forward(request, response);
     }
 
     @Override

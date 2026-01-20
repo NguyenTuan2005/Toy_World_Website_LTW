@@ -82,12 +82,11 @@ public class UserService {
         this.userDAO.update(user);
     }
 
-    public void update(Long userId, String firstName, String lastName, String phone, String email) {
+    public void update(Long userId, String firstName, String lastName, String phone) {
         User user =userDAO.findById(userId);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPhone(phone);
-        user.setEmail(email);
         this.userDAO.update(user);
     }
 

@@ -42,7 +42,7 @@ public class ProfileController extends HttpServlet {
         session.setAttribute("currentUserLocation",currentUserLocation);
 
 
-        request.getRequestDispatcher("/account-profile.jsp").forward(request, response);
+        request.getRequestDispatcher("/myAccount/account-profile.jsp").forward(request, response);
     }
 
     @Override

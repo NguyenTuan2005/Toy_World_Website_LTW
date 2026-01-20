@@ -48,7 +48,7 @@ public class EditProfileController extends HttpServlet {
         session.setAttribute("currentUserLocation",currentUserLocation);
 
 
-        request.getRequestDispatcher("/account-edit-profile.jsp").forward(request, response);
+        request.getRequestDispatcher("/myAccount/account-edit-profile.jsp").forward(request, response);
     }
 
     @Override
@@ -64,20 +64,15 @@ public class EditProfileController extends HttpServlet {
             return;
         }
 
-        // Lấy dữ liệu từ form
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
         String address = request.getParameter("address");
         String province = request.getParameter("province");
 
         try {
 
-            userService.update(currentUser.getId(), firstName, lastName, phone, email);
-
-
-
+            userService.update(currentUser.getId(), firstName, lastName, phone);
 
             Location location = new Location(address, province);
             location.setId(currentLocation.getId());

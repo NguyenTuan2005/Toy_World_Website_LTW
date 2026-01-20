@@ -43,7 +43,7 @@
           <div class="brand-letter">${entry.key}</div>
             <div class="brand-items">
               <c:forEach var="b" items="${entry.value}">
-              <a href="${pageContext.request.contextPath}/products?brand=${b.name}">
+              <a href="${pageContext.request.contextPath}/products?brandId=${b.id}">
                 <div class="brand-item">
                   <img
                     src="${b.imgPath}"

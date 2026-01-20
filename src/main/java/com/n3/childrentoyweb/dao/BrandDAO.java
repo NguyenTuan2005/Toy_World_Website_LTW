@@ -90,17 +90,36 @@ public class BrandDAO  extends BaseDAO{
    }
 
     public Brand findById(long id) {
+
         String sql = """
-                select * from brands
-                where id =:id
-                """;
+            select *
+            from brands
+            where id = :id
+            """;
+
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
-                        .bind("id",id)
-                        .mapToBean(Brand.class)
+                        .bind("id", id)
+                        .map((rs, ctx) -> {
+                            Brand b = new Brand();
+
+                            b.setId(rs.getLong("id"));
+                            b.setName(rs.getString("name"));
+                            b.setImgPath(rs.getString("img_path"));
+                            b.setActive(rs.getBoolean("is_active"));
+
+                            if(rs.getTimestamp("created_at") != null){
+                                b.setCreatedAt(
+                                        rs.getTimestamp("created_at").toLocalDateTime()
+                                );
+                            }
+
+                            return b;
+                        })
                         .one()
         );
     }
+
 
     public int update(Brand brand) {
         String sql = """

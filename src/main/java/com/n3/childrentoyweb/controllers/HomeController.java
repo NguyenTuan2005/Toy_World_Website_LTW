@@ -8,6 +8,7 @@ import com.n3.childrentoyweb.enums.BannerGroupTag;
 import com.n3.childrentoyweb.models.Banner;
 import com.n3.childrentoyweb.services.BannerService;
 import com.n3.childrentoyweb.services.ProductService;
+import com.n3.childrentoyweb.utils.AppContextPathHolder;
 import com.n3.childrentoyweb.utils.EndpointUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -25,8 +26,9 @@ public class HomeController extends HttpServlet {
         productService = new ProductService();
         EndpointUtil.printAllEndpoints(getServletContext());
     }
-
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        AppContextPathHolder.setContextPath(request.getContextPath());
 
         this.addBanners(request);
         this.addNewProductsInMonth(request);

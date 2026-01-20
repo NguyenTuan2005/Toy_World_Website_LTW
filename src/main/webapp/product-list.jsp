@@ -32,9 +32,23 @@
         </nav>
     </div>
 </div>
+<%--notification--%>
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="addCartToast" class="toast align-items-center text-bg-success border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-delay="3000">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-basket2-fill me-2"></i>
+                Đã thêm sản phẩm vào giỏ hàng
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
 
 <main class="mt-2">
-
     <div class="container-lg mb-5">
         <div class="row">
             <!-- Filter Section -->
@@ -413,7 +427,9 @@
 
                 document.getElementById("cart-count").innerText = cartText;
 
-                alert("Đã thêm sản phẩm vào giỏ!");
+                var toastEl = document.getElementById('addCartToast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
             });
         };
     }

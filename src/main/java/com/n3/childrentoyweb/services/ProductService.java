@@ -5,6 +5,7 @@ import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.models.WishList;
+import com.n3.childrentoyweb.utils.AppContextPathHolder;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -73,6 +74,10 @@ public class ProductService {
 
         product.setImagePaths(productAssetDAO.findImagePathByProductId(productId));
 
+        if(product.getImagePaths() == null || product.getImagePaths().isEmpty()){
+            product.setImagePaths(new ArrayList<>(List.of(AppContextPathHolder.getContextPath() + "/img/default-product-img.png")));
+        }
+
         //wishlist
         if(currentUser != null){
             WishList wishList = new WishList(currentUser.getId(), productId);
@@ -90,9 +95,6 @@ public class ProductService {
         return productDAO.countProductInMonth(year, month);
     }
 
-//    public List<Product> findProductsWithAvailablePromotion(){
-//        return this.productDAO. findProductsWithAvailablePromotion();
-//    }
 
     public List<ProductPromotionDTO> findProductsByPromotionId(Long promotionId) {
         return this.productDAO.findProductsByPromotionId(promotionId);
@@ -106,7 +108,12 @@ public class ProductService {
 
         List<Long> wishlistProductIds = wishListDAO.findAllProductIdByUserId(currentUserId);
 
-        products.forEach(p -> p.setWishlisted(wishlistProductIds.contains(p.getId())));
+        products.forEach(p -> {
+            p.setWishlisted(wishlistProductIds.contains(p.getId()));
+            if(p.getImgPath() == null || p.getImgPath().trim().isEmpty()){
+                p.setImgPath(AppContextPathHolder.getContextPath() + "/img/default-product-img.png");
+            }
+        });
 
         return products;
     }

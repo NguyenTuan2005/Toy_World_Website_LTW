@@ -35,7 +35,11 @@ public class LoginController extends HttpServlet {
             }
         }
 
-        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+        if(session.getAttribute("currentUser") != null){
+            response.sendRedirect(request.getContextPath() + "/account/profile");
+        }else{
+            request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+        }
     }
 
     @Override

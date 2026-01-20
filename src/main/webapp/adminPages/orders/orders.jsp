@@ -148,37 +148,61 @@
                     <tr>
                         <td class="bold-title">#${o.id}</td>
                         <td>${o.createdAt}</td>
-                        <td class="author-name bold-title">${o.customerName}</td>
+                        <td >${o.customerName}</td>
                         <td>${o.customerPhoneNumber}</td>
                         <td>${o.customerEmail}</td>
                         <td><fmt:formatNumber value="${o.totalPrice}" pattern="#,##0"/></td>
 
                         <td class="text-nowrap">
-                            <span class="badge
-                                ${o.paymentStatus eq 'DA_THANH_TOAN'
-                                    ? 'bg-success bg-opacity-25 text-success'
-                                    : 'bg-danger bg-opacity-25 text-danger'}">
+                            <c:choose>
+                                <c:when test="${o.paymentStatus == 'CHUA_THANH_TOAN'}">
+                                    <span class="badge bg-danger-subtle text-danger">
+                                        Chưa thanh toán
+                                    </span>
+                                </c:when>
 
-                                    ${o.paymentStatus eq 'DA_THANH_TOAN'
-                                            ? 'Đã thanh toán'
-                                            : 'Chưa thanh toán'}
-                            </span>
+                                <c:when test="${o.paymentStatus == 'DA_THANH_TOAN'}">
+                                    <span class="badge bg-success-subtle text-success">
+                                        Đã thanh toán
+                                    </span>
+                                </c:when>
+
+                                <c:when test="${o.paymentStatus == 'HOAN_TIEN'}">
+                                    <span class="badge bg-dark-subtle text-dark">
+                                        Hoàn tiền
+                                    </span>
+                                </c:when>
+                            </c:choose>
                         </td>
-
 
                         <td class="text-nowrap">
-                            <span class="badge bg-primary bg-opacity-25 text-primary
-                                ${o.orderStatus == 'DA_HUY' ? 'bg-danger bg-opacity-25 text-danger' :
-                                  o.orderStatus == 'CHUAN_BI_HANG' ? 'bg-primary bg-opacity-25 text-primary' :
-                                  'bg-success bg-opacity-25 text-success'}">
-                                <c:choose>
-                                    <c:when test="${o.orderStatus == 'DA_GIAO'}">Đã giao</c:when>
-                                    <c:when test="${o.orderStatus == 'DANG_GIAO'}">Đang giao</c:when>
-                                    <c:when test="${o.orderStatus == 'DA_HUY'}">Đã hủy</c:when>
-                                    <c:when test="${o.orderStatus == 'CHUAN_BI_HANG'}">Chuẩn bị hàng</c:when>
-                                </c:choose>
-                            </span>
+                            <c:choose>
+                                <c:when test="${o.orderStatus == 'CHUAN_BI_HANG'}">
+                                    <span class="badge bg-primary-subtle text-primary">
+                                        Chuẩn bị hàng
+                                    </span>
+                                </c:when>
+
+                                <c:when test="${o.orderStatus == 'DANG_GIAO'}">
+                                    <span class="badge bg-success-subtle text-success">
+                                        Đang giao
+                                    </span>
+                                </c:when>
+
+                                <c:when test="${o.orderStatus == 'DA_GIAO'}">
+                                    <span class="badge bg-success-subtle text-success">
+                                        Đã giao
+                                    </span>
+                                </c:when>
+
+                                <c:when test="${o.orderStatus == 'DA_HUY'}">
+                                    <span class="badge bg-danger-subtle text-danger">
+                                        Đã hủy
+                                    </span>
+                                </c:when>
+                            </c:choose>
                         </td>
+
 
                         <td>
                             <div class="d-flex gap-2">

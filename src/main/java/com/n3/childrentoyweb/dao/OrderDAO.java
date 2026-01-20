@@ -135,7 +135,7 @@ public class OrderDAO extends BaseDAO {
                    o.total_price
             FROM orders o
             JOIN payments p ON o.id = p.order_id
-            WHERE o.user_id = :userId
+            WHERE o.user_id = :userId AND o.is_active = 1
             ORDER BY o.created_at DESC
         """;
 

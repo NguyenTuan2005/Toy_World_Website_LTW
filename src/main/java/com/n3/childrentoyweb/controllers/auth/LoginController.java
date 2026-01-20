@@ -33,13 +33,14 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("resetSuccessMessage", message);
                 session.removeAttribute("resetSuccessMessage");
             }
+
+            if (session.getAttribute("currentUser") != null) {
+                response.sendRedirect(request.getContextPath() + "/account/profile");
+                return;
+            }
         }
 
-        if(session.getAttribute("currentUser") != null){
-            response.sendRedirect(request.getContextPath() + "/account/profile");
-        }else{
-            request.getRequestDispatcher("/login/login.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
     }
 
     @Override

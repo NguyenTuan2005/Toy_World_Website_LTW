@@ -144,14 +144,15 @@
             showError(form.promotionName, "Tên promotion tối thiểu 3 ký tự");
         }
 
-        // 2. Số tiền giảm (chỉ số)
-        if (!/^\d+$/.test(discountPrice)) {
-            showError(form.discountPrice, "Chỉ được nhập số (VD: 70000)");
+        // 2. Số tiền giảm (số hoặc số thập phân)
+        if (!/^\d+(\.\d+)?$/.test(discountPrice)) {
+            showError(form.discountPrice, "Chỉ được nhập số (VD: 70000 hoặc 70000.5)");
         }
 
-        // 3. % giảm
-        if (!/^(\d{1,2}|100)%?$/.test(discountPercent)) {
-            showError(form.discountPercent, "Nhập % hợp lệ (0 - 100%)");
+
+        // 3. % giảm (0 - 100, cho phép số thập phân)
+        if (!/^(100(\.0+)?|(\d{1,2})(\.\d+)?)$/.test(discountPercent)) {
+            showError(form.discountPercent, "Nhập % hợp lệ (0 - 100, VD: 10, 10.5)");
         }
 
         // 4. Ngày hết hạn

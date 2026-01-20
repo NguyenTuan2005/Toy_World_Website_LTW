@@ -223,13 +223,17 @@
                                             <td>
                                                 <div class="actions">
                                                     <a href="${pageContext.request.contextPath}/admin/banners/update?id=${banner.id}"
-                                                       class="btn btn-edit">✏️ Sửa</a>
+                                                       class="btn btn-edit">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
                                                     <form action="${pageContext.request.contextPath}/admin/banners"
                                                           method="post"
                                                           style="display: inline;"
                                                           onsubmit="return confirm('Bạn có chắc muốn xóa banner này?');">
                                                         <input type="hidden" name="id" value="${banner.id}">
-                                                        <button type="submit" class="btn btn-delete">🗑️ Xóa</button>
+                                                        <button type="submit" class="btn btn-delete">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </td>

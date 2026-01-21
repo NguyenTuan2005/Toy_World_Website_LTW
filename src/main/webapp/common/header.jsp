@@ -51,7 +51,7 @@
                     <%--tài khoản--%>
                     <c:if test="${sessionScope.currentUser != null}">
                         <button class="btn d-flex align-items-center"
-                                onclick="window.location.href='${pageContext.request.contextPath}/account'">
+                                onclick="window.location.href='${pageContext.request.contextPath}/account/profile'">
                             <i class="bi bi-person-circle me-2"></i>
                             <div>${sessionScope.currentUser.firstName}</div>
                         </button>

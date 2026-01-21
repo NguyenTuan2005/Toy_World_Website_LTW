@@ -44,7 +44,7 @@
 
                 <c:if test="${not empty resetSuccessMessage}">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <i class="bi bi-check-circle-fill me-2"></i>
                             ${resetSuccessMessage}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>

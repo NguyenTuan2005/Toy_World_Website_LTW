@@ -34,6 +34,6 @@ public class UserCommentController extends HttpServlet {
 
         userCommentService.save(productId, user.getId(), content);
 
-        response.sendRedirect(request.getContextPath() + "/products/" + productId + "#comment-form");
+        response.sendRedirect(request.getContextPath() + "/products/" + productId);
     }
 }

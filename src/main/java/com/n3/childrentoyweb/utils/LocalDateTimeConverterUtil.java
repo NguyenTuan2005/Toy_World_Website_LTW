@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoUnit;
 
 public class LocalDateTimeConverterUtil {
@@ -13,8 +14,20 @@ public class LocalDateTimeConverterUtil {
     private static final DateTimeFormatter FORMATTER_FOR_INPUT_TAG =
             DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    private static final DateTimeFormatter HTML_FORMAT = new DateTimeFormatterBuilder()
+            .appendPattern("yyyy-MM-dd'T'HH:mm")
+            .optionalStart()
+            .appendPattern(":ss")
+            .optionalEnd()
+            .toFormatter();
+
+
     public static LocalDateTime convertToLocalDateTime(String createdAt){
         return LocalDateTime.parse(createdAt, FORMATTER);
+    }
+
+    public static LocalDateTime convertHTMLDateToLocalDateTime(String createdAt){
+        return LocalDateTime.parse(createdAt, HTML_FORMAT);
     }
 
     public static String convertToString(LocalDateTime createdAt) {

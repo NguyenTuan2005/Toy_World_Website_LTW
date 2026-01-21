@@ -4,6 +4,7 @@ import com.n3.childrentoyweb.dto.ProductDetailDTO;
 import com.n3.childrentoyweb.dto.ProductListDTO;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.ProductService;
+import com.n3.childrentoyweb.utils.AppContextPathHolder;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -22,6 +23,7 @@ public class ProductDetailsController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AppContextPathHolder.setContextPath(request.getContextPath());
         try {
             String pathInfo = request.getPathInfo();
 

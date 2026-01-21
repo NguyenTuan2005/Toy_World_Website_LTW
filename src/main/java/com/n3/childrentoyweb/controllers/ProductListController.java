@@ -4,6 +4,7 @@ import com.n3.childrentoyweb.dto.PriceRangeFilterDTO;
 import com.n3.childrentoyweb.dto.ProductListDTO;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.*;
+import com.n3.childrentoyweb.utils.AppContextPathHolder;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -32,7 +33,7 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        AppContextPathHolder.setContextPath(request.getContextPath());
         int page = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
 
         //category filter

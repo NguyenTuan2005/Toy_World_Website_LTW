@@ -12,7 +12,6 @@ public class RoleService {
         return this.roleDAO.findAllByUserId(userId);
     }
 
-
     public List<Long> findAllRoleIdsByRoleName(String [] roles){
         return this.roleDAO.findAllRoleIdsByRoleName(roles);
     }

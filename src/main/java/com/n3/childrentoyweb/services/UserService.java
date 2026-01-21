@@ -82,6 +82,14 @@ public class UserService {
         this.userDAO.update(user);
     }
 
+    public void update(Long userId, String firstName, String lastName, String phone) {
+        User user =userDAO.findById(userId);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPhone(phone);
+        this.userDAO.update(user);
+    }
+
     public UserDetailDTO findUserDetailById(long id) {
         User user = this.userDAO.findById(id);
         Location location = this.locationDAO.findByUserId(id);

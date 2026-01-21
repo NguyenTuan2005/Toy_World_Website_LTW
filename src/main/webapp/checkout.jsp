@@ -212,7 +212,7 @@
               <p class="text-muted mb-0">${success}</p>
             </div>
             <div class="modal-footer border-0 justify-content-center pb-4">
-              <a href="${pageContext.request.contextPath}/history" class="btn btn-primary px-4">Xem đơn hàng</a>
+              <a href="${pageContext.request.contextPath}/account/order-history" class="btn btn-primary px-4">Xem đơn hàng</a>
               <a href="${pageContext.request.contextPath}/home" class="btn btn-outline-secondary px-4">Về trang chủ</a>
             </div>
           </div>

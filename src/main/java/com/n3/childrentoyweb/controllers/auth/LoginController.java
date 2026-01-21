@@ -33,6 +33,11 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("resetSuccessMessage", message);
                 session.removeAttribute("resetSuccessMessage");
             }
+
+            if (session.getAttribute("currentUser") != null) {
+                response.sendRedirect(request.getContextPath() + "/account/profile");
+                return;
+            }
         }
 
         request.getRequestDispatcher("/login/login.jsp").forward(request, response);
@@ -59,6 +64,8 @@ public class LoginController extends HttpServlet {
 
             List<RoleEnum> roles = roleService.findAllByUserId(user.getId());
             session.setAttribute("roles", roles);
+            session.setAttribute("isAdmin", roles.contains(RoleEnum.ROLE_ADMIN));
+
 
             session.setMaxInactiveInterval(10 * 60 * 60); // session
 

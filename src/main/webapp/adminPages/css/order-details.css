@@ -35,6 +35,11 @@
   color: #92400e;
 }
 
+.badge-green {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
 .badge {
   background-color: #d1fae5;
   color: #065f46;
@@ -53,6 +58,22 @@
 
 .delete-btn:hover {
   background-color: #b00d26;
+}
+
+.edit-btn {
+    border: 1px solid #d9dde2;
+    background-color: #ebeff1;
+    color: black;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.edit-btn:hover {
+    background-color: #d9dde2;
 }
 
 .btn-back {
@@ -74,7 +95,7 @@
 .card-section {
   background: white;
   border-radius: 12px;
-  border: 1px solid #e9ecef;
+  border: 1px solid #d9dde2;
   padding: 24px;
   margin-bottom: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -179,7 +200,7 @@
 .total-row .summary-value {
   font-weight: 600;
   font-size: 15px;
-  color: #212529;
+  color: #d51b1b;
 }
 
 .customer-info-row {

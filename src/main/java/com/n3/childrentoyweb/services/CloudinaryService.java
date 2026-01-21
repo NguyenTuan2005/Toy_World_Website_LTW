@@ -27,6 +27,7 @@ public class CloudinaryService {
                     ObjectUtils.asMap(
                             "folder", "jsp_uploads",
                             "resource_type", "image"
+//                            "access_mode", "public"
                     )
             );
 
@@ -49,7 +50,8 @@ public class CloudinaryService {
                     fileBytes,
                     ObjectUtils.asMap(
                             "folder", "jsp_uploads",
-                            "resource_type", "image"
+                            "resource_type", "image",
+                            "access_mode", "public"
                     )
             );
 

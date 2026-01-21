@@ -16,7 +16,6 @@ public class OrderService {
     private static final int PAGE_SIZE = 10;
     private OrderDAO orderDAO;
 
-
     public OrderService(){
         this.orderDAO = new OrderDAO();
     }
@@ -89,6 +88,14 @@ public class OrderService {
 
     public void saveOrderDetail(OrderDetail detail) {
         this.orderDAO.saveOrderDetail(detail);
+    }
+
+    public int countAllOrders(int month){
+         return this.orderDAO.countOrdersByMonth(month);
+    }
+
+    public double sumRevenueByMonth(int month) {
+        return this.orderDAO.sumRevenueByMonth(month);
     }
 
     public void deleteOrder(Long orderId) {

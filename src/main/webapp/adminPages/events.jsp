@@ -223,13 +223,9 @@
                                  </td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-primary text-decoration-none"
-                                            onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
 
                                     <button class="btn btn-link text-success text-decoration-none"
-                                            onclick="location.href='${pageContext.request.contextPath}/admin/order/order-details'">
+                                            onclick="location.href='${pageContext.request.contextPath}/admin/update-events?id=${event.id}'">
                                         <i class="fas fa-edit"></i>
                                     </button>
 

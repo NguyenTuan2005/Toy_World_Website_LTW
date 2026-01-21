@@ -48,25 +48,44 @@
     </div>
 
     <div class="tab-content">
+        <script>
+            document.getElementById("searchInput")
+                .addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // tránh reload không mong muốn
+                        document.getElementById("searchForm").submit();
+                    }
+                });
+        </script>
         <!-- Promotions Tab -->
         <div class="tab-pane active fade show container mb-3"  id="promotions">
             <div class="filter-section">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input
-                                    type="text"
-                                    class="search-input"
-                                    placeholder="Tìm theo tên promotion..."
-                            />
+                            <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/promotions" method="post">
+                                <input
+                                        type="text"
+                                        id="searchInput"
+                                        class="search-input"
+                                        name="keyword"
+                                        placeholder="Nhập  Tên"
+                                />
+                            </form>
                         </div>
                     </div>
-                    <div class="col-md-6 text-end mt-3 mt-md-0">
-                        <button class="btn-add fw-medium px-4 py-2 text-decoration-none" data-bs-toggle="modal"
+                    <div class="col-md-6 d-flex align-items-center justify-content-end">
+                        <c:if test="${find_promotions != null }">
+                            <nav>
+                                <ul class="pagination mb-0 me-2">
+                                    <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/promotions">Load lại bảng</a></li>
+                                </ul>
+                            </nav>
+                        </c:if>
+                        <a class="btn-add fw-medium px-4 py-2 text-decoration-none"  href="${pageContext.request.contextPath}/admin/new-promotions"
                                 data-bs-target="#promotionModal">
                             <i class="fas fa-plus"></i> Thêm promotion
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -110,17 +129,18 @@
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-primary text-decoration-none">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
 
-                                    <button class="btn btn-link text-success text-decoration-none">
+                                    <button class="btn btn-link text-success text-decoration-none"   onclick="window.location.href='${pageContext.request.contextPath}/admin/update-promotions?promotionId=${prom.id}'">
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <button class="btn btn-link text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <form method="post" action="/childrentoyweb_war/admin/hidden-promotions"
+                                          onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                        <input type="hidden" name="promotionId" value="${prom.id}">
+                                        <button class="btn btn-link text-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -144,7 +164,7 @@
                                     <c:when test="${st.index+1 == currentPage_promotion}">
                                         <li class="page-item active">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/promotions?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/promotions?promotion-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -153,7 +173,7 @@
                                     <c:otherwise>
                                         <li class="page-item">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/promotions?page=${st.index + 1}">
+                                               href="${pageContext.request.contextPath}/admin/promotions?promotion-page=${st.index + 1}">
                                                     ${st.index + 1}
                                             </a>
                                         </li>
@@ -170,53 +190,46 @@
 
 
 
-    <!-- Modal Thêm/Sửa Promotion -->
-    <div class="modal fade" id="promotionModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-percentage me-2"></i><span id="promotionModalTitle">Thêm Promotion Mới</span>
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="promotionForm">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Tên Promotion *</label>
-                                <input type="text" class="form-control" name="promotionName" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Phần Trăm Giảm</label>
-                                <input type="text" class="form-control" name="discountValue" required
-                                       placeholder="VD: 70%">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Hết Hạn *</label>
-                                <input type="date" class="form-control" name="expiryDate" required>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Trạng Thái *</label>
-                                <select class="form-select" name="status" required>
-                                    <option value="active">Đang hoạt động</option>
-                                    <option value="inactive">Ngưng hoạt động</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary" onclick="savePromotion()">Lưu</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
 </main>
+<script>
+    function savePromotion() {
+        const form = document.getElementById("promotionForm");
+        const formData = new FormData(form);
+        console.log("My Data: ")
+        console.log(formData)
+        fetch("/childrentoyweb_war/admin/promotions", {
+            method: 'POST',
+            credentials: "include",
+            // headers: { 'Content-Type': 'application/json' },
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success){
+                    alert("Tạo promotion thành công!");
+
+                    // Đóng modal
+                    const modal = bootstrap.Modal.getInstance(
+                        document.getElementById("promotionModal")
+                    );
+                    modal.hide();
+
+                    // TODO: reload table nếu cần
+                    // loadPromotions();
+                    console.log("bug :)))) ")
+
+                }else{
+                    alert(data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Lỗi server!");
+            });
+    }
+</script>
 
 <script src="js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

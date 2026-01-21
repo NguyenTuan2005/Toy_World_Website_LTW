@@ -16,7 +16,6 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
     <style>
-        /* ===== PREVIEW IMAGE ===== */
         .img-preview {
             max-width: 100%;
             height: 180px;
@@ -42,19 +41,18 @@
         Form Banner
     </h4>
 
-    <form id="bannerForm" method="post" enctype="multipart/form-data">
+    <form id="bannerForm" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/update-banners" >
+        <input type="hidden" value="${banner.id}" name="id">
 
-        <!-- Tên banner -->
         <div class="mb-3">
             <label class="form-label">Tên Banner *</label>
             <input type="text"
                    class="form-control"
-                   name="bannerName"
+                   name="name"
                    value="${banner.title}"
                    required>
         </div>
 
-        <!-- Chọn sự kiện -->
         <div class="mb-3">
             <label class="form-label">Chọn Sự Kiện</label>
             <select class="form-select" name="eventId">
@@ -87,7 +85,6 @@
             </small>
         </div>
 
-        <!-- Trạng thái -->
         <div class="mb-4">
             <label class="form-label">Trạng Thái</label>
             <select class="form-select" name="status">
@@ -100,7 +97,6 @@
             </select>
         </div>
 
-        <!-- Button Group -->
         <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary">
                 <i class="fa-solid fa-floppy-disk"></i>

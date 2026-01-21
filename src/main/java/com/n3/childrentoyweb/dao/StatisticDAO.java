@@ -1,10 +1,9 @@
 package com.n3.childrentoyweb.dao;
 
-import com.n3.childrentoyweb.dto.OrderStatusStatDTO;
-import com.n3.childrentoyweb.dto.ProductStockStatDTO;
-import com.n3.childrentoyweb.dto.OrderAnalyticsDTO;
+import com.n3.childrentoyweb.dto.*;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -141,7 +140,7 @@ public class StatisticDAO extends BaseDAO{
             ORDER BY label
         """;
 
-        return jdbi.withHandle(handle ->
+        return getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("fromDate", fromDate)
                         .bind("toDate", toDate)
@@ -151,9 +150,63 @@ public class StatisticDAO extends BaseDAO{
         );
     }
 
+    public List<PaymentMethodChartDTO> percentByPaymentMethod() {
+
+        String sql = """
+        SELECT pm.name AS name,
+               ROUND(SUM(p.balance) * 100 /
+               (SELECT SUM(balance) FROM payments), 2) AS percent
+        FROM payments p
+        JOIN payment_methods pm 
+            ON p.payment_method_id = pm.id
+        GROUP BY pm.name
+    """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .map((rs, ctx) -> {
+                            return new PaymentMethodChartDTO (rs.getString("name"), rs.getDouble("percent"));
+                        })
+                        .list()
+        );
+    }
 
 
     public static void main(String[] args) {
+        System.out.println(new StatisticDAO().percentByPaymentMethod());
         System.out.println(new StatisticDAO().orderByDay(LocalDate.of(2026, 1, 1), LocalDate.of(2026, 1, 7)));
     }
+    public List<ProductChartDTO> top3ProductByMonth(int month, int year) {
+
+        String sql = """
+        SELECT p.id,
+               p.name,
+               SUM(od.quantity * p.price) AS total_price
+        FROM order_details od
+        JOIN orders o 
+            ON od.order_id = o.id
+        JOIN products p 
+            ON od.product_id = p.id
+        WHERE MONTH(o.created_at) = :month
+          AND YEAR(o.created_at) = :year
+        GROUP BY p.id, p.name
+        ORDER BY total_price DESC
+        LIMIT 3
+    """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("month", month)
+                        .bind("year", year)
+                        .map((rs, ctx) -> {
+                            var dto = new ProductChartDTO();
+                            dto.setName(rs.getString("name"));
+                            dto.setTotalPrice(rs.getDouble("total_price"));
+                            return dto;
+                        })
+                        .list()
+        );
+    }
+
+
 }

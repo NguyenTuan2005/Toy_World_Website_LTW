@@ -4,32 +4,44 @@ import com.n3.childrentoyweb.dto.AdminOrderListDTO;
 import com.n3.childrentoyweb.dto.UserOrderDTO;
 import com.n3.childrentoyweb.models.Order;
 import com.n3.childrentoyweb.models.OrderDetail;
-
+import java.time.LocalDate;
 import java.util.List;
 
-public class OrderDAO extends BaseDAO {
+public class OrderDAO extends BaseDAO{
 
-    public long countAllInMonth(int year, int month) {
+    public long countAllInMonth(int year, int month){
         String sql = """
                 SELECT COUNT(*)
                 FROM orders
                 WHERE YEAR(created_at) = :year AND MONTH(created_at) = :month AND is_active = 1;
-                """;
+                    """;
 
-        return this.getJdbi().withHandle(handle -> handle.createQuery(sql).bind("year", year).bind("month", month).mapTo(Long.class).one());
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("year", year)
+                        .bind("month", month)
+                        .mapTo(Long.class)
+                        .one()
+        );
     }
 
     public double calculateRevenueInMonth(int year, int month) {
         String sql = """
-                SELECT COALESCE(SUM(total_price), 0)
-                FROM orders
-                WHERE YEAR(created_at) = :year 
-                  AND MONTH(created_at) = :month 
-                  AND status != 'DA_HUY' 
-                  AND is_active = 1;
-                """;
+            SELECT COALESCE(SUM(total_price), 0)
+            FROM orders
+            WHERE YEAR(created_at) = :year 
+              AND MONTH(created_at) = :month 
+              AND status != 'DA_HUY' 
+              AND is_active = 1;
+            """;
 
-        return this.getJdbi().withHandle(handle -> handle.createQuery(sql).bind("year", year).bind("month", month).mapTo(Double.class).one());
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("year", year)
+                        .bind("month", month)
+                        .mapTo(Double.class)
+                        .one()
+        );
     }
 
 
@@ -59,7 +71,6 @@ public class OrderDAO extends BaseDAO {
         );
     }
 
-
     public void saveOrderDetail(OrderDetail detail) {
         String sql = """
                 insert into order_details (order_id, product_id, quantity)
@@ -86,7 +97,6 @@ public class OrderDAO extends BaseDAO {
                     ORDER BY %s
                     LIMIT :limit OFFSET :offset;
                 """.formatted(where, orderBy);
-        ;
 
         return this.getJdbi().withHandle(handle -> {
             var q = handle.createQuery(sql)
@@ -154,4 +164,52 @@ public class OrderDAO extends BaseDAO {
                         .list()
         );
     }
+
+    public int countOrdersByMonth(int month) {
+
+        LocalDate start = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate end = start.plusMonths(1);
+
+        String sql = """
+        SELECT COUNT(*) 
+        FROM orders
+        WHERE created_at >= :start
+        AND created_at < :end
+    """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("start", start.atStartOfDay())
+                        .bind("end", end.atStartOfDay())
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public double sumRevenueByMonth(int month) {
+
+        LocalDate start = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate end = start.plusMonths(1);
+
+        String sql = """
+        SELECT COALESCE(SUM(total_price), 0)
+        FROM orders
+        WHERE created_at >= :start
+        AND created_at < :end
+    """;
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("start", start.atStartOfDay())
+                        .bind("end", end.atStartOfDay())
+                        .mapTo(Double.class)
+                        .one()
+        );
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(new OrderDAO().countOrdersByMonth(1));
+    }
+
 }

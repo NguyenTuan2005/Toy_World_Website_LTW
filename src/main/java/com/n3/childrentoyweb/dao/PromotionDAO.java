@@ -160,6 +160,37 @@ public class PromotionDAO  extends BaseDAO{
         );
     }
 
+    public List<Promotion> findByName(String name) {
+
+        String sql = """
+        select * from promotions
+        where name like :name
+        limit 20
+        """;
+
+        return this.getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .bind("name","%" +name+"%")
+                        .map((rs, ctx) -> {
+                            Promotion p = new Promotion();
+                            p.setId(rs.getLong("id"));
+                            p.setName(rs.getString("name"));
+                            p.setExpiredAt(
+                                    rs.getTimestamp("expired_at").toLocalDateTime()
+                            );
+                            p.setDiscountPercent(rs.getDouble("discount_percent"));
+                            p.setDiscountPrice(rs.getDouble("discount_price"));
+                            p.setEventId(rs.getLong("event_id"));
+                            p.setActive(rs.getBoolean("is_active"));
+                            p.setCreatedAt(
+                                    rs.getTimestamp("created_at").toLocalDateTime()
+                            );
+                            return p;
+                        })
+                        .list()
+        );
+    }
+
     public int countAll() {
 
         String sql = "select count(*) from promotions";

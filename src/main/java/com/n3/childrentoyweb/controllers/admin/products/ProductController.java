@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.controllers.admin.products;
 
 import com.n3.childrentoyweb.dao.Pagination;
+import com.n3.childrentoyweb.dto.ProductCriteria;
 import com.n3.childrentoyweb.dto.ProductManagementDTO;
 import com.n3.childrentoyweb.services.ProductService;
 import jakarta.servlet.ServletException;
@@ -30,6 +31,18 @@ public class ProductController extends HttpServlet {
         req.setAttribute("currentPage", products.getCurrentPage());
         req.setAttribute("totalProduct", products.getTotalElements());
         req.setAttribute("totalPages", products.getTotalPages());
+        req.getRequestDispatcher("/adminPages/products.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String keyword = req.getParameter("keyword");
+        ProductCriteria productCriteria = new ProductCriteria(keyword);
+
+        Pagination<ProductManagementDTO> products = productService.findByCriteria(productCriteria);
+
+        req.setAttribute("keyword", keyword);
+        req.setAttribute("products", products.getData());
         req.getRequestDispatcher("/adminPages/products.jsp").forward(req, resp);
     }
 }

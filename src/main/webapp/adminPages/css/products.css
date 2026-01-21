@@ -36,12 +36,12 @@
 }
 
 .product-name-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
     line-height: 1.4;
     word-wrap: break-word;
 }

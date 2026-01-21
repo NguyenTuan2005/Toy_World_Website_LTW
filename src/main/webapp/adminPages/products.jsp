@@ -34,7 +34,7 @@
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab">
+                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" onclick="loadComments()">
                             <i class="fas fa-comments"></i> Bình luận sản phẩm
                         </button>
                     </li>
@@ -56,7 +56,13 @@
                     <div class="hstack align-items-center justify-content-between">
                         <div class="search-wrapper">
                             <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" placeholder="Tìm theo tên sản phẩm..."/>
+                            <form class="mb-0" method="post" action="${pageContext.request.contextPath}/admin/products">
+                                <input type="text" name="keyword" class="form-control search-input" value="${keyword}" placeholder="Tìm theo tên sản phẩm..."/>
+                                <c:if test="${keyword != null}">
+                                    <i class="fas fa-times clear-icon"
+                                       onclick="window.location.href='${pageContext.request.contextPath}/admin/products'"></i>
+                                </c:if>
+                            </form>
                         </div>
                         <div class="mt-3 mt-md-0">
                             <button class="btn-add fw-medium px-4 py-2" data-bs-toggle="modal" data-bs-target="#addProductModal">
@@ -82,10 +88,17 @@
                         </tr>
                         </thead>
                         <tbody id="productTableBody">
+                            <c:if test="${empty products}">
+                                <tr>
+                                    <td colspan="9" class="text-center text-muted py-4">Không có sản phẩm nào.</td>
+                                </tr>
+                            </c:if>
                             <c:forEach var="p" items="${products}">
                                 <tr>
                                     <td>${p.productId}</td>
-                                    <td title="${p.name}" class="product-name-cell">${p.name}</td>
+                                    <td>
+                                        <div title="${p.name}" class="product-name-cell">${p.name}</div>
+                                    </td>
                                     <td>
                                         <img src="${p.imgPath}" class="thumb-img w-75" alt="thumbnail"/>
                                     </td>
@@ -96,9 +109,6 @@
                                     <td><span class="badge bg-secondary">${p.status}</span></td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn btn-link text-secondary p-0" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
                                             <button class="btn btn-link text-secondary p-0" data-bs-toggle="modal" data-bs-target="#updateProductModal" title="Chỉnh sửa">
                                                 <i class="fas fa-edit"></i>
                                             </button>
@@ -113,128 +123,42 @@
                     </table>
 
                     <hr class="mx-5"/>
-                    <div class="d-flex justify-content-between align-items-center m-3">
-                        <p id="pageInfo" class="mb-0">Hiển thị ${currentPage}-${totalPages} trong ${totalProduct} sản phẩm</p>
-                        <nav>
-                            <ul id="productPagination" class="pagination mb-0" data-current-page="${currentPage}">
-                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-                                    <a class="page-link" href="#">|&lt;</a>
-                                </li>
-                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-                                    <a class="page-link" href="#">&lt;</a>
-                                </li>
 
-                                <c:forEach var="i"
-                                           begin="${(totalPages <= 5) ? 1 : (currentPage <= 3 ? 1 : (currentPage >= (totalPages - 2) ? totalPages - 4 : currentPage - 2))}"
-                                           end="${(totalPages <= 5) ? totalPages : (currentPage <= 3 ? 5 : (currentPage >= (totalPages - 2) ? totalPages : currentPage + 2))}">
-                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
-                                        <a class="page-link" href="#">${i}</a>
+                    <c:if test="${keyword == null}">
+                        <div class="d-flex justify-content-between align-items-center m-3">
+                            <p id="pageInfo" class="mb-0">Hiển thị ${currentPage}-${totalPages} trong ${totalProduct} sản phẩm</p>
+                            <nav>
+                                <ul id="productPagination" class="pagination mb-0" data-current-page="${currentPage}">
+                                    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                        <a title="Tới trang đầu" class="page-link" href="#">|&lt;</a>
                                     </li>
-                                </c:forEach>
+                                    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                        <a title="Tới trang sau" class="page-link" href="#">&lt;</a>
+                                    </li>
 
-                                <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
-                                    <a class="page-link" href="#">&gt;</a>
-                                </li>
-                                <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
-                                    <a class="page-link" href="#">&gt;|</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                                    <c:forEach var="i"
+                                               begin="${(totalPages <= 5) ? 1 : (currentPage <= 3 ? 1 : (currentPage >= (totalPages - 2) ? totalPages - 4 : currentPage - 2))}"
+                                               end="${(totalPages <= 5) ? totalPages : (currentPage <= 3 ? 5 : (currentPage >= (totalPages - 2) ? totalPages : currentPage + 2))}">
+                                        <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                            <a title="Tới trang ${i}" class="page-link" href="#">${i}</a>
+                                        </li>
+                                    </c:forEach>
+
+                                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                        <a title="Tới trang trước" class="page-link" href="#">&gt;</a>
+                                    </li>
+                                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                        <a title="Tới trang cuối" class="page-link" href="#">&gt;|</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </c:if>
                 </div>
             </div>
 
             <!-- COMMENTS TAB -->
             <div class="tab-pane fade mb-5" id="comments" role="tabpanel">
-                <div class="filter-section">
-                    <div class="align-items-center">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" placeholder="Tìm theo tên người dùng hoặc sản phẩm..."/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <table class="table">
-                        <thead class="table-primary">
-                        <tr>
-                            <th class="text-center align-middle" style="width: 40px">
-                                <input class="form-check-input" type="checkbox" id="selectAllComments"/>
-                            </th>
-                            <th class="sortable text-white text-nowrap">Khách Hàng</th>
-                            <th class="sortable text-white text-nowrap">Sản Phẩm</th>
-                            <th class="text-white" style="min-width: 250px">Nội Dung</th>
-                            <th class="sortable text-white text-nowrap">Thời Gian</th>
-                            <th class="text-white">Hành động</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="text-center align-middle">
-                                <input class="form-check-input" type="checkbox"/>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="avatar" width="32" height="32"/>
-                                    <span>Nguyễn Hữu Duy</span>
-                                </div>
-                            </td>
-                            <td>Đồ chơi cát</td>
-                            <td>
-                                <div class="comment-content">Sản phẩm tốt quá hehe, con tôi rất thích chơi!</div>
-                            </td>
-                            <td><small>19/11/2025<br/>23:23:23</small></td>
-                            <td>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-primary p-0" title="Ẩn bình luận">
-                                        <i class="fas fa-eye-slash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center align-middle">
-                                <input class="form-check-input" type="checkbox"/>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="avatar" width="32" height="32"/>
-                                    <span>Trần Văn A</span>
-                                </div>
-                            </td>
-                            <td>Đồ chơi xếp hình</td>
-                            <td>
-                                <div class="comment-content">Chất lượng tốt, giao hàng nhanh</div>
-                            </td>
-                            <td><small>18/11/2025<br/>15:30:00</small></td>
-                            <td>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-link text-primary p-0" title="Hiện bình luận">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <hr class="mx-5"/>
-                    <div class="d-flex justify-content-between align-items-center m-3">
-                        <p class="mb-0">Hiển thị 1-10 trong 150 bình luận</p>
-                        <nav>
-                            <ul class="pagination mb-0">
-                                <li class="page-item disabled"><a class="page-link">|&lt;</a></li>
-                                <li class="page-item disabled"><a class="page-link">&lt;</a></li>
-                                <li class="page-item active"><a class="page-link">1</a></li>
-                                <li class="page-item"><a class="page-link">2</a></li>
-                                <li class="page-item"><a class="page-link">3</a></li>
-                                <li class="page-item"><a class="page-link">&gt;</a></li>
-                                <li class="page-item"><a class="page-link">&gt;|</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -244,7 +168,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModal">Thêm Sản Phẩm Mới</h5>
+                    <h5 class="modal-title">Thêm Sản Phẩm Mới</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -376,7 +300,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateProductModal">Cập Nhật Thông Tin Sản Phẩm</h5>
+                    <h5 class="modal-title">Cập Nhật Thông Tin Sản Phẩm</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -497,6 +421,14 @@
         </div>
     </div>
 </main>
+
+<c:if test="${not empty error}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showAlert(${error});
+        });
+    </script>
+</c:if>
 
 <script>
     const totalPages = ${totalPages};

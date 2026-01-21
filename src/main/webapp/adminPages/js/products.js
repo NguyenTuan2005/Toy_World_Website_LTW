@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (page < 1 || page > totalPages) return;
 
         fetch(contextPath + "/admin/products?page=" + page, {
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
         })
             .then(response => {
                 if (!response.ok) throw new Error('Mạng không thể kết nối');
@@ -82,4 +80,26 @@ function showAlert(message) {
     alert.textContent = message;
     alert.classList.remove('d-none');
     setTimeout(() => alert.classList.add('d-none'), 3000);
+}
+
+function loadComments() {
+    const commentTab = document.getElementById("comments-tab");
+    if (!commentTab.classList.contains("loaded")) {
+        commentTab.classList.add("loaded")
+    }
+
+    fetch(contextPath + "/admin/comments", {
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    })
+        .then(response => {
+            if (!response.ok) throw new Error('Mạng không thể kết nối');
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById('comments').innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showAlert('Có lỗi xảy ra khi tải trang');
+        });
 }

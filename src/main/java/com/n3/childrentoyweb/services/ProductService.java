@@ -136,4 +136,8 @@ public class ProductService {
     }
 
 
+    public Pagination<ProductManagementDTO> findByCriteria(ProductCriteria productCriteria) {
+        List<ProductManagementDTO> products = productDAO.findByCriteria(productCriteria);
+        return new Pagination<>(products, 1, products.size(), 1);
+    }
 }

@@ -1,8 +1,11 @@
 package com.n3.childrentoyweb.services;
 
+import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dao.UserCommentDAO;
-import com.n3.childrentoyweb.dto.UserCommentDTO;
+import com.n3.childrentoyweb.dto.CommentManagementDTO;
 import com.n3.childrentoyweb.models.UserComment;
+
+import java.util.List;
 
 public class UserCommentService {
     private UserCommentDAO userCommentDAO;
@@ -24,8 +27,11 @@ public class UserCommentService {
         this.userCommentDAO.save(comment);
     }
 
+    public Pagination<CommentManagementDTO> findAllCommentsForManagement(int page, int pageSize) {
+        List<CommentManagementDTO> comments = this.userCommentDAO.findAllCommentsForManagement(page, pageSize);
+        int totalComment = this.userCommentDAO.countAll();
+        int totalPage = totalComment / pageSize;
 
-    public static void main(String[] args) {
-        new UserCommentService().save(1L, 1L, "test comment");
+        return new Pagination<>(comments, page, totalComment, totalPage);
     }
 }

@@ -577,13 +577,54 @@ public class ProductDAO extends BaseDAO {
                 from products p
                 join brands b on b.id = p.brand_id
                 join categories c on c.id = p.category_id
-                where p.is_active = 1
                 limit :limit offset :offset
                 """;
         return this.getJdbi().withHandle(handle ->
                     handle.createQuery(sql)
                             .bind("limit", pageSize)
                             .bind("offset", offset)
+                            .map((rs, ctx) -> {
+                                ProductManagementDTO productManagementDTO = new ProductManagementDTO();
+                                productManagementDTO.setProductId(rs.getInt("productId"));
+                                productManagementDTO.setName(rs.getString("name"));
+                                productManagementDTO.setImgPath(rs.getString("imgPath"));
+                                productManagementDTO.setPrice(rs.getDouble("price"));
+                                productManagementDTO.setBrand(rs.getString("brand"));
+                                productManagementDTO.setCategory(rs.getString("category"));
+                                int quantity = rs.getInt("quantity");
+                                productManagementDTO.setQuantity(quantity);
+                                productManagementDTO.setStatus(quantity == 0 ? ProductStatus.OUT_OF_STOCK.getStatus() : ProductStatus.AVAILABLE.getStatus());
+                                return productManagementDTO;
+                            })
+                            .list()
+                );
+    }
+
+    public List<ProductManagementDTO> findByCriteria(ProductCriteria productCriteria) {
+        StringBuilder sql = new StringBuilder("""
+                select p.id as productId,
+                       p.name,
+                       (
+                        select img_path
+                        from product_assets
+                        where product_id = p.id
+                        and is_active = 1
+                        limit 1
+                       ) as imgPath,
+                       p.price,
+                       b.name as brand,
+                       c.name as category,
+                       p.quantity
+                from products p
+                join brands b on b.id = p.brand_id
+                join categories c on c.id = p.category_id
+                where 1 = 1
+                """);
+        sql.append(productCriteria.getNameForSql());
+        sql.append(" limit 10");
+
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
                             .map((rs, ctx) -> {
                                 ProductManagementDTO productManagementDTO = new ProductManagementDTO();
                                 productManagementDTO.setProductId(rs.getInt("productId"));

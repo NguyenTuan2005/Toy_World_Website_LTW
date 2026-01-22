@@ -44,7 +44,7 @@ public class CartController  extends HttpServlet {
 
             Product product = this.productService.findById(productId).orElseThrow(ObjectNotFoundException::new);
             ProductAsset asset = this.productAssetService.findFirstByProductId(productId).orElseThrow(ObjectNotFoundException::new);
-            Promotion promotion = this.promotionService.findById(product.getPromotionId()).orElse(new Promotion());
+            Promotion promotion = this.promotionService.findValidPromotionById(product.getPromotionId()).orElse(new Promotion());
 
             CartProductDTO cartProductDTO = new CartProductDTO(product,asset,promotion);
             cart.addItem(new CartItem(cartProductDTO, quantity));

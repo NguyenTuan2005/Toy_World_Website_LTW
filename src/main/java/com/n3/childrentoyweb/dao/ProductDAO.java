@@ -1,8 +1,11 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.*;
+import com.n3.childrentoyweb.enums.ProductStatus;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.utils.JsonColumnMapper;
+import com.n3.childrentoyweb.utils.JsonUtil;
+import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 import org.jdbi.v3.core.statement.Query;
 
@@ -495,5 +498,178 @@ public class ProductDAO extends BaseDAO {
 
     }
 
+    public List<ProductManagementDTO> findAllProductsForManagement(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
 
+        String sql = """
+                select p.id as productId,
+                       p.name,
+                       (
+                        select img_path
+                        from product_assets
+                        where product_id = p.id
+                        and is_active = 1
+                        limit 1
+                       ) as imgPath,
+                       p.price,
+                       b.name as brand,
+                       c.name as category,
+                       p.quantity
+                from products p
+                join brands b on b.id = p.brand_id
+                join categories c on c.id = p.category_id
+                limit :limit offset :offset
+                """;
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind("limit", pageSize)
+                            .bind("offset", offset)
+                            .map((rs, ctx) -> {
+                                ProductManagementDTO productManagementDTO = new ProductManagementDTO();
+                                productManagementDTO.setProductId(rs.getInt("productId"));
+                                productManagementDTO.setName(rs.getString("name"));
+                                productManagementDTO.setImgPath(rs.getString("imgPath"));
+                                productManagementDTO.setPrice(rs.getDouble("price"));
+                                productManagementDTO.setBrand(rs.getString("brand"));
+                                productManagementDTO.setCategory(rs.getString("category"));
+                                int quantity = rs.getInt("quantity");
+                                productManagementDTO.setQuantity(quantity);
+                                productManagementDTO.setStatus(quantity == 0 ? ProductStatus.OUT_OF_STOCK.getStatus() : ProductStatus.AVAILABLE.getStatus());
+                                return productManagementDTO;
+                            })
+                            .list()
+                );
+    }
+
+    public List<ProductManagementDTO> findByCriteria(ProductCriteria productCriteria) {
+        StringBuilder sql = new StringBuilder("""
+                select p.id as productId,
+                       p.name,
+                       (
+                        select img_path
+                        from product_assets
+                        where product_id = p.id
+                        and is_active = 1
+                        limit 1
+                       ) as imgPath,
+                       p.price,
+                       b.name as brand,
+                       c.name as category,
+                       p.quantity
+                from products p
+                join brands b on b.id = p.brand_id
+                join categories c on c.id = p.category_id
+                where 1 = 1
+                """);
+        sql.append(productCriteria.getNameForSql());
+        sql.append(" limit 10");
+
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .map((rs, ctx) -> {
+                                ProductManagementDTO productManagementDTO = new ProductManagementDTO();
+                                productManagementDTO.setProductId(rs.getInt("productId"));
+                                productManagementDTO.setName(rs.getString("name"));
+                                productManagementDTO.setImgPath(rs.getString("imgPath"));
+                                productManagementDTO.setPrice(rs.getDouble("price"));
+                                productManagementDTO.setBrand(rs.getString("brand"));
+                                productManagementDTO.setCategory(rs.getString("category"));
+                                int quantity = rs.getInt("quantity");
+                                productManagementDTO.setQuantity(quantity);
+                                productManagementDTO.setStatus(quantity == 0 ? ProductStatus.OUT_OF_STOCK.getStatus() : ProductStatus.AVAILABLE.getStatus());
+                                return productManagementDTO;
+                            })
+                            .list()
+                );
+    }
+
+    public long save(Product product) {
+        String sql = """
+                INSERT INTO `products` (`price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+                VALUES (:price, :promotionId, :quantity, :name, :restInfo, :description, :brandId, :categoryId)
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("price", product.getPrice())
+                            .bind("promotionId", product.getPromotionId())
+                            .bind("quantity", product.getQuantity())
+                            .bind("name", product.getName())
+                            .bind("restInfo", JsonUtil.parseProductRestInfo(product.getRestInfo()))
+                            .bind("description", product.getDescription())
+                            .bind("brandId", product.getBrandId())
+                            .bind("categoryId", product.getCategoryId())
+                            .executeAndReturnGeneratedKeys("id")
+                            .mapTo(Long.class)
+                            .one()
+                );
+    }
+
+    public Product findProductForManagementById(long productId) {
+        String sql = """
+                select p.id,
+                       p.name,
+                       p.price,
+                       p.brand_id as brandId,
+                       p.category_id as categoryId,
+                       p.promotion_id as promotionId,
+                       p.quantity,
+                       p.description,
+                       p.rest_info as restInfo,
+                       p.is_active as isActive
+                from products p
+                where p.id = :id
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", productId)
+                        .map((rs, ctx) -> {
+                            Product product = new Product();
+                            product.setId(rs.getLong("id"));
+                            product.setName(rs.getString("name"));
+                            product.setPrice(rs.getDouble("price"));
+                            product.setBrandId(rs.getLong("brandId"));
+                            product.setCategoryId(rs.getLong("categoryId"));
+                            product.setPromotionId(rs.getLong("promotionId"));
+                            product.setQuantity(rs.getInt("quantity"));
+                            product.setDescription(rs.getString("description"));
+                            product.setRestInfo(JsonUtil.parseProductRestInfo(rs.getString("restInfo")));
+                            product.setActive(rs.getBoolean("isActive"));
+                            return product;
+                        })
+                        .one()
+        );
+    }
+
+    public void update(Product product) {
+        String sql = """
+                UPDATE products
+                SET name = :name,
+                    price = :price,
+                    quantity = :quantity,
+                    description = :description,
+                    rest_info = :restInfo,
+                    brand_id = :brandId,
+                    category_id = :categoryId,
+                    promotion_id = :promotionId,
+                    is_active = :isActive
+                WHERE id = :id
+                """;
+
+        this.getJdbi().useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("name", product.getName())
+                        .bind("price", product.getPrice())
+                        .bind("quantity", product.getQuantity())
+                        .bind("description", product.getDescription())
+                        .bind("restInfo", JsonUtil.parseProductRestInfo(product.getRestInfo()))
+                        .bind("brandId", product.getBrandId())
+                        .bind("categoryId", product.getCategoryId())
+                        .bind("promotionId", product.getPromotionId())
+                        .bind("isActive", product.getActive())
+                        .bind("id", product.getId())
+                        .execute()
+        );
+    }
 }

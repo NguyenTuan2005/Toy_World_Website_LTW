@@ -28,6 +28,14 @@ public class ProductService {
         return productDAO.findAll();
     }
 
+    public Pagination<ProductManagementDTO> findAllProductsForManagement(int page, int pageSize) {
+        List<ProductManagementDTO> products= productDAO.findAllProductsForManagement(page, pageSize);
+        int totalElement = productDAO.countAll();
+        int totalPages = totalElement / pageSize;
+
+        return new Pagination<>(products, page, totalElement, totalPages);
+    }
+
     public int countAll() {
         return this.productDAO.countAll();
     }
@@ -177,4 +185,21 @@ public class ProductService {
         return result;
     }
 
+
+    public Pagination<ProductManagementDTO> findByCriteria(ProductCriteria productCriteria) {
+        List<ProductManagementDTO> products = productDAO.findByCriteria(productCriteria);
+        return new Pagination<>(products, 1, products.size(), 1);
+    }
+
+    public long save(Product product) {
+        return this.productDAO.save(product);
+    }
+
+    public Product findProductForManagementById(long productId) {
+        return this.productDAO.findProductForManagementById(productId);
+    }
+
+    public void update(Product product) {
+        this.productDAO.update(product);
+    }
 }

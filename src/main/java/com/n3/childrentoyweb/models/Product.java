@@ -1,7 +1,5 @@
 package com.n3.childrentoyweb.models;
 
-
-import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Product extends BaseModel {

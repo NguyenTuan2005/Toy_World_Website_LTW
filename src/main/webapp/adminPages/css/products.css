@@ -1,0 +1,47 @@
+.nav-tabs .nav-link {
+    color: #6c757d;
+    font-weight: 500;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 20px;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #495057;
+    border-bottom-color: #dee2e6;
+}
+
+.nav-tabs .nav-link.active {
+    color: #dc3545;
+    border-bottom-color: #dc3545;
+    background-color: transparent;
+}
+
+.nav-pills .nav-link.active{
+    color: white !important;
+    background-color: #cf102d !important;
+}
+
+.nav-link {
+    color: #cf102d !important;
+}
+
+.comment-content {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.product-name-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    word-wrap: break-word;
+}

@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dao.PromotionDAO;
+import com.n3.childrentoyweb.dto.PromotionNameDTO;
 import com.n3.childrentoyweb.models.Promotion;
 
 import java.util.Optional;
@@ -48,6 +49,15 @@ public class PromotionService {
         return promotionDAO.countAll();
     }
 
+    public Optional<Promotion> findValidPromotionById(Long promotionId) {
+        if (promotionId == null) return Optional.empty();
+        return Optional.ofNullable(this.promotionDAO.findValidPromotionById(promotionId));
+    }
+
+    public List<PromotionNameDTO> findAllPromotionName() {
+        return this.promotionDAO.findAllPromotionName();
+    }
+  
     public  Pagination<Promotion> findPromotionPagingByName(int currentPage, int pageSize, String keyword) {
         List<Promotion> promotions = this.promotionDAO.findByName(keyword);
         int totalElements = this.promotionDAO.countAll();

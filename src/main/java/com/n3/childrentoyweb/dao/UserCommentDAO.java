@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.CommentManagementDTO;
 import com.n3.childrentoyweb.dto.UserCommentDTO;
 import com.n3.childrentoyweb.models.UserComment;
 
@@ -45,10 +46,48 @@ public class UserCommentDAO extends BaseDAO {
         );
     }
 
+    public List<CommentManagementDTO> findAllCommentsForManagement(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        String sql = """
+                select uc.id as commentId,
+                       concat(u.last_name, " ", u.first_name) as user,
+                       p.name as product,
+                       uc.content,
+                       uc.is_active as isActive, 
+                       uc.created_at as createdAt
+                from user_comments uc
+                join users u on u.id = uc.user_id
+                join products p on p.id = uc.product_id
+                limit :limit offset :offset
+                """;
 
-    public static void main(String[] args) {
-        System.out.println(new UserCommentDAO().findByProductId(1L));
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind("limit", pageSize)
+                            .bind("offset", offset)
+                            .map((rs, ctx) -> {
+                                CommentManagementDTO commentManagementDTO = new CommentManagementDTO();
+                                commentManagementDTO.setCommentId(rs.getInt("commentId"));
+                                commentManagementDTO.setUser(rs.getString("user"));
+                                commentManagementDTO.setProduct(rs.getString("product"));
+                                commentManagementDTO.setContent(rs.getString("content"));
+                                commentManagementDTO.setActive(rs.getBoolean("isActive"));
+                                commentManagementDTO.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+                                return commentManagementDTO;
+                            })
+                            .list()
+                );
     }
 
-
+    public int countAll() {
+        String sql = """
+                select count(*)
+                from user_comments
+                """;
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .mapTo(Integer.class)
+                            .one()
+                );
+    }
 }

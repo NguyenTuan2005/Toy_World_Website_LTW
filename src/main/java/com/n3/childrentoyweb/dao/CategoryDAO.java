@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.CategoryFilterDTO;
+import com.n3.childrentoyweb.models.Category;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
@@ -27,4 +28,16 @@ public class CategoryDAO extends BaseDAO{
         );
     }
 
+    public List<Category> findAll() {
+        String sql = """
+                select *
+                from categories
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .mapToBean(Category.class)
+                            .list()
+                );
+    }
 }

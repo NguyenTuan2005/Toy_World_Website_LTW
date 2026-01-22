@@ -88,10 +88,10 @@
                         </li>
                     </c:forEach>
 
-                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                    <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
                         <a title="Tới trang trước" class="page-link" href="#">&gt;</a>
                     </li>
-                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                    <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
                         <a title="Tới trang cuối" class="page-link" href="#">&gt;|</a>
                     </li>
                 </ul>

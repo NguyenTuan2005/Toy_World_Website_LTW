@@ -20,4 +20,8 @@ public class ProductAssetService {
     public Optional<ProductAsset> findFirstByProductId(long productId) {
         return this.productAssetDAO.findFirstByProductId(productId);
     }
+
+    public void saveAll(List<ProductAsset> assets) {
+        assets.forEach(productAsset -> this.productAssetDAO.save(productAsset));
+    }
 }

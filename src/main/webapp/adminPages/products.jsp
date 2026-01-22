@@ -59,13 +59,14 @@
                             <form class="mb-0" method="post" action="${pageContext.request.contextPath}/admin/products">
                                 <input type="text" name="keyword" class="form-control search-input" value="${keyword}" placeholder="Tìm theo tên sản phẩm..."/>
                                 <c:if test="${keyword != null}">
-                                    <i class="fas fa-times clear-icon"
-                                       onclick="window.location.href='${pageContext.request.contextPath}/admin/products'"></i>
+                                    <a class="clear-icon" href="${pageContext.request.contextPath}/admin/products">
+                                        <i class="fas fa-times"></i>
+                                    </a>
                                 </c:if>
                             </form>
                         </div>
                         <div class="mt-3 mt-md-0">
-                            <button class="btn-add fw-medium px-4 py-2" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            <button class="btn-add fw-medium px-4 py-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/new-products'">
                                 <i class="fas fa-plus"></i> Thêm sản phẩm mới
                             </button>
                         </div>
@@ -144,10 +145,10 @@
                                         </li>
                                     </c:forEach>
 
-                                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                    <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
                                         <a title="Tới trang trước" class="page-link" href="#">&gt;</a>
                                     </li>
-                                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                    <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
                                         <a title="Tới trang cuối" class="page-link" href="#">&gt;|</a>
                                     </li>
                                 </ul>
@@ -159,137 +160,6 @@
 
             <!-- COMMENTS TAB -->
             <div class="tab-pane fade mb-5" id="comments" role="tabpanel">
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL: THÊM SẢN PHẨM MỚI -->
-    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thêm Sản Phẩm Mới</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addProductForm" action="/products/save" method="post" enctype="multipart/form-data">
-
-                        <div class="mb-3">
-                            <label class="form-label">Tên Sản Phẩm <span class="text-danger">*</span></label>
-                            <input class="form-control" name="name" required>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label class="form-label">Giá <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="price" required>
-                            </div>
-                            <div class="col">
-                                <label class="form-label">Giảm Giá (%)</label>
-                                <input type="number" class="form-control" name="discount_percent" min="0" max="100">
-                            </div>
-                            <div class="col">
-                                <label class="form-label">Số Lượng <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="quantity" required min="0">
-                            </div>
-                        </div>
-
-                        <label class="form-label">Thông Số Sản Phẩm</label>
-                        <table class="table key-value-table" id="kvTableAdd">
-                            <thead>
-                            <tr>
-                                <th>Từ Khóa</th>
-                                <th>Nội Dung</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center"><input class="form-control key-input"
-                                                               placeholder="VD: Kích thước"></td>
-                                <td class="text-center"><input class="form-control value-input"
-                                                               placeholder="VD: 30x40cm"></td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><input class="form-control key-input"
-                                                               placeholder="VD: Chất liệu"></td>
-                                <td class="text-center"><input class="form-control value-input"
-                                                               placeholder="VD: Nhựa ABS"></td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><input class="form-control key-input"
-                                                               placeholder="VD: Trọng lượng"></td>
-                                <td class="text-center"><input class="form-control value-input" placeholder="VD: 500g">
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-secondary mb-3" onclick="addRowToTable('kvTableAdd')">
-                            <i class="bi bi-plus-circle"></i> Thêm Thông Số
-                        </button>
-
-                        <input type="hidden" name="rest_info" id="restInfoAdd">
-
-                        <div class="mb-3">
-                            <label class="form-label">Mô Tả Sản Phẩm</label>
-                            <textarea class="form-control" name="description" rows="4"
-                                      placeholder="Nhập mô tả chi tiết về sản phẩm..."></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Thương Hiệu <span class="text-danger">*</span></label>
-                            <select class="form-select" name="brand_id" required>
-                                <option value="">-- Chọn Thương Hiệu --</option>
-                                <option value="1">Nike</option>
-                                <option value="2">Yonex</option>
-                                <option value="3">Lining</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Danh Mục <span class="text-danger">*</span></label>
-                            <select class="form-select" name="category_id" required>
-                                <option value="">-- Chọn Danh Mục --</option>
-                                <option value="1">Adi</option>
-                                <option value="2">Racket</option>
-                                <option value="3">Accessory</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Hình Ảnh</label>
-                            <input type="file" class="form-control" id="imageUploadAdd" name="images" multiple
-                                   accept="image/*">
-                            <div id="previewAdd" class="image-preview mt-2"></div>
-                        </div>
-
-                        <div class="mb-3 form-check form-switch">
-                            <input class="form-check-input" type="checkbox" name="is_active" id="statusAdd" value="true"
-                                   checked>
-                            <label class="form-check-label" for="statusAdd">Trạng thái bán hàng (Bán ngay)</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times"></i> Hủy
-                    </button>
-                    <button type="button" class="btn btn-danger" onclick="submitAddProduct()">
-                        <i class="fas fa-check"></i> Lưu
-                    </button>
-                </div>
             </div>
         </div>
     </div>

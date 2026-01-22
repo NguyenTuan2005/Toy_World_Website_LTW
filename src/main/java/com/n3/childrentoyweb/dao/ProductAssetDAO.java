@@ -51,4 +51,18 @@ public class ProductAssetDAO extends BaseDAO {
                         .mapToBean(ProductAsset.class)
                         .findOne());
     }
+
+    public void save(ProductAsset productAsset) {
+        String sql = """
+                INSERT INTO `product_assets` (`img_path`, `product_id`)
+                VALUES (:imgPath, :productId)
+                """;
+
+        this.getJdbi().useHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("imgPath", productAsset.getImgPath())
+                            .bind("productId", productAsset.getProductId())
+                            .execute()
+                );
+    }
 }

@@ -4,6 +4,7 @@ import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.enums.ProductStatus;
 import com.n3.childrentoyweb.models.Product;
 import com.n3.childrentoyweb.utils.JsonColumnMapper;
+import com.n3.childrentoyweb.utils.JsonUtil;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 import org.jdbi.v3.core.statement.Query;
@@ -639,6 +640,28 @@ public class ProductDAO extends BaseDAO {
                                 return productManagementDTO;
                             })
                             .list()
+                );
+    }
+
+    public long save(Product product) {
+        String sql = """
+                INSERT INTO `products` (`price`, `promotion_id`, `quantity`, `name`, `rest_info`, `description`, `brand_id`, `category_id`)
+                VALUES (:price, :promotionId, :quantity, :name, :restInfo, :description, :brandId, :categoryId)
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("price", product.getPrice())
+                            .bind("promotionId", product.getPromotionId())
+                            .bind("quantity", product.getQuantity())
+                            .bind("name", product.getName())
+                            .bind("restInfo", JsonUtil.parseProductRestInfo(product.getRestInfo()))
+                            .bind("description", product.getDescription())
+                            .bind("brandId", product.getBrandId())
+                            .bind("categoryId", product.getCategoryId())
+                            .executeAndReturnGeneratedKeys("id")
+                            .mapTo(Long.class)
+                            .one()
                 );
     }
 }

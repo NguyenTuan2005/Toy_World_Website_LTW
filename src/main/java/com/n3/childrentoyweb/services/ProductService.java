@@ -140,4 +140,8 @@ public class ProductService {
         List<ProductManagementDTO> products = productDAO.findByCriteria(productCriteria);
         return new Pagination<>(products, 1, products.size(), 1);
     }
+
+    public long save(Product product) {
+        return this.productDAO.save(product);
+    }
 }

@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.PromotionNameDTO;
 import com.n3.childrentoyweb.models.Promotion;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 
@@ -171,12 +172,39 @@ public class PromotionDAO  extends BaseDAO{
         );
     }
 
+    public Promotion findValidPromotionById(Long promotionId) {
+        String sql = """
+                Select p.*
+                from promotions p
+                where p.id = :id
+                and p.expired_at >= now()
+                and p.is_active = 1
+                """;
 
-
-    public static void main(String[] args) {
-        System.out.println(new PromotionDAO().findPromotionsByEventId(1));
+        return super.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                .bind("id", promotionId)
+                .mapToBean(Promotion.class)
+                .one());
     }
 
+    public List<PromotionNameDTO> findAllPromotionName() {
+        String sql = """
+                select p.id, p.name
+                from promotions p
+                where p.is_active = 1
+                and p.expired_at >= now()
+                order by p.expired_at
+                """;
 
-
+        return this.getJdbi().withHandle(handle ->
+                  handle.createQuery(sql)
+                          .map((rs,ctx) -> {
+                              PromotionNameDTO promotionNameDTO = new PromotionNameDTO();
+                              promotionNameDTO.setId(rs.getInt("id"));
+                              promotionNameDTO.setName(rs.getString("name"));
+                              return promotionNameDTO;
+                          })
+                          .list()
+                );
+    }
 }

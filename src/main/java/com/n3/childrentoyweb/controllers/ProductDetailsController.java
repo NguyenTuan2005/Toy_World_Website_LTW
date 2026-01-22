@@ -1,12 +1,16 @@
 package com.n3.childrentoyweb.controllers;
 
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
+import com.n3.childrentoyweb.dto.ProductListDTO;
+import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.ProductService;
+import com.n3.childrentoyweb.utils.AppContextPathHolder;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @WebServlet(value = "/products/*")
@@ -19,6 +23,7 @@ public class ProductDetailsController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AppContextPathHolder.setContextPath(request.getContextPath());
         try {
             String pathInfo = request.getPathInfo();
 
@@ -29,16 +34,27 @@ public class ProductDetailsController extends HttpServlet {
 
             long id;
             try {
-                id = Long.parseLong(pathInfo.substring(1));
+                String[] parts = pathInfo.split("/");
+
+//                String id = parts[parts.length - 1];
+
+                id = Long.parseLong( parts[parts.length - 1]);
             } catch (NumberFormatException e) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
             }
 
+            User currentUser = (User) request.getSession().getAttribute("currentUser");
 
-            ProductDetailDTO product = productService.findProductDetailById(id);
+            ProductDetailDTO product = productService.findProductDetailById(currentUser, id);
+
+            System.out.println(product);
+
+            List<ProductListDTO> relatedProducts = productService.findRelatedProduct(currentUser, id, 8);
 
             request.setAttribute("product", product);
+            request.setAttribute("relatedProducts", relatedProducts);
+
             request.getRequestDispatcher("/product-detail.jsp").forward(request, response);
 
         } catch (NoSuchElementException e) {

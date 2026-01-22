@@ -356,6 +356,14 @@
                                 color: '#6c757d',
                                 font: {
                                     size: 12
+                                },
+                                callback: function(value) {
+                                    const label = this.getLabelForValue(value);
+                                    const maxLength = 30;
+
+                                    return label.length > maxLength
+                                        ? label.substring(0, maxLength) + '...'
+                                        : label;
                                 }
                             }
                         }

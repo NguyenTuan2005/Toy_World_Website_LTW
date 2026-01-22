@@ -31,7 +31,24 @@
         </button>
 
         <main class="col-md-9 col-lg-10" id="mainContent">
-            <h1 class="text-center my-4">Thống kê doanh thu</h1>
+            <h1 class="text-center my-4">Thống kê doanh thu
+                <select class="form-select" name="month">
+                    <option value="1"  ${month == 1  ? "selected" : ""}>Tháng 1</option>
+                    <option value="2"  ${month == 2  ? "selected" : ""}>Tháng 2</option>
+                    <option value="3"  ${month == 3  ? "selected" : ""}>Tháng 3</option>
+                    <option value="4"  ${month == 4  ? "selected" : ""}>Tháng 4</option>
+                    <option value="5"  ${month == 5  ? "selected" : ""}>Tháng 5</option>
+                    <option value="6"  ${month == 6  ? "selected" : ""}>Tháng 6</option>
+                    <option value="7"  ${month == 7  ? "selected" : ""}>Tháng 7</option>
+                    <option value="8"  ${month == 8  ? "selected" : ""}>Tháng 8</option>
+                    <option value="9"  ${month == 9  ? "selected" : ""}>Tháng 9</option>
+                    <option value="10" ${month == 10 ? "selected" : ""}>Tháng 10</option>
+                    <option value="11" ${month == 11 ? "selected" : ""}>Tháng 11</option>
+                    <option value="12" ${month == 12 ? "selected" : ""}>Tháng 12</option>
+                </select>
+
+
+            </h1>
 
             <!-- Tổng quan KPI -->
             <div class="row mb-4">

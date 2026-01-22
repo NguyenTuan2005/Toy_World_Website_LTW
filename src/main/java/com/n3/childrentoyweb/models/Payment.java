@@ -33,6 +33,25 @@ public class Payment extends BaseModel{
         this.status = status;
     }
 
+    public Payment() {
+    }
+
+    public void setPaymentMethodId(Long paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Long getPaymentMethodId() {
         return paymentMethodId;
     }

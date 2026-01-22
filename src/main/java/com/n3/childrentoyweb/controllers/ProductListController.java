@@ -4,6 +4,7 @@ import com.n3.childrentoyweb.dto.PriceRangeFilterDTO;
 import com.n3.childrentoyweb.dto.ProductListDTO;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.*;
+import com.n3.childrentoyweb.utils.AppContextPathHolder;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -32,7 +33,7 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        AppContextPathHolder.setContextPath(request.getContextPath());
         int page = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
 
         //category filter
@@ -60,9 +61,6 @@ public class ProductListController extends HttpServlet {
             }
         }
 
-        request.setAttribute("selectedPriceRanges", selectedPriceRanges);
-
-
         //brand filter
         String[] brandParams = request.getParameterValues("brandId");
         List<Integer> brandIds = null;
@@ -72,26 +70,29 @@ public class ProductListController extends HttpServlet {
                     .toList();
         }
 
-        //load product data
+        //sort
+        String sortType = request.getParameter("sort");
+        if (sortType == null) {
+            sortType = "new";
+        }
+
+
+        //product
         User currentUser = (User) request.getSession().getAttribute("currentUser");
         Long userId = (currentUser != null) ? currentUser.getId() : null;
 
-        List<ProductListDTO> products;
-        if (brandIds == null && categoryIds == null && selectedPriceRanges == null && userId == null) {
-            products = productService.findAllByPage(page, PAGE_SIZE);
-        } else {
-            products = productService.findByFilter(userId, brandIds, categoryIds, selectedPriceRanges, page, PAGE_SIZE);
-        }
+        List<ProductListDTO> products = productService.findByFilter(userId, brandIds, categoryIds, selectedPriceRanges, sortType, page, PAGE_SIZE);
 
         //page
         int totalItems = productService.countByFilter(brandIds, categoryIds, selectedPriceRanges);
         int totalPages = (int) Math.ceil((double) totalItems / PAGE_SIZE);
 
         request.setAttribute("products", products);
-        request.setAttribute("brands", brandService.findAll());
-        request.setAttribute("categories", categoryService.findAll());
+        request.setAttribute("brands", brandService.findBrandProductCount());
+        request.setAttribute("categories", categoryService.findCategoryProductCount());
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
+        request.setAttribute("totalItems", totalItems);
 
         //default price filter
         List<PriceRangeFilterDTO> priceRanges = List.of(
@@ -102,10 +103,8 @@ public class ProductListController extends HttpServlet {
                 new PriceRangeFilterDTO(2000000, 3000000, "2.000.000₫ - 3.000.000₫"),
                 new PriceRangeFilterDTO(3000000, 999999999, "Trên 3.000.000₫")
         );
+
         request.setAttribute("priceRanges", priceRanges);
-
-        //wishlist for current user
-
         request.getRequestDispatcher("/product-list.jsp").forward(request, response);
     }
 

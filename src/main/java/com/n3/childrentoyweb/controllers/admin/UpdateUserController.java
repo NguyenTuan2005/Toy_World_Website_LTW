@@ -35,18 +35,6 @@ public class UpdateUserController extends HttpServlet {
         String[] roles = request.getParameterValues("roles");
         String status = request.getParameter("status");
 
-        System.out.println("UserId " + id);
-        System.out.println("FirstName " + firstName);
-        System.out.println("Last name " + lastName);
-        System.out.println("Gender " + gender);
-        System.out.println("Phone " + phone);
-        System.out.println("mail " + email);
-        System.out.println("" + password);
-        System.out.println("Province" + province);
-        System.out.println("address " + address);
-        System.out.println("Role" + roles);
-        System.out.println(status);
-
 
         User user = new User();
         user.setId(id);

@@ -3,10 +3,12 @@ package com.n3.childrentoyweb.services;
 import com.n3.childrentoyweb.dao.*;
 import com.n3.childrentoyweb.dto.*;
 import com.n3.childrentoyweb.models.Product;
+import com.n3.childrentoyweb.models.User;
+import com.n3.childrentoyweb.models.WishList;
+import com.n3.childrentoyweb.utils.AppContextPathHolder;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductService {
     private ProductDAO productDAO;
@@ -24,10 +26,6 @@ public class ProductService {
 
     public List<ProductListDTO> findAll() {
         return productDAO.findAll();
-    }
-
-    public List<ProductListDTO> findAllByPage(int page, int pageSize) {
-        return productDAO.findAllByPage(page, pageSize);
     }
 
     public Pagination<ProductManagementDTO> findAllProductsForManagement(int page, int pageSize) {
@@ -54,10 +52,10 @@ public class ProductService {
         return this.productDAO.findById(id);
     }
 
-    public ProductDetailDTO findProductDetailById(Long id) {
-        ProductDetailDTO product = productDAO.findDetailById(id)
+    public ProductDetailDTO findProductDetailById(User currentUser, Long productId) {
+        ProductDetailDTO product = productDAO.findDetailById(productId)
                 .orElseThrow(() -> new NoSuchElementException(
-                        "Product not found with id = " + id));
+                        "Product not found with id = " + productId));
 
         if (product.getPromotionId() != null) {
             double originalPrice = product.getOriginalPrice();
@@ -82,10 +80,21 @@ public class ProductService {
             product.setDiscountPrice(discountPrice);
         }
 
-        product.setImagePaths(productAssetDAO.findImagePathByProductId(id));
+        product.setImagePaths(productAssetDAO.findImagePathByProductId(productId));
 
-        product.setComments(userCommentDAO.findByProductId(id));
+        if(product.getImagePaths() == null || product.getImagePaths().isEmpty()){
+            product.setImagePaths(new ArrayList<>(List.of(AppContextPathHolder.getContextPath() + "/img/default-product-img.png")));
+        }
 
+        //wishlist
+        if(currentUser != null){
+            WishList wishList = new WishList(currentUser.getId(), productId);
+            boolean wishListStatus = wishListDAO.exists(wishList);
+            product.setWishlisted(wishListStatus);
+        }
+        
+        //comment
+        product.setComments(userCommentDAO.findByProductId(productId));
 
         return product;
     }
@@ -94,23 +103,68 @@ public class ProductService {
         return productDAO.countProductInMonth(year, month);
     }
 
-//    public List<Product> findProductsWithAvailablePromotion(){
-//        return this.productDAO. findProductsWithAvailablePromotion();
-//    }
 
     public List<ProductPromotionDTO> findProductsByPromotionId(Long promotionId) {
         return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
-    public List<ProductListDTO> findByFilter(Long currentUserId, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, int page, int pageSize) {
+    public List<ProductListDTO> findByFilter(Long currentUserId, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, String sortType, int page, int pageSize) {
 
         int offset = (page - 1) * pageSize;
-        List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, pageSize, offset);
+
+        List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, sortType, pageSize, offset);
 
         List<Long> wishlistProductIds = wishListDAO.findAllProductIdByUserId(currentUserId);
 
+        products.forEach(p -> {
+            p.setWishlisted(wishlistProductIds.contains(p.getId()));
+            if(p.getImgPath() == null || p.getImgPath().trim().isEmpty()){
+                p.setImgPath(AppContextPathHolder.getContextPath() + "/img/default-product-img.png");
+            }
+        });
 
-        for (ProductListDTO p : products) {
+        return products;
+    }
+
+
+    public int countByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
+        return productDAO.countByFilter(brandIds, categoryIds, priceRanges);
+    }
+
+    public List<ProductListDTO> findRelatedProduct(User currentUser, Long productId, int limit){
+        Product current = productDAO.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        List<ProductListDTO> result = new ArrayList<>();
+
+        result.addAll(productDAO.findRelatedByCategoryAndBrand(
+                        current.getCategoryId(),
+                        current.getBrandId(),
+                        current.getId(),
+                        limit)
+        );
+
+//        if (result.size() < limit) {
+//            int remain = limit - result.size();
+//
+//            List<Product> more = productDAO.findByCategory(
+//                    current.getCategoryId(),
+//                    current.getId(),
+//                    remain
+//            );
+//
+//            Set<Long> existedIds = result.stream()
+//                    .map(Product::getId)
+//                    .collect(Collectors.toSet());
+//
+//            more.stream().filter(p -> !existedIds.contains(p.getId())).forEach(result::add);
+//        }
+
+        List<Long> wishlistProductIds = new ArrayList<>();
+        if(currentUser != null)
+            wishlistProductIds.addAll(wishListDAO.findAllProductIdByUserId(currentUser.getId()));
+
+        for (ProductListDTO p : result) {
             long originPrice = p.getOriginPrice();
             long maxDiscountPrice = p.getMaxDiscountPrice();
             double discountPercent = p.getDiscountPercent();
@@ -127,12 +181,8 @@ public class ProductService {
                 p.setWishlisted(true);
             }
         }
-        return products;
-    }
 
-
-    public int countByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
-        return productDAO.countByFilter(brandIds, categoryIds, priceRanges);
+        return result;
     }
 
 

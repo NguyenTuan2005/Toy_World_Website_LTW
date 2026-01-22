@@ -18,11 +18,13 @@ body {
 
 /* Header Section */
 .dashboard-header {
+    margin-top: 20px;
     margin-bottom: 32px;
+    border-bottom: 1px solid #e9ecef;
 }
 
 .dashboard-header h1 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 8px;
@@ -31,7 +33,7 @@ body {
 .dashboard-header p {
     color: #6c757d;
     font-size: 14px;
-    margin: 0;
+    margin-bottom: 10px !important;
 }
 
 /* Stats Cards */
@@ -46,7 +48,7 @@ body {
     background: white;
     border-radius: 12px;
     padding: 24px;
-    border: 1px solid #e9ecef;
+    border: 1px solid #d9dde2;
     transition: all 0.2s ease;
 }
 
@@ -138,7 +140,7 @@ body {
     background: white;
     border-radius: 12px;
     padding: 24px;
-    border: 1px solid #e9ecef;
+    border: 1px solid #d9dde2;
 }
 
 .chart-header {

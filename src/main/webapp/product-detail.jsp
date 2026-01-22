@@ -17,9 +17,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product-details.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product-details.css">
 
 </head>
 
@@ -27,252 +27,456 @@
 <!-- header -->
 <jsp:include page="/common/header.jsp"/>
 
-<div class="container my-5">
-    <div class="row">
-        <!-- Product Images Section -->
-        <div class="col-md-6">
-            <div class="product-image-main position-relative">
-                <img id="mainImage"
-                     src="${product.imagePaths.get(0)}"
-                     alt="${product.name}"
-                     class="img-fluid"
-                     data-bs-toggle="modal"
-                     data-bs-target="#imageModal"
-                     style="cursor: zoom-in;">
-            </div>
+<div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
+    <div class="container">
+        <nav class="breadcrumb mb-0 d-flex align-items-center justify-content-start overflow-visible flex-nowrap"
+             aria-label="Breadcrumb">
+            <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
+            <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+            <a href="${pageContext.request.contextPath}/products" aria-label="Tất cả sản phẩm">Tất cả sản phẩm</a>
 
-            <div class="thumbnail-container">
-                <c:forEach items="${product.imagePaths}" var="img" varStatus="status">
-                    <div class="thumbnail ${status.first ? 'active' : ''}"
-                         data-image="${img}">
-                        <img src="${img}" alt="Thumbnail ${status.index + 1}">
-                    </div>
-                </c:forEach>
+            <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+            <a href="${pageContext.request.contextPath}/products/${product.id}"
+               aria-label="${product.name}">${product.name}</a>
+        </nav>
+    </div>
+</div>
+
+<%--notification--%>
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="addCartToast" class="toast align-items-center text-bg-success border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-delay="3000">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-basket2-fill me-2"></i>
+                Đã thêm sản phẩm vào giỏ hàng
             </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"></button>
         </div>
+    </div>
+</div>
+<main>
+    <div class="container my-4">
+        <div class="row">
+            <!-- Product Images Section -->
+            <div class="col-md-6">
+                <div class="product-image-main position-relative">
+                    <img id="mainImage"
+                         src="${product.imagePaths.get(0)}"
+                         alt="${product.name}"
+                         class="img-fluid"
+                         data-bs-toggle="modal"
+                         data-bs-target="#imageModal"
+                         style="cursor: zoom-in;">
+                </div>
 
-        <!-- Modal zoom ảnh sản phẩm -->
-        <div class="modal fade" id="imageModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content modal-content border border-1 shadow-sm">
-                    <div class="modal-body text-center">
-                        <img id="modalImage" class="img-fluid">
+                <div class="thumbnail-container">
+                    <c:forEach items="${product.imagePaths}" var="img" varStatus="status">
+                        <div class="thumbnail ${status.first ? 'active' : ''}"
+                             data-image="${img}">
+                            <img src="${img}" alt="Thumbnail ${status.index + 1}">
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+
+            <!-- Modal zoom ảnh sản phẩm -->
+            <div class="modal fade" id="imageModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content modal-content border border-1 shadow-sm">
+                        <div class="modal-body text-center">
+                            <img id="modalImage" class="img-fluid">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <!-- Product Info Section -->
+            <div class="col-md-6">
+                <div class="product-info">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h4 class="product-title mb-0">${product.name}</h4>
 
-        <!-- Product Info Section -->
-        <div class="col-md-6">
-            <div class="product-info">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h4 class="product-title mb-0">${product.name}</h4>
+                        <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}"
+                                data-id="${product.id}">
+                            <i class="bi ${product.wishlisted ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 brand-badge my-2">
+                            Thương hiệu: <a
+                                href="${pageContext.request.contextPath}/products?brandId=${product.brandId}"
+                                class="text-decoration-none">${product.brandName}</a>
+                        </div>
 
-                    <i class="bi bi-heart wishlist-icon fs-2"
-                       data-product-id="${product.id}"
-                       title="Thêm vào danh sách yêu thích"></i>
-                </div>
+                        <div class="col-12 brand-badge my-2">
+                            Danh mục: <a
+                                href="${pageContext.request.contextPath}/products?categoryId=${product.categoryId}"
+                                class="text-decoration-none">${product.categoryName}</a>
+                        </div>
+                    </div>
 
-                <div class="brand-badge my-2">
-                    Thương hiệu: <a href="#" class="text-decoration-none">${product.brandName}</a>
-                </div>
-
-                <div class="price-section my-3">
-                    <span class="brand-badge me-2">Giá Bán: </span>
-                    <c:if test="${product.promotionId != null}">
+                    <div class="price-section my-3">
+                        <span class="brand-badge me-2">Giá Bán: </span>
+                        <c:if test="${product.promotionId != null}">
                         <span class="price-current">
                         <fmt:formatNumber value="${product.discountPrice}" type="currency" currencyCode="VND"/>
                         </span>
-                        <span class="price-original">
+                            <span class="price-original">
                             <fmt:formatNumber value="${product.originalPrice}" type="currency" currencyCode="VND"/>
                         </span>
-                        <span class="discount-badge">
+                            <span class="discount-badge">
                             -<fmt:formatNumber value="${product.discountPercent}" maxFractionDigits="0"/>%
                         </span>
-                    </c:if>
+                        </c:if>
 
-                    <c:if test="${product.promotionId == null}">
+                        <c:if test="${product.promotionId == null}">
                         <span class="price-current">
                         <fmt:formatNumber value="${product.originalPrice}" type="currency" currencyCode="VND"/>
                         </span>
-                    </c:if>
+                        </c:if>
 
+                    </div>
+
+                    <ul class="features-list">
+                        <li>Hàng chính hãng</li>
+                        <li>Miễn phí giao hàng toàn quốc cho đơn hàng từ 500k</li>
+                        <li>Giao hàng nội bộ 4-6 tiếng</li>
+                        <li>Mở hộp và kiểm tra hàng trước khi nhận.</li>
+                    </ul>
+
+                    <div class="add-cart-box">
+                        <strong style="font-size: 18px">Số lượng</strong>
+                        <div class="quantity-input">
+                            <button type="button" id="decreaseQty">-</button>
+                            <input type="number" class="quantity" id="quantity" value="1" min="1">
+                            <button type="button" id="increaseQty">+</button>
+                        </div>
+
+                        <button class="btn-add-cart" data-id="${product.id}">Thêm Vào Giỏ Hàng</button>
+                    </div>
+
+                    <c:choose>
+                        <c:when test="${not empty product.restInfo}">
+                            <c:forEach items="${product.restInfo}" var="entry">
+                                <div class="spec-row">
+                                    <div class="spec-label">${entry.key}</div>
+                                    <div class="spec-value">${entry.value}</div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Chưa có thông tin chi tiết</p>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <ul class="features-list">
-                    <li>Hàng chính hãng</li>
-                    <li>Miễn phí giao hàng toàn quốc cho đơn hàng từ 500k</li>
-                    <li>Giao hàng nội bộ 4-6 tiếng</li>
-                    <li>Mở hộp và kiểm tra hàng trước khi nhận.</li>
-                </ul>
+    <!-- Product Description Section -->
+    <div class="container rounded">
+        <div class="col-12">
+            <div class="product-description">
+                <hr class="desc-line">
+                <br>
+                <h4 class="fs-5 ms-2">Mô tả sản phẩm</h4>
+                <div class="description-content" id="desc">
+                    <span class="fs-4 pb-2">${product.name}</span>
+                    <p>
+                        ${product.description}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="quantity-selector">
-                    <strong>Số lượng</strong>
-                    <div class="quantity-input">
-                        <button type="button" id="decreaseQty">-</button>
-                        <input type="number" id="quantity" value="1" min="1">
-                        <button type="button" id="increaseQty">+</button>
+    <div class="container  my-4 p-3 rounded">
+        <div class="row text-center justify-content-center">
+            <div class="col-6 col-md-3 mb-3">
+                <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_1.webp?v=1761109355"
+                     alt="Sản phẩm chính hãng" class="img-fluid mb-2" style="max-height: 120px;">
+                <p class="fw-semibold mb-0">Sản phẩm <span class="text-nowrap">chính hãng 100%</span></p>
+            </div>
+
+            <div class="col-6 col-md-3 mb-3">
+                <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_2.webp?v=1761109355"
+                     alt="Nhựa an toàn" class="img-fluid mb-2" style="max-height: 120px;">
+                <p class="fw-semibold mb-0">Nhựa an toàn <span class="text-nowrap">cho trẻ em</span></p>
+            </div>
+
+            <div class="col-6 col-md-3 mb-3">
+                <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_3.webp?v=1761109355"
+                     alt="Miễn phí giao hàng" class="img-fluid mb-2" style="max-height: 120px;">
+                <p class="fw-semibold mb-0">Miễn phí giao hàng <span class="text-nowrap">đơn từ 500K</span></p>
+            </div>
+
+            <div class="col-6 col-md-3 mb-3">
+                <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_4.webp?v=1761109355"
+                     alt="Giao hàng hỏa tốc" class="img-fluid mb-2" style="max-height: 120px;">
+                <p class="fw-semibold mb-0">Giao hàng <span class="text-nowrap">hỏa tốc 4 tiếng</span></p>
+            </div>
+        </div>
+    </div>
+
+    <%-- related products--%>
+    <div class="container my-5 pt-3 pb-3">
+        <span class="title d-block text-center">Sản Phẩm Liên Quan</span>
+
+        <div class="related-products-container position-relative">
+
+            <!-- Left -->
+            <button type="button"
+                    class="scroll-btn scroll-left"
+                    onclick="scrollRelated(-1)">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+
+            <!-- products -->
+            <div class="related-products-scroll" id="relatedScroll">
+                <c:forEach var="product" items="${relatedProducts}">
+                    <div class="product-item">
+                        <div class="card h-100 position-relative">
+                            <!-- Badge giảm giá -->
+                            <c:if test="${product.discountPercent > 0}">
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">-${product.discountPercent}%
+                            </span>
+                            </c:if>
+
+                            <img src="${product.imgPath}"
+                                 class="card-img-top p-3 cursor-pointer"
+                                 alt="${product.name}"
+                                 role="button"
+                                 onclick="window.location.href='${pageContext.request.contextPath}/products/${product.id}'">
+
+                            <div class="card-body d-flex flex-column">
+                                <p class="text-muted small mb-1">${product.category}</p>
+                                <h5 class="card-title text-truncate">${product.name}</h5>
+
+                                <!-- Giá -->
+                                <div class="mb-3">
+                                    <c:if test="${product.discountPercent > 0}">
+                                        <!-- Giá giảm -->
+                                        <span class="text-danger fw-bold fs-5">
+                                    <fmt:formatNumber value="${product.finalPrice}" type="currency" currencyCode="VND"/>
+                                </span>
+                                        <!-- Giá gốc -->
+                                        <span class="text-muted text-decoration-line-through me-2">
+                                    <fmt:formatNumber value="${product.originPrice}" type="currency"
+                                                      currencyCode="VND"/>
+                                </span>
+                                    </c:if>
+                                    <c:if test="${product.discountPercent == 0}">
+                                        <!-- Chỉ giá gốc nếu không giảm -->
+                                        <span class="text-danger fw-bold fs-5">
+                                    <fmt:formatNumber value="${product.originPrice}" type="currency"
+                                                      currencyCode="VND"/>
+                                </span>
+                                    </c:if>
+                                </div>
+
+                                <div class="action-buttons d-flex justify-content-between align-items-center gap-3 mt-auto">
+                                    <button type="button" class="btn-add-cart text-nowrap" data-id="${product.id}">
+                                        Thêm Vào Giỏ Hàng
+                                    </button>
+
+                                    <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}"
+                                            data-id="${product.id}">
+                                        <i class="bi ${product.wishlisted ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <!-- right -->
+            <button type="button"
+                    class="scroll-btn scroll-right"
+                    onclick="scrollRelated(1)">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+        </div>
+
+
+    </div>
+
+    <%--User comments--%>
+    <div class="container  my-4 p-3 bg-white border rounded shadow-sm">
+
+        <h4 class="mb-3">Bình luận</h4>
+
+        <!-- Ô thêm bình luận -->
+        <c:if test="${not empty sessionScope.currentUser}">
+            <form action="${pageContext.request.contextPath}/comment/create" method="post" id="comment-form">
+                <input type="hidden" name="productId" value="${product.id}"/>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Thêm bình luận</label>
+
+                    <div class="d-flex">
+                        <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png"
+                             class="rounded-circle me-3"
+                             width="45" height="45"/>
+
+                        <textarea name="content"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Viết bình luận của bạn..."
+                                  required></textarea>
+                    </div>
+
+                    <div class="text-end mt-2">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            Gửi bình luận
+                        </button>
                     </div>
                 </div>
+            </form>
+        </c:if>
 
-                <button class="btn-add-cart">Thêm Vào Giỏ Hàng</button>
+        <c:if test="${empty sessionScope.currentUser}">
+            <p class="text-muted">Vui lòng đăng nhập để bình luận.</p>
+        </c:if>
 
-                <c:choose>
-                    <c:when test="${not empty product.restInfo}">
-                        <c:forEach items="${product.restInfo}" var="entry">
-                            <div class="spec-row">
-                                <div class="spec-label">${entry.key}</div>
-                                <div class="spec-value">${entry.value}</div>
-                            </div>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <p>Chưa có thông tin chi tiết</p>
-                    </c:otherwise>
-                </c:choose>
 
-            </div>
-        </div>
-    </div>
-</div>
+        <hr/>
 
-<!-- Product Description Section -->
-<div class="row mt-4">
-    <div class="col-12">
-        <div class="product-description">
-            <hr class="desc-line">
-            <br>
-            <h4 class="fs-5 ms-2">Mô tả sản phẩm</h4>
-            <div class="description-content" id="desc">
-                <span class="fs-4 pb-2">${product.name}</span>
-                <p>
-                    ${product.description}
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+        <!-- Danh sách bình luận -->
+        <div class="mt-3" id="commentSection">
 
-<div class="container  my-4 p-3 rounded">
-    <div class="row text-center justify-content-center">
-        <div class="col-6 col-md-3 mb-3">
-            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_1.webp?v=1761109355"
-                 alt="Sản phẩm chính hãng" class="img-fluid mb-2" style="max-height: 120px;">
-            <p class="fw-semibold mb-0">Sản phẩm <span class="text-nowrap">chính hãng 100%</span></p>
-        </div>
+            <c:forEach items="${product.comments}" var="comment" varStatus="status">
+                <div class="d-flex mb-3 comment-item
+        <c:if test='${status.index >= 5}'>d-none extra-comment</c:if>">
 
-        <div class="col-6 col-md-3 mb-3">
-            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_2.webp?v=1761109355"
-                 alt="Nhựa an toàn" class="img-fluid mb-2" style="max-height: 120px;">
-            <p class="fw-semibold mb-0">Nhựa an toàn <span class="text-nowrap">cho trẻ em</span></p>
-        </div>
-
-        <div class="col-6 col-md-3 mb-3">
-            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_3.webp?v=1761109355"
-                 alt="Miễn phí giao hàng" class="img-fluid mb-2" style="max-height: 120px;">
-            <p class="fw-semibold mb-0">Miễn phí giao hàng <span class="text-nowrap">đơn từ 500K</span></p>
-        </div>
-
-        <div class="col-6 col-md-3 mb-3">
-            <img src="https://cdn.shopify.com/s/files/1/0917/5207/1482/files/trust_badge_update_4.webp?v=1761109355"
-                 alt="Giao hàng hỏa tốc" class="img-fluid mb-2" style="max-height: 120px;">
-            <p class="fw-semibold mb-0">Giao hàng <span class="text-nowrap">hỏa tốc 4 tiếng</span></p>
-        </div>
-    </div>
-</div>
-
-<%--User comments--%>
-<div class=" container  my-4 p-3 mt-4 bg-white border rounded shadow-sm">
-
-    <h4 class="mb-3">Bình luận</h4>
-
-    <!-- Ô thêm bình luận -->
-    <c:if test="${not empty sessionScope.currentUser}">
-        <form action="${pageContext.request.contextPath}/comment/create" method="post" id="comment-form">
-            <input type="hidden" name="productId" value="${product.id}"/>
-            <div class="mb-4">
-                <label class="form-label fw-semibold">Thêm bình luận</label>
-
-                <div class="d-flex">
                     <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png"
-                         class="rounded-circle me-3"
-                         width="45" height="45"/>
+                         class="rounded-circle me-3" width="40" height="40"/>
 
-                    <textarea name="content"
-                              class="form-control"
-                              rows="3"
-                              placeholder="Viết bình luận của bạn..."
-                              required></textarea>
+                    <div class="bg-light p-3 rounded w-100">
+                        <strong>${comment.userName}</strong>
+                        <p class="mb-1">${comment.content}</p>
+                        <small class="text-muted">${comment.createdAtToString}</small>
+                    </div>
                 </div>
+            </c:forEach>
 
+
+            <c:if test="${product.comments.size() > 5}">
                 <div class="text-end mt-2">
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        Gửi bình luận
+                    <button class="btn-primary bg-primary text-white"
+                            id="btnShowMore"
+                            onclick="showMoreComments()">
+                        Xem tất cả
                     </button>
                 </div>
-            </div>
-        </form>
-    </c:if>
-
-    <c:if test="${empty sessionScope.currentUser}">
-        <p class="text-muted">Vui lòng đăng nhập để bình luận.</p>
-    </c:if>
+            </c:if>
+        </div>
 
 
-    <hr/>
-
-    <!-- Danh sách bình luận -->
-    <div class="mt-3" id="commentSection">
-
-        <c:forEach items="${product.comments}" var="comment" varStatus="status">
-            <div class="d-flex mb-3 comment-item
-        <c:if test='${status.index >= 2}'>d-none extra-comment</c:if>">
-
-                <img src="https://cdn-icons-png.freepik.com/512/12886/12886347.png"
-                     class="rounded-circle me-3" width="40" height="40"/>
-
-                <div class="bg-light p-3 rounded w-100">
-                    <strong>${comment.userName}</strong>
-                    <p class="mb-1">${comment.content}</p>
-                    <small class="text-muted">${comment.createdAtToString}</small>
-                </div>
-            </div>
-        </c:forEach>
-
-
-        <c:if test="${product.comments.size() > 2}">
-            <div class="text-end mt-2">
-                <button class="btn btn-outline-primary btn-sm"
-                        id="btnShowMore"
-                        onclick="showMoreComments()">
-                    Xem thêm
-                </button>
-            </div>
-        </c:if>
     </div>
 
-
-</div>
-
+</main>
 <jsp:include page="/common/footer.jsp"/>
 
 <script src="js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/product-detail.js"></script>
 <script>
-    function showMoreComments() {
-        const hiddenComments = document.querySelectorAll('.extra-comment');
-        hiddenComments.forEach(c => c.classList.remove('d-none'));
+    // wishlist
+    var wishlistButtons = document.getElementsByClassName("wishlist-icon");
 
-        document.getElementById('btnShowMore').style.display = 'none';
+    for (var i = 0; i < wishlistButtons.length; i++) {
+        wishlistButtons[i].onclick = function () {
+            var button = this;
+            var productId = this.getAttribute("data-id");
+            var icon = this.querySelector("i");
+
+            fetch("${pageContext.request.contextPath}/wish-list", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "productId=" + productId
+            }).then(function (res) {
+                if (res.status === 401) {
+                    window.location.href = '${pageContext.request.contextPath}/login';
+                    return;
+                }
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then(function (data) {
+                if (!data) return;
+
+                if (data.wishlisted) {
+                    icon.classList.remove("bi-heart");
+                    icon.classList.add("bi-heart-fill");
+                    button.classList.add("active");
+                } else {
+                    icon.classList.remove("bi-heart-fill");
+                    icon.classList.add("bi-heart");
+                    button.classList.remove("active");
+                }
+            });
+        };
     }
 
-    document.getElementById('imageModal')
-        .addEventListener('show.bs.modal', function (e) {
-            document.getElementById('modalImage').src =
-                e.relatedTarget.src;
-        });
+    //add to cart
+    var buttons = document.getElementsByClassName("btn-add-cart");
+
+    for (var i = 0; i < buttons.length; i++) {
+
+        buttons[i].onclick = function () {
+
+            var productId = this.getAttribute("data-id");
+
+            var quantity = 1;
+
+            var box = this.closest(".add-cart-box");
+
+            if (box != null) {
+                var qtyInput = box.getElementsByClassName("quantity")[0];
+                quantity = qtyInput.value;
+            }
+
+            fetch("${pageContext.request.contextPath}/cart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "productId=" + productId + "&quantity=" + quantity
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (quantityData) {
+                    var totalQuantity = quantityData.totalQuantity;
+
+                    var cartText = "Giỏ hàng";
+
+                    if (totalQuantity > 0) {
+                        cartText = "Giỏ hàng (" + totalQuantity + ")";
+                    }
+
+                    document.getElementById("cart-count").innerText = cartText;
+
+                    var toastEl = document.getElementById('addCartToast');
+                    var toast = new bootstrap.Toast(toastEl);
+                    toast.show();
+                });
+        };
+    }
+
+
 </script>
 
 </body>

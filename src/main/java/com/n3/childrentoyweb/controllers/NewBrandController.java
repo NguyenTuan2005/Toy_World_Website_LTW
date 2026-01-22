@@ -14,7 +14,7 @@ import jakarta.servlet.http.Part;
 import java.io.IOException;
 
 
-@WebServlet(name = "NewBrandManage",value = "/admin/new-brand")
+@WebServlet(name = "NewBrandManage",value = "/admin/new-brands")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,
         maxFileSize = 10 * 1024 * 1024,
@@ -52,7 +52,7 @@ public class NewBrandController extends HttpServlet {
         Part filePart = req.getPart("imgFile");
 
         if (filePart != null)
-            cloudinaryService.upload(filePart);
+           url = cloudinaryService.upload(filePart);
 
         boolean isActive = req.getParameter("status").equals("active");
 

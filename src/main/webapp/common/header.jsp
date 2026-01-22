@@ -11,7 +11,7 @@
                     <img src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png"
                          alt="ToyWorld Logo"
                          class="img-fluid"
-                         style="width: 200px; height: 50px;" />
+                         style="width: 200px; height: 50px;"/>
                 </a>
             </div>
             <!-- Logo -->
@@ -51,7 +51,7 @@
                     <%--tài khoản--%>
                     <c:if test="${sessionScope.currentUser != null}">
                         <button class="btn d-flex align-items-center"
-                                onclick="window.location.href='${pageContext.request.contextPath}/account'">
+                                onclick="window.location.href='${pageContext.request.contextPath}/account/profile'">
                             <i class="bi bi-person-circle me-2"></i>
                             <div>${sessionScope.currentUser.firstName}</div>
                         </button>
@@ -61,15 +61,11 @@
                     <button class="btn d-flex align-items-center"
                             onclick="window.location.href='${pageContext.request.contextPath}/cart'">
                         <i class="bi bi-basket2-fill me-2"></i>
-                        <span id="cart-count">
-                        <c:choose>
-                            <c:when test="${sessionScope.cart != null and sessionScope.cart.totalQuantity != 0}">
-                                Giỏ hàng(${sessionScope.cart.totalQuantity})
-                            </c:when>
-                            <c:otherwise>
-                                Giỏ hàng
-                            </c:otherwise>
-                        </c:choose>
+
+                        <span id="cart-count">Giỏ hàng
+                            <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                                (${sessionScope.cart.totalQuantity})
+                            </c:if>
                         </span>
                     </button>
                 </div>
@@ -122,13 +118,15 @@
                             </a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/brand">Thương hiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/brand">Thương
+                                hiệu</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link text-white" href="handbook.html">Cẩm nang</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">Giới thiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">Giới
+                                thiệu</a>
                         </li>
                     </ul>
                 </div>

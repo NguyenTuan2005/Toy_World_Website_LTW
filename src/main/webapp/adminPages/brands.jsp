@@ -124,13 +124,27 @@
                             <td>${b.name}</td>
                             <td>${b.quantity}</td>
                             <td class="text-nowrap">
-                                <span class="badge  ${b.isActive ? 'status-active' : 'status-locked'}">
-                                        ${b.status}
-                                </span>
+
+                                <c:if test="${b.isActive}">
+                                    <span class="badge  ${b.isActive ? 'status-active' : 'status-locked'}">
+                                        Đang hoạt động
+                                    </span>
+                                </c:if>
+
+                                <c:if test="${!b.isActive}">
+                                    <span class="badge  ${b.isActive ? 'status-active' : 'status-locked'}">
+                                        Ngưng hoạt động
+                                    </span>
+                                </c:if>
+
                             </td>
                             <td>${b.createdAt}</td>
                             <td>
                                 <div class="d-flex gap-2">
+
+                                    <button class="btn btn-link text-success text-decoration-none"   onclick="window.location.href='${pageContext.request.contextPath}/admin/update-brands?brandId=${b.id}'">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
 
                                     <form method="post" action="${pageContext.request.contextPath}/admin/hidden-brands"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
                                         <input type="hidden" name="brandId" value="${b.id}">

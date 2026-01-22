@@ -18,7 +18,7 @@
               <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                  <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <a href="${pageContext.request.contextPath}/sign-up" aria-label="Dạy Con Thông Minh" style="width: 235px; color:#444;">Đăng Ký</a>
+              <a href="${pageContext.request.contextPath}/sign-up" aria-label="Đăng ký" style="width: 235px; color:#444;">Đăng Ký</a>
            </nav>
         </div>
      </div>

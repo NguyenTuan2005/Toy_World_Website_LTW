@@ -57,4 +57,12 @@ public class PromotionService {
     public List<PromotionNameDTO> findAllPromotionName() {
         return this.promotionDAO.findAllPromotionName();
     }
+  
+    public  Pagination<Promotion> findPromotionPagingByName(int currentPage, int pageSize, String keyword) {
+        List<Promotion> promotions = this.promotionDAO.findByName(keyword);
+        int totalElements = this.promotionDAO.countAll();
+        int totalPages = totalElements / pageSize;
+        return new Pagination<>(promotions,currentPage,totalElements,totalPages);
+    }
+
 }

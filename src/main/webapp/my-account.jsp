@@ -21,6 +21,7 @@
 <body>
 <jsp:include page="/common/header.jsp"/>
 
+
 <div class="dashboard-container">
     <h1 class="header-title">Tài Khoản Của Bạn</h1>
 
@@ -57,6 +58,12 @@
                         </button>
                     </li>
                     <li>
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'" class="d-flex">
+                            <i class="bi bi-clipboard-data-fill me-2"></i>
+                            Quản lí cửa hàng
+                        </button>
+                    </li>
+                    <li>
                         <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#logoutModal">
                             <i class="bi bi-door-open-fill me-2"></i>
                             Đăng xuất
@@ -80,7 +87,7 @@
                             </span>
                         Họ và tên
                     </div>
-                    <div class="info-value">${sessionScope.currentUser.firstName} ${sessionScope.currentUser.lastName}</div>
+                    <div class="info-value">${sessionScope.currentUser.lastName} ${sessionScope.currentUser.firstName}</div>
                 </div>
 
                 <div class="info-row">
@@ -103,6 +110,45 @@
                     <div class="info-value">${sessionScope.currentUser.email}</div>
                 </div>
             </div>
+        </div>
+
+        <!-- address -->
+        <div class="address-wrapper col-lg-8 border-custom section" id="location">
+            <div class="address-header">
+                <h3>Địa chỉ giao hàng</h3>
+                <button class="btn-edit" id="btnEditAddress">
+                    <i class="fas fa-pen"></i>Chỉnh Sửa
+                </button>
+            </div>
+
+            <div class="address-card">
+                <h4 id="displayName">Nguyễn Hữu Duy</h4>
+                <p><i class="bi bi-geo-alt-fill me-2"></i> <span id="displayAddress">${sessionScope.currentUserLocation.address}</span></p>
+                <p><i class="bi bi-telephone-fill me-2"></i> <span id="displayPhone">${sessionScope.currentUser.phone}</span></p>
+                <p><i class="bi bi-envelope-fill me-2"></i> <span id="displayEmail">${sessionScope.currentUser.email}</span></p>
+            </div>
+
+            <div class="edit-address-form" id="editAddressForm">
+                <h4>Chỉnh sửa địa chỉ giao hàng</h4>
+
+                <label>Họ tên</label>
+                <input type="text" id="inputName">
+
+                <label>Địa chỉ</label>
+                <input type="text" id="inputAddress">
+
+                <label>Số điện thoại</label>
+                <input type="text" id="inputPhone">
+
+                <label>Email</label>
+                <input type="email" id="inputEmail">
+
+                <div class="form-actions">
+                    <button id="btnSaveAddress" class="btn-save">Lưu</button>
+                    <button id="btnCancelEdit" class="btn-cancel">Hủy</button>
+                </div>
+            </div>
+
         </div>
 
         <!-- order history -->
@@ -160,49 +206,6 @@
 
         </div>
 
-
-        <!-- address -->
-        <div class="address-wrapper col-lg-8 border-custom section" id="location">
-            <div class="address-header">
-                <h3>Địa chỉ giao hàng</h3>
-                <button class="btn-edit" id="btnEditAddress">
-                    <i class="fas fa-pen"></i>Chỉnh Sửa
-                </button>
-            </div>
-
-            <div class="address-card">
-                <h4 id="displayName">Nguyễn Hữu Duy</h4>
-                <p><i class="bi bi-geo-alt-fill me-2"></i> <span id="displayAddress">${sessionScope.currentUserLocation.address}</span></p>
-                <p><i class="bi bi-telephone-fill me-2"></i> <span id="displayPhone">${sessionScope.currentUser.phone}</span></p>
-                <p><i class="bi bi-envelope-fill me-2"></i> <span id="displayEmail">${sessionScope.currentUser.email}</span></p>
-            </div>
-
-            <div class="edit-address-form" id="editAddressForm">
-                <h4>Chỉnh sửa địa chỉ giao hàng</h4>
-
-                <label>Họ tên</label>
-                <input type="text" id="inputName">
-
-                <label>Địa chỉ</label>
-                <input type="text" id="inputAddress">
-
-                <label>Số điện thoại</label>
-                <input type="text" id="inputPhone">
-
-                <label>Email</label>
-                <input type="email" id="inputEmail">
-
-                <div class="form-actions">
-                    <button id="btnSaveAddress" class="btn-save">Lưu</button>
-                    <button id="btnCancelEdit" class="btn-cancel">Hủy</button>
-                </div>
-            </div>
-
-        </div>
-        <style>
-
-
-        </style>
         <!-- wish list items -->
         <div class="wishlist-wrapper col-lg-8 border-custom section" id="wishlist">
 
@@ -210,76 +213,82 @@
                 Danh sách yêu thích
             </h3>
 
-
             <table class="wishlist-table">
                 <thead>
                 <tr>
-                    <th>Hình</th>
-                    <th>Tên</th>
-                    <th>giá</th>
+                    <th>Ảnh</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá (VNĐ)</th>
                     <th>Trạng thái</th>
-                    <th>Mua</th>
+                    <th>Hành động</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><img
-                            src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946"
-                            class="product-img"></td>
-                    <td>Vợt cầu lông Yonex Astrox 88S Pro</td>
-                    <td>2,500,000₫</td>
-                    <td>Còn hàng</td>
-                    <td>
-                        <button class="btn-add-cart">Thêm vào giỏ</button>
-                        <button class="btn-remove-love"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
+                <c:choose>
+                    <c:when test="${empty wishlist}">
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                Chưa có sản phẩm yêu thích
+                            </td>
+                        </tr>
+                    </c:when>
 
-                <tr>
-                    <td><img
-                            src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946"
-                            class="product-img"></td>
-                    <td>Vợt cầu lông Yonex Astrox 88S Pro</td>
-                    <td>2,500,000₫</td>
-                    <td>Còn hàng</td>
-                    <td>
-                        <button class="btn-add-cart">Thêm vào giỏ</button>
-                        <button class="btn-remove-love"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
+                    <c:otherwise>
+                        <c:forEach var="item" items="${wishlist}">
+                            <tr>
+                                <td>
+                                    <img src="${item.imgPath}"
+                                         class="product-img"
+                                         alt="${item.name}">
+                                </td>
 
-                <tr>
-                    <td><img
-                            src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946"
-                            class="product-img"></td>
-                    <td>Vợt cầu lông Yonex Astrox 88S Pro</td>
-                    <td>2,500,000₫</td>
-                    <td>Còn hàng</td>
-                    <td>
-                        <button class="btn-add-cart">Thêm vào giỏ</button>
-                        <button class="btn-remove-love"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
+                                <td>${item.name}</td>
 
-                <tr>
-                    <td><img
-                            src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946"
-                            class="product-img"></td>
-                    <td>Giày cầu lông Lining AYZS</td>
-                    <td>1,350,000₫</td>
-                    <td>Hết hàng</td>
-                    <td>
-                        <button class="btn-add-cart">Thêm vào giỏ</button>
-                        <button class="btn-remove-love"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
+                                <td>
+                                    <fmt:formatNumber value="${item.price}"
+                                                      type="currency"
+                                                      currencySymbol="₫"/>
+                                </td>
+
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${item.quantity > 0}">
+                                            <span class="text-success">Còn hàng</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="text-danger">Hết hàng</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-link text-decoration-none" style="color: #007bff;"
+                                                onclick="location.href='${pageContext.request.contextPath}/products/${item.productId}'">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+
+                                        <button class="btn btn-link text-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#deleteWishListProductModal"
+                                                data-id="${item.productId}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
                 </tbody>
+
             </table>
 
         </div>
     </div>
 
-<%--    logout modal--%>
+
+    <!-- Logout Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -301,6 +310,7 @@
         </div>
     </div>
 
+
 </div>
 
 <jsp:include page="/common/footer.jsp"/>
@@ -308,6 +318,19 @@
 <script src="js/index.js"></script>
 <script src="js/my-account.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("show.bs.modal", function (event) {
+        const modal = document.getElementById("deleteWishListProductModal");
+        if (!modal) return;
+
+        const button = event.relatedTarget;
+        if (!button) return;
+
+        const productId = button.getAttribute("data-id");
+        modal.querySelector("#deleteWishlistProductId").value = productId;
+    });
+</script>
+
 </body>
 </html>
 

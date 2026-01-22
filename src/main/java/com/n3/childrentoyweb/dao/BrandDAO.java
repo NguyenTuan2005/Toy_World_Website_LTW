@@ -1,10 +1,12 @@
 package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.BrandCriteria;
+import com.n3.childrentoyweb.dto.BrandFilterDTO;
 import com.n3.childrentoyweb.dto.ManageBrandDTO;
 import com.n3.childrentoyweb.dto.ManageUserDTO;
 import com.n3.childrentoyweb.models.Brand;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
+import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +23,26 @@ public class BrandDAO  extends BaseDAO{
                             .mapToBean(Brand.class)
                             .list()
                 );
+    }
+
+    public List<BrandFilterDTO> findBrandProductCount() {
+        String sql = """
+        SELECT b.id ,
+               b.name,
+               COUNT(p.id) AS productCount
+        FROM brands b
+        LEFT JOIN products p ON p.brand_id = b.id
+        WHERE b.is_active = 1
+        GROUP BY b.id
+        ORDER BY b.name
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .registerRowMapper(BeanMapper.factory(BrandFilterDTO.class))
+                        .mapToBean(BrandFilterDTO.class)
+                        .list()
+        );
     }
 
     public int countAllBrands(){
@@ -68,17 +90,36 @@ public class BrandDAO  extends BaseDAO{
    }
 
     public Brand findById(long id) {
+
         String sql = """
-                select * from brands
-                where id =:id
-                """;
+            select *
+            from brands
+            where id = :id
+            """;
+
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
-                        .bind("id",id)
-                        .mapToBean(Brand.class)
+                        .bind("id", id)
+                        .map((rs, ctx) -> {
+                            Brand b = new Brand();
+
+                            b.setId(rs.getLong("id"));
+                            b.setName(rs.getString("name"));
+                            b.setImgPath(rs.getString("img_path"));
+                            b.setActive(rs.getBoolean("is_active"));
+
+                            if(rs.getTimestamp("created_at") != null){
+                                b.setCreatedAt(
+                                        rs.getTimestamp("created_at").toLocalDateTime()
+                                );
+                            }
+
+                            return b;
+                        })
                         .one()
         );
     }
+
 
     public int update(Brand brand) {
         String sql = """

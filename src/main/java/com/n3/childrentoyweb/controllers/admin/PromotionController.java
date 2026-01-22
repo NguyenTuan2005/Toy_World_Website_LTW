@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @WebServlet(value = "/admin/promotions")
 public class PromotionController extends HttpServlet {
@@ -23,15 +25,8 @@ public class PromotionController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Dm chay adadsadasdasdsadsa ");
         this.addPromotionsPagination(req);
         req.getRequestDispatcher("/adminPages/promotion.jsp").forward(req,resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
     }
 
     private void addPromotionsPagination(HttpServletRequest request){
@@ -46,5 +41,30 @@ public class PromotionController extends HttpServlet {
         request.setAttribute("totalElements_promotion",promotionPagination.getTotalElements());
         request.setAttribute("totalPages_promotion",promotionPagination.getTotalPages());
         request.setAttribute("pageSize_promotion",PAGE_SIZE);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        this.searchPromotionsPagination(req);
+        req.getRequestDispatcher("/adminPages/promotion.jsp").forward(req,resp);
+    }
+
+    private void searchPromotionsPagination(HttpServletRequest request){
+        int page = 1;
+        if(request.getParameter("promotion-page") != null)
+            page = Integer.parseInt(request.getParameter("promotion-page"));
+
+        String keyword = request.getParameter("keyword");
+
+        Pagination<Promotion> promotionPagination = this.promotionService.findPromotionPagingByName(page,PAGE_SIZE,keyword);
+        System.out.println(promotionPagination);
+        request.setAttribute("promotions",promotionPagination.getData());
+        request.setAttribute("currentPage_promotion",promotionPagination.getCurrentPage());
+        request.setAttribute("totalElements_promotion",promotionPagination.getTotalElements());
+        request.setAttribute("totalPages_promotion",promotionPagination.getTotalPages());
+        request.setAttribute("pageSize_promotion",PAGE_SIZE);
+        request.setAttribute("find_promotions",true);
+
     }
 }

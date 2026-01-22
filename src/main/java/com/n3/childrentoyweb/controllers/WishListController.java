@@ -19,7 +19,6 @@ import java.io.IOException;
 
 @WebServlet(name= "WishList",value = "/wish-list")
 public class WishListController extends HttpServlet {
-
     private WishListService wishListService;
     private ProductService productService;
 
@@ -30,36 +29,36 @@ public class WishListController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        HttpSession session = req.getSession(false);
+        HttpSession session = request.getSession(false);
         if (session == null) {
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
         User user = (User) session.getAttribute("currentUser");
         if (user == null) {
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
         long userId = user.getId();
-        String pid = req.getParameter("productId");
+        String pid = request.getParameter("productId");
         if (pid == null) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
         long productId = Long.parseLong(pid);
         boolean isNowWishlisted = wishListService.toggleWishList(userId, productId);
 
-        resp.setContentType("application/json");
-        resp.getWriter().write("{\"wishlisted\": " + isNowWishlisted + "}");
+        response.setContentType("application/json");
+        response.getWriter().write("{\"wishlisted\": " + isNowWishlisted + "}");
     }
 }

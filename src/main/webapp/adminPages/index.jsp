@@ -52,7 +52,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="orders.jsp">
+                            <a class="nav-link text-primary px-3 py-3" href="orders/orders.jsp">
                                 <i class="fas fa-shopping-cart me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý đơn hàng</span>
                             </a>

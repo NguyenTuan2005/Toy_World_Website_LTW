@@ -4,18 +4,38 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoUnit;
 
 public class LocalDateTimeConverterUtil {
 
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter FORMATTER_FOR_INPUT_TAG =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    private static final DateTimeFormatter HTML_FORMAT = new DateTimeFormatterBuilder()
+            .appendPattern("yyyy-MM-dd'T'HH:mm")
+            .optionalStart()
+            .appendPattern(":ss")
+            .optionalEnd()
+            .toFormatter();
+
 
     public static LocalDateTime convertToLocalDateTime(String createdAt){
         return LocalDateTime.parse(createdAt, FORMATTER);
     }
 
+    public static LocalDateTime convertHTMLDateToLocalDateTime(String createdAt){
+        return LocalDateTime.parse(createdAt, HTML_FORMAT);
+    }
+
     public static String convertToString(LocalDateTime createdAt) {
         return createdAt == null ? "" : createdAt.format(FORMATTER);
+    }
+
+    public static String convertToStringForInputTag(LocalDateTime createdAt) {
+        return createdAt == null ? "" : createdAt.format(FORMATTER_FOR_INPUT_TAG);
     }
 
     public static LocalDateTime convertDateStringToLocalDateTime(String dateStr) {
@@ -27,40 +47,26 @@ public class LocalDateTimeConverterUtil {
         if (createdAt == null) return "";
 
         LocalDateTime now = LocalDateTime.now();
-        Duration duration = Duration.between(createdAt, now);
 
-        long seconds = duration.getSeconds();
+        long seconds = ChronoUnit.SECONDS.between(createdAt, now);
+        if (seconds < 60) return "vừa xong";
 
-        if (seconds < 60) {
-            return "vừa xong";
-        }
+        long minutes = ChronoUnit.MINUTES.between(createdAt, now);
+        if (minutes < 60) return minutes + " phút trước";
 
-        long minutes = seconds / 60;
-        if (minutes < 60) {
-            return minutes + " phút trước";
-        }
+        long hours = ChronoUnit.HOURS.between(createdAt, now);
+        if (hours < 24) return hours + " giờ trước";
 
-        long hours = minutes / 60;
-        if (hours < 24) {
-            return hours + " giờ trước";
-        }
+        long days = ChronoUnit.DAYS.between(createdAt, now);
+        if (days < 7) return days + " ngày trước";
 
-        long days = hours / 24;
-        if (days < 7) {
-            return days + " ngày trước";
-        }
+        if (days < 30) return (days / 7) + " tuần trước";
 
-        long weeks = days / 7;
-        if (weeks < 4) {
-            return weeks + " tuần trước";
-        }
+        long months = ChronoUnit.MONTHS.between(createdAt, now);
+        if (months < 12) return months + " tháng trước";
 
-        long months = days / 30;
-        if (months < 12) {
-            return months + " tháng trước";
-        }
-
-        long years = days / 365;
+        long years = ChronoUnit.YEARS.between(createdAt, now);
         return years + " năm trước";
     }
+
 }

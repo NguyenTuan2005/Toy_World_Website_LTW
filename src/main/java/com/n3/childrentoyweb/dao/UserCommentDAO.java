@@ -35,7 +35,7 @@ public class UserCommentDAO extends BaseDAO {
     public void save(UserComment userComment){
         String sql = """
                 INSERT INTO user_comments (content, product_id, user_id)
-                VALUES (:content, :userId, :productId)
+                VALUES (:content, :productId, :userId)
                 """;
 
         super.getJdbi().useHandle(handle -> handle.createUpdate(sql)

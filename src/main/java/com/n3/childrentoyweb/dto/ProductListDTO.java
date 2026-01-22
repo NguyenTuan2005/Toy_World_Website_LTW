@@ -5,8 +5,8 @@ import java.util.List;
 public class ProductListDTO {
     private Long id;
     private String name;
-    private List<String> imgPaths;
-    private Integer quantity;
+    private String imgPath;
+    private int quantity;
     private String category;
     private String brand;
 
@@ -17,10 +17,10 @@ public class ProductListDTO {
 
     private boolean wishlisted;
 
-    public ProductListDTO(Long id, String name, List<String> imgPaths, Integer quantity, String category, String brand, long originPrice, long finalPrice, long maxDiscountPrice, double discountPercent, boolean wishlisted) {
+    public ProductListDTO(Long id, String name, String imgPath, int quantity, String category, String brand, long originPrice, long finalPrice, long maxDiscountPrice, double discountPercent, boolean wishlisted) {
         this.id = id;
         this.name = name;
-        this.imgPaths = imgPaths;
+        this.imgPath = imgPath;
         this.quantity = quantity;
         this.category = category;
         this.brand = brand;
@@ -50,19 +50,19 @@ public class ProductListDTO {
         this.name = name;
     }
 
-    public List<String> getImgPaths() {
-        return imgPaths;
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImgPaths(List<String> imgPaths) {
-        this.imgPaths = imgPaths;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -127,7 +127,7 @@ public class ProductListDTO {
         return "ProductListDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", imgPaths=" + imgPaths +
+                ", imgPaths=" + imgPath +
                 "\n, quantity=" + quantity +
                 ", category='" + category + '\'' +
                 ", brand='" + brand + '\'' +

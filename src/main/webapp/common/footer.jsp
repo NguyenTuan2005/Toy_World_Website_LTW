@@ -3,12 +3,12 @@
     <div class="row align-items-start">
         <div class="col">
             <div class="hstack gap-3">
-                <img   src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png" alt="Logo" onclick="window.location.href='home-page.html'" style="width: 200px; height: 50px">
+                <img   src="${pageContext.request.contextPath}/assets/ToyWorldLogo.png" alt="Logo" onclick="window.location.href='${pageContext.request.contextPath}/home'" style="width: 200px; height: 50px">
                 <div class="w-100">
                     <p class="mb-3 fw-bold">Tham gia ngay để nhận về tay thông tin ưu đãi và hữu ích</p>
-                    <form id="footer-subscribe-form" onsubmit="return handleFooterSubscribe(event)" novalidate>
+                    <form id="footer-subscribe-form" action="${pageContext.request.contextPath}/sign-up" novalidate>
                         <div class="input-group">
-                            <input id="footer-email" type="email" class="form-control" placeholder="Nhập email của bạn" required aria-describedby="footerEmailHelp">
+                            <input id="footer-email" name="email" type="email" class="form-control" placeholder="Nhập email của bạn" required aria-describedby="footerEmailHelp">
                             <button class="btn btn-primary" type="submit">Đăng ký</button>
                         </div>
                         <small id="footerEmailHelp" class="form-text text-danger d-none">Vui lòng nhập email hợp lệ.</small>

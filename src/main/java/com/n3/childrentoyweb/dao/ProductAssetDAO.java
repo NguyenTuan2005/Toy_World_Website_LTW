@@ -65,4 +65,36 @@ public class ProductAssetDAO extends BaseDAO {
                             .execute()
                 );
     }
+
+    public List<ProductAsset> findAllByProductId(long productId) {
+        String sql = """
+                select pa.id,
+                        pa.img_path as imgPath,
+                        pa.product_id as productId
+                from product_assets pa
+                where pa.product_id = :productId
+                and pa.is_active = 1
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind("productId", productId)
+                            .mapToBean(ProductAsset.class)
+                            .list()
+                );
+    }
+
+    public void deleteById(long id) {
+        String sql = """
+                update product_assets pa
+                set pa.is_active = 0
+                where pa.id = :id
+                """;
+
+        this.getJdbi().useHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("id", id)
+                            .execute()
+                );
+    }
 }

@@ -664,4 +664,72 @@ public class ProductDAO extends BaseDAO {
                             .one()
                 );
     }
+
+    public Product findProductForManagementById(long productId) {
+        String sql = """
+                select p.id,
+                       p.name,
+                       p.price,
+                       p.brand_id as brandId,
+                       p.category_id as categoryId,
+                       p.promotion_id as promotionId,
+                       p.quantity,
+                       p.description,
+                       p.rest_info as restInfo,
+                       p.is_active as isActive
+                from products p
+                where p.id = :id
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", productId)
+                        .map((rs, ctx) -> {
+                            Product product = new Product();
+                            product.setId(rs.getLong("id"));
+                            product.setName(rs.getString("name"));
+                            product.setPrice(rs.getDouble("price"));
+                            product.setBrandId(rs.getLong("brandId"));
+                            product.setCategoryId(rs.getLong("categoryId"));
+                            product.setPromotionId(rs.getLong("promotionId"));
+                            product.setQuantity(rs.getInt("quantity"));
+                            product.setDescription(rs.getString("description"));
+                            product.setRestInfo(JsonUtil.parseProductRestInfo(rs.getString("restInfo")));
+                            product.setActive(rs.getBoolean("isActive"));
+                            return product;
+                        })
+                        .one()
+        );
+    }
+
+    public void update(Product product) {
+        String sql = """
+                UPDATE products
+                SET name = :name,
+                    price = :price,
+                    quantity = :quantity,
+                    description = :description,
+                    rest_info = :restInfo,
+                    brand_id = :brandId,
+                    category_id = :categoryId,
+                    promotion_id = :promotionId,
+                    is_active = :isActive
+                WHERE id = :id
+                """;
+
+        this.getJdbi().useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("name", product.getName())
+                        .bind("price", product.getPrice())
+                        .bind("quantity", product.getQuantity())
+                        .bind("description", product.getDescription())
+                        .bind("restInfo", JsonUtil.parseProductRestInfo(product.getRestInfo()))
+                        .bind("brandId", product.getBrandId())
+                        .bind("categoryId", product.getCategoryId())
+                        .bind("promotionId", product.getPromotionId())
+                        .bind("isActive", product.getActive())
+                        .bind("id", product.getId())
+                        .execute()
+        );
+    }
 }

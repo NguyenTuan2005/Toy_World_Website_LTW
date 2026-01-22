@@ -110,7 +110,9 @@
                                     <td><span class="badge bg-secondary">${p.status}</span></td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn btn-link text-secondary p-0" data-bs-toggle="modal" data-bs-target="#updateProductModal" title="Chỉnh sửa">
+                                            <button class="btn btn-link text-secondary p-0"
+                                                    onclick="window.location.href='${pageContext.request.contextPath}/admin/edit-products?id=${p.productId}'";
+                                                    title="Chỉnh sửa">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <button class="btn btn-link text-secondary p-0" title="Xem bình luận">
@@ -160,133 +162,6 @@
 
             <!-- COMMENTS TAB -->
             <div class="tab-pane fade mb-5" id="comments" role="tabpanel">
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL: CẬP NHẬT THÔNG TIN -->
-    <div class="modal fade" id="updateProductModal" tabindex="-1" aria-labelledby="updateProductModal"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Cập Nhật Thông Tin Sản Phẩm</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="updateProductForm" action="/products/update" method="post" enctype="multipart/form-data">
-
-                        <div class="mb-3">
-                            <label class="form-label">Mã Sản Phẩm <span class="text-danger">*</span></label>
-                            <div class="d-flex" style="gap: 10px;">
-                                <input class="form-control" name="product_id" id="searchProductId"
-                                       placeholder="Nhập mã sản phẩm..." style="flex: 1;">
-                                <button type="button" class="btn btn-secondary" onclick="searchProduct()">
-                                    <i class="bi bi-search"></i> Tìm Kiếm
-                                </button>
-                            </div>
-                            <small class="form-text text-muted">Nhập mã sản phẩm và nhấn "Tìm Kiếm" để tải thông
-                                tin</small>
-                        </div>
-
-                        <hr>
-
-                        <div class="mb-3">
-                            <label class="form-label">Tên Sản Phẩm <span class="text-danger">*</span></label>
-                            <input class="form-control" name="name" id="updateName" required>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label class="form-label">Giá <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="price" id="updatePrice" required>
-                            </div>
-                            <div class="col">
-                                <label class="form-label">Giảm Giá (%)</label>
-                                <input type="number" class="form-control" name="discount_percent" id="updateDiscount"
-                                       min="0" max="100">
-                            </div>
-                            <div class="col">
-                                <label class="form-label">Số Lượng <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="quantity" id="updateQuantity" required
-                                       min="0">
-                            </div>
-                        </div>
-
-                        <label class="form-label">Thông Số Sản Phẩm</label>
-                        <table class="table key-value-table" id="kvTableUpdate">
-                            <thead>
-                            <tr>
-                                <th>Từ Khóa</th>
-                                <th>Nội Dung</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center"><input class="form-control key-input"></td>
-                                <td class="text-center"><input class="form-control value-input"></td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-secondary mb-3" onclick="addRowToTable('kvTableUpdate')">
-                            <i class="bi bi-plus-circle"></i> Thêm Thông Số
-                        </button>
-
-                        <input type="hidden" name="rest_info" id="restInfoUpdate">
-
-                        <div class="mb-3">
-                            <label class="form-label">Mô Tả Sản Phẩm</label>
-                            <textarea class="form-control" name="description" id="updateDescription"
-                                      rows="4"></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Thương Hiệu <span class="text-danger">*</span></label>
-                            <select class="form-select" name="brand_id" id="updateBrand" required>
-                                <option value="">-- Chọn Thương Hiệu --</option>
-                                <option value="1">Nike</option>
-                                <option value="2">Yonex</option>
-                                <option value="3">Lining</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Danh Mục <span class="text-danger">*</span></label>
-                            <select class="form-select" name="category_id" id="updateCategory" required>
-                                <option value="">-- Chọn Danh Mục --</option>
-                                <option value="1">Adi</option>
-                                <option value="2">Racket</option>
-                                <option value="3">Accessory</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Hình Ảnh Mới (Chọn để thay thế)</label>
-                            <input type="file" class="form-control" id="imageUploadUpdate" name="images" multiple
-                                   accept="image/*">
-                            <div id="previewUpdate" class="image-preview mt-2"></div>
-                        </div>
-
-                        <div class="mb-3 form-check form-switch">
-                            <input class="form-check-input" type="checkbox" name="is_active" id="statusUpdate"
-                                   value="true" checked>
-                            <label class="form-check-label" for="statusUpdate">Trạng thái bán hàng (Bán ngay)</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times"></i> Hủy
-                    </button>
-                    <button type="button" class="btn btn-danger" onclick="submitUpdateProduct()">
-                        <i class="fas fa-save"></i> Cập Nhật
-                    </button>
-                </div>
             </div>
         </div>
     </div>

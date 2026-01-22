@@ -1,6 +1,5 @@
-document.getElementById('imageUploadAdd').addEventListener('change', function (e) {
-    const preview = document.getElementById('previewAdd');
-    preview.innerHTML = '';
+document.getElementById('imageUploadEdit').addEventListener('change', function (e) {
+    const preview = document.getElementById('previewEdit');
     const files = Array.from(e.target.files || []);
 
     if (!files.length) return;
@@ -34,8 +33,20 @@ document.getElementById('imageUploadAdd').addEventListener('change', function (e
     });
 });
 
+const deletedImageIds = new Set();
+
+function removeExistingImg(button, assetId) {
+    const wrapper = button.closest('.preview-wrapper');
+    deletedImageIds.add(assetId);
+    document.getElementById('deletedImages').value = Array.from(deletedImageIds).join(',');
+
+    wrapper.style.transition = 'opacity 0.3s';
+    wrapper.style.opacity = '0.5';
+    setTimeout(() => wrapper.remove(), 300);
+}
+
 function removeNewImg(wrapper, idx) {
-    const input = document.getElementById('imageUploadAdd');
+    const input = document.getElementById('imageUploadEdit');
     const dt = new DataTransfer();
 
     Array.from(input.files).forEach((file, index) => {
@@ -46,52 +57,10 @@ function removeNewImg(wrapper, idx) {
     wrapper.remove();
 }
 
-function addRowToTable(tableId) {
-    const table = document.getElementById(tableId);
-    const tbody = table.querySelector('tbody');
-
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td class="text-center">
-            <input class="form-control key-input" placeholder="VD: Độ tuổi">
-        </td>
-        <td class="text-center">
-            <input class="form-control value-input" placeholder="VD: 3-6 tuổi">
-        </td>
-        <td class="text-center">
-            <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button>
-        </td>
-    `;
-
-    tbody.appendChild(newRow);
-}
-
-function removeRow(button) {
-    const row = button.closest('tr');
-    row.remove();
-}
-
-function serializeTableData(tableId) {
-    const table = document.getElementById(tableId);
-    const rows = table.querySelectorAll('tbody tr');
-    const data = {};
-
-    rows.forEach(row => {
-        const key = row.querySelector('.key-input').value.trim();
-        const value = row.querySelector('.value-input').value.trim();
-
-        if (key && value) {
-            data[key] = value;
-        }
-    });
-
-    return JSON.stringify(data);
-}
-
-function submitAddProduct() {
-    const form = document.getElementById('addProductForm');
-    const restInfo = serializeTableData('kvTableAdd');
-    document.getElementById('restInfoAdd').value = restInfo;
+function submitUpdateProduct() {
+    const form = document.getElementById("editProductForm");
+    const restInfo = serializeTableData('kvTableUpdate');
+    document.getElementById('restInfoEdit').value = restInfo;
 
     if (!form.checkValidity()) {
         form.reportValidity();
@@ -110,24 +79,15 @@ function submitAddProduct() {
         .then(response => response.ok ? response.json() : response.text().then(text => { throw new Error(text || 'Đã xảy ra lỗi'); }))
         .then(data => {
             if (data.success) {
-                showAlert(data.message || 'Thêm sản phẩm thành công!', "success");
+                showAlert(data.message || 'Cập nhật sản phẩm thành công!', "success");
                 setTimeout(() => window.location.href = contextPath + '/admin/products', 2000);
             } else {
-                showAlert(data.message || 'Thêm sản phẩm thất bại!', "danger");
+                showAlert(data.message || 'Cập nhật sản phẩm thất bại!', "danger");
             }
         })
-        .catch(error => showAlert(error.message || 'Đã xảy ra lỗi khi thêm sản phẩm!', "danger"))
+        .catch(error => showAlert(error.message || 'Đã xảy ra lỗi khi cập nhật sản phẩm!', "danger"))
         .finally(() => {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalText;
         });
-}
-
-function showAlert(message, type = 'danger') {
-    const alert = document.getElementById('alert');
-    alert.textContent = message;
-    alert.className = `alert alert-${type} text-center`;
-    alert.classList.remove('d-none');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(() => alert.classList.add('d-none'), 3000);
 }

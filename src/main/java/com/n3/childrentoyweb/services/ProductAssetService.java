@@ -24,4 +24,18 @@ public class ProductAssetService {
     public void saveAll(List<ProductAsset> assets) {
         assets.forEach(productAsset -> this.productAssetDAO.save(productAsset));
     }
+
+    public List<ProductAsset> findAllByProductId(long productId) {
+        return this.productAssetDAO.findAllByProductId(productId);
+    }
+
+    public void deleteAllById(long[] deletedImageIds) {
+        if (deletedImageIds == null) {
+            return;
+        }
+
+        for (long id : deletedImageIds) {
+            this.productAssetDAO.deleteById(id);
+        }
+    }
 }

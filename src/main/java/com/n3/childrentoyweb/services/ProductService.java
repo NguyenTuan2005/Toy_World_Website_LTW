@@ -144,4 +144,12 @@ public class ProductService {
     public long save(Product product) {
         return this.productDAO.save(product);
     }
+
+    public Product findProductForManagementById(long productId) {
+        return this.productDAO.findProductForManagementById(productId);
+    }
+
+    public void update(Product product) {
+        this.productDAO.update(product);
+    }
 }

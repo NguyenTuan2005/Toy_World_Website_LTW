@@ -17,16 +17,16 @@ import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-@WebServlet(name = "newProduct", value = "/admin/new-products")
+@WebServlet(name = "editProduct", value = "/admin/edit-products")
 @MultipartConfig(
-        fileSizeThreshold = 1024 * 1024 * 2,
         maxFileSize = 1024 * 1024 * 10,
         maxRequestSize = 1024 * 1024 * 50
 )
-public class NewProductController extends HttpServlet {
+public class EditProductController extends HttpServlet {
     private PromotionService promotionService;
     private BrandService brandService;
     private CategoryService categoryService;
@@ -46,14 +46,20 @@ public class NewProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long productId = Long.parseLong(req.getParameter("id"));
+        Product product = productService.findProductForManagementById(productId);
+        List<ProductAsset> assets = productAssetService.findAllByProductId(productId);
+
         List<PromotionNameDTO> promotions = promotionService.findAllPromotionName();
         List<Brand> brands = brandService.findAll();
         List<Category> categories = categoryService.findAll();
 
+        req.setAttribute("product", product);
+        req.setAttribute("assets", assets);
         req.setAttribute("promotions", promotions);
         req.setAttribute("brands", brands);
         req.setAttribute("categories", categories);
-        req.getRequestDispatcher("/adminPages/new-products.jsp").forward(req, resp);
+        req.getRequestDispatcher("/adminPages/edit-products.jsp").forward(req, resp);
     }
 
     @Override
@@ -63,23 +69,26 @@ public class NewProductController extends HttpServlet {
 
         try {
             Product product = initProduct(req);
+            productService.update(product);
 
-            long productId = productService.save(product);
+            String deletedImagesParam = req.getParameter("deletedImages");
+            if (deletedImagesParam != null && !deletedImagesParam.isBlank()) {
+                long[] deletedImageIds = Arrays.stream(deletedImagesParam.split(",")).mapToLong(s -> Long.parseLong(s.trim())).toArray();
+                productAssetService.deleteAllById(deletedImageIds);
+            }
 
-            List<ProductAsset> assets = initProductAsset(req,  productId);
+            List<ProductAsset> assets = initProductAssets(req, product.getId());
             this.productAssetService.saveAll(assets);
 
-            resp.getWriter().write("{\"success\": true, \"message\": \"Thêm sản phẩm thành công!\"}");
-        } catch (IllegalArgumentException e) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("{\"success\": false, \"message\": \"Dữ liệu không hợp lệ!\"}");
+            resp.getWriter().write("{\"success\": true, \"message\": \"Cập nhật sản phẩm thành công!\"}");
+
         } catch (Exception e) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+            resp.getWriter().write(e.getMessage());
         }
     }
 
-    private List<ProductAsset> initProductAsset(HttpServletRequest req, long productId) throws ServletException, IOException {
+    private List<ProductAsset> initProductAssets(HttpServletRequest req, long productId) throws ServletException, IOException {
         Collection<Part> fileParts = req.getParts();
         List<ProductAsset> assets = new ArrayList<>();
         ProductAsset productAsset;
@@ -94,6 +103,7 @@ public class NewProductController extends HttpServlet {
     }
 
     private Product initProduct(HttpServletRequest req) throws IllegalArgumentException {
+        long id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         double price = Double.parseDouble(req.getParameter("price"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
@@ -105,10 +115,11 @@ public class NewProductController extends HttpServlet {
         boolean isActive = Boolean.parseBoolean(req.getParameter("isActive"));
 
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Tên không hợp lệ");
         }
 
         Product product = new Product();
+        product.setId(id);
         product.setName(name);
         product.setPrice(price);
         product.setQuantity(quantity);

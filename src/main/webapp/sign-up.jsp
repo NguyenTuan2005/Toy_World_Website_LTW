@@ -102,6 +102,6 @@
      <br>
 
     <jsp:include page="/common/footer.jsp" />
-    <script src="/js/sign-up.js"></script>
+    <script src="${pageContext.request.contextPath}/js/sign-up.js"></script>
 </body>
 </html>

@@ -40,4 +40,12 @@ public class UserCommentService {
         List<CommentManagementDTO> comments = this.userCommentDAO.findByCriteria(commentCriteria);
         return new Pagination<>(comments, 1, 10, 1);
     }
+
+    public UserComment findById(long commentId) {
+        return this.userCommentDAO.findById(commentId);
+    }
+
+    public void update(UserComment comment) {
+        this.userCommentDAO.update(comment);
+    }
 }

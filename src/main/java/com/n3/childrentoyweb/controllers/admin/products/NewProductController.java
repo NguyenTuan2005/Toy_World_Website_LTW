@@ -72,10 +72,10 @@ public class NewProductController extends HttpServlet {
             resp.getWriter().write("{\"success\": true, \"message\": \"Thêm sản phẩm thành công!\"}");
         } catch (IllegalArgumentException e) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("{\"success\": false, \"message\": \"Dữ liệu không hợp lệ!\"}");
+            resp.getWriter().write("Dữ liệu không hợp lệ!");
         } catch (Exception e) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+            resp.getWriter().write(e.getMessage());
         }
     }
 

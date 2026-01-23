@@ -125,4 +125,49 @@ public class UserCommentDAO extends BaseDAO {
                             .list()
                 );
     }
+
+    public UserComment findById(long commentId) {
+        String sql = """
+                select uc.id,
+                        uc.content,
+                        uc.user_id,
+                        uc.product_id,
+                        uc.is_active,
+                        uc.created_at
+                from user_comments uc
+                where uc.id = :id
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", commentId)
+                        .map((rs, ctx) -> {
+                            UserComment userComment = new UserComment();
+                            userComment.setId(rs.getLong("id"));
+                            userComment.setContent(rs.getString("content"));
+                            userComment.setUserId(rs.getLong("user_id"));
+                            userComment.setProductId(rs.getLong("product_id"));
+                            userComment.setActive(rs.getBoolean("is_active"));
+                            userComment.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                            return userComment;
+                        })
+                        .one()
+        );
+    }
+
+    public void update(UserComment comment) {
+        String sql = """
+                UPDATE user_comments
+                SET content = :content,
+                    is_active = :isActive
+                WHERE id = :id
+                """;
+
+        super.getJdbi().useHandle(handle -> handle.createUpdate(sql)
+                .bind("content", comment.getContent())
+                .bind("isActive", comment.getActive())
+                .bind("id", comment.getId())
+                .execute()
+        );
+    }
 }

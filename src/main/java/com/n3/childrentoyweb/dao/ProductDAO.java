@@ -561,6 +561,7 @@ public class ProductDAO extends BaseDAO {
                 join categories c on c.id = p.category_id
                 where 1 = 1
                 """);
+        sql.append(productCriteria.getIdForSql());
         sql.append(productCriteria.getNameForSql());
         sql.append(" limit 10");
 

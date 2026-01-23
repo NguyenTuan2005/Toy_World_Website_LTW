@@ -54,7 +54,7 @@
                 <div class="search-wrapper">
                     <i class="fas fa-search search-icon"></i>
                     <form class="mb-0" method="post" action="${pageContext.request.contextPath}/admin/products">
-                        <input type="text" name="keyword" class="form-control search-input" value="${keyword}" placeholder="Tìm theo tên sản phẩm..."/>
+                        <input type="text" name="keyword" class="form-control search-input" value="${keyword}" placeholder="Tìm theo mã hoặc tên sản phẩm..."/>
                         <c:if test="${keyword != null}">
                             <a class="clear-icon" href="${pageContext.request.contextPath}/admin/products">
                                 <i class="fas fa-times"></i>

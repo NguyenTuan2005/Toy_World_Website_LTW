@@ -18,10 +18,11 @@
     <main class="main-content">
         <div class="px-3 py-4 hstack justify-content-between">
             <h2 class="fw-bold">Thêm Sản Phẩm Mới</h2>
-            <button class="btn btn-outline-secondary"
-                    onclick="window.location.href='${pageContext.request.contextPath}/admin/products'">
+            <a class="text-decoration-none text-secondary"
+               style="cursor: pointer"
+               href="${pageContext.request.contextPath}/admin/products">
                 <i class="fas fa-arrow-left"></i> Quay lại
-            </button>
+            </a>
         </div>
         <hr class="mb-2">
 

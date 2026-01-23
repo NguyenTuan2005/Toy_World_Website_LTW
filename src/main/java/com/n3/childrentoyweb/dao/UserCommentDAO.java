@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.CommentCriteria;
 import com.n3.childrentoyweb.dto.CommentManagementDTO;
 import com.n3.childrentoyweb.dto.UserCommentDTO;
 import com.n3.childrentoyweb.models.UserComment;
@@ -50,7 +51,7 @@ public class UserCommentDAO extends BaseDAO {
         int offset = (page - 1) * pageSize;
         String sql = """
                 select uc.id as commentId,
-                       concat(u.last_name, " ", u.first_name) as user,
+                       concat(u.last_name, ' ', u.first_name) as user,
                        p.name as product,
                        uc.content,
                        uc.is_active as isActive, 
@@ -89,5 +90,84 @@ public class UserCommentDAO extends BaseDAO {
                             .mapTo(Integer.class)
                             .one()
                 );
+    }
+
+    public List<CommentManagementDTO> findByCriteria(CommentCriteria commentCriteria) {
+        StringBuilder sql = new StringBuilder("""
+                select uc.id as commentId,
+                       concat(u.last_name, ' ', u.first_name) as user,
+                       p.name as product,
+                       uc.content,
+                       uc.is_active as isActive, 
+                       uc.created_at as createdAt
+                from user_comments uc
+                join users u on u.id = uc.user_id
+                join products p on p.id = uc.product_id
+                where 1 = 1
+                """);
+        sql.append(commentCriteria.getProductIdForSql());
+        sql.append(commentCriteria.getUserNameForSql());
+        sql.append(commentCriteria.getProductNameForSql());
+        sql.append(" limit 10");
+
+        return this.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .map((rs, ctx) -> {
+                                CommentManagementDTO commentManagementDTO = new CommentManagementDTO();
+                                commentManagementDTO.setCommentId(rs.getInt("commentId"));
+                                commentManagementDTO.setUser(rs.getString("user"));
+                                commentManagementDTO.setProduct(rs.getString("product"));
+                                commentManagementDTO.setContent(rs.getString("content"));
+                                commentManagementDTO.setActive(rs.getBoolean("isActive"));
+                                commentManagementDTO.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+                                return commentManagementDTO;
+                            })
+                            .list()
+                );
+    }
+
+    public UserComment findById(long commentId) {
+        String sql = """
+                select uc.id,
+                        uc.content,
+                        uc.user_id,
+                        uc.product_id,
+                        uc.is_active,
+                        uc.created_at
+                from user_comments uc
+                where uc.id = :id
+                """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", commentId)
+                        .map((rs, ctx) -> {
+                            UserComment userComment = new UserComment();
+                            userComment.setId(rs.getLong("id"));
+                            userComment.setContent(rs.getString("content"));
+                            userComment.setUserId(rs.getLong("user_id"));
+                            userComment.setProductId(rs.getLong("product_id"));
+                            userComment.setActive(rs.getBoolean("is_active"));
+                            userComment.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                            return userComment;
+                        })
+                        .one()
+        );
+    }
+
+    public void update(UserComment comment) {
+        String sql = """
+                UPDATE user_comments
+                SET content = :content,
+                    is_active = :isActive
+                WHERE id = :id
+                """;
+
+        super.getJdbi().useHandle(handle -> handle.createUpdate(sql)
+                .bind("content", comment.getContent())
+                .bind("isActive", comment.getActive())
+                .bind("id", comment.getId())
+                .execute()
+        );
     }
 }

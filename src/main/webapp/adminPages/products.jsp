@@ -26,15 +26,16 @@
             <div class="d-flex align-items-center justify-content-between">
                 <h1 class="page-title">Quản lý sản phẩm</h1>
 
-                <!-- Nav Tabs -->
-                <ul class="nav nav-pills" id="productTabs" role="tablist">
-                    <li class="nav-item me-1" role="presentation">
-                        <button class="nav-link active" id="products-tab" data-bs-toggle="tab" data-bs-target="#products" type="button" role="tab">
+                <!-- Nav Pills -->
+                <ul class="nav nav-pills">
+                    <li class="nav-item me-1">
+                        <button class="nav-link active">
                             <i class="fas fa-box"></i> Danh sách sản phẩm
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" onclick="loadComments()">
+                    <li class="nav-item">
+                        <button class="nav-link"
+                                onclick="window.location.href='${pageContext.request.contextPath}/admin/comments'">
                             <i class="fas fa-comments"></i> Bình luận sản phẩm
                         </button>
                     </li>
@@ -48,122 +49,115 @@
             ${error}
         </div>
 
-        <!-- Tab Content -->
-        <div class="tab-content" id="productTabsContent">
-            <!-- PRODUCTS TAB -->
-            <div class="tab-pane fade show active mb-4" id="products" role="tabpanel">
-                <div class="filter-section">
-                    <div class="hstack align-items-center justify-content-between">
-                        <div class="search-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <form class="mb-0" method="post" action="${pageContext.request.contextPath}/admin/products">
-                                <input type="text" name="keyword" class="form-control search-input" value="${keyword}" placeholder="Tìm theo tên sản phẩm..."/>
-                                <c:if test="${keyword != null}">
-                                    <a class="clear-icon" href="${pageContext.request.contextPath}/admin/products">
-                                        <i class="fas fa-times"></i>
-                                    </a>
-                                </c:if>
-                            </form>
-                        </div>
-                        <div class="mt-3 mt-md-0">
-                            <button class="btn-add fw-medium px-4 py-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/new-products'">
-                                <i class="fas fa-plus"></i> Thêm sản phẩm mới
-                            </button>
-                        </div>
-                    </div>
+        <div class="filter-section">
+            <div class="hstack align-items-center justify-content-between">
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <form class="mb-0" method="post" action="${pageContext.request.contextPath}/admin/products">
+                        <input type="text" name="keyword" class="form-control search-input" value="${keyword}" placeholder="Tìm theo tên sản phẩm..."/>
+                        <c:if test="${keyword != null}">
+                            <a class="clear-icon" href="${pageContext.request.contextPath}/admin/products">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </c:if>
+                    </form>
                 </div>
+                <div class="mt-3 mt-md-0">
+                    <button class="btn-add fw-medium px-4 py-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/new-products'">
+                        <i class="fas fa-plus"></i> Thêm sản phẩm mới
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                <div class="table-container">
-                    <table class="table">
-                        <thead class="table-primary">
-                        <tr>
-                            <th class="sortable text-white text-nowrap">Mã SP</th>
-                            <th class="sortable text-white text-nowrap">Tên Sản Phẩm</th>
-                            <th class="sortable text-white text-nowrap">Ảnh</th>
-                            <th class="sortable text-white text-nowrap">Giá Tiền</th>
-                            <th class="sortable text-white text-nowrap">Thương Hiệu</th>
-                            <th class="sortable text-white text-nowrap">Danh Mục</th>
-                            <th class="sortable text-white text-nowrap">Số lượng</th>
-                            <th class="sortable text-white text-nowrap">Trạng thái</th>
-                            <th class="text-white text-nowrap">Hành động</th>
-                        </tr>
-                        </thead>
-                        <tbody id="productTableBody">
-                            <c:if test="${empty products}">
-                                <tr>
-                                    <td colspan="9" class="text-center text-muted py-4">Không có sản phẩm nào.</td>
-                                </tr>
-                            </c:if>
-                            <c:forEach var="p" items="${products}">
-                                <tr>
-                                    <td>${p.productId}</td>
-                                    <td>
-                                        <div title="${p.name}" class="product-name-cell">${p.name}</div>
-                                    </td>
-                                    <td>
-                                        <img src="${p.imgPath}" class="thumb-img w-75" alt="thumbnail"/>
-                                    </td>
-                                    <td><fmt:formatNumber value="${p.price}" type="currency" currencyCode="VND"/></td>
-                                    <td>${p.brand}</td>
-                                    <td>${p.category}</td>
-                                    <td>${p.quantity}</td>
-                                    <td><span class="badge bg-secondary">${p.status}</span></td>
-                                    <td>
-                                        <div class="d-flex gap-2">
-                                            <button class="btn btn-link text-secondary p-0"
-                                                    onclick="window.location.href='${pageContext.request.contextPath}/admin/edit-products?id=${p.productId}'";
-                                                    title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+        <div class="table-container">
+                <table class="table">
+                    <thead class="table-primary">
+                    <tr>
+                        <th class="sortable text-white text-nowrap">Mã SP</th>
+                        <th class="sortable text-white text-nowrap">Tên Sản Phẩm</th>
+                        <th class="sortable text-white text-nowrap">Ảnh</th>
+                        <th class="sortable text-white text-nowrap">Giá Tiền</th>
+                        <th class="sortable text-white text-nowrap">Thương Hiệu</th>
+                        <th class="sortable text-white text-nowrap">Danh Mục</th>
+                        <th class="sortable text-white text-nowrap">Số lượng</th>
+                        <th class="sortable text-white text-nowrap">Trạng thái</th>
+                        <th class="text-white text-nowrap">Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <c:if test="${empty products}">
+                            <tr>
+                                <td colspan="9" class="text-center text-muted py-4">Không có sản phẩm nào.</td>
+                            </tr>
+                        </c:if>
+                        <c:forEach var="p" items="${products}">
+                            <tr>
+                                <td>${p.productId}</td>
+                                <td>
+                                    <div title="${p.name}" class="product-name-cell">${p.name}</div>
+                                </td>
+                                <td>
+                                    <img src="${p.imgPath}" class="thumb-img w-75" alt="thumbnail"/>
+                                </td>
+                                <td><fmt:formatNumber value="${p.price}" type="currency" currencyCode="VND"/></td>
+                                <td>${p.brand}</td>
+                                <td>${p.category}</td>
+                                <td>${p.quantity}</td>
+                                <td><span class="badge bg-secondary">${p.status}</span></td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-link text-secondary p-0"
+                                                onclick="window.location.href='${pageContext.request.contextPath}/admin/edit-products?id=${p.productId}'";
+                                                title="Chỉnh sửa">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <form class="mb-0" action="${pageContext.request.contextPath}/admin/comments" method="post">
+                                            <input type="hidden" name="keyword" value="${p.productId}">
                                             <button class="btn btn-link text-secondary p-0" title="Xem bình luận">
                                                 <i class="fas fa-comment"></i>
                                             </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
 
-                    <hr class="mx-5"/>
+                <hr class="mx-5"/>
 
-                    <c:if test="${keyword == null}">
-                        <div class="d-flex justify-content-between align-items-center m-3">
-                            <p id="pageInfo" class="mb-0">Hiển thị ${currentPage}-${totalPages} trong ${totalProduct} sản phẩm</p>
-                            <nav>
-                                <ul id="productPagination" class="pagination mb-0" data-current-page="${currentPage}">
-                                    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-                                        <a title="Tới trang đầu" class="page-link" href="#">|&lt;</a>
-                                    </li>
-                                    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-                                        <a title="Tới trang sau" class="page-link" href="#">&lt;</a>
-                                    </li>
+                <c:if test="${keyword == null}">
+                    <div class="d-flex justify-content-between align-items-center m-3">
+                        <p id="pageInfo" class="mb-0">Hiển thị ${currentPage}-${totalPages} trong ${totalProduct} sản phẩm</p>
+                        <nav>
+                            <ul id="productPagination" class="pagination mb-0" data-current-page="${currentPage}">
+                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                    <a title="Tới trang đầu" class="page-link" href="#">|&lt;</a>
+                                </li>
+                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                    <a title="Tới trang sau" class="page-link" href="#">&lt;</a>
+                                </li>
 
-                                    <c:forEach var="i"
-                                               begin="${(totalPages <= 5) ? 1 : (currentPage <= 3 ? 1 : (currentPage >= (totalPages - 2) ? totalPages - 4 : currentPage - 2))}"
-                                               end="${(totalPages <= 5) ? totalPages : (currentPage <= 3 ? 5 : (currentPage >= (totalPages - 2) ? totalPages : currentPage + 2))}">
-                                        <li class="page-item ${i == currentPage ? 'active' : ''}">
-                                            <a title="Tới trang ${i}" class="page-link" href="#">${i}</a>
-                                        </li>
-                                    </c:forEach>
+                                <c:forEach var="i"
+                                           begin="${(totalPages <= 5) ? 1 : (currentPage <= 3 ? 1 : (currentPage >= (totalPages - 2) ? totalPages - 4 : currentPage - 2))}"
+                                           end="${(totalPages <= 5) ? totalPages : (currentPage <= 3 ? 5 : (currentPage >= (totalPages - 2) ? totalPages : currentPage + 2))}">
+                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                        <a title="Tới trang ${i}" class="page-link" href="#">${i}</a>
+                                    </li>
+                                </c:forEach>
 
-                                    <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
-                                        <a title="Tới trang trước" class="page-link" href="#">&gt;</a>
-                                    </li>
-                                    <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
-                                        <a title="Tới trang cuối" class="page-link" href="#">&gt;|</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </c:if>
-                </div>
+                                <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                                    <a title="Tới trang trước" class="page-link" href="#">&gt;</a>
+                                </li>
+                                <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                                    <a title="Tới trang cuối" class="page-link" href="#">&gt;|</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </c:if>
             </div>
-
-            <!-- COMMENTS TAB -->
-            <div class="tab-pane fade mb-5" id="comments" role="tabpanel">
-            </div>
-        </div>
     </div>
 </main>
 

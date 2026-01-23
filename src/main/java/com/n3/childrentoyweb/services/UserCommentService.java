@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dao.UserCommentDAO;
+import com.n3.childrentoyweb.dto.CommentCriteria;
 import com.n3.childrentoyweb.dto.CommentManagementDTO;
 import com.n3.childrentoyweb.models.UserComment;
 
@@ -33,5 +34,10 @@ public class UserCommentService {
         int totalPage = totalComment / pageSize;
 
         return new Pagination<>(comments, page, totalComment, totalPage);
+    }
+
+    public Pagination<CommentManagementDTO> findByCriteria(CommentCriteria commentCriteria) {
+        List<CommentManagementDTO> comments = this.userCommentDAO.findByCriteria(commentCriteria);
+        return new Pagination<>(comments, 1, 10, 1);
     }
 }

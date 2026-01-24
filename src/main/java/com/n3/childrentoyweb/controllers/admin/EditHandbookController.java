@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/edit-handbooks")
+@WebServlet(value = "/admin/edit-handbooks")
 public class EditHandbookController extends HttpServlet {
     private HandBookService handBookService;
     private CategoryHbService categoryHbService;

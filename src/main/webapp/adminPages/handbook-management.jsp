@@ -101,7 +101,7 @@
         <div class="filter-section">
             <div class="row align-items-center">
                 <div class="col-md-6 hstack align-items-center">
-                    <div class="search-wrapper flex-grow-1">
+                    <div class="search-wrapper me-2">
                         <i class="fas fa-search search-icon"></i>
                         <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/handbooks" method="post">
                             <input
@@ -114,6 +114,12 @@
                         </form>
 
                     </div>
+                    <c:if test="${find_user != null || manage_user == null}">
+                        <btn class="btn btn-outline-secondary h-100 hstack align-items-center"
+                             onclick="window.location.href='${pageContext.request.contextPath}/admin/handbooks?page=1'">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </btn>
+                    </c:if>
                     <script>
                         document.getElementById("searchInput")
                             .addEventListener("keydown", function (e) {
@@ -123,16 +129,9 @@
                                 }
                             });
                     </script>
-
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">
-                    <c:if test="${find_user != null || manage_user == null}">
-                        <nav>
-                            <ul class="pagination mb-0 me-2">
-                                <li class="page-item"><a  class="page-link" href="${pageContext.request.contextPath}/admin/users?page=1">Load lại bảng</a></li>
-                            </ul>
-                        </nav>
-                    </c:if>
+
                     <div class="text-end mt-md-0">
                         <a  href="${pageContext.request.contextPath}/admin/new-handbooks"  class="btn-add fw-medium px-4 py-2 text-decoration-none">
                             <i class="fas fa-plus"></i> Thêm bài viết
@@ -173,6 +172,12 @@
 
         <div class="container my-5">
             <div class="row g-4">
+                <c:if test="${empty handbooks}">
+                    <div class="empty-state text-center w-100 py-5">
+                        <i class="bi bi-inbox-fill fs-1 text-muted mb-3"></i>
+                        <h5 class="text-muted">Không có cẩm nang nào</h5>
+                    </div>
+                </c:if>
                 <c:forEach var="hb" items="${handbooks}">
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card h-100 shadow-sm border-0">
@@ -203,21 +208,26 @@
                                     </c:choose>
                                 </div>
 
-                                <h2 class="card-title text-truncate" style="color:  #0d6efd;"> ${hb.title}</h2>
+                                <h2 class="card-title text-truncate" style="color:  rgb(213, 27, 27);"> ${hb.title}</h2>
 
                                 <p class="card-text text-muted clamp-3">
                                         ${hb.description}
                                 </p>
-                                <!-- FIX CỨNG Ở ĐÂY -->
                                 <div class="card-footer bg-white border-0">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <a href="#" class="action-link text-warning">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </a>
+                                        <form class="mb-0" action="${pageContext.request.contextPath}/admin/edit-handbooks">
+                                            <input type="hidden" name="id" value="${hb.id}">
+                                            <button class="btn text-secondary">
+                                                <i class="bi bi-pencil-square"></i> Chỉnh sửa
+                                            </button>
+                                        </form>
 
-                                        <a href="#" class="action-link text-primary">
-                                            Xem thêm <i class="bi bi-arrow-right"></i>
-                                        </a>
+                                        <form class="mb-0" action="${pageContext.request.contextPath}/admin/handbook-details">
+                                            <input type="hidden" name="id" value="${hb.id}">
+                                            <button class="btn text-secondary">
+                                                Xem thêm <i class="bi bi-arrow-right"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
 

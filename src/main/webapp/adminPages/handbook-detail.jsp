@@ -9,351 +9,65 @@
     <title>Quản trị - Đăng Bài Viết Mới</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"/>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/handbook-details.css"/>
 </head>
 
-<style>
-    /* Container & Layout */
-    body {
-        background-color: #f8f9fa;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0;
-    }
-
-    /* Header */
-    .header {
-        background: #b00d26;
-        padding: 20px 0;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .header-content {
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .header-content h1 {
-        color: white;
-        font-size: 24px;
-        font-weight: 600;
-        margin: 0;
-    }
-
-    .header-buttons {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .btn-add, .btn-submit {
-        padding: 10px 20px;
-        border-radius: 6px;
-        border: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-    }
-
-    .btn-add {
-        background-color: white;
-        color: #b00d26;
-    }
-
-    .btn-add:hover {
-        background-color: #f8f9fa;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-
-    .btn-submit {
-        background-color: #28a745;
-        color: white;
-    }
-
-    .btn-submit:hover {
-        background-color: #218838;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-
-    /* Content Area */
-    .content {
-        background-color: white;
-        padding: 40px 20px;
-        margin: 30px auto;
-        max-width: 1140px;
-        border-radius: 8px;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-    }
-
-    /* Article */
-    .main-content-blog {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    .main-content-blog header {
-        text-align: center;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #e9ecef;
-    }
-
-    .main-content-blog header h1 {
-        font-size: 32px;
-        color: #041675;
-        font-weight: 700;
-        margin-bottom: 15px;
-        line-height: 1.3;
-    }
-
-    .main-content-blog header h3 {
-        font-size: 14px;
-        color: #6c757d;
-        margin-bottom: 5px;
-    }
-
-    /* Social Icons */
-    .short-content {
-        display: flex;
-        justify-content: left;
-        margin: 20px 0 30px;
-    }
-
-    .short-content ul {
-        list-style: none;
-        display: flex;
-        gap: 12px;
-        padding: 0;
-        margin: 0;
-    }
-
-    .list-social__item {
-        transition: transform 0.3s ease;
-    }
-
-    .list-social__item:hover {
-        transform: scale(1.1);
-    }
-
-    .list-social__link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Table of Contents */
-    .toc-wrapper {
-        max-width: 800px;
-        margin: 30px auto 40px;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    .toc-wrapper .card-header {
-        background-color: #041675;
-        color: white;
-        padding: 15px 20px;
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .toc-wrapper .list-group-item {
-        padding: 12px 20px;
-        transition: all 0.3s ease;
-        border-left: 3px solid transparent;
-    }
-
-    .toc-wrapper .list-group-item:hover {
-        background-color: #f8f9fa;
-        border-left-color: #b00d26;
-        padding-left: 25px;
-    }
-
-    .toc-wrapper .list-group-item h2 {
-        font-size: 16px;
-        margin: 0;
-        color: #333;
-        font-weight: 500;
-    }
-
-    /* Article Content */
-    .article-template__content {
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.8;
-    }
-
-    .article-template__content h2 {
-        font-size: 24px;
-        color: #041675;
-        font-weight: 600;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #e9ecef;
-    }
-
-    .article-template__content h2:first-of-type {
-        margin-top: 20px;
-    }
-
-    .article-template__content p {
-        font-size: 16px;
-        color: #333;
-        margin-bottom: 15px;
-        text-align: justify;
-    }
-
-    .article-template__content img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 25px auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .article-template__content > div[style*="text-align: left"] {
-        text-align: left !important;
-        margin: 30px 0;
-    }
-
-    .article-template__content hr {
-        margin: 40px 0;
-        border: 0;
-        border-top: 2px solid #e9ecef;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .header-content {
-            flex-direction: column;
-            align-items: stretch;
-            text-align: center;
-        }
-
-        .header-buttons {
-            justify-content: center;
-        }
-
-        .main-content-blog header h1 {
-            font-size: 24px;
-        }
-
-        .article-template__content h2 {
-            font-size: 20px;
-        }
-
-        .content {
-            padding: 20px 15px;
-            margin: 15px;
-        }
-
-        .toc-wrapper .list-group-item h2 {
-            font-size: 14px;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .header-buttons {
-            width: 100%;
-        }
-
-        .btn-add, .btn-submit {
-            flex: 1;
-            justify-content: center;
-        }
-
-        .short-content ul {
-            gap: 8px;
-        }
-
-        .list-social__link svg {
-            width: 28px;
-            height: 28px;
-        }
-    }
-
-    .header-buttons {
-        display: flex;
-        gap: 12px;
-    }
-
-    .header-buttons a,
-    .header-buttons button {
-        width: 220px;          /* ép cùng chiều ngang */
-        height: 48px;          /* ép cùng chiều cao */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-
-        padding: 0;            /* tránh padding mặc định */
-        font-size: 16px;
-        white-space: nowrap;
-    }
-
-</style>
-
 <body>
+    <jsp:include page="/common/sidebar.jsp"></jsp:include>
 
-    <div class="container">
-        <div class="header">
-            <div class="header-content">
-                <h1>Chi tiết bài viết</h1>
-                <div class="header-buttons">
-                    <a type="button" class="btn btn-add" href="${pageContext.request.contextPath}/admin/handbook-managements" >
-                        <i class="bi bi-arrow-90deg-left"></i>Quay lại trang quản lý
-                    </a>
+    <main class="main-content">
+        <div class="px-5 py-4 hstack justify-content-between align-items-center">
+            <h2>Chi tiết bài viết</h2>
+            <div class="hstack gap-2">
+                <a type="button" class="px-2 text-decoration-none text-secondary" href="${pageContext.request.contextPath}/admin/handbooks" >
+                    <i class="bi bi-arrow-90deg-left"></i> Quay lại
+                </a>
 
-                    <form action="${pageContext.request.contextPath}/admin/#" method="post">
-                        <input hidden="hidden" name="id" value="${handbooId}">
-                        <button type="submit" class="btn btn-add" onclick="addParagraph()">
-                            <i class="bi bi-feather"></i>Chỉnh sửa
-                        </button>
-                    </form>
+                <form class="mb-0" action="${pageContext.request.contextPath}/admin/edit-handbooks" method="post">
+                    <input type="hidden" name="id" value="${handbookId}">
+                    <button type="submit" class="btn text-secondary">
+                        <i class="bi bi-feather"></i> Chỉnh sửa
+                    </button>
+                </form>
 
-                    <form action="${pageContext.request.contextPath}/admin/handbooks-details" method="post">
-                        <input hidden="hidden" name="id" value="${handbookId}">
-                        <button type="submit" class="btn btn-add">
-                            <c:choose>
-                                <c:when test="${status == 'POSTED'}">
-                                    <span class="text-danger">
+                <form class="mb-0" action="${pageContext.request.contextPath}/admin/handbook-details"
+                      method="post"
+                      onsubmit="event.preventDefault(); submitActive(this);">
+                    <input type="hidden" name="id" value="${handbookId}">
+                    <button type="submit" class="btn btn-custom-primary">
+                        <c:choose>
+                            <c:when test="${status == 'POSTED'}">
+                                <span class="text-dark">
+                                    <i class="bi bi-eye-slash"></i>
+                                    Ẩn bài viết
+                                </span>
+                            </c:when>
 
-                                        <i class="bi bi-eye-slash"></i>
-                                        Hidden
-                                    </span>
-                                </c:when>
-
-                                <c:otherwise>
-                                    <span class="text-secondary">
-                                         <i class="bi bi-send me-2"></i>
-                                        POSTED
-                                    </span>
-                                </c:otherwise>
-                            </c:choose>
-
-                        </button>
-                    </form>
-                </div>
+                            <c:otherwise>
+                                <span class="text-dark">
+                                     <i class="bi bi-send me-2"></i>
+                                    Đăng bài viết
+                                </span>
+                            </c:otherwise>
+                        </c:choose>
+                    </button>
+                </form>
             </div>
         </div>
-        <div class="content">
+        <hr>
 
+        <div id="alert" class="alert alert-danger text-center d-none" role="alert">
+            ${error}
+        </div>
+
+        <div class="content">
             <!-- begin -->
             <article class="main-content-blog article-template">
                 <header style="text-align: left;">
@@ -361,10 +75,11 @@
                         <h1 class="fw-bold" style="font-size: 24px; color: #041675;">
                             ${title}
                         </h1>
-                        <h3 class="text-secondary small mb-0">${createdAt}</h3>
-                        <h3 class="text-secondary small mb-0">${username}</h3>
+                        <div class="hstack gap-2">
+                            <h3 class="text-secondary small mb-0">${createdAt}</h3>
+                            <h3 class="text-secondary small mb-0">${username}</h3>
+                        </div>
                         <div class="short-content">
-                            <!-- <div class="left-box"></div> -->
                             <div class="right-box">
                                 <ul class="d-flex" style="    margin-bottom: 0; padding-left: 2px; gap: 4px; text-align: left;" >
 
@@ -489,11 +204,14 @@
                 </div>
 
             </article>
-            <!-- end -->
-
         </div>
-    </div>
+    </main>
 
+
+<script>
+    const contextPath = "${pageContext.request.contextPath}";
+</script>
+<script src="${pageContext.request.contextPath}/adminPages/js/detail-handbook.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

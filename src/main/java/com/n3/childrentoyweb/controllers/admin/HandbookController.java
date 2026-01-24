@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet( value = "/admin/handbooks")
 public class HandbookController extends HttpServlet {
@@ -60,8 +61,6 @@ public class HandbookController extends HttpServlet {
 
         Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteria(handBookCriteria);
 
-        System.out.println(handBookCardDTOPagination.getData());
-
         request.setAttribute("handbooks",handBookCardDTOPagination.getData());
         request.setAttribute("currentPage",handBookCardDTOPagination.getCurrentPage());
         request.setAttribute("totalElements",handBookCardDTOPagination.getTotalElements());
@@ -86,11 +85,8 @@ public class HandbookController extends HttpServlet {
         handBookCriteria.setOnMonth(false);
         handBookCriteria.setCurrentPage(FIRST_PAGE);
         handBookCriteria.setPageSize(PAGE_SIZE);
-        System.out.println(handBookCriteria);
 
         Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteria(handBookCriteria);
-
-        System.out.println(handBookCardDTOPagination.getData());
 
         request.setAttribute("handbooks",handBookCardDTOPagination.getData());
         request.setAttribute("currentPage",handBookCardDTOPagination.getCurrentPage());

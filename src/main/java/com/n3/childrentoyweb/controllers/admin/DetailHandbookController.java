@@ -53,20 +53,21 @@ public class DetailHandbookController extends HttpServlet {
         }
     }
 
-    // Update status handbook
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
         try {
             long handbookId = Long.parseLong(req.getParameter("id"));
             Handbook handbook = this.handBookService.findById(handbookId).orElseThrow(ObjectNotFoundException::new);
             handbook.revertStatus();
-            System.out.println(handbook);
             this.handBookService.updateHandbook(handbook);
+
+            resp.getWriter().write("{\"success\": true, \"message\": \"Đã cập nhật bài viết!\"}");
         } catch (Exception e){
-            e.printStackTrace();
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-            return;
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write(e.getMessage());
         }
-        resp.sendRedirect(req.getHeader("Referer"));
     }
 }

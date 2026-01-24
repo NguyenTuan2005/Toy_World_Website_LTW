@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class HandBookService {
@@ -22,13 +23,11 @@ public class HandBookService {
 
     private CloudinaryService cloudinaryService;
 
-
     public HandBookService(){
         this.handbookDAO = new HandbookDAO();
         this.paragraphDAO = new ParagraphDAO();
         this.userDAO = new UserDAO();
         this.handbookCategoryDAO = new HandbookCategoryDAO();
-
         this.cloudinaryService = new CloudinaryService();
     }
 
@@ -44,23 +43,33 @@ public class HandBookService {
         handbook.setUserId(handbookDTO.getPostedUserId());
 
         long handbookId = this.handbookDAO.save(handbook);
-        System.out.println("handBookId = "+handbookId);
 
         int LIMIT_THREADS = 2;
         ExecutorService executor = Executors.newFixedThreadPool(LIMIT_THREADS);
-
-        HandbookCategory handbookCategory = new HandbookCategory(handbookDTO.getCategoryId(),handbookId);
-        executor.submit(() -> {
-            long hbcId = this.handbookCategoryDAO.save(handbookCategory);
-            System.out.println("handbookCategoryId "+hbcId);
-            return null;
-        });
-
-        for(ParagraphDTO paragraphDTO : handbookDTO.getParagraphs()){
+        try {
+            HandbookCategory handbookCategory = new HandbookCategory(handbookDTO.getCategoryId(), handbookId);
             executor.submit(() -> {
-                this.saveParagraph(handbookId,paragraphDTO);
+                long hbcId = this.handbookCategoryDAO.save(handbookCategory);
                 return null;
             });
+
+            for (ParagraphDTO paragraphDTO : handbookDTO.getParagraphs()) {
+                ParagraphDTO p = paragraphDTO;
+                executor.submit(() -> {
+                    this.saveParagraph(handbookId, p);
+                    return null;
+                });
+            }
+        } finally {
+            executor.shutdown();
+            try {
+                if (!executor.awaitTermination(30, TimeUnit.SECONDS)) {
+                    executor.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                executor.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
@@ -72,8 +81,6 @@ public class HandBookService {
 
         Paragraph paragraph = new Paragraph(paragraphDTO.getTitle(),paragraphDTO.getContent(),url,"img description", paragraphDTO.getIndex(), handbookId);
         long pId = this.paragraphDAO.save(paragraph);
-
-        System.out.println("paragraphID = "+pId);
     }
 
     public HandbookDetailDTO findHandbookDetailById(long id){

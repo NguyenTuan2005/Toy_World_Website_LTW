@@ -17,102 +17,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
 </head>
-<style>
-    .stats-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        transition: transform 0.2s;
-    }
-
-    .stats-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    }
-
-    .stats-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .stats-card.primary .stats-icon {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-
-    .stats-card.success .stats-icon {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        color: white;
-    }
-
-    .stats-card.warning .stats-icon {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        color: white;
-    }
-
-    .stats-card.info .stats-icon {
-        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        color: white;
-    }
-
-    .stats-value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #2c3e50;
-        margin: 0;
-    }
-
-    .stats-label {
-        color: #6c757d;
-        font-size: 0.875rem;
-        margin: 0;
-    }
-
-    .content-card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        margin-bottom: 2rem;
-    }
-
-    .card-header-custom {
-        padding: 1.5rem;
-        border-bottom: 1px solid #e9ecef;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .card-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #2c3e50;
-        margin: 0;
-    }
-
-    .search-box {
-        position: relative;
-        width: 300px;
-    }
-
-    .search-box input {
-        padding-left: 2.5rem;
-        border-radius: 8px;
-        border: 1px solid #dee2e6;
-    }
-</style>
 
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
-
-
 
 <main class="main-content">
     <div class="header-section">
@@ -124,63 +31,72 @@
             </div>
         </div>
     </div>
-    <hr>
 
-    <div class="container mb-3">
-
-
+    <div class="container">
         <div class="container-fluid">
             <!-- Statistics Cards -->
-            <div class="row mb-4">
-                <div class="col-xl-3 col-md-6 mb-3">
-                    <div class="stats-card primary">
-                        <div class="stats-icon">
-                            <i class="bi bi-file-earmark-text"></i>
+            <div class="row g-3 mb-4">
+                <div class="col-lg col-md-4 col-sm-6 ps-0">
+                    <div class="card border-secondary h-100">
+                        <div class="card-body text-center">
+                            <div class="text-secondary mb-2">
+                                <i class="bi bi-file-earmark-text fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_handbooks}" type="number" /></h4>
+                            <small class="text-muted">Tổng bài viết</small>
                         </div>
-                        <h3 class="stats-value"><fmt:formatNumber value="${total_handbooks}" type="number" /></h3>
-                        <p class="stats-label">Tổng bài viết</p>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-3">
-                    <div class="stats-card info">
-                        <div class="stats-icon">
-                            <i class="bi bi-lock-fill"></i>
+
+                <div class="col-lg col-md-4 col-sm-6">
+                    <div class="card border-secondary h-100">
+                        <div class="card-body text-center">
+                            <div class="text-secondary mb-2">
+                                <i class="bi bi-lock-fill fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_hidden_handbooks}" type="number" /></h4>
+                            <small class="text-muted">Tổng bài viết đã ẩn</small>
                         </div>
-                        <h3 class="stats-value"><fmt:formatNumber value="${total_hidden_handbooks}" type="number" /></h3>
-                        <p class="stats-label">Tổng bài viết đã ẩn </p>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-3">
-                    <div class="stats-card warning">
-                        <div class="stats-icon">
-                            <i class="bi bi-journal-text"></i>
+
+                <div class="col-lg col-md-4 col-sm-6">
+                    <div class="card border-secondary h-100">
+                        <div class="card-body text-center">
+                            <div class="text-secondary mb-2">
+                                <i class="bi bi-journal-text fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_new_handbooks_on_month}" type="number" /></h4>
+                            <small class="text-muted">Mới tháng này</small>
                         </div>
-                        <h3 class="stats-value"><fmt:formatNumber value="${total_new_handbooks_on_month}" type="number" /></h3>
-                        <p class="stats-label">Mới tháng này</p>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-3">
-                    <div class="stats-card info">
-                        <div class="stats-icon">
-                            <i class="bi bi-check-circle-fill text-success"></i>
+
+                <div class="col-lg col-md-4 col-sm-6">
+                    <div class="card border-secondary h-100">
+                        <div class="card-body text-center">
+                            <div class="text-secondary mb-2">
+                                <i class="bi bi-check-circle-fill fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_posted_on_month}" type="number" /></h4>
+                            <small class="text-muted">Đã đăng trong tháng</small>
                         </div>
-                        <h3 class="stats-value"><fmt:formatNumber value="${total_posted_on_month}" type="number" /></h3>
-                        <p class="stats-label">Đã đăng trong tháng</p>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-3">
-                    <div class="stats-card info">
-                        <div class="stats-icon">
-                            <i class="bi bi-eye-slash-fill text-secondary"></i>
+
+                <div class="col-lg col-md-4 col-sm-6">
+                    <div class="card border-secondary h-100">
+                        <div class="card-body text-center">
+                            <div class="text-secondary mb-2">
+                                <i class="bi bi-eye-slash-fill fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_hidden_on_month}" type="number" /></h4>
+                            <small class="text-muted">Đã ẩn trong tháng</small>
                         </div>
-                        <h3 class="stats-value"><fmt:formatNumber value="${total_hidden_on_month}" type="number" /></h3>
-                        <p class="stats-label">Đã ẩn trong tháng</p>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <div class="filter-section">
             <div class="row align-items-center">
@@ -202,7 +118,7 @@
                         document.getElementById("searchInput")
                             .addEventListener("keydown", function (e) {
                                 if (e.key === "Enter") {
-                                    e.preventDefault(); // tránh reload không mong muốn
+                                    e.preventDefault();
                                     document.getElementById("searchForm").submit();
                                 }
                             });
@@ -256,7 +172,6 @@
         </style>
 
         <div class="container my-5">
-            <div class="section-title">Có thể bạn sẽ thích</div>
             <div class="row g-4">
                 <c:forEach var="hb" items="${handbooks}">
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
@@ -278,7 +193,6 @@
                                         <c:when test="${hb.status == 'POSTED'}">
                                             <span class="text-danger">
                                                 <i class="bi bi-send"></i>
-
                                             </span>
                                         </c:when>
                                         <c:otherwise>
@@ -354,8 +268,6 @@
 
 
 </main>
-
-
 
 <script src="js/index.js"></script>
 

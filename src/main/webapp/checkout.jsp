@@ -8,7 +8,7 @@
     <title>Thanh Toán - Toy World</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <jsp:include page="/common/head.jsp" />
-    <link rel="stylesheet" href="css/checkout.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/checkout.css" />
     <style>
       .navbar {
         padding: 0 !important;
@@ -228,6 +228,6 @@
     </c:if>
 
     <jsp:include page="/common/footer.jsp" />
-    <script src="js/checkout.js"></script>
+    <script src="${pageContext.request.contextPath}/js/checkout.js"></script>
   </body>
 </html>

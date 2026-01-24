@@ -77,13 +77,12 @@ public class NewHandbookController extends HttpServlet {
             handbookDTO.hidden();
             handbookDTO.setCategoryId(categoryId);
 
-            System.out.println(handbookDTO);
-
             this.handBookService.saveFullHandbook(handbookDTO);
 
+            response.getWriter().write("{\"success\": true, \"message\": \"Thêm sản phẩm thành công!\"}");
         } catch (Exception e) {
-            e.printStackTrace();
-            out.println(e.getMessage());
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write(e.getMessage());
         }
     }
 

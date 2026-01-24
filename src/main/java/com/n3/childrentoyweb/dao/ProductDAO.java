@@ -28,6 +28,9 @@ public class ProductDAO extends BaseDAO {
                     JOIN brands b ON p.brand_id = b.id
                     JOIN categories c ON p.category_id = c.id
                     JOIN promotions pm ON p.promotion_id = pm.id
+                                            AND pm.is_active = 1
+                                            AND pm.created_at <= NOW()
+                                            AND pm.expired_at >= NOW()
                     JOIN product_assets pa ON p.id = pa.product_id
                     WHERE p.is_active = 1
                 """;
@@ -187,7 +190,11 @@ public class ProductDAO extends BaseDAO {
                     JOIN brands b ON p.brand_id = b.id
                     JOIN categories c ON p.category_id = c.id
                     LEFT JOIN promotions pm ON p.promotion_id = pm.id
-                    WHERE p.is_active = 1 AND p.id = :id
+                                                AND pm.is_active = 1
+                                                AND pm.created_at <= NOW()
+                                                AND pm.expired_at >= NOW()
+                    WHERE p.is_active = 1 
+                            AND p.id = :id
                 """;
 
         return super.getJdbi().withHandle(handle ->
@@ -222,6 +229,9 @@ public class ProductDAO extends BaseDAO {
                 JOIN brands b ON p.brand_id = b.id
                 JOIN categories c ON p.category_id = c.id
                 LEFT JOIN promotions pm ON p.promotion_id = pm.id
+                                            AND pm.is_active = 1
+                                            AND pm.expired_at >= NOW()
+                                            AND pm.created_at <= NOW()
                 WHERE p.is_active = 1
                   AND p.category_id = :categoryId
                   AND p.brand_id = :brandId
@@ -268,6 +278,9 @@ public class ProductDAO extends BaseDAO {
         JOIN brands b ON p.brand_id = b.id
         JOIN categories c ON p.category_id = c.id
         LEFT JOIN promotions pm ON p.promotion_id = pm.id
+                                AND pm.is_active = 1
+                                AND pm.created_at <= NOW()
+                                AND pm.expired_at >= NOW()
         WHERE p.is_active = 1
           AND p.category_id = :categoryId
           AND p.id NOT IN (<excludeIds>)
@@ -440,6 +453,9 @@ public class ProductDAO extends BaseDAO {
             JOIN brands b ON p.brand_id = b.id
             JOIN categories c ON p.category_id = c.id
             LEFT JOIN promotions pm ON p.promotion_id = pm.id
+                                        AND pm.is_active = 1
+                                        AND pm.created_at <= NOW()
+                                        AND pm.expired_at >= NOW()
             WHERE p.is_active = 1
             """);
 
@@ -482,33 +498,29 @@ public class ProductDAO extends BaseDAO {
     private void appendFinalPriceFilter(StringBuilder sql, List<PriceRangeFilterDTO> priceRanges) {
         if (priceRanges == null || priceRanges.isEmpty()) return;
 
-        sql.append("""
-                AND (
-                """);
+        sql.append(" AND (");
 
         for (int i = 0; i < priceRanges.size(); i++) {
-            sql.append("""
-                            (
-                                p.price -
-                                CASE
-                                   WHEN pm.id IS NULL THEN 0
-                                   ELSE LEAST(
-                                       ROUND(p.price * pm.discount_percent / 100),
-                                       pm.discount_price
-                                   )
-                                END
-                            )
-                            BETWEEN :min""").append(i)
-                    .append(" AND :max").append(i)
-                    .append(")");
+            if (i > 0) sql.append(" OR ");
 
-            if (i < priceRanges.size() - 1) {
-                sql.append(" OR ");
-            }
+            sql.append("""
+            (
+                p.price -
+                CASE
+                    WHEN pm.id IS NULL THEN 0
+                    ELSE LEAST(
+                        ROUND(p.price * pm.discount_percent / 100),
+                        pm.discount_price
+                    )
+                END
+            )
+            BETWEEN :min""").append(i)
+                    .append(" AND :max").append(i);
         }
 
         sql.append(")");
     }
+
 
     private void appendKeywordFilter(StringBuilder sql, String keyword) {
         if (keyword != null) {

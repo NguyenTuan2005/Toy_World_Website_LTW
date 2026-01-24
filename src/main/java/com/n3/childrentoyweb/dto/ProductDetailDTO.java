@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class ProductDetailDTO {
     private Long id;
-    private Double originalPrice;
-    private Double discountPrice;
-    private Integer quantity;
+    private double originalPrice;
+    private double discountPrice;
+    private int quantity;
     private String name;
 
     private Map<String, String> restInfo;
@@ -19,7 +19,7 @@ public class ProductDetailDTO {
     private Long categoryId;
     private String categoryName;
     private Long promotionId;
-    private Double discountPercent;
+    private double discountPercent;
     private Double maxDiscountPrice;
     private List<String> imagePaths;
 
@@ -27,7 +27,7 @@ public class ProductDetailDTO {
 
     private List<UserCommentDTO> comments;
 
-    public ProductDetailDTO(Long id, Double originalPrice, Double discountPrice, Integer quantity, String name, Map<String, String> restInfo, String description, Long brandId, String brandName, Long categoryId, String categoryName, Long promotionId, Double discountPercent, Double maxDiscountPrice, List<String> imagePaths, List<UserCommentDTO> comments) {
+    public ProductDetailDTO(Long id, double originalPrice, double discountPrice, int quantity, String name, Map<String, String> restInfo, String description, Long brandId, String brandName, Long categoryId, String categoryName, Long promotionId, double discountPercent, Double maxDiscountPrice, List<String> imagePaths, boolean wishlisted, List<UserCommentDTO> comments) {
         this.id = id;
         this.originalPrice = originalPrice;
         this.discountPrice = discountPrice;
@@ -43,6 +43,7 @@ public class ProductDetailDTO {
         this.discountPercent = discountPercent;
         this.maxDiscountPrice = maxDiscountPrice;
         this.imagePaths = imagePaths;
+        this.wishlisted = wishlisted;
         this.comments = comments;
     }
 
@@ -57,27 +58,27 @@ public class ProductDetailDTO {
         this.id = id;
     }
 
-    public Double getOriginalPrice() {
+    public double getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(Double originalPrice) {
+    public void setOriginalPrice(double originalPrice) {
         this.originalPrice = originalPrice;
     }
 
-    public Double getDiscountPrice() {
+    public double getDiscountPrice() {
         return discountPrice;
     }
 
-    public void setDiscountPrice(Double discountPrice) {
+    public void setDiscountPrice(double discountPrice) {
         this.discountPrice = discountPrice;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -145,11 +146,11 @@ public class ProductDetailDTO {
         this.promotionId = promotionId;
     }
 
-    public Double getDiscountPercent() {
+    public double getDiscountPercent() {
         return discountPercent;
     }
 
-    public void setDiscountPercent(Double discountPercent) {
+    public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
     }
 
@@ -169,16 +170,16 @@ public class ProductDetailDTO {
         this.imagePaths = imagePaths;
     }
 
+    public boolean isWishlisted() {
+        return wishlisted;
+    }
+
     public List<UserCommentDTO> getComments() {
         return comments;
     }
 
     public void setComments(List<UserCommentDTO> comments) {
         this.comments = comments;
-    }
-
-    public boolean isWishlisted() {
-        return wishlisted;
     }
 
     @Override

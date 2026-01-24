@@ -3,7 +3,7 @@ package com.n3.childrentoyweb.controllers;
 import com.n3.childrentoyweb.dto.ProductDetailDTO;
 import com.n3.childrentoyweb.dto.ProductListDTO;
 import com.n3.childrentoyweb.models.User;
-import com.n3.childrentoyweb.services.ProductService;
+import com.n3.childrentoyweb.services.ProductDetailService;
 import com.n3.childrentoyweb.utils.AppContextPathHolder;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -15,10 +15,10 @@ import java.util.NoSuchElementException;
 
 @WebServlet(value = "/products/*")
 public class ProductDetailsController extends HttpServlet {
-    private ProductService productService;
+    private ProductDetailService productDetailService;
 
     public void init() {
-        productService = new ProductService();
+        productDetailService = new ProductDetailService();
     }
 
     @Override
@@ -32,9 +32,9 @@ public class ProductDetailsController extends HttpServlet {
                 return;
             }
 
-            long id;
+            long productId;
             try {
-                id = Long.parseLong(pathInfo.substring(1));
+                productId = Long.parseLong(pathInfo.substring(1));
             } catch (NumberFormatException e) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
@@ -42,9 +42,9 @@ public class ProductDetailsController extends HttpServlet {
 
             User currentUser = (User) request.getSession().getAttribute("currentUser");
 
-            ProductDetailDTO product = productService.findProductDetailById(currentUser, id);
+            ProductDetailDTO product = productDetailService.findProductDetailById(currentUser, productId);
 
-            List<ProductListDTO> relatedProducts = productService.findRelatedProduct(currentUser, id, 8);
+            List<ProductListDTO> relatedProducts = productDetailService.findRelatedProduct(currentUser, productId);
 
             request.setAttribute("product", product);
             request.setAttribute("relatedProducts", relatedProducts);

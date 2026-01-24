@@ -242,9 +242,50 @@ public class ProductDAO extends BaseDAO {
         );
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProductDAO().findRelatedByCategoryAndBrand(1L, 1L, 1L, 10));
+
+    public List<ProductListDTO> findRelatedByCategory(
+            Long categoryId,
+            List<Long> excludeIds,
+            int limit
+    ) {
+        String sql = """
+        SELECT p.id,
+               p.name,
+               p.price AS originPrice,
+               p.quantity,
+               b.name AS brand,
+               c.name AS category,
+               pm.discount_percent AS discountPercent,
+               pm.discount_price AS maxDiscountPrice,
+               (
+                   SELECT pa.img_path
+                   FROM product_assets pa
+                   WHERE pa.product_id = p.id
+                     AND pa.is_active = 1
+                   LIMIT 1
+               ) AS imgPath
+        FROM products p
+        JOIN brands b ON p.brand_id = b.id
+        JOIN categories c ON p.category_id = c.id
+        LEFT JOIN promotions pm ON p.promotion_id = pm.id
+        WHERE p.is_active = 1
+          AND p.category_id = :categoryId
+          AND p.id NOT IN (<excludeIds>)
+        ORDER BY p.created_at DESC
+        LIMIT :limit
+        """;
+
+        return jdbi.withHandle(h ->
+                h.createQuery(sql)
+                        .bind("categoryId", categoryId)
+                        .bindList("excludeIds", excludeIds)
+                        .bind("limit", limit)
+                        .registerRowMapper(BeanMapper.factory(ProductListDTO.class))
+                        .mapTo(ProductListDTO.class)
+                        .list()
+        );
     }
+
 
     public long countProductInMonth(int year, int month) {
         String sql = """

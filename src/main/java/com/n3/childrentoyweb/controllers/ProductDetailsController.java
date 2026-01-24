@@ -34,11 +34,7 @@ public class ProductDetailsController extends HttpServlet {
 
             long id;
             try {
-                String[] parts = pathInfo.split("/");
-
-//                String id = parts[parts.length - 1];
-
-                id = Long.parseLong( parts[parts.length - 1]);
+                id = Long.parseLong(pathInfo.substring(1));
             } catch (NumberFormatException e) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
@@ -47,8 +43,6 @@ public class ProductDetailsController extends HttpServlet {
             User currentUser = (User) request.getSession().getAttribute("currentUser");
 
             ProductDetailDTO product = productService.findProductDetailById(currentUser, id);
-
-            System.out.println(product);
 
             List<ProductListDTO> relatedProducts = productService.findRelatedProduct(currentUser, id, 8);
 

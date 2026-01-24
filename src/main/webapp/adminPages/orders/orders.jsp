@@ -87,7 +87,7 @@
                             <i class="bi bi-search search-icon"></i>
 
                             <input type="text" class="search-input" placeholder="Tìm theo mã đơn, tên, email, SĐT..."
-                                   name="q" value="${fn:escapeXml(param.q)}"/>
+                                   name="keyword" value="${fn:escapeXml(param.keyword)}"/>
 
                             <input type="hidden" name="sort"
                                    value="${empty param.sort ? 'newest' : param.sort}"/>

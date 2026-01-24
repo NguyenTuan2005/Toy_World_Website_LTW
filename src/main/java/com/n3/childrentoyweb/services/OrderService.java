@@ -48,7 +48,7 @@ public class OrderService {
             OR u.phone LIKE :kw
             OR CONCAT(u.last_name, ' ', u.first_name) LIKE :kw
         )
-    """;
+        """;
     }
 
     private String buildOrderBy(String sort) {

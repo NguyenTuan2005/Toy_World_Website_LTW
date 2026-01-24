@@ -108,11 +108,11 @@ public class ProductService {
         return this.productDAO.findProductsByPromotionId(promotionId);
     }
 
-    public List<ProductListDTO> findByFilter(Long currentUserId, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, String sortType, int page, int pageSize) {
+    public List<ProductListDTO> findByFilter(Long currentUserId, String keyword, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges, String sortType, int page, int pageSize) {
 
         int offset = (page - 1) * pageSize;
 
-        List<ProductListDTO> products = productDAO.findByFilter(brandIds, categoryIds, priceRanges, sortType, pageSize, offset);
+        List<ProductListDTO> products = productDAO.findByFilter(keyword, brandIds, categoryIds, priceRanges, sortType, pageSize, offset);
 
         List<Long> wishlistProductIds = wishListDAO.findAllProductIdByUserId(currentUserId);
 
@@ -127,8 +127,8 @@ public class ProductService {
     }
 
 
-    public int countByFilter(List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
-        return productDAO.countByFilter(brandIds, categoryIds, priceRanges);
+    public int countByFilter(String keyword, List<Integer> brandIds, List<Integer> categoryIds, List<PriceRangeFilterDTO> priceRanges) {
+        return productDAO.countByFilter(keyword, brandIds, categoryIds, priceRanges);
     }
 
     public List<ProductListDTO> findRelatedProduct(User currentUser, Long productId, int limit){

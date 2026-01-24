@@ -296,7 +296,8 @@ public class ProductDAO extends BaseDAO {
         });
     }
 
-    public int countByFilter(List<Integer> brandIds,
+    public int countByFilter(String keyword,
+                             List<Integer> brandIds,
                              List<Integer> categoryIds,
                              List<PriceRangeFilterDTO> priceRanges) {
 
@@ -306,6 +307,10 @@ public class ProductDAO extends BaseDAO {
 
         return this.getJdbi().withHandle(h -> {
             var query = h.createQuery("");
+
+            if (keyword != null) {
+                sql.append(" AND name LIKE :keyword ");
+            }
 
             if (brandIds != null && !brandIds.isEmpty()) {
                 sql.append(" AND brand_id IN (<brandIds>)");
@@ -328,6 +333,10 @@ public class ProductDAO extends BaseDAO {
             query = h.createQuery(sql.toString());
 
             // bind list
+            if (keyword != null) {
+                query.bind("keyword", "%" + keyword + "%");
+            }
+
             if (brandIds != null && !brandIds.isEmpty()) {
                 query.bindList("brandIds", brandIds);
             }
@@ -349,6 +358,7 @@ public class ProductDAO extends BaseDAO {
 
     //filter
     public List<ProductListDTO> findByFilter(
+            String keyword,
             List<Integer> brandIds,
             List<Integer> categoryIds,
             List<PriceRangeFilterDTO> priceRanges,
@@ -363,10 +373,15 @@ public class ProductDAO extends BaseDAO {
             SELECT p.id,
                    p.name,
                    p.price AS originPrice,
-                   GREATEST(p.price - LEAST( ROUND(p.price * COALESCE(pm.discount_percent, 0) / 100),
-                                       COALESCE( NULLIF(pm.discount_price, 0), ROUND(p.price * pm.discount_percent / 100))
-                                   ),
-                                   0
+                   (
+                       p.price -
+                       CASE
+                           WHEN pm.id IS NULL THEN 0
+                           ELSE LEAST(
+                               ROUND(p.price * pm.discount_percent / 100),
+                               pm.discount_price
+                           )
+                       END
                    ) AS finalPrice,
                    p.quantity,
                    b.name AS brand,
@@ -385,8 +400,9 @@ public class ProductDAO extends BaseDAO {
             JOIN categories c ON p.category_id = c.id
             LEFT JOIN promotions pm ON p.promotion_id = pm.id
             WHERE p.is_active = 1
-        """);
+            """);
 
+            appendKeywordFilter(sql, keyword);
             appendBrandFilter(sql, brandIds);
             appendCategoryFilter(sql, categoryIds);
             appendFinalPriceFilter(sql, priceRanges);
@@ -401,6 +417,7 @@ public class ProductDAO extends BaseDAO {
             bindBrand(query, brandIds);
             bindCategory(query, categoryIds);
             bindFinalPrice(query, priceRanges);
+            bindKeyword(query, keyword);
 
             return query
                     .mapToBean(ProductListDTO.class)
@@ -411,13 +428,13 @@ public class ProductDAO extends BaseDAO {
 
     private void appendBrandFilter(StringBuilder sql, List<Integer> brandIds) {
         if (brandIds != null && !brandIds.isEmpty()) {
-            sql.append(" AND brand_id IN (<brandIds>)");
+            sql.append(" AND p.brand_id IN (<brandIds>)");
         }
     }
 
     private void appendCategoryFilter(StringBuilder sql, List<Integer> categoryIds) {
         if (categoryIds != null && !categoryIds.isEmpty()) {
-            sql.append(" AND category_id IN (<categoryIds>)");
+            sql.append(" AND p.category_id IN (<categoryIds>)");
         }
     }
 
@@ -431,12 +448,16 @@ public class ProductDAO extends BaseDAO {
         for (int i = 0; i < priceRanges.size(); i++) {
             sql.append("""
                             (
-                                p.price
-                                - LEAST(
-                                    ROUND(p.price * COALESCE(pm.discount_percent, 0) / 100),
-                                    COALESCE(pm.discount_price, 0)
-                                )
-                                BETWEEN :min""").append(i)
+                                p.price -
+                                CASE
+                                   WHEN pm.id IS NULL THEN 0
+                                   ELSE LEAST(
+                                       ROUND(p.price * pm.discount_percent / 100),
+                                       pm.discount_price
+                                   )
+                                END
+                            )
+                            BETWEEN :min""").append(i)
                     .append(" AND :max").append(i)
                     .append(")");
 
@@ -448,6 +469,11 @@ public class ProductDAO extends BaseDAO {
         sql.append(")");
     }
 
+    private void appendKeywordFilter(StringBuilder sql, String keyword) {
+        if (keyword != null) {
+            sql.append(" AND p.name LIKE :keyword ");
+        }
+    }
 
     private void bindBrand(Query query, List<Integer> brandIds) {
         if (brandIds != null && !brandIds.isEmpty()) {
@@ -472,7 +498,17 @@ public class ProductDAO extends BaseDAO {
         }
     }
 
+    private void bindKeyword(Query query, String keyword){
+        if (keyword != null) {
+            query.bind("keyword", "%" + keyword + "%");
+        }
+    }
+
     private String convertSortTypeToOrderBy(String sort) {
+        if (sort == null) {
+            return "p.created_at DESC";
+        }
+
         String orderBy;
         switch (sort) {
             case "name_asc":
@@ -495,7 +531,6 @@ public class ProductDAO extends BaseDAO {
                 break;
         }
         return orderBy;
-
     }
 
     public List<ProductManagementDTO> findAllProductsForManagement(int page, int pageSize) {

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <header class="bg-white shadow-sm">
     <div class="container-fluid py-2 root-red-background">
         <div class="d-flex align-items-center justify-content-center flex-wrap">
@@ -14,28 +14,25 @@
                          style="width: 200px; height: 50px;"/>
                 </a>
             </div>
-            <!-- Logo -->
-            <!-- Search bar -->
-            <div class="flex-grow-1 mx-4" style="max-width: 470px">
-                <div class="input-group">
-                <span class="input-group-text bg-white border-end-0">
-                <img
-                        src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
-                        alt="Search"
-                        width="18"
-                        height="18"
-                />
-                </span>
-                    <input
-                            type="text"
-                            class="form-control border-start-0"
-                            placeholder="Nhập từ khóa để tìm kiếm (ví dụ: lắp ráp, mô hình, ba lô,...)"
-                    />
-                </div>
-            </div>
-            <style>
 
-            </style>
+            <!-- Search bar -->
+            <form action="${pageContext.request.contextPath}/products" method="get"
+                  class="flex-grow-1 mx-4" style="max-width: 480px;">
+                <div class="input-group shadow-sm rounded-pill overflow-hidden">
+                    <span class="input-group-text bg-white border-0 ps-3">
+                        <i class="bi bi-search text-primary"></i>
+                    </span>
+
+                    <input type="text"
+                           class="form-control border-0 ps-1"
+                           name="keyword"
+                           value="${fn:escapeXml(param.keyword)}"
+                           placeholder="Tìm kiếm sản phẩm (lắp ráp, mô hình, ba lô...)">
+
+                </div>
+            </form>
+
+
             <!-- Account + Cart -->
             <div class="header-section text-center">
                 <div class="d-flex justify-content-center align-items-center gap-4">

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -177,17 +178,41 @@
         </div>
 
         <!-- orders -->
-        <div class="col-lg-8 col-md-7 section active" id="order-history">
+        <div class="wishlist-wrapper col-lg-8 col-md-7 section active" id="order-history">
             <div class="profile-card">
-                <h3 class="mb-3">
-                    Lịch sử đơn hàng
-                </h3>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="mb-3">
+                        Lịch sử đơn hàng
+                    </h3>
+
+                    <form action="${pageContext.request.contextPath}/account/order-history"
+                          method="get"
+                          class="mb-3">
+
+                        <div class="d-flex gap-2 align-items-center">
+                            <div class="input-group shadow-sm rounded-pill overflow-hidden flex-grow-1">
+
+                                <span class="input-group-text bg-primary text-white border-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+
+                                <input type="text"
+                                       name="keyword"
+                                       value="${fn:escapeXml(param.keyword)}"
+                                       class="form-control border-0"
+                                       placeholder="Tìm theo mã đơn "
+                                       style="width: 250px;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
 
                 <c:choose>
                     <c:when test="${empty orders}">
                         <div class="text-center text-muted py-5">
                             <i class="bi bi-box-seam fs-1"></i>
-                            <p class="mt-3">Bạn chưa có đơn hàng nào</p>
+                            <p class="mt-3">Không có đơn hàng nào!</p>
                         </div>
                     </c:when>
 

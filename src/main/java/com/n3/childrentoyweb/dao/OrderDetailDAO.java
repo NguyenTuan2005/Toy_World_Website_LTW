@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.OrderDetailDTO;
 import com.n3.childrentoyweb.dto.OrderItemDTO;
+import com.n3.childrentoyweb.dto.UserOrderDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,9 +68,5 @@ public class OrderDetailDAO extends BaseDAO {
         );
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(new OrderDetailDAO().findOrderDetail(1L));
-    }
 
 }

@@ -40,14 +40,16 @@
                             ${error}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
+                    <c:remove var="error" scope="session"/>
                 </c:if>
 
-                <c:if test="${not empty resetSuccessMessage}">
+                <c:if test="${not empty successMessage}">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <i class="bi bi-check-circle-fill me-2"></i>
-                            ${resetSuccessMessage}
+                            ${successMessage}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
+                    <c:remove var="successMessage" scope="session"/>
                 </c:if>
 
                 <form id="loginForm" class="mb-3" method="post" action="${pageContext.request.contextPath}/login">

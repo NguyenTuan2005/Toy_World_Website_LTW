@@ -88,7 +88,7 @@ public class CheckoutController extends HttpServlet {
                     location = this.locationService.update(new Location(location.getId(),address, province));
             }
 
-            Order order = new Order(user.getId(), cart.getTotalPrice(), OrderStatus.IN_PREPARE.getStatus());
+            Order order = new Order(user.getId(), cart.getTotalPrice(), cart.getTotalPromotion(), OrderStatus.IN_PREPARE.getStatus());
             long orderId = this.orderService.save(order);
 
             List<CartItem> items = cart.getCartItems();

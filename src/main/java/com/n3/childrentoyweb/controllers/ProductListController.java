@@ -76,15 +76,17 @@ public class ProductListController extends HttpServlet {
             sortType = "new";
         }
 
+        String searchKeyword = request.getParameter("keyword");
+        searchKeyword = (searchKeyword == null || searchKeyword.isBlank()) ? null : searchKeyword.trim();
 
         //product
         User currentUser = (User) request.getSession().getAttribute("currentUser");
         Long userId = (currentUser != null) ? currentUser.getId() : null;
 
-        List<ProductListDTO> products = productService.findByFilter(userId, brandIds, categoryIds, selectedPriceRanges, sortType, page, PAGE_SIZE);
+        List<ProductListDTO> products = productService.findByFilter(userId,searchKeyword, brandIds, categoryIds, selectedPriceRanges, sortType.trim(), page, PAGE_SIZE);
 
         //page
-        int totalItems = productService.countByFilter(brandIds, categoryIds, selectedPriceRanges);
+        int totalItems = productService.countByFilter(searchKeyword, brandIds, categoryIds, selectedPriceRanges);
         int totalPages = (int) Math.ceil((double) totalItems / PAGE_SIZE);
 
         request.setAttribute("products", products);

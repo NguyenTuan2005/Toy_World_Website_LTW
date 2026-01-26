@@ -10,14 +10,14 @@ public class ProductListDTO {
     private String category;
     private String brand;
 
-    private long originPrice;
-    private long finalPrice;
-    private long maxDiscountPrice;
+    private double originPrice;
+    private double finalPrice;
+    private Double maxDiscountPrice;
     private double discountPercent;
 
     private boolean wishlisted;
 
-    public ProductListDTO(Long id, String name, String imgPath, int quantity, String category, String brand, long originPrice, long finalPrice, long maxDiscountPrice, double discountPercent, boolean wishlisted) {
+    public ProductListDTO(Long id, String name, String imgPath, int quantity, String category, String brand, double originPrice, double finalPrice, Double maxDiscountPrice, double discountPercent, boolean wishlisted) {
         this.id = id;
         this.name = name;
         this.imgPath = imgPath;
@@ -70,40 +70,8 @@ public class ProductListDTO {
         return category;
     }
 
-    public long getMaxDiscountPrice() {
-        return maxDiscountPrice;
-    }
-
-    public void setMaxDiscountPrice(long maxDiscountPrice) {
-        this.maxDiscountPrice = maxDiscountPrice;
-    }
-
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public long getOriginPrice() {
-        return originPrice;
-    }
-
-    public void setOriginPrice(long originPrice) {
-        this.originPrice = originPrice;
-    }
-
-    public long getFinalPrice() {
-        return finalPrice;
-    }
-
-    public void setFinalPrice(long finalPrice) {
-        this.finalPrice = finalPrice;
-    }
-
-    public double getDiscountPercent() {
-        return discountPercent;
-    }
-
-    public void setDiscountPercent(double discountPercent) {
-        this.discountPercent = discountPercent;
     }
 
     public String getBrand() {
@@ -112,6 +80,38 @@ public class ProductListDTO {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public double getOriginPrice() {
+        return originPrice;
+    }
+
+    public void setOriginPrice(double originPrice) {
+        this.originPrice = originPrice;
+    }
+
+    public double getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(double finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public Double getMaxDiscountPrice() {
+        return maxDiscountPrice;
+    }
+
+    public void setMaxDiscountPrice(Double maxDiscountPrice) {
+        this.maxDiscountPrice = maxDiscountPrice;
+    }
+
+    public double getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(double discountPercent) {
+        this.discountPercent = discountPercent;
     }
 
     public boolean isWishlisted() {
@@ -127,8 +127,8 @@ public class ProductListDTO {
         return "ProductListDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", imgPaths=" + imgPath +
-                "\n, quantity=" + quantity +
+                ", imgPath='" + imgPath + '\'' +
+                ", quantity=" + quantity +
                 ", category='" + category + '\'' +
                 ", brand='" + brand + '\'' +
                 ", originPrice=" + originPrice +
@@ -136,6 +136,6 @@ public class ProductListDTO {
                 ", maxDiscountPrice=" + maxDiscountPrice +
                 ", discountPercent=" + discountPercent +
                 ", wishlisted=" + wishlisted +
-                "}\n";
+                '}';
     }
 }

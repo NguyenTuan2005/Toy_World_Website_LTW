@@ -11,10 +11,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(name="verifyOtp", value = "/verify-otp")
+@WebServlet(value = "/verify-otp")
 public class VerifyOtpController extends HttpServlet {
     private UserService userService;
     private CacheService cacheService;
@@ -32,7 +33,8 @@ public class VerifyOtpController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("pendingUser");
+        HttpSession session = req.getSession(false);
+        User user = (User) session.getAttribute("pendingUser");
         String otp, userInput = req.getParameter("otpCode");
         try {
             boolean isValidEmail =  user != null && user.isValidEmail();
@@ -48,7 +50,11 @@ public class VerifyOtpController extends HttpServlet {
                 throw new OTPInvalidException("Không thể xác thực OTP");
 
             userService.save(user);
-            req.getSession().removeAttribute("pendingUser");
+
+            session.removeAttribute("pendingUser");
+
+            session.setAttribute("successMessage", "Đăng ký thành công, Hãy đăng nhập để sử dụng hệ thống!");
+
             resp.sendRedirect(req.getContextPath() + "/login");
 
         } catch (OTPInvalidException | ObjectNotFoundException e) {

@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(name="verifyOtp", value = "/verify-login-otp")
+@WebServlet(value = "/verify-login-otp")
 public class VerifyLoginOtpController extends HttpServlet {
     private UserService userService;
     private CacheService cacheService;

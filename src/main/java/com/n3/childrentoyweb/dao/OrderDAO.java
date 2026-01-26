@@ -47,11 +47,18 @@ public class OrderDAO extends BaseDAO{
 
     public long save(Order order) {
         String sql = """
-                insert into orders (user_id, total_price, status)
-                values (:userId, :totalPrice, :status)
+                insert into orders (user_id, total_price, discount_price, status)
+                values (:userId, :totalPrice, :discount_price, :status)
                 """;
 
-        return this.getJdbi().withHandle(handle -> handle.createUpdate(sql).bind("userId", order.getUserId()).bind("totalPrice", order.getTotalPrice()).bind("status", order.getStatus()).executeAndReturnGeneratedKeys("id").mapTo(Long.class).one());
+        return this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("userId", order.getUserId())
+                        .bind("totalPrice", order.getTotalPrice())
+                        .bind("discount_price", order.getDiscountPrice())
+                        .bind("status", order.getStatus())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class).one());
     }
 
     public void update(Order order) {
@@ -136,7 +143,7 @@ public class OrderDAO extends BaseDAO{
         );
     }
 
-    public List<UserOrderDTO> findOrdersByUserId(long userId) {
+    public List<UserOrderDTO> findOrdersByUserId(Long userId) {
         String sql = """
             SELECT o.id,
                    o.status AS orderStatus,
@@ -152,6 +159,38 @@ public class OrderDAO extends BaseDAO{
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("userId", userId)
+                        .map((rs, ctx) -> {
+                            UserOrderDTO dto = new UserOrderDTO();
+                            dto.setId(rs.getLong("id"));
+                            dto.setOrderStatus(rs.getString("orderStatus"));
+                            dto.setPaymentStatus(rs.getString("paymentStatus"));
+                            dto.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                            dto.setTotalPrice(rs.getLong("total_price"));
+                            return dto;
+                        })
+                        .list()
+        );
+    }
+
+    public List<UserOrderDTO> findOrdersByUserAndOrderId(Long userId, Long orderId) {
+        String sql = """
+            SELECT o.id,
+                   o.status AS orderStatus,
+                   p.status AS paymentStatus,
+                   o.created_at,
+                   o.total_price
+            FROM orders o
+            JOIN payments p ON o.id = p.order_id
+            WHERE o.user_id = :userId 
+                    AND o.id = :orderId
+                    AND o.is_active = 1
+            ORDER BY o.created_at DESC
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .bind("orderId", orderId)
                         .map((rs, ctx) -> {
                             UserOrderDTO dto = new UserOrderDTO();
                             dto.setId(rs.getLong("id"));
@@ -206,10 +245,4 @@ public class OrderDAO extends BaseDAO{
                         .one()
         );
     }
-
-
-    public static void main(String[] args) {
-        System.out.println(new OrderDAO().countOrdersByMonth(1));
-    }
-
 }

@@ -1,12 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Tài Khoản Của Bạn</title>
+    <title>Đơn Hàng Của Bạn</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
@@ -18,64 +19,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
     <style>
-        .order-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        .search-border{
+            border-top-right-radius: 50rem !important;
+            border-bottom-right-radius: 50rem !important;
+            border: 1px solid #d2d2d2;
         }
-
-        .order-card {
-            background: #f8f9fa;
-            border-radius: 14px;
-            padding: 16px 18px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .order-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .order-footer {
-            text-align: right;
-            margin-top: 10px;
-        }
-
-        .order-products {
-            border-top: 1px dashed #ddd;
-            margin-top: 12px;
-            padding-top: 12px;
-        }
-
-        .product-item {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .product-item img {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid #ddd;
-        }
-
-        .product-info .name {
-            font-weight: 600;
-        }
-
-        .qty-price {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .text-blue{
-            color: #007bff;
-        }
-
     </style>
 </head>
 <body>
@@ -145,6 +93,13 @@
                         </button>
                     </li>
                     <li>
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/change-password'"
+                                class="d-flex">
+                            <i class="bi bi-shield-lock-fill me-2"></i>
+                            Đổi mật khẩu
+                        </button>
+                    </li>
+                    <li>
                         <button onclick="window.location.href='${pageContext.request.contextPath}/account/order-history'"
                                 class="d-flex">
                             <i class="bi bi-cart-fill me-2"></i>
@@ -160,7 +115,8 @@
                     </li>
                     <c:if test="${sessionScope.isAdmin}">
                         <li>
-                            <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'" class="d-flex">
+                            <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'"
+                                    class="d-flex">
                                 <i class="bi bi-clipboard-data-fill me-2"></i>
                                 Quản lí cửa hàng
                             </button>
@@ -177,93 +133,116 @@
         </div>
 
         <!-- orders -->
-        <div class="col-lg-8 col-md-7 section active" id="order-history">
-            <div class="profile-card">
+        <div class="wrapper col-lg-8 col-md-7 section active" id="order-history">
+
+            <div class="d-flex justify-content-between align-items-center">
                 <h3 class="mb-3">
                     Lịch sử đơn hàng
                 </h3>
 
-                <c:choose>
-                    <c:when test="${empty orders}">
-                        <div class="text-center text-muted py-5">
-                            <i class="bi bi-box-seam fs-1"></i>
-                            <p class="mt-3">Bạn chưa có đơn hàng nào</p>
+                <form action="${pageContext.request.contextPath}/account/order-history"
+                      method="get"
+                      class="mb-3">
+
+                    <div class="d-flex gap-2 align-items-center">
+                        <div class="input-group shadow-sm rounded-pill overflow-hidden flex-grow-1">
+
+                                <span class="input-group-text bg-primary text-white border-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+
+                            <input type="text"
+                                   name="keyword"
+                                   value="${fn:escapeXml(param.keyword)}"
+                                   class="form-control search-border"
+                                   placeholder="Tìm theo mã đơn "
+                                   style="width: 250px;">
                         </div>
-                    </c:when>
+                    </div>
+                </form>
+            </div>
 
-                    <c:otherwise>
-                        <div class="order-list">
+            <c:choose>
+                <c:when test="${empty orders}">
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-box-seam fs-1"></i>
+                        <p class="mt-3">Không có đơn hàng nào!</p>
+                    </div>
+                </c:when>
 
-                            <c:forEach var="order" items="${orders}">
-                                <div class="order-card">
+                <c:otherwise>
+                    <div class="order-list">
 
-                                    <!-- HEADER -->
-                                    <div class="order-header">
-                                        <div>
-                                            <strong>Đơn #${order.id}</strong>
-                                            <div class="text-muted small">
-                                                    ${order.createdAt}
-                                            </div>
-                                        </div>
+                        <c:forEach var="order" items="${orders}">
+                            <div class="order-card">
 
-                                        <div class="d-flex gap-2">
-                                            <c:choose>
-                                                <c:when test="${order.orderStatus == 'CHUAN_BI_HANG'}">
-                                                    <span class="badge bg-primary-subtle text-blue">Chuẩn bị hàng</span>
-                                                </c:when>
-
-                                                <c:when test="${order.orderStatus == 'DANG_GIAO'}">
-                                                    <span class="badge bg-success-subtle text-success">Đang giao</span>
-                                                </c:when>
-
-                                                <c:when test="${order.orderStatus == 'DA_GIAO'}">
-                                                    <span class="badge bg-success-subtle text-success">Đã Giao</span>
-                                                </c:when>
-
-                                                <c:when test="${order.orderStatus == 'DA_HUY'}">
-                                                    <span class="badge bg-danger-subtle text-danger">Đã hủy</span>
-                                                </c:when>
-                                            </c:choose>
-
-
-                                            <c:choose>
-                                                <c:when test="${order.paymentStatus == 'CHUA_THANH_TOAN'}">
-                                                    <span class="badge bg-danger-subtle text-danger">Chưa thanh toán</span>
-                                                </c:when>
-
-                                                <c:when test="${order.paymentStatus == 'DA_THANH_TOAN'}">
-                                                    <span class="badge bg-success-subtle text-success">Đã thanh toán</span>
-                                                </c:when>
-
-                                                <c:when test="${order.paymentStatus == 'HOAN_TIEN'}">
-                                                    <span class="badge bg-dark-subtle text-dark">Hoàn tiền</span>
-                                                </c:when>
-                                            </c:choose>
-
+                                <!-- HEADER -->
+                                <div class="order-header">
+                                    <div>
+                                        <strong>Đơn #${order.id}</strong>
+                                        <div class="text-muted small">
+                                                ${order.createdAt}
                                         </div>
                                     </div>
 
-                                    <!-- PRODUCTS -->
-                                    <div class="order-products">
-                                        <c:forEach var="item" items="${order.items}">
-                                            <div class="product-item">
-                                                <img src="${item.imgPath}"
-                                                     alt="${item.productName}">
-                                                <div class="product-info">
-                                                    <div class="name">${item.productName}</div>
-                                                    <div class="qty-price">
-                                                        SL: ${item.quantity} ×
-                                                        <fmt:formatNumber value="${item.price}"
-                                                                          type="currency"
-                                                                          currencySymbol="₫"/>
-                                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <c:choose>
+                                            <c:when test="${order.orderStatus == 'CHUAN_BI_HANG'}">
+                                                <span class="badge bg-primary-subtle text-blue">Chuẩn bị hàng</span>
+                                            </c:when>
+
+                                            <c:when test="${order.orderStatus == 'DANG_GIAO'}">
+                                                <span class="badge bg-success-subtle text-success">Đang giao</span>
+                                            </c:when>
+
+                                            <c:when test="${order.orderStatus == 'DA_GIAO'}">
+                                                <span class="badge bg-success-subtle text-success">Đã Giao</span>
+                                            </c:when>
+
+                                            <c:when test="${order.orderStatus == 'DA_HUY'}">
+                                                <span class="badge bg-danger-subtle text-danger">Đã hủy</span>
+                                            </c:when>
+                                        </c:choose>
+
+
+                                        <c:choose>
+                                            <c:when test="${order.paymentStatus == 'CHUA_THANH_TOAN'}">
+                                                <span class="badge bg-danger-subtle text-danger">Chưa thanh toán</span>
+                                            </c:when>
+
+                                            <c:when test="${order.paymentStatus == 'DA_THANH_TOAN'}">
+                                                <span class="badge bg-success-subtle text-success">Đã thanh toán</span>
+                                            </c:when>
+
+                                            <c:when test="${order.paymentStatus == 'HOAN_TIEN'}">
+                                                <span class="badge bg-dark-subtle text-dark">Hoàn tiền</span>
+                                            </c:when>
+                                        </c:choose>
+
+                                    </div>
+                                </div>
+
+                                <!-- PRODUCTS -->
+                                <div class="order-products">
+                                    <c:forEach var="item" items="${order.items}">
+                                        <div class="product-item">
+                                            <img src="${item.imgPath}"
+                                                 alt="${item.productName}">
+                                            <div class="product-info">
+                                                <div class="name">${item.productName}</div>
+                                                <div class="qty-price">
+                                                    SL: ${item.quantity} ×
+                                                    <fmt:formatNumber value="${item.price}"
+                                                                      type="currency"
+                                                                      currencySymbol="₫"/>
                                                 </div>
                                             </div>
-                                        </c:forEach>
-                                    </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
 
-                                    <!-- FOOTER -->
-                                    <div class="order-footer d-flex justify-content-between align-items-center">
+                                <!-- FOOTER -->
+                                <div class="order-footer d-flex justify-content-between align-items-center">
                                         <span>
                                             Tổng tiền:
                                             <strong>
@@ -273,23 +252,22 @@
                                             </strong>
                                         </span>
 
-                                        <c:if test="${order.orderStatus == 'CHUAN_BI_HANG'}">
-                                            <button class="btn btn-outline-danger btn-sm"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#cancelOrderModal"
-                                                    data-order-id="${order.id}">
-                                                <strong>Hủy đơn</strong>
-                                            </button>
-                                        </c:if>
-                                    </div>
+                                    <c:if test="${order.orderStatus == 'CHUAN_BI_HANG'}">
+                                        <button class="btn btn-outline-danger btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#cancelOrderModal"
+                                                data-order-id="${order.id}">
+                                            <strong>Hủy đơn</strong>
+                                        </button>
+                                    </c:if>
                                 </div>
-                            </c:forEach>
+                            </div>
+                        </c:forEach>
 
-                        </div>
-                    </c:otherwise>
-                </c:choose>
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
-            </div>
         </div>
     </div>
 

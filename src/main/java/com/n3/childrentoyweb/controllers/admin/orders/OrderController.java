@@ -31,7 +31,7 @@ public class OrderController extends HttpServlet {
             sortType = "newest";
         }
 
-        String searchKeyword = request.getParameter("q");
+        String searchKeyword = request.getParameter("keyword");
 
         List<AdminOrderListDTO> orders = orderService.findAll(searchKeyword,sortType, page);
         int totalPages = orderService.getTotalPages();

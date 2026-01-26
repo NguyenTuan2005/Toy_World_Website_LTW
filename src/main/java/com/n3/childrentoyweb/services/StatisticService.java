@@ -4,12 +4,10 @@ import com.n3.childrentoyweb.dao.OrderDAO;
 import com.n3.childrentoyweb.dao.ProductDAO;
 import com.n3.childrentoyweb.dao.StatisticDAO;
 import com.n3.childrentoyweb.dao.UserDAO;
-import com.n3.childrentoyweb.dto.PaymentMethodChartDTO;
-import com.n3.childrentoyweb.dto.ProductChartDTO;
-import com.n3.childrentoyweb.dto.ProductStockStatDTO;
-import com.n3.childrentoyweb.dto.OrderAnalyticsDTO;
+import com.n3.childrentoyweb.dto.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -63,6 +61,7 @@ public class StatisticService {
         return rates;
     }
 
+//    revenue chart
     public List<OrderAnalyticsDTO> getRevenue(String range) {
         if (range == null) {
             throw new IllegalArgumentException("range is required");
@@ -102,7 +101,6 @@ public class StatisticService {
             }
 
             default: {
-                // 7 ngày
                 LocalDate from = today.minusDays(6);
                 data = statisticDAO.revenueByDay(from, to);
                 return fillMissingDays(from, to, data);
@@ -212,14 +210,48 @@ public class StatisticService {
         }
     }
 
-
-
+//  product stat
     public List<ProductStockStatDTO> getProductStockStat(int limit, String order){
         if (!"asc".equalsIgnoreCase(order) && !"desc".equalsIgnoreCase(order)) {
             order = "desc";
         }
 
         return statisticDAO.topStockProduct(limit, order);
+    }
+
+// order status stat
+    public List<OrderAnalyticsDTO> getOrderStatusStat(String range) {
+        if (range == null) {
+            throw new IllegalArgumentException("range is required");
+        }
+
+        LocalDateTime to = LocalDate.now().plusDays(1).atStartOfDay();
+
+        LocalDateTime from;
+
+        switch (range) {
+
+            case "30": {
+                from = LocalDate.now().minusDays(29).atStartOfDay();
+                break;
+            }
+
+            case "3month": {
+                from = LocalDate.now().minusMonths(2).atStartOfDay();
+                break;
+            }
+
+            case "1year": {
+                from = LocalDate.now().minusMonths(11).atStartOfDay();
+                break;
+            }
+
+            default: {
+                from = LocalDate.now().minusDays(6).atStartOfDay();
+            }
+        }
+
+        return statisticDAO.countOrderByStatus(from, to);
     }
 
     public List<PaymentMethodChartDTO> getPaymentMethodChart(){
@@ -231,6 +263,7 @@ public class StatisticService {
     }
 
     public static void main(String[] args) {
-        System.out.println(new StatisticService().getOrderStats("7"));
+        System.out.println(new StatisticService().getOrderStatusStat("30"));
+
     }
 }

@@ -49,6 +49,17 @@
 </div>
 
 <main class="mt-2">
+    <c:if test="${not empty param.keyword}">
+        <div class="container my-4 d-flex justify-content-center align-items-center">
+            <h4 class="fw-semibold">
+                Kết quả tìm kiếm cho
+                <span>
+                "<c:out value='${param.keyword}'/>"
+            </span>
+            </h4>
+        </div>
+    </c:if>
+
     <div class="container-lg mb-5">
         <div class="row">
             <!-- Filter Section -->
@@ -179,7 +190,6 @@
                 </div>
             </aside>
 
-
             <c:set var="sortQuery" value=""/>
 
             <c:if test="${param.sort != null}">
@@ -189,6 +199,14 @@
 
             <c:set var="filterQuery" value=""/>
 
+
+            <c:set var="searchQuery" value=""/>
+
+            <c:if test="${param.keyword != null && param.keyword != ''}">
+                <c:set var="searchQuery" value="&keyword=${fn:escapeXml(param.keyword)}"/>
+            </c:if>
+
+            <!-- Brand -->
             <c:if test="${paramValues.brandId != null}">
                 <c:forEach items="${paramValues.brandId}" var="cid">
                     <c:set var="filterQuery" value="${filterQuery}&brandId=${cid}"/>
@@ -209,7 +227,7 @@
                 </c:forEach>
             </c:if>
 
-            <c:set var="fullFilterSortQuery" value="${filterQuery}${sortQuery}"/>
+            <c:set var="fullFilterSortQuery" value="${filterQuery}${sortQuery}${searchQuery}"/>
 
 
             <!-- Products List Section -->
@@ -249,17 +267,17 @@
 
                             <ul class="dropdown-menu" aria-labelledby="sortDropdown">
                                 <li><a class="dropdown-item" data-value="new" data-label="Sản phẩm mới"
-                                       href="?page=1${filterQuery}&sort=new">Sản phẩm mới</a></li>
+                                       href="?page=1${filterQuery}${searchQuery}&sort=new">Sản phẩm mới</a></li>
                                 <li><a class="dropdown-item" data-value="discount" data-label="Hàng khuyến mãi"
-                                       href="?page=1${filterQuery}&sort=discount">Hàng khuyến mãi</a></li>
+                                       href="?page=1${filterQuery}${searchQuery}&sort=discount">Hàng khuyến mãi</a></li>
                                 <li><a class="dropdown-item" data-value="name_asc" data-label="Tên từ A-Z"
-                                       href="?page=1${filterQuery}&sort=name_asc">Tên từ A-Z</a></li>
+                                       href="?page=1${filterQuery}${searchQuery}&sort=name_asc">Tên từ A-Z</a></li>
                                 <li><a class="dropdown-item" data-value="name_desc" data-label="Tên từ Z-A"
-                                       href="?page=1${filterQuery}&sort=name_desc">Tên từ Z-A</a></li>
+                                       href="?page=1${filterQuery}${searchQuery}&sort=name_desc">Tên từ Z-A</a></li>
                                 <li><a class="dropdown-item" data-value="price_desc" data-label="Giá giảm dần"
-                                       href="?page=1${filterQuery}&sort=price_desc">Giá giảm dần</a></li>
+                                       href="?page=1${filterQuery}${searchQuery}&sort=price_desc">Giá giảm dần</a></li>
                                 <li><a class="dropdown-item" data-value="price_asc" data-label="Giá tăng dần"
-                                       href="?page=1${filterQuery}&sort=price_asc">Giá tăng dần</a></li>
+                                       href="?page=1${filterQuery}${searchQuery}&sort=price_asc">Giá tăng dần</a></li>
                             </ul>
                         </div>
                     </div>
@@ -328,7 +346,6 @@
 
                 <!-- Pagination Section -->
                 <nav aria-label="Phân trang" class="mt-5">
-
                     <ul class="pagination justify-content-center gap-1">
 
                         <!-- Previous -->
@@ -336,7 +353,7 @@
                             <a class="page-link text-primary"
                                href="?page=${currentPage - 1}${fullFilterSortQuery}"
                                aria-label="Previous">
-                                &laquo;
+                                <i class="bi bi-caret-left-fill"></i>
                             </a>
                         </li>
 
@@ -383,7 +400,9 @@
                         <!-- Next -->
                         <li class="page-item text-primary ${currentPage == totalPages ? 'disabled' : ''}">
                             <a class="page-link text-primary" href="?page=${currentPage + 1}${fullFilterSortQuery}"
-                               aria-label="Next">&raquo;</a>
+                               aria-label="Next">
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
                         </li>
 
                     </ul>
@@ -433,6 +452,8 @@
             });
         };
     }
+
+
 
     var wishlistButtons = document.getElementsByClassName("wishlist-icon");
 

@@ -48,8 +48,8 @@
                         <span class="mb-2 fs-4">₫</span>
                     </div>
                 </div>
-                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
-                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <c:set var="growClass" value="${revenueGrowth >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${revenueGrowth >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
                 <div class="stat-change ${growClass}">
                     <i class="bi ${arrow}"></i>
                     <fmt:formatNumber value="${revenueGrowth}" maxFractionDigits="1"/>% so với tháng trước
@@ -66,8 +66,8 @@
                         <i class="bi bi-cart-check"></i>
                     </div>
                 </div>
-                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
-                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <c:set var="growClass" value="${orderGrowth >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${orderGrowth >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
                 <div class="stat-change ${growClass}">
                     <i class="bi ${arrow}"></i>
                     <fmt:formatNumber value="${orderGrowth}" maxFractionDigits="1"/>% so với tháng trước
@@ -84,8 +84,8 @@
                         <i class="bi bi-box-seam"></i>
                     </div>
                 </div>
-                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
-                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <c:set var="growClass" value="${productGrowth >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${productGrowth >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
                 <div class="stat-change ${growClass}">
                     <i class="bi ${arrow}"></i>
                     <fmt:formatNumber value="${productGrowth}" maxFractionDigits="1"/>% so với tháng trước
@@ -102,8 +102,8 @@
                         <i class="bi bi-people"></i>
                     </div>
                 </div>
-                <c:set var="growClass" value="${growthRate >= 0 ? 'positive' : 'negative'}" />
-                <c:set var="arrow" value="${growthRate >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
+                <c:set var="growClass" value="${userGrowth >= 0 ? 'positive' : 'negative'}" />
+                <c:set var="arrow" value="${userGrowth >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'}" />
                 <div class="stat-change ${growClass}">
                     <i class="bi ${arrow}"></i>
                     <fmt:formatNumber value="${userGrowth}" maxFractionDigits="1"/>% so với tháng trước
@@ -169,7 +169,7 @@
             <div class="chart-card">
                 <div class="chart-header">
                     <h2>Trạng thái đơn hàng</h2>
-                    <select class="form-select form-select-sm" style="width: auto;" onchange="loadProductStock(this.value)">
+                    <select class="form-select form-select-sm" style="width: auto;" onchange="loadOrdersStatusStat(this.value)">
                         <option value="7">7 ngày qua</option>
                         <option value="30">30 ngày qua</option>
                         <option value="3month" >3 tháng qua</option>
@@ -271,6 +271,92 @@
             revenueChart.data.labels = labels;
             revenueChart.data.datasets[0].data = values;
             revenueChart.update();
+        }
+    }
+
+    // Orders Over Time Chart
+    let ordersOverTimeChart;
+
+    function loadOrdersOverTime(range) {
+        fetch(`${pageContext.request.contextPath}/api/orders/analytics?metric=order&range=` + range)
+            .then(res => res.json())
+            .then(data => {
+                const labels = data.map(d => d.label);
+                const values = data.map(d => d.value);
+                renderOrdersOverTimeChart(labels, values);
+            })
+            .catch(err => console.error(err));
+    }
+
+    function renderOrdersOverTimeChart(labels, values) {
+        const ctx = document.getElementById('ordersOverTimeChart').getContext('2d');
+
+        if (!ordersOverTimeChart) {
+            ordersOverTimeChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số đơn',
+                        data: values,
+                        borderColor: '#198754',
+                        backgroundColor: 'rgba(231,243,255,1)',
+                        borderWidth: 3,
+                        tension: 0.35,
+                        fill: true,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        pointBackgroundColor: '#198754',
+                        pointBorderColor: '#fff',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#fff',
+                            titleColor: '#1a1a1a',
+                            bodyColor: '#6c757d',
+                            borderColor: '#e9ecef',
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + ' đơn hàng';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#6b7280' },
+                            title: { display: true, text: 'Thời gian' }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e5e7eb' },
+                            ticks: {
+                                color: '#6b7280',
+                                callback: v => v.toLocaleString('vi-VN')
+                            },
+                            title: {
+                                display: true,
+                                text: 'Số đơn'
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 900,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        } else {
+            ordersOverTimeChart.data.labels = labels;
+            ordersOverTimeChart.data.datasets[0].data = values;
+            ordersOverTimeChart.update();
         }
     }
 
@@ -377,160 +463,97 @@
         }
     }
 
-    // Orders Over Time Chart
-    let ordersOverTimeChart;
+    // Order Status Chart
+    let orderStatusChart;
 
-    function loadOrdersOverTime(range) {
-        fetch(`${pageContext.request.contextPath}/api/orders/analytics?metric=order&range=` + range)
+    function loadOrdersStatusStat(range) {
+        fetch(`${pageContext.request.contextPath}/api/orders/analytics?metric=status&range=` + range)
             .then(res => res.json())
             .then(data => {
                 const labels = data.map(d => d.label);
                 const values = data.map(d => d.value);
-                renderOrdersOverTimeChart(labels, values);
+                renderOrdersStatusChart(labels, values);
             })
             .catch(err => console.error(err));
     }
 
-    function renderOrdersOverTimeChart(labels, values) {
-        const ctx = document.getElementById('ordersOverTimeChart').getContext('2d');
+    function renderOrdersStatusChart(labels, values) {
+        const ctx = document.getElementById('orderStatusChart').getContext('2d');
 
-        if (!ordersOverTimeChart) {
-            ordersOverTimeChart = new Chart(ctx, {
-                type: 'line',
+        if (!orderStatusChart) {
+            orderStatusChart = new Chart(ctx, {
+                type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Số đơn',
+                        label: 'Số đơn hàng',
                         data: values,
-                        borderColor: '#198754',
-                        backgroundColor: 'rgba(231,243,255,1)',
-                        borderWidth: 3,
-                        tension: 0.35,
-                        fill: true,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
-                        pointBackgroundColor: '#198754',
-                        pointBorderColor: '#fff',
+                        backgroundColor: [
+                            '#ffc107',
+                            '#0dcaf0',
+                            '#0d6efd',
+                            '#198754',
+                            '#dc3545'
+                        ],
+                        borderRadius: 6,
+                        borderSkipped: false
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
                     plugins: {
-                        legend: { display: false },
+                        legend: {
+                            display: false
+                        },
                         tooltip: {
                             backgroundColor: '#fff',
                             titleColor: '#1a1a1a',
                             bodyColor: '#6c757d',
                             borderColor: '#e9ecef',
-                            padding: 12,
-                            callbacks: {
-                                label: function(context) {
-                                    return context.parsed.y + ' đơn hàng';
-                                }
-                            }
+                            borderWidth: 1,
+                            padding: 12
                         }
                     },
                     scales: {
-                        x: {
-                            grid: { display: false },
-                            ticks: { color: '#6b7280' },
-                            title: { display: true, text: 'Thời gian' }
-                        },
                         y: {
                             beginAtZero: true,
-                            grid: { color: '#e5e7eb' },
-                            ticks: {
-                                color: '#6b7280',
-                                callback: v => v.toLocaleString('vi-VN')
+                            grid: {
+                                borderDash: [5, 5],
+                                color: '#f1f3f5'
                             },
-                            title: {
-                                display: true,
-                                text: 'Số đơn'
+                            ticks: {
+                                color: '#6c757d'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6c757d',
+                                font: {
+                                    size: 11
+                                }
                             }
                         }
-                    },
-                    animation: {
-                        duration: 900,
-                        easing: 'easeOutQuart'
                     }
                 }
             });
         } else {
-            ordersOverTimeChart.data.labels = labels;
-            ordersOverTimeChart.data.datasets[0].data = values;
-            ordersOverTimeChart.update();
+            orderStatusChart.data.labels = labels;
+            orderStatusChart.data.datasets[0].data = values;
+            orderStatusChart.update();
         }
     }
 
 
-
-    // Order Status Chart
-    const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
-    new Chart(orderStatusCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Chờ xử lý', 'Đang xử lý', 'Đang giao', 'Đã giao', 'Đã hủy'],
-            datasets: [{
-                label: 'Số đơn hàng',
-                data: [45, 78, 92, 234, 12],
-                backgroundColor: [
-                    '#ffc107',
-                    '#0dcaf0',
-                    '#0d6efd',
-                    '#198754',
-                    '#dc3545'
-                ],
-                borderRadius: 8,
-                borderSkipped: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: '#fff',
-                    titleColor: '#1a1a1a',
-                    bodyColor: '#6c757d',
-                    borderColor: '#e9ecef',
-                    borderWidth: 1,
-                    padding: 12
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        borderDash: [5, 5],
-                        color: '#f1f3f5'
-                    },
-                    ticks: {
-                        color: '#6c757d'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: '#6c757d',
-                        font: {
-                            size: 11
-                        }
-                    }
-                }
-            }
-        }
-    });
-
     document.addEventListener("DOMContentLoaded", () => {
-        loadRevenue(7);// 7 ngày
+        loadRevenue(7);
         loadOrdersOverTime(7);
         loadProductStock("desc");
+        loadOrdersStatusStat(7);
+
     });
 </script>
 </body>

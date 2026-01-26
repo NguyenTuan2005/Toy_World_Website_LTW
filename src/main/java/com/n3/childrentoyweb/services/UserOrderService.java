@@ -22,8 +22,19 @@ public class UserOrderService {
         this.orderDetailDAO = new OrderDetailDAO();
     }
 
-    public List<UserOrderDTO> getOrdersByUser(long userId) {
+    public List<UserOrderDTO> findOrdersByUserId(Long userId) {
         List<UserOrderDTO> orders = orderDAO.findOrdersByUserId(userId);
+
+        for (UserOrderDTO order : orders) {
+            List<OrderItemDTO> items = orderDetailDAO.findOrderItems(order.getId());
+            order.setItems(items);
+        }
+
+        return orders;
+    }
+
+    public List<UserOrderDTO> findOrdersByUserAndOrderId(Long userId, Long orderId) {
+        List<UserOrderDTO> orders = orderDAO.findOrdersByUserAndOrderId(userId, orderId);
 
         for (UserOrderDTO order : orders) {
             List<OrderItemDTO> items = orderDetailDAO.findOrderItems(order.getId());
@@ -52,4 +63,8 @@ public class UserOrderService {
     }
 
 
+    public static void main(String[] args) {
+        System.out.println(new UserOrderService().findOrdersByUserAndOrderId(2L, 57L));
+        System.out.println(new UserOrderService().findOrdersByUserId(2L));
+    }
 }

@@ -3,8 +3,8 @@ package com.n3.childrentoyweb.dao;
 import com.n3.childrentoyweb.dto.*;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class StatisticDAO extends BaseDAO{
@@ -126,26 +126,24 @@ public class StatisticDAO extends BaseDAO{
                         .list());
     }
 
-    public List<OrderStatusStatDTO> countOrderByStatusPerDay(LocalDate fromDate, LocalDate toDate) {
+    public List<OrderAnalyticsDTO> countOrderByStatus(LocalDateTime fromDate, LocalDateTime toDate) {
         String sql = """
-            SELECT 
-                CAST(created_at AS DATE) AS label,
-                status,
-                COUNT(*) AS total
+            SELECT status AS label,
+                    COUNT(id) AS `value`
             FROM orders
             WHERE created_at >= :fromDate
-                AND created_at < :toDate
-                AND is_active = 1
-            GROUP BY CAST(created_at AS DATE), status
-            ORDER BY label
+              AND created_at <  :toDate
+            GROUP BY status
+            ORDER BY status
+            
         """;
 
-        return getJdbi().withHandle(handle ->
+        return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("fromDate", fromDate)
                         .bind("toDate", toDate)
-                        .registerRowMapper(BeanMapper.factory(OrderStatusStatDTO.class))
-                        .mapTo(OrderStatusStatDTO.class)
+                        .registerRowMapper(BeanMapper.factory(OrderAnalyticsDTO.class))
+                        .mapTo(OrderAnalyticsDTO.class)
                         .list()
         );
     }
@@ -171,11 +169,6 @@ public class StatisticDAO extends BaseDAO{
         );
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(new StatisticDAO().percentByPaymentMethod());
-        System.out.println(new StatisticDAO().orderByDay(LocalDate.of(2026, 1, 1), LocalDate.of(2026, 1, 7)));
-    }
     public List<ProductChartDTO> top3ProductByMonth(int month, int year) {
 
         String sql = """

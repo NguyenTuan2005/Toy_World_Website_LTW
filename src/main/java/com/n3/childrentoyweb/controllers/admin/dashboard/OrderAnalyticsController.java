@@ -1,4 +1,4 @@
-package com.n3.childrentoyweb.controllers.admin;
+package com.n3.childrentoyweb.controllers.admin.dashboard;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.n3.childrentoyweb.dto.OrderAnalyticsDTO;
@@ -40,12 +40,13 @@ public class OrderAnalyticsController extends HttpServlet {
             case ORDER:
                 data = statisticService.getOrderStats(range);
                 break;
+            case STATUS:
+                data = statisticService.getOrderStatusStat(range);
+                break;
             default:
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 return;
         }
-
-
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 

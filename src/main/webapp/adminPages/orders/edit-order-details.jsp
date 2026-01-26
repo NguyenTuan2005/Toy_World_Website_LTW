@@ -138,10 +138,10 @@
 
                 <div class="card-section flex-fill">
                     <div class="section-title">
-                        <span>Trạng thái đơn hàng</span>
+                        <span>Tình trạng đơn hàng</span>
                     </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Trạng thái đơn hàng</label>
+                            <label class="form-label fw-semibold">Vận chuyển</label>
                             <select name="orderStatus" class="form-select">
                                 <option value="CHUAN_BI_HANG"
                                 ${orderDetail.orderStatus == 'CHUAN_BI_HANG' ? 'selected' : ''}>
@@ -164,7 +164,7 @@
 
                         <!-- Payment Status -->
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Trạng thái thanh toán</label>
+                            <label class="form-label fw-semibold">Thanh toán</label>
                             <select name="paymentStatus" class="form-select">
                                 <option value="CHUA_THANH_TOAN"
                                 ${orderDetail.paymentStatus == 'CHUA_THANH_TOAN' ? 'selected' : ''}>

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Tài Khoản Của Bạn</title>
+    <title>Danh Sách Sản Phẩm Yêu Thích</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
@@ -41,6 +41,13 @@
                         </button>
                     </li>
                     <li>
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/change-password'"
+                                class="d-flex">
+                            <i class="bi bi-shield-lock-fill me-2"></i>
+                            Đổi mật khẩu
+                        </button>
+                    </li>
+                    <li>
                         <button onclick="window.location.href='${pageContext.request.contextPath}/account/order-history'" class="d-flex">
                             <i class="bi bi-cart-fill me-2"></i>
                             Lịch sử mua hàng
@@ -71,7 +78,7 @@
         </div>
 
         <!-- wishlist -->
-        <div class="wishlist-wrapper active col-lg-8 border-custom section" id="wishlist">
+        <div class="wrapper active col-lg-8 border-custom section" id="wishlist">
 
             <h3 style="margin-bottom: -15px;">
                 Danh sách yêu thích

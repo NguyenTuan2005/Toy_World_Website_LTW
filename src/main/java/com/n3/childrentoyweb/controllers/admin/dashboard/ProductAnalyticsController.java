@@ -1,4 +1,4 @@
-package com.n3.childrentoyweb.controllers.admin;
+package com.n3.childrentoyweb.controllers.admin.dashboard;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.n3.childrentoyweb.dto.ProductStockStatDTO;

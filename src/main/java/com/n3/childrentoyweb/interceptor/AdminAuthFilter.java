@@ -20,8 +20,6 @@ public class AdminAuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        System.out.println("Path :"+((HttpServletRequest) req).getPathInfo());
-
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("currentUser") == null || session.getAttribute("roles") == null) {
@@ -34,7 +32,7 @@ public class AdminAuthFilter implements Filter {
         boolean isAdmin = roles.stream().anyMatch(RoleEnum::isAdmin);
 
         if (!isAdmin) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
 

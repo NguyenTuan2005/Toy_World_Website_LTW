@@ -86,6 +86,7 @@ function updateCartSummary(data) {
 
     document.getElementById('total').textContent = formatCurrency(data.totalPrice);
 
+    document.getElementById('totalPromotionPrice').textContent = "-" + formatCurrency(data.totalPromotion);
     const headerCart = document.getElementById('cart-count');
     const text = headerCart.textContent;
     if (data.totalQuantity === 0) {

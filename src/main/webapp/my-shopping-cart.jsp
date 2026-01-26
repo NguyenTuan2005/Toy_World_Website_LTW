@@ -126,12 +126,12 @@
               <span>Giảm giá</span>
                 <c:choose>
                   <c:when test="${not empty cart.cartItems and cart.totalPromotion != 0}">
-                    <span style ="color: #cf102d;">
+                    <span id="totalPromotionPrice" style ="color: #cf102d;">
                       - <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
                     </span>
                   </c:when>
                   <c:otherwise>
-                    <span>
+                    <span id ="totalPromotionPrice">
                       <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
                     </span>
                   </c:otherwise>
@@ -215,6 +215,6 @@
         emptyCartBtn.addEventListener('click', () => showAlert('Giỏ hàng trống'));
       }
     </script>
-    <script src="js/cart.js"></script>
+    <script src="${pageContext.request.contextPath}/js/cart.js"></script>
   </body>
 </html>

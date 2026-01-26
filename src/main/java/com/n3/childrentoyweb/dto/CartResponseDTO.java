@@ -68,4 +68,16 @@ public class CartResponseDTO {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    @Override
+    public String toString() {
+        return "CartResponseDTO{" +
+                "success=" + success +
+                ", message='" + message + '\'' +
+                ", totalQuantity=" + totalQuantity +
+                ", totalCost=" + totalCost +
+                ", totalPromotion=" + totalPromotion +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
 }

@@ -33,10 +33,10 @@
     </div>
 </div>
 <%--notification--%>
-<div class="toast-container position-fixed top-0 end-0 p-3">
+<div class="toast-container position-fixed end-0 p-3" style = "top: 110px">
     <div id="addCartToast" class="toast align-items-center text-bg-success border-0"
          role="alert" aria-live="assertive" aria-atomic="true"
-         data-bs-delay="3000">
+         data-bs-delay="5000">
         <div class="d-flex">
             <div class="toast-body">
                 <i class="bi bi-basket2-fill me-2"></i>
@@ -47,6 +47,23 @@
         </div>
     </div>
 </div>
+
+<div class="toast-container position-fixed end-0 p-3" style = "top: 110px">
+    <div id="errorToast" class="toast align-items-center text-bg-danger border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-delay="5000">
+        <div class="d-flex">
+            <div class="toast-body" id="errorToastMsg">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <span id="errorText">Lỗi</span>
+            </div>
+            <button type="button"
+                    class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+
 
 <main class="mt-2">
     <c:if test="${not empty param.keyword}">
@@ -282,6 +299,14 @@
                         </div>
                     </div>
                 </div>
+
+                <c:if test="${empty products}">
+                    <div class="d-flex flex-column justify-content-center align-items-center ">
+                        <img src="${pageContext.request.contextPath}/img/product-not-found.png" alt="product not found">
+                        <h4 class ="mt-3">Rất tiếc, chúng tôi không tìm thấy sản phẩm phù hợp với lựa chọn của bạn!</h4>
+                    </div>
+                </c:if>
+                
                 <!-- products -->
                 <div id="productContainer" class="row g-4">
                     <c:forEach items="${products}" var="product">
@@ -345,6 +370,7 @@
                 </div>
 
                 <!-- Pagination Section -->
+                <c:if test="${not empty products}">
                 <nav aria-label="Phân trang" class="mt-5">
                     <ul class="pagination justify-content-center gap-1">
 
@@ -407,6 +433,8 @@
 
                     </ul>
                 </nav>
+                </c:if>
+
             </section>
         </div>
     </div>
@@ -431,28 +459,39 @@
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 body: "productId=" + productId + "&quantity=1"
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
 
-            }).then(function (response) {
-                return response.json();
+                    if (data.error) {
+                        document.getElementById("errorText").innerText = data.error;
 
-            }).then(function (quantityData) {
-                var totalQuantity = quantityData.totalQuantity;
+                        var errorToast =
+                            new bootstrap.Toast(document.getElementById("errorToast"));
 
-                var cartText = "Giỏ hàng";
+                        errorToast.show();
+                        return;
+                    }
 
-                if (totalQuantity > 0) {
-                    cartText = "Giỏ hàng (" + totalQuantity + ")";
-                }
+                    var totalQuantity = data.totalQuantity;
 
-                document.getElementById("cart-count").innerText = cartText;
+                    var cartText = "Giỏ hàng";
 
-                var toastEl = document.getElementById('addCartToast');
-                var toast = new bootstrap.Toast(toastEl);
-                toast.show();
-            });
+                    if (totalQuantity > 0) {
+                        cartText = "Giỏ hàng (" + totalQuantity + ")";
+                    }
+
+                    document.getElementById("cart-count").innerText = cartText;
+
+                    var successToast =
+                        new bootstrap.Toast(document.getElementById("addCartToast"));
+
+                    successToast.show();
+                });
         };
     }
-
 
 
     var wishlistButtons = document.getElementsByClassName("wishlist-icon");
@@ -492,7 +531,6 @@
             });
         };
     }
-
 
 </script>
 </body>

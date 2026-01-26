@@ -18,58 +18,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/my-account.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
-    <style>
-        .profile-card {
-            background: #fff;
-            border-radius: 14px;
-            border: 1px solid #d2d2d2;
-            padding: 25px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-        }
-
-        .profile-info {
-            margin-top: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            gap: 12px;
-            padding: 14px;
-            border-radius: 10px;
-            background: #f8f9fa;
-            margin-bottom: 15px;
-        }
-
-        .info-item i {
-            font-size: 22px;
-            color: #d51b1b;
-        }
-
-        .info-item span {
-            font-size: 13px;
-            color: #6c757d;
-        }
-
-        .info-item p {
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .edit-btn {
-            border: 1px solid #cf102d;
-            background-color: #cf102d;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .edit-btn:hover {
-            background-color: #b00d26;
-        }
-    </style>
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
@@ -87,30 +35,41 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li class="profile">
-                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/profile'" class="d-flex">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/profile'"
+                                class="d-flex">
                             <i class="bi bi-person-fill me-2"></i>
                             Tài khoản
                         </button>
                     </li>
                     <li>
-                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/order-history'" class="d-flex">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/change-password'"
+                                class="d-flex">
+                            <i class="bi bi-shield-lock-fill me-2"></i>
+                            Đổi mật khẩu
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/order-history'"
+                                class="d-flex">
                             <i class="bi bi-cart-fill me-2"></i>
                             Lịch sử mua hàng
                         </button>
                     </li>
                     <li>
-                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/wishlist'" class="d-flex">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/wishlist'"
+                                class="d-flex">
                             <i class="bi bi-heart-fill me-2"></i>
                             Danh sách yêu thích
                         </button>
                     </li>
                     <c:if test="${sessionScope.isAdmin}">
-                    <li>
-                        <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'" class="d-flex">
-                            <i class="bi bi-clipboard-data-fill me-2"></i>
-                            Quản lí cửa hàng
-                        </button>
-                    </li>
+                        <li>
+                            <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'"
+                                    class="d-flex">
+                                <i class="bi bi-clipboard-data-fill me-2"></i>
+                                Quản lí cửa hàng
+                            </button>
+                        </li>
                     </c:if>
                     <li>
                         <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#logoutModal">
@@ -123,83 +82,82 @@
         </div>
 
         <!-- my profile -->
-        <div class="col-lg-8 col-md-7 section active" id="profile">
-            <div class="profile-card">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-3">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f1f5f9'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%2394a3b8'/%3E%3Cpath d='M16 18c-5 0-7 2.5-7 4v1h14v-1c0-1.5-2-4-7-4z' fill='%2394a3b8'/%3E%3C/svg%3E"
-                             class="customer-avatar"
-                             alt="Default Avatar"
-                             style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #e2e8f0;">
-                    </div>
+        <div class="wrapper col-lg-8 col-md-7 section active" id="profile">
 
-                    <div>
-                        <h4 class="mb-1">
-                            ${sessionScope.currentUser.lastName}
-                            ${sessionScope.currentUser.firstName}
-                        </h4>
-                        <span class="text-muted">Thông tin cá nhân</span>
-                    </div>
-
-                    <!-- Đẩy sang phải -->
-                    <button class="edit-btn ms-auto"
-                            onclick="window.location.href='${pageContext.request.contextPath}/account/profile/edit'">
-                        <i class="bi bi-pencil-fill me-2"></i>Chỉnh sửa
-                    </button>
+            <div class="d-flex align-items-center">
+                <div class="avatar me-3">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f1f5f9'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%2394a3b8'/%3E%3Cpath d='M16 18c-5 0-7 2.5-7 4v1h14v-1c0-1.5-2-4-7-4z' fill='%2394a3b8'/%3E%3C/svg%3E"
+                         class="customer-avatar"
+                         alt="Default Avatar"
+                         style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #e2e8f0;">
                 </div>
 
+                <div>
+                    <h4 class="mb-1">
+                        ${sessionScope.currentUser.lastName}
+                        ${sessionScope.currentUser.firstName}
+                    </h4>
+                    <span class="text-muted">Thông tin cá nhân</span>
+                </div>
 
-                <hr>
+                <!-- Đẩy sang phải -->
+                <button class="edit-btn ms-auto"
+                        onclick="window.location.href='${pageContext.request.contextPath}/account/profile/edit'">
+                    <i class="bi bi-pencil-fill me-2"></i>Chỉnh sửa
+                </button>
+            </div>
 
-                <div class="row profile-info">
-                    <div class="col-md-6">
-                        <div class="info-item">
-                            <i class="bi bi-person"></i>
-                            <div>
-                                <span>Họ và tên</span>
-                                <p>
-                                    ${sessionScope.currentUser.lastName}
-                                    ${sessionScope.currentUser.firstName}
-                                </p>
-                            </div>
+            <hr>
+
+            <div class="row profile-info">
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <i class="bi bi-person"></i>
+                        <div>
+                            <span>Họ và tên</span>
+                            <p>
+                                ${sessionScope.currentUser.lastName}
+                                ${sessionScope.currentUser.firstName}
+                            </p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-md-6">
-                        <div class="info-item">
-                            <i class="bi bi-telephone"></i>
-                            <div>
-                                <span>Số điện thoại</span>
-                                <p>${sessionScope.currentUser.phone}</p>
-                            </div>
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <i class="bi bi-telephone"></i>
+                        <div>
+                            <span>Số điện thoại</span>
+                            <p>${sessionScope.currentUser.phone}</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-md-6">
-                        <div class="info-item">
-                            <i class="bi bi-envelope"></i>
-                            <div>
-                                <span>Email</span>
-                                <p>${sessionScope.currentUser.email}</p>
-                            </div>
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <i class="bi bi-envelope"></i>
+                        <div>
+                            <span>Email</span>
+                            <p>${sessionScope.currentUser.email}</p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- ĐỊA CHỈ -->
-                    <div class="col-md-6">
-                        <div class="info-item">
-                            <i class="bi bi-geo-alt"></i>
-                            <div>
-                                <span>Địa chỉ</span>
-                                <p>
-                                    ${sessionScope.currentUserLocation.address},
-                                    ${sessionScope.currentUserLocation.province}
-                                </p>
-                            </div>
+                <!-- ĐỊA CHỈ -->
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <i class="bi bi-geo-alt"></i>
+                        <div>
+                            <span>Địa chỉ</span>
+                            <p>
+                                ${sessionScope.currentUserLocation.address},
+                                ${sessionScope.currentUserLocation.province}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -217,9 +175,11 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" style="backgroundcolor: lightgray" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-secondary" style="backgroundcolor: lightgray"
+                            data-bs-dismiss="modal">Hủy
+                    </button>
                     <a href="${pageContext.request.contextPath}/logout"
-                       class="btn btn-danger"  style="backgroundcolor: #cf102d">Đăng xuất</a>
+                       class="btn btn-danger" style="backgroundcolor: #cf102d">Đăng xuất</a>
                 </div>
             </div>
         </div>

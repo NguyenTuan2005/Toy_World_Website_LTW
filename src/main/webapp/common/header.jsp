@@ -76,7 +76,7 @@
                         class="collapse navbar-collapse justify-content-center"
                         id="navbarContent">
 
-                    <ul class="navbar-nav fw-bold text-uppercase gap-3">
+                    <ul class="navbar-nav fw-bold text-uppercase gap-4">
                         <li class="nav-item mx-2">
                             <a
                                     class="nav-link text-white d-flex align-items-center"

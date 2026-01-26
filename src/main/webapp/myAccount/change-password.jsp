@@ -6,8 +6,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Chỉnh Sửa Thông Tin</title>
+    <title>Đổi Mật Khẩu</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
+
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet"
@@ -34,7 +35,8 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li class="profile">
-                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/profile'" class="d-flex">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/profile'"
+                                class="d-flex">
                             <i class="bi bi-person-fill me-2"></i>
                             Tài khoản
                         </button>
@@ -47,20 +49,23 @@
                         </button>
                     </li>
                     <li>
-                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/order-history'" class="d-flex">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/order-history'"
+                                class="d-flex">
                             <i class="bi bi-cart-fill me-2"></i>
                             Lịch sử mua hàng
                         </button>
                     </li>
                     <li>
-                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/wishlist'" class="d-flex">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/account/wishlist'"
+                                class="d-flex">
                             <i class="bi bi-heart-fill me-2"></i>
                             Danh sách yêu thích
                         </button>
                     </li>
                     <c:if test="${sessionScope.isAdmin}">
                         <li>
-                            <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'" class="d-flex">
+                            <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'"
+                                    class="d-flex">
                                 <i class="bi bi-clipboard-data-fill me-2"></i>
                                 Quản lí cửa hàng
                             </button>
@@ -76,81 +81,71 @@
             </div>
         </div>
 
-        <!-- edit profile-->
-        <div class="col-lg-8 col-md-7 section active" id="edit-profile">
-            <div class="wrapper">
-                <h4 class="mb-3">
-                    Chỉnh sửa thông tin cá nhân
-                </h4>
+        <!-- change password -->
+        <div class="wrapper col-lg-8 col-md-7 section active">
 
-                <form action="${pageContext.request.contextPath}/account/profile/edit"
-                      method="post"
-                      class="row g-3">
+            <h3 class="mb-4 text-center">Đổi mật khẩu</h3>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Họ</label>
-                        <input type="text"
-                               name="lastName"
+            <div class="password-card">
+
+                <!-- THÔNG BÁO -->
+                <c:if test="${not empty error}">
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            ${error}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                </c:if>
+
+                <c:if test="${not empty success}">
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                            ${success}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                </c:if>
+
+                <form action="${pageContext.request.contextPath}/account/change-password"
+                      method="post">
+
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu hiện tại</label>
+                        <input type="password"
+                               name="currentPassword"
                                class="form-control"
-                               value="${sessionScope.currentUser.lastName}"
                                required>
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Tên</label>
-                        <input type="text"
-                               name="firstName"
+
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu mới</label>
+                        <input type="password"
+                               name="newPassword"
                                class="form-control"
-                               value="${sessionScope.currentUser.firstName}"
                                required>
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Số điện thoại</label>
-                        <input type="text"
-                               name="phone"
+                    <div class="mb-4">
+                        <label class="form-label">Nhập lại mật khẩu mới</label>
+                        <input type="password"
+                               name="confirmPassword"
                                class="form-control"
-                               value="${sessionScope.currentUser.phone}"
                                required>
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Email</label>
-                        <input type="email"
-                               name="email"
-                               class="form-control"
-                               value="${sessionScope.currentUser.email}"
-                               readonly>
-                    </div>
-
-                    <div class="col-md-8">
-                        <label class="form-label">Địa chỉ</label>
-                        <input type="text"
-                               name="address"
-                               class="form-control"
-                               value="${sessionScope.currentUserLocation.address}"
-                               required>
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label">Tỉnh / Thành phố</label>
-                        <input type="text"
-                               name="province"
-                               class="form-control"
-                               value="${sessionScope.currentUserLocation.province}"
-                               required>
-                    </div>
-
-                    <div class="col-12 d-flex justify-content-between gap-2 mt-3">
+                    <div class="d-flex justify-content-between">
                         <a href="${pageContext.request.contextPath}/account/profile" class="btn btn-light">
                             <i class="bi bi-arrow-left me-2"></i>Quay lại
                         </a>
+
                         <button type="submit" class="btn btn-danger">
                             <i class="bi bi-floppy2 me-2"></i>Lưu thay đổi
                         </button>
                     </div>
+
                 </form>
             </div>
+
         </div>
     </div>
 
@@ -168,22 +163,19 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" style="backgroundcolor: lightgray" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-secondary" style="backgroundcolor: lightgray"
+                            data-bs-dismiss="modal">Hủy
+                    </button>
                     <a href="${pageContext.request.contextPath}/logout"
-                       class="btn btn-danger"  style="backgroundcolor: #cf102d">Đăng xuất</a>
+                       class="btn btn-danger" style="backgroundcolor: #cf102d">Đăng xuất</a>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <jsp:include page="/common/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-
-</script>
-
 </body>
 </html>
 

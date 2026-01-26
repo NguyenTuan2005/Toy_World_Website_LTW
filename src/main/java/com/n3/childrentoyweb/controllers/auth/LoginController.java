@@ -1,6 +1,5 @@
 package com.n3.childrentoyweb.controllers.auth;
 
-import com.n3.childrentoyweb.dao.UserDAO;
 import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.AuthService;
@@ -28,12 +27,6 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         if (session != null) {
-            String message = (String) session.getAttribute("resetSuccessMessage");
-            if (message != null) {
-                request.setAttribute("resetSuccessMessage", message);
-                session.removeAttribute("resetSuccessMessage");
-            }
-
             if (session.getAttribute("currentUser") != null) {
                 response.sendRedirect(request.getContextPath() + "/account/profile");
                 return;

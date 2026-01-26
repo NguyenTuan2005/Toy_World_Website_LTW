@@ -338,4 +338,28 @@ public class UserDAO extends BaseDAO {
                         .execute()
         );
     }
+
+    public void updatePassword(User user, String password) {
+
+        String sql = "UPDATE users SET password = :password WHERE id = :id";
+
+        this.getJdbi().useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("password", password)
+                        .bind("id", user.getId())
+                        .execute()
+        );
+    }
+
+    public String findPasswordByUser(User user) {
+
+        String sql = "SELECT password FROM users WHERE id = :id";
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", user.getId())
+                        .mapTo(String.class)
+                        .one()
+        );
+    }
 }

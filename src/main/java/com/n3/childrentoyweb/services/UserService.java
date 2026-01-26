@@ -173,4 +173,17 @@ public class UserService {
     public void updateLocation(User user, Location location) {
         this.userDAO.updateLocation(user, location);
     }
+
+    public void updatePassword(User user, String newPassword) {
+        String hashPassword = MD5Util.encryptMd5(newPassword);
+        userDAO.updatePassword(user, hashPassword);
+    }
+
+    public boolean checkPassword(User user, String inputPassword){
+        String hashInputPassword = MD5Util.encryptMd5(inputPassword);
+
+        String dbPassword = userDAO.findPasswordByUser(user);
+
+        return hashInputPassword.equals(dbPassword);
+    }
 }

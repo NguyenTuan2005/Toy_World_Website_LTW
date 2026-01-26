@@ -63,7 +63,7 @@ public class ResetPasswordController extends HttpServlet {
 
             session.removeAttribute("verifiedEmail");
 
-            session.setAttribute("resetSuccessMessage", "Đổi mật khẩu thành công, Vui lòng đăng nhập lại!");
+            session.setAttribute("successMessage", "Đổi mật khẩu thành công, Vui lòng đăng nhập lại!");
 
             response.sendRedirect(request.getContextPath() + "/login");
 

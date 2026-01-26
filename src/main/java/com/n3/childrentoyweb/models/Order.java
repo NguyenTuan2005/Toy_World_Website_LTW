@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class Order extends BaseModel {
     private Long userId;
     private Double totalPrice;
+    private Double discountPrice;
     private String status;
 
 
@@ -15,6 +16,12 @@ public class Order extends BaseModel {
         this.status = status;
     }
 
+    public Order(Long userId, Double totalPrice, Double discountPrice, String status) {
+        this.userId = userId;
+        this.totalPrice = totalPrice;
+        this.discountPrice = discountPrice;
+        this.status = status;
+    }
 
     public Order( Long userId, Double totalPrice, String status) {
         this.userId = userId;
@@ -47,5 +54,13 @@ public class Order extends BaseModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Double getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
     }
 }

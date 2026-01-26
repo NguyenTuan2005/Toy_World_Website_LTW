@@ -47,11 +47,18 @@ public class OrderDAO extends BaseDAO{
 
     public long save(Order order) {
         String sql = """
-                insert into orders (user_id, total_price, status)
-                values (:userId, :totalPrice, :status)
+                insert into orders (user_id, total_price, discount_price, status)
+                values (:userId, :totalPrice, :discount_price, :status)
                 """;
 
-        return this.getJdbi().withHandle(handle -> handle.createUpdate(sql).bind("userId", order.getUserId()).bind("totalPrice", order.getTotalPrice()).bind("status", order.getStatus()).executeAndReturnGeneratedKeys("id").mapTo(Long.class).one());
+        return this.getJdbi().withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("userId", order.getUserId())
+                        .bind("totalPrice", order.getTotalPrice())
+                        .bind("discount_price", order.getDiscountPrice())
+                        .bind("status", order.getStatus())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class).one());
     }
 
     public void update(Order order) {

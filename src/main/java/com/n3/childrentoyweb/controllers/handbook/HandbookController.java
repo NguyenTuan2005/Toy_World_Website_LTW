@@ -36,6 +36,7 @@ public class HandbookController extends HttpServlet {
 
         HandBookCriteria handBookCriteria = new HandBookCriteria();
         handBookCriteria.setOnMonth(true);
+        handBookCriteria.setHidden(false);
         handBookCriteria.setCurrentPage(page);
         handBookCriteria.setPageSize(PAGE_SIZE);
 
@@ -65,6 +66,7 @@ public class HandbookController extends HttpServlet {
 
         HandBookCriteria handBookCriteria = new HandbookAdminCriteria(keyword);
         handBookCriteria.setOnMonth(true);
+        handBookCriteria.setHidden(false);
         handBookCriteria.setPageSize(PAGE_SIZE);
 
         Pagination<HandBookCardDTO> handbookCards = this.handBookService.findHandbookCardByCriteria(handBookCriteria);

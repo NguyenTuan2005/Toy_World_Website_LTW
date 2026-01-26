@@ -41,14 +41,14 @@
                     <button type="submit" class="btn btn-custom-primary">
                         <c:choose>
                             <c:when test="${status == 'POSTED'}">
-                                <span class="text-dark">
+                                <span class="text-white">
                                     <i class="bi bi-eye-slash"></i>
                                     Ẩn bài viết
                                 </span>
                             </c:when>
 
                             <c:otherwise>
-                                <span class="text-dark">
+                                <span class="text-white">
                                      <i class="bi bi-send me-2"></i>
                                     Đăng bài viết
                                 </span>
@@ -69,11 +69,11 @@
             <article class="main-content-blog article-template">
                 <header style="text-align: left;">
                     <div>
-                        <h1 class="fw-bold" style="font-size: 24px; color: #041675;">
+                        <h1 class="fw-bold" style="font-size: 24px; color: rgb(213, 27, 27);">
                             ${title}
                         </h1>
                         <div class="hstack gap-2">
-                            <h3 class="text-secondary small mb-0">${createdAt}</h3>
+                            <h3 class="text-secondary small mb-0"><fmt:formatDate value="${createdAt}" pattern="dd.MM.yyyy" /></h3>
                             <h3 class="text-secondary small mb-0">${username}</h3>
                         </div>
                         <div class="short-content">

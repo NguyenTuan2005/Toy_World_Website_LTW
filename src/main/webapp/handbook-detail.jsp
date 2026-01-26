@@ -5,121 +5,46 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cẩm Nang Đồ Chơi - MyKingdom</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <jsp:include page="/common/head.jsp"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-    <link rel="stylesheet" href="css/handbook.css">
-    <link rel="stylesheet" href="css/handbook-detail.css">
-    <link rel="stylesheet" href="css/header.css"/>
-    <link rel="stylesheet" href="css/root.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/handbook.css">
 </head>
 <body>
     <jsp:include page="/common/header.jsp" />
+
+    <div class="top-bar" role="navigation" aria-label="Breadcrumb and page header">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-left: -1px; ">
+                <a href="${pageContext.request.contextPath}/home" aria-label="Trang Chủ">Trang Chủ</a>
+                <svg class="crumb-sep" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <a href="${pageContext.request.contextPath}/handbook-details" aria-label="Trang Chủ" style="width: 220px;">Chi tiết cẩm nang</a>
+            </nav>
+        </div>
+    </div>
+
     <!-- Main Content -->
-    <div class="main-container">
-        <div class="content-wrapper">
-            <div class="sidebar">
-
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Nhập từ khóa để tìm kiếm (ví dụ: lego, búp bê...)">
-                </div>
-
-     
-                <div class="sidebar-header">
-                    <div class="sidebar-title">Danh Mục Bài Viết</div>
-                </div>
-
-                <!-- Menu Item 1: 360 độ Mykingdom -->
-                <div class="menu-item">
-                    <div class="menu-header" onclick="toggleMenu(this)">
-                        <span class="menu-label">360 độ Mykingdom</span>
-                        <span class="menu-icon"></span>
+    <div class="container">
+        <article class="row g-4">
+            <div class="col-12 col-lg-9">
+                <!-- Article Header -->
+                <div class="mb-4 pb-4 border-bottom">
+                    <h1 class="display-4 fw-bold mb-3">${title}</h1>
+                    <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                        <h3 class="h5 text-muted mb-0">
+                            <i class="bi bi-calendar-event me-2"></i>
+                            <fmt:formatDate value="${createdAt}" pattern="dd.MM.yyyy" />
+                        </h3>
+                        <h3 class="h5 text-muted mb-0">
+                            <i class="bi bi-person-circle me-2"></i>
+                            ${username}
+                        </h3>
                     </div>
-                    <div class="submenu">
-                        <div class="submenu-item" onclick="handleClick('Ra Mắt Sản Phẩm')">Ra Mắt Sản Phẩm</div>
-                        <div class="submenu-item" onclick="handleClick('Thông Tin Khuyến Mại')">Thông Tin Khuyến Mại</div>
-                    </div>
-                </div>
 
-                <!-- Menu Item 2: Dạy con thông minh -->
-                <div class="menu-item">
-                    <div class="menu-header" onclick="toggleMenu(this)">
-                        <span class="menu-label">Dạy con thông minh</span>
-                        <span class="menu-icon"></span>
-                    </div>
-                    <div class="submenu">
-                        <div class="submenu-item" onclick="handleClick('Từ 0-12 Tháng')">Từ 0-12 Tháng</div>
-                        <div class="submenu-item" onclick="handleClick('Từ 1-3 Tuổi')">Từ 1-3 Tuổi</div>
-                        <div class="submenu-item" onclick="handleClick('Từ 3-6 Tuổi')">Từ 3-6 Tuổi</div>
-                        <div class="submenu-item" onclick="handleClick('Từ 6-12 Tuổi')">Từ 6-12 Tuổi</div>
-                        <div class="submenu-item" onclick="handleClick('Trên 12 Tuổi')">Trên 12 Tuổi</div>
-                    </div>
-                </div>
-
-                <!-- Menu Item 3: Chơi cùng con -->
-                <div class="menu-item">
-                    <div class="menu-header" onclick="toggleMenu(this)">
-                        <span class="menu-label">Chơi cùng con</span>
-                        <span class="menu-icon"></span>
-                    </div>
-                    <div class="submenu">
-                        <div class="submenu-item" onclick="handleClick('Từ 0-12 Tháng')">Từ 0-12 Tháng</div>
-                        <div class="submenu-item" onclick="handleClick('Từ 1-3 Tuổi')">Từ 1-3 Tuổi</div>
-                        <div class="submenu-item" onclick="handleClick('Từ 3-6 Tuổi')">Từ 3-6 Tuổi</div>
-                        <div class="submenu-item" onclick="handleClick('Từ 6-12 Tuổi')">Từ 6-12 Tuổi</div>
-                        <div class="submenu-item" onclick="handleClick('Trên 12 Tuổi')">Trên 12 Tuổi</div>
-                        <div class="submenu-item" onclick="handleClick('Let\'s Be Kids New Content')">Let's Be Kids New Content</div>
-                    </div>
-                </div>
-
-                <!-- Menu Items without children -->
-                <div class="menu-item">
-                    <div class="menu-header no-children" onclick="handleClick('Nuôi con khỏe')">
-                        <span class="menu-label">Nuôi con khỏe</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="menu-header no-children" onclick="handleClick('Mẹo hữu ích')">
-                        <span class="menu-label">Mẹo hữu ích</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="menu-header no-children" onclick="handleClick('Hôm nay con chơi gì?')">
-                        <span class="menu-label">Hôm nay con chơi gì?</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="menu-header no-children" onclick="handleClick('Vòng quanh thế giới')">
-                        <span class="menu-label">Vòng quanh thế giới</span>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!-- begin -->
-            <article class="main-content-blog article-template">
-                <header class="">
-                    <div>
-                        <h1 class="fw-bold" style="font-size: 24px;  color: #041675;">${title}</h1>
-                        <h3 class="text-secondary small mb-0">${createdAt} </h3>
-                        <h3 class="text-secondary small mb-0">${username} </h3>
-                    </div>
-                </header>
-            <div class="short-content"> 
-                <!-- <div class="left-box"></div> -->
-                <div class="right-box">
-                    <ul class="d-flex" style="    margin-bottom: 0; padding-left: 2px; gap: 4px;">
-
+                    <!-- Social Links -->
+                    <ul class="d-flex mb-0 ps-0 gap-2 text-start" style="list-style: none;">
                         <li class="list-social__item">
                             <a href="https://www.facebook.com/mykingdomvn/" class="link list-social__link">
                                 <svg class="icon icon-facebook" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -131,7 +56,7 @@
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_1749_8219">
-                                        <rect width="32" height="32" fill="white"></rect>
+                                            <rect width="32" height="32" fill="white"></rect>
                                         </clipPath>
                                     </defs>
                                 </svg>
@@ -152,7 +77,7 @@
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_1749_8231">
-                                        <rect width="32" height="32" fill="white"></rect>
+                                            <rect width="32" height="32" fill="white"></rect>
                                         </clipPath>
                                     </defs>
                                 </svg>
@@ -171,7 +96,7 @@
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_1749_8225">
-                                        <rect width="32" height="32" fill="white"></rect>
+                                            <rect width="32" height="32" fill="white"></rect>
                                         </clipPath>
                                     </defs>
                                 </svg>
@@ -192,109 +117,79 @@
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_1749_8239">
-                                        <rect width="32" height="32" fill="white"></rect>
+                                            <rect width="32" height="32" fill="white"></rect>
                                         </clipPath>
                                     </defs>
                                 </svg>
                                 <span class="visually-hidden">TikTok</span>
                             </a>
                         </li>
-
                     </ul>
                 </div>
-            </div>
-            <div class="article-template__hero-container">
-            </div>
-            <div id="MainContent-article" class="article-template__content rte" itemprop="articleBody">
-                <div class="toc-wrapper card shadow-sm">
-                    <div class="card-header fw-bold">
-                        NỘI DUNG BÀI VIẾT
-                    </div>
 
-                    <div class="list-group list-group-flush">
-                        <c:forEach items="${paragraphs}" var="pa">
-                            <a href="#section-${pa.displayIndex}"
-                               class="list-group-item list-group-item-action">
-                                 <h2>
-                                         ${pa.displayIndex}. ${pa.header}
-                                 </h2>
-                            </a>
-                        </c:forEach>
-                    </div>
-                </div>
-
-                <div data-content="">
+                <!-- Article Content -->
+                <div class="article-content">
                     <c:forEach items="${paragraphs}" var="pa">
-
-                        <h2 id="section-${pa.displayIndex}"  >${pa.displayIndex}.${pa.header}</h2>
-                        <br>
-                        ${pa.description}
-                        <br>
-                        <div style="text-align: left;">
-                            <img src="${pa.imagePath}" alt="${pa.imageDescription}" style="float: none;">
-                        </div>
+                        <section id="section-${pa.displayIndex}" class="mb-5 scroll-margin-top">
+                            <h2 class="h3 fw-bold mb-3">${pa.displayIndex}. ${pa.header}</h2>
+                            <div class="mb-3">${pa.description}</div>
+                            <div class="text-center my-4">
+                                <img src="${pa.imagePath}"
+                                     alt="${pa.imageDescription}"
+                                     class="img-fluid rounded shadow-sm"
+                                     style="max-width: 500px;"
+                                >
+                            </div>
+                        </section>
                     </c:forEach>
                 </div>
-                <h2>Hết</h2>
-                <hr>
             </div>
 
-            </article>
-            <!-- end -->
-        
+            <!-- Scrollspy Sidebar -->
+            <div class="col-12 col-lg-3">
+                <div class="position-sticky" style="top: 20px;">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white fw-bold">
+                            <i class="bi bi-list-ul me-2"></i>
+                            NỘI DUNG BÀI VIẾT
+                        </div>
+                        <div class="list-group list-group-flush" data-bs-spy="scroll" data-bs-target="#navbar-example">
+                            <c:forEach items="${paragraphs}" var="pa">
+                                <a href="#section-${pa.displayIndex}"
+                                   class="list-group-item list-group-item-action border-0 py-3">
+                                    <h6 class="mb-0 fw-normal">
+                                            ${pa.displayIndex}. ${pa.header}
+                                    </h6>
+                                </a>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="container my-5">
+        <div class="section-title">
+            Có thể bạn sẽ thích
+        </div>
+        <div class="row g-4">
+            <c:forEach var="h" items="${suggestHandbooks}">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="${h.firstImage}" class="card-img-top" alt="${h.title}">
+                        <div class="card-body">
+                            <div class="meta"><fmt:formatDate value="${h.createdAtAsDate}" pattern="dd.MM.yyyy" /> · ${h.username}</div>
+                            <h5 class="card-title">${h.title}</h5>
+                            <p class="card-text">${h.description}</p>
+                            <a href="${pageContext.request.contextPath}/handbook-details?id=${h.id}" class="read-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 
-   <div class="container my-5">
-        <div class="section-title">Có thể bạn sẽ thích</div>
-            <div class="row g-4">
-                <!-- Card 1 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946" class="card-img-top" alt="Europe Toy Fair">
-                        <div class="card-body">
-                            <div class="meta">02.11.2025 · BTV Nguyễn Yến</div>
-                            <h5 class="card-title">Europe toy fair – Lễ hội đồ chơi châu Âu 2025 Ưu đãi đến 40% tại Mykingdom</h5>
-                            <p class="card-text">Europe toy fair - Lễ hội đồ chơi Châu Âu 2025 đã chính thức đến MyKingdom! Từ 01/11 đến 30/11, bạn sẽ có cơ hội sở hữu những món đồ chơi đẳng cấp từ các thương hiệu uy tín...</p>
-                            <a href="#" class="read-more">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img src="https://www.mykingdom.com.vn/cdn/shop/files/combo-bo-khuon-lam-banh-burger-vui-nhon-va-bot-nan-4-mau-playdoh-cbg1614-g1609-b5517_4.jpg?v=1760325684&width=1946" class="card-img-top" alt="Xe điều khiển Lamborghini">
-                        <div class="card-body">
-                            <div class="meta">01.11.2025 · BTV Nguyễn Yến</div>
-                            <h5 class="card-title">Ưu đãi độc quyền online dành riêng cho bạn! Mừng sinh nhật tháng 11</h5>
-                            <p class="card-text">Dịp sinh nhật tháng 11 này, MyKingdom mang đến cho bạn những ưu đãi độc quyền hấp dẫn cùng loạt sản phẩm hot trend, giúp bạn chọn lựa món đồ chơi chất lượng...</p>
-                            <a href="#" class="read-more">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img src="https://www.mykingdom.com.vn/cdn/shop/articles/lego-mega-sale_5a80f6e6-ed9a-4a0a-879d-7b2de1314c52.jpg?v=1760622737" class="card-img-top" alt="LEGO Mega Sale">
-                        <div class="card-body">
-                            <div class="meta">16.10.2025 · BTV Nguyễn Yến</div>
-                            <h5 class="card-title">LEGO MEGA SALE – Tiết kiệm đến 50% cho tín đồ lắp ráp!</h5>
-                            <p class="card-text">Nếu bạn là fan trung thành của LEGO, thì đợt sale siêu khủng này không thể bỏ lỡ! Từ 16 – 31/10/2025, hàng loạt sản phẩm LEGO chính hãng giảm đến 50%...</p>
-                            <a href="#" class="read-more">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>     
-    </div>
-
-
     <jsp:include page="/common/footer.jsp" />
-    <script src="js/index.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../archive/js/handbook.js"></script>
 </body>
 </html>

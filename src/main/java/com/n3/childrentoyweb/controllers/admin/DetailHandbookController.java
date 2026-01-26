@@ -34,7 +34,7 @@ public class DetailHandbookController extends HttpServlet {
             HandbookDetailDTO handbookDetailDTO = this.handBookService.findHandbookDetailById(handbookId);
 
             request.setAttribute("title",handbookDetailDTO.getTitle());
-            request.setAttribute("createdAt",handbookDetailDTO.getCreated());
+            request.setAttribute("createdAt",handbookDetailDTO.getCreatedAtAsDate());
             request.setAttribute("status",handbookDetailDTO.getStatus());
             request.setAttribute("handbookId",handbookDetailDTO.getId());
 

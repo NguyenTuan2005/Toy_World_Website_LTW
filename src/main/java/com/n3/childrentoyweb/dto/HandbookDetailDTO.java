@@ -2,7 +2,9 @@ package com.n3.childrentoyweb.dto;
 
 import com.n3.childrentoyweb.models.Paragraph;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class HandbookDetailDTO {
@@ -50,6 +52,10 @@ public class HandbookDetailDTO {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public Date getCreatedAtAsDate() {
+        return created != null ? Timestamp.valueOf(created) : null;
     }
 
     public long getUserId() {

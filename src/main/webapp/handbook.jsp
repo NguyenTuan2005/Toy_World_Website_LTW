@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Thanh Toán - Toy World</title>
+    <title>Cẩm Nang Đồ Chơi - Toy World</title>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/ToyWorldFavicon.png">
     <jsp:include page="/common/head.jsp" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/handbook.css" />
@@ -135,6 +135,5 @@
     </c:if>
     <jsp:include page="/common/footer.jsp" />
     <script src="${pageContext.request.contextPath}/js/handbook.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

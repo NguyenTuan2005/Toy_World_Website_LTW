@@ -61,7 +61,7 @@ public class HandBookCriteria {
             int offsets =  ((currentPage - 1) * pageSize);
             return " Limit "+pageSize+"  offset "+offsets;
         }
-        return "Limit 10";
+        return " limit 10";
     }
 
     public String getIdForSql(){

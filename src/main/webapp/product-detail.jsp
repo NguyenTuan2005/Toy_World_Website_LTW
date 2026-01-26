@@ -103,7 +103,7 @@
             <div class="col-md-6">
                 <div class="product-info">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h4 class="product-title mb-0">${product.name}</h4>
+                        <h4 class="product-title mb-2">${product.name}</h4>
 
                         <button type="button" class="wishlist-icon ${product.wishlisted ? 'active' : ''}"
                                 data-id="${product.id}">

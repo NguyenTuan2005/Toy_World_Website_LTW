@@ -17,7 +17,7 @@
 
             <!-- Search bar -->
             <form action="${pageContext.request.contextPath}/products" method="get"
-                  class="flex-grow-1 mx-4" style="max-width: 480px;">
+                  class="flex-grow-1 mx-4" style="max-width: 420px;">
                 <div class="input-group shadow-sm rounded-pill overflow-hidden">
                     <span class="input-group-text bg-white border-0 ps-3">
                         <i class="bi bi-search text-primary"></i>
@@ -106,24 +106,19 @@
                                 />
                             </a>
                         </li>
-                        <li class="nav-item dropdown mx-2">
-                            <a
-                                    class="nav-link  text-white"
-                                    href="vouchers.html"
-                            >
-                                Vouchers
+
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/brand">
+                                Thương hiệu
                             </a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/brand">Thương
-                                hiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/handbook-details">Cẩm nang</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="handbook.html">Cẩm nang</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">Giới
-                                thiệu</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">
+                                Giới thiệu
+                            </a>
                         </li>
                     </ul>
                 </div>

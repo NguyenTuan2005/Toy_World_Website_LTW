@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/admin-base.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/index.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/adminPages/css/handbook.css"/>
 </head>
 
 <body>
@@ -77,35 +78,6 @@
             </div>
         </div>
 
-        <style>
-            /* Ảnh card đều nhau */
-            .img-cover {
-                /*height: 260px;*/
-                /*object-fit: cover;*/
-            }
-
-            /* Giới hạn mô tả 3 dòng */
-            .clamp-3 {
-                display: -webkit-box;
-                -webkit-line-clamp: 5;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            .card {
-                border-radius: 16px;
-                border: 2px solid #dee2e6;
-                overflow: hidden;
-                transition: all 0.25s ease;
-            }
-
-            .card:hover {
-                border-color: #0d6efd;
-                box-shadow: 0 12px 28px rgba(13,110,253,0.25);
-            }
-
-        </style>
-
         <div class="container my-5">
             <div id="handbookTableBody" class="row g-4">
                 <c:if test="${empty handbooks}">
@@ -119,12 +91,12 @@
                         <div class="card h-100 shadow-sm border-0">
                             <img src="${hb.firstImage}"
                                  class="card-img-top img-cover"
-                                 alt="Europe Toy Fair">
+                                 alt="${hb.title}">
 
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <small class="text-muted">
-                                            ${hb.createdAt} - ${hb.username}
+                                        <fmt:formatDate value="${hb.createdAtAsDate}" pattern="dd.MM.yyyy" /> - ${hb.username}
                                     </small>
                                     <small class="text-muted">
                                         <i class="bi bi-eye me-1"></i> <fmt:formatNumber value="${hb.views}" type="number" />
@@ -146,8 +118,8 @@
 
                                 <h2 class="card-title text-truncate" style="color:  rgb(213, 27, 27);"> ${hb.title}</h2>
 
-                                <p class="card-text text-muted clamp-3">
-                                        ${hb.description}
+                                <p class="card-text text-muted text-truncate clamp-3">
+                                    <c:out value="${hb.description}"/>
                                 </p>
                                 <div class="card-footer bg-white border-0">
                                     <div class="d-flex justify-content-between align-items-center">

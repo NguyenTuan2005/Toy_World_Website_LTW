@@ -29,6 +29,7 @@ public class HandBookDetailController extends HttpServlet {
         handBookCriteria.setOnMonth(true);
         handBookCriteria.setHidden(false);
         handBookCriteria.setOrderBy("h.views");
+        handBookCriteria.setCurrentPage(1);
         handBookCriteria.setPageSize(SUGGEST_PAGE_SIZE);
 
         Pagination<HandBookCardDTO> suggestHandbookCards = this.handBookService.findHandbookCardByCriteria(handBookCriteria);

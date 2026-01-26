@@ -62,10 +62,7 @@ public class EditHandbookController extends HttpServlet {
         request.setAttribute("categoryName",handbookDetailDTO.getCategoryName());
         request.setAttribute("categoryId",handbookDetailDTO.getCategoryId());
 
-        List<Map<String, String>> sanitizedParagraphs = handBookService.getSanitizedParagraphs(handbookDetailDTO);
-
-        request.setAttribute("paragraphs", sanitizedParagraphs);
-
+        request.setAttribute("paragraphs", handbookDetailDTO.getParagraphs());
     }
 
     private void addCategoryOfHandbook(HttpServletRequest request){

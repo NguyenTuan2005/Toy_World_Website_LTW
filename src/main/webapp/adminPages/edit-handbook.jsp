@@ -83,19 +83,19 @@
                             <div class="mb-4">
                                 <label class="form-label">Tiêu đề đoạn ${counter.index + 1} (tùy chọn)</label>
                                 <input type="text" class="form-control paragraph-title"
-                                       value="${entry.title}"
+                                       value="${entry.header}"
                                        placeholder="Nhập tiêu đề cho đoạn này..." />
                             </div>
 
                             <div class="mb-4">
                                 <label class="form-label">Nội dung</label>
                                 <textarea class="form-control editor-${counter.index + 1}"
-                                          id="editor-${counter.index + 1}"><c:out value="${entry.description}" escapeXml="true"/></textarea>
+                                          id="editor-${counter.index + 1}">${entry.description}</textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Hình ảnh (tùy chọn)</label>
-                                <div class="image-upload-wrapper ${entry.imgPath == null ? "": "d-none"}" id="uploadWrapper-${counter.index + 1}">
+                                <div class="image-upload-wrapper ${entry.imagePath == null ? "": "d-none"}" id="uploadWrapper-${counter.index + 1}">
                                     <i class="bi bi-image fs-1 text-secondary"></i>
                                     <div class="image-upload-text">
                                         Nhấn để chọn hình ảnh cho đoạn này
@@ -105,9 +105,9 @@
                                 <input type="file" id="fileInput-${counter.index + 1}" accept="image/*" />
 
                                 <div id="imagePreview-${counter.index + 1}"
-                                     class="image-preview-container ${entry.imgPath == null ? "d-none" : ""}">
+                                     class="image-preview-container ${entry.imagePath == null ? "d-none" : ""}">
                                     <img
-                                            src="${entry.imgPath == null ? "" : entry.imgPath}"
+                                            src="${entry.imagePath == null ? "" : entry.imagePath}"
                                             id="previewImg-${counter.index + 1}"
                                             class="image-preview" />
 

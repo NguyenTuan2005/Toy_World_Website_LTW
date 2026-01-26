@@ -32,6 +32,7 @@ function initializeExistingEditors() {
             });
     });
 }
+
 function getEditorConfig() {
     return {
         toolbar: [
@@ -320,7 +321,7 @@ async function getFormData() {
 
         formData.paragraphs.push({
             paragraphId: paragraphIdInput?.value || null,
-            index: index,
+            index: index + 1,
             title: title,
             content: content,
             image: imageBase64

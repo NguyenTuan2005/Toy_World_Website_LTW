@@ -40,8 +40,7 @@ public class HandbookController extends HttpServlet {
 
         if(request.getParameter("page") != null)
             currentPage = Integer.parseInt(request.getParameter("page"));
-        handBookCriteria.setOrderBy("h.id");
-        handBookCriteria.setOrderType("asc");
+        handBookCriteria.setOrderBy("h.created_at");
         handBookCriteria.setCurrentPage(currentPage);
         handBookCriteria.setPageSize(PAGE_SIZE);
 
@@ -72,8 +71,7 @@ public class HandbookController extends HttpServlet {
         HandBookCriteria handBookCriteria = new HandbookAdminCriteria(keyword);
         handBookCriteria.setOnDay(false);
         handBookCriteria.setOnMonth(false);
-        handBookCriteria.setOrderBy("h.id");
-        handBookCriteria.setOrderType("asc");
+        handBookCriteria.setOrderBy("h.created_at");
         handBookCriteria.setCurrentPage(currentPage);
         handBookCriteria.setPageSize(PAGE_SIZE);
 

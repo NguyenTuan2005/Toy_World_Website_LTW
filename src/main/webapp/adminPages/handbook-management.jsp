@@ -33,71 +33,6 @@
     </div>
 
     <div class="container">
-        <div class="container-fluid">
-            <!-- Statistics Cards -->
-            <div class="row g-3 mb-4">
-                <div class="col-lg col-md-4 col-sm-6 ps-0">
-                    <div class="card border-secondary h-100">
-                        <div class="card-body text-center">
-                            <div class="text-secondary mb-2">
-                                <i class="bi bi-file-earmark-text fs-3"></i>
-                            </div>
-                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_handbooks}" type="number" /></h4>
-                            <small class="text-muted">Tổng bài viết</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg col-md-4 col-sm-6">
-                    <div class="card border-secondary h-100">
-                        <div class="card-body text-center">
-                            <div class="text-secondary mb-2">
-                                <i class="bi bi-lock-fill fs-3"></i>
-                            </div>
-                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_hidden_handbooks}" type="number" /></h4>
-                            <small class="text-muted">Tổng bài viết đã ẩn</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg col-md-4 col-sm-6">
-                    <div class="card border-secondary h-100">
-                        <div class="card-body text-center">
-                            <div class="text-secondary mb-2">
-                                <i class="bi bi-journal-text fs-3"></i>
-                            </div>
-                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_new_handbooks_on_month}" type="number" /></h4>
-                            <small class="text-muted">Mới tháng này</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg col-md-4 col-sm-6">
-                    <div class="card border-secondary h-100">
-                        <div class="card-body text-center">
-                            <div class="text-secondary mb-2">
-                                <i class="bi bi-check-circle-fill fs-3"></i>
-                            </div>
-                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_posted_on_month}" type="number" /></h4>
-                            <small class="text-muted">Đã đăng trong tháng</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg col-md-4 col-sm-6">
-                    <div class="card border-secondary h-100">
-                        <div class="card-body text-center">
-                            <div class="text-secondary mb-2">
-                                <i class="bi bi-eye-slash-fill fs-3"></i>
-                            </div>
-                            <h4 class="fw-bold mb-1"><fmt:formatNumber value="${total_hidden_on_month}" type="number" /></h4>
-                            <small class="text-muted">Đã ẩn trong tháng</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="filter-section">
             <div class="row align-items-center">
                 <div class="col-md-6 hstack align-items-center">
@@ -109,12 +44,13 @@
                                     id="searchInput"
                                     name="keyword"
                                     class="search-input"
-                                    placeholder="Nhập ID / Title"
+                                    value="${keyword}"
+                                    placeholder="Nhập mã hoặc tiêu đề bài viết"
                             >
                         </form>
 
                     </div>
-                    <c:if test="${find_user != null || manage_user == null}">
+                    <c:if test="${keyword != null}">
                         <btn class="btn btn-outline-secondary h-100 hstack align-items-center"
                              onclick="window.location.href='${pageContext.request.contextPath}/admin/handbooks?page=1'">
                             <i class="bi bi-arrow-repeat"></i>
@@ -171,7 +107,7 @@
         </style>
 
         <div class="container my-5">
-            <div class="row g-4">
+            <div id="handbookTableBody" class="row g-4">
                 <c:if test="${empty handbooks}">
                     <div class="empty-state text-center w-100 py-5">
                         <i class="bi bi-inbox-fill fs-1 text-muted mb-3"></i>
@@ -234,50 +170,47 @@
                 </c:forEach>
             </div>
             <hr>
-            <div class="d-flex justify-content-between align-items-center m-3">
-                 <p class="mb-0">
-                    Hiển thị ${pageSize} trong ${totalElements} cẩm nang,
-                    trang hiện tại ${currentPage },
-                    tổng trang ${totalPages}
-                </p>
-                <c:if test="${totalPages > 0}">
+            <c:if test="${keyword == null}">
+                <div class="d-flex justify-content-between align-items-center m-3">
+                    <p id="pageInfo" class="mb-0">Hiển thị ${currentPage}-${totalPages} trong ${totalElements} bài viết</p>
                     <nav>
-                    <ul class="pagination mb-0">
-                        <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="st">
+                        <ul id="handbookPagination" class="pagination mb-0" data-current-page="${currentPage}">
+                            <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                <a title="Tới trang đầu" class="page-link" href="#">|&lt;</a>
+                            </li>
+                            <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                <a title="Tới trang sau" class="page-link" href="#">&lt;</a>
+                            </li>
 
-                            <c:choose>
-                                <c:when test="${st.index+1 == currentPage}">
-                                    <li class="page-item active">
-                                        <a class="page-link"
-                                           href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                ${st.index + 1}
-                                        </a>
-                                    </li>
-                                </c:when>
+                            <c:forEach var="i"
+                                       begin="${(totalPages <= 5) ? 1 : (currentPage <= 3 ? 1 : (currentPage >= (totalPages - 2) ? totalPages - 4 : currentPage - 2))}"
+                                       end="${(totalPages <= 5) ? totalPages : (currentPage <= 3 ? 5 : (currentPage >= (totalPages - 2) ? totalPages : currentPage + 2))}">
+                                <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                    <a title="Tới trang ${i}" class="page-link" href="#">${i}</a>
+                                </li>
+                            </c:forEach>
 
-                                <c:otherwise>
-                                    <li class="page-item">
-                                        <a class="page-link"
-                                           href="${pageContext.request.contextPath}/admin/users?page=${st.index + 1}">
-                                                ${st.index + 1}
-                                        </a>
-                                    </li>
-                                </c:otherwise>
-                            </c:choose>
-
-                        </c:forEach>
-                    </ul>
-                </nav>
-                </c:if>
-            </div>
+                            <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                                <a title="Tới trang trước" class="page-link" href="#">&gt;</a>
+                            </li>
+                            <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                                <a title="Tới trang cuối" class="page-link" href="#">&gt;|</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </c:if>
         </div>
     </div>
 
 
 </main>
 
-<script src="js/index.js"></script>
-
+<script>
+    const totalPages = ${totalPages};
+    const contextPath = "${pageContext.request.contextPath}";
+</script>
+<script src="${pageContext.request.contextPath}/adminPages/js/handbook.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

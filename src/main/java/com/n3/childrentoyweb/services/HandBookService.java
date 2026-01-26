@@ -126,7 +126,7 @@ public class HandBookService {
         List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
         int totalElements  =  this.handbookDAO.countAll();
         int totalPages = totalElements / handBookCriteria.getPageSize();
-        return new Pagination<>(handBookCardDTOS,handBookCriteria.getCurrentPage(),totalElements,totalPages == 0 ? 1 : totalPages);
+        return new Pagination<>(handBookCardDTOS,handBookCriteria.getCurrentPage(),totalElements,totalPages + 1);
     }
 
     public List<Map<String, String>> getSanitizedParagraphs(HandbookDetailDTO handbookDetailDTO) {

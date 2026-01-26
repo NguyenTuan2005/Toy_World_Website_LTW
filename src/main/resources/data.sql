@@ -171,9 +171,9 @@ INSERT INTO `banners`
 VALUES (1, 'Banner Noel', 'https://res-console.cloudinary.com/dvynemzxx/thumbnails/v1/image/upload/v1766543876/dXNlcnMveWJkc3RqamlnemdhYW9qcTZvMGo=/drilldown', 'TRANG_CHU', 1, 1, 1),
        (2, 'Banner hè 2', 'https://res-console.cloudinary.com/dvynemzxx/thumbnails/v1/image/upload/v1766543832/dXNlcnMvZ2NidXRjYnNzYmptYTd6Y3JvZmk=/drilldown', 'TRANG_CHU', 2, 2, 1),
        (3, 'Banner hè 3', 'https://res-console.cloudinary.com/dvynemzxx/thumbnails/v1/image/upload/v1766543774/dXNlcnMvbHduYjdiNWM2eWJnYmZ0NDJ1MGw=/drilldown', 'TRANG_CHU', 3, 3, 1),
-
-       (8, 'Banner Lego', 'https://www.mykingdom.com.vn/cdn/shop/files/1280_x_496_22340f1f-527a-4e1a-9a7d-3cca16bd91e3.webp?v=1765349626&width=1200', 'TRANG_CHU', 1, 9, 1),
-       (9, 'Banner Xe', 'https://www.mykingdom.com.vn/cdn/shop/files/1._1280x496_a282d301-e4b0-4c32-9c7b-258509b6cad1.webp?v=1765770287&width=1200', 'KHUYEN_MAI', 1, 10, 0);
+       (4, 'Banner Cẩm Nang', 'https://www.mykingdom.com.vn/cdn/shop/files/C_m_nang_1440x240_7521d639-b95b-4c16-8c2e-27c37bb55e34.jpg?v=1694143011&width=3840','CAM_NANG',1,null, 1),
+       (5, 'Banner Lego', 'https://www.mykingdom.com.vn/cdn/shop/files/1280_x_496_22340f1f-527a-4e1a-9a7d-3cca16bd91e3.webp?v=1765349626&width=1200', 'TRANG_CHU', 1, 9, 1),
+       (6, 'Banner Xe', 'https://www.mykingdom.com.vn/cdn/shop/files/1._1280x496_a282d301-e4b0-4c32-9c7b-258509b6cad1.webp?v=1765770287&width=1200', 'KHUYEN_MAI', 1, 10, 1);
 
 
 INSERT INTO `promotions`

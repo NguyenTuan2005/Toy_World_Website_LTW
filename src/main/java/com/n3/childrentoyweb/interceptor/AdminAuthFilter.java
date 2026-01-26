@@ -34,7 +34,7 @@ public class AdminAuthFilter implements Filter {
         boolean isAdmin = roles.stream().anyMatch(RoleEnum::isAdmin);
 
         if (!isAdmin) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
 

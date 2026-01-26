@@ -32,6 +32,7 @@ function initializeExistingEditors() {
             });
     });
 }
+
 function getEditorConfig() {
     return {
         toolbar: [
@@ -320,7 +321,7 @@ async function getFormData() {
 
         formData.paragraphs.push({
             paragraphId: paragraphIdInput?.value || null,
-            index: index,
+            index: index + 1,
             title: title,
             content: content,
             image: imageBase64
@@ -410,5 +411,5 @@ function showAlert(message, type = 'danger') {
     alert.className = `alert alert-${type} text-center`;
     alert.classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // setTimeout(() => alert.classList.add('d-none'), 3000);
+    setTimeout(() => alert.classList.add('d-none'), 3000);
 }

@@ -112,7 +112,7 @@ public class HandbookDAO extends BaseDAO{
         sql.append(handBookCriteria.getIsHiddenForSql());
         sql.append(handBookCriteria.getTitleForSql());
         sql.append(handBookCriteria.getUserIdForSql());
-        sql.append(" order by h.id asc");
+        sql.append(handBookCriteria.getOrderByForSql());
         sql.append(handBookCriteria.getPaginationForSql());
 
         return this.getJdbi().withHandle(handle -> handle.createQuery(sql)

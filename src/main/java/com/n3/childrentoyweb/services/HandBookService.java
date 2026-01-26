@@ -12,6 +12,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 
 public class HandBookService {
@@ -126,26 +127,8 @@ public class HandBookService {
         List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
         int totalElements  =  this.handbookDAO.countAll();
         int totalPages = totalElements / handBookCriteria.getPageSize();
-        return new Pagination<>(handBookCardDTOS,handBookCriteria.getCurrentPage(),totalElements,totalPages + 1);
-    }
-
-    public List<Map<String, String>> getSanitizedParagraphs(HandbookDetailDTO handbookDetailDTO) {
-        List<Map<String, String>> sanitizedParagraphs = new ArrayList<>();
-        for (Paragraph paragraph : handbookDetailDTO.getParagraphs()) {
-            Map<String, String> sanitized = new HashMap<>();
-            sanitized.put("id", String.valueOf(paragraph.getId()));
-            sanitized.put("title", paragraph.getHeader());
-            String desc = paragraph.getDescription();
-            desc = desc.replace("&", "&amp;")
-                    .replace("<", "&lt;")
-                    .replace(">", "&gt;")
-                    .replace("\"", "&quot;")
-                    .replace("'", "&#39;");
-            sanitized.put("description", desc);
-            sanitized.put("imgPath", paragraph.getImagePath());
-            sanitizedParagraphs.add(sanitized);
-        }
-        return sanitizedParagraphs;
+        int currentPage = handBookCriteria.getCurrentPage() == null ? 1 : handBookCriteria.getCurrentPage();
+        return new Pagination<>(handBookCardDTOS, currentPage,totalElements,totalPages + 1);
     }
 
     public void updateFullHandbook(HandbookDTO handbookDTO) {
@@ -162,7 +145,7 @@ public class HandBookService {
 
         Set<Long> existingIds = paragraphs.stream()
                 .map(Paragraph::getId)
-                .collect(java.util.stream.Collectors.toSet());
+                .collect(Collectors.toSet());
 
         List<ParagraphDTO> saveParagraph = paragraphDTOS.stream()
                 .filter(pdto -> pdto.getId() == null || !existingIds.contains(pdto.getId()))
@@ -170,8 +153,14 @@ public class HandBookService {
         List<ParagraphDTO> updateParagraph = paragraphDTOS.stream()
                 .filter(pdto -> pdto.getId() != null && existingIds.contains(pdto.getId()))
                 .toList();
-        List<ParagraphDTO> deleteParagraph = paragraphDTOS.stream()
-                .filter(pdto -> pdto.getId() != null && !existingIds.contains(pdto.getId()))
+
+        Set<Long> remainIds = paragraphDTOS.stream()
+                .map(ParagraphDTO::getId)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+
+        List<Paragraph> deleteParagraph = paragraphs.stream()
+                .filter(paragraph ->  !remainIds.contains(paragraph.getId()))
                 .toList();
 
         for (ParagraphDTO paragraphDTO : saveParagraph) {
@@ -182,13 +171,13 @@ public class HandBookService {
             this.updateParagraph(handbook.getId(), paragraphDTO);
         }
 
-        for (ParagraphDTO paragraphDTO : deleteParagraph) {
-            this.deleteParagraph(paragraphDTO);
+        for (Paragraph paragraph : deleteParagraph) {
+            this.deleteParagraph(paragraph);
         }
     }
 
-    private void deleteParagraph(ParagraphDTO paragraphDTO) {
-        this.paragraphDAO.deleteById(paragraphDTO.getId());
+    private void deleteParagraph(Paragraph paragraph) {
+        this.paragraphDAO.deleteById(paragraph.getId());
     }
 
     private void updateParagraph(long id, ParagraphDTO paragraphDTO) {

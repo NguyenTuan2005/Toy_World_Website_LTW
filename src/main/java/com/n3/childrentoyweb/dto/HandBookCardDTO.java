@@ -1,6 +1,8 @@
 package com.n3.childrentoyweb.dto;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class HandBookCardDTO {
     private Long id;
@@ -31,6 +33,10 @@ public class HandBookCardDTO {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Date getCreatedAtAsDate() {
+        return createdAt != null ? Timestamp.valueOf(createdAt) : null;
     }
 
     public String getUsername() {

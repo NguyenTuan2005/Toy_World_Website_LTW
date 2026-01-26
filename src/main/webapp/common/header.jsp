@@ -113,7 +113,7 @@
                             </a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/handbook-details">Cẩm nang</a>
+                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/handbook">Cẩm nang</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link text-white" href="${pageContext.request.contextPath}/contact">

@@ -27,5 +27,5 @@ function showAlert(message, type = 'danger') {
     alert.className = `alert alert-${type} text-center`;
     alert.classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // setTimeout(() => alert.classList.add('d-none'), 3000);
+    setTimeout(() => alert.classList.add('d-none'), 3000);
 }

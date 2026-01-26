@@ -145,9 +145,6 @@ public class UserDAO extends BaseDAO {
         sql.append(userCriteria.getEmailForSql());
         sql.append(" limit 10");
 
-
-
-        System.out.println(sql);
         return this.getJdbi().withHandle(handle ->
                 handle.createQuery(sql)
                         .map((rs, ctx) -> {
@@ -298,8 +295,6 @@ public class UserDAO extends BaseDAO {
                     .mapTo(Long.class)
                     .one();
 
-            System.out.println("location Id : "+ locationId);
-
             Long userId = handle.createUpdate("""
                 INSERT INTO users (first_name, last_name, phone, gender, password, email, location_id)
                 VALUES (:firstName, :lastName, :phone, :gender, :password, :email, :locationId)
@@ -310,7 +305,6 @@ public class UserDAO extends BaseDAO {
                     .mapTo(Long.class)
                     .one();
 
-            System.out.println("user id : "+ userId);
             for (Long roleId : roles) {
                 handle.createUpdate("""
                     INSERT INTO user_roles (user_id, role_id)

@@ -1,21 +1,20 @@
 // Biến global
-var paragraphCount = 0;
-var editorInstances = [];
-
-
+let paragraphCount = 0;
+let editorInstances = [];
 
 // Thêm đoạn mới
 function addParagraph() {
     paragraphCount++;
-    var container = document.getElementById('paragraphsContainer');
-    var paragraphDiv = document.createElement('div');
+    const container = document.getElementById('paragraphsContainer');
+    const paragraphDiv = document.createElement('div');
     paragraphDiv.className = 'paragraph-card';
     paragraphDiv.setAttribute('data-index', paragraphCount);
+    paragraphDiv.setAttribute('data-editor-id', 'editor-' + paragraphCount);
 
     paragraphDiv.innerHTML =
         '<div class="paragraph-header">' +
         '<span><i class="bi bi-file-earmark-text me-2"></i>Đoạn ' + paragraphCount + '</span>' +
-        '<i class="bi bi-x-lg delete-paragraph" data-paragraph-id="' + paragraphCount + '"></i>' +
+        '<i class="bi bi-x-lg delete-paragraph"></i>' +
         '</div>' +
 
         '<div class="mb-4">' +
@@ -38,11 +37,11 @@ function addParagraph() {
         '<div id="imagePreview-' + paragraphCount + '" class="image-preview-container" style="display: none;">' +
         '<img id="previewImg-' + paragraphCount + '" class="image-preview" />' +
         '<div class="mt-2">' +
-        '<button type="button" class="btn btn-sm btn-primary change-image-btn me-2" data-input-id="fileInput-' + paragraphCount + '">' +
-        '<i class="bi bi-arrow-repeat me-1"></i>Thay đổi hình' +
+        '<button type="button" class="btn btn-sm btn-outline-secondary change-image-btn me-2" data-input-id="fileInput-' + paragraphCount + '">' +
+        '<i class="bi bi-arrow-repeat me-1"></i> Thay đổi hình' +
         '</button>' +
         '<button type="button" class="btn btn-sm btn-danger delete-image-btn" data-paragraph-id="' + paragraphCount + '">' +
-        '<i class="bi bi-trash me-1"></i>Xóa hình' +
+        '<i class="bi bi-trash me-1"></i> Xóa hình' +
         '</button>' +
         '</div>' +
         '</div>' +
@@ -50,29 +49,28 @@ function addParagraph() {
 
     container.appendChild(paragraphDiv);
 
-    // Gắn event cho upload wrapper
     document.getElementById('uploadWrapper-' + paragraphCount).addEventListener('click', function () {
-        var inputId = this.id.replace('uploadWrapper-', 'fileInput-');
+        const inputId = this.id.replace('uploadWrapper-', 'fileInput-');
         document.getElementById(inputId).click();
     });
 
-    // Gắn event cho file input
     document.getElementById('fileInput-' + paragraphCount).addEventListener('change', function () {
         handleImageUpload(this);
     });
 
-    // Gắn event cho nút delete
     paragraphDiv.querySelector('.delete-paragraph').addEventListener('click', function () {
         deleteParagraph(this);
     });
 
-    // Gắn event cho nút thay đổi hình
     paragraphDiv.querySelector('.change-image-btn').addEventListener('click', function () {
-        var inputId = this.getAttribute('data-input-id');
+        const inputId = this.getAttribute('data-input-id');
         document.getElementById(inputId).click();
     });
 
-    // Khởi tạo CKEditor cho đoạn mới
+    paragraphDiv.querySelector('.delete-image-btn').addEventListener('click', function() {
+        deleteImage(this);
+    });
+
     ClassicEditor
         .create(document.getElementById('editor-' + paragraphCount), {
             toolbar: [
@@ -93,55 +91,44 @@ function addParagraph() {
         })
         .then(function (editor) {
             editorInstances[paragraphCount] = editor;
+            paragraphDiv.setAttribute('data-editor-index', paragraphCount);
             editor.editing.view.change(function (writer) {
                 writer.setStyle('min-height', '400px', editor.editing.view.document.getRoot());
             });
         })
         .catch(function (error) {
-            console.error('Error initializing CKEditor:', error);
+            showAlert('Error initializing CKEditor:' + error, "danger");
         });
 }
 
-// Xóa đoạn
 function deleteParagraph(element) {
-    if (confirm('Bạn có chắc muốn xóa đoạn này?')) {
+    showConfirmModal('Bạn có chắc muốn xóa đoạn này?', function () {
         var card = element.closest('.paragraph-card');
-        var index = card.getAttribute('data-index');
+        var editorIndex = card.getAttribute('data-editor-index');
 
-        // Xóa editor instance
-        if (editorInstances[index]) {
-            editorInstances[index].destroy();
-            delete editorInstances[index];
+        if (editorIndex && editorInstances[editorIndex]) {
+            editorInstances[editorIndex].destroy();
+            delete editorInstances[editorIndex];
         }
 
         card.remove();
         updateParagraphNumbers();
-    }
+    });
 }
 
-// BUG A oi
-// // Thêm event listener cho nút xóa ảnh (đặt sau phần gắn event cho nút thay đổi hình)
-// paragraphDiv.querySelector('.delete-image-btn').addEventListener('click', function() {
-//     deleteImage(this);
-// });
-//
-// // Thêm function deleteImage mới
-// function deleteImage(element) {
-//     if (confirm('Bạn có chắc muốn xóa hình ảnh này?')) {
-//         var paragraphId = element.getAttribute('data-paragraph-id');
-//
-//         // Reset file input
-//         var fileInput = document.getElementById('fileInput-' + paragraphId);
-//         fileInput.value = '';
-//
-//         // Ẩn preview và hiện lại upload wrapper
-//         document.getElementById('imagePreview-' + paragraphId).style.display = 'none';
-//         document.getElementById('uploadWrapper-' + paragraphId).style.display = 'block';
-//
-//         // Xóa src của image
-//         document.getElementById('previewImg-' + paragraphId).src = '';
-//     }
-// }
+function deleteImage(element) {
+    showConfirmModal('Bạn có chắc muốn xóa hình ảnh này?', function () {
+        var paragraphId = element.getAttribute('data-paragraph-id');
+
+        var fileInput = document.getElementById('fileInput-' + paragraphId);
+        fileInput.value = '';
+
+        document.getElementById('imagePreview-' + paragraphId).style.display = 'none';
+        document.getElementById('uploadWrapper-' + paragraphId).style.display = 'block';
+
+        document.getElementById('previewImg-' + paragraphId).src = '';
+    });
+}
 
 // Cập nhật số thứ tự đoạn
 function updateParagraphNumbers() {
@@ -152,6 +139,7 @@ function updateParagraphNumbers() {
         p.querySelector('.paragraph-header span').innerHTML = '<i class="bi bi-file-earmark-text me-2"></i>Đoạn ' + num;
         p.querySelectorAll('.form-label')[0].textContent = 'Tiêu đề đoạn ' + num + ' (tùy chọn)';
     }
+    paragraphCount = paragraphs.length;
 }
 
 // Xử lý upload hình
@@ -173,61 +161,86 @@ function handleImageUpload(input) {
 
 // Tạo danh mục mới
 function createNewCategory() {
-    var categoryName = prompt('Nhập tên danh mục mới:');
-    if (categoryName && categoryName.trim()) {
-        var select = document.getElementById('categorySelect');
-        var option = document.createElement('option');
-        var slug = categoryName.toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/[đĐ]/g, 'd')
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-');
+    const modal = new bootstrap.Modal(document.getElementById('newCategoryModal'));
+    const input = document.getElementById('newCategoryInput');
+    input.value = '';
 
-        option.value = slug;
-        option.textContent = categoryName.trim();
-        option.selected = true;
-        select.appendChild(option);
+    document.getElementById('confirmNewCategoryBtn').onclick = function() {
+        const categoryName = input.value.trim();
+        if (!categoryName) {
+            const alert = document.getElementById('newCategoryAlert');
+            alert.textContent = 'Vui lòng nhập tên danh mục!';
+            alert.classList.remove('d-none');
+            setTimeout(() => alert.classList.add('d-none'), 3000);
+            return;
+        }
 
-        alert('Đã tạo danh mục mới: ' + categoryName);
-    }
+        let categoryId = 0;
+
+        fetch(contextPath + "/admin/category-handbooks", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({categoryName: categoryName})
+        })
+            .then(response => response.ok ? response.json() : response.text().then(text => {throw new Error(text)}))
+            .then(data => {
+                if (data.success) {
+                    categoryId = data.id;
+                    addCategoryOption(categoryName, categoryId);
+                    modal.hide();
+                    showAlert('Đã tạo danh mục mới: ' + categoryName, 'success');
+                } else {
+                    const alert = document.getElementById('newCategoryAlert');
+                    alert.textContent = data.message;
+                    alert.classList.remove('d-none');
+                    setTimeout(() => alert.classList.add('d-none'), 3000);
+                }
+            })
+            .catch(error => {
+                const alert = document.getElementById('newCategoryAlert');
+                alert.textContent = error.message;
+                alert.classList.remove('d-none');
+                setTimeout(() => alert.classList.add('d-none'), 3000);
+            });
+    };
+
+    modal.show();
 }
 
 // Submit form
 function submitPost() {
-    var title = document.getElementById('postTitle').value.trim();
-    var category = document.getElementById('categorySelect').value;
+    const form = document.getElementById("blogForm");
+    const title = document.getElementById('postTitle').value.trim();
+    const category = document.getElementById('categorySelect').value;
 
     if (!title) {
-        alert('Vui lòng nhập tiêu đề bài viết!');
+        showAlert('Vui lòng nhập tiêu đề bài viết!', "danger");
+        form.reportValidity();
         return;
     }
 
-    if (!category) {
-        alert('Vui lòng chọn danh mục!');
-        return;
-    }
+    let paragraphs = [];
+    const paragraphCards = document.querySelectorAll('.paragraph-card');
 
-    var paragraphs = [];
-    var paragraphCards = document.querySelectorAll('.paragraph-card');
+    let promises = [];
 
-    var promises = [];
-
-    for (var i = 0; i < paragraphCards.length; i++) {
+    for (let i = 0; i < paragraphCards.length; i++) {
         (function (idx) {
-            var card = paragraphCards[idx];
-            var dataIndex = card.getAttribute('data-index');
-            var paragraphTitle = card.querySelector('.paragraph-title').value.trim();
+            const card = paragraphCards[idx];
+            const dataIndex = card.getAttribute('data-index');
+            const paragraphTitle = card.querySelector('.paragraph-title').value.trim();
 
-            var content = '';
+            let content = '';
             if (editorInstances[dataIndex]) {
                 content = editorInstances[dataIndex].getData();
             }
 
-            var fileInput = card.querySelector('input[type="file"]');
+            const fileInput = card.querySelector('input[type="file"]');
 
             if (fileInput.files[0]) {
-                var promise = fileToBase64(fileInput.files[0]).then(function (imageBase64) {
+                const promise = fileToBase64(fileInput.files[0]).then(function (imageBase64) {
                     paragraphs[idx] = {
                         index: idx + 1,
                         title: paragraphTitle,
@@ -249,22 +262,19 @@ function submitPost() {
 
     Promise.all(promises).then(function () {
         if (paragraphs.length === 0) {
-            alert('Vui lòng thêm ít nhất một đoạn nội dung!');
+            showAlert('Vui lòng thêm ít nhất một đoạn nội dung!', "danger");
             return;
         }
 
-        var postData = {
+        const postData = {
             title: title,
             category: category,
             paragraphs: paragraphs,
             createdAt: new Date().toISOString()
         };
 
-        console.log('Dữ liệu bài viết:', postData);
-
-        // Gửi JSON qua AJAX
-        fetch('/childrentoyweb_war/handbooks', {
-            method: 'POST',
+        fetch(form.action, {
+            method: form.method,
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
             },
@@ -275,15 +285,16 @@ function submitPost() {
             })
             .then(function (result) {
                 if (result.success) {
-                    alert('Đăng bài thành công!');
-                    window.location.href = '<%= request.getContextPath() %>/handbooks.jsp';
+                    showAlert(result.message || 'Đăng bài thành công!', "success");
+                    setTimeout(() => {
+                        window.location.href = contextPath + '/admin/handbooks';
+                    }, 2000);
                 } else {
-                    alert('Lỗi: ' + result.message);
+                    showAlert('Lỗi: ' + result.message, "danger");
                 }
             })
             .catch(function (error) {
-                console.error('Error:', error);
-                alert('Có lỗi xảy ra khi đăng bài.');
+                showAlert('Có lỗi xảy ra khi đăng bài: ' + error , "danger");
             });
     });
 }
@@ -302,27 +313,39 @@ function fileToBase64(file) {
     });
 }
 
+function cancel() {
+    showConfirmModal("Bạn có chắc muốn hủy? Dữ liệu sẽ không được lưu.", function () {
+        window.location.href = contextPath + '/admin/handbooks';
+    });
+}
+
+function showConfirmModal(message, callback) {
+    const modalEl = document.getElementById('confirmModal');
+    const modal = new bootstrap.Modal(modalEl);
+    const confirmBtn = document.getElementById('confirmBtn');
+    document.getElementById('confirmMessage').textContent = message;
+
+    const newConfirmBtn = confirmBtn.cloneNode(true);
+    confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+
+    newConfirmBtn.addEventListener('click', function () {
+        modal.hide();
+        if (typeof callback === 'function') callback();
+    }, { once: true });
+
+    modal.show();
+}
+
+function showAlert(message, type = 'danger') {
+    const alert = document.getElementById('alert');
+    alert.textContent = message;
+    alert.className = `alert alert-${type} text-center`;
+    alert.classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => alert.classList.add('d-none'), 3000);
+}
+
 // Khởi tạo khi DOM loaded
 document.addEventListener('DOMContentLoaded', function () {
-    // Thêm đoạn đầu tiên
     addParagraph();
-
-    // Gắn events cho các nút
-    document.getElementById('addParagraphBtn').addEventListener('click', function () {
-        addParagraph();
-    });
-
-    document.getElementById('cancelBtn').addEventListener('click', function () {
-        if (confirm('Bạn có chắc muốn hủy? Dữ liệu sẽ không được lưu.')) {
-            window.location.href = '<%= request.getContextPath() %>/handbooks.jsp';
-        }
-    });
-
-    document.getElementById('submitBtn').addEventListener('click', function () {
-        submitPost();
-    });
-
-    document.getElementById('newCategoryBtn').addEventListener('click', function () {
-        createNewCategory();
-    });
 });

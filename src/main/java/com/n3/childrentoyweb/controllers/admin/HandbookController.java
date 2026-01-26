@@ -12,12 +12,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet( value = "/admin/handbooks")
 public class HandbookController extends HttpServlet {
     private HandBookService handBookService;
 
-    public static final int  PAGE_SIZE = 10;
+    public static final int  PAGE_SIZE = 9;
     private final int FIRST_PAGE =1;
 
     @Override
@@ -27,23 +28,8 @@ public class HandbookController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.statisticHandbooks(req);
         this.addHandbookCards(req);
         req.getRequestDispatcher("/adminPages/handbook-management.jsp").forward(req,resp);
-    }
-
-    private void statisticHandbooks(HttpServletRequest request){
-        int totalHandbooks = 100;
-        int totalHiddenHandbooks = 10;
-        int totalNewHandbooksOnMonth =30;
-        int totalPostedOnMonth =20;
-        int totalHiddenOnMonth =10;
-
-        request.setAttribute("total_handbooks",totalHandbooks);
-        request.setAttribute("total_hidden_handbooks",totalHiddenHandbooks);
-        request.setAttribute("total_new_handbooks_on_month",totalNewHandbooksOnMonth);
-        request.setAttribute("total_posted_on_month",totalPostedOnMonth);
-        request.setAttribute("total_hidden_on_month",totalHiddenOnMonth);
     }
 
     private void addHandbookCards(HttpServletRequest request){
@@ -60,8 +46,6 @@ public class HandbookController extends HttpServlet {
 
         Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteria(handBookCriteria);
 
-        System.out.println(handBookCardDTOPagination.getData());
-
         request.setAttribute("handbooks",handBookCardDTOPagination.getData());
         request.setAttribute("currentPage",handBookCardDTOPagination.getCurrentPage());
         request.setAttribute("totalElements",handBookCardDTOPagination.getTotalElements());
@@ -73,7 +57,6 @@ public class HandbookController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.findByCriteria(req);
-        this.statisticHandbooks(req);
         req.getRequestDispatcher("/adminPages/handbook-management.jsp").forward(req,resp);
     }
 
@@ -81,17 +64,19 @@ public class HandbookController extends HttpServlet {
 
         String keyword = request.getParameter("keyword");
 
+        int currentPage = FIRST_PAGE;
+        if(request.getParameter("page") != null)
+            currentPage = Integer.parseInt(request.getParameter("page"));
+
         HandBookCriteria handBookCriteria = new HandbookAdminCriteria(keyword);
         handBookCriteria.setOnDay(false);
         handBookCriteria.setOnMonth(false);
-        handBookCriteria.setCurrentPage(FIRST_PAGE);
+        handBookCriteria.setCurrentPage(currentPage);
         handBookCriteria.setPageSize(PAGE_SIZE);
-        System.out.println(handBookCriteria);
 
         Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteria(handBookCriteria);
 
-        System.out.println(handBookCardDTOPagination.getData());
-
+        request.setAttribute("keyword", keyword);
         request.setAttribute("handbooks",handBookCardDTOPagination.getData());
         request.setAttribute("currentPage",handBookCardDTOPagination.getCurrentPage());
         request.setAttribute("totalElements",handBookCardDTOPagination.getTotalElements());

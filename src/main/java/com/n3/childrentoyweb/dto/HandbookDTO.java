@@ -3,6 +3,7 @@ package com.n3.childrentoyweb.dto;
 import java.util.List;
 
 public class HandbookDTO {
+    private long id;
     private String title;
     List<ParagraphDTO> paragraphs;
     private String status;
@@ -70,5 +71,13 @@ public class HandbookDTO {
                 ", postedUserId=" + postedUserId +
                 ", categoryId=" + categoryId +
                 '}';
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 }

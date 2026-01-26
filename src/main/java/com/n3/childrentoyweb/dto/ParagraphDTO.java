@@ -1,10 +1,12 @@
 package com.n3.childrentoyweb.dto;
 
 public class ParagraphDTO {
+    private Long id;
     private int index;
     private String title;
     private String content;
     private String imageBase64;
+    private Long handbookId;
 
     public ParagraphDTO(int index, String title, String content, String imageBase64) {
         this.index = index;
@@ -56,5 +58,32 @@ public class ParagraphDTO {
                 ", content='" + content + '\'' +
                 ", imageBase64='" + imageBase64 + '\'' +
                 '}';
+    }
+
+    public boolean isBase64Format() {
+        if (this.imageBase64 == null || this.imageBase64.isEmpty())
+            return false;
+        String s = this.imageBase64;
+        int comma = s.indexOf(',');
+        if (comma != -1) {
+            s = s.substring(comma + 1);
+        }
+        return s.matches("^[A-Za-z0-9+/]+={0,2}$");
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setHandbookId(Long handbookId) {
+        this.handbookId = handbookId;
+    }
+
+    public Long getHandbookId() {
+        return handbookId;
     }
 }

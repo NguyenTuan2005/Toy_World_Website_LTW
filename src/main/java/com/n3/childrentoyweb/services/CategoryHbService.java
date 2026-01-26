@@ -15,4 +15,14 @@ public class CategoryHbService {
     public List<CategoryHb> findAll(){
         return this.categoryHbDAO.findAll();
     }
+
+    public long save(CategoryHb categoryHb) {
+        return this.categoryHbDAO.save(categoryHb);
+    }
+
+    public boolean isExist(CategoryHb categoryHb) {
+        return this.findAll()
+                .stream()
+                .anyMatch(c -> c.getName().equals(categoryHb.getName()));
+    }
 }

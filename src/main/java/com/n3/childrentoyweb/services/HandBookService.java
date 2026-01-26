@@ -7,11 +7,11 @@ import com.n3.childrentoyweb.models.HandbookCategory;
 import com.n3.childrentoyweb.models.Paragraph;
 import com.n3.childrentoyweb.models.User;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class HandBookService {
@@ -22,13 +22,11 @@ public class HandBookService {
 
     private CloudinaryService cloudinaryService;
 
-
     public HandBookService(){
         this.handbookDAO = new HandbookDAO();
         this.paragraphDAO = new ParagraphDAO();
         this.userDAO = new UserDAO();
         this.handbookCategoryDAO = new HandbookCategoryDAO();
-
         this.cloudinaryService = new CloudinaryService();
     }
 
@@ -44,23 +42,33 @@ public class HandBookService {
         handbook.setUserId(handbookDTO.getPostedUserId());
 
         long handbookId = this.handbookDAO.save(handbook);
-        System.out.println("handBookId = "+handbookId);
 
         int LIMIT_THREADS = 2;
         ExecutorService executor = Executors.newFixedThreadPool(LIMIT_THREADS);
-
-        HandbookCategory handbookCategory = new HandbookCategory(handbookDTO.getCategoryId(),handbookId);
-        executor.submit(() -> {
-            long hbcId = this.handbookCategoryDAO.save(handbookCategory);
-            System.out.println("handbookCategoryId "+hbcId);
-            return null;
-        });
-
-        for(ParagraphDTO paragraphDTO : handbookDTO.getParagraphs()){
+        try {
+            HandbookCategory handbookCategory = new HandbookCategory(handbookDTO.getCategoryId(), handbookId);
             executor.submit(() -> {
-                this.saveParagraph(handbookId,paragraphDTO);
+                long hbcId = this.handbookCategoryDAO.save(handbookCategory);
                 return null;
             });
+
+            for (ParagraphDTO paragraphDTO : handbookDTO.getParagraphs()) {
+                ParagraphDTO p = paragraphDTO;
+                executor.submit(() -> {
+                    this.saveParagraph(handbookId, p);
+                    return null;
+                });
+            }
+        } finally {
+            executor.shutdown();
+            try {
+                if (!executor.awaitTermination(30, TimeUnit.SECONDS)) {
+                    executor.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                executor.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
@@ -72,8 +80,6 @@ public class HandBookService {
 
         Paragraph paragraph = new Paragraph(paragraphDTO.getTitle(),paragraphDTO.getContent(),url,"img description", paragraphDTO.getIndex(), handbookId);
         long pId = this.paragraphDAO.save(paragraph);
-
-        System.out.println("paragraphID = "+pId);
     }
 
     public HandbookDetailDTO findHandbookDetailById(long id){
@@ -108,11 +114,6 @@ public class HandBookService {
         return null;
     }
 
-    public static void main(String[] args) {
-        HandBookService handBookService = new HandBookService();
-        System.out.println(handBookService.findHandbookDetailById(4));
-    }
-
     public Optional<Handbook> findById(long handbookId) {
         return Optional.ofNullable(this.handbookDAO.findById(handbookId));
     }
@@ -125,6 +126,78 @@ public class HandBookService {
         List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
         int totalElements  =  this.handbookDAO.countAll();
         int totalPages = totalElements / handBookCriteria.getPageSize();
-        return new Pagination<>(handBookCardDTOS,handBookCriteria.getCurrentPage(),totalElements,totalPages == 0 ? 1 : totalPages);
+        return new Pagination<>(handBookCardDTOS,handBookCriteria.getCurrentPage(),totalElements,totalPages + 1);
+    }
+
+    public List<Map<String, String>> getSanitizedParagraphs(HandbookDetailDTO handbookDetailDTO) {
+        List<Map<String, String>> sanitizedParagraphs = new ArrayList<>();
+        for (Paragraph paragraph : handbookDetailDTO.getParagraphs()) {
+            Map<String, String> sanitized = new HashMap<>();
+            sanitized.put("id", String.valueOf(paragraph.getId()));
+            sanitized.put("title", paragraph.getHeader());
+            String desc = paragraph.getDescription();
+            desc = desc.replace("&", "&amp;")
+                    .replace("<", "&lt;")
+                    .replace(">", "&gt;")
+                    .replace("\"", "&quot;")
+                    .replace("'", "&#39;");
+            sanitized.put("description", desc);
+            sanitized.put("imgPath", paragraph.getImagePath());
+            sanitizedParagraphs.add(sanitized);
+        }
+        return sanitizedParagraphs;
+    }
+
+    public void updateFullHandbook(HandbookDTO handbookDTO) {
+        Handbook handbook = new Handbook();
+        handbook.setId(handbookDTO.getId());
+        handbook.setTitle(handbookDTO.getTitle());
+        handbook.setStatus(handbookDTO.getStatus());
+        handbook.setUserId(handbookDTO.getPostedUserId());
+
+        this.handbookDAO.updateHandbook(handbook);
+
+        List<Paragraph> paragraphs = this.paragraphDAO.findAllByHandbookId(handbook.getId());
+        List<ParagraphDTO> paragraphDTOS = handbookDTO.getParagraphs();
+
+        Set<Long> existingIds = paragraphs.stream()
+                .map(Paragraph::getId)
+                .collect(java.util.stream.Collectors.toSet());
+
+        List<ParagraphDTO> saveParagraph = paragraphDTOS.stream()
+                .filter(pdto -> pdto.getId() == null || !existingIds.contains(pdto.getId()))
+                .toList();
+        List<ParagraphDTO> updateParagraph = paragraphDTOS.stream()
+                .filter(pdto -> pdto.getId() != null && existingIds.contains(pdto.getId()))
+                .toList();
+        List<ParagraphDTO> deleteParagraph = paragraphDTOS.stream()
+                .filter(pdto -> pdto.getId() != null && !existingIds.contains(pdto.getId()))
+                .toList();
+
+        for (ParagraphDTO paragraphDTO : saveParagraph) {
+            this.saveParagraph(handbook.getId(), paragraphDTO);
+        }
+
+        for (ParagraphDTO paragraphDTO : updateParagraph) {
+            this.updateParagraph(handbook.getId(), paragraphDTO);
+        }
+
+        for (ParagraphDTO paragraphDTO : deleteParagraph) {
+            this.deleteParagraph(paragraphDTO);
+        }
+    }
+
+    private void deleteParagraph(ParagraphDTO paragraphDTO) {
+        this.paragraphDAO.deleteById(paragraphDTO.getId());
+    }
+
+    private void updateParagraph(long id, ParagraphDTO paragraphDTO) {
+        String url = paragraphDTO.isBase64Format() ? null : paragraphDTO.getImageBase64();
+        if(paragraphDTO.isBase64Format())
+            url = cloudinaryService.upload(paragraphDTO.getImageBase64());
+
+        Paragraph paragraph = new Paragraph(paragraphDTO.getTitle(),paragraphDTO.getContent(),url,"img description", paragraphDTO.getIndex(), id);
+        paragraph.setId(paragraphDTO.getId());
+        this.paragraphDAO.update(paragraph);
     }
 }

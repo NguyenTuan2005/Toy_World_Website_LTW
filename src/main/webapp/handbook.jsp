@@ -36,12 +36,30 @@
         <div class="sidebar my-3 hstack justify-content-between">
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Nhập từ khóa để tìm kiếm">
+                <form class="mb-0" method="post" action="${pageContext.request.contextPath}/handbook">
+                    <input type="text" name="keyword" class="form-control search-input" value="${keyword}" placeholder="Tìm theo mã hoặc tên sản phẩm..."/>
+                    <c:if test="${keyword != null}">
+                        <a class="clear-icon" href="${pageContext.request.contextPath}/handbook">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </c:if>
+                </form>
             </div>
             <div class="fs-4 fw-bold text-secondary">Tất cả bài viết</div>
         </div>
-        <!-- Article Grid -->
-        <div id="handbookCards" class="article-grid">
+        <c:choose>
+            <c:when test="${empty handbooks}">
+                <div id="handbookCards" class="mb-3">
+                    <div class="empty-state text-center my-5" role="status" aria-live="polite">
+                        <i class="bi bi-inbox-fill fs-1 text-muted mb-3"></i>
+                        <h3 class="mt-3 text-secondary">Chưa có bài viết nào</h3>
+                        <p class="text-muted">Không tìm thấy kết quả. Hãy thử lại sau hoặc thay đổi từ khóa tìm kiếm.</p>
+                    </div>
+            </c:when>
+            <c:otherwise>
+                <div id="handbookCards" class="article-grid mb-3">
+            </c:otherwise>
+        </c:choose>
             <c:forEach var="h" items="${handbooks}">
                 <div class="article-card">
                     <img src="${h.firstImage}"
@@ -93,26 +111,28 @@
         </c:if>
     </div>
 
-    <div class="container my-5">
-        <div class="section-title">
-            Có thể bạn sẽ thích
-        </div>
-        <div class="row g-4">
-            <c:forEach var="h" items="${suggestHandbooks}">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img src="${h.firstImage}" class="card-img-top" alt="${h.title}">
-                        <div class="card-body">
-                            <div class="meta"><fmt:formatDate value="${h.createdAtAsDate}" pattern="dd.MM.yyyy" /> · ${h.username}</div>
-                            <h5 class="card-title">${h.title}</h5>
-                            <p class="card-text">${h.description}</p>
-                            <a href="${pageContext.request.contextPath}/handbook-details?id=${h.id}" class="read-more">Xem thêm</a>
+    <c:if test="${keyword == null}">
+        <div class="container my-5">
+            <div class="section-title">
+                Có thể bạn sẽ thích
+            </div>
+            <div class="row g-4">
+                <c:forEach var="h" items="${suggestHandbooks}">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            <img src="${h.firstImage}" class="card-img-top" alt="${h.title}">
+                            <div class="card-body">
+                                <div class="meta"><fmt:formatDate value="${h.createdAtAsDate}" pattern="dd.MM.yyyy" /> · ${h.username}</div>
+                                <h5 class="card-title">${h.title}</h5>
+                                <p class="card-text">${h.description}</p>
+                                <a href="${pageContext.request.contextPath}/handbook-details?id=${h.id}" class="read-more">Xem thêm</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </div>
         </div>
-    </div>
+    </c:if>
     <jsp:include page="/common/footer.jsp" />
     <script src="${pageContext.request.contextPath}/js/handbook.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

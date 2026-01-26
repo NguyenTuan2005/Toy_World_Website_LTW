@@ -18,7 +18,7 @@ import java.io.IOException;
 
 @WebServlet(name = "handbook", value = "/handbook")
 public class HandbookController extends HttpServlet {
-    private static final int PAGE_SIZE = 6;
+    private static final int PAGE_SIZE = 8;
     private static final int SUGGEST_PAGE_SIZE = 3;
     private BannerService bannerService;
     private HandBookService handBookService;
@@ -60,12 +60,18 @@ public class HandbookController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String keyword = req.getParameter("keyword");
-//        ProductCriteria productCriteria = new ProductCriteria(keyword);
-//
-//        Pagination<ProductManagementDTO> products = productService.findByCriteria(productCriteria);
-//
-//        req.setAttribute("keyword", keyword);
-//        req.setAttribute("products", products.getData());
+
+        Banner banner = this.bannerService.findByGroupTag(BannerGroupTag.HANDBOOK.getTag()).stream().findFirst().orElse(new Banner());
+
+        HandBookCriteria handBookCriteria = new HandbookAdminCriteria(keyword);
+        handBookCriteria.setOnMonth(true);
+        handBookCriteria.setPageSize(PAGE_SIZE);
+
+        Pagination<HandBookCardDTO> handbookCards = this.handBookService.findHandbookCardByCriteria(handBookCriteria);
+
+        req.setAttribute("banner", banner);
+        req.setAttribute("keyword", keyword);
+        req.setAttribute("handbooks", handbookCards.getData());
         req.getRequestDispatcher("/handbook.jsp").forward(req, resp);
     }
 }

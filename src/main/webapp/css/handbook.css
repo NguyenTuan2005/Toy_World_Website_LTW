@@ -56,6 +56,14 @@ body {
     color: #999;
 }
 
+.clear-icon {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
 .category-item {
     padding: 12px 15px;
     margin-bottom: 8px;

@@ -11,7 +11,8 @@ public class HandBookCriteria {
 
     private Integer currentPage;
     private Integer pageSize = 1;
-
+    private String orderBy = null;
+    private String orderType = "desc";
 
     public HandBookCriteria(){}
 
@@ -112,6 +113,12 @@ public class HandBookCriteria {
         return this.SKIP;
     }
 
+    public String getOrderByForSql() {
+        if (orderBy != null)
+            return " order by " + orderBy + " " + orderType;
+        return SKIP;
+    }
+
     @Override
     public String toString() {
         return "HandBookCriteria{" +
@@ -125,5 +132,21 @@ public class HandBookCriteria {
                 ", currentPage=" + currentPage +
                 ", pageSize=" + pageSize +
                 '}';
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 }

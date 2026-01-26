@@ -1,4 +1,4 @@
-package com.n3.childrentoyweb.controllers;
+package com.n3.childrentoyweb.controllers.handbook;
 
 import com.n3.childrentoyweb.dto.HandbookDetailDTO;
 import com.n3.childrentoyweb.services.HandBookService;

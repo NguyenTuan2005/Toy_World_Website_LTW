@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class HandbookController extends HttpServlet {
     private HandBookService handBookService;
 
-    public static final int  PAGE_SIZE = 10;
+    public static final int  PAGE_SIZE = 9;
     private final int FIRST_PAGE =1;
 
     @Override

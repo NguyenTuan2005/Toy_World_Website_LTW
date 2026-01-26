@@ -22,4 +22,18 @@ public class CategoryHbDAO extends BaseDAO {
                 }).list()
         );
     }
+
+    public long save(CategoryHb categoryHb) {
+        String sql = """
+                insert into category_hbs (name)
+                values (:name)
+                """;
+        return this.getJdbi().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("name", categoryHb.getName())
+                            .executeAndReturnGeneratedKeys()
+                            .mapTo(Long.class)
+                            .one()
+                );
+    }
 }

@@ -196,12 +196,12 @@
 
                                     <c:choose>
                                         <c:when test="${hb.status == 'POSTED'}">
-                                            <span class="text-danger">
+                                            <span class="text-danger" title="Đã đăng">
                                                 <i class="bi bi-send"></i>
                                             </span>
                                         </c:when>
                                         <c:otherwise>
-                                            <span class="text-secondary">
+                                            <span class="text-secondary" title="Đang ẩn">
                                                <i class="bi bi-eye-slash"></i>
                                             </span>
                                         </c:otherwise>
@@ -215,12 +215,9 @@
                                 </p>
                                 <div class="card-footer bg-white border-0">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <form class="mb-0" action="${pageContext.request.contextPath}/admin/edit-handbooks">
-                                            <input type="hidden" name="id" value="${hb.id}">
-                                            <button class="btn text-secondary">
-                                                <i class="bi bi-pencil-square"></i> Chỉnh sửa
-                                            </button>
-                                        </form>
+                                        <a class="text-decoration-none text-secondary" href="${pageContext.request.contextPath}/admin/edit-handbooks?id=${hb.id}">
+                                            <i class="bi bi-pencil-square"></i> Chỉnh sửa
+                                        </a>
 
                                         <form class="mb-0" action="${pageContext.request.contextPath}/admin/handbook-details">
                                             <input type="hidden" name="id" value="${hb.id}">

@@ -29,7 +29,7 @@ public class ParagraphDAO extends BaseDAO{
 
     public List<Paragraph> findAllByHandbookId(Long id) {
         String sql  = """
-                select * from paragraphs where handbook_id = :handbookId
+                select * from paragraphs where handbook_id = :handbookId and is_active = 1
                 """;
        return this.getJdbi().withHandle(handle -> handle.createQuery(sql)
                .bind("handbookId",id)
@@ -47,5 +47,42 @@ public class ParagraphDAO extends BaseDAO{
                   return paragraph;
                }).list()
        );
+    }
+
+    public void update(Paragraph paragraph) {
+        String sql = """
+                update paragraphs
+                set header = :header,
+                    description = :description,
+                    image_path = :image_path,
+                    image_description= :image_description,
+                    display_index= :display_index,
+                    handbook_id= :handbook_id
+                where id = :id
+                """;
+
+        this.getJdbi().useHandle(handle -> handle.createUpdate(sql)
+                .bind("header",paragraph.getHeader())
+                .bind("description",paragraph.getDescription())
+                .bind("image_path",paragraph.getImagePath())
+                .bind("image_description",paragraph.getImageDescription())
+                .bind("display_index",paragraph.getDisplayIndex())
+                .bind("handbook_id",paragraph.getHandbookId())
+                .bind("id", paragraph.getId())
+                .execute()
+        );
+    }
+
+    public void deleteById(Long paragraphId) {
+        String sql = """
+                update paragraphs
+                set is_active = 0
+                where id = :id
+                """;
+
+        this.getJdbi().useHandle(handle -> handle.createUpdate(sql)
+                .bind("id", paragraphId)
+                .execute()
+        );
     }
 }

@@ -30,12 +30,9 @@
                     <i class="bi bi-arrow-90deg-left"></i> Quay lại
                 </a>
 
-                <form class="mb-0" action="${pageContext.request.contextPath}/admin/edit-handbooks" method="post">
-                    <input type="hidden" name="id" value="${handbookId}">
-                    <button type="submit" class="btn text-secondary">
-                        <i class="bi bi-feather"></i> Chỉnh sửa
-                    </button>
-                </form>
+                <a class="text-decoration-none text-secondary" href="${pageContext.request.contextPath}/admin/edit-handbooks?id=${handbookId}">
+                    <i class="bi bi-feather"></i> Chỉnh sửa
+                </a>
 
                 <form class="mb-0" action="${pageContext.request.contextPath}/admin/handbook-details"
                       method="post"

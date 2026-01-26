@@ -175,22 +175,35 @@ function createNewCategory() {
             return;
         }
 
-        const select = document.getElementById('categorySelect');
-        const option = document.createElement('option');
-        const slug = categoryName.toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/[đĐ]/g, 'd')
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-');
+        let categoryId = 0;
 
-        option.value = slug;
-        option.textContent = categoryName;
-        option.selected = true;
-        select.appendChild(option);
-
-        modal.hide();
-        showAlert('Đã tạo danh mục mới: ' + categoryName, 'success');
+        fetch(contextPath + "/admin/category-handbooks", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({categoryName: categoryName})
+        })
+            .then(response => response.ok ? response.json() : response.text().then(text => {throw new Error(text)}))
+            .then(data => {
+                if (data.success) {
+                    categoryId = data.id;
+                    addCategoryOption(categoryName, categoryId);
+                    modal.hide();
+                    showAlert('Đã tạo danh mục mới: ' + categoryName, 'success');
+                } else {
+                    const alert = document.getElementById('newCategoryAlert');
+                    alert.textContent = data.message;
+                    alert.classList.remove('d-none');
+                    setTimeout(() => alert.classList.add('d-none'), 3000);
+                }
+            })
+            .catch(error => {
+                const alert = document.getElementById('newCategoryAlert');
+                alert.textContent = error.message;
+                alert.classList.remove('d-none');
+                setTimeout(() => alert.classList.add('d-none'), 3000);
+            });
     };
 
     modal.show();

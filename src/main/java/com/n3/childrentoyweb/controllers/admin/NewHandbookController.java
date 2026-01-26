@@ -79,7 +79,7 @@ public class NewHandbookController extends HttpServlet {
 
             this.handBookService.saveFullHandbook(handbookDTO);
 
-            response.getWriter().write("{\"success\": true, \"message\": \"Thêm sản phẩm thành công!\"}");
+            response.getWriter().write("{\"success\": true, \"message\": \"Đăng bài thành công!\"}");
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write(e.getMessage());

@@ -1,0 +1,242 @@
+/* Form Cards */
+.form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-title i {
+    color: #3b82f6;
+}
+
+/* Category Select */
+.category-select-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.category-select-wrapper .form-select {
+    flex: 1;
+}
+
+.btn-new-category {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.btn-new-category:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+/* Paragraph Items */
+.paragraph-item {
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.2s;
+}
+
+/* Paragraph Header */
+.paragraph-header {
+    background-color: rgb(213, 27, 27);
+}
+
+.paragraph-header span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    display: flex;
+    align-items: center;
+}
+
+.paragraph-header i.bi-file-earmark-text {
+    color: #3b82f6;
+}
+
+.delete-paragraph {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.delete-paragraph:hover {
+    transform: scale(1.1);
+}
+
+/* Image Upload Wrapper */
+.image-upload-wrapper {
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.image-upload-wrapper:hover {
+    background: #eff6ff;
+}
+
+.image-upload-text {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+/* Image Preview */
+.image-preview-container {
+    text-align: center;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Hidden File Input */
+input[type="file"] {
+    display: none;
+}
+
+/* Add Paragraph Button */
+.btn-add-paragraph {
+    width: 100%;
+    padding: 16px;
+    background: rgb(213, 27, 27);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.btn-add-paragraph:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px lightgray;
+}
+
+/* Form Controls */
+.form-control, .form-select {
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: rgb(213, 27, 27);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* CKEditor Container */
+.ck-editor__editable {
+    min-height: 400px;
+    border-radius: 8px;
+}
+
+/* Buttons */
+.btn-sm {
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .category-select-wrapper {
+        flex-direction: column;
+    }
+
+    .btn-new-category {
+        width: 100%;
+    }
+
+    .form-card {
+        padding: 16px;
+    }
+
+    .paragraph-item {
+        padding: 16px;
+    }
+
+    .image-upload-wrapper {
+        padding: 30px 20px;
+        min-height: 150px;
+    }
+}
+
+.btn-custom-primary {
+    background-color: rgb(213, 27, 27) !important;
+    border-color: rgb(163, 27, 27) !important;
+    color: #fff !important;
+}
+
+.btn-custom-primary:hover {
+    background-color: rgb(163, 27, 27) !important;
+    border-color: rgb(113, 27, 27) !important;
+    color: #fff !important;
+}
+
+.btn-custom-primary:focus,
+.btn-custom-primary:active {
+    background-color: rgb(163, 27, 27) !important;
+    border-color: rgb(113, 27, 27) !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 0.25rem rgba(213, 27, 27, 0.25) !important;
+}
+
+.btn-custom-primary:disabled {
+    background-color: rgb(213, 27, 27) !important;
+    border-color: rgb(213, 27, 27) !important;
+    opacity: 0.65;
+}

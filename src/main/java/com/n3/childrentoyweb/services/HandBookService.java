@@ -128,6 +128,8 @@ public class HandBookService {
         int totalElements  =  this.handbookDAO.countAll();
         int totalPages = totalElements / handBookCriteria.getPageSize();
         boolean hasLeftover = totalElements > totalPages * handBookCriteria.getPageSize();
+        System.out.println("HandbookService: " );
+        System.out.println("HandbookService: " + hasLeftover);
         int currentPage = handBookCriteria.getCurrentPage() == null ? 1 : handBookCriteria.getCurrentPage();
         return new Pagination<>(handBookCardDTOS, currentPage,totalElements,totalPages + (hasLeftover ? 1 : 0));
     }

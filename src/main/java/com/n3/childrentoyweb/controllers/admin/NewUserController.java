@@ -45,7 +45,7 @@ public class NewUserController extends HttpServlet {
         user.setGender(gender);
         user.setPhone(phone);
         user.setEmail(email);
-        user.setPassword(passwordEncoded);
+        user.setPassword(password);
         user.setActive(Boolean.getBoolean(status));
 
 
@@ -53,15 +53,18 @@ public class NewUserController extends HttpServlet {
         location.setProvince(province);
         location.setAddress(address);
 
+        System.out.println(user);
+
         try {
-            if(user.isValidEmail() || user.isValidPhone() || user.isValidPassword()||user.isValidFirstName()||user.isValidLastName())
+            if((!user.isValidEmail()) ||(! user.isValidPhone())  ||  (!user.isValidPassword())  || (!user.isValidFirstName())|| (!user.isValidLastName()))
                 throw  new RuntimeException("Thông tin có sai không hợp lệ");
+            user.setPassword(passwordEncoded);
             this.userService.createNewUser(user, location, roles);
         } catch (Exception e){
             System.out.println("Error : "+ e.getMessage());
             request.setAttribute("error", e.getMessage());
 
-            request.getRequestDispatcher("/adminPages/users.jsp").forward(request,response);
+            request.getRequestDispatcher("/admin/users").forward(request,response);
             return;
         }
 

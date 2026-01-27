@@ -52,8 +52,8 @@ public class UserDAO extends BaseDAO {
                         .map((rs, ctx) -> {
                             ManageUserDTO manageUserDTO = new ManageUserDTO();
                             manageUserDTO.setUserId(rs.getLong("id"));
-                            manageUserDTO.setFirstName(rs.getString("first_name"));
-                            manageUserDTO.setLastName(rs.getString("last_name"));
+                            manageUserDTO.setFirstName(rs.getString("first_name")+" "+rs.getString("last_name"));
+                            manageUserDTO.setLastName( rs.getString("first_name")+ " "+rs.getString("last_name"));
                             manageUserDTO.setSex(rs.getString("gender"));
                             manageUserDTO.setProvince(rs.getString("province"));
                             manageUserDTO.setEmail(rs.getString("email"));
@@ -150,8 +150,8 @@ public class UserDAO extends BaseDAO {
                         .map((rs, ctx) -> {
                             ManageUserDTO manageUserDTO = new ManageUserDTO();
                             manageUserDTO.setUserId(rs.getLong("id"));
-                            manageUserDTO.setFirstName(rs.getString("first_name"));
-                            manageUserDTO.setLastName(rs.getString("last_name"));
+                            manageUserDTO.setFirstName(rs.getString("first_name")+" "+rs.getString("last_name"));
+                            manageUserDTO.setLastName(rs.getString("first_name") +" "+rs.getString("last_name"));
                             manageUserDTO.setSex(rs.getString("gender"));
                             manageUserDTO.setProvince(rs.getString("province"));
                             manageUserDTO.setEmail(rs.getString("email"));
@@ -225,7 +225,6 @@ public class UserDAO extends BaseDAO {
                                 last_name   = :lastName,
                                 phone       = :phone,
                                 gender      = :gender,
-                                password    = :password,
                                 email       = :email,
                                 is_active   = :isActive,
                                 location_id = :locationId
@@ -239,7 +238,6 @@ public class UserDAO extends BaseDAO {
                             .bind("lastName", user.getLastName())
                             .bind("phone", user.getPhone())
                             .bind("gender", user.getGender())
-                            .bind("password", user.getPassword())
                             .bind("email", user.getEmail())
                             .bind("locationId",user.getLocationId())
                             .bind("isActive",user.getActive())

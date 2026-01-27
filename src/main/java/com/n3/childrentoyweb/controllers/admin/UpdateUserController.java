@@ -3,6 +3,7 @@ package com.n3.childrentoyweb.controllers.admin;
 import com.n3.childrentoyweb.models.Location;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.UserService;
+import com.n3.childrentoyweb.utils.MD5Util;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -51,6 +52,10 @@ public class UpdateUserController extends HttpServlet {
         location.setProvince(province);
         location.setAddress(address);
         try {
+
+            if((!user.isValidEmail()) ||(! user.isValidPhone())   || (!user.isValidFirstName())|| (!user.isValidLastName()))
+                throw  new RuntimeException("Thông tin có sai không hợp lệ");
+
             this.userService.updateUser(user,location,roles);
         } catch (Exception e) {
             e.printStackTrace();

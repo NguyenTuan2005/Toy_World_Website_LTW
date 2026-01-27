@@ -44,7 +44,7 @@ public class HandbookController extends HttpServlet {
         handBookCriteria.setCurrentPage(currentPage);
         handBookCriteria.setPageSize(PAGE_SIZE);
 
-        Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteria(handBookCriteria);
+        Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteriaForManagement(handBookCriteria);
 
         request.setAttribute("handbooks",handBookCardDTOPagination.getData());
         request.setAttribute("currentPage",handBookCardDTOPagination.getCurrentPage());
@@ -75,7 +75,7 @@ public class HandbookController extends HttpServlet {
         handBookCriteria.setCurrentPage(currentPage);
         handBookCriteria.setPageSize(PAGE_SIZE);
 
-        Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteria(handBookCriteria);
+        Pagination<HandBookCardDTO> handBookCardDTOPagination = this.handBookService.findHandbookCardByCriteriaForManagement(handBookCriteria);
 
         request.setAttribute("keyword", keyword);
         request.setAttribute("handbooks",handBookCardDTOPagination.getData());

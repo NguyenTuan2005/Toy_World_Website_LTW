@@ -13,6 +13,10 @@
             --sidebar-width: 280px;
         }
 
+        .main-content {
+            margin-left: var(--sidebar-width);
+        }
+
         .sidebar {
             position: fixed;
             top: 0;
@@ -62,16 +66,6 @@
         .menu-link.active {
             background: #f8d7da !important;
             transform: translateX(5px);
-        }
-
-        .main-content {
-            margin-left: var(--sidebar-width);
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #dc3545, #b02a37);
         }
     </style>
 
@@ -147,14 +141,15 @@
     <!-- Footer -->
     <div class="position-absolute bottom-0 start-0 end-0 p-3 border-top border-danger bg-light">
         <div class="d-flex align-items-center gap-2">
-            <div class="user-avatar rounded-circle d-flex align-items-center justify-content-center text-white fw-bold">A</div>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f1f5f9'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%2394a3b8'/%3E%3Cpath d='M16 18c-5 0-7 2.5-7 4v1h14v-1c0-1.5-2-4-7-4z' fill='%2394a3b8'/%3E%3C/svg%3E"
+                 class="customer-avatar"
+                 alt="Default Avatar"
+                 style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #e2e8f0;"
+            />
             <div class="flex-grow-1">
                 <p class="text-danger fw-semibold mb-0 small">Admin</p>
-                <p class="text-secondary mb-0" style="font-size: 0.75rem;">${sessionScope.currentUser.firstName}</p>
+                <p class="text-secondary mb-0" style="font-size: 0.75rem;">${sessionScope.currentUser.lastName} ${sessionScope.currentUser.firstName}</p>
             </div>
-            <a href="/admin/logout" class="text-danger" title="Đăng xuất">
-                <i class="fas fa-sign-out-alt"></i>
-            </a>
         </div>
     </div>
 </div>

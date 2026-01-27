@@ -208,9 +208,11 @@
                     </div>
 
                     <div class="customer-info-row align-items-center">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%2393c5fd'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white' font-weight='600'%3EST%3C/text%3E%3C/svg%3E"
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f1f5f9'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%2394a3b8'/%3E%3Cpath d='M16 18c-5 0-7 2.5-7 4v1h14v-1c0-1.5-2-4-7-4z' fill='%2394a3b8'/%3E%3C/svg%3E"
                              class="customer-avatar"
-                             alt="avatar"/>
+                             alt="Default Avatar"
+                             style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #e2e8f0;"
+                        />
 
                         <div class="w-100">
                             <div class="row g-2">

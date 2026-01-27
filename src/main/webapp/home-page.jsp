@@ -127,8 +127,7 @@
                   <h2 class="title inline-richtext">LEGO Mega Sale 2025</h2>
 
                   <div class="center">
-                    <a
-                      href="product.html"
+                    <a href="${pageContext.request.contextPath}/products"
                       class="view-more-button"
                       aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE"
                       >Xem thêm <i class="bi bi-caret-right-fill"></i
@@ -189,49 +188,6 @@
                           </div>
                         </div>
                       </div>
-                      <style>
-                        /*udpate add to cart*/
-                        .btn-add-cart {
-                          flex: 1 1 auto;
-                          white-space: nowrap;
-                          background: #d51b1b;
-                          color: white;
-                          border: none;
-                          padding: 12px 20px;
-                          border-radius: 8px;
-                          width: calc(100% - 50px);
-                          font-weight: bold;
-                        }
-
-                        .btn-add-cart:hover {
-                          color: white;
-                          background: #b01030;
-                        }
-
-                        .wishlist-icon {
-                          background: none;
-                          border: none;
-                          padding: 0;
-                          margin: 0;
-
-                          font-size: 35px;
-                          color: #999;
-                          cursor: pointer;
-                          transition: all 0.2s ease;
-                        }
-
-                        .wishlist-icon:hover {
-                          color: #dc3545;
-                          transform: scale(1.1);
-                        }
-
-
-                        .wishlist-icon.active {
-                          color: #dc3545;
-                        }
-                      </style>
-
-
 
                       <button class="carousel-control-prev"  type="button"   onclick="prevProductsForLego()">
                         <i class="bi bi-caret-left-fill"></i>
@@ -255,7 +211,12 @@
                   </h2>
 
                   <div class="center">
-                    <a href="product.html" class="view-more-button"  aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE">Xem thêm <i class="bi bi-caret-right-fill"></i></a>
+                    <a  href="${pageContext.request.contextPath}/products"
+                        class="view-more-button"
+                        aria-labe1="Xem toàn bộ sản phẩm trong bộ sưu tập LEGO_MEGA_SALE">
+                        Xem thêm
+                        <i class="bi bi-caret-right-fill"></i>
+                    </a>
                   </div>
 
                   <!-- products -->

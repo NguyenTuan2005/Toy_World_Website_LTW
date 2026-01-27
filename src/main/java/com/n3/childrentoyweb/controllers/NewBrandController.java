@@ -14,7 +14,7 @@ import jakarta.servlet.http.Part;
 import java.io.IOException;
 
 
-@WebServlet(name = "NewBrandManage",value = "/admin/new-brands")
+@WebServlet(name = "NewBrandManage",value = "/admin/new-brand")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,
         maxFileSize = 10 * 1024 * 1024,

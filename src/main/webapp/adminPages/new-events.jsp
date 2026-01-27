@@ -34,7 +34,7 @@
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
 
-            <h2>Them event</h2>
+            <h2>Thêm Sự Kiện</h2>
         </div>
         <form id="eventForm"
               action="${pageContext.request.contextPath}/admin/new-events"

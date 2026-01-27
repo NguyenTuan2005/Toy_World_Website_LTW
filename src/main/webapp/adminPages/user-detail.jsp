@@ -302,9 +302,9 @@
         }
 
         .user-detail-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: white;
             padding: 2rem;
-            color: white;
+            color: black;
             text-align: center;
         }
 
@@ -359,7 +359,7 @@
 
         .section-title i {
             margin-right: 0.5rem;
-            color: #667eea;
+            /*color: #667eea;*/
         }
 
         .info-row {
@@ -442,13 +442,13 @@
         }
 
         .btn-primary-action {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #dc2626;
             color: white;
         }
 
         .btn-primary-action:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            background: #b00d26;
         }
 
         .btn-secondary-action {
@@ -658,20 +658,20 @@
                             <i class="fas fa-arrow-left me-2"></i>
                             Quay lại
                         </a>
-                        <form method="post" action="/childrentoyweb_war/admin/hidden-users">
+                        <form method="post" action=""${pageContext.request.contextPath}/admin/hidden-users">
                             <input type="hidden" name="userId" value="${user.id}">
-                            <input type="hidden" name="active" value="${user.active}">
-                            <button type="submit" class="btn btn-danger-action">
+                            <button type="submit"  class="btn btn-danger-action">
                                 <i class="fas fa-trash me-2"></i>
                                 Xóa
                             </button>
                         </form>
 
-
-                        <button class="btn btn-primary-action" data-bs-toggle="modal" data-bs-target="#userModal">
-                            <i class="fas fa-edit me-2"></i>
-                            Chỉnh sửa
-                        </button>
+                        <from>
+                            <button class="btn btn-primary-action" data-bs-toggle="modal" data-bs-target="#userModal">
+                                <i class="fas fa-edit me-2"></i>
+                                Chỉnh sửa
+                            </button>
+                        </from>
                     </div>
                 </div>
             </div>
@@ -846,6 +846,7 @@
 
     </div>
 </main>
+
 
 
 <c:if test="${not empty error}">

@@ -124,7 +124,7 @@
               <c:if test="${not empty signatureProducts}">
                 <!-- Lego -->
                 <section class="lego container-lg">
-                  <h2 class="title inline-richtext">LEGO Mega Sale 2025</h2>
+                  <h2 class="title inline-richtext">LEGO Mega Sale</h2>
 
                   <div class="center">
                     <a href="${pageContext.request.contextPath}/products"

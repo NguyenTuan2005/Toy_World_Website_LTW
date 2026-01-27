@@ -100,7 +100,7 @@
             <div class="col-lg-8">
                 <!-- Header -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2><i class="fas fa-edit"></i> Cập Nhật Thương Hiệu</h2>
+                    <h2><i class="fas fa-edit"></i> Thêm Thương Hiệu</h2>
                     <a href="${pageContext.request.contextPath}/admin/brands"  class="btn btn-outline-secondary">
                         <i class="fas fa-arrow-left"></i> Quay lại
                     </a>

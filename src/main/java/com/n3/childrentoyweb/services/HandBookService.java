@@ -87,7 +87,8 @@ public class HandBookService {
         Handbook handbook = this.handbookDAO.findById(id);
 
         CompletableFuture<User> userCompletableFuture =  CompletableFuture.supplyAsync(()->this.userDAO.findById(handbook.getUserId()));
-        CompletableFuture<List<Paragraph>> paragraphsCompletableFuture = CompletableFuture.supplyAsync(()-> this.paragraphDAO.findAllByHandbookId(handbook.getId()));
+        CompletableFuture<List<Paragraph>> paragraphsCompletableFuture = CompletableFuture.supplyAsync(()-> this.paragraphDAO.findAllByHandbookId(handbook.getId())
+                .stream().sorted().toList());
 
         try {
             CompletableFuture<HandbookDetailDTO> handbookDetailDTOCompletableFuture =

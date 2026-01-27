@@ -103,7 +103,7 @@ public class CheckoutController extends HttpServlet {
 
             long paymentMethodId = this.paymentService.findPaymentMethodIdByName(paymentMethodName);
 
-            Payment payment = new Payment(paymentMethodId, orderId, cart.getTotalCost(), PaymentStatus.UNPAID.getStatus());
+            Payment payment = new Payment(paymentMethodId, orderId, cart.getTotalCost(), PaymentStatus.SUCCESS.getStatus());
             this.paymentService.save(payment);
 
             emailService.sendCheckoutEmail(user, cart, location, orderId, payment);

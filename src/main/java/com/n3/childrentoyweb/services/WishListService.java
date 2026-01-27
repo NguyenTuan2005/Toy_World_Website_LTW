@@ -53,5 +53,7 @@ public class WishListService {
         wishListDAO.delete(userId, productId);
     }
 
-
+    public boolean isProductInWishList(long userId,long productId){
+        return  this.wishListDAO.isProductInWishlist(userId,productId);
+    }
 }

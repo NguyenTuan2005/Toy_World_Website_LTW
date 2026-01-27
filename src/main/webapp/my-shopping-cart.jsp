@@ -52,6 +52,10 @@
               </div>
             </div>
 
+            <c:if test="${empty cart.cartItems}">
+              <img class="img-fluid rounded" src="${pageContext.request.contextPath}/img/empty-card.jpg"/>
+            </c:if>
+
             <!-- Product Item -->
             <c:forEach var="cartItem" items="${cart.cartItems}">
               <div id="${cartItem.cartProductDTO.productId}" class="product-item">

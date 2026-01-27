@@ -94,9 +94,10 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>Mã</th>
                         <th>Tên promotion</th>
                         <th> % </th>
-                        <th> price </th>
+                        <th> Giảm tối đa </th>
                         <th>Thời hạn</th>
                         <th>Trạng thái</th>
                         <th>Hành động</th>
@@ -105,7 +106,8 @@
                     <tbody>
                     <c:forEach items="${promotions}" var="prom">
                         <tr>
-                            <td>${prom.name}</td>
+                            <td class="bold-title" >${prom.id}</td>
+                            <td  class="bold-title" >${prom.name}</td>
                             <td>
                                 <span class="badge bg-success">  -${prom.discountPercent}%</span>
                             </td>

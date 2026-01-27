@@ -129,6 +129,7 @@ public class EventDAO  extends BaseDAO{
                             e.setDescription(rs.getString("description"));
                             e.setTypeEvent(rs.getString("type_event"));
                             e.setActive(rs.getBoolean("is_active"));
+                            e.setStatus();
                             return e;
                         })
                         .list()

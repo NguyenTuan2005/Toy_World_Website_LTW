@@ -217,7 +217,7 @@
                                          class="banner-img"
                                          onerror="this.src='${pageContext.request.contextPath}/images/no-image.png'">
                                 </td>
-                                <td>${banner.title}</td>
+                                <td class="bold-title"  >${banner.title}</td>
                                 <td>${banner.eventId != null ? banner.eventId : '-'}</td>
                                 <td>
                                             <span class="status-badge ${banner.active ? 'status-active' : 'status-inactive'}">

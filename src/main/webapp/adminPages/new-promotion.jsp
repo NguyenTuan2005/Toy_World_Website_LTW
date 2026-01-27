@@ -28,13 +28,16 @@
 <main class="main-content">
     <!-- Modal Thêm/Sửa Event -->
     <div calss="container-event" style="margin: 40px">
+        <button type="button" class="btn btn-secondary" onclick="history.back()">
+            ← Quay lại
+        </button>
         <div>
             <a href="${pageContext.request.contextPath}/admin/promotions"
                class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
 
-            <h2>Thêm promotion : ${message}</h2>
+            <h2>Thêm sự kiện giảm giá : ${message}</h2>
         </div>
 
         <form id="eventForm"

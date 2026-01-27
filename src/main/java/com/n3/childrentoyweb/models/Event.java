@@ -17,6 +17,8 @@ public class Event extends BaseModel {
     @ColumnName("type_event")
     private String typeEvent;
 
+    private String status;
+
     public Event(Long id, String name, LocalDateTime openedAt, LocalDateTime closedAt, String description, String typeEvent,Boolean isActive, LocalDateTime createdAt) {
         super(id,isActive,createdAt);
         this.name = name;
@@ -77,4 +79,30 @@ public class Event extends BaseModel {
     public String getTypeEvent() {
         return typeEvent;
     }
+
+
+    private String getEventStatusText() {
+        LocalDateTime now = LocalDateTime.now();
+
+        if (openedAt != null && now.isBefore(openedAt)) {
+            return "Chưa diễn ra";
+        }
+
+        if (closedAt != null && now.isAfter(closedAt)) {
+            return "Đã kết thúc";
+        }
+
+        return "Đang diễn ra";
+    }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus() {
+        this.status = this.getEventStatusText();
+    }
+
+
 }

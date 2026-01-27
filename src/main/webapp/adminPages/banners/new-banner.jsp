@@ -155,6 +155,10 @@
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
 <div class="container">
+    <button type="button" class="btn btn-secondary" onclick="history.back()">
+        ← Quay lại
+    </button>
+
     <div class="header">
         <h1>➕ Thêm Banner Mới</h1>
     </div>

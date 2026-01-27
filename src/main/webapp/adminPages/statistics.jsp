@@ -149,13 +149,17 @@
         }]
     });
 
+    function randomColor() {
+        return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    }
+
     const paymentData = [
         <c:forEach var="item" items="${paymentChart}" varStatus="loop">
         {
             value: ${item.percent},
             name: '${item.name}',
             itemStyle: {
-                color: '${item.name eq "COD" ? "#198754" : "#0dcaf0"}'
+                color: randomColor()
             }
         }<c:if test="${!loop.last}">, </c:if>
         </c:forEach>

@@ -110,7 +110,7 @@
             <div class="w-100 mb-3">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="mb-0">Top 5 sản phẩm bán chạy</h5>
+                        <h5 class="mb-0">Top 3 sản phẩm bán chạy</h5>
                     </div>
                     <div class="card-body">
                         <div id="productPriceChart" style="height: 280px;"></div>

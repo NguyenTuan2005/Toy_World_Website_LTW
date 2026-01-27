@@ -255,15 +255,39 @@
 <%--                        <td class="text-center align-middle" style="width: 40px">--%>
 <%--                            <input class="form-check-input" type="checkbox" id="selectl"/>--%>
 <%--                        </td>--%>
-                        <td>${u.firstName}</td>
-                        <td>${u.email}</td>
-                        <td>${u.phone}</td>
-                        <td>${u.sex}</td>
-                        <td>${u.province}</td>
-                        <td><span class="badge bg-secondary">
-                                ${u.role}
-                        </span></td>
+                        <td  class="bold-title" >${u.firstName}</td>
+                        <td class="bold-title" >${u.email}</td>
+                        <td class="bold-title" >${u.phone}</td>
                         <td>
+                            <c:choose>
+                                <c:when test="${u.sex eq 'Male'}">
+                                    <i class="fa-solid fa-mars" style="color: #1e90ff;"></i>
+                                    Nam
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="fa-solid fa-venus" style="color: #ff69b4;"></i>
+                                    Nữ
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+
+                        <td class="bold-title" >${u.province}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${u.role == 'ROLE_USER'}">
+                                <span style="color: green; font-weight: bold;">
+                                    Người dùng
+                                </span>
+                                </c:when>
+                                <c:otherwise>
+                                <span style="color: red; font-weight: bold;">
+                                    Quản trị
+                                </span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+
+                         <td>
                                 <span class="badge ${u.active ? 'status-active' : 'status-locked'}">
                                   <c:choose>
                                       <c:when test="${u.active}">
@@ -282,10 +306,6 @@
                                    class="btn btn-link text-primary text-decoration-none">
                                     <i class="bi bi-eye-fill"></i>
                                 </a>
-
-                                    <%--                                    <button class="btn btn-link text-success text-decoration-none"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">--%>
-                                    <%--                                        <i class="fas fa-edit"></i>--%>
-                                    <%--                                    </button>--%>
 
                                 <form method="post" action="/childrentoyweb_war/admin/hidden-users"
                                       onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
@@ -527,6 +547,37 @@
     </div>
 </c:if>
 
+<script>
+    const emailInput = document.getElementById("email");
+
+    emailInput.addEventListener("input", function () {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(emailInput.value)) {
+            emailInput.classList.add("is-invalid");
+            emailInput.classList.remove("is-valid");
+        } else {
+            emailInput.classList.remove("is-invalid");
+            emailInput.classList.add("is-valid");
+        }
+    });
+
+    const phoneInput = document.getElementById("phone");
+
+    phoneInput.addEventListener("input", function () {
+        const phoneRegex = /^0\d{9}$/;
+
+        if (!phoneRegex.test(phoneInput.value)) {
+            phoneInput.classList.add("is-invalid");
+        } else {
+            phoneInput.classList.remove("is-invalid");
+            phoneInput.classList.add("is-valid");
+        }
+    });
+
+
+
+</script>
 
 <script src="js/index.js"></script>
 

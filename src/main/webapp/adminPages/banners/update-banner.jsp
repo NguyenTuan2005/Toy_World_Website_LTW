@@ -182,6 +182,9 @@
 <body>
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
 <div class="container">
+    <button type="button" class="btn btn-secondary" onclick="history.back()">
+        ← Quay lại
+    </button>
     <div class="header">
         <h1>✏️ Cập nhật Banner</h1>
     </div>

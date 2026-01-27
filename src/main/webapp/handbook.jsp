@@ -72,8 +72,8 @@
                             </span>
                             <span>${h.username}</span>
                         </div>
-                        <p class="article-excerpt text-truncate">
-                            <c:out value="${h.description}"/>
+                        <p class="article-excerpt">
+                            ${h.descriptionPreview}
                         </p>
                         <a href="${pageContext.request.contextPath}/handbook-details?id=${h.id}" class="read-more">Xem Thêm</a>
                     </div>
@@ -124,8 +124,8 @@
                             <div class="card-body">
                                 <div class="meta"><fmt:formatDate value="${h.createdAtAsDate}" pattern="dd.MM.yyyy" /> · ${h.username}</div>
                                 <h5 class="card-title">${h.title}</h5>
-                                <p class="card-text text-truncate">
-                                    <c:out value="${h.description}"/>
+                                <p class="card-text">
+                                    ${h.descriptionPreview}
                                 </p>
                                 <a href="${pageContext.request.contextPath}/handbook-details?id=${h.id}" class="read-more">Xem thêm</a>
                             </div>

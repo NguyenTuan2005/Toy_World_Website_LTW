@@ -57,7 +57,7 @@ public class NavController extends HttpServlet {
 
             case "/handbooks":
                 request.setAttribute("activeTab", "handbooks");
-                request.getRequestDispatcher("/adminPages/handbooks.jsp").forward(request, response);
+                request.getRequestDispatcher("/adminPages/handbook-management.jsp").forward(request, response);
                 break;
 
             default:

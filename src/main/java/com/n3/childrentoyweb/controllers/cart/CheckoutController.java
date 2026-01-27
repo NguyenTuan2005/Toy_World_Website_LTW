@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.controllers.cart;
 
+import com.n3.childrentoyweb.enums.LocationProvince;
 import com.n3.childrentoyweb.enums.OrderStatus;
 import com.n3.childrentoyweb.enums.PaymentMethod;
 import com.n3.childrentoyweb.enums.PaymentStatus;
@@ -46,6 +47,8 @@ public class CheckoutController extends HttpServlet {
                 Location location = locationService.findByUserId(user.getId());
                 req.setAttribute("location", location);
             }
+
+            req.setAttribute("provinces", LocationProvince.values());
 
             List<PaymentMethod> paymentMethods = paymentService.findAllPaymentMethod();
             req.setAttribute("paymentMethods", paymentMethods);

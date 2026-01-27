@@ -89,9 +89,18 @@
                 <c:forEach var="hb" items="${handbooks}">
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card h-100 shadow-sm border-0">
-                            <img src="${hb.firstImage}"
-                                 class="card-img-top img-cover"
-                                 alt="${hb.title}">
+                            <c:choose>
+                                <c:when test="${hb.firstImage != null}">
+                                    <img src="${hb.firstImage}"
+                                         class="card-img-top img-cover"
+                                         alt="${hb.title}">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${pageContext.request.contextPath}/img/default-handbook-image.png"
+                                         class="card-img-top img-cover"
+                                         alt="${hb.title}">
+                                </c:otherwise>
+                            </c:choose>
 
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -118,10 +127,10 @@
 
                                 <h2 class="card-title text-truncate" style="color:  rgb(213, 27, 27);"> ${hb.title}</h2>
 
-                                <p class="card-text text-muted text-truncate clamp-3">
-                                    <c:out value="${hb.description}"/>
+                                <p class="card-text text-muted clamp-3">
+                                    ${hb.descriptionPreview}
                                 </p>
-                                <div class="card-footer bg-white border-0">
+                                <div class="card-footer mt-auto bg-white border-0">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a class="text-decoration-none text-secondary" href="${pageContext.request.contextPath}/admin/edit-handbooks?id=${hb.id}">
                                             <i class="bi bi-pencil-square"></i> Chỉnh sửa

@@ -124,6 +124,31 @@ public class WishListDAO extends BaseDAO {
     }
 
 
+
+    public boolean isProductInWishlist(long userId, long productId) {
+
+        String sql = """
+        SELECT EXISTS (
+            SELECT 1
+            FROM wish_lists w
+            JOIN products p ON w.product_id = p.id
+            WHERE w.user_id = :userId
+              AND w.product_id = :productId
+              AND w.is_active = 1
+              AND p.is_active = 1
+        )
+    """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .bind("productId", productId)
+                        .mapTo(Boolean.class)
+                        .one()
+        );
+    }
+
+
     public static void main(String[] args) {
         System.out.println(new WishListDAO().findWishlistByUserId( 1L));
     }

@@ -145,7 +145,9 @@ public class EditHandbookController extends HttpServlet {
             String content = paragraphObj.get("content").getAsString();
 
             String imageBase64 = null;
-            if (paragraphObj.has("image") && !paragraphObj.get("image").isJsonNull()) {
+            if (paragraphObj.has("image") &&
+                    !paragraphObj.get("image").isJsonNull() &&
+                    !paragraphObj.get("image").getAsString().contains("/admin/edit-handbooks")) {
                 imageBase64 = paragraphObj.get("image").getAsString();
             }
 

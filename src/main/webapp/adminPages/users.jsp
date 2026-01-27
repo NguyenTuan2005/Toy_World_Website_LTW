@@ -269,17 +269,18 @@
                         </td>
 
                          <td>
-                                <span class="badge ${u.active ? 'status-active' : 'status-locked'}">
-                                  <c:choose>
-                                      <c:when test="${u.active}">
-                                          Hoạt động
-                                      </c:when>
-                                      <c:otherwise>
-                                          Khóa
-                                      </c:otherwise>
-                                  </c:choose>
-                                </span>
-                        </td>
+                             <span class="badge ${u.active ? 'bg-success' : 'bg-danger'}">
+                                <c:choose>
+                                    <c:when test="${u.active}">
+                                        Hoạt động
+                                    </c:when>
+                                    <c:otherwise>
+                                        Khóa
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
+
+                         </td>
                         <td>${u.createdAtFormatted}</td>
                         <td>
                             <div class="d-flex gap-2">

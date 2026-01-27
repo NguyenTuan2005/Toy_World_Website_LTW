@@ -47,7 +47,7 @@ public class HomeController extends HttpServlet {
 
     private void addNewProductsInMonth(HttpServletRequest request){
         User currentUser = (User) request.getSession().getAttribute("currentUser");
-        Long userId = (currentUser != null) ? currentUser.getId() : null;
+        Long userId = (currentUser != null) ? currentUser.getId() : -1;
         List<HomeProductDTO> homeProductDTOS = this.productService.findNewImportProductsInMonth().stream().map(p -> {
 
             boolean isWishListed = this.wishListService.isProductInWishList(userId,p.getId());
@@ -59,7 +59,7 @@ public class HomeController extends HttpServlet {
 
     public void addSignatureProducts(HttpServletRequest request){
         User currentUser = (User) request.getSession().getAttribute("currentUser");
-        Long userId = (currentUser != null) ? currentUser.getId() : null;
+        Long userId = (currentUser != null) ? currentUser.getId() : -1;
         List<HomeProductDTO> homeProductDTOS = this.productService.findSignatureProduct().stream().map(p -> {
 
             boolean isWishListed = this.wishListService.isProductInWishList(userId,p.getId());

@@ -38,6 +38,7 @@ public class CommentController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String keyword = req.getParameter("keyword");
         CommentCriteria commentCriteria = new CommentCriteria(keyword);
+        commentCriteria.setOrderBy("uc.created_at");
 
         Pagination<CommentManagementDTO> comments = userCommentService.findByCriteria(commentCriteria);
 

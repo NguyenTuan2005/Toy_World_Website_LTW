@@ -547,6 +547,37 @@
     </div>
 </c:if>
 
+<script>
+    const emailInput = document.getElementById("email");
+
+    emailInput.addEventListener("input", function () {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(emailInput.value)) {
+            emailInput.classList.add("is-invalid");
+            emailInput.classList.remove("is-valid");
+        } else {
+            emailInput.classList.remove("is-invalid");
+            emailInput.classList.add("is-valid");
+        }
+    });
+
+    const phoneInput = document.getElementById("phone");
+
+    phoneInput.addEventListener("input", function () {
+        const phoneRegex = /^0\d{9}$/;
+
+        if (!phoneRegex.test(phoneInput.value)) {
+            phoneInput.classList.add("is-invalid");
+        } else {
+            phoneInput.classList.remove("is-invalid");
+            phoneInput.classList.add("is-valid");
+        }
+    });
+
+
+
+</script>
 
 <script src="js/index.js"></script>
 

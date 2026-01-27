@@ -9,7 +9,6 @@ public class HandbookDTO {
     private String status;
     private long postedUserId;
     private long categoryId;
-
     public HandbookDTO() {
     }
 

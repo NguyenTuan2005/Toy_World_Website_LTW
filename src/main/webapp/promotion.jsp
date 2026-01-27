@@ -65,7 +65,8 @@
                                         <img src="${priceRange.firstImg}"
                                              class="card-img-top p-3"
                                              style="cursor:pointer"
-                                             role="button" onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'">
+                                             role="button" onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'"
+                                        >
                                     </div>
 
                                     <div class="card-body">
@@ -83,13 +84,9 @@
                                         </div>
 
                                         <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
-                                            <form action="${pageContext.request.contextPath}/cart" method="post">
-                                                <input type="hidden" name="productId" value="${priceRange.id}" />
-                                                <input type="hidden" name="quantity" value="1" />
-                                                <button type="submit"  class="btn btn-danger w-100 text-wrap py-2">
-                                                    Thêm Vào Giỏ Hàng
-                                                </button>
-                                            </form>
+                                            <button type="button" class="btn-add-cart" data-id="${priceRange.id}">
+                                                Thêm Vào Giỏ Hàng
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -115,18 +112,50 @@
     <jsp:include page="/common/footer.jsp" />
 
     <!-- Toast notification -->
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="addingCartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex p-1">
-                <div class="toast-body">
-                    <i class="fa-solid fa-circle-check"></i>
-                    Thêm vào giỏ hàng thành công!!!
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+<%--    <div class="toast-container position-fixed top-0 end-0 p-3">--%>
+<%--        <div id="addingCartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">--%>
+<%--            <div class="d-flex p-1">--%>
+<%--                <div class="toast-body">--%>
+<%--                    <i class="fa-solid fa-circle-check"></i>--%>
+<%--                    Thêm vào giỏ hàng thành công!!!--%>
+<%--                </div>--%>
+<%--                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+</main>
+
+<%--notification--%>
+<div class="toast-container position-fixed end-0 p-3" style = "top: 110px">
+    <div id="addCartToast" class="toast align-items-center text-bg-success border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-delay="5000">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-basket2-fill me-2"></i>
+                Đã thêm sản phẩm vào giỏ hàng
             </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"></button>
         </div>
     </div>
-</main>
+</div>
+
+<div class="toast-container position-fixed end-0 p-3" style = "top: 110px">
+    <div id="errorToast" class="toast align-items-center text-bg-danger border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-delay="5000">
+        <div class="d-flex">
+            <div class="toast-body" id="errorToastMsg">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <span id="errorText">Lỗi</span>
+            </div>
+            <button type="button"
+                    class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
 
 <style>
     .product-card {
@@ -135,6 +164,28 @@
     }
 </style>
 
+
+<style>
+    /*udpate add to cart*/
+    .btn-add-cart {
+        flex: 1 1 auto;
+        white-space: nowrap;
+        background: #d51b1b;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        width: calc(100% - 50px);
+        font-weight: bold;
+    }
+
+    .btn-add-cart:hover {
+        color: white;
+        background: #b01030;
+    }
+
+
+</style>
 
 
 <script src="js/index.js"></script>
@@ -163,6 +214,136 @@
             behavior: 'smooth'
         });
     }
+</script>
+
+
+
+
+<script>
+
+    let currentIndexLego = 0;
+
+    const productsLego = document.querySelectorAll('.product-status-s');
+    const totalProductsLego = productsLego.length;
+
+    function renderProductsForLego() {
+        // Ẩn tất cả
+        productsLego.forEach(p => p.classList.add('d-none'));
+
+        // Hiện 3 sản phẩm theo currentIndex
+        for (let i = currentIndexLego; i < currentIndexLego + ITEMS_PER_PAGE; i++) {
+            if (products[i]) {
+                productsLego[i].classList.remove('d-none');
+                console.log(i+" load for lego")
+            }
+        }
+    }
+
+    function nextProductsForLego() {
+        if (currentIndexLego + ITEMS_PER_PAGE < totalProductsLego) {
+            currentIndexLego += ITEMS_PER_PAGE;
+            renderProductsForLego();
+        }
+    }
+
+    function prevProductsForLego() {
+        if (currentIndexLego - ITEMS_PER_PAGE >= 0) {
+            currentIndexLego -= ITEMS_PER_PAGE;
+            renderProductsForLego();
+        }
+    }
+
+    // Init khi load trang
+    document.addEventListener('DOMContentLoaded', renderProductsForLego);
+</script>
+
+<script>
+    var buttons = document.getElementsByClassName("btn-add-cart");
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function () {
+
+            var productId = this.getAttribute("data-id");
+
+            fetch("${pageContext.request.contextPath}/cart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "productId=" + productId + "&quantity=1"
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+
+                    if (data.error) {
+                        document.getElementById("errorText").innerText = data.error;
+
+                        var errorToast =
+                            new bootstrap.Toast(document.getElementById("errorToast"));
+
+                        errorToast.show();
+                        return;
+                    }
+
+                    var totalQuantity = data.totalQuantity;
+
+                    var cartText = "Giỏ hàng";
+
+                    if (totalQuantity > 0) {
+                        cartText = "Giỏ hàng (" + totalQuantity + ")";
+                    }
+
+                    document.getElementById("cart-count").innerText = cartText;
+
+                    var successToast =
+                        new bootstrap.Toast(document.getElementById("addCartToast"));
+
+                    successToast.show();
+                });
+        };
+    }
+
+
+    var wishlistButtons = document.getElementsByClassName("wishlist-icon");
+
+    for (var i = 0; i < wishlistButtons.length; i++) {
+        wishlistButtons[i].onclick = function () {
+            var button = this;
+            var productId = this.getAttribute("data-id");
+            var icon = this.querySelector("i");
+
+            fetch("${pageContext.request.contextPath}/wish-list", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "productId=" + productId
+            }).then(function (res) {
+                if (res.status === 401) {
+                    window.location.href = '${pageContext.request.contextPath}/login';
+                    return;
+                }
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then(function (data) {
+                if (!data) return;
+
+                if (data.wishlisted) {
+                    icon.classList.remove("bi-heart");
+                    icon.classList.add("bi-heart-fill");
+                    button.classList.add("active");
+                } else {
+                    icon.classList.remove("bi-heart-fill");
+                    icon.classList.add("bi-heart");
+                    button.classList.remove("active");
+                }
+            });
+        };
+    }
+
 </script>
 
 

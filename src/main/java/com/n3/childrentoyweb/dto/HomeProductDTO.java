@@ -24,6 +24,8 @@ public class HomeProductDTO {
     @ColumnName("brand_name")
     private String brandName;
 
+    private boolean wishlisted;
+
     public HomeProductDTO(){
     }
 
@@ -103,5 +105,17 @@ public class HomeProductDTO {
 
     public double getCurrentPrice(){
         return this.currentPrice;
+    }
+
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public boolean isWishlisted() {
+        return wishlisted;
+    }
+
+    public void setWishlisted(boolean wishlisted) {
+        this.wishlisted = wishlisted;
     }
 }

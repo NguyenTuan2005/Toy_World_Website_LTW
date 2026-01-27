@@ -66,4 +66,6 @@ public class ProductPromotionDTO {
     public void setFirstImg(String firstImg) {
         this.firstImg = firstImg;
     }
+
+
 }

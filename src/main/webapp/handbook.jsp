@@ -61,7 +61,7 @@
             </c:otherwise>
         </c:choose>
             <c:forEach var="h" items="${handbooks}">
-                <div class="article-card">
+                <div class="article-card" onclick="window.location.href='${pageContext.request.contextPath}/handbook-details?id=${h.id}'">
                     <img src="${h.firstImage}"
                          alt="Article" class="article-image">
                     <div class="article-content">
@@ -119,7 +119,7 @@
             <div class="row g-4">
                 <c:forEach var="h" items="${suggestHandbooks}">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='${pageContext.request.contextPath}/handbook-details?id=${h.id}'">
                             <img src="${h.firstImage}" class="card-img-top" alt="${h.title}">
                             <div class="card-body">
                                 <div class="meta"><fmt:formatDate value="${h.createdAtAsDate}" pattern="dd.MM.yyyy" /> · ${h.username}</div>

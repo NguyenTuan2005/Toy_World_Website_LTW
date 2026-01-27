@@ -134,7 +134,9 @@
                                   <span class="discount-badge">
                                     <fmt:formatNumber value="${priceRange.discountPercent / 100}" type="percent"/>
                                   </span>
-                                  <img src="${not empty priceRange.imageUrl ? priceRange.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}" alt="Kylo-Ren-helmet" class="product-image" />
+                                  <img src="${not empty priceRange.imageUrl ? priceRange.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}" alt="Kylo-Ren-helmet" class="product-image"
+                                       onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'"
+                                  />
                                   <div class="product-brand">
                                       ${priceRange.brandName}
                                     <span class="product-sku ps-3"></span
@@ -265,7 +267,9 @@
                                   <span class="discount-badge">
                                     <fmt:formatNumber value="${priceRange.discountPercent / 100}" type="percent"/>
                                   </span>
-                                  <img src="${not empty priceRange.imageUrl ? priceRange.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}" alt="Kylo-Ren-helmet" class="product-image" />
+                                  <img src="${not empty priceRange.imageUrl ? priceRange.imageUrl : 'https://tse1.mm.bing.net/th/id/OIP.68XqK3UF8kLZR8p1JXq8ZAAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3'}" alt="Kylo-Ren-helmet" class="product-image"
+                                       onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'"
+                                  />
                                   <div class="product-brand">
                                       ${priceRange.brandName}
                                     <span class="product-sku ps-3"></span

@@ -65,7 +65,8 @@
                                         <img src="${priceRange.firstImg}"
                                              class="card-img-top p-3"
                                              style="cursor:pointer"
-                                             role="button" onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'">
+                                             role="button" onclick="window.location.href='${pageContext.request.contextPath}/products/${priceRange.id}'"
+                                        >
                                     </div>
 
                                     <div class="card-body">

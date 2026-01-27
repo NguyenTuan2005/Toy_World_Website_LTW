@@ -64,25 +64,27 @@
 
               <!-- Location Selects -->
               <div class="mb-3">
-                <select id="province" class="form-select" name="province">
-                    <option disabled>Tỉnh/TP</option>
-                    <c:choose>
-                        <c:when test="${not empty location}">
-                            <option value="TPHCM" ${location.province eq 'TPHCM' ? 'selected' : ''}>TPHCM</option>
-                            <option value="Lâm Đồng" ${location.province eq 'Lâm Đồng' ? 'selected' : ''}>Lâm Đồng</option>
-                            <option value="Tiền Giang" ${location.province eq 'Tiền Giang' ? 'selected' : ''}>Tiền Giang</option>
-                            <option value="Đồng Nai" ${location.province eq 'Đồng Nai' ? 'selected' : ''}>Đồng Nai</option>
-                            <c:if test="${location.province ne 'TPHCM' && location.province ne 'Lâm Đồng' && location.province ne 'Tiền Giang' && location.province ne 'Đồng Nai'}">
-                                <option value="${location.province}" selected>${location.province}</option>
-                            </c:if>
-                        </c:when>
-                        <c:otherwise>
-                            <option value="TPHCM" selected>TPHCM</option>
-                            <option value="Lâm Đồng">Lâm Đồng</option>
-                            <option value="Tiền Giang">Tiền Giang</option>
-                            <option value="Đồng Nai">Đồng Nai</option>
-                        </c:otherwise>
-                    </c:choose>
+                <select id="province" class="form-select" name="province" size="6">
+                  <option disabled>Tỉnh/TP</option>
+                  <c:choose>
+                    <c:when test="${not empty location}">
+                      <c:forEach var="p" items="${provinces}">
+                        <c:choose>
+                          <c:when test="${p.province eq location.province}">
+                            <option value="${p.province}" selected>${p.province}</option>
+                          </c:when>
+                          <c:otherwise>
+                            <option value="${p.province}">${p.province}</option>
+                          </c:otherwise>
+                        </c:choose>
+                      </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                      <c:forEach var="p" items="${provinces}">
+                        <option value="${p.province}">${p.province}</option>
+                      </c:forEach>
+                    </c:otherwise>
+                  </c:choose>
                 </select>
               </div>
 

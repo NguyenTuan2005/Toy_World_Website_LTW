@@ -63,6 +63,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
                             <form class="mb-0" id="searchForm"  action="${pageContext.request.contextPath}/admin/promotions" method="post">
                                 <input
                                         type="text"

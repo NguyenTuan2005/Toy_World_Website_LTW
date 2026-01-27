@@ -43,7 +43,9 @@ public class NewBrandController extends HttpServlet {
         String brandName = req.getParameter("brandName");
         boolean isValidBrandName = brandName != null && !brandName.isEmpty();
 
-        if (isValidBrandName) {
+        System.out.println("NameB "+brandName);
+
+        if (!isValidBrandName) {
             req.setAttribute("notify", "Tên không hợp lệ");
             req.getRequestDispatcher("/adminPages/new-brand.jsp").forward(req, resp);
             return;

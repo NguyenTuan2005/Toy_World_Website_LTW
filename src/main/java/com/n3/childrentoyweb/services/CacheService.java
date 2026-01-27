@@ -37,6 +37,7 @@ public class CacheService {
     }
 
     public void add(String email, String otp) {
+        System.out.println("email : " + email + " otp : " + otp);
         cacheMap.put(email, otp);
         delayQueue.offer(new DelayCacheItemDTO(email, OTP_DELAY_IN_SECOND));
     }

@@ -34,40 +34,68 @@ public class Cart implements Serializable {
                 .filter(CartItem::hasPromotion)
                 .mapToDouble(item -> {
                     CartProductDTO productDTO = item.getCartProductDTO();
-                    Double result = productDTO.getDiscountPrice();
-                    if (result == null) {
-                        result = (productDTO.getDiscountPercent() * productDTO.getPrice()) / 100;
-                    }
-                    return result * item.getQuantity();
+
+                    Double finalDiscountPrice = (productDTO.getDiscountPercent() * productDTO.getPrice()) / 100;
+
+                    Double maxDiscountPrice = productDTO.getDiscountPrice();
+
+                    if (maxDiscountPrice != null)
+                        finalDiscountPrice = Math.min(finalDiscountPrice, maxDiscountPrice);
+
+                    return finalDiscountPrice * item.getQuantity();
                 })
                 .sum();
     }
 
-    public void addItem(CartItem item) throws DataInvalidException{
-        if(contain(item.getProductId())){
+    public void addItem(CartItem item) throws DataInvalidException {
 
-            int currentQuantity = this.items.get(item.getProductId()).getQuantity();
-            int quantity = currentQuantity +  item.getQuantity();
-            updateQuantity(item.getProductId(), quantity);
+        long productId = item.getProductId();
 
-        }else
-            this.items.put(item.getProductId(), item);
+        int newQuantity = item.getQuantity();
+
+        if (items.containsKey(productId)) {
+            newQuantity += items.get(productId).getQuantity();
+        }
+
+        validateQuantity(item, newQuantity);
+
+        item.setQuantity(newQuantity);
+        items.put(productId, item);
+    }
+
+
+    public void updateQuantity(long productId, int quantity)
+            throws DataInvalidException {
+
+        CartItem item = items.get(productId);
+
+        if (item == null) {
+            throw new DataInvalidException("Sản phẩm không tồn tại trong giỏ");
+        }
+
+        validateQuantity(item, quantity);
+
+        item.setQuantity(quantity);
+    }
+
+    private void validateQuantity(CartItem item, int quantity)
+            throws DataInvalidException {
+
+        if (quantity < 1) {
+            throw new DataInvalidException(
+                    "Số lượng phải lớn hơn hoặc bằng 1"
+            );
+        }
+
+        if (!item.isHigherOrEqualThan(quantity)) {
+            throw new DataInvalidException(
+                    "Rất tiếc, sản phẩm không đủ số lượng để đáp ứng yêu cầu!"
+            );
+        }
     }
 
     public void removeItem(long productId){
         this.items.remove(productId);
-    }
-
-    public void updateQuantity(long productId, int quantity) throws DataInvalidException {
-        if (quantity < 1) {
-            throw new DataInvalidException("Số lượng phải lớn hơn hoặc bằng 1");
-        }
-        if (!this.items.get(productId).isHigherOrEqualThan(quantity)) {
-            throw new DataInvalidException("Số lượng phải nhỏ hơn trong kho cho sản phẩm: " + this.items.get(productId).getCartProductDTO().getName());
-        }
-
-        if(this.items.containsKey(productId))
-            this.items.get(productId).setQuantity(quantity);
     }
 
     public List<CartItem> getCartItems(){

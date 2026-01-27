@@ -31,6 +31,9 @@ public class CartController  extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
         try {
             long productId = Long.parseLong(req.getParameter("productId"));
             int quantity = Integer.parseInt(req.getParameter("quantity"));
@@ -50,14 +53,11 @@ public class CartController  extends HttpServlet {
             cart.addItem(new CartItem(cartProductDTO, quantity));
             session.setAttribute(Cart.CART, cart);
 
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().print(
-                    "{\"totalQuantity\":" + cart.getTotalQuantity() + "}"
-            );
+            resp.getWriter().print("{\"totalQuantity\":" + cart.getTotalQuantity() + "}");
 
         } catch (Exception e) {
-            resp.getWriter().write("{\"error\":" + e.getMessage() + "\"}");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
 

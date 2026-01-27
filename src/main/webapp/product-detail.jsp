@@ -49,10 +49,10 @@
 </div>
 
 <%--notification--%>
-<div class="toast-container position-fixed top-0 end-0 p-3">
+<div class="toast-container position-fixed end-0 p-3" style = "top: 110px">
     <div id="addCartToast" class="toast align-items-center text-bg-success border-0"
          role="alert" aria-live="assertive" aria-atomic="true"
-         data-bs-delay="3000">
+         data-bs-delay="5000">
         <div class="d-flex">
             <div class="toast-body">
                 <i class="bi bi-basket2-fill me-2"></i>
@@ -63,6 +63,25 @@
         </div>
     </div>
 </div>
+
+<div class="toast-container position-fixed end-0 p-3" style = "top: 110px">
+    <div id="errorToast" class="toast align-items-center text-bg-danger border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-delay="5000">
+        <div class="d-flex">
+            <div class="toast-body" id="errorToastMsg">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <span id="errorText">Lỗi</span>
+            </div>
+            <button type="button"
+                    class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+
+
+
 <main>
     <div class="container my-4">
         <div class="row">
@@ -391,6 +410,64 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/product-detail.js"></script>
 <script>
+    //add to cart
+    var buttons = document.getElementsByClassName("btn-add-cart");
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function () {
+
+            var productId = this.getAttribute("data-id");
+
+            var quantity = 1;
+
+            var box = this.closest(".add-cart-box");
+
+            if (box != null) {
+                var qtyInput = box.getElementsByClassName("quantity")[0];
+                quantity = qtyInput.value;
+            }
+
+            fetch("${pageContext.request.contextPath}/cart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "productId=" + productId + "&quantity="+ quantity
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+
+                    if (data.error) {
+                        document.getElementById("errorText").innerText = data.error;
+
+                        var errorToast =
+                            new bootstrap.Toast(document.getElementById("errorToast"));
+
+                        errorToast.show();
+                        return;
+                    }
+
+                    var totalQuantity = data.totalQuantity;
+
+                    var cartText = "Giỏ hàng";
+
+                    if (totalQuantity > 0) {
+                        cartText = "Giỏ hàng (" + totalQuantity + ")";
+                    }
+
+                    document.getElementById("cart-count").innerText = cartText;
+
+                    var successToast =
+                        new bootstrap.Toast(document.getElementById("addCartToast"));
+
+                    successToast.show();
+                });
+        };
+    }
+
+
     // wishlist
     var wishlistButtons = document.getElementsByClassName("wishlist-icon");
 
@@ -427,52 +504,6 @@
                     button.classList.remove("active");
                 }
             });
-        };
-    }
-
-    //add to cart
-    var buttons = document.getElementsByClassName("btn-add-cart");
-
-    for (var i = 0; i < buttons.length; i++) {
-
-        buttons[i].onclick = function () {
-
-            var productId = this.getAttribute("data-id");
-
-            var quantity = 1;
-
-            var box = this.closest(".add-cart-box");
-
-            if (box != null) {
-                var qtyInput = box.getElementsByClassName("quantity")[0];
-                quantity = qtyInput.value;
-            }
-
-            fetch("${pageContext.request.contextPath}/cart", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: "productId=" + productId + "&quantity=" + quantity
-            })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (quantityData) {
-                    var totalQuantity = quantityData.totalQuantity;
-
-                    var cartText = "Giỏ hàng";
-
-                    if (totalQuantity > 0) {
-                        cartText = "Giỏ hàng (" + totalQuantity + ")";
-                    }
-
-                    document.getElementById("cart-count").innerText = cartText;
-
-                    var toastEl = document.getElementById('addCartToast');
-                    var toast = new bootstrap.Toast(toastEl);
-                    toast.show();
-                });
         };
     }
 

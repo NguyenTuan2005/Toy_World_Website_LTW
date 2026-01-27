@@ -34,6 +34,7 @@ public class CartUpdateController extends HttpServlet {
                 throw new ObjectNotFoundException("Không tìm thấy giỏ hàng");
 
             cart.updateQuantity(productId, quantity);
+
             session.setAttribute(Cart.CART, cart);
             CartResponseDTO cartResponseDTO =
                     new CartResponseDTO(true, "Cập nhật thành công", cart.getTotalQuantity()

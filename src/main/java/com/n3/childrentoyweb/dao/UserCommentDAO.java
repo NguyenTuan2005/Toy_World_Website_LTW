@@ -108,6 +108,7 @@ public class UserCommentDAO extends BaseDAO {
         sql.append(commentCriteria.getProductIdForSql());
         sql.append(commentCriteria.getUserNameForSql());
         sql.append(commentCriteria.getProductNameForSql());
+        sql.append(commentCriteria.getOrderByForSql());
         sql.append(" limit 10");
 
         return this.getJdbi().withHandle(handle ->

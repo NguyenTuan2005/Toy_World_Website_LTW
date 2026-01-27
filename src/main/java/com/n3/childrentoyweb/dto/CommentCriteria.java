@@ -7,6 +7,8 @@ public class CommentCriteria {
     private String productId;
     private String userName;
     private String productName;
+    private String orderBy = null;
+    private String orderType = "desc";
 
     public CommentCriteria(String keyword) {
         if (keyword == null || keyword.isBlank())
@@ -49,5 +51,28 @@ public class CommentCriteria {
             this.userName = null;
         }
         return this.productName == null ? SKIP : "and p.name like '%" + productName + "%' ";
+    }
+
+    public String getOrderByForSql() {
+        if (this.orderBy != null) {
+            return " order by " + this.orderBy + " " + this.orderType;
+        }
+        return this.SKIP;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 }

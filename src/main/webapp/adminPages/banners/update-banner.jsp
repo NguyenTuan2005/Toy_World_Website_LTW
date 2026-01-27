@@ -186,7 +186,7 @@
         ← Quay lại
     </button>
     <div class="header">
-        <h1>✏️ Cập nhật Banner</h1>
+        <h1>Cập nhật Banner</h1>
     </div>
 
     <c:if test="${not empty error}">
@@ -231,7 +231,7 @@
             </label>
 
             <div class="current-image">
-                <p>📷 Hình ảnh hiện tại:</p>
+                <p>Hình ảnh hiện tại:</p>
                 <img src="${banner.imgPath}"
                      alt="${banner.title}"
                      onerror="this.src='${pageContext.request.contextPath}/images/no-image.png'">
@@ -245,7 +245,7 @@
             <div class="help-text">Chọn file ảnh mới nếu muốn thay đổi (JPG, PNG, GIF). Để trống nếu giữ nguyên ảnh cũ.</div>
 
             <div class="image-preview" id="imagePreview">
-                <p style="font-weight: 600; margin-top: 10px;">🔄 Ảnh mới:</p>
+                <p style="font-weight: 600; margin-top: 10px;">Ảnh mới:</p>
                 <img id="preview" src="" alt="Preview">
             </div>
         </div>
@@ -313,10 +313,10 @@
 
         <div class="button-group">
             <button type="submit" class="btn btn-primary">
-                💾 Cập nhật Banner
+                Cập nhật Banner
             </button>
             <a href="${pageContext.request.contextPath}/admin/banners" class="btn btn-secondary">
-                ❌ Hủy bỏ
+                Hủy bỏ
             </a>
         </div>
     </form>

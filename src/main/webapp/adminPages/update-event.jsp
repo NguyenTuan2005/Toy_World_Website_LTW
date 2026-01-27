@@ -34,7 +34,7 @@
                class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
-            <h2>Cap nhat</h2>
+            <h2>Cập nhật</h2>
 
         </div>
         <form id="eventForm"

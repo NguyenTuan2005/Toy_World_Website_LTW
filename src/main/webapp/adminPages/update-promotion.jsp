@@ -29,7 +29,7 @@
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
 
-            <h2>Thêm promotion : ${message}</h2>
+            <h2>Cập nhật promotion</h2>
         </div>
 
         <form id="eventForm"

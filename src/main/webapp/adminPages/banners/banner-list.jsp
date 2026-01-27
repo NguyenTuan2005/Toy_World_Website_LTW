@@ -163,9 +163,8 @@
 <jsp:include page="/common/sidebar.jsp"></jsp:include>
 <div class="container">
     <div class="header">
-        <h1>📋 Quản lý Banners</h1>
-        <a href="${pageContext.request.contextPath}/admin/banners/create" class="btn btn-primary">
-            ➕ Thêm Banner Mới
+        <h1>Quản lý Banners</h1>
+        <a href="${pageContext.request.contextPath}/admin/banners/create" class="btn btn-primary">Thêm Banner Mới
         </a>
     </div>
 
@@ -192,7 +191,7 @@
             <c:forEach var="entry" items="${bannersByGroup}">
                 <div class="group-section">
                     <div class="group-header">
-                        📌 Nhóm: ${entry.key}
+                        Nhóm: ${entry.key}
                     </div>
 
                     <table>
@@ -231,13 +230,13 @@
                                 <td>
                                     <div class="actions">
                                         <a href="${pageContext.request.contextPath}/admin/banners/edit?id=${banner.id}"
-                                           class="btn btn-edit">✏️ Sửa</a>
+                                           class="btn btn-edit">Sửa</a>
                                         <form action="${pageContext.request.contextPath}/admin/banners/delete"
                                               method="post"
                                               style="display: inline;"
                                               onsubmit="return confirm('Bạn có chắc muốn xóa banner này?');">
                                             <input type="hidden" name="id" value="${banner.id}">
-                                            <button type="submit" class="btn btn-delete">🗑️ Xóa</button>
+                                            <button type="submit" class="btn btn-delete">Xóa</button>
                                         </form>
                                     </div>
                                 </td>

@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.models;
 
 
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.time.LocalDateTime;
@@ -84,6 +85,13 @@ public class Banner extends BaseModel {
     public Long getEventId() {
         return eventId;
     }
+
+    public String getCreatedAtFormatted() {
+        if (createdAt == null) return "";
+
+        return LocalDateTimeConverterUtil.convertToString(createdAt);
+    }
+
 
     @Override
     public String toString() {

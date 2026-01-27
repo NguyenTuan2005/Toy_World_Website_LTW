@@ -34,7 +34,7 @@
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
 
-            <h2>Them event</h2>
+            <h2>Thêm sự kiện</h2>
         </div>
         <form id="eventForm"
               action="${pageContext.request.contextPath}/admin/new-events"
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer gap-3">
                 <button type="reset" class="btn btn-secondary">Hủy</button>
                 <button type="submit" class="btn btn-primary">Lưu</button>
             </div>

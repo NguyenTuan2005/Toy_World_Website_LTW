@@ -160,7 +160,7 @@
     </button>
 
     <div class="header">
-        <h1>➕ Thêm Banner Mới</h1>
+        <h1>Thêm Banner Mới</h1>
     </div>
 
     <c:if test="${not empty error}">
@@ -268,10 +268,10 @@
 
         <div class="button-group">
             <button type="submit" class="btn btn-primary">
-                💾 Lưu Banner
+                Lưu Banner
             </button>
             <a href="${pageContext.request.contextPath}/admin/banners" class="btn btn-secondary">
-                ❌ Hủy bỏ
+                Hủy bỏ
             </a>
         </div>
     </form>

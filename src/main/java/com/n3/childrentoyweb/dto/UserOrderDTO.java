@@ -65,6 +65,12 @@ public class UserOrderDTO {
         this.items = items;
     }
 
+    public String getCreatedAtFormatted() {
+        if (createdAt == null) return "";
+
+        return LocalDateTimeConverterUtil.convertToString(createdAt);
+    }
+
     @Override
     public String toString() {
         return "UserOrderDTO{" +

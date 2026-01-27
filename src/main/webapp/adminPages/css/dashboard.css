@@ -30,10 +30,11 @@ body {
     margin-bottom: 8px;
 }
 
-.dashboard-header p {
-    color: #6c757d;
-    font-size: 14px;
-    margin-bottom: 10px !important;
+.page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 8px;
 }
 
 /* Stats Cards */

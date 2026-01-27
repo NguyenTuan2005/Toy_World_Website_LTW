@@ -147,7 +147,7 @@
                 <c:forEach items="${orders}" var="o">
                     <tr>
                         <td class="bold-title">#${o.id}</td>
-                        <td>${o.createdAt}</td>
+                        <td>${o.createdAtFormatted}</td>
                         <td >${o.customerName}</td>
                         <td>${o.customerPhoneNumber}</td>
                         <td>${o.customerEmail}</td>

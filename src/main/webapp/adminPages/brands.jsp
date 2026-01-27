@@ -138,7 +138,7 @@
                                 </c:if>
 
                             </td>
-                            <td>${b.createdAt}</td>
+                            <td>${b.createdAtFormatted}</td>
                             <td>
                                 <div class="d-flex gap-2">
 

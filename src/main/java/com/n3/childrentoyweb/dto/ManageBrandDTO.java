@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.dto;
 
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
+
 import java.time.LocalDateTime;
 
 public class ManageBrandDTO {
@@ -65,6 +67,12 @@ public class ManageBrandDTO {
     }
 
     public ManageBrandDTO() {
+    }
+
+    public String getCreatedAtFormatted() {
+        if (createdAt == null) return "";
+
+        return LocalDateTimeConverterUtil.convertToString(createdAt);
     }
 
     @Override

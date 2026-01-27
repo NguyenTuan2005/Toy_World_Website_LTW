@@ -210,9 +210,6 @@
             <table class="table">
                 <thead class="table-primary">
                 <tr>
-<%--                    <th class="text-center align-middle" style="width: 40px">--%>
-<%--                        <input class="form-check-input" type="checkbox" id="selectAl"/>--%>
-<%--                    </th>--%>
                     <th class="sortable text-white text-nowrap " data-column="name">Họ Tên<i
                             class="fas fa-sort ms-1 text-white"></i></th>
                     <th class="sortable text-white text-nowrap " data-column="email">Email<i
@@ -236,25 +233,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <style>
-                    .status-active {
-                        background-color: #e6f4ea;
-                        color: #1e7e34;
-                        border: 1px solid #1e7e34;
-                    }
 
-                    .status-locked {
-                        background-color: #fdecea;
-                        color: #dc3545;
-                        border: 1px solid #dc3545;
-                    }
-
-                </style>
                 <c:forEach var="u" items="${manage_users}">
                     <tr>
-<%--                        <td class="text-center align-middle" style="width: 40px">--%>
-<%--                            <input class="form-check-input" type="checkbox" id="selectl"/>--%>
-<%--                        </td>--%>
                         <td  class="bold-title" >${u.firstName}</td>
                         <td class="bold-title" >${u.email}</td>
                         <td class="bold-title" >${u.phone}</td>
@@ -299,7 +280,7 @@
                                   </c:choose>
                                 </span>
                         </td>
-                        <td>${u.createdAt}</td>
+                        <td>${u.createdAtFormatted}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a href="${pageContext.request.contextPath}/admin/user-details?userId=${u.userId}"

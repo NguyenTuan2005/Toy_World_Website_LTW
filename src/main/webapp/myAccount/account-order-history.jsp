@@ -181,7 +181,7 @@
                                     <div>
                                         <strong>Đơn #${order.id}</strong>
                                         <div class="text-muted small">
-                                                ${order.createdAt}
+                                                ${order.createdAtFormatted}
                                         </div>
                                     </div>
 

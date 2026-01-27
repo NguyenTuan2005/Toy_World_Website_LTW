@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.dto;
 
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import java.time.LocalDateTime;
 
 public class AdminOrderListDTO {
@@ -88,6 +89,12 @@ public class AdminOrderListDTO {
 
     public void setTotalPrice(long totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getCreatedAtFormatted() {
+        if (createdAt == null) return "";
+
+        return LocalDateTimeConverterUtil.convertToString(createdAt);
     }
 
     @Override

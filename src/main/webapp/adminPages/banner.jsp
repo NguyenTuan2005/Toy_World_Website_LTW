@@ -34,7 +34,7 @@
         margin-bottom: 40px;
     }
     .group-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #cf102d;
         color: white;
         padding: 15px 20px;
         border-radius: 5px;
@@ -184,7 +184,7 @@
                         <c:forEach var="entry" items="${bannersByGroup}">
                             <div class="group-section">
                                 <div class="group-header">
-                                    📌 Nhóm: ${entry.key}
+                                    Nhóm: ${entry.key}
                                 </div>
 
                                 <table>
@@ -217,8 +217,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <div>"${banner.createdAt}"</div>
-                                                    <%--                                    <fmt:formatDate value="${banner.createdAt}" pattern="dd/MM/yyyy HH:mm" />--%>
+                                                <div>"${banner.createdAtFormatted}"</div>
                                             </td>
                                             <td>
                                                 <div class="actions">
@@ -228,7 +227,7 @@
                                                     </a>
                                                     <form action="${pageContext.request.contextPath}/admin/banners"
                                                           method="post"
-                                                          style="display: inline;"
+                                                          class ="mb-0"
                                                           onsubmit="return confirm('Bạn có chắc muốn xóa banner này?');">
                                                         <input type="hidden" name="id" value="${banner.id}">
                                                         <button type="submit" class="btn btn-delete">

@@ -174,14 +174,13 @@
                             <td class="text-nowrap">
                                 <span class="badge bg-primary">${event.typeEvent}</span>
                             </td>
-                            <td>${event.openedAt}</td>
-                            <td>${event.closedAt}</td>
+                            <td>${event.openedAtFormatted}</td>
+                            <td>${event.closedAtFormatted}</td>
                             <td class="text-nowrap">
                                 ${event.status}
                             </td>
                                  <td>
                                      <c:choose>
-
                                          <c:when test="${event.active}">
                                              <span class="badge bg-success">Hiện thị</span>
                                          </c:when>
@@ -199,7 +198,8 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <form method="post" action="${pageContext.request.contextPath}/admin/events"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                    <form method="post" action="${pageContext.request.contextPath}/admin/events"   onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');"
+                                            class = "mb-0">
                                         <input type="hidden" name="id" value="${event.id}">
                                         <input type="hidden" name="page" value="${currentPage}">
                                         <button class="btn btn-link text-danger">

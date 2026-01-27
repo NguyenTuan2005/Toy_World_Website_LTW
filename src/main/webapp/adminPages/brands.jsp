@@ -105,7 +105,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Mã</th>
                     <th>Ảnh Logo</th>
                     <th>Tên Thương Hiệu</th>
                     <th>Số Lượng Sản Phẩm</th>
@@ -117,12 +117,12 @@
                 <tbody>
                     <c:forEach var="b" items="${brandManages}">
                         <tr>
-                            <td>${b.id}</td>
+                            <td  class="bold-title">${b.id}</td>
                             <td>
                                 <img src="${b.logo}"  alt="Ninjago" class="img-thumbnail"  style="width: 200px; height: 100px; object-fit: cover;"  >
                             </td>
-                            <td>${b.name}</td>
-                            <td>${b.quantity}</td>
+                            <td  class="bold-title">${b.name}</td>
+                            <td  class="bold-title">${b.quantity}</td>
                             <td class="text-nowrap">
 
                                 <c:if test="${b.isActive}">

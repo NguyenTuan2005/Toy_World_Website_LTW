@@ -86,4 +86,8 @@ public class Handbook extends BaseModel {
                 ", createdAt=" + createdAt +
                 '}';
     }
+
+    public void increaseView() {
+        this.views += 1;
+    }
 }

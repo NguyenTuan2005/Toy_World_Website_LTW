@@ -38,7 +38,7 @@
 
     <h4 class="mb-4">
         <i class="fa-solid fa-image"></i>
-        Form Banner
+        Cập nhật banner
     </h4>
 
     <form id="bannerForm" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/update-banners" >

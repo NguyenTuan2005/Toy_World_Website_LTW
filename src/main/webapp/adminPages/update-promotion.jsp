@@ -29,7 +29,7 @@
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
 
-            <h2>Cập nhật promotion</h2>
+            <h2>Thêm giảm giá : ${message}</h2>
         </div>
 
         <form id="eventForm"
@@ -93,7 +93,7 @@
 
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer gap-3">
                 <button type="reset" class="btn btn-secondary">Hủy</button>
                 <button type="submit" class="btn btn-primary">Lưu</button>
             </div>

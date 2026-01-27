@@ -88,10 +88,8 @@ public class Banner extends BaseModel {
 
     public String getCreatedAtFormatted() {
         if (createdAt == null) return "";
-
         return LocalDateTimeConverterUtil.convertToString(createdAt);
     }
-
 
     @Override
     public String toString() {

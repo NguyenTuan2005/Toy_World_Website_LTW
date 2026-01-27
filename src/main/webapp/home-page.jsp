@@ -75,33 +75,50 @@
                     ></button>
                   </div>
 
-                  <div class="carousel-inner">
-                      <c:forEach var="banner" items="${banners}">
-                        <div class="carousel-item active">
-                          <img src="${banner}"
-                                  class="d-block w-100"
-                                  alt="Lego mega sale"
-                          />
-                        </div>
-                      </c:forEach>
+
+
+                  <div id="myCarousel" class="carousel-inner">
+                    <c:forEach var="banner" items="${banners}" varStatus="status">
+                      <div class="carousel-item ${status.first ? 'active' : ''}">
+                        <img src="${banner}"
+                             class="d-block w-100"
+                             alt="Lego mega sale"
+                        />
+                      </div>
+                    </c:forEach>
                   </div>
 
-                  <button
-                    class="carousel-control-prev d-none d-md-flex"
-                    type="button"
-                    data-bs-target="#imageCarousel"
-                    data-bs-slide="prev"
-                  >
-                    <i class="bi bi-caret-left-fill"></i>
-                  </button>
-                  <button
-                    class="carousel-control-next d-none d-md-flex"
-                    type="button"
-                    data-bs-target="#imageCarousel"
-                    data-bs-slide="next"
-                  >
-                    <i class="bi bi-caret-right-fill"></i>
-                  </button>
+                  <style>
+                    .carousel-item {
+                      display: none;
+                      transition: opacity 0.6s ease-in-out;
+                    }
+
+                    .carousel-item.active {
+                      display: block;
+                      opacity: 1;
+                    }
+                  </style>
+
+                  <script>
+                    let currentSlide = 0;
+                    const slides = document.querySelectorAll('.carousel-item');
+                    const totalSlides = slides.length;
+
+                    function showSlide(index) {
+                      slides.forEach(slide => slide.classList.remove('active'));
+                      slides[index].classList.add('active');
+                    }
+
+                    function nextSlide() {
+                      currentSlide = (currentSlide + 1) % totalSlides;
+                      showSlide(currentSlide);
+                    }
+
+                    // Tự động chuyển slide mỗi 3 giây
+                    setInterval(nextSlide, 3000);
+                  </script>
+
                 </div>
               </section>
               <c:if test="${not empty signatureProducts}">
@@ -153,18 +170,7 @@
                                     </span>
                                   </div>
                                   <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
-<%--                                    <form action="${pageContext.request.contextPath}/cart" method="post">--%>
-<%--                                      <input type="hidden" name="productId" value="${priceRange.id}" />--%>
-<%--                                      <input type="hidden" name="quantity" value="1" />--%>
-<%--                                      <button   class="btn-add-cart  btn btn-danger w-100 text-wrap py-2"--%>
-<%--                                                data-id="${priceRange.id}">--%>
-<%--                                      >--%>
-<%--                                        Thêm Vào Giỏ Hàng--%>
-<%--                                      </button>--%>
-<%--                                    </form>--%>
-<%--                                    <button class="btn btn-wishlist">--%>
-<%--                                      <i class="bi bi-heart"></i>--%>
-<%--                                    </button>--%>
+
                                     <button type="button" class="btn-add-cart" data-id="${priceRange.id}">
                                       Thêm Vào Giỏ Hàng
                                     </button>
@@ -286,18 +292,7 @@
                                     </span>
                                   </div>
                                   <div class="action-buttons d-flex justify-content-between align-items-center gap-2">
-<%--                                    <form action="${pageContext.request.contextPath}/cart" method="post">--%>
-<%--                                      <input type="hidden" name="productId" value="${priceRange.id}" />--%>
-<%--                                      <input type="hidden" name="quantity" value="1" />--%>
-<%--                                      <button type="submit"  class=" btn-add-cart  btn btn-danger w-100 text-wrap py-2"--%>
-<%--                                              data-id="${priceRange.id}">--%>
-<%--                                      >--%>
-<%--                                        Thêm Vào Giỏ Hàng--%>
-<%--                                      </button>--%>
-<%--                                    </form>--%>
-<%--                                    <button class="btn btn-wishlist">--%>
-<%--                                      <i class="bi bi-heart"></i>--%>
-<%--                                    </button>--%>
+
                                       <button type="button" class="btn-add-cart" data-id="${priceRange.id}">
                                         Thêm Vào Giỏ Hàng
                                       </button>

@@ -4,6 +4,7 @@ import com.n3.childrentoyweb.dao.Pagination;
 import com.n3.childrentoyweb.dto.HandBookCardDTO;
 import com.n3.childrentoyweb.dto.HandBookCriteria;
 import com.n3.childrentoyweb.dto.HandbookDetailDTO;
+import com.n3.childrentoyweb.models.Handbook;
 import com.n3.childrentoyweb.services.HandBookService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -42,6 +43,11 @@ public class HandBookDetailController extends HttpServlet {
     private void displayHandbookDetail(HttpServletRequest request){
         try {
             long handbookId = Long.parseLong(request.getParameter("id"));
+
+            Handbook handbook = this.handBookService.findById(handbookId).orElseThrow();
+            handbook.increaseView();
+            this.handBookService.updateHandbook(handbook);
+
             HandbookDetailDTO handbookDetailDTO = this.handBookService.findHandbookDetailById(handbookId);
 
             request.setAttribute("title",handbookDetailDTO.getTitle());

@@ -41,6 +41,7 @@ public class HandbookDAO extends BaseDAO{
                             handbook.setId(rs.getLong("id"));
                             handbook.setUserId(rs.getLong("user_id"));
                             handbook.setTitle(rs.getString("title"));
+                            handbook.setViews(rs.getLong("views"));
                             handbook.setStatus(rs.getString("status"));
                             handbook.setActive(rs.getBoolean("is_active"));
                             handbook.setCreatedAt(LocalDateTimeConverterUtil.convertToLocalDateTime(rs.getString("created_at")));
@@ -52,7 +53,7 @@ public class HandbookDAO extends BaseDAO{
     public int updateHandbook(Handbook handbook) {
         String sql = """
                 update handbooks
-                set  user_id =:userId, title =:title, status =:status
+                set  user_id =:userId, title =:title, status =:status, views = :views
                 where id =:id
                 """;
         return this.getJdbi().withHandle(handle -> handle.createUpdate(sql)
@@ -60,6 +61,7 @@ public class HandbookDAO extends BaseDAO{
                 .bind("userId",handbook.getUserId())
                 .bind("title",handbook.getTitle())
                 .bind("status",handbook.getStatus())
+                .bind("views",handbook.getViews())
                 .execute()
         );
     }

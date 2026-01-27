@@ -210,9 +210,9 @@
             <table class="table">
                 <thead class="table-primary">
                 <tr>
-                    <th class="text-center align-middle" style="width: 40px">
-                        <input class="form-check-input" type="checkbox" id="selectAl"/>
-                    </th>
+<%--                    <th class="text-center align-middle" style="width: 40px">--%>
+<%--                        <input class="form-check-input" type="checkbox" id="selectAl"/>--%>
+<%--                    </th>--%>
                     <th class="sortable text-white text-nowrap " data-column="name">Họ Tên<i
                             class="fas fa-sort ms-1 text-white"></i></th>
                     <th class="sortable text-white text-nowrap " data-column="email">Email<i
@@ -252,9 +252,9 @@
                 </style>
                 <c:forEach var="u" items="${manage_users}">
                     <tr>
-                        <td class="text-center align-middle" style="width: 40px">
-                            <input class="form-check-input" type="checkbox" id="selectl"/>
-                        </td>
+<%--                        <td class="text-center align-middle" style="width: 40px">--%>
+<%--                            <input class="form-check-input" type="checkbox" id="selectl"/>--%>
+<%--                        </td>--%>
                         <td>${u.firstName}</td>
                         <td>${u.email}</td>
                         <td>${u.phone}</td>

@@ -109,7 +109,7 @@
                 <!-- Form Card -->
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <form id="brandForm" method="post" action="${pageContext.request.contextPath}/new-brand"  enctype="multipart/form-data" >
+                        <form id="brandForm" method="post" action="${pageContext.request.contextPath}/admin/new-brand"  enctype="multipart/form-data" >
 
                             <!-- Tên thương hiệu -->
                             <div class="mb-4">

@@ -26,7 +26,7 @@ public class ProductAssetDAO extends BaseDAO {
         String sql = """
             SELECT img_path
             FROM product_assets
-            WHERE product_id = :productId
+            WHERE product_id = :productId and is_active = 1
         """;
 
         return super.getJdbi().withHandle(handle ->

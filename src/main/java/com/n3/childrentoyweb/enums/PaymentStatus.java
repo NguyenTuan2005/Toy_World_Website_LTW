@@ -1,7 +1,7 @@
 package com.n3.childrentoyweb.enums;
 
 public enum PaymentStatus {
-    SUCCESS("THANH_CONG"),
+    SUCCESS("DA_THANH_TOAN"),
     UNPAID("CHUA_THANH_TOAN");
 
     private final String status;

@@ -93,7 +93,7 @@
 
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer gap-3">
                 <button type="reset" class="btn btn-secondary">Hủy</button>
                 <button type="submit" class="btn btn-primary">Lưu</button>
             </div>

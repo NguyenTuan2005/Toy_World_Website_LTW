@@ -39,7 +39,7 @@
 
 
                     <button class="nav-link btn-nav fw-medium px-4 py-2 text-decoration-none "
-                            onclick="window.location.href='${pageContext.request.contextPath}/admin/events'">
+                            onclick="window.location.href='${pageContext.request.contextPath}/admin/banners'">
                         <i class="fas fa-image me-2"></i>Banners
                     </button>
                 </div>

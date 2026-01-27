@@ -28,9 +28,7 @@
 <main class="main-content">
     <!-- Modal Thêm/Sửa Event -->
     <div calss="container-event" style="margin: 40px">
-        <button type="button" class="btn btn-secondary" onclick="history.back()">
-            ← Quay lại
-        </button>
+
         <div>
             <a href="${pageContext.request.contextPath}/admin/promotions"
                class="btn btn-secondary">

@@ -127,8 +127,9 @@ public class HandBookService {
         List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
         int totalElements  =  this.handbookDAO.countAll();
         int totalPages = totalElements / handBookCriteria.getPageSize();
+        boolean hasLeftover = totalElements > totalPages * handBookCriteria.getPageSize();
         int currentPage = handBookCriteria.getCurrentPage() == null ? 1 : handBookCriteria.getCurrentPage();
-        return new Pagination<>(handBookCardDTOS, currentPage,totalElements,totalPages + 1);
+        return new Pagination<>(handBookCardDTOS, currentPage,totalElements,totalPages + (hasLeftover ? 1 : 0));
     }
 
     public void updateFullHandbook(HandbookDTO handbookDTO) {

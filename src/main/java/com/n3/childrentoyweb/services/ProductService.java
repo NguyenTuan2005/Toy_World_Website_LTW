@@ -27,8 +27,9 @@ public class ProductService {
         List<ProductManagementDTO> products= productDAO.findAllProductsForManagement(page, pageSize);
         int totalElement = productDAO.countAll();
         int totalPages = totalElement / pageSize;
+        boolean hasLeftover = totalElement > totalPages * pageSize;
 
-        return new Pagination<>(products, page, totalElement, totalPages);
+        return new Pagination<>(products, page, totalElement, totalPages + (hasLeftover ? 1 : 0));
     }
 
     public int countAll() {

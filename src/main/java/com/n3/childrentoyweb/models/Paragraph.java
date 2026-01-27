@@ -5,7 +5,7 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.time.LocalDateTime;
 
-public class Paragraph extends BaseModel {
+public class Paragraph extends BaseModel implements Comparable<Paragraph> {
     @ColumnName("header")
     private String header;
 
@@ -108,5 +108,10 @@ public class Paragraph extends BaseModel {
                 ", isActive=" + isActive +
                 ", createdAt=" + createdAt +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Paragraph o) {
+        return this.displayIndex - o.displayIndex;
     }
 }

@@ -102,15 +102,8 @@
                 <select class="form-select" size="6" name="promotionId" required>
                     <option disabled>-- Chọn loại khuyến mãi --</option>
 
-                    <c:set var="hasPromotion" value="false" />
-                    <c:forEach var="prCheck" items="${promotions}">
-                        <c:if test="${prCheck.id == product.promotionId}">
-                            <c:set var="hasPromotion" value="true" />
-                        </c:if>
-                    </c:forEach>
-
                     <option value=""
-                            <c:if test="${product.promotionId == null and hasPromotion == false}">
+                            <c:if test="${product.promotionId == null || product.promotionId == ''}">
                                 selected
                             </c:if>
                     >Không áp dụng</option>

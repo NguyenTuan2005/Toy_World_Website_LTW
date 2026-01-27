@@ -125,11 +125,20 @@ public class HandBookService {
 
     public Pagination<HandBookCardDTO> findHandbookCardByCriteria(HandBookCriteria handBookCriteria){
         List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
-        int totalElements  =  this.handbookDAO.countAll();
+        int totalElements  = handBookCardDTOS.size();
         int totalPages = totalElements / handBookCriteria.getPageSize();
         boolean hasLeftover = totalElements > totalPages * handBookCriteria.getPageSize();
         int currentPage = handBookCriteria.getCurrentPage() == null ? 1 : handBookCriteria.getCurrentPage();
         return new Pagination<>(handBookCardDTOS, currentPage,totalElements,totalPages + (hasLeftover ? 1 : 0));
+    }
+
+    public Pagination<HandBookCardDTO> findHandbookCardByCriteriaForManagement(HandBookCriteria handBookCriteria) {
+        List<HandBookCardDTO> handBookCardDTOS =  this.handbookDAO.findHandbookCardByCriteria(handBookCriteria);
+        int totalElements  = this.handbookDAO.countAll();
+        int totalPages = totalElements / handBookCriteria.getPageSize();
+        boolean hasLeftover = totalElements > totalPages * handBookCriteria.getPageSize();
+        int currentPage = handBookCriteria.getCurrentPage() == null ? 1 : handBookCriteria.getCurrentPage();
+        return new Pagination<>(handBookCardDTOS, currentPage,totalElements,totalPages + (hasLeftover ? 1:0));
     }
 
     public void updateFullHandbook(HandbookDTO handbookDTO) {

@@ -28,9 +28,15 @@
 <main class ="main-content">
     <div class="dashboard-container">
         <!-- Header -->
-        <div class="dashboard-header">
-            <h1>Dashboard</h1>
-            <p>Chào mừng trở lại! Đây là tổng quan về cửa hàng của bạn trong tháng hiện tại.</p>
+        <div class="header-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <span class ="page-title">Dashboard</span>
+                        <p>Chào mừng trở lại! Đây là tổng quan về cửa hàng của bạn trong tháng hiện tại.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Stats Cards -->

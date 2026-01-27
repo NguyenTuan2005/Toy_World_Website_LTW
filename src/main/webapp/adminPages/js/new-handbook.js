@@ -209,6 +209,17 @@ function createNewCategory() {
     modal.show();
 }
 
+function addCategoryOption(categoryName, categoryId) {
+    const select = document.getElementById('categorySelect');
+    if (select) {
+        const option = document.createElement('option');
+        option.value = categoryId || 'new-' + Date.now();
+        option.textContent = categoryName;
+        option.selected = true;
+        select.appendChild(option);
+    }
+}
+
 // Submit form
 function submitPost() {
     const form = document.getElementById("blogForm");

@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.dto;
 
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
+
 import java.time.LocalDateTime;
 
 public class ManageUserDTO  {
@@ -96,6 +98,11 @@ public class ManageUserDTO  {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getCreatedAtFormatted() {
+        if (createdAt == null) return "";
+        return LocalDateTimeConverterUtil.convertToString(createdAt);
     }
 
     @Override

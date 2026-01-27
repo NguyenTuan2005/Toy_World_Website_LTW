@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.models;
 
 
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.time.LocalDateTime;
@@ -104,5 +105,15 @@ public class Event extends BaseModel {
         this.status = this.getEventStatusText();
     }
 
+    public String getOpenedAtFormatted() {
+        if (openedAt == null) return "";
 
+        return LocalDateTimeConverterUtil.convertToString(openedAt);
+    }
+
+    public String getClosedAtFormatted() {
+        if (closedAt == null) return "";
+
+        return LocalDateTimeConverterUtil.convertToString(closedAt);
+    }
 }

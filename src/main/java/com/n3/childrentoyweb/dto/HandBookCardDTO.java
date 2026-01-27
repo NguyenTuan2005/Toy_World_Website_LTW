@@ -95,6 +95,29 @@ public class HandBookCardDTO {
         this.description = description;
     }
 
+    public String getDescriptionPreview() {
+        if (description == null || description.isEmpty()) return "";
+
+        String html = description;
+
+        html = html.replaceAll("(?i)<\\s*li[^>]*>", "• ");
+        html = html.replaceAll("(?i)</\\s*li\\s*>", "\n");
+        html = html.replaceAll("(?i)<\\s*p[^>]*>", "");
+        html = html.replaceAll("(?i)</\\s*p\\s*>", "\n");
+
+        html = html.replaceAll("<[^>]+>", "");
+
+        html = html.replaceAll("[ \\t\\f\\r]+", " ");
+        html = html.replaceAll("\\n{2,}", "\n");
+        String result = html.trim();
+
+        int maxChars = 300;
+        if (result.length() > maxChars) {
+            return result.substring(0, maxChars).trim() + "...";
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         return "HandBookCardDTO{" +

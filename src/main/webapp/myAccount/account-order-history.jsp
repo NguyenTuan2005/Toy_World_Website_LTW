@@ -118,7 +118,7 @@
                             <button onclick="window.location.href='${pageContext.request.contextPath}/admin/dashboard'"
                                     class="d-flex">
                                 <i class="bi bi-clipboard-data-fill me-2"></i>
-                                Quản lí cửa hàng
+                                Quản lý cửa hàng
                             </button>
                         </li>
                     </c:if>
@@ -181,7 +181,7 @@
                                     <div>
                                         <strong>Đơn #${order.id}</strong>
                                         <div class="text-muted small">
-                                                ${order.createdAt}
+                                                ${order.createdAtFormatted}
                                         </div>
                                     </div>
 

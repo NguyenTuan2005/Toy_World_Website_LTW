@@ -61,7 +61,7 @@
             </c:otherwise>
         </c:choose>
             <c:forEach var="h" items="${handbooks}">
-                <div class="article-card">
+                <div class="article-card" onclick="window.location.href='${pageContext.request.contextPath}/handbook-details?id=${h.id}'">
                     <img src="${h.firstImage}"
                          alt="Article" class="article-image">
                     <div class="article-content">
@@ -72,8 +72,8 @@
                             </span>
                             <span>${h.username}</span>
                         </div>
-                        <p class="article-excerpt text-truncate">
-                            <c:out value="${h.description}"/>
+                        <p class="article-excerpt">
+                            ${h.descriptionPreview}
                         </p>
                         <a href="${pageContext.request.contextPath}/handbook-details?id=${h.id}" class="read-more">Xem Thêm</a>
                     </div>
@@ -119,13 +119,13 @@
             <div class="row g-4">
                 <c:forEach var="h" items="${suggestHandbooks}">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='${pageContext.request.contextPath}/handbook-details?id=${h.id}'">
                             <img src="${h.firstImage}" class="card-img-top" alt="${h.title}">
                             <div class="card-body">
                                 <div class="meta"><fmt:formatDate value="${h.createdAtAsDate}" pattern="dd.MM.yyyy" /> · ${h.username}</div>
                                 <h5 class="card-title">${h.title}</h5>
-                                <p class="card-text text-truncate">
-                                    <c:out value="${h.description}"/>
+                                <p class="card-text">
+                                    ${h.descriptionPreview}
                                 </p>
                                 <a href="${pageContext.request.contextPath}/handbook-details?id=${h.id}" class="read-more">Xem thêm</a>
                             </div>

@@ -61,53 +61,109 @@ public class StatisticService {
         return rates;
     }
 
-//    revenue chart
+    //    revenue chart
     public List<OrderAnalyticsDTO> getRevenue(String range) {
         if (range == null) {
             throw new IllegalArgumentException("range is required");
         }
 
         LocalDate today = LocalDate.now();
-        LocalDate to = today.plusDays(1);
-
-        List<OrderAnalyticsDTO> data;
+        LocalDate toDate = today.plusDays(1);
 
         switch (range) {
 
             case "30": {
                 LocalDate from = today.minusDays(29);
-                data = statisticDAO.revenueByDay(from, to);
-                return fillMissingDays(from, to, data);
+                return fillMissingDays(
+                        from,
+                        toDate,
+                        statisticDAO.revenueByDay(from, toDate)
+                );
             }
 
             case "3month": {
                 YearMonth from = YearMonth.now().minusMonths(2);
-                YearMonth toYm = YearMonth.now();
-                data = statisticDAO.revenueByMonth(
-                        from.atDay(1),
-                        to
+                YearMonth to = YearMonth.now();
+                return fillMissingMonths(
+                        from,
+                        to,
+                        statisticDAO.revenueByMonth(from.atDay(1), toDate)
                 );
-                return fillMissingMonths(from, toYm, data);
             }
 
             case "1year": {
                 YearMonth from = YearMonth.now().minusMonths(11);
-                YearMonth toYm = YearMonth.now();
-                data = statisticDAO.revenueByMonth(
-                        from.atDay(1),
-                        to
+                YearMonth to = YearMonth.now();
+                return fillMissingMonths(
+                        from,
+                        to,
+                        statisticDAO.revenueByMonth(from.atDay(1), toDate)
                 );
-                return fillMissingMonths(from, toYm, data);
             }
 
-            default: {
+            default: { // 7 ngày
                 LocalDate from = today.minusDays(6);
-                data = statisticDAO.revenueByDay(from, to);
-                return fillMissingDays(from, to, data);
+                return fillMissingDays(
+                        from,
+                        toDate,
+                        statisticDAO.revenueByDay(from, toDate)
+                );
             }
         }
     }
 
+
+    //order stat
+    public List<OrderAnalyticsDTO> getOrderStats(String range) {
+
+        if (range == null) {
+            throw new IllegalArgumentException("range is required");
+        }
+
+        LocalDate today = LocalDate.now();
+        LocalDate toDate = today.plusDays(1);
+
+        switch (range) {
+
+            case "30": {
+                LocalDate from = today.minusDays(29);
+                return fillMissingDays(
+                        from,
+                        toDate,
+                        statisticDAO.orderByDay(from, toDate)
+                );
+            }
+
+            case "3month": {
+                YearMonth from = YearMonth.now().minusMonths(2);
+                YearMonth to = YearMonth.now();
+                return fillMissingMonths(
+                        from,
+                        to,
+                        statisticDAO.orderByMonth(from.atDay(1), toDate)
+                );
+            }
+
+            case "1year": {
+                YearMonth from = YearMonth.now().minusMonths(11);
+                YearMonth to = YearMonth.now();
+                return fillMissingMonths(
+                        from,
+                        to,
+                        statisticDAO.orderByMonth(from.atDay(1), toDate)
+                );
+            }
+
+            default: { // 7 ngày
+                LocalDate from = today.minusDays(6);
+                return fillMissingDays(
+                        from,
+                        toDate,
+                        statisticDAO.orderByDay(from, toDate)
+                );
+            }
+        }
+    }
 
     public List<OrderAnalyticsDTO> fillMissingDays(
             LocalDate from,
@@ -162,56 +218,8 @@ public class StatisticService {
         return result;
     }
 
-    //order stat
-    public List<OrderAnalyticsDTO> getOrderStats(String range) {
-        if (range == null) {
-            throw new IllegalArgumentException("range is required");
-        }
-
-        LocalDate today = LocalDate.now();
-        LocalDate to = today.plusDays(1);
-
-        List<OrderAnalyticsDTO> data;
-
-        switch (range) {
-
-            case "30": {
-                LocalDate from = today.minusDays(29);
-                data = statisticDAO.orderByDay(from, to);
-                return fillMissingDays(from, to, data);
-            }
-
-            case "3month": {
-                YearMonth from = YearMonth.now().minusMonths(2);
-                YearMonth toYm = YearMonth.now();
-                data = statisticDAO.revenueByMonth(
-                        from.atDay(1),
-                        to
-                );
-                return fillMissingMonths(from, toYm, data);
-            }
-
-            case "1year": {
-                YearMonth from = YearMonth.now().minusMonths(11);
-                YearMonth toYm = YearMonth.now();
-                data = statisticDAO.orderByMonth(
-                        from.atDay(1),
-                        to
-                );
-                return fillMissingMonths(from, toYm, data);
-            }
-
-            default: {
-                // 7 ngày
-                LocalDate from = today.minusDays(6);
-                data = statisticDAO.orderByDay(from, to);
-                return fillMissingDays(from, to, data);
-            }
-        }
-    }
-
-//  product stat
-    public List<ProductStockStatDTO> getProductStockStat(int limit, String order){
+    //  product stat
+    public List<ProductStockStatDTO> getProductStockStat(int limit, String order) {
         if (!"asc".equalsIgnoreCase(order) && !"desc".equalsIgnoreCase(order)) {
             order = "desc";
         }
@@ -219,7 +227,7 @@ public class StatisticService {
         return statisticDAO.topStockProduct(limit, order);
     }
 
-// order status stat
+    // order status stat
     public List<OrderAnalyticsDTO> getOrderStatusStat(String range) {
         if (range == null) {
             throw new IllegalArgumentException("range is required");
@@ -254,12 +262,12 @@ public class StatisticService {
         return statisticDAO.countOrderByStatus(from, to);
     }
 
-    public List<PaymentMethodChartDTO> getPaymentMethodChart(){
+    public List<PaymentMethodChartDTO> getPaymentMethodChart() {
         return this.statisticDAO.percentByPaymentMethod();
     }
 
-    public List<ProductChartDTO> top3ProductByMonth(int month){
-        return this.statisticDAO.top3ProductByMonth(month,LocalDate.now().getYear());
+    public List<ProductChartDTO> top3ProductByMonth(int month) {
+        return this.statisticDAO.top3ProductByMonth(month, LocalDate.now().getYear());
     }
 
     public static void main(String[] args) {

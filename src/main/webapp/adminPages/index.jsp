@@ -70,7 +70,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary px-3 py-3" href="handbooks.jsp">
+                            <a class="nav-link text-primary px-3 py-3" href="handbook-management.jsp">
                                 <i class="fas fa-newspaper me-2 sidebar-icon"></i>
                                 <span class="sidebar-text">Quản lý bài viết</span>
                             </a>

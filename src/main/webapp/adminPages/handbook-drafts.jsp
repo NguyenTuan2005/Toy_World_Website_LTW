@@ -64,7 +64,7 @@
     <div class="header-content">
         <h1>Bản nháp của bạn</h1>
         <div class="header-buttons">
-            <a href="handbooks.jsp" class="btn btn-add">
+            <a href="handbook-management.jsp" class="btn btn-add">
                 <i class="bi bi-arrow-left me-2"></i> Quay lại
             </a>
         </div>

@@ -112,10 +112,10 @@
                                 <span class="badge bg-success">  -${prom.discountPercent}%</span>
                             </td>
                             <td>
-                                    <span class="badge bg-success"> -<fmt:formatNumber value="${prom.discountPrice}" type="currency"/> </span>
+                                <span class="badge bg-success"> -<fmt:formatNumber value="${prom.discountPrice}" type="currency"/> </span>
                             </td>
 
-                            <td>${prom.expiredAt}</td>
+                            <td>${prom.expiredAtFormatted}</td>
                             <td class="text-nowrap">
                                 <c:choose>
                                     <c:when test="${prom.active}">
@@ -126,8 +126,6 @@
                                         <span class="badge bg-danger">ẩn</span>
                                     </c:otherwise>
                                 </c:choose>
-
-
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
@@ -137,7 +135,8 @@
                                     </button>
 
                                     <form method="post" action="/childrentoyweb_war/admin/hidden-promotions"
-                                          onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');">
+                                          onsubmit="return confirm('Bạn có chắc chắn muốn cập nhật không?');"
+                                          class ="mb-0">
                                         <input type="hidden" name="promotionId" value="${prom.id}">
                                         <button class="btn btn-link text-danger">
                                             <i class="fas fa-trash"></i>

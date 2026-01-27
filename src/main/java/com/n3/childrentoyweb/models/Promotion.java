@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.models;
 
 
+import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.time.LocalDateTime;
@@ -109,5 +110,11 @@ public class Promotion extends BaseModel {
 
     private boolean isExpiredAt(){
         return this.expiredAt.isAfter(LocalDateTime.now());
+    }
+
+    public String getExpiredAtFormatted() {
+        if (expiredAt == null) return "";
+
+        return LocalDateTimeConverterUtil.convertToString(expiredAt);
     }
 }

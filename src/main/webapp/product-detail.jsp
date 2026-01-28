@@ -410,20 +410,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/product-detail.js"></script>
 <script>
-    //add to cart
-    var buttons = document.getElementsByClassName("btn-add-cart");
 
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].onclick = function () {
+    const buttons = document.querySelectorAll(".btn-add-cart");
 
-            var productId = this.getAttribute("data-id");
+    buttons.forEach(btn => {
+        btn.onclick = (e) => {
 
-            var quantity = 1;
+            const productId = e.currentTarget.dataset.id;
 
-            var box = this.closest(".add-cart-box");
+            let quantity = 1;
+
+            const box = e.currentTarget.closest(".add-cart-box");
 
             if (box != null) {
-                var qtyInput = box.getElementsByClassName("quantity")[0];
+                const qtyInput = box.getElementsByClassName("quantity")[0];
                 quantity = qtyInput.value;
             }
 
@@ -434,24 +434,23 @@
                 },
                 body: "productId=" + productId + "&quantity="+ quantity
             })
-                .then(function (response) {
+                .then((response) => {
                     return response.json();
                 })
-                .then(function (data) {
+                .then((data)  => {
 
                     if (data.error) {
                         document.getElementById("errorText").innerText = data.error;
 
-                        var errorToast =
-                            new bootstrap.Toast(document.getElementById("errorToast"));
+                        const errorToast = new bootstrap.Toast(document.getElementById("errorToast"));
 
                         errorToast.show();
                         return;
                     }
 
-                    var totalQuantity = data.totalQuantity;
+                    const totalQuantity = data.totalQuantity;
 
-                    var cartText = "Giỏ hàng";
+                    let cartText = "Giỏ hàng";
 
                     if (totalQuantity > 0) {
                         cartText = "Giỏ hàng (" + totalQuantity + ")";
@@ -459,13 +458,13 @@
 
                     document.getElementById("cart-count").innerText = cartText;
 
-                    var successToast =
-                        new bootstrap.Toast(document.getElementById("addCartToast"));
+                    const successToast = new bootstrap.Toast(document.getElementById("addCartToast"));
 
                     successToast.show();
                 });
         };
-    }
+
+    });
 
 
     // wishlist

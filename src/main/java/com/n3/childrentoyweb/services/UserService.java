@@ -8,10 +8,12 @@ import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.exception.EmailAlreadyExistsException;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.Location;
+import com.n3.childrentoyweb.models.PublicKey;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.models.UserRole;
 import com.n3.childrentoyweb.utils.MD5Util;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,12 +22,15 @@ public class UserService {
     private RoleDAO roleDAO;
     private LocationDAO locationDAO;
     private UserRoleDAO userRoleDAO;
+    private PublicKeyDAO publicKeyDAO;
+
 
     public UserService() {
         this.userDAO = new UserDAO();
         this.roleDAO = new RoleDAO();
         this.locationDAO = new LocationDAO();
         this.userRoleDAO = new UserRoleDAO();
+        this.publicKeyDAO = new PublicKeyDAO();
     }
 
     public void isEmailExist(String email) {
@@ -89,12 +94,24 @@ public class UserService {
         user.setPhone(phone);
         this.userDAO.update(user);
     }
-
     public UserDetailDTO findUserDetailById(long id) {
         User user = this.userDAO.findById(id);
         Location location = this.locationDAO.findByUserId(id);
         String role = this.roleDAO.findAllByUserId(id).stream().filter(RoleEnum::isAdmin).map(RoleEnum::getRoleName).findFirst().orElse("user");
+
         return new UserDetailDTO(user, location, role);
+    }
+
+    public UserDetailDTO findUserDetailByIdAndLoadPublicKeysWithPagination(long id, int page,int pageSize) {
+        User user = this.userDAO.findById(id);
+        Location location = this.locationDAO.findByUserId(id);
+        String role = this.roleDAO.findAllByUserId(id).stream().filter(RoleEnum::isAdmin).map(RoleEnum::getRoleName).findFirst().orElse("user");
+
+        List<PublicKey> publicKeys = this.publicKeyDAO.findAllByUserId(id,page,pageSize);
+        Collections.sort(publicKeys);
+        UserDetailDTO userDetailDTO = new UserDetailDTO(user, location, role);
+        userDetailDTO.addPublicKeys(publicKeys);
+        return userDetailDTO;
     }
 
     public Optional<User> findById(long id) {

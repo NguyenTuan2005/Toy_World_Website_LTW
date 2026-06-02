@@ -35,6 +35,26 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li class="profile">
+                        <form action="${pageContext.request.contextPath}/lost-private-key"
+                              method="post"
+                              class="row g-3">
+
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn btn-warning text-start">
+                                    <i class="bi bi-floppy2 me-2"></i> Báo mất khóa
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="profile">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/public-key'"
+                                class="d-flex">
+                            <i class="bi bi-key me-2"></i>
+                            Thêm public key
+                        </button>
+                    </li>
+                    <li class="profile">
                         <button onclick="window.location.href='${pageContext.request.contextPath}/account/profile'"
                                 class="d-flex">
                             <i class="bi bi-person-fill me-2"></i>

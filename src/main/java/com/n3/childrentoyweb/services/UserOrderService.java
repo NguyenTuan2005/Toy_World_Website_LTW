@@ -62,9 +62,8 @@ public class UserOrderService {
         orderDAO.update(order);
     }
 
-
     public static void main(String[] args) {
-        System.out.println(new UserOrderService().findOrdersByUserAndOrderId(2L, 57L));
-        System.out.println(new UserOrderService().findOrdersByUserId(2L));
+        System.out.println(new UserOrderService().findOrdersByUserAndOrderId(1L, 63L));
     }
+
 }

@@ -4,10 +4,10 @@ import com.n3.childrentoyweb.dao.OrderDAO;
 import com.n3.childrentoyweb.dao.OrderDetailDAO;
 import com.n3.childrentoyweb.dto.AdminOrderListDTO;
 import com.n3.childrentoyweb.enums.OrderStatus;
+import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.exception.InvalidOrderStateException;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
-import com.n3.childrentoyweb.models.Order;
-import com.n3.childrentoyweb.models.OrderDetail;
+import com.n3.childrentoyweb.models.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -112,4 +112,28 @@ public class OrderService {
         orderDAO.delete(orderId);
     }
 
+    public long createOrder(User user, Cart cart) {
+
+        Order order = new Order(
+                user.getId(),
+                cart.getTotalPrice(),
+                cart.getTotalPromotion(),
+                OrderStatus.PENDING_SIGNATURE.getStatus()
+        );
+
+        long orderId = orderDAO.save(order);
+
+        for (CartItem item : cart.getCartItems()) {
+
+            OrderDetail detail = new OrderDetail(
+                    orderId,
+                    item.getProductId(),
+                    item.getQuantity()
+            );
+
+            this.orderDAO.saveOrderDetail(detail);
+        }
+
+        return orderId;
+    }
 }

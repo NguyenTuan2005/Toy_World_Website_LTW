@@ -1,9 +1,11 @@
 package com.n3.childrentoyweb.services;
 
 import com.n3.childrentoyweb.dao.PublicKeyDAO;
+import com.n3.childrentoyweb.dto.UserPublicKeyDTO;
 import com.n3.childrentoyweb.models.PublicKey;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PublicKeyService {
     private PublicKeyDAO publicKeyDAO;
@@ -27,5 +29,9 @@ public class PublicKeyService {
 
     public LocalDateTime findLatestCreatePublicKey(Long userId){
         return this.publicKeyDAO.findLatestCreatePublicKey(userId);
+    }
+
+    public List<UserPublicKeyDTO> findAllUserPublicKeyInfoLost(int page, int pageSize) {
+        return this.publicKeyDAO.findAllUserPublicKeyInfoLost(page,pageSize);
     }
 }

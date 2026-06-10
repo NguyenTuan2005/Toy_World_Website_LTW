@@ -39,4 +39,5 @@ CREATE TABLE `order_payloads`
         FOREIGN KEY (`public_key_id`)
             REFERENCES `public_keys` (`id`)
 );
-
+-- update table 10-t6-2026
+alter table public_keys add column lost varchar(100)

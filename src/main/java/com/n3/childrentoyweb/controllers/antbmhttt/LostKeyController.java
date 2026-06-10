@@ -12,13 +12,15 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "atbmhttt", value= "/lost-private-key")
+@WebServlet("/lost-private-key")
 public class LostKeyController extends HttpServlet {
     private final PublicKeyService publicKeyService = new PublicKeyService();
 
+    public LostKeyController() {
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         req.setCharacterEncoding("UTF-8");
         HttpSession session =  req.getSession();
         User currentUser = (User) session.getAttribute("currentUser");

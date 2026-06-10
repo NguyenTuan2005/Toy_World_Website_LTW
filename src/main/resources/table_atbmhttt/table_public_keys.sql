@@ -42,4 +42,4 @@ CREATE TABLE `order_payloads`
 -- update table 10-t6-2026
 alter table public_keys add column lost varchar(100)
 
-alter table users add column  is_lost_key   tinyint(1) DEFAULT '0',
+alter table users add column  is_lost_key   tinyint(1) DEFAULT 0

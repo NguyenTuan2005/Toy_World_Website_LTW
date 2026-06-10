@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.dao;
 
+import com.n3.childrentoyweb.dto.UserPublicKeyDTO;
 import com.n3.childrentoyweb.models.PublicKey;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class PublicKeyDAO extends BaseDAO{
             UPDATE public_keys
             SET
                 is_active = 0,
+                lost='LOSTED',
                 lost_at = NOW()
             WHERE user_id = :user_id
               AND is_active = 1
@@ -96,6 +98,43 @@ public class PublicKeyDAO extends BaseDAO{
                         .list()
         );
     }
+
+    public List<UserPublicKeyDTO> findAllUserPublicKeyInfoLost(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+
+        String sql = """
+            SELECT
+                u.id AS user_id,
+                pk.id AS public_key_id,
+                u.email,
+                CONCAT(u.first_name, ' ', u.last_name) AS full_name,
+                pk.created_at,
+                pk.lost_at,
+                pk.lost
+            FROM public_keys pk
+            JOIN users u ON u.id = pk.user_id
+            WHERE pk.lost = 'LOSTED'
+            ORDER BY pk.created_at DESC
+            LIMIT :limit OFFSET :offset
+            """;
+
+        return super.getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .bind("limit", pageSize)
+                        .bind("offset", offset)
+                        .map((rs, ctx) -> new UserPublicKeyDTO(
+                                rs.getLong("user_id"),
+                                rs.getLong("public_key_id"),
+                                rs.getString("email"),
+                                rs.getString("full_name"),
+                                rs.getObject("created_at", LocalDateTime.class),
+                                rs.getObject("lost_at", LocalDateTime.class),
+                                rs.getString("lost")
+                        ))
+                        .list()
+        );
+    }
+
     public List<PublicKey> findAllByUserId(Long userId,int page, int pageSize) {
         int offset = (page - 1) * pageSize;
 
@@ -139,6 +178,7 @@ public class PublicKeyDAO extends BaseDAO{
                         .list()
         );
     }
+
 
 
 

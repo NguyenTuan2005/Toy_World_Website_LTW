@@ -35,6 +35,9 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
         User user;
         Cart cart = (Cart) req.getSession().getAttribute(Cart.CART);
         try {
@@ -42,6 +45,11 @@ public class CheckoutController extends HttpServlet {
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
             if (cart == null || cart.getTotalQuantity() == 0)
                 throw new DataInvalidException("Giỏ hàng trống");
+
+            if (user.getIsLostKey()){
+                req.setAttribute("username",user.getFirstName()+" "+user.getLastName());
+                req.getRequestDispatcher("/Policy-lost-key.jsp").forward(req, resp);
+            }
 
             if (user.getLocationId() != null) {
                 Location location = locationService.findByUserId(user.getId());

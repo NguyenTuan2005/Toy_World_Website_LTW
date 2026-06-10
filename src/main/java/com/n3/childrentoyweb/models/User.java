@@ -31,6 +31,9 @@ public class User extends BaseModel implements Serializable {
     @ColumnName("location_id")
     private Long locationId;
 
+    @ColumnName("is_lost_key")
+    private Boolean isLostKey;
+
     public String getFirstName() {
         return firstName;
     }
@@ -97,6 +100,17 @@ public class User extends BaseModel implements Serializable {
         this.locationId = locationId;
     }
 
+    public User(String firstName, String lastName, String phone, String gender, String password, String email, Long locationId,Boolean isLostKey) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.gender = gender;
+        this.password = password;
+        this.email = email;
+        this.locationId = locationId;
+        this.isLostKey =isLostKey;
+    }
+
     public User(String firstName, String lastName, String phone, String gender,
                          String email, String password) {
         this.firstName = firstName;
@@ -142,6 +156,14 @@ public class User extends BaseModel implements Serializable {
 
     public boolean isValidPassword() throws IllegalArgumentException {
         return new PasswordVerifier().verify(this.password);
+    }
+
+    public boolean getIsLostKey() {
+        return isLostKey;
+    }
+
+    public void setIsLostKey(boolean isLostKey) {
+        this.isLostKey = isLostKey;
     }
 
     public boolean matchPassword(String confirmPassword) {

@@ -12,7 +12,7 @@ public class UserDAO extends BaseDAO {
 
     public User findByEmail(String email) {
         String sql = """
-        select id, first_name, last_name, phone, gender, password, email, location_id
+        select id, first_name, last_name, phone, gender, password, email, location_id, is_lost_key
         from users
         where email = :email AND is_active = 1
         """;

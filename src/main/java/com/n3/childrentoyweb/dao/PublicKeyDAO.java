@@ -25,21 +25,30 @@ public class PublicKeyDAO extends BaseDAO{
     }
 
     public int lostKey(Long userId) {
-        String sql = """
-            UPDATE public_keys
-            SET
-                is_active = 0,
-                lost='LOSTED',
-                lost_at = NOW()
-            WHERE user_id = :user_id
-              AND is_active = 1
-            """;
+        return getJdbi().inTransaction(handle -> {
 
-        return this.getJdbi().withHandle(h ->
-                h.createUpdate(sql)
-                        .bind("user_id", userId)
-                        .execute()
-        );
+            int updatedKeys = handle.createUpdate("""
+                UPDATE public_keys
+                SET
+                    is_active = 0,
+                    lost = 'LOSTED',
+                    lost_at = NOW()
+                WHERE user_id = :userId
+                  AND is_active = 1
+                """)
+                    .bind("userId", userId)
+                    .execute();
+
+            handle.createUpdate("""
+                UPDATE users
+                SET is_lost_key = 1
+                WHERE id = :userId
+                """)
+                    .bind("userId", userId)
+                    .execute();
+
+            return updatedKeys;
+        });
     }
 
     public Long save(PublicKey publicKey) {

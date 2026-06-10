@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TopPanel extends JPanel {
-    private ConfigurationPanel configPanel;
+    private AsymmetricCard configPanel;
 
-    public TopPanel(CenterPanel centerPanel) {
+    public TopPanel() {
         setLayout(new BorderLayout());
 
-        configPanel = new ConfigurationPanel();
+        configPanel = new AsymmetricCard();
         add(configPanel, BorderLayout.CENTER);
     }
 }

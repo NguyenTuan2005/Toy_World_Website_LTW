@@ -11,6 +11,7 @@ import java.math.BigInteger;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 public class HashCipher {
     private Hash hash;
@@ -22,8 +23,7 @@ public class HashCipher {
     public String hashText(String data) throws NoSuchAlgorithmException {
         MessageDigest messageDigest = MessageDigest.getInstance(hash.getAlgorithm());
         byte[] md = messageDigest.digest(data.getBytes());
-        BigInteger result = new BigInteger(1, md);
-        return result.toString(16);
+        return Base64.getEncoder().encodeToString(md);
     }
 
     public String hashFile(File file) throws IOException, NoSuchAlgorithmException {

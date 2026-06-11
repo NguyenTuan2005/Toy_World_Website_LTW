@@ -27,6 +27,8 @@ public class TextInputCard extends JPanel {
         txtInput = new JTextArea();
         txtInput.setBackground(ColorView.BACKGROUND_COLOR);
         txtInput.setPreferredSize(new Dimension(100, 100));
+        txtInput.setLineWrap(true);
+        txtInput.setWrapStyleWord(true);
 
         scrollPane = new JScrollPane();
         scrollPane.setViewportView(txtInput);

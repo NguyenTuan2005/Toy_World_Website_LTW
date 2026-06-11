@@ -15,15 +15,17 @@ public class EncryptApplication extends JFrame {
     public EncryptApplication() {
         setTitle("Công cụ mật mã");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(900, 500);
+        setSize(1000, 600);
+        setMinimumSize(new Dimension(800, 400));
         setLayout(new BorderLayout());
         setLocationRelativeTo(null);
+        setResizable(true);
         initial();
     }
 
     public void initial() {
         centerPanel = new CenterPanel();
-        topPanel = new TopPanel(centerPanel);
+        topPanel = new TopPanel();
         bottomPanel = new BottomPanel(centerPanel);
         add(topPanel, BorderLayout.WEST);
 

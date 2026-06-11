@@ -16,8 +16,8 @@ public class CenterPanel extends JPanel {
         textInputCard = new TextInputCard(this::showFile);
         fileInputCard = new FileInputCard(this::showText);
 
-        add(textInputCard, "TEXT");
         add(fileInputCard, "FILE");
+        add(textInputCard, "TEXT");
     }
 
     public void showText() {

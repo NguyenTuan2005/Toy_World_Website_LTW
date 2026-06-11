@@ -3,6 +3,8 @@ package controller;
 import controller.strategy.CipherControllerStrategy;
 import enums.InputType;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,10 +24,8 @@ public class EncryptionController {
     }
 
     public String encrypt(String data) throws Exception {
-        setCurrentController("Hash");
-        String result = currentController.encrypt(data);
         setCurrentController("Asymmetric");
-        return currentController.encrypt(result);
+        return currentController.encrypt(data);
     }
 
     public void inputTypeChanged(InputType type) {
@@ -44,5 +44,9 @@ public class EncryptionController {
 
     public CipherControllerStrategy get(String name) {
         return this.controllers.get(name);
+    }
+
+    public String downloadSign(File des) throws IOException {
+        return this.currentController.downloadSign(des);
     }
 }

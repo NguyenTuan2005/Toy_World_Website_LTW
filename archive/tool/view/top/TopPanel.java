@@ -1,7 +1,5 @@
 package view.top;
 
-import view.center.CenterPanel;
-
 import javax.swing.*;
 import java.awt.*;
 

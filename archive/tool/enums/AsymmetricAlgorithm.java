@@ -1,7 +1,7 @@
 package enums;
 
 public enum AsymmetricAlgorithm {
-    SHA256WITHDSA("SHA256withDSA", "DSA", new int[]{1024, 2048});
+    SHA1WITHDSA("SHA1withDSA", "DSA", new int[]{1024, 2048});
 
     private final String transformation;
     private final String algorithm;

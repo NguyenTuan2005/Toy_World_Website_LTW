@@ -6,4 +6,7 @@ public class ColorView {
     public static final Color BACKGROUND_COLOR = new Color(253, 254, 255);
     public static final Color THEME_COLOR = new Color(228, 236, 239);
     public static final Color TEXT_COLOR = new Color(26, 109, 159);
+    public static final Color ERROR_COLOR = new Color(220, 53, 69);
+    public static final Color SUCCESS_COLOR = new Color(40, 167, 69);
+    public static final Color BORDER_COLOR = new Color(200, 210, 220);
 }

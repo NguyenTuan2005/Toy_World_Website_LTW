@@ -4,13 +4,12 @@ import enums.AsymmetricAlgorithm;
 import model.Asymmetric;
 import utils.FileHelper;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 
-public class AsymmetricCipher implements TextCipher {
+public class AsymmetricCipher implements TextCipher, FileCipher{
     private Asymmetric asymmetric;
 
     public AsymmetricCipher(AsymmetricAlgorithm algorithm) {
@@ -33,7 +32,8 @@ public class AsymmetricCipher implements TextCipher {
         signature.initSign(asymmetric.getPrivateKey());
         byte[] data = Base64.getDecoder().decode(plainText);
         signature.update(data);
-        return Base64.getEncoder().encodeToString(signature.sign());
+        asymmetric.setSign(signature.sign());
+        return Base64.getEncoder().encodeToString(asymmetric.getSign());
     }
 
     @Override
@@ -46,15 +46,19 @@ public class AsymmetricCipher implements TextCipher {
         return null;
     }
 
-    public String importPublicKey(File src) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        this.asymmetric.setPublicKey(FileHelper.importPublicKey(src, this.asymmetric.getAlgorithmName()));
-        return Base64.getEncoder().encodeToString(this.asymmetric.getPublicKey().getEncoded());
-    }
-
-    public boolean exportPublicKey(File des) throws IOException {
-        if (this.asymmetric.getPublicKey() == null) return false;
-        FileHelper.exportKey(this.asymmetric.getPublicKey().getEncoded(), des);
-        return true;
+    @Override
+    public String encryptFile(String plainText) throws Exception {
+        Signature signature = Signature.getInstance(asymmetric.getTransformation());
+        signature.initSign(asymmetric.getPrivateKey());
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(plainText));
+        byte[] read = new byte[1024];
+        int length;
+        while ((length = bis.read(read)) != -1) {
+            signature.update(read, 0, length);
+        }
+        bis.close();
+        asymmetric.setSign(signature.sign());
+        return Base64.getEncoder().encodeToString(asymmetric.getSign());
     }
 
     public String importPrivateKey(File src) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
@@ -65,6 +69,13 @@ public class AsymmetricCipher implements TextCipher {
     public boolean exportPrivateKey(File des) throws IOException {
         if (this.asymmetric.getPrivateKey() == null) return false;
         FileHelper.exportKey(this.asymmetric.getPrivateKey().getEncoded(), des);
+        return true;
+    }
+
+    public boolean downloadSign(File des) throws IOException {
+        if (asymmetric.getSign() == null || asymmetric.getSign().length == 0)
+            return false;
+        FileHelper.exportKey(asymmetric.getSign(), des);
         return true;
     }
 }

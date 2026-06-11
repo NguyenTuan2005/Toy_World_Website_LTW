@@ -1,26 +1,36 @@
 package com.n3.childrentoyweb.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.n3.childrentoyweb.dao.OrderDAO;
-import com.n3.childrentoyweb.dao.OrderDetailDAO;
+import com.n3.childrentoyweb.dao.OrderSignatureDAO;
+import com.n3.childrentoyweb.dao.PublicKeyDAO;
 import com.n3.childrentoyweb.dto.AdminOrderListDTO;
+import com.n3.childrentoyweb.dto.orderSignature.OrderItemPayload;
+import com.n3.childrentoyweb.models.OrderSignature;
+import com.n3.childrentoyweb.dto.orderSignature.OrderSigningPayload;
 import com.n3.childrentoyweb.enums.OrderStatus;
-import com.n3.childrentoyweb.exception.DataInvalidException;
+import com.n3.childrentoyweb.enums.SignatureStatus;
 import com.n3.childrentoyweb.exception.InvalidOrderStateException;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class OrderService {
     private static final int PAGE_SIZE = 10;
     private OrderDAO orderDAO;
+    private PublicKeyDAO publicKeyDAO;
+    private OrderSignatureDAO orderSignatureDAO;
 
-    public OrderService(){
+    public OrderService() {
         this.orderDAO = new OrderDAO();
+        this.publicKeyDAO = new PublicKeyDAO();
+        this.orderSignatureDAO = new OrderSignatureDAO();
     }
 
-    public List<AdminOrderListDTO> findAll(String searchKeyword, String sortType, int page){
+    public List<AdminOrderListDTO> findAll(String searchKeyword, String sortType, int page) {
         if (page < 1) page = 1;
         int offset = (page - 1) * PAGE_SIZE;
 
@@ -42,13 +52,13 @@ public class OrderService {
             return "";
         }
         return """
-        AND (
-            o.id LIKE :kw
-            OR u.email LIKE :kw
-            OR u.phone LIKE :kw
-            OR CONCAT(u.last_name, ' ', u.first_name) LIKE :kw
-        )
-        """;
+                AND (
+                    o.id LIKE :kw
+                    OR u.email LIKE :kw
+                    OR u.phone LIKE :kw
+                    OR CONCAT(u.last_name, ' ', u.first_name) LIKE :kw
+                )
+                """;
     }
 
     private String buildOrderBy(String sort) {
@@ -74,7 +84,7 @@ public class OrderService {
         return (int) Math.ceil((double) totalItems / PAGE_SIZE);
     }
 
-    public long countAllInMonth(int year, int month){
+    public long countAllInMonth(int year, int month) {
         return this.orderDAO.countAllInMonth(year, month);
     }
 
@@ -90,8 +100,8 @@ public class OrderService {
         this.orderDAO.saveOrderDetail(detail);
     }
 
-    public int countAllOrders(int month){
-         return this.orderDAO.countOrdersByMonth(month);
+    public int countAllOrders(int month) {
+        return this.orderDAO.countOrdersByMonth(month);
     }
 
     public double sumRevenueByMonth(int month) {
@@ -101,7 +111,7 @@ public class OrderService {
     public void deleteOrder(Long orderId) {
         Order order = orderDAO.findById(orderId);
 
-        if (order==null) {
+        if (order == null) {
             throw new ObjectNotFoundException("Order không tồn tại");
         }
 
@@ -112,16 +122,19 @@ public class OrderService {
         orderDAO.delete(orderId);
     }
 
-    public long createOrder(User user, Cart cart) {
+    public long createOrder(User user, Cart cart) throws JsonProcessingException {
 
         Order order = new Order(
                 user.getId(),
                 cart.getTotalPrice(),
                 cart.getTotalPromotion(),
-                OrderStatus.PENDING_SIGNATURE.getStatus()
+                OrderStatus.PENDING.getStatus(),
+                SignatureStatus.PENDING_SIGNATURE.getStatus()
         );
 
         long orderId = orderDAO.save(order);
+
+        List<OrderItemPayload> orderItemPayloads = new ArrayList<>();
 
         for (CartItem item : cart.getCartItems()) {
 
@@ -132,8 +145,38 @@ public class OrderService {
             );
 
             this.orderDAO.saveOrderDetail(detail);
+
+            orderItemPayloads.add(new OrderItemPayload(item.getProductId(), item.getProductName(), item.getQuantity(), item.getUnitPrice(), item.getPromotionId()));
         }
+
+
+        OrderSigningPayload orderSigningPayload = new OrderSigningPayload(orderId,
+                user.getId(),
+                cart.getTotalPrice(),
+                orderItemPayloads);
+
+        String orderPayload = generatePayload(orderSigningPayload);
+
+
+
+        long publicKeyId = publicKeyDAO.findLatestCreatePublicKeyIdByUserId(user.getId());
+
+        OrderSignature orderSignature = new OrderSignature(orderId, publicKeyId, orderPayload,"SHA1withDSA");
+
+        orderSignatureDAO.save(orderSignature);
 
         return orderId;
     }
+
+    public String generatePayload(OrderSigningPayload orderSigningPayload) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        String payload = mapper.writeValueAsString(orderSigningPayload);
+        return payload;
+    }
+
+    public String getOrderPayload(long orderId){
+        return orderSignatureDAO.findOrderSignatureById(orderId).getOrderSigningPayload();
+    }
+
 }

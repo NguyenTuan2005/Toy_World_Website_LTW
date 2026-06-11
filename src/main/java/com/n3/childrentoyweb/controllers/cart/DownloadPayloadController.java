@@ -1,5 +1,6 @@
 package com.n3.childrentoyweb.controllers.cart;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.n3.childrentoyweb.dto.UserOrderDTO;
 import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.models.Order;
@@ -19,11 +20,10 @@ import java.util.List;
 
 @WebServlet(name = "downloadOrderPayload", value = "/dowload-order-payload")
 public class DownloadPayloadController extends HttpServlet {
-    private UserOrderService userOrderService;
-
+    private OrderService orderService;
 
     public DownloadPayloadController() {
-        this.userOrderService = new UserOrderService();
+        this.orderService = new OrderService();
     }
 
     @Override
@@ -37,10 +37,7 @@ public class DownloadPayloadController extends HttpServlet {
 
             long orderId = Long.parseLong(request.getParameter("orderId"));
 
-            List<UserOrderDTO> userOrders = userOrderService.findOrdersByUserAndOrderId(currentUser.getId() , orderId);
-
-            String payload ="";
-
+            String payload = orderService.getOrderPayload(orderId);
 
             response.setHeader(
                     "Content-Disposition",
@@ -49,7 +46,6 @@ public class DownloadPayloadController extends HttpServlet {
             );
 
             response.getWriter().write(payload);
-
 
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());

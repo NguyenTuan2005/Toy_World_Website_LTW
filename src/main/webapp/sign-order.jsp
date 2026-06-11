@@ -78,7 +78,7 @@
 
             <h5>Bước 1: Tải Payload để ký</h5>
 
-            <a href="${pageContext.request.contextPath}/download-payload?orderId=${order.id}"
+            <a href="${pageContext.request.contextPath}/dowload-order-payload?orderId=${order.id}"
                class="btn btn-success">
                 Tải Payload
             </a>

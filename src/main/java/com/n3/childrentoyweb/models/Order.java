@@ -7,14 +7,19 @@ public class Order extends BaseModel {
     private Double totalPrice;
     private Double discountPrice;
     private String status;
+    private String signatureStatus;
 
-
-    public Order(Long id, Long userId, Double totalPrice, String status,Boolean isActive,LocalDateTime createdAt) {
+    public Order(Long id, Long userId, Double totalPrice, String status, Boolean isActive,LocalDateTime createdAt) {
         super(id, isActive, createdAt);
         this.userId = userId;
         this.totalPrice = totalPrice;
         this.status = status;
     }
+
+    public String getSignatureStatus() {
+        return signatureStatus;
+    }
+
 
     public Order(Long userId, Double totalPrice, Double discountPrice, String status) {
         this.userId = userId;
@@ -23,10 +28,12 @@ public class Order extends BaseModel {
         this.status = status;
     }
 
-    public Order( Long userId, Double totalPrice, String status) {
+    public Order(Long userId, Double totalPrice, Double discountPrice, String status, String signatureStatus) {
         this.userId = userId;
         this.totalPrice = totalPrice;
+        this.discountPrice = discountPrice;
         this.status = status;
+        this.signatureStatus = signatureStatus;
     }
 
     public Order() {

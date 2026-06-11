@@ -28,6 +28,14 @@ public class CartItem implements Serializable {
         return cartProductDTO.getPrice() * quantity;
     }
 
+    public String getProductName(){
+        return cartProductDTO.getName();
+    }
+
+    public Double getUnitPrice(){
+        return cartProductDTO.getPrice();
+    }
+
     public Long getProductId(){
         return this.cartProductDTO.getProductId();
     }
@@ -38,5 +46,9 @@ public class CartItem implements Serializable {
 
     public boolean hasPromotion() {
         return this.cartProductDTO.hasPromotion();
+    }
+
+    public Long getPromotionId() {
+        return this.cartProductDTO.getPromotionId();
     }
 }

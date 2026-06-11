@@ -12,6 +12,7 @@ public class CartProductDTO {
     private Double price;
     private Double discountPercent;
     private Double discountPrice;
+    private Long promotionId;
 
     public CartProductDTO(Long productId,Integer quantity, String name, String imgPath, Double price, Double discountPercent, Double discountPrice) {
         this.productId = productId;
@@ -31,6 +32,7 @@ public class CartProductDTO {
         this.price = product.getPrice();
         this.discountPercent = promotion.getDiscountPercent();
         this.discountPrice = promotion.getDiscountPrice();
+        this.promotionId = promotion.getId();
     }
 
     public Integer getQuantity() {
@@ -95,5 +97,9 @@ public class CartProductDTO {
 
     public boolean hasPromotion() {
         return this.discountPercent != null || this.discountPrice != null;
+    }
+
+    public Long getPromotionId() {
+        return promotionId;
     }
 }

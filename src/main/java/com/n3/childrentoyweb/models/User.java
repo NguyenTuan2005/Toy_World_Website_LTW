@@ -169,4 +169,8 @@ public class User extends BaseModel implements Serializable {
     public boolean matchPassword(String confirmPassword) {
         return password.equals(confirmPassword);
     }
+
+    public String getFullName(){
+        return lastName + " " + firstName;
+    }
 }

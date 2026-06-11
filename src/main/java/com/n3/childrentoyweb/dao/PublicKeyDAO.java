@@ -24,6 +24,21 @@ public class PublicKeyDAO extends BaseDAO{
         );
     }
 
+    public Long findLatestCreatePublicKeyIdByUserId(Long userId) {
+        String sql = """
+        SELECT id
+        FROM public_keys
+        WHERE user_id = :userId and is_active = 1
+        """;
+
+        return super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .mapTo(Long.class)
+                        .one()
+        );
+    }
+
     public int lostKey(Long userId) {
         return getJdbi().inTransaction(handle -> {
 

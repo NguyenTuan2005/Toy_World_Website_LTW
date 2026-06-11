@@ -51,7 +51,7 @@ public class PromotionService {
 
     public Optional<Promotion> findValidPromotionById(Long promotionId) {
         if (promotionId == null) return Optional.empty();
-        return Optional.ofNullable(this.promotionDAO.findValidPromotionById(promotionId));
+        return this.promotionDAO.findValidPromotionById(promotionId);
     }
 
     public List<PromotionNameDTO> findAllPromotionName() {

@@ -165,15 +165,15 @@
 
             <c:choose>
               <c:when test="${not empty cart.cartItems}">
-                <a href="${pageContext.request.contextPath}/checkout">
+                <form action="${pageContext.request.contextPath}/create-order" method="post">
                   <button class="checkout-btn">
-                    Thanh toán ngay
+                    Đặt hàng ngay
                   </button>
-                </a>
+                </form>
               </c:when>
               <c:otherwise>
                 <button id="emptyCartBtn" class="checkout-btn" >
-                  Thanh toán ngay
+                  Đặt hàng ngay
                 </button>
               </c:otherwise>
             </c:choose>

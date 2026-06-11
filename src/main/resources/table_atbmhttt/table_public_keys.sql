@@ -10,20 +10,17 @@ CREATE TABLE `public_keys`
     CONSTRAINT `public_keys_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 );
 
-CREATE TABLE `order_payloads`
+CREATE TABLE `order_signatures`
 (
     `id`              bigint NOT NULL AUTO_INCREMENT,
     `order_id`        bigint NOT NULL,
     `public_key_id`   bigint NOT NULL,
-
-    order_payload NVARCHAR(MAX) NOT NULL,
-
-    signature_value NVARCHAR(MAX),
-    algorithm VARCHAR(50) NOT NULL,
-    signed_at DATETIME,
-    verification_status VARCHAR(20),
+    `order_signing_payload` TEXT NOT NULL,
+    `signature_value` TEXT,
+    `algorithm` VARCHAR(50) NOT NULL,
+    `signed_at` DATETIME,
     `created_at`      datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
+    `is_active` tinyint DEFAULT 1,
     PRIMARY KEY (`id`),
 
     UNIQUE KEY `uk_order_public_key`

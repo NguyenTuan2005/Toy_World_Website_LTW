@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.n3.childrentoyweb.dao.OrderDAO;
 import com.n3.childrentoyweb.dao.OrderDetailDAO;
 import com.n3.childrentoyweb.dto.OrderItemDTO;
@@ -62,9 +64,4 @@ public class UserOrderService {
         orderDAO.update(order);
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(new UserOrderService().findOrdersByUserAndOrderId(2L, 57L));
-        System.out.println(new UserOrderService().findOrdersByUserId(2L));
-    }
 }

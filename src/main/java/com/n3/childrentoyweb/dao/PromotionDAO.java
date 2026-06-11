@@ -17,7 +17,7 @@ public class PromotionDAO  extends BaseDAO{
                 """;
 
         return super.getJdbi().withHandle(handle -> handle.createQuery(sql)
-                .bind("id", 1)
+                .bind("id", id)
                 .mapToBean(Promotion.class)
                 .findOne());
     }
@@ -203,7 +203,7 @@ public class PromotionDAO  extends BaseDAO{
         );
     }
 
-    public Promotion findValidPromotionById(Long promotionId) {
+    public Optional<Promotion> findValidPromotionById(Long promotionId) {
         String sql = """
                 Select p.*
                 from promotions p
@@ -215,7 +215,7 @@ public class PromotionDAO  extends BaseDAO{
         return super.getJdbi().withHandle(handle -> handle.createQuery(sql)
                 .bind("id", promotionId)
                 .mapToBean(Promotion.class)
-                .one());
+                .findOne());
     }
 
     public List<PromotionNameDTO> findAllPromotionName() {

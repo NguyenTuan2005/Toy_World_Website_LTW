@@ -2,6 +2,7 @@ package com.n3.childrentoyweb.dao;
 
 import com.n3.childrentoyweb.dto.AdminOrderListDTO;
 import com.n3.childrentoyweb.dto.UserOrderDTO;
+import com.n3.childrentoyweb.dto.orderSignature.OrderSignatureDTO;
 import com.n3.childrentoyweb.models.Order;
 import com.n3.childrentoyweb.models.OrderDetail;
 import java.time.LocalDate;
@@ -149,10 +150,11 @@ public class OrderDAO extends BaseDAO{
             SELECT o.id,
                    o.status AS orderStatus,
                    p.status AS paymentStatus,
+                   o.signature_status,
                    o.created_at,
                    o.total_price
             FROM orders o
-            JOIN payments p ON o.id = p.order_id
+            LEFT JOIN payments p ON o.id = p.order_id
             WHERE o.user_id = :userId AND o.is_active = 1
             ORDER BY o.created_at DESC
         """;
@@ -165,11 +167,45 @@ public class OrderDAO extends BaseDAO{
                             dto.setId(rs.getLong("id"));
                             dto.setOrderStatus(rs.getString("orderStatus"));
                             dto.setPaymentStatus(rs.getString("paymentStatus"));
+                            dto.setSignatureStatus(rs.getString("signature_status"));
                             dto.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
                             dto.setTotalPrice(rs.getLong("total_price"));
                             return dto;
                         })
                         .list()
+        );
+    }
+
+    public OrderSignatureDTO findOrderSignatureByUserAndOrderId(Long userId, Long orderId) {
+        String sql = """
+            SELECT o.id AS orderId,
+                   pubk.public_key,
+                   sig.order_signing_payload,
+                   sig.algorithm
+      
+            FROM orders o
+            JOIN order_signatures sig ON o.id = sig.order_id
+            JOIN public_keys pubk ON pubk.user_id = o.user_id AND sig.public_key_id = pubk.id
+            WHERE o.user_id = :userId 
+                    AND o.id = :orderId
+                    AND o.is_active = 1
+                    AND pubk.is_active = 1
+            ORDER BY o.created_at DESC
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .bind("orderId", orderId)
+                        .map((rs, ctx) -> {
+                            OrderSignatureDTO dto = new OrderSignatureDTO();
+                            dto.setOrderId(rs.getLong("orderId"));
+                            dto.setPublicKey(rs.getString("public_key"));
+                            dto.setOrderSigningPayload(rs.getString("order_signing_payload"));
+                            dto.setAlgorithm(rs.getString("algorithm"));
+                            return dto;
+                        })
+                        .one()
         );
     }
 

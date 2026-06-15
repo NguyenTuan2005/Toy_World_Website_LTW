@@ -7,7 +7,7 @@ public class CenterPanel extends JPanel {
     private CardLayout layout;
     private TextInputCard textInputCard;
     private FileInputCard fileInputCard;
-    private String currentCard = "TEXT";
+    private String currentCard = "FILE";
 
     public CenterPanel() {
         layout = new CardLayout();

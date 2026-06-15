@@ -7,13 +7,16 @@ import view.bottom.BottomPanel;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
 
 public class AsymmetricControllerStrategy implements CipherControllerStrategy {
     private AsymmetricCipher asymmetricCipher;
-    private InputType type = InputType.TEXT_TYPE;
+    private InputType type = InputType.FILE_TYPE;
 
     public AsymmetricControllerStrategy() {
         this.asymmetricCipher = new AsymmetricCipher(AsymmetricAlgorithm.SHA1WITHDSA);
@@ -22,14 +25,14 @@ public class AsymmetricControllerStrategy implements CipherControllerStrategy {
     @Override
     public String encrypt(String data) throws Exception {
         if (data.isBlank()) return "Không có dữ liệu để ký tên";
+
         switch (type) {
             case TEXT_TYPE: {
                 return this.asymmetricCipher.encryptText(data);
             }
             case FILE_TYPE: {
-                File file = new File(data);
-                if (!file.isFile()) throw new Exception("Đường dẫn không phải là tệp");
-                return this.asymmetricCipher.encryptFile(data);
+                String payload = Files.readString(Path.of(data), StandardCharsets.UTF_8);
+                return this.asymmetricCipher.encryptPayload(payload);
             }
         }
         return null;

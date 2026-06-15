@@ -95,21 +95,21 @@
                   method="post"
                   enctype="multipart/form-data">
 
-                <input type="hidden"
+                <input type="text"
                        name="orderId"
                        value="${order.id}"/>
 
                 <div class="mb-3">
 
                     <label class="form-label">
-                        Chọn file chữ ký (.sig)
+                        Chọn file có chứa chữ ký
                     </label>
 
                     <input type="file"
                            name="signatureFile"
                            class="form-control"
-                           accept=".sig"
-                           required>
+                           accept=".txt"
+                           >
 
                 </div>
 

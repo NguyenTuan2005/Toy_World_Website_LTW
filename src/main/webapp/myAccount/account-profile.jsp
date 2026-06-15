@@ -48,6 +48,19 @@
                     </li>
 
                     <li class="profile">
+                        <form action="${pageContext.request.contextPath}/gen-keys"
+                              method="post"
+                              class="row g-3">
+
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn text-start">
+                                    <i class="bi bi-floppy2 me-2"></i> Tạo key tự động
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="profile">
                         <button onclick="window.location.href='${pageContext.request.contextPath}/public-key'"
                                 class="d-flex">
                             <i class="bi bi-key me-2"></i>

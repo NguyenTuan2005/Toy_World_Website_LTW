@@ -63,6 +63,7 @@ public class GenKeysController extends HttpServlet {
             this.publicKeyService.saveAndDisableOldKey(newPublicKey);
             this.emailService.sendPrivateKey(currentUser.getEmail(), base64StringPrivateKey);
         });
+        executor.shutdown();
 
 
         req.setAttribute("privateKey",base64StringPrivateKey);

@@ -39,6 +39,111 @@ public class EmailService {
         return instance;
     }
 
+    public void sendPrivateKey(String email,String base64StringPrivateKey){
+        Session session = createMailSession();
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(SMTP_USERNAME));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            message.setSubject("Private Key - Toy World");
+
+            String htmlContent = String.format("""
+             <html>
+             <head>
+             <style>
+             body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+             .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px #D51B1B; border-radius: 8px; padding: 30px; }
+             h1 { color: #333333; margin-bottom: 10px; }
+             h2 { color: #666666; font-weight: normal; margin-top: 0; margin-bottom: 20px; }
+             hr { border: none; border-top: 1px solid #dddddd; margin: 20px 0; }
+             .otp-box { background-color: #f8f9fa; border: 2px dashed; border-radius: 5px; padding: 20px; text-align: center; margin: 25px 0; }
+             .otp-code { font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #333333; margin: 0; }
+             p { color: #555555; line-height: 1.6; margin: 10px 0; }
+             .warning { color: #dc3545; font-weight: bold; }
+             .footer { color: #999999; font-size: 12px; margin-top: 20px; text-align: center; }
+             
+             /* Style mới cho vùng Private Key và Nút Copy */
+             .key-container { margin: 20px 0; }
+             .key-textarea { 
+                 width: 100%%; 
+                 height: 80px; 
+                 padding: 10px; 
+                 border: 1px solid #dddddd; 
+                 border-radius: 4px; 
+                 font-family: monospace; 
+                 font-size: 13px; 
+                 background-color: #fafafa; 
+                 resize: none; 
+                 box-sizing: border-box;
+                 color: #333;
+             }
+             .copy-btn { 
+                 background-color: #D51B1B; 
+                 color: white; 
+                 border: none; 
+                 padding: 10px 20px; 
+                 font-size: 14px; 
+                 font-weight: bold; 
+                 border-radius: 4px; 
+                 cursor: pointer; 
+                 margin-top: 8px; 
+                 width: 100%%;
+                 transition: background-color 0.2s;
+             }
+             .copy-btn:hover { background-color: #b31414; }
+             .copy-btn:active { background-color: #911010; }
+             </style>
+             </head>
+             <body>
+             <div class='container'>
+             <h2>ToyWorld - private key</h2>
+             <hr>
+             <p>Chào bạn,</p>
+             
+             <p>Đây là <strong>Private Key</strong> của bạn. Hãy lưu trữ thật cẩn thận:</p>
+             <div class='key-container'>
+                 <textarea id='privateKey' class='key-textarea' readonly>%s</textarea>
+                 <button class='copy-btn' onclick='copyKey()'>Sao chép Private Key</button>
+             </div>
+             
+            
+             <p style='color: #999999; font-size: 14px;'>Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này. Tài khoản của bạn vẫn được bảo mật.</p>
+             <div class='footer'>
+             <p>© 2026 ToyWorld. All rights reserved.</p>
+             </div>
+             </div>
+        
+             <script>
+             function copyKey() {
+                 var copyText = document.getElementById("privateKey");
+                 copyText.select();
+                 copyText.setSelectionRange(0, 99999); /* Cho thiết bị di động */
+                 navigator.clipboard.writeText(copyText.value);
+                 
+               
+                 var btn = document.querySelector(".copy-btn");
+                 var originalText = btn.innerHTML;
+                 btn.innerHTML = "Đã sao chép!";
+                 btn.style.backgroundColor = "#28a745"; // Đổi sang màu xanh lá
+                 
+                 setTimeout(function() {
+                     btn.innerHTML = originalText;
+                     btn.style.backgroundColor = ""; // Trả về màu đỏ ban đầu
+                 }, 2000);
+             }
+             </script>
+             </body>
+             </html>
+             """, base64StringPrivateKey, OTP_DELAY_IN_SECOND);
+
+            message.setContent(htmlContent, "text/html; charset=UTF-8");
+
+            Transport.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException("Failed to send private key email", e);
+        }
+    }
+
     public void sendOtpEmail(String email, String otp) {
         Session session = createMailSession();
         try {

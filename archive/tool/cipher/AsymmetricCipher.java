@@ -5,6 +5,7 @@ import model.Asymmetric;
 import utils.FileHelper;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
@@ -51,6 +52,7 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
         Signature signature = Signature.getInstance(asymmetric.getTransformation());
         signature.initSign(asymmetric.getPrivateKey());
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(plainText));
+
         byte[] read = new byte[1024];
         int length;
         while ((length = bis.read(read)) != -1) {
@@ -59,6 +61,18 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
         bis.close();
         asymmetric.setSign(signature.sign());
         return Base64.getEncoder().encodeToString(asymmetric.getSign());
+    }
+
+    public String encryptPayload(String plainText) throws Exception {
+        Signature signature = Signature.getInstance(asymmetric.getTransformation());
+
+        signature.initSign(asymmetric.getPrivateKey());
+
+        signature.update(plainText.getBytes(StandardCharsets.UTF_8));
+
+        byte[] signBytes = signature.sign();
+
+        return Base64.getEncoder().encodeToString(signBytes);
     }
 
     public String importPrivateKey(File src) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {

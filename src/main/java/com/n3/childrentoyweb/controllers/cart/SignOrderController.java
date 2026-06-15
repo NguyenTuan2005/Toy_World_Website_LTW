@@ -34,24 +34,6 @@ public class SignOrderController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User currentUser;
-        try {
-            if ((currentUser = (User) request.getSession().getAttribute("currentUser")) == null)
-                throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
-
-            long orderId = Long.parseLong(request.getParameter("orderId"));
-
-            List<UserOrderDTO> userOrder = userOrderService.findOrdersByUserAndOrderId(currentUser.getId() , orderId);
-
-
-
-
-        } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/my-shopping-cart.jsp").forward(request, response);
-        }
-
-
     }
 
     @Override

@@ -9,6 +9,7 @@ public class UserOrderDTO {
     private Long id;
     private String orderStatus;
     private String paymentStatus;
+    private String signatureStatus;
     private LocalDateTime createdAt;
     private long totalPrice;
 
@@ -69,6 +70,14 @@ public class UserOrderDTO {
         if (createdAt == null) return "";
 
         return LocalDateTimeConverterUtil.convertToString(createdAt);
+    }
+
+    public String getSignatureStatus() {
+        return signatureStatus;
+    }
+
+    public void setSignatureStatus(String signatureStatus) {
+        this.signatureStatus = signatureStatus;
     }
 
     @Override

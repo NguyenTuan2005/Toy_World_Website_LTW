@@ -71,7 +71,7 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
         signature.update(plainText.getBytes(StandardCharsets.UTF_8));
 
         byte[] signBytes = signature.sign();
-
+        asymmetric.setSign(signBytes);
         return Base64.getEncoder().encodeToString(signBytes);
     }
 

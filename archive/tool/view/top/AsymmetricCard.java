@@ -89,7 +89,6 @@ public class AsymmetricCard extends JPanel {
             lblPrivateKey = new JLabel("Giá trị");
             tfPrivateKey = new JTextField("");
             tfPrivateKey.setBackground(ColorView.BACKGROUND_COLOR);
-            tfPrivateKey.setEditable(false);
             privKeyInputPanel.add(lblPrivateKey, BorderLayout.WEST);
             privKeyInputPanel.add(tfPrivateKey, BorderLayout.CENTER);
             groupPanel.add(privKeyInputPanel, BorderLayout.CENTER);

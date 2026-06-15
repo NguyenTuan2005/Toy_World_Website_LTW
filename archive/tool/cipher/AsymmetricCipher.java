@@ -63,7 +63,7 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
 
     public String importPrivateKey(File src) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
         this.asymmetric.setPrivateKey(FileHelper.importPrivateKey(src, this.asymmetric.getAlgorithmName()));
-        return Base64.getEncoder().encodeToString(this.asymmetric.getPublicKey().getEncoded());
+        return Base64.getEncoder().encodeToString(this.asymmetric.getPrivateKey().getEncoded());
     }
 
     public boolean exportPrivateKey(File des) throws IOException {
@@ -73,9 +73,10 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
     }
 
     public boolean downloadSign(File des) throws IOException {
-        if (asymmetric.getSign() == null || asymmetric.getSign().length == 0)
+        byte[] sign = asymmetric.getSign();
+        if (sign == null || sign.length == 0)
             return false;
-        FileHelper.exportKey(asymmetric.getSign(), des);
+        FileHelper.exportKey(sign, des);
         return true;
     }
 }

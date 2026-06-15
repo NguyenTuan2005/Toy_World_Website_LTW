@@ -21,6 +21,7 @@ public class AsymmetricControllerStrategy implements CipherControllerStrategy {
 
     @Override
     public String encrypt(String data) throws Exception {
+        if (data.isBlank()) return "Không có dữ liệu để ký tên";
         switch (type) {
             case TEXT_TYPE: {
                 return this.asymmetricCipher.encryptText(data);

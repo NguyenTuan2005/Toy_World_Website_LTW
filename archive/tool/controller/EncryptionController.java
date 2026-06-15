@@ -24,7 +24,6 @@ public class EncryptionController {
     }
 
     public String encrypt(String data) throws Exception {
-        setCurrentController("Asymmetric");
         return currentController.encrypt(data);
     }
 

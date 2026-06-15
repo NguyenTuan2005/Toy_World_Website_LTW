@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.io.File;
+import java.security.spec.InvalidKeySpecException;
 
 public class AsymmetricCard extends JPanel {
     private CardLayout layout;
@@ -46,20 +47,13 @@ public class AsymmetricCard extends JPanel {
         private void addEvents() {
             fileChooser = new JFileChooser();
 
-            try {
-                String[] result = controller.genKeyPair();
-                System.out.println(result[0]);
-                tfPrivateKey.setText(result[1]);
-            } catch (Exception ex) {
-                BottomPanel.updateResult(ex.getMessage());
-            }
-
             btnExportPrivateKey.addActionListener(e -> {
                 int result = fileChooser.showSaveDialog(BasicPanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
                     try {
                         controller.exportPrivateKey(file);
+                        BottomPanel.clear();
                     } catch (Exception ex) {
                         BottomPanel.updateResult(ex.getMessage());
                     }
@@ -72,8 +66,12 @@ public class AsymmetricCard extends JPanel {
                     File file = fileChooser.getSelectedFile();
                     try {
                         tfPrivateKey.setText(controller.importPrivateKey(file));
+                        BottomPanel.clear();
                     } catch (Exception ex) {
-                        BottomPanel.updateResult(ex.getMessage());
+                        if (ex.getClass().equals(InvalidKeySpecException.class))
+                            BottomPanel.updateResultError("Không tìm thấy khóa");
+                        else
+                            BottomPanel.updateResult(ex.getMessage());
                     }
                 }
             });

@@ -2,7 +2,6 @@ package view.bottom;
 
 import controller.EncryptionController;
 import view.center.CenterPanel;
-import view.top.AsymmetricCard;
 import view.utils.ColorView;
 import view.utils.GeneratePanel;
 
@@ -118,5 +117,9 @@ public class BottomPanel extends JPanel {
     public static void updateResultError(String text) {
         txtResult.setText(text);
         txtResult.setForeground(ColorView.ERROR_COLOR);
+    }
+
+    public static void clear() {
+        txtResult.setText("");
     }
 }

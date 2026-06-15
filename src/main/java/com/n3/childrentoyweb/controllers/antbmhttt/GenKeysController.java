@@ -1,6 +1,7 @@
 package com.n3.childrentoyweb.controllers.antbmhttt;
 
 import com.n3.childrentoyweb.models.User;
+import com.n3.childrentoyweb.services.EmailService;
 import com.n3.childrentoyweb.services.PublicKeyService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,11 +14,14 @@ import java.io.IOException;
 import java.security.*;
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @WebServlet("/gen-keys")
 public class GenKeysController extends HttpServlet {
 
     private final PublicKeyService publicKeyService = new PublicKeyService();
+    private final EmailService emailService = EmailService.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,9 +56,14 @@ public class GenKeysController extends HttpServlet {
 
         String base64StringPublicKey = Base64.getEncoder().encodeToString(publicKey.getEncoded());
         com.n3.childrentoyweb.models.PublicKey newPublicKey = new com.n3.childrentoyweb.models.PublicKey(LocalDateTime.now(),userId,base64StringPublicKey);
-        this.publicKeyService.saveAndDisableOldKey(newPublicKey);
-
         String base64StringPrivateKey = Base64.getEncoder().encodeToString(privateKey.getEncoded());
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(()->{
+            this.publicKeyService.saveAndDisableOldKey(newPublicKey);
+            this.emailService.sendPrivateKey(currentUser.getEmail(), base64StringPrivateKey);
+        });
+
 
         req.setAttribute("privateKey",base64StringPrivateKey);
         req.getRequestDispatcher("/display-private-key.jsp").forward(req,resp);

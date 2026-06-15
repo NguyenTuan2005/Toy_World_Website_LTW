@@ -59,11 +59,18 @@ public class GenKeysController extends HttpServlet {
         String base64StringPrivateKey = Base64.getEncoder().encodeToString(privateKey.getEncoded());
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(()->{
-            this.publicKeyService.saveAndDisableOldKey(newPublicKey);
-            this.emailService.sendPrivateKey(currentUser.getEmail(), base64StringPrivateKey);
-        });
-        executor.shutdown();
+
+        try {
+            executor.submit(() -> {
+                this.publicKeyService.saveAndDisableOldKey(newPublicKey);
+                this.emailService.sendPrivateKey(
+                        currentUser.getEmail(),
+                        base64StringPrivateKey
+                );
+            });
+        } finally {
+            executor.shutdown();
+        }
 
 
         req.setAttribute("privateKey",base64StringPrivateKey);

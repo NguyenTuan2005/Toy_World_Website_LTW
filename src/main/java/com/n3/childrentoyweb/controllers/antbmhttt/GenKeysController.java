@@ -40,7 +40,7 @@ public class GenKeysController extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        keyPairGenerator.initialize(2048);
+        keyPairGenerator.initialize(1024);
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         PrivateKey privateKey = keyPair.getPrivate();
         PublicKey publicKey = keyPair.getPublic();

@@ -25,9 +25,38 @@
 <div>
     <p>
         test
+<%--        <form action="${pageContext.request.contextPath}/dowload-tool"--%>
+<%--              method="get">--%>
+            <button  onclick="downloadFile()" class="btn btn-primary">
+                Download Tool
+            </button>
+<%--        </form>--%>
     </p>
 </div>
+<script>
+    async function downloadFile() {
+        const response = await fetch('http://localhost:8080/childrentoyweb_war/download-tool');
+        console.log(response)
+        console.log("hello download")
+        if (!response.ok) {
+            throw new Error('Download failed');
+        }
 
+        const blob = await response.blob();
+
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'table_public_keys.sql';
+
+        document.body.appendChild(a);
+        a.click();
+
+        a.remove();
+        URL.revokeObjectURL(url);
+    }
+</script>
 <br>
 
 <jsp:include page="/common/footer.jsp" />

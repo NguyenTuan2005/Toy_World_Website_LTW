@@ -57,16 +57,18 @@ public class GenKeysController extends HttpServlet {
         String base64StringPublicKey = Base64.getEncoder().encodeToString(publicKey.getEncoded());
         com.n3.childrentoyweb.models.PublicKey newPublicKey = new com.n3.childrentoyweb.models.PublicKey(LocalDateTime.now(),userId,base64StringPublicKey);
         String base64StringPrivateKey = Base64.getEncoder().encodeToString(privateKey.getEncoded());
+        boolean isSavedPublicKey =  this.publicKeyService.saveAndDisableOldKey(newPublicKey) > 0;
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        if (!isSavedPublicKey){
+            req.getRequestDispatcher("/public-key-policy.jsp").forward(req, resp);
+            return;
+        }
+        ExecutorService executor = Executors.newFixedThreadPool(1);
 
         try {
             executor.submit(() -> {
-                this.publicKeyService.saveAndDisableOldKey(newPublicKey);
-                this.emailService.sendPrivateKey(
-                        currentUser.getEmail(),
-                        base64StringPrivateKey
-                );
+                this.emailService.sendPrivateKey(currentUser.getEmail(), base64StringPrivateKey);
             });
         } finally {
             executor.shutdown();

@@ -50,7 +50,8 @@
                         <button class="btn d-flex align-items-center"
                                 onclick="window.location.href='${pageContext.request.contextPath}/account/profile'">
                             <i class="bi bi-person-circle me-2"></i>
-                            <div>${sessionScope.currentUser.firstName}</div>
+                            <div>${sessionScope.currentUser.firstName} ${sessionScope.currentUser.lastName}</div>
+
                         </button>
                     </c:if>
 
@@ -64,6 +65,29 @@
                                 (${sessionScope.cart.totalQuantity})
                             </c:if>
                         </span>
+                    </button>
+
+                    <button class="btn d-flex align-items-center"
+                        <c:choose>
+                            <c:when test="${sessionScope.currentUser.isLostKey}">
+                                <div>
+                                    <i class="bi bi-key"
+                                       style="font-size: 30px; margin-left: 9px;  margin-right: 9px; color: #000000"></i>
+                                    mất khóa
+                                </div>
+
+                            </c:when>
+
+                            <c:otherwise>
+                                <div>
+                                    <i class="bi bi-key"
+                                       style="font-size: 30px; margin-left: 9px;  margin-right: 9px; color: #269df6"></i>
+                                    khóa an toàn
+                                </div>
+
+
+                            </c:otherwise>
+                        </c:choose>
                     </button>
                 </div>
             </div>

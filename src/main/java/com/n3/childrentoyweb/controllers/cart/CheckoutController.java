@@ -49,6 +49,7 @@ public class CheckoutController extends HttpServlet {
             if (user.getIsLostKey()){
                 req.setAttribute("username",user.getFirstName()+" "+user.getLastName());
                 req.getRequestDispatcher("/Policy-lost-key.jsp").forward(req, resp);
+                return;
             }
 
             if (user.getLocationId() != null) {

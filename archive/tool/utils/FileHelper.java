@@ -10,8 +10,11 @@ import java.util.Base64;
 
 public class FileHelper {
     public static void exportKey(byte[] key, File des) throws IOException {
-        String result = des.isDirectory() ? des.getPath() + "/key.txt" : des.getPath();
-        PrintWriter out = new PrintWriter(result);
+        String result = des.getName();
+        if (!result.contains(".") && result.lastIndexOf(".") <= 0) {
+            result = result + ".txt";
+        }
+        PrintWriter out = new PrintWriter(des.getParent() + "/" + result);
         out.write(Base64.getEncoder().encodeToString(key));
         out.flush();
         out.close();

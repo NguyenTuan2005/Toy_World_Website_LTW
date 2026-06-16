@@ -2,6 +2,7 @@ package view.top;
 
 import controller.EncryptionController;
 import controller.strategy.AsymmetricControllerStrategy;
+import utils.Path;
 import view.bottom.BottomPanel;
 import view.utils.ColorView;
 import view.utils.GeneratePanel;
@@ -45,7 +46,7 @@ public class AsymmetricCard extends JPanel {
         }
 
         private void addEvents() {
-            fileChooser = new JFileChooser();
+            fileChooser = new JFileChooser(Path.get());
 
             btnGenKey.addActionListener(e -> {
                 try {
@@ -62,6 +63,7 @@ public class AsymmetricCard extends JPanel {
                 int result = fileChooser.showSaveDialog(BasicPanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
+                    Path.put(file.getParent());
                     try {
                         controller.exportPublicKey(file);
                     } catch (Exception ex) {
@@ -74,6 +76,7 @@ public class AsymmetricCard extends JPanel {
                 int result = fileChooser.showOpenDialog(BasicPanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
+                    Path.put(file.getParent());
                     try {
                         tfPublicKey.setText(controller.importPublicKey(file));
                     } catch (Exception ex) {
@@ -91,6 +94,7 @@ public class AsymmetricCard extends JPanel {
                 int result = fileChooser.showSaveDialog(BasicPanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
+                    Path.put(file.getParent());
                     try {
                         controller.exportPrivateKey(file);
                     } catch (Exception ex) {
@@ -103,6 +107,7 @@ public class AsymmetricCard extends JPanel {
                 int result = fileChooser.showOpenDialog(BasicPanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
+                    Path.put(file.getParent());
                     try {
                         tfPrivateKey.setText(controller.importPrivateKey(file));
                         BottomPanel.clear();

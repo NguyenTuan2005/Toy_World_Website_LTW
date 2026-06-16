@@ -56,18 +56,17 @@ public class PublicKeyFileController extends HttpServlet {
         User currentUser = (User) session.getAttribute("currentUser");
 
         Long userId = currentUser.getId();
-        boolean isSuccess = false;
 
-        if (publicKey == null){
-            req.setAttribute("success", isSuccess);
-            req.getRequestDispatcher("/save-public-key-status.jsp").forward(req, resp);
-            return;
-        }
 
         PublicKey newPublicKey = new PublicKey(LocalDateTime.now(),userId,publicKey);
-        isSuccess = this.publicKeyService.saveAndDisableOldKey(newPublicKey) > 0;
+        boolean isSavedPublicKey =  this.publicKeyService.saveAndDisableOldKey(newPublicKey) > 0;
 
-        req.setAttribute("success", isSuccess);
+
+        if (!isSavedPublicKey){
+            req.getRequestDispatcher("/public-key-policy.jsp").forward(req, resp);
+            return;
+        }
+        req.setAttribute("success", true);
         req.getRequestDispatcher("/save-public-key-status.jsp").forward(req, resp);
     }
 }

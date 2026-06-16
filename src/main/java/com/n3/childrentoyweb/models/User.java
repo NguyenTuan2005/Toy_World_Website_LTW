@@ -134,6 +134,7 @@ public class User extends BaseModel implements Serializable {
                 ", email='" + email + '\'' +
                 ", locationId=" + locationId +
                 ", id=" + id +
+                ", isLostKey= "+isLostKey+
                 ", Super = "+ super.toString() +
                 '}';
     }

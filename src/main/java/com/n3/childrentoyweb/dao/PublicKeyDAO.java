@@ -12,8 +12,7 @@ public class PublicKeyDAO extends BaseDAO{
         String sql = """
             UPDATE public_keys
             SET
-                is_active = 0,
-                is_user_disable = 1
+                is_active = 0
             WHERE user_id = :user_id
               AND is_active = 1
             """;

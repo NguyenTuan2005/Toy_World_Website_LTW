@@ -55,6 +55,17 @@ public class AsymmetricControllerStrategy implements CipherControllerStrategy {
         return this.asymmetricCipher.genKey();
     }
 
+    public void exportPublicKey(File des) throws IOException {
+        String result ="Đã xuất khóa công khai cho bạn";
+        if (!this.asymmetricCipher.exportPublicKey(des))
+            result = "Không thể xuất khóa công khai cho bạn";
+        BottomPanel.updateResult(result);
+    }
+
+    public String importPublicKey(File src) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        return this.asymmetricCipher.importPublicKey(src);
+    }
+
     public void exportPrivateKey(File des) throws IOException {
         String result = "Đã xuất khóa riêng tư cho bạn";
         if (!this.asymmetricCipher.exportPrivateKey(des))

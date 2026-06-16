@@ -31,9 +31,9 @@ public class AsymmetricCard extends JPanel {
     }
 
     public class BasicPanel extends JPanel {
-        private JLabel lblPrivateKey;
-        private JTextField tfPrivateKey;
-        private JButton btnImportPrivateKey, btnExportPrivateKey;
+        private JLabel lblPrivateKey, lblPublicKey, lblGenKey;
+        private JTextField tfPrivateKey, tfPublicKey;
+        private JButton btnImportPrivateKey, btnExportPrivateKey, btnImportPublicKey, btnExportPublicKey, btnGenKey;
         private JFileChooser fileChooser;
 
         public BasicPanel() {
@@ -47,13 +47,52 @@ public class AsymmetricCard extends JPanel {
         private void addEvents() {
             fileChooser = new JFileChooser();
 
+            btnGenKey.addActionListener(e -> {
+                try {
+                    String[] keypair = controller.genKeyPair();
+                    tfPublicKey.setText(keypair[0]);
+                    tfPrivateKey.setText(keypair[1]);
+                    BottomPanel.clear();
+                } catch (Exception ex) {
+                    BottomPanel.updateResult(ex.getMessage());
+                }
+            });
+
+            btnExportPublicKey.addActionListener(e -> {
+                int result = fileChooser.showSaveDialog(BasicPanel.this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    try {
+                        controller.exportPublicKey(file);
+                    } catch (Exception ex) {
+                        BottomPanel.updateResult(ex.getMessage());
+                    }
+                }
+            });
+
+            btnImportPublicKey.addActionListener(e -> {
+                int result = fileChooser.showOpenDialog(BasicPanel.this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    try {
+                        tfPublicKey.setText(controller.importPublicKey(file));
+                    } catch (Exception ex) {
+                        if (ex.getClass().equals(InvalidKeySpecException.class) ||
+                            ex.getClass().equals(IllegalArgumentException.class)
+                        )
+                            BottomPanel.updateResultError("Không tìm thấy khóa");
+                        else
+                            BottomPanel.updateResultError(ex.getMessage());
+                    }
+                }
+            });
+
             btnExportPrivateKey.addActionListener(e -> {
                 int result = fileChooser.showSaveDialog(BasicPanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
                     try {
                         controller.exportPrivateKey(file);
-                        BottomPanel.clear();
                     } catch (Exception ex) {
                         BottomPanel.updateResult(ex.getMessage());
                     }
@@ -68,10 +107,12 @@ public class AsymmetricCard extends JPanel {
                         tfPrivateKey.setText(controller.importPrivateKey(file));
                         BottomPanel.clear();
                     } catch (Exception ex) {
-                        if (ex.getClass().equals(InvalidKeySpecException.class))
+                        if (ex.getClass().equals(InvalidKeySpecException.class) ||
+                                ex.getClass().equals(IllegalArgumentException.class)
+                        )
                             BottomPanel.updateResultError("Không tìm thấy khóa");
                         else
-                            BottomPanel.updateResult(ex.getMessage());
+                            BottomPanel.updateResultError(ex.getMessage());
                     }
                 }
             });
@@ -79,6 +120,49 @@ public class AsymmetricCard extends JPanel {
 
         private void initKeyPair() {
             JPanel groupPanel = GeneratePanel.generateBorderPanel(5, 5);
+            groupPanel.setPreferredSize(new Dimension(200, 50));
+            groupPanel.setMaximumSize(new Dimension(200, 50));
+            groupPanel.setBorder(BorderFactory.createTitledBorder(
+                    BorderFactory.createLineBorder(ColorView.BORDER_COLOR),
+                    "Tạo cặp khóa", TitledBorder.LEFT,TitledBorder.TOP));
+
+            JPanel genKeyButtonPanel = GeneratePanel.generateBorderPanel(5, 5);
+            btnGenKey = new JButton("Tạo");
+            btnGenKey.setBackground(ColorView.BACKGROUND_COLOR);
+            btnGenKey.setForeground(ColorView.TEXT_COLOR);
+            genKeyButtonPanel.add(btnGenKey, BorderLayout.CENTER);
+            groupPanel.add(genKeyButtonPanel, BorderLayout.CENTER);
+            add(groupPanel);
+
+            groupPanel = GeneratePanel.generateBorderPanel(5, 5);
+            groupPanel.setPreferredSize(new Dimension(200, 100));
+            groupPanel.setMaximumSize(new Dimension(200, 100));
+            groupPanel.setBorder(BorderFactory.createTitledBorder(
+                    BorderFactory.createLineBorder(ColorView.BORDER_COLOR),
+                    "Khóa công khai", TitledBorder.LEFT,TitledBorder.TOP));
+
+            JPanel plubKeyInputPanel = GeneratePanel.generateBorderPanel(10, 0);
+            lblPublicKey = new JLabel("Giá trị");
+            tfPublicKey = new JTextField("");
+            tfPublicKey.setBackground(ColorView.BACKGROUND_COLOR);
+            tfPublicKey.setEditable(false);
+            plubKeyInputPanel.add(lblPublicKey, BorderLayout.WEST);
+            plubKeyInputPanel.add(tfPublicKey, BorderLayout.CENTER);
+            groupPanel.add(plubKeyInputPanel, BorderLayout.CENTER);
+
+            plubKeyInputPanel = GeneratePanel.generateFlowPanel(FlowLayout.RIGHT, 5, 5);
+            btnImportPublicKey = new JButton("Chèn");
+            btnImportPublicKey.setBackground(ColorView.BACKGROUND_COLOR);
+            btnImportPublicKey.setForeground(ColorView.TEXT_COLOR);
+            btnExportPublicKey = new JButton("Xuất");
+            btnExportPublicKey.setBackground(ColorView.BACKGROUND_COLOR);
+            btnExportPublicKey.setForeground(ColorView.TEXT_COLOR);
+            plubKeyInputPanel.add(btnImportPublicKey);
+            plubKeyInputPanel.add(btnExportPublicKey);
+            groupPanel.add(plubKeyInputPanel, BorderLayout.SOUTH);
+            add(groupPanel);
+
+            groupPanel = GeneratePanel.generateBorderPanel(5, 5);
             groupPanel.setPreferredSize(new Dimension(200, 100));
             groupPanel.setMaximumSize(new Dimension(200, 100));
             groupPanel.setBorder(BorderFactory.createTitledBorder(
@@ -89,6 +173,7 @@ public class AsymmetricCard extends JPanel {
             lblPrivateKey = new JLabel("Giá trị");
             tfPrivateKey = new JTextField("");
             tfPrivateKey.setBackground(ColorView.BACKGROUND_COLOR);
+            tfPrivateKey.setEditable(false);
             privKeyInputPanel.add(lblPrivateKey, BorderLayout.WEST);
             privKeyInputPanel.add(tfPrivateKey, BorderLayout.CENTER);
             groupPanel.add(privKeyInputPanel, BorderLayout.CENTER);

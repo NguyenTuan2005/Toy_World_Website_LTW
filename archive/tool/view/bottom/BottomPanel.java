@@ -71,8 +71,9 @@ public class BottomPanel extends JPanel {
                 String data = centerPanel.getData();
                 updateResult(controller.encrypt(data));
             } catch (Exception ex) {
-                if (ex.getClass().equals(InvalidKeyException.class))
+                if (ex.getClass().equals(InvalidKeyException.class)) {
                     updateResultError("Khóa của bạn không hợp lệ");
+                }
                 else
                     updateResultError(ex.getMessage());
             }

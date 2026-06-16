@@ -65,11 +65,8 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
 
     public String encryptPayload(String plainText) throws Exception {
         Signature signature = Signature.getInstance(asymmetric.getTransformation());
-
         signature.initSign(asymmetric.getPrivateKey());
-
         signature.update(plainText.getBytes(StandardCharsets.UTF_8));
-
         byte[] signBytes = signature.sign();
         asymmetric.setSign(signBytes);
         return Base64.getEncoder().encodeToString(signBytes);

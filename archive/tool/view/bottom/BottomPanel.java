@@ -1,6 +1,7 @@
 package view.bottom;
 
 import controller.EncryptionController;
+import utils.Path;
 import view.center.CenterPanel;
 import view.utils.ColorView;
 import view.utils.GeneratePanel;
@@ -64,7 +65,7 @@ public class BottomPanel extends JPanel {
     }
 
     private void addEvent() {
-        fileChooser = new JFileChooser();
+        fileChooser = new JFileChooser(Path.get());
 
         btnSign.addActionListener(e -> {
             try {
@@ -85,6 +86,7 @@ public class BottomPanel extends JPanel {
             int result = fileChooser.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
+                Path.put(file.getParent());
                 try {
                     updateResult(controller.downloadSign(file));
                 } catch (Exception ex) {

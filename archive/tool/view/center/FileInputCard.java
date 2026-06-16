@@ -1,5 +1,6 @@
 package view.center;
 
+import utils.Path;
 import view.utils.ColorView;
 import view.utils.GeneratePanel;
 
@@ -50,7 +51,7 @@ public class FileInputCard extends JPanel {
     }
 
     private void addEvent() {
-        fileChooser = new JFileChooser();
+        fileChooser = new JFileChooser(Path.get());
 
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files (*.json)", "json");
         fileChooser.setFileFilter(filter);
@@ -60,6 +61,7 @@ public class FileInputCard extends JPanel {
 
             if (result == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
+                Path.put(file.getParent());
                 tfFilePath.setText(file.getPath());
             }
         });

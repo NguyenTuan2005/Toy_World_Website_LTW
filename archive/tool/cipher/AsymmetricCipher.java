@@ -75,6 +75,17 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
         return Base64.getEncoder().encodeToString(signBytes);
     }
 
+    public String importPublicKey(File src) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        this.asymmetric.setPublicKey(FileHelper.importPublicKey(src, this.asymmetric.getAlgorithmName()));
+        return Base64.getEncoder().encodeToString(this.asymmetric.getPublicKey().getEncoded());
+    }
+
+    public boolean exportPublicKey(File des) throws IOException {
+        if (this.asymmetric.getPublicKey() == null) return false;
+        FileHelper.exportKey(this.asymmetric.getPublicKey().getEncoded(), des);
+        return true;
+    }
+
     public String importPrivateKey(File src) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
         this.asymmetric.setPrivateKey(FileHelper.importPrivateKey(src, this.asymmetric.getAlgorithmName()));
         return Base64.getEncoder().encodeToString(this.asymmetric.getPrivateKey().getEncoded());

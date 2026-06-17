@@ -45,9 +45,10 @@ public class SignOrderController extends HttpServlet {
 
             long orderId = Long.parseLong(request.getParameter("orderId"));
 
-            List<UserOrderDTO> userOrders = userOrderService.findOrdersByUserAndOrderId(currentUser.getId() , orderId);
+            UserOrderDTO userOrder = userOrderService.findOrdersByUserAndOrderId(currentUser.getId() , orderId);
 
-            request.setAttribute("order", userOrders.get(0));
+            request.setAttribute("order", userOrder);
+            System.out.println(userOrder);
             request.setAttribute("userFullName", currentUser.getFullName());
 
         } catch (Exception e) {

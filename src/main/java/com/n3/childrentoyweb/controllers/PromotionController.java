@@ -54,7 +54,6 @@ public class PromotionController extends HttpServlet {
         Map<Promotion,List<ProductPromotionDTO>> data = new HashMap<>();
         for (int i = 0; i < promotions.size(); i++) {
             Promotion promotion = promotions.get(i);
-            System.out.println(promotion);
             List<ProductPromotionDTO> productPromotionDTOS = this.productService
                     .findProductsByPromotionId(promotions.get(i).getId())
                     .stream().map(productPromotionDTO -> {

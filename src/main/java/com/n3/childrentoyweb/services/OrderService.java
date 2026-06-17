@@ -1,12 +1,14 @@
 package com.n3.childrentoyweb.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.n3.childrentoyweb.dao.OrderDAO;
+import com.n3.childrentoyweb.dao.OrderDetailDAO;
 import com.n3.childrentoyweb.dao.OrderSignatureDAO;
 import com.n3.childrentoyweb.dao.PublicKeyDAO;
 import com.n3.childrentoyweb.dto.AdminOrderListDTO;
+import com.n3.childrentoyweb.dto.OrderDetailDTO;
 import com.n3.childrentoyweb.dto.orderSignature.OrderItemPayload;
+import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.models.OrderSignature;
 import com.n3.childrentoyweb.dto.orderSignature.OrderSigningPayload;
 import com.n3.childrentoyweb.enums.OrderStatus;
@@ -14,6 +16,7 @@ import com.n3.childrentoyweb.enums.SignatureStatus;
 import com.n3.childrentoyweb.exception.InvalidOrderStateException;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.*;
+import com.n3.childrentoyweb.utils.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +26,13 @@ public class OrderService {
     private OrderDAO orderDAO;
     private PublicKeyDAO publicKeyDAO;
     private OrderSignatureDAO orderSignatureDAO;
+    private OrderDetailDAO orderDetailDAO;
 
     public OrderService() {
         this.orderDAO = new OrderDAO();
         this.publicKeyDAO = new PublicKeyDAO();
         this.orderSignatureDAO = new OrderSignatureDAO();
+        this.orderDetailDAO = new OrderDetailDAO();
     }
 
     public List<AdminOrderListDTO> findAll(String searchKeyword, String sortType, int page) {
@@ -155,7 +160,7 @@ public class OrderService {
                 cart.getTotalPrice(),
                 orderItemPayloads);
 
-        String orderPayload = generatePayload(orderSigningPayload);
+        String orderPayload = JsonUtil.convertToJsonPayload(orderSigningPayload);
 
 
 
@@ -168,15 +173,27 @@ public class OrderService {
         return orderId;
     }
 
-    public String generatePayload(OrderSigningPayload orderSigningPayload) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-
-        String payload = mapper.writeValueAsString(orderSigningPayload);
-        return payload;
-    }
-
     public String getOrderPayload(long orderId){
         return orderSignatureDAO.findOrderSignatureById(orderId).getOrderSigningPayload();
+    }
+
+    public OrderDetailDTO findOrderDetailForCheckout(long orderId, long currentUserId){
+
+        OrderDetailDTO order = orderDetailDAO.findOrderDetail(orderId)
+                .orElseThrow(() -> new ObjectNotFoundException("Đơn hàng không tồn tại"));
+
+        order.setItems(orderDetailDAO.findOrderItems(orderId));
+
+        if(order.getCustomerId() != currentUserId)
+            throw new DataInvalidException("Người dùng không có quyền truy cập đơn hàng này");
+
+        if(!OrderStatus.PENDING.getStatus().equals(order.getOrderStatus()))
+            throw new DataInvalidException("Đơn hàng chưa sẵn sàng thanh toán");
+
+        if(!order.isSigned())
+            throw new DataInvalidException("Đơn hàng chưa có chữ ký điện tử");
+
+        return order;
     }
 
 }

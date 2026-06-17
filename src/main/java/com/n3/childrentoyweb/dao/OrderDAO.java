@@ -7,6 +7,7 @@ import com.n3.childrentoyweb.models.Order;
 import com.n3.childrentoyweb.models.OrderDetail;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class OrderDAO extends BaseDAO{
 
@@ -67,6 +68,9 @@ public class OrderDAO extends BaseDAO{
         String sql = """
         UPDATE orders
         SET status = :orderStatus,
+            signature_status = :signatureStatus,
+            total_price = :totalPrice,
+            discount_price = :discountPrice,
             created_at = :createdAt
         WHERE id = :id
         """;
@@ -75,6 +79,9 @@ public class OrderDAO extends BaseDAO{
                 h.createUpdate(sql)
                         .bind("id", order.getId())
                         .bind("orderStatus", order.getStatus())
+                        .bind("signatureStatus", order.getSignatureStatus())
+                        .bind("totalPrice", order.getTotalPrice())
+                        .bind("discountPrice", order.getDiscountPrice())
                         .bind("createdAt", order.getCreatedAt())
                         .execute()
         );
@@ -119,15 +126,22 @@ public class OrderDAO extends BaseDAO{
         });
     }
 
+    public Order findById(long id) {
+        String sql = """
+                    SELECT * 
+                    FROM orders 
+                    WHERE id = :id AND is_active = 1
+                    """;
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", id)
+                        .mapToBean(Order.class).one());
+    }
+
     public int countAll() {
         String sql = "SELECT COUNT(*) FROM orders WHERE is_active = 1";
 
         return this.getJdbi().withHandle(handle -> handle.createQuery(sql).mapTo(Integer.class).one());
-    }
-
-    public Order findById(long id) {
-        String sql = "SELECT * FROM orders WHERE id = :id AND is_active = 1";
-        return this.getJdbi().withHandle(handle -> handle.createQuery(sql).bind("id", id).mapToBean(Order.class).one());
     }
 
     public boolean delete(Long orderId) {
@@ -138,7 +152,7 @@ public class OrderDAO extends BaseDAO{
               AND is_active = 1
         """;
 
-        return jdbi.withHandle(handle ->
+        return this.getJdbi().withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("id", orderId)
                         .execute() > 0
@@ -176,40 +190,7 @@ public class OrderDAO extends BaseDAO{
         );
     }
 
-    public OrderSignatureDTO findOrderSignatureByUserAndOrderId(Long userId, Long orderId) {
-        String sql = """
-            SELECT o.id AS orderId,
-                   pubk.public_key,
-                   sig.order_signing_payload,
-                   sig.algorithm
-      
-            FROM orders o
-            JOIN order_signatures sig ON o.id = sig.order_id
-            JOIN public_keys pubk ON pubk.user_id = o.user_id AND sig.public_key_id = pubk.id
-            WHERE o.user_id = :userId 
-                    AND o.id = :orderId
-                    AND o.is_active = 1
-                    AND pubk.is_active = 1
-            ORDER BY o.created_at DESC
-        """;
-
-        return this.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("userId", userId)
-                        .bind("orderId", orderId)
-                        .map((rs, ctx) -> {
-                            OrderSignatureDTO dto = new OrderSignatureDTO();
-                            dto.setOrderId(rs.getLong("orderId"));
-                            dto.setPublicKey(rs.getString("public_key"));
-                            dto.setOrderSigningPayload(rs.getString("order_signing_payload"));
-                            dto.setAlgorithm(rs.getString("algorithm"));
-                            return dto;
-                        })
-                        .one()
-        );
-    }
-
-    public List<UserOrderDTO> findOrdersByUserAndOrderId(Long userId, Long orderId) {
+    public Optional<UserOrderDTO> findOrdersByUserAndOrderId(Long userId, Long orderId) {
         String sql = """
             SELECT o.id,
                    o.status AS orderStatus,
@@ -237,7 +218,7 @@ public class OrderDAO extends BaseDAO{
                             dto.setTotalPrice(rs.getLong("total_price"));
                             return dto;
                         })
-                        .list()
+                        .findOne()
         );
     }
 

@@ -31,11 +31,18 @@
     </div>
 
     <c:set var="user" value="${sessionScope.currentUser}"/>
-    <c:set var="cart" value="${sessionScope.cart}"/>
 
-    <div id="alert" class="alert alert-danger text-center d-none" role="alert">
-        ${error}
-    </div>
+
+    <c:choose>
+      <c:when test="${not empty error}">
+        <div id="alert" class="alert alert-danger text-center mb-4" role="alert">
+            ${error}
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert"></div>
+      </c:otherwise>
+    </c:choose>
 
     <div class="container mt-4">
       <div class="row">
@@ -140,6 +147,7 @@
                 </c:forEach>
               </div>
 
+              <input type="hidden" name="orderId" value="${order.id}">
               <button class="btn-checkout" type="submit">Thanh toán ngay</button>
             </div>
           </form>
@@ -149,23 +157,23 @@
         <div class="col-lg-5">
           <div class="order-summary">
             <!-- Product Item -->
-            <c:forEach var="item" items="${cart.cartItems}">
+            <c:forEach var="item" items="${order.items}">
               <div class="product-item">
                 <div style="position: relative">
                   <img
-                    src="${item.cartProductDTO.imgPath}"
+                    src="${item.imgPath}"
                     class="product-image"
-                    alt="${item.cartProductDTO.name}"
+                    alt="${item.imgPath}"
                   />
                   <div class="product-badge" >${item.quantity}</div>
                 </div>
                 <div class="product-info">
                   <div class="product-name">
-                    ${item.cartProductDTO.name}
+                    ${item.productName}
                   </div>
                 </div>
                 <div class="product-price">
-                  <fmt:formatNumber value="${item.cartProductDTO.price}" type="currency" currencyCode="VND"/>
+                  <fmt:formatNumber value="${item.price}" type="currency" currencyCode="VND"/>
                 </div>
               </div>
             </c:forEach>
@@ -173,19 +181,19 @@
             <!-- Summary -->
             <div class="summary-row">
               <span>Tổng tiền hàng</span>
-              <span><fmt:formatNumber value="${cart.totalCost}" type="currency" currencyCode="VND"/></span>
+              <span><fmt:formatNumber value="${order.totalPriceWithoutDiscount}" type="currency" currencyCode="VND"/></span>
             </div>
             <div class="summary-row">
               <span>Giảm giá</span>
               <c:choose>
-                <c:when test="${cart.totalPromotion != 0}">
+                <c:when test="${order.discountPrice != 0}">
                   <span style ="color: #cf102d;">
-                    - <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
+                    - <fmt:formatNumber value="${order.discountPrice}" type="currency" currencyCode="VND"/>
                   </span>
                 </c:when>
                 <c:otherwise>
                   <span>
-                    <fmt:formatNumber value="${cart.totalPromotion}" type="currency" currencyCode="VND"/>
+                    <fmt:formatNumber value="0" type="currency" currencyCode="VND"/>
                   </span>
                 </c:otherwise>
               </c:choose>
@@ -193,7 +201,7 @@
             <div class="summary-row summary-total">
               <span>Tổng tiền</span>
               <span class="total-amount">
-                <fmt:formatNumber value="${cart.totalPrice}" type="currency" currencyCode="VND"/>
+                <fmt:formatNumber value="${order.totalPrice}" type="currency" currencyCode="VND"/>
               </span>
             </div>
           </div>

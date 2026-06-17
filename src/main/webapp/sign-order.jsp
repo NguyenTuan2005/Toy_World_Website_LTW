@@ -12,6 +12,18 @@
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
+
+<c:choose>
+    <c:when test="${not empty error}">
+        <div id="alert" class="alert alert-danger text-center mb-4" role="alert">
+                ${error}
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert"></div>
+    </c:otherwise>
+</c:choose>
+
 <div class="container mt-5">
 
     <div class="card shadow">
@@ -95,7 +107,7 @@
                   method="post"
                   enctype="multipart/form-data">
 
-                <input type="text"
+                <input type="hidden"
                        name="orderId"
                        value="${order.id}"/>
 
@@ -109,7 +121,7 @@
                            name="signatureFile"
                            class="form-control"
                            accept=".txt"
-                           >
+                           required>
 
                 </div>
 
@@ -117,7 +129,6 @@
                         class="btn btn-primary">
                     Xác nhận chữ ký
                 </button>
-
             </form>
 
             <hr>

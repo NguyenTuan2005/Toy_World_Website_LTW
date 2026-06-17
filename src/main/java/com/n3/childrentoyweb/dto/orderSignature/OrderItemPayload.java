@@ -20,6 +20,9 @@ public class OrderItemPayload {
         this.promotionId = promotionId;
     }
 
+    public OrderItemPayload() {
+    }
+
     public Long getProductId() {
         return productId;
     }
@@ -38,5 +41,25 @@ public class OrderItemPayload {
 
     public Long getPromotionId() {
         return promotionId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setPromotionId(Long promotionId) {
+        this.promotionId = promotionId;
     }
 }

@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.dto;
 
+import com.n3.childrentoyweb.enums.SignatureStatus;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class OrderDetailDTO {
     private LocalDateTime createdAt;
     private String orderStatus;
     private String paymentStatus;
+    private String signatureStatus;
     private long totalPrice;
     private long discountPrice;
 
@@ -52,6 +55,7 @@ public class OrderDetailDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getCustomerFirstName() {
         return customerFirstName;
@@ -121,6 +125,10 @@ public class OrderDetailDTO {
         return totalPrice;
     }
 
+    public long getTotalPriceWithoutDiscount() {
+        return items == null ? 0 : items.stream().mapToLong(OrderItemDTO::getTotalPrice).sum();
+    }
+
     public void setTotalPrice(long totalPrice) {
         this.totalPrice = totalPrice;
     }
@@ -165,6 +173,14 @@ public class OrderDetailDTO {
         this.locationId = locationId;
     }
 
+    public String getSignatureStatus() {
+        return signatureStatus;
+    }
+
+    public void setSignatureStatus(String signatureStatus) {
+        this.signatureStatus = signatureStatus;
+    }
+
     @Override
     public String toString() {
         return "OrderDetailDTO{" +
@@ -188,5 +204,9 @@ public class OrderDetailDTO {
 
     public long getTotalItemBasePrice() {
         return this.items == null ? 0 : this.items.stream().mapToLong(OrderItemDTO :: getTotalPrice).sum();
+    }
+
+    public boolean isSigned() {
+        return SignatureStatus.SIGNED.getStatus().equals(this.signatureStatus);
     }
 }

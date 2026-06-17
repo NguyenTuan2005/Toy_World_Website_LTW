@@ -1,5 +1,7 @@
 package com.n3.childrentoyweb.models;
 
+import com.n3.childrentoyweb.enums.SignatureStatus;
+
 import java.time.LocalDateTime;
 
 public class Order extends BaseModel {
@@ -15,11 +17,6 @@ public class Order extends BaseModel {
         this.totalPrice = totalPrice;
         this.status = status;
     }
-
-    public String getSignatureStatus() {
-        return signatureStatus;
-    }
-
 
     public Order(Long userId, Double totalPrice, Double discountPrice, String status) {
         this.userId = userId;
@@ -69,5 +66,28 @@ public class Order extends BaseModel {
 
     public void setDiscountPrice(Double discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    public void setSignatureStatus(String signatureStatus) {
+        this.signatureStatus = signatureStatus;
+    }
+
+    public String getSignatureStatus() {
+        return signatureStatus;
+    }
+
+    public boolean isSigned() {
+        return SignatureStatus.SIGNED.getStatus().equals(this.signatureStatus);
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "userId=" + userId +
+                ", totalPrice=" + totalPrice +
+                ", discountPrice=" + discountPrice +
+                ", status='" + status + '\'' +
+                ", signatureStatus='" + signatureStatus + '\'' +
+                '}';
     }
 }

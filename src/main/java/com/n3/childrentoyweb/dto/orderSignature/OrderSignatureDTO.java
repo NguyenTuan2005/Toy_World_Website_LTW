@@ -9,6 +9,7 @@ public class OrderSignatureDTO {
     private String publicKey;
     private String orderSigningPayload;
     private String algorithm;
+    private String signatureValue;
 
 
     public OrderSignatureDTO(Long orderId, String publicKey, String orderSigningPayload, String algorithm) {
@@ -53,5 +54,24 @@ public class OrderSignatureDTO {
 
     public void setAlgorithm(String algorithm) {
         this.algorithm = algorithm;
+    }
+
+    public String getSignatureValue() {
+        return signatureValue;
+    }
+
+    public void setSignatureValue(String signatureValue) {
+        this.signatureValue = signatureValue;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderSignatureDTO{" +
+                "orderId=" + orderId +
+                ", publicKey='" + publicKey + '\'' +
+                ", orderSigningPayload='" + orderSigningPayload + '\'' +
+                ", algorithm='" + algorithm + '\'' +
+                ", signatureValue='" + signatureValue + '\'' +
+                '}';
     }
 }

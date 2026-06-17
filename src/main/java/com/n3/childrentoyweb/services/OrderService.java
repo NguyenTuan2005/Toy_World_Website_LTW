@@ -8,6 +8,7 @@ import com.n3.childrentoyweb.dao.PublicKeyDAO;
 import com.n3.childrentoyweb.dto.AdminOrderListDTO;
 import com.n3.childrentoyweb.dto.OrderDetailDTO;
 import com.n3.childrentoyweb.dto.orderSignature.OrderItemPayload;
+import com.n3.childrentoyweb.dto.orderSignature.OrderSignatureDTO;
 import com.n3.childrentoyweb.exception.DataInvalidException;
 import com.n3.childrentoyweb.models.OrderSignature;
 import com.n3.childrentoyweb.dto.orderSignature.OrderSigningPayload;
@@ -18,8 +19,15 @@ import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.models.*;
 import com.n3.childrentoyweb.utils.JsonUtil;
 
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 public class OrderService {
     private static final int PAGE_SIZE = 10;
@@ -33,6 +41,7 @@ public class OrderService {
         this.publicKeyDAO = new PublicKeyDAO();
         this.orderSignatureDAO = new OrderSignatureDAO();
         this.orderDetailDAO = new OrderDetailDAO();
+
     }
 
     public List<AdminOrderListDTO> findAll(String searchKeyword, String sortType, int page) {
@@ -49,7 +58,83 @@ public class OrderService {
             searchKeywordParam = "%" + searchKeyword.trim() + "%";
         }
 
-        return this.orderDAO.findAll(searchKeywordParam, where, orderBy, PAGE_SIZE, offset);
+        List<AdminOrderListDTO> adminOrderListDTOS = this.orderDAO.findAll(searchKeywordParam, where, orderBy, PAGE_SIZE, offset);
+
+        for (AdminOrderListDTO adminOrderListDTO : adminOrderListDTOS){
+            try {
+                com.n3.childrentoyweb.enums.SignatureStatus signatureStatus = this.verifyOrder(adminOrderListDTO.getCustomerEmail(),adminOrderListDTO.getId());
+                switch (signatureStatus){
+                    case SIGNED -> {
+                        adminOrderListDTO.setSignatureStatus("OK_HE_HE");
+                    }
+
+                    case PENDING_SIGNATURE -> {
+                        adminOrderListDTO.setSignatureStatus("NO_HE_HE");
+                    }
+                }
+
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            } catch (InvalidKeySpecException e) {
+                throw new RuntimeException(e);
+            } catch (InvalidKeyException e) {
+                throw new RuntimeException(e);
+            } catch (SignatureException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return adminOrderListDTOS;
+    }
+
+    public SignatureStatus verifyOrder(String email, Long orderId) throws JsonProcessingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SignatureException {
+        OrderSigningPayload orderPayload = buildOrderSigningPayload(orderId).orElse(null);
+        if (orderPayload == null){
+            return SignatureStatus.PENDING_SIGNATURE;
+        }
+        String orderPayloadStr = JsonUtil.convertToJsonPayload(orderPayload);
+        System.out.println(orderPayloadStr);
+
+
+        OrderSignatureDTO orderSignature = orderSignatureDAO.findOrderSignatureByUserEmailAndOrderId(email, orderId).orElse(null);
+        if (orderSignature == null){
+            return SignatureStatus.PENDING_SIGNATURE;
+        }
+        String publicKeyBase64 = orderSignature.getPublicKey();
+        String algorithm = orderSignature.getAlgorithm();
+
+
+
+        byte[] signBytes = Base64.getDecoder().decode(orderSignature.getSignatureValue());
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyBase64));
+        KeyFactory keyFactory = KeyFactory.getInstance("DSA");
+        PublicKey publicKey = keyFactory.generatePublic(keySpec);
+
+
+        Signature signature = Signature.getInstance(algorithm);
+        signature.initVerify(publicKey);
+        signature.update(orderPayloadStr.getBytes(StandardCharsets.UTF_8));
+
+        if(signature.verify(signBytes)){
+            return SignatureStatus.SIGNED;
+        }
+        return SignatureStatus.PENDING_SIGNATURE;
+    }
+
+    public Optional<OrderSigningPayload> buildOrderSigningPayload(Long orderId) {
+        Optional<OrderSigningPayload> orderForSigning = orderSignatureDAO.findOrderForSigning(orderId);
+
+        if (orderForSigning.isEmpty()) {
+            return Optional.empty();
+        }
+
+        OrderSigningPayload orderPayload = orderForSigning.get();
+
+        orderPayload.setItems(orderSignatureDAO.findOrderItemsForSigning(orderId));
+
+        return Optional.of(orderPayload);
     }
 
     private String buildSearchWhere(String keyword) {

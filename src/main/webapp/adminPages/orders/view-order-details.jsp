@@ -67,6 +67,25 @@
                                     <span class="badge ms-3 bg-danger-subtle text-danger">Đã hủy</span>
                                 </c:when>
                             </c:choose>
+
+
+                            <c:choose>
+
+                                <c:when test="${orderDetail.signatureStatus == 'NO_HE_HE'}">
+                                    <span class=" " style="margin-left: 9px">
+                                       <img   src="${pageContext.request.contextPath}/assets/images/fail-icon.jpg" alt="Logo"  style="width: 30px; height: 30px">
+                                    </span>
+
+                                </c:when>
+
+                                <c:when test="${orderDetail.signatureStatus == 'OK_HE_HE'}">
+                                    <span class="" style="margin-left: 9px">
+                                        <img   src="${pageContext.request.contextPath}/assets/images/ok-icon.jpg" alt="Logo"  style="width: 30px; height: 30px">
+                                    </span>
+                                </c:when>
+
+                            </c:choose>
+
                         </div>
                         <div class="order-date">${orderDate}</div>
                     </div>

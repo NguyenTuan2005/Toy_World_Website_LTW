@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet(value = "/account/order-history")
@@ -36,7 +38,7 @@ public class OrderHistoryController extends HttpServlet {
         if (keyword != null && !keyword.isBlank()) {
             try {
                 Long orderId = Long.parseLong(keyword);
-                userOrders = userOrderService.findOrdersByUserAndOrderId(user.getId(), orderId);
+                userOrders = List.of(userOrderService.findOrdersByUserAndOrderId(user.getId(), orderId));
             } catch (NumberFormatException e) {
                 userOrders = List.of();
             }

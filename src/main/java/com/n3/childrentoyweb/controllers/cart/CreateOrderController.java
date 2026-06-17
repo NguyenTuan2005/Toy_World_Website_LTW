@@ -47,8 +47,9 @@ public class CreateOrderController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/sign-order?orderId=" + orderId);
 
         } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
+            request.setAttribute("error","Có lỗi xảy ra khi đặt đơn hàng, Vui lòng thử lại sau");
             request.getRequestDispatcher("/my-shopping-cart.jsp").forward(request, response);
+            e.printStackTrace();
         }
     }
 

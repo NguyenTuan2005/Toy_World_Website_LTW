@@ -1,7 +1,10 @@
 package com.n3.childrentoyweb.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.n3.childrentoyweb.dto.orderSignature.OrderSigningPayload;
 import io.leangen.geantyref.TypeToken;
 
 import java.lang.reflect.Type;
@@ -28,5 +31,12 @@ public class JsonUtil {
         }
 
         return new Gson().toJson(restInfoMap);
+    }
+
+    public static String convertToJsonPayload(OrderSigningPayload orderSigningPayload) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        String payload = mapper.writeValueAsString(orderSigningPayload);
+        return payload;
     }
 }

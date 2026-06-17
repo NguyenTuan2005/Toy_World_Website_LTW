@@ -24,13 +24,14 @@ public class OrderDetailDAO extends BaseDAO {
             l.province,
             o.created_at,
             o.status AS orderStatus,
-            pay.status AS paymentStatus,
+            o.signature_status AS signatureStatus,
             o.total_price,
+            pay.status AS paymentStatus,
             COALESCE(o.discount_price, 0) AS discountPrice
         FROM orders o
         JOIN users u ON o.user_id = u.id
-        JOIN locations l ON u.location_id = l.id
-        JOIN payments pay ON o.id = pay.order_id
+        LEFT JOIN locations l ON u.location_id = l.id
+        LEFT JOIN payments pay ON o.id = pay.order_id
         WHERE o.id = :orderId
         """;
 

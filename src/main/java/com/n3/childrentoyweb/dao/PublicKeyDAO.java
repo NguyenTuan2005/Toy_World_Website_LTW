@@ -27,7 +27,7 @@ public class PublicKeyDAO extends BaseDAO{
         String sql = """
         SELECT id
         FROM public_keys
-        WHERE user_id = :userId and is_active = 1 and lost = null
+        WHERE user_id = :userId and is_active = 1
         """;
 
         return super.getJdbi().withHandle(handle ->

@@ -77,16 +77,6 @@
                                 </div>
 
                             </c:when>
-
-                            <c:otherwise>
-                                <div>
-                                    <i class="bi bi-key"
-                                       style="font-size: 30px; margin-left: 9px;  margin-right: 9px; color: #269df6"></i>
-                                    khóa an toàn
-                                </div>
-
-
-                            </c:otherwise>
                         </c:choose>
                     </button>
                 </div>

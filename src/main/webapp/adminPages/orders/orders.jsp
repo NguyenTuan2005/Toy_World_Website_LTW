@@ -139,6 +139,7 @@
                     <th>Tổng tiền (VNĐ)</th>
                     <th>Thanh Toán</th>
                     <th>Trạng thái</th>
+                    <th>Trạng thái xác nhận ký</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -200,6 +201,20 @@
                                         Đã hủy
                                     </span>
                                 </c:when>
+                            </c:choose>
+                        </td>
+
+                        <td class="text-nowrap">
+                            <c:choose>
+
+                                <c:when test="${o.signatureStatus == 'NO_HE_HE'}">
+                                    <img   src="${pageContext.request.contextPath}/assets/images/fail-icon.jpg" alt="Logo"  style="width: 30px; height: 30px">
+                                </c:when>
+
+                                <c:when test="${o.signatureStatus == 'OK_HE_HE'}">
+                                    <img   src="${pageContext.request.contextPath}/assets/images/ok-icon.jpg" alt="Logo"  style="width: 30px; height: 30px">
+                                </c:when>
+
                             </c:choose>
                         </td>
 

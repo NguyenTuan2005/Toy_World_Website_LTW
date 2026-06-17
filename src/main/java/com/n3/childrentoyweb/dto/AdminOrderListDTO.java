@@ -12,6 +12,7 @@ public class AdminOrderListDTO {
     private String orderStatus;
     private String paymentStatus;
     private long totalPrice;
+    private String signatureStatus;
 
     public AdminOrderListDTO() {
     }
@@ -95,6 +96,14 @@ public class AdminOrderListDTO {
         if (createdAt == null) return "";
 
         return LocalDateTimeConverterUtil.convertToString(createdAt);
+    }
+
+    public String getSignatureStatus() {
+        return signatureStatus;
+    }
+
+    public void setSignatureStatus(String signatureStatus) {
+        this.signatureStatus = signatureStatus;
     }
 
     @Override

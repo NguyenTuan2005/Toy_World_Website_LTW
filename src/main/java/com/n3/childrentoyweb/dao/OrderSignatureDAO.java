@@ -79,16 +79,20 @@ public class OrderSignatureDAO extends BaseDAO{
 
     public List<OrderItemPayload> findOrderItemsForSigning(Long orderId) {
         String sql = """
-            SELECT
-                p.id AS productId,
-                p.name AS productName,
-                od.quantity,
-                p.price AS unitPrice,
-                p.promotion_id AS promotionId
-            FROM order_details od
-            JOIN products p ON p.id = od.product_id
-            WHERE od.order_id = :orderId
-            ORDER BY p.id
+                 SELECT
+                                                 p.id AS productId,
+                                                 p.name AS productName,
+                                                 od.quantity,
+                                                 p.price AS unitPrice,
+                                                 (
+                                                 select pm.id
+                                                 from promotions pm where p.promotion_id =pm.id AND pm.created_at <= NOW()  AND pm.expired_at >= NOW()
+                                                 ) as promotionId
+                                             FROM order_details od
+                                             JOIN products p ON p.id = od.product_id
+                                             WHERE od.order_id=:orderId
+                                             ORDER BY p.id
+                
         """;
 
         return this.getJdbi().withHandle(handle ->

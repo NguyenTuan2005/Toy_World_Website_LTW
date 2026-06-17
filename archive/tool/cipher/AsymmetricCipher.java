@@ -31,7 +31,7 @@ public class AsymmetricCipher implements TextCipher, FileCipher{
     public String encryptText(String plainText) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
         Signature signature = Signature.getInstance(asymmetric.getTransformation());
         signature.initSign(asymmetric.getPrivateKey());
-        byte[] data = Base64.getDecoder().decode(plainText);
+        byte[] data = plainText.getBytes(StandardCharsets.UTF_8);
         signature.update(data);
         asymmetric.setSign(signature.sign());
         return Base64.getEncoder().encodeToString(asymmetric.getSign());

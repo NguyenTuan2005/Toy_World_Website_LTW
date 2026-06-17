@@ -61,7 +61,7 @@ public class VerifySignatureController extends HttpServlet {
 
                 response.sendRedirect(request.getContextPath() + "/checkout?orderId=" + orderId);
             } else {
-
+                request.setAttribute("orderId", orderId);
                 request.setAttribute("error", "Chữ ký không hợp lệ, xác thực thất bại");
                 request.getRequestDispatcher("/sign-order.jsp").forward(request, response);
             }

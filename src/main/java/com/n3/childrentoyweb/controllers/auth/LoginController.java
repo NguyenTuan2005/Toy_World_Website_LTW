@@ -55,6 +55,8 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("currentUser", user);
 
+            System.out.println(user);
+
             List<RoleEnum> roles = roleService.findAllByUserId(user.getId());
             session.setAttribute("roles", roles);
             session.setAttribute("isAdmin", roles.contains(RoleEnum.ROLE_ADMIN));

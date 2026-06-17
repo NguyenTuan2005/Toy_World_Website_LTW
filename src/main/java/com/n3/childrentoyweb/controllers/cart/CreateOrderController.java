@@ -34,14 +34,22 @@ public class CreateOrderController extends HttpServlet {
             if (cart == null || cart.getTotalQuantity() == 0)
                 throw new DataInvalidException("Giỏ hàng trống");
 
+            if (user.getIsLostKey()){
+                request.setAttribute("username",user.getFirstName()+" "+user.getLastName());
+                request.getRequestDispatcher("/Policy-lost-key.jsp").forward(request,response);
+                return;
+            }
+
+
             long orderId = this.orderService.createOrder(user, cart);
 
             request.getSession().setAttribute(Cart.CART, new Cart());
             response.sendRedirect(request.getContextPath() + "/sign-order?orderId=" + orderId);
 
         } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
+            request.setAttribute("error","Có lỗi xảy ra khi đặt đơn hàng, Vui lòng thử lại sau");
             request.getRequestDispatcher("/my-shopping-cart.jsp").forward(request, response);
+            e.printStackTrace();
         }
     }
 

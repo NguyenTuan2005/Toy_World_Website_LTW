@@ -354,4 +354,16 @@ public class UserDAO extends BaseDAO {
                         .one()
         );
     }
+
+    public void updateLostKey(Long userId, boolean lost) {
+
+        String sql = "UPDATE users SET is_lost_key =:lost WHERE id = :id";
+
+        this.getJdbi().useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("lost", lost)
+                        .bind("id", userId)
+                        .execute()
+        );
+    }
 }

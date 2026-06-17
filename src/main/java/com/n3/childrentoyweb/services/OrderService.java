@@ -165,6 +165,7 @@ public class OrderService {
 
 
         long publicKeyId = publicKeyDAO.findLatestCreatePublicKeyIdByUserId(user.getId());
+        System.out.println(publicKeyId);
 
         OrderSignature orderSignature = new OrderSignature(orderId, publicKeyId, orderPayload,"SHA1withDSA");
 

@@ -1,9 +1,11 @@
 package view.center;
 
+import utils.Path;
 import view.utils.ColorView;
 import view.utils.GeneratePanel;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 
@@ -49,12 +51,17 @@ public class FileInputCard extends JPanel {
     }
 
     private void addEvent() {
-        fileChooser = new JFileChooser();
+        fileChooser = new JFileChooser(Path.get());
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files (*.json)", "json");
+        fileChooser.setFileFilter(filter);
+
         btnBrowseFile.addActionListener(e -> {
             int result = fileChooser.showOpenDialog(FileInputCard.this);
 
             if (result == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
+                Path.put(file.getParent());
                 tfFilePath.setText(file.getPath());
             }
         });

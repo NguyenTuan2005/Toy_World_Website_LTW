@@ -1,6 +1,7 @@
 package view.bottom;
 
 import controller.EncryptionController;
+import utils.Path;
 import view.center.CenterPanel;
 import view.utils.ColorView;
 import view.utils.GeneratePanel;
@@ -64,15 +65,16 @@ public class BottomPanel extends JPanel {
     }
 
     private void addEvent() {
-        fileChooser = new JFileChooser();
+        fileChooser = new JFileChooser(Path.get());
 
         btnSign.addActionListener(e -> {
             try {
                 String data = centerPanel.getData();
                 updateResult(controller.encrypt(data));
             } catch (Exception ex) {
-                if (ex.getClass().equals(InvalidKeyException.class))
+                if (ex.getClass().equals(InvalidKeyException.class)) {
                     updateResultError("Khóa của bạn không hợp lệ");
+                }
                 else
                     updateResultError(ex.getMessage());
             }
@@ -84,6 +86,7 @@ public class BottomPanel extends JPanel {
             int result = fileChooser.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
+                Path.put(file.getParent());
                 try {
                     updateResult(controller.downloadSign(file));
                 } catch (Exception ex) {

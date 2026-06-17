@@ -12,8 +12,7 @@ public class PublicKeyDAO extends BaseDAO{
         String sql = """
             UPDATE public_keys
             SET
-                is_active = 0,
-                is_user_disable = 1
+                is_active = 0
             WHERE user_id = :user_id
               AND is_active = 1
             """;
@@ -35,9 +34,37 @@ public class PublicKeyDAO extends BaseDAO{
                 handle.createQuery(sql)
                         .bind("userId", userId)
                         .mapTo(Long.class)
-                        .one()
+                        .findOne()
+                        .orElse(-1L)
         );
     }
+
+    public boolean isUnLost(Long userId){
+        String sql = "Select is_active from public_keys where user_id =:userId and is_active  ";
+        return  super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .mapTo(Boolean.class)
+                        .findOne().orElse(Boolean.FALSE)
+        );
+    }
+
+
+    public boolean isNoKey(Long userId){
+        String sql = "Select count(id) from public_keys where user_id =:userId";
+        return  super.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("userId", userId)
+                        .mapTo(Long.class)
+                        .findOne().orElse(0l)
+        ) == 0L;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("User no key ="+new PublicKeyDAO().isNoKey(71L));
+        System.out.println("user has key="+ new PublicKeyDAO().isNoKey(57L));
+    }
+
 
     public int lostKey(Long userId) {
         return getJdbi().inTransaction(handle -> {

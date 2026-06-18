@@ -26,7 +26,6 @@ public class OrderSignatureService {
     public boolean verifyOrder(Long userId, Long orderId, String signatureBase64) throws JsonProcessingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SignatureException {
         OrderSigningPayload orderPayload = buildOrderSigningPayload(orderId).orElseThrow(() -> new ObjectNotFoundException("Order not found"));
         String orderPayloadStr = JsonUtil.convertToJsonPayload(orderPayload);
-        System.out.println(orderPayloadStr);
 
 
         OrderSignatureDTO orderSignature = orderSignatureDAO.findOrderSignatureByUserAndOrderId(userId, orderId).orElseThrow(() -> new ObjectNotFoundException("Order not found"));

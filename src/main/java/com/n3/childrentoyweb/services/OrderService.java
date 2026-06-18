@@ -134,7 +134,7 @@ public class OrderService {
                 cart.getTotalPrice(),
                 cart.getTotalPromotion(),
                 OrderStatus.PENDING.getStatus(),
-                SignatureStatus.PENDING_SIGNATURE.getStatus()
+                SignatureStatus.UNSIGNED.getStatus()
         );
 
         long orderId = orderDAO.save(order);
@@ -165,7 +165,6 @@ public class OrderService {
 
 
         long publicKeyId = publicKeyDAO.findLatestCreatePublicKeyIdByUserId(user.getId());
-        System.out.println(publicKeyId);
 
         OrderSignature orderSignature = new OrderSignature(orderId, publicKeyId, orderPayload,"SHA1withDSA");
 

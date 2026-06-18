@@ -22,9 +22,6 @@ public class ContactController  extends HttpServlet {
         String email = "email";
         String name = req.getParameter("fullName");
         String content = req.getParameter("content");
-        System.out.println(email);
-        System.out.println(name);
-        System.out.println(content);
         resp.sendRedirect(req.getHeader("Referer"));
     }
 }

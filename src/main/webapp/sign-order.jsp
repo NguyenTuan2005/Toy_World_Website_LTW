@@ -9,6 +9,15 @@
     <jsp:include page="/common/head.jsp"/>
     <link rel="stylesheet" href="css/my-shopping-cart.css"/>
     <fmt:setLocale value="vi_VN"/>
+    <style>
+        .header-title {
+            color: #041675;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
@@ -26,10 +35,11 @@
 
 <div class="container mt-5">
 
+    <h1 class="header-title">Tạo chữ ký điện tử cho đơn hàng</h1>
+
     <div class="card shadow">
 
         <div class="card-header bg-primary text-white">
-            <h3>Tạo chữ ký điện tử cho đơn hàng</h3>
         </div>
 
         <div class="card-body">
@@ -88,20 +98,38 @@
 
             <hr>
 
-            <h5>Bước 1: Tải Payload để ký</h5>
+            <h5>Bước 1: Tải file dữ liệu đơn hàng</h5>
+
+            <p class="mt-2">
+                Tải file này về máy và sử dụng công cụ ký điện tử bằng Private Key của bạn.
+            </p>
 
             <a href="${pageContext.request.contextPath}/dowload-order-payload?orderId=${order.id}"
                class="btn btn-success">
-                Tải Payload
+                Tải file dữ liệu đơn hàng
             </a>
-
-            <p class="text-muted mt-2">
-                Tải file payload và sử dụng công cụ ký điện tử bằng Private Key của bạn.
-            </p>
 
             <hr>
 
-            <h5>Bước 2: Upload chữ ký điện tử</h5>
+            <h5>Bước 2: Thực hiện ký điện tử</h5>
+
+            <p class="mt-2">
+                Sử dụng phần mềm chữ ký số để ký vào file vừa tải về. Nếu chưa có công cụ ký số, bạn có thể tải phần mềm hỗ trợ ký
+                <a href="${pageContext.request.contextPath}/tool" class="alert-link font-weight-bold text-underline">tại đây</a>.
+            </p>
+
+            <div class="card bg-light p-3 border-0">
+                <span class="text-muted d-block mb-1">Hướng dẫn:</span>
+                <ul class="text-muted pl-3 mb-0" style="font-size: 16px;">
+                    <li>Mở phần mềm ký số trên máy tính của bạn.</li>
+                    <li>Chọn file dữ liệu đơn hàng vừa tải ở Bước 1.</li>
+                    <li>Chọn Khóa bí mật (Private Key) và bấm <strong>Ký tên</strong>.</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <h5>Bước 3: Upload chữ ký điện tử để xác thực đơn hàng</h5>
 
             <form action="${pageContext.request.contextPath}/verify-signature"
                   method="post"
@@ -131,20 +159,7 @@
                 </button>
             </form>
 
-            <hr>
-
-            <div class="alert alert-info">
-
-                <strong>Quy trình:</strong>
-
-                <ol class="mb-0 mt-2">
-                    <li>Tải Payload của đơn hàng.</li>
-                    <li>Dùng công cụ ký điện tử với Private Key.</li>
-                    <li>Nhận file chữ ký (.sig).</li>
-                    <li>Upload chữ ký để hệ thống xác thực.</li>
-                    <li>Nếu hợp lệ, bạn sẽ được chuyển sang trang thanh toán.</li>
-                </ol>
-
+            <div class="pb-3">
             </div>
 
         </div>

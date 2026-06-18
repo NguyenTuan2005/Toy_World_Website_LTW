@@ -27,7 +27,7 @@ public class PublicKeyDAO extends BaseDAO{
         String sql = """
         SELECT id
         FROM public_keys
-        WHERE user_id = :userId and is_active = 1
+        WHERE user_id = :userId and is_active = 1 AND lost IS NULL
         """;
 
         return super.getJdbi().withHandle(handle ->
@@ -58,11 +58,6 @@ public class PublicKeyDAO extends BaseDAO{
                         .mapTo(Long.class)
                         .findOne().orElse(0l)
         ) == 0L;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("User no key ="+new PublicKeyDAO().isNoKey(71L));
-        System.out.println("user has key="+ new PublicKeyDAO().isNoKey(57L));
     }
 
 

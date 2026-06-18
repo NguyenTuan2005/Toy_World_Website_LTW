@@ -43,10 +43,11 @@ public class VerifySignatureController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User currentUser;
+        long orderId = -1;
         try {
             if ((currentUser = (User) request.getSession().getAttribute("currentUser")) == null)
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
-            long orderId = Long.parseLong(request.getParameter("orderId"));
+            orderId = Long.parseLong(request.getParameter("orderId"));
 
 
 
@@ -61,15 +62,18 @@ public class VerifySignatureController extends HttpServlet {
 
                 response.sendRedirect(request.getContextPath() + "/checkout?orderId=" + orderId);
             } else {
-                request.setAttribute("orderId", orderId);
-                request.setAttribute("error", "Chữ ký không hợp lệ, xác thực thất bại");
-                request.getRequestDispatcher("/sign-order.jsp").forward(request, response);
+                request.getSession().setAttribute("error", "Chữ ký không hợp lệ, xác thực thất bại");
+                response.sendRedirect(request.getContextPath() + "/sign-order?orderId=" + orderId);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/sign-order.jsp").forward(request, response);
+            request.getSession().setAttribute("error", "Chữ ký không hợp lệ, xác thực thất bại");
+            if (orderId > 0) {
+                response.sendRedirect(request.getContextPath() + "/sign-order?orderId=" + orderId);
+            } else {
+                response.sendRedirect(request.getContextPath() + "/my-shopping-cart");
+            }
         }
     }
 

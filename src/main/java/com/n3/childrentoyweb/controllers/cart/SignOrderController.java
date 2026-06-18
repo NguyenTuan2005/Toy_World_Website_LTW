@@ -39,8 +39,9 @@ public class SignOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User currentUser;
+        HttpSession session = request.getSession();
         try {
-            if ((currentUser = (User) request.getSession().getAttribute("currentUser")) == null)
+            if ((currentUser = (User) session.getAttribute("currentUser")) == null)
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
 
             long orderId = Long.parseLong(request.getParameter("orderId"));
@@ -48,8 +49,14 @@ public class SignOrderController extends HttpServlet {
             UserOrderDTO userOrder = userOrderService.findOrdersByUserAndOrderId(currentUser.getId() , orderId);
 
             request.setAttribute("order", userOrder);
-            System.out.println(userOrder);
             request.setAttribute("userFullName", currentUser.getFullName());
+
+
+            String error = (String) session.getAttribute("error");
+            if (error != null) {
+                request.setAttribute("error", error);
+                request.getSession().removeAttribute("error");
+            }
 
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());

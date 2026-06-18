@@ -2,7 +2,7 @@ package com.n3.childrentoyweb.enums;
 
 public enum SignatureStatus {
     SIGNED("DA_CO_CHU_KY_DIEN_TU"),
-    PENDING_SIGNATURE("CHUA_CO_CHU_KY_DIEN_TU")
+    UNSIGNED("CHUA_CO_CHU_KY_DIEN_TU"),
     ;
     private final String status;
 

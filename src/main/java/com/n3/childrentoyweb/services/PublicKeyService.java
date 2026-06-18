@@ -40,6 +40,10 @@ public class PublicKeyService {
         return this.publicKeyDAO.lostKey(userId);
     }
 
+    public boolean isNoKey(Long userId){
+        return this.publicKeyDAO.isNoKey(userId);
+    }
+
     public PublicKey findById(Long id) {
         return this.publicKeyDAO.findById(id);
     }

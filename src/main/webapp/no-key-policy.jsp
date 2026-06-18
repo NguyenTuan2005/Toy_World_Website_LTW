@@ -29,31 +29,21 @@
                     <div class="card-body text-center p-5">
 
                         <div class="mb-4">
-                            <i class="fas fa-check-circle text-success"
+                            <i class="fas fa-times-circle text-danger"
                                style="font-size: 5rem;"></i>
                         </div>
 
                         <h3 class="fw-bold mb-3">
-                            Ghi nhận thành công
+                            Đơn hàng không đủ điều kiện, Do bạn chưa tạo key theo theo chính sách của hệ thống
                         </h3>
 
                         <p class="text-muted mb-4">
-                            Hệ thống đã ghi nhận báo cáo Public Key từ người dùng
-                            <strong>${username}</strong>. trong thời gian chưa tạo khóa mới bạn sẽ bị tạm khóa không cho mua hàng.
+                            <strong>${username}</strong>.
                         </p>
 
-                        <p class="text-muted">
-                            Báo cáo của bạn sẽ được bộ phận quản trị xem xét và xử lý
-                            trong thời gian sớm nhất.
-                        </p>
+
 
                         <div class="mt-4">
-                            <a href="${pageContext.request.contextPath}/"
-                               class="btn btn-primary">
-                                <i class="fas fa-home me-2"></i>
-                                Về trang chủ
-                            </a>
-
                             <a href="${pageContext.request.contextPath}/account/profile"
                                class="btn btn-outline-secondary ms-2">
                                 <i class="fas fa-user me-2"></i>

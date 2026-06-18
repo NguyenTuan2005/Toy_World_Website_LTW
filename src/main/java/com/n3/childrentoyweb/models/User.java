@@ -31,8 +31,12 @@ public class User extends BaseModel implements Serializable {
     @ColumnName("location_id")
     private Long locationId;
 
+
+
     @ColumnName("is_lost_key")
     private Boolean isLostKey;
+
+    private Boolean isNoKey;
 
     public String getFirstName() {
         return firstName;
@@ -90,6 +94,14 @@ public class User extends BaseModel implements Serializable {
         this.locationId = locationId;
     }
 
+    public Boolean getNoKey() {
+        return isNoKey;
+    }
+
+    public void setNoKey(Boolean noKey) {
+        isNoKey = noKey;
+    }
+
     public User(String firstName, String lastName, String phone, String gender, String password, String email, Long locationId) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -135,6 +147,7 @@ public class User extends BaseModel implements Serializable {
                 ", locationId=" + locationId +
                 ", id=" + id +
                 ", isLostKey= "+isLostKey+
+                ", isNoKey= "+isNoKey+
                 ", Super = "+ super.toString() +
                 '}';
     }

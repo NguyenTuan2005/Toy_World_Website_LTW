@@ -34,6 +34,12 @@ public class CreateOrderController extends HttpServlet {
             if (cart == null || cart.getTotalQuantity() == 0)
                 throw new DataInvalidException("Giỏ hàng trống");
 
+            if (user.getNoKey()){
+                request.setAttribute("username",user.getFirstName()+" "+user.getLastName());
+                request.getRequestDispatcher("/no-key-policy.jsp").forward(request, response);
+                return;
+            }
+
             if (user.getIsLostKey()){
                 request.setAttribute("username",user.getFirstName()+" "+user.getLastName());
                 request.getRequestDispatcher("/Policy-lost-key.jsp").forward(request,response);

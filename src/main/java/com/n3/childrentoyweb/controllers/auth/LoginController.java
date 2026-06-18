@@ -3,6 +3,7 @@ package com.n3.childrentoyweb.controllers.auth;
 import com.n3.childrentoyweb.enums.RoleEnum;
 import com.n3.childrentoyweb.models.User;
 import com.n3.childrentoyweb.services.AuthService;
+import com.n3.childrentoyweb.services.PublicKeyService;
 import com.n3.childrentoyweb.services.RoleService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -15,11 +16,13 @@ import java.util.List;
 public class LoginController extends HttpServlet {
     private AuthService authService;
     private RoleService roleService;
+    private PublicKeyService publicKeyService;
 
     @Override
     public void init() {
         this.authService = new AuthService();
         this.roleService = new RoleService();
+        this.publicKeyService = new PublicKeyService();
     }
 
     @Override
@@ -51,6 +54,9 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("/login/login.jsp").forward(request, response);
                 return;
             }
+
+            boolean isNoKey = this.publicKeyService.isNoKey(user.getId());
+            user.setNoKey(isNoKey);
 
             HttpSession session = request.getSession(true);
             session.setAttribute("currentUser", user);

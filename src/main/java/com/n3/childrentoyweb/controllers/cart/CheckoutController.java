@@ -41,9 +41,16 @@ public class CheckoutController extends HttpServlet {
             if ((currentUser = (User) request.getSession().getAttribute("currentUser")) == null)
                 throw new DataInvalidException("Bạn hãy vui lòng đăng nhập");
 
+            if (currentUser.getNoKey()){
+                request.setAttribute("username",currentUser.getFirstName()+" "+currentUser.getLastName());
+                request.getRequestDispatcher("/no-key-policy.jsp").forward(request, response);
+                return;
+            }
+
             if (currentUser.getIsLostKey()){
                 request.setAttribute("username",currentUser.getFirstName()+" "+currentUser.getLastName());
                 request.getRequestDispatcher("/Policy-lost-key.jsp").forward(request, response);
+                return;
             }
 
             if (currentUser.getLocationId() != null) {

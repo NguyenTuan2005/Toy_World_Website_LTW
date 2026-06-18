@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/root.css"/>
     <style>
-        .search-border{
+        .search-border {
             border-top-right-radius: 50rem !important;
             border-bottom-right-radius: 50rem !important;
             border: 1px solid #d2d2d2;
@@ -29,6 +29,16 @@
 <body>
 <jsp:include page="/common/header.jsp"/>
 
+<c:choose>
+    <c:when test="${not empty error}">
+        <div id="alert" class="alert alert-danger text-center mb-4" role="alert">
+                ${error}
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div id="alert" class="alert alert-danger text-center mb-4 d-none" role="alert"></div>
+    </c:otherwise>
+</c:choose>
 
 <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100">
     <%--    delete--%>
@@ -85,6 +95,40 @@
                     Tài Khoản Của Bạn
                 </div>
                 <ul class="sidebar-menu">
+                    <li class="profile">
+                        <form action="${pageContext.request.contextPath}/lost-private-key"
+                              method="post"
+                              class="row g-3">
+
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn text-start">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Báo mất khóa
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="profile">
+                        <form action="${pageContext.request.contextPath}/gen-keys"
+                              method="post"
+                              class="row g-3">
+
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn text-start">
+                                    <i class="bi bi-floppy2 me-2"></i>Tạo key tự động
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="profile">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/public-key'"
+                                class="d-flex">
+                            <i class="bi bi-key me-2"></i>
+                            Thêm public key
+                        </button>
+                    </li>
+
                     <li class="profile">
                         <button onclick="window.location.href='${pageContext.request.contextPath}/account/profile'"
                                 class="d-flex">
@@ -181,42 +225,64 @@
                                     <div>
                                         <strong>Đơn #${order.id}</strong>
                                         <div class="text-muted small">
-                                                ${order.createdAtFormatted}
+                                            <span>Ngày đặt: ${order.createdAtFormatted}</span>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex gap-2">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <c:choose>
+                                                <c:when test="${order.pendingSignature}">
+                                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">Chờ xử lý</span>
+                                                </c:when>
+
+                                                <c:when test="${order.orderStatus == 'CHUAN_BI_HANG'}">
+                                                    <span class="badge bg-primary-subtle text-blue">Chuẩn bị hàng</span>
+                                                </c:when>
+
+                                                <c:when test="${order.orderStatus == 'DANG_GIAO'}">
+                                                    <span class="badge bg-success-subtle text-blue">Đang giao</span>
+                                                </c:when>
+
+                                                <c:when test="${order.orderStatus == 'DA_GIAO'}">
+                                                    <span class="badge bg-success-subtle text-success">Đã Giao</span>
+                                                </c:when>
+
+                                                <c:when test="${order.orderStatus == 'DA_HUY'}">
+                                                    <span class="badge bg-danger-subtle text-danger">Đã hủy</span>
+                                                </c:when>
+                                            </c:choose>
+
+
+                                            <c:choose>
+                                                <c:when test="${order.notPaid}">
+                                                    <span class="badge bg-danger-subtle text-danger">Chưa thanh toán</span>
+                                                </c:when>
+
+                                                <c:when test="${order.paid}">
+                                                    <span class="badge bg-success-subtle text-success">Đã thanh toán</span>
+                                                </c:when>
+
+                                                <c:when test="${order.refunded}">
+                                                    <span class="badge bg-dark-subtle text-dark">Hoàn tiền</span>
+                                                </c:when>
+                                            </c:choose>
+
+                                        </div>
+
                                         <c:choose>
-                                            <c:when test="${order.orderStatus == 'CHUAN_BI_HANG'}">
-                                                <span class="badge bg-primary-subtle text-blue">Chuẩn bị hàng</span>
+                                            <c:when test="${order.signed}">
+                                                <img src="${pageContext.request.contextPath}/assets/images/icons/valid.png"
+                                                     alt="Đã ký"
+                                                     style="width: 45px;"
+                                                     class="align-self-center ms-2"/>
                                             </c:when>
-
-                                            <c:when test="${order.orderStatus == 'DANG_GIAO'}">
-                                                <span class="badge bg-success-subtle text-success">Đang giao</span>
-                                            </c:when>
-
-                                            <c:when test="${order.orderStatus == 'DA_GIAO'}">
-                                                <span class="badge bg-success-subtle text-success">Đã Giao</span>
-                                            </c:when>
-
-                                            <c:when test="${order.orderStatus == 'DA_HUY'}">
-                                                <span class="badge bg-danger-subtle text-danger">Đã hủy</span>
-                                            </c:when>
-                                        </c:choose>
-
-
-                                        <c:choose>
-                                            <c:when test="${order.paymentStatus == 'CHUA_THANH_TOAN'}">
-                                                <span class="badge bg-danger-subtle text-danger">Chưa thanh toán</span>
-                                            </c:when>
-
-                                            <c:when test="${order.paymentStatus == 'DA_THANH_TOAN'}">
-                                                <span class="badge bg-success-subtle text-success">Đã thanh toán</span>
-                                            </c:when>
-
-                                            <c:when test="${order.paymentStatus == 'HOAN_TIEN'}">
-                                                <span class="badge bg-dark-subtle text-dark">Hoàn tiền</span>
-                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${pageContext.request.contextPath}/assets/images/icons/inValid.png"
+                                                     alt="Chưa ký"
+                                                     style="width: 45px;"
+                                                     class="align-self-center ms-2"/>
+                                            </c:otherwise>
                                         </c:choose>
 
                                     </div>
@@ -242,24 +308,42 @@
                                 </div>
 
                                 <!-- FOOTER -->
-                                <div class="order-footer d-flex justify-content-between align-items-center">
-                                        <span>
-                                            Tổng tiền:
-                                            <strong>
-                                                <fmt:formatNumber value="${order.totalPrice}"
-                                                                  type="currency"
-                                                                  currencySymbol="₫"/>
-                                            </strong>
-                                        </span>
+                                <div class="order-footer d-flex justify-content-between align-items-center mt-3">
+                                    <span>
+                                        Tổng tiền:
+                                        <strong class="fs-5">
+                                            <fmt:formatNumber value="${order.totalPrice}" type="currency" currencySymbol="₫"/>
+                                        </strong>
+                                    </span>
 
-                                    <c:if test="${order.orderStatus == 'CHUAN_BI_HANG'}">
-                                        <button class="btn btn-outline-danger btn-sm"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#cancelOrderModal"
-                                                data-order-id="${order.id}">
-                                            <strong>Hủy đơn</strong>
-                                        </button>
-                                    </c:if>
+                                    <div class="d-flex gap-2">
+
+                                        <c:if test="${order.orderStatus == 'CHUAN_BI_HANG'}">
+                                            <button class="btn btn-outline-danger btn-sm"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#cancelOrderModal"
+                                                    data-order-id="${order.id}">
+                                                <strong>Hủy đơn</strong>
+                                            </button>
+                                        </c:if>
+
+                                        <c:if test="${order.notPaid}">
+                                            <button class="btn btn-outline-success btn-sm"
+                                                    onclick="window.location.href='${pageContext.request.contextPath}/checkout?orderId=${order.id}'">
+                                                <strong>Thanh toán ngay</strong>
+                                            </button>
+                                        </c:if>
+
+                                        <c:if test="${not order.signed}">
+                                            <button class="btn btn-outline-secondary btn-sm"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#signOrderModal"
+                                                    onclick="window.location.href='${pageContext.request.contextPath}/sign-order?orderId=${order.id}'">
+                                                <strong>Xác thực đơn hàng</strong>
+                                            </button>
+                                        </c:if>
+
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>

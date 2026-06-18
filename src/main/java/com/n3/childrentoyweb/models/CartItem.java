@@ -51,4 +51,12 @@ public class CartItem implements Serializable {
     public Long getPromotionId() {
         return this.cartProductDTO.getPromotionId();
     }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "cartProductDTO=" + cartProductDTO +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

@@ -15,7 +15,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Optional;
 
 @WebServlet(value = "/admin/orders/view/*")
 public class ViewOrderDetailController extends HttpServlet {
@@ -51,7 +50,7 @@ public class ViewOrderDetailController extends HttpServlet {
                         orderDetail.setSignatureStatus("OK_HE_HE");
                     }
 
-                    case PENDING_SIGNATURE -> {
+                    case UNSIGNED -> {
                         System.out.println("NO hehe ");
                         orderDetail.setSignatureStatus("NO_HE_HE");
                     }

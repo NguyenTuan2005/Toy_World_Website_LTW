@@ -40,8 +40,8 @@
                               class="row g-3">
 
                             <div class="col-12 mt-3">
-                                <button type="submit" class="btn btn-warning text-start">
-                                    <i class="bi bi-floppy2 me-2"></i> Báo mất khóa
+                                <button type="submit" class="btn text-start">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Báo mất khóa
                                 </button>
                             </div>
                         </form>
@@ -54,7 +54,7 @@
 
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn text-start">
-                                    <i class="bi bi-floppy2 me-2"></i> Tạo key tự động
+                                    <i class="bi bi-floppy2 me-2"></i>Tạo key tự động
                                 </button>
                             </div>
                         </form>

@@ -68,7 +68,7 @@ public class OrderService {
                         adminOrderListDTO.setSignatureStatus("OK_HE_HE");
                     }
 
-                    case PENDING_SIGNATURE -> {
+                    case UNSIGNED -> {
                         adminOrderListDTO.setSignatureStatus("NO_HE_HE");
                     }
                 }
@@ -92,7 +92,7 @@ public class OrderService {
     public SignatureStatus verifyOrder(String email, Long orderId) throws JsonProcessingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SignatureException {
         OrderSigningPayload orderPayload = buildOrderSigningPayload(orderId).orElse(null);
         if (orderPayload == null){
-            return SignatureStatus.PENDING_SIGNATURE;
+            return SignatureStatus.UNSIGNED;
         }
         String orderPayloadStr = JsonUtil.convertToJsonPayload(orderPayload);
         System.out.println(orderPayloadStr);
@@ -100,7 +100,7 @@ public class OrderService {
 
         OrderSignatureDTO orderSignature = orderSignatureDAO.findOrderSignatureByUserEmailAndOrderId(email, orderId).orElse(null);
         if (orderSignature == null){
-            return SignatureStatus.PENDING_SIGNATURE;
+            return SignatureStatus.UNSIGNED;
         }
         String publicKeyBase64 = orderSignature.getPublicKey();
         String algorithm = orderSignature.getAlgorithm();
@@ -120,7 +120,7 @@ public class OrderService {
         if(signature.verify(signBytes)){
             return SignatureStatus.SIGNED;
         }
-        return SignatureStatus.PENDING_SIGNATURE;
+        return SignatureStatus.UNSIGNED;
     }
 
     public Optional<OrderSigningPayload> buildOrderSigningPayload(Long orderId) {
@@ -219,7 +219,7 @@ public class OrderService {
                 cart.getTotalPrice(),
                 cart.getTotalPromotion(),
                 OrderStatus.PENDING.getStatus(),
-                SignatureStatus.PENDING_SIGNATURE.getStatus()
+                SignatureStatus.UNSIGNED.getStatus()
         );
 
         long orderId = orderDAO.save(order);
@@ -250,7 +250,6 @@ public class OrderService {
 
 
         long publicKeyId = publicKeyDAO.findLatestCreatePublicKeyIdByUserId(user.getId());
-        System.out.println(publicKeyId);
 
         OrderSignature orderSignature = new OrderSignature(orderId, publicKeyId, orderPayload,"SHA1withDSA");
 

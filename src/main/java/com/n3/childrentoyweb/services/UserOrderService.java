@@ -1,11 +1,11 @@
 package com.n3.childrentoyweb.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.n3.childrentoyweb.dao.OrderDAO;
 import com.n3.childrentoyweb.dao.OrderDetailDAO;
 import com.n3.childrentoyweb.dao.OrderSignatureDAO;
 import com.n3.childrentoyweb.dto.OrderItemDTO;
 import com.n3.childrentoyweb.dto.UserOrderDTO;
-import com.n3.childrentoyweb.dto.orderSignature.OrderSignatureDTO;
 import com.n3.childrentoyweb.enums.OrderStatus;
 import com.n3.childrentoyweb.enums.SignatureStatus;
 import com.n3.childrentoyweb.exception.ForbiddenException;
@@ -16,37 +16,52 @@ import com.n3.childrentoyweb.models.OrderSignature;
 
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
 public class UserOrderService {
     private OrderDAO orderDAO;
     private OrderDetailDAO orderDetailDAO;
     private OrderSignatureDAO orderSignatureDAO;
+    private OrderSignatureService orderSignatureService;
 
     public UserOrderService() {
         this.orderDAO = new OrderDAO();
         this.orderDetailDAO = new OrderDetailDAO();
         this.orderSignatureDAO = new OrderSignatureDAO();
+        this.orderSignatureService = new OrderSignatureService(this.orderSignatureDAO, this.orderDAO);
     }
 
-    public List<UserOrderDTO> findOrdersByUserId(Long userId) {
+    public List<UserOrderDTO> findOrdersByUserId(Long userId) throws NoSuchAlgorithmException, InvalidKeySpecException, SignatureException, InvalidKeyException, JsonProcessingException {
         List<UserOrderDTO> orders = orderDAO.findOrdersByUserId(userId);
 
         for (UserOrderDTO order : orders) {
-            List<OrderItemDTO> items = orderDetailDAO.findOrderItems(order.getId());
-            order.setItems(items);
+            order.setItems(orderDetailDAO.findOrderItems(order.getId()));
+
+            boolean isSigned = false;
+            if (order.isSigned()) {
+                OrderSignature sig = orderSignatureDAO.findOrderSignatureById(order.getId());
+                isSigned = (sig != null) && orderSignatureService.verifyOrder(userId, order.getId(), sig.getSignatureValue());
+            }
+
+            order.setSignatureStatus(isSigned ? SignatureStatus.SIGNED.getStatus() : SignatureStatus.UNSIGNED.getStatus());
         }
 
         return orders;
     }
 
-    public UserOrderDTO findOrdersByUserAndOrderId(Long userId, Long orderId) {
+    public UserOrderDTO findOrdersByUserAndOrderId(Long userId, Long orderId) throws NoSuchAlgorithmException, InvalidKeySpecException, SignatureException, InvalidKeyException, JsonProcessingException {
         UserOrderDTO order = orderDAO.findOrdersByUserAndOrderId(userId, orderId).orElseThrow(() -> new ObjectNotFoundException("Không tìm thấy đơn hàng"));
         List<OrderItemDTO> items = orderDetailDAO.findOrderItems(order.getId());
         order.setItems(items);
+
+        boolean isSigned = false;
+        if (order.isSigned()) {
+            OrderSignature sig = orderSignatureDAO.findOrderSignatureById(order.getId());
+            isSigned = (sig != null) && orderSignatureService.verifyOrder(userId, order.getId(), sig.getSignatureValue());
+        }
+
+        order.setSignatureStatus(isSigned ? SignatureStatus.SIGNED.getStatus() : SignatureStatus.UNSIGNED.getStatus());
+
         return order;
     }
 
@@ -86,7 +101,6 @@ public class UserOrderService {
         orderSignatureDAO.update(orderSignature);
 
     }
-
 
 
 

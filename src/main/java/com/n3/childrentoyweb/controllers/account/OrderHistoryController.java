@@ -28,27 +28,32 @@ public class OrderHistoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try{
+            HttpSession session = request.getSession(false);
+            User user = (User) session.getAttribute("currentUser");
 
-        HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("currentUser");
+            String keyword = request.getParameter("keyword");
 
-        String keyword = request.getParameter("keyword");
-
-        List<UserOrderDTO> userOrders;
-        if (keyword != null && !keyword.isBlank()) {
-            try {
-                Long orderId = Long.parseLong(keyword);
-                userOrders = List.of(userOrderService.findOrdersByUserAndOrderId(user.getId(), orderId));
-            } catch (NumberFormatException e) {
-                userOrders = List.of();
+            List<UserOrderDTO> userOrders;
+            if (keyword != null && !keyword.isBlank()) {
+                try {
+                    Long orderId = Long.parseLong(keyword);
+                    userOrders = List.of(userOrderService.findOrdersByUserAndOrderId(user.getId(), orderId));
+                } catch (NumberFormatException e) {
+                    userOrders = List.of();
+                }
+            } else {
+                userOrders = userOrderService.findOrdersByUserId(user.getId());
             }
-        } else {
-            userOrders = userOrderService.findOrdersByUserId(user.getId());
+
+            request.setAttribute("orders", userOrders);
+            request.getRequestDispatcher("/myAccount/account-order-history.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Lỗi khi tải dữ liệu đơn hàng");
+            request.getRequestDispatcher("/myAccount/account-order-history.jsp").forward(request, response);
         }
 
-        request.setAttribute("orders", userOrders);
-        request.getRequestDispatcher("/myAccount/account-order-history.jsp")
-                .forward(request, response);
     }
 
 

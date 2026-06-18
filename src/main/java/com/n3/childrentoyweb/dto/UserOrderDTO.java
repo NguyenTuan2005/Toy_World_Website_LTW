@@ -1,5 +1,8 @@
 package com.n3.childrentoyweb.dto;
 
+import com.n3.childrentoyweb.enums.OrderStatus;
+import com.n3.childrentoyweb.enums.PaymentStatus;
+import com.n3.childrentoyweb.enums.SignatureStatus;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 
 import java.time.LocalDateTime;
@@ -86,9 +89,31 @@ public class UserOrderDTO {
                 "id=" + id +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", paymentStatus='" + paymentStatus + '\'' +
+                ", signatureStatus='" + signatureStatus + '\'' +
                 ", createdAt=" + createdAt +
                 ", totalPrice=" + totalPrice +
                 ", items=" + items +
-                "}\n";
+                "/n";
     }
+
+    public boolean isNotPaid(){
+        return PaymentStatus.UNPAID.getStatus().equals(this.paymentStatus) || this.paymentStatus == null;
+    }
+
+    public boolean isPaid() {
+        return PaymentStatus.SUCCESS.getStatus().equals(this.paymentStatus);
+    }
+
+    public boolean isRefunded() {
+        return PaymentStatus.REFUND.getStatus().equals(this.paymentStatus);
+    }
+
+    public boolean isPendingSignature(){
+        return OrderStatus.PENDING.getStatus().equals(this.orderStatus);
+    }
+
+    public boolean isSigned(){
+        return SignatureStatus.SIGNED.getStatus().equals(this.signatureStatus);
+    }
+
 }

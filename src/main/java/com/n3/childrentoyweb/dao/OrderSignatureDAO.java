@@ -137,4 +137,41 @@ public class OrderSignatureDAO extends BaseDAO{
         );
     }
 
+    public Optional<OrderSignatureDTO> findOrderSignatureByUserEmailAndOrderId(String email, Long orderId) {
+        String sql = """
+            SELECT o.id AS orderId,
+                   pubk.public_key,
+                   sig.order_signing_payload,
+                   sig.algorithm,
+                   sig.signature_value
+      
+            FROM orders o
+            join users u on u.id = o.user_id
+            JOIN order_signatures sig ON o.id = sig.order_id
+            JOIN public_keys pubk ON pubk.user_id = o.user_id AND sig.public_key_id = pubk.id
+            WHERE u.email =:email
+                    AND o.id = :orderId
+                    AND o.is_active = 1
+                    AND pubk.is_active = 1
+            ORDER BY o.created_at DESC
+        """;
+
+        return this.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("email", email)
+                        .bind("orderId", orderId)
+                        .map((rs, ctx) -> {
+                            OrderSignatureDTO dto = new OrderSignatureDTO();
+                            dto.setOrderId(rs.getLong("orderId"));
+                            dto.setPublicKey(rs.getString("public_key"));
+                            dto.setOrderSigningPayload(rs.getString("order_signing_payload"));
+                            dto.setAlgorithm(rs.getString("algorithm"));
+                            dto.setSignatureValue(rs.getString("signature_value"));
+                            return dto;
+                        })
+                        .findOne()
+        );
+    }
+
+
 }

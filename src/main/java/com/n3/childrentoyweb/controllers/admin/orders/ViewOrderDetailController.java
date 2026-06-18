@@ -1,23 +1,30 @@
 package com.n3.childrentoyweb.controllers.admin.orders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.n3.childrentoyweb.dto.OrderDetailDTO;
 import com.n3.childrentoyweb.exception.ObjectNotFoundException;
 import com.n3.childrentoyweb.services.OrderDetailService;
+import com.n3.childrentoyweb.services.OrderService;
 import com.n3.childrentoyweb.utils.LocalDateTimeConverterUtil;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
 
 @WebServlet(value = "/admin/orders/view/*")
 public class ViewOrderDetailController extends HttpServlet {
     private OrderDetailService orderDetailService;
+    private OrderService orderService;
 
     @Override
     public void init(){
         orderDetailService = new OrderDetailService();
+        orderService = new OrderService();
     }
 
     @Override
@@ -34,6 +41,32 @@ public class ViewOrderDetailController extends HttpServlet {
 
 
             OrderDetailDTO orderDetail = orderDetailService.findOrderDetail(orderId);
+
+            try {
+                com.n3.childrentoyweb.enums.SignatureStatus signatureStatus = this.orderService.verifyOrder(orderDetail.getCustomerEmail(),orderId);
+                switch (signatureStatus){
+                    case SIGNED -> {
+                        System.out.println("ok hehe ");
+                        orderDetail.setSignatureStatus("OK_HE_HE");
+                    }
+
+                    case UNSIGNED -> {
+                        System.out.println("NO hehe ");
+                        orderDetail.setSignatureStatus("NO_HE_HE");
+                    }
+                }
+
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            } catch (InvalidKeySpecException e) {
+                throw new RuntimeException(e);
+            } catch (InvalidKeyException e) {
+                throw new RuntimeException(e);
+            } catch (SignatureException e) {
+                throw new RuntimeException(e);
+            }
 
             request.setAttribute("orderDetail", orderDetail);
             request.setAttribute("orderDate", LocalDateTimeConverterUtil.convertToString(orderDetail.getCreatedAt()));

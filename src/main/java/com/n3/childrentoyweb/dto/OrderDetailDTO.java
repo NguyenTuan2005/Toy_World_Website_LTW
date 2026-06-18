@@ -25,6 +25,7 @@ public class OrderDetailDTO {
     private long totalPrice;
     private long discountPrice;
 
+
     private List<OrderItemDTO> items;
 
     public OrderDetailDTO(Long id, Long customerId, String customerFirstName, String customerLastName, String customerEmail, String customerPhone, Long locationId, String address, String province, LocalDateTime createdAt, String orderStatus, String paymentStatus, long totalPrice, long discountPrice, List<OrderItemDTO> items) {

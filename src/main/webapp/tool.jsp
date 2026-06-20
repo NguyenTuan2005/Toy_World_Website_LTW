@@ -114,11 +114,14 @@
     <section class="download-section">
         <h2 class="fw-bold mb-4">Tải Về Công Cụ</h2>
         <p class="mb-4" style="font-size: 1.1rem; color: #666;">
-            Tải xuống phiên bản mới nhất của công cụ mã hóa bất xứng
+            Tải xuống phiên bản mới nhất của công cụ mã hóa bất đối xứng
         </p>
         <div>
-            <a href="${pageContext.request.contextPath}/download-tool" class="download-btn text-primary">
+            <a href="${pageContext.request.contextPath}/download-tool?os=window" class="download-btn text-primary">
                 <i class="fas fa-download me-2"></i>Tải về (Windows)
+            </a>
+            <a href="${pageContext.request.contextPath}/download-tool?os=linux" class="download-btn text-primary ms-4">
+                <i class="fas fa-download me-2"></i>Tải về (Linux)
             </a>
         </div>
     </section>

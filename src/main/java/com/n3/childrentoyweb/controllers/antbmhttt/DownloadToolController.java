@@ -13,7 +13,13 @@ public class DownloadToolController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("table_atbmhttt/table_public_keys.sql");
+        String os = request.getParameter("os");
+
+        String file = "";
+        if ("linux".equals(os)) file = "SignatureTool.deb";
+        if ("window".equals(os)) file = "SignatureTool.exe";
+
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(file);
 
         if (inputStream == null) {
             request.setAttribute("error", "Không tìm thấy file");
@@ -24,7 +30,7 @@ public class DownloadToolController extends HttpServlet {
         response.setContentType("application/octet-stream");
         response.setHeader(
                 "Content-Disposition",
-                "attachment; filename=\"table_public_keys.sql\""
+                "attachment; filename=" + file
         );
 
         try (

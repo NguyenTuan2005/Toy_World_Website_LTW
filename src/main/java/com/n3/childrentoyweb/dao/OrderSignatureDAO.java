@@ -117,7 +117,7 @@ public class OrderSignatureDAO extends BaseDAO{
             WHERE o.user_id = :userId 
                     AND o.id = :orderId
                     AND o.is_active = 1
-                    AND pubk.is_active = 1
+   
             ORDER BY o.created_at DESC
         """;
 
@@ -152,7 +152,7 @@ public class OrderSignatureDAO extends BaseDAO{
             WHERE u.email =:email
                     AND o.id = :orderId
                     AND o.is_active = 1
-                    AND pubk.is_active = 1
+                    
             ORDER BY o.created_at DESC
         """;
 

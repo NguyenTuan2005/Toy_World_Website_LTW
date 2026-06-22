@@ -74,6 +74,8 @@ public class GenKeysController extends HttpServlet {
             executor.shutdown();
         }
 
+        currentUser.setIsLostKey(false);
+        session.setAttribute("currentUser",currentUser);
 
         req.setAttribute("privateKey",base64StringPrivateKey);
         req.getRequestDispatcher("/display-private-key.jsp").forward(req,resp);

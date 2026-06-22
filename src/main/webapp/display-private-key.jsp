@@ -46,7 +46,32 @@
                         <i class="fas fa-copy me-1"></i>
                         Copy
                     </button>
+                    <button
+                            type="button"
+                            class="btn btn-primary save-btn"
+                            onclick="downloadPrivateKey()">
+                        <i class="fas fa-copy me-1"></i>
+                        download
+                    </button>
                 </div>
+                <script>
+                    function downloadPrivateKey() {
+                        const keyContent = `${privateKey}`;
+
+                        const blob = new Blob([keyContent], {
+                            type: "application/octet-stream"
+                        });
+
+                        const url = URL.createObjectURL(blob);
+
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = "private-key.key";
+                        a.click();
+
+                        URL.revokeObjectURL(url);
+                    };
+                </script>
 
                 <script>
                     function copyPrivateKey() {

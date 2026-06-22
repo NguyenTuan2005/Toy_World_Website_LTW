@@ -27,7 +27,7 @@ public class OrderSignatureService {
         OrderSigningPayload orderPayload = buildOrderSigningPayload(orderId).orElseThrow(() -> new ObjectNotFoundException("Order not found"));
         String orderPayloadStr = JsonUtil.convertToJsonPayload(orderPayload);
 
-
+        System.out.println("order id : ="+ orderId);
         OrderSignatureDTO orderSignature = orderSignatureDAO.findOrderSignatureByUserAndOrderId(userId, orderId).orElseThrow(() -> new ObjectNotFoundException("Order not found"));
         String publicKeyBase64 = orderSignature.getPublicKey();
         String algorithm = orderSignature.getAlgorithm();

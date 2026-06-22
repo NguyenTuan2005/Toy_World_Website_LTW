@@ -23,8 +23,12 @@ public class LostKeyController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         HttpSession session =  req.getSession();
+
         User currentUser = (User) session.getAttribute("currentUser");
         publicKeyService.lostKey(currentUser.getId());
+
+        session.invalidate();
+
         String username = currentUser.getFirstName()+" "+currentUser.getLastName();
         req.setAttribute("username",username);
         req.getRequestDispatcher("/user-lost-key.jsp").forward(req, resp);

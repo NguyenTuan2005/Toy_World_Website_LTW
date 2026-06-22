@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/account", "/account/*"})
+@WebFilter(urlPatterns = {"/account", "/account/*","/public/*"})
 public class UserAuthFilter implements Filter {
 
     @Override
@@ -19,6 +19,15 @@ public class UserAuthFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
 
         HttpSession session = request.getSession(false);
+
+        String uri = request.getRequestURI();
+        String context = request.getContextPath();
+
+
+        if (uri.contains("/public/")) {
+            chain.doFilter(req, res);
+            return;
+        }
 
         if (session == null || session.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
